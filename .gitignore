@@ -1,0 +1,6 @@
+# Shopify
+.shopify
+shopify.theme.toml
+
+# Node
+node_modules

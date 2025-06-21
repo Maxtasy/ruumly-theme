@@ -1,0 +1,16 @@
+:root {
+  /* Sizes */
+
+  /* Colors */
+
+  /* Typography */
+
+  /* Components */
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Colors */
+  }
+}

@@ -1,0 +1,17 @@
+[environments.default]
+store = "ruumly"
+password = "YOUR_THEME_ACCESS_PASSWORD"
+path = "."
+open = true
+store-password = "DEVELOPMENT_STORE_PASSWORD"
+theme-editor-sync = true
+live-reload = "full-page"
+
+[environments.development]
+store = "ruumly"
+password = "YOUR_THEME_ACCESS_PASSWORD"
+path = "."
+open = true
+store-password = "DEVELOPMENT_STORE_PASSWORD"
+theme-editor-sync = true
+live-reload = "full-page"

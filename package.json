@@ -1,0 +1,19 @@
+{
+  "name": "ruumly-theme",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "shopify theme dev -e development"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Maxtasy/ruumly-theme.git"
+  },
+  "author": "Maxtasy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Maxtasy/ruumly-theme/issues"
+  },
+  "homepage": "https://github.com/Maxtasy/ruumly-theme#readme"
+}
