@@ -1,0 +1,57 @@
+<div class="Section">
+  <div
+    class="AnnouncementBar"
+    style="
+      --background-color: {{ section.settings.background_color }};
+      --text-color: {{ section.settings.text_color }};
+    "
+  >
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .AnnouncementBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--announcement-bar-gap, 0);
+    padding-block: var(--announcement-bar-padding-block);
+    padding-inline: var(--announcement-bar-padding-inline);
+    background-color: var(--background-color);
+    color: var(--text-color);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "limit": 1,
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Appearance"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}

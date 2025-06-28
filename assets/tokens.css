@@ -1,11 +1,34 @@
 :root {
+  /* ----- */
   /* Sizes */
+  /* ----- */
+  --size-md: 1rem;
 
+  /* ------ */
   /* Colors */
+  /* ------ */
 
+  /* ---------- */
   /* Typography */
+  /* ---------- */
 
+  /* -------- */
+  /* Sections */
+  /* -------- */
+
+  /* Announcement Bar */
+  --announcement-bar-padding-block: var(--size-md);
+  --announcement-bar-gap: var(--size-md);
+
+  /* ---------- */
   /* Components */
+  /* ---------- */
+
+  /* Icon */
+  --icon-size: 1.5rem;
+
+  /* Icon with Text */
+  --icon-with-text-gap: var(--size-md);
 }
 
 /* Dark mode overrides */

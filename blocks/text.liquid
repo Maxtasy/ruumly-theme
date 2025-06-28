@@ -1,0 +1,45 @@
+<div class="TextBlock TextBlock--Align{{ block.settings.alignment | camelcase }}">
+  {{ block.settings.text }}
+</div>
+
+{% stylesheet %}
+  .TextBlock--AlignLeft {
+    text-align: left;
+  }
+
+  .TextBlock--AlignCenter {
+    text-align: center;
+  }
+
+  .TextBlock--AlignRight {
+    text-align: right;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Text",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "Alignment",
+      "default": "left"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text",
+      "settings": {
+        "text": "<p>This is a text block.<p>",
+        "alignment": "left"
+      }
+    }
+  ]
+}
+{% endschema %}

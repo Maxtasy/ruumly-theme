@@ -1,0 +1,71 @@
+<div class="IconWithTextBlock IconWithTextBlock--Align{{ block.settings.alignment | camelcase }}">
+  {% content_for 'blocks' %}
+</div>
+
+{% stylesheet %}
+  .IconWithTextBlock {
+    display: flex;
+    align-items: center;
+    gap: var(--icon-with-text-gap);
+  }
+
+  .IconWithTextBlock--AlignLeft {
+    text-align: left;
+  }
+
+  .IconWithTextBlock--AlignCenter {
+    text-align: center;
+  }
+
+  .IconWithTextBlock--AlignRight {
+    text-align: right;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Icon with Text",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Block Settings"
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "Alignment",
+      "default": "left"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "icon"
+    },
+    {
+      "type": "text"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Info Text",
+      "settings": {
+        "alignment": "left"
+      },
+      "blocks": [
+        {
+          "type": "icon",
+          "settings": {
+            "icon": "info"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>Some Info Text</p>"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
