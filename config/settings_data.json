@@ -16,7 +16,7 @@
     "type_body_font": "inter_n4",
     "page_width": 1200,
     "color_schemes": {
-      "scheme-1": {
+      "default": {
         "settings": {
           "background": "#FFFFFF",
           "background_gradient": "",
@@ -29,7 +29,7 @@
           "secondary_button_border": "#000000"
         }
       },
-      "scheme-2": {
+      "inverted": {
         "settings": {
           "background": "#000000",
           "background_gradient": "",
@@ -39,7 +39,8 @@
           "button_label": "#FFFFFF",
           "secondary_button": "#FFFFFF",
           "secondary_button_label": "#000000",
-          "secondary_button_border": "#000000"
+          "secondary_button_border": "#000000",
+          "border": "#FFFFFF"
         }
       }
     }
@@ -48,7 +49,7 @@
     "Default": {
       "logo_width": 90,
       "color_schemes": {
-        "scheme-1": {
+        "default": {
           "settings": {
             "background": "#FFFFFF",
             "background_gradient": "",
@@ -61,7 +62,7 @@
             "secondary_button_border": "#000000"
           }
         },
-        "scheme-2": {
+        "inverted": {
           "settings": {
             "background": "#000000",
             "background_gradient": "",

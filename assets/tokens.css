@@ -1,24 +1,54 @@
 :root {
+  /* ----- */
   /* Sizes */
-  --size-xs: 4px;
-  --size-s: 8px;
-  --size-m: 16px;
-  --size-l: 32px;
-  --size-xl: 64px;
-  --size-xxl: 128px;
+  /* ----- */
+  --size-0: 0px;
+  --size-xs: 0.25rem;
+  --size-s: 0.5rem;
+  --size-m: 1rem;
+  --size-l: 1.5rem;
+  --size-xl: 2rem;
+  --size-xxl: 3rem;
 
+  /* ------ */
   /* Colors */
-  --background: rgb(179, 179, 179);
+  /* ------ */
+  --color-surface: var(--color-background);
+  --color-surface-secondary: rgb(240, 240, 240);
 
+  --color-sale-text: rgb(182, 0, 0);
+  --color-sale-surface: rgb(255, 220, 220);
+  --color-success-text: rgb(0, 128, 0);
+  --color-success-surface: rgb(175, 253, 175);
+  --color-destructive-text: rgb(255, 0, 0);
+  --color-destructive-surface: rgb(255, 220, 220);
+  --color-warning-text: rgb(255, 165, 0);
+  --color-warning-surface: rgb(255, 245, 220);
+
+  /* ---------- */
   /* Typography */
+  /* ---------- */
+  --font-family-body: var(--font-body-family);
+  --font-family-heading: var(--font-heading-family);
 
+  /* -------- */
+  /* Sections */
+  /* -------- */
+
+  /* Announcement Bar */
+  --announcement-bar-padding-block: var(--size-0);
+  --announcement-bar-padding-inline: var(--size-0);
+  --announcement-bar-gap: var(--size-m);
+
+  /* Site Header */
+  --site-header-padding-block: var(--size-0);
+  --site-header-padding-inline: var(--size-0);
+
+  /* ---------- */
   /* Components */
-  --text-color-primary: rgb(0, 0, 0);
-  --text-color-primary-inverted: rgb(255, 255, 255);
+  /* ---------- */
 
-  --icon-destructive: rgb(255, 0, 0);
-  --icon-success: rgb(0, 128, 0);
-  --icon-warning: rgb(255, 165, 0);
+  /* Button */
 
   --button-border-radius: 8px;
   --button-font-size: 16px;
@@ -33,23 +63,44 @@
   --button-secondary-background: rgb(255, 255, 255);
   --button-secondary-background-hover: rgb(187, 187, 187);
 
+  /* Icon */
+  --icon-size-s: 1rem;
+  --icon-size-m: 1.5rem;
+  --icon-size-l: 2rem;
+  --icon-color-destructive: var(--color-destructive-text);
+  --icon-color-success: var(--color-success-text);
+  --icon-color-warning: var(--color-warning-text);
+
+  /* Icon with Text */
+  --icon-with-text-gap: var(--size-m);
+
+  /* Section */
+  --section-padding-block: var(--size-m);
+  --section-padding-inline: var(--size-m);
+
+  /* Text */
+  --text-color: var(--color-text);
+
+  /* ------- */
   /* Details */
+  /* ------- */
+
   --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  --border-width: 1px;
+  --border-style: solid;
+  --border-color: var(--color-border);
 }
 
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
   :root {
     /* Colors */
-    --background: rgb(46, 46, 46);
 
     /* Components */
-    --text-color-primary: rgb(228, 228, 228);
-    --text-color-primary-inverted: rgb(0, 0, 0);
 
-    --icon-destructive: rgb(255, 0, 0);
-    --icon-success: rgb(0, 255, 0);
-    --icon-warning: rgb(255, 165, 0);
+    --icon-color-destructive: rgb(255, 0, 0);
+    --icon-color-success: rgb(0, 255, 0);
+    --icon-color-warning: rgb(255, 165, 0);
 
     --button-primary-text: rgb(0, 0, 0);
     --button-primary-text-hover: rgb(43, 43, 43);
@@ -59,5 +110,8 @@
     --button-secondary-text-hover: rgb(194, 194, 194);
     --button-secondary-background: rgb(0, 0, 0);
     --button-secondary-background-hover: rgb(53, 53, 53);
+
+    --color-sale-text: rgb(255, 65, 65);
+    --color-sale-surface: rgb(255, 65, 65, 0.1);
   }
 }

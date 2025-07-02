@@ -1,0 +1,20 @@
+{% doc %}
+  Renders an Icon with Text component.
+
+  @param {string} icon - The name of the icon to render.
+  @param {string} text - The text to display alongside the icon.
+{% enddoc %}
+
+<div class="IconWithText">
+  {% render 'icon', icon: icon %}
+
+  {% render 'text', text: text %}
+</div>
+
+{% stylesheet %}
+  .IconWithText {
+    display: flex;
+    align-items: center;
+    gap: var(--icon-with-text-gap);
+  }
+{% endstylesheet %}

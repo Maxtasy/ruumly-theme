@@ -32,9 +32,7 @@
 
     {% render 'color-schemes' %}
 
-    {{ 'normalize.css' | asset_url | stylesheet_tag }}
-    {{ 'tokens.css' | asset_url | stylesheet_tag }}
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {% render 'global-styles' %}
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}
@@ -50,6 +48,8 @@
 
   <body>
     {% sections 'header-group' %}
+
+    {% sections 'aside-group' %}
 
     <main class="" role="main" tabindex="-1">
       {{ content_for_layout }}
