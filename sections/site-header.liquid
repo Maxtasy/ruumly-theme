@@ -1,17 +1,55 @@
-<div class="Section ColorScheme--{{ section.settings.color_scheme | camelcase }}">
-  <header class="SiteHeader">
-    {% render 'text', text: 'Site header', as: 'h2', variant: 'heading-large' %}
-  </header>
+<div
+  class="
+    Section
+    {% if section.settings.border_bottom %}
+      Section--BorderBottom
+    {% endif %}
+    ColorScheme--{{ section.settings.color_scheme | camelcase }}
+  "
+>
+  <div class="Section__Inner">
+    <header class="SiteHeader">
+      <div class="SiteHeader__Left">
+        <div class="u-Hidden--Desktop">
+          {% render 'icon', icon: 'menu' %}
+        </div>
+      </div>
+
+      <div class="SiteHeader__Middle">
+        {% render 'text', text: 'Ruumly', as: 'h2', variant: 'heading-large' %}
+      </div>
+
+      <div class="SiteHeader__Right">
+        {% render 'icon', icon: 'cart' %}
+      </div>
+    </header>
+  </div>
 </div>
 
 {% stylesheet %}
   .SiteHeader {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    padding-block: var(--site-header-padding-block);
+    padding-inline: var(--site-header-padding-inline);
+  }
+
+  .SiteHeader__Left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .SiteHeader__Middle {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-block: var(--site-header-padding-block);
-    padding-inline: var(--site-header-padding-inline);
-    border-bottom: var(--border-width) solid var(--color-border);
+  }
+
+  .SiteHeader__Right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
   }
 {% endstylesheet %}
 
@@ -27,6 +65,12 @@
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "Color Scheme"
+    },
+    {
+      "type": "checkbox",
+      "id": "border_bottom",
+      "label": "Show bottom border",
+      "default": true
     }
   ]
 }
