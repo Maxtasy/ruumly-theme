@@ -2,7 +2,13 @@
   /* ----- */
   /* Sizes */
   /* ----- */
-  --size-md: 1rem;
+  --size-0: 0px;
+  --size-xs: 0.25rem;
+  --size-s: 0.5rem;
+  --size-m: 1rem;
+  --size-l: 1.5rem;
+  --size-xl: 2rem;
+  --size-xxl: 3rem;
 
   /* ------ */
   /* Colors */
@@ -17,8 +23,9 @@
   /* -------- */
 
   /* Announcement Bar */
-  --announcement-bar-padding-block: var(--size-md);
-  --announcement-bar-gap: var(--size-md);
+  --announcement-bar-padding-block: var(--size-m);
+  --announcement-bar-padding-inline: var(--size-m);
+  --announcement-bar-gap: var(--size-m);
 
   /* ---------- */
   /* Components */
@@ -28,7 +35,7 @@
   --icon-size: 1.5rem;
 
   /* Icon with Text */
-  --icon-with-text-gap: var(--size-md);
+  --icon-with-text-gap: var(--size-m);
 }
 
 /* Dark mode overrides */
