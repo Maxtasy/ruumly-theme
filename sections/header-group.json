@@ -1,6 +1,74 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "header",
   "name": "Header Group",
-  "sections": {},
-  "order": []
+  "sections": {
+    "announcement_bar_jqRnK8": {
+      "type": "announcement-bar",
+      "blocks": {
+        "icon_with_text_block_afwXKX": {
+          "type": "icon-with-text-block",
+          "settings": {
+            "alignment": "center"
+          },
+          "blocks": {
+            "icon_block_gBRwTP": {
+              "type": "icon-block",
+              "settings": {
+                "icon": "info"
+              },
+              "blocks": {}
+            },
+            "text_block_VnjNGP": {
+              "type": "text-block",
+              "settings": {
+                "text": "<p>Some Info Text</p>",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["icon_block_gBRwTP", "text_block_VnjNGP"]
+        },
+        "icon_with_text_block_9Bfrz4": {
+          "type": "icon-with-text-block",
+          "settings": {
+            "alignment": "center"
+          },
+          "blocks": {
+            "icon_block_hqMeNP": {
+              "type": "icon-block",
+              "settings": {
+                "icon": "percent"
+              },
+              "blocks": {}
+            },
+            "text_block_dgH7Pz": {
+              "type": "text-block",
+              "settings": {
+                "text": "<p>Save big on our latest drop</p>",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["icon_block_hqMeNP", "text_block_dgH7Pz"]
+        }
+      },
+      "block_order": ["icon_with_text_block_afwXKX", "icon_with_text_block_9Bfrz4"],
+      "name": "Announcement Bar",
+      "settings": {
+        "color_scheme": "inverted"
+      }
+    }
+  },
+  "order": ["announcement_bar_jqRnK8"]
 }
