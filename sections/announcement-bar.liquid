@@ -1,11 +1,5 @@
 <div class="Section ColorScheme--{{ section.settings.color_scheme.id | camelcase }}">
-  <div
-    class="AnnouncementBar"
-    style="
-      --background-color: {{ section.settings.background_color }};
-      --text-color: {{ section.settings.text_color }};
-    "
-  >
+  <div class="AnnouncementBar">
     {% content_for 'blocks' %}
   </div>
 </div>
