@@ -68,7 +68,13 @@
       "settings": {
         "color_scheme": "inverted"
       }
+    },
+    "site_header": {
+      "type": "site-header",
+      "settings": {
+        "color_scheme": "default"
+      }
     }
   },
-  "order": ["announcement_bar_jqRnK8"]
+  "order": ["announcement_bar_jqRnK8", "site_header"]
 }

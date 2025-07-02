@@ -13,10 +13,23 @@
   /* ------ */
   /* Colors */
   /* ------ */
+  --color-surface: var(--color-background);
+  --color-surface-secondary: rgb(240, 240, 240);
+
+  --color-sale-text: rgb(182, 0, 0);
+  --color-sale-surface: rgb(255, 220, 220);
+  --color-success-text: rgb(0, 128, 0);
+  --color-success-surface: rgb(175, 253, 175);
+  --color-destructive-text: rgb(255, 0, 0);
+  --color-destructive-surface: rgb(255, 220, 220);
+  --color-warning-text: rgb(255, 165, 0);
+  --color-warning-surface: rgb(255, 245, 220);
 
   /* ---------- */
   /* Typography */
   /* ---------- */
+  --font-family-body: var(--font-body-family);
+  --font-family-heading: var(--font-heading-family);
 
   /* -------- */
   /* Sections */
@@ -27,20 +40,41 @@
   --announcement-bar-padding-inline: var(--size-m);
   --announcement-bar-gap: var(--size-m);
 
+  /* Site Header */
+  --site-header-padding-block: var(--size-m);
+  --site-header-padding-inline: var(--size-m);
+
   /* ---------- */
   /* Components */
   /* ---------- */
 
   /* Icon */
-  --icon-size: 1.5rem;
+  --icon-size-s: 1rem;
+  --icon-size-m: 1.5rem;
+  --icon-size-l: 2rem;
+  --icon-color-destructive: var(--color-destructive-text);
+  --icon-color-success: var(--color-success-text);
+  --icon-color-warning: var(--color-warning-text);
 
   /* Icon with Text */
   --icon-with-text-gap: var(--size-m);
+
+  /* Text */
+  --text-color: var(--color-text);
+
+  /* ------- */
+  /* Details */
+  /* ------- */
+  --border-width: 1px;
+  --border-style: solid;
+  --border-color: var(--color-border);
 }
 
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
   :root {
     /* Colors */
+    --color-sale-text: rgb(255, 65, 65);
+    --color-sale-surface: rgb(255, 65, 65, 0.1);
   }
 }

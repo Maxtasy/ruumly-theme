@@ -76,6 +76,10 @@
         },
         "shadow": {
           "label": "Shadow"
+        },
+        "border": {
+          "label": "Border",
+          "info": "Used for borders and outlines"
         }
       }
     },

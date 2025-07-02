@@ -1,0 +1,33 @@
+<div class="Section ColorScheme--{{ section.settings.color_scheme | camelcase }}">
+  <header class="SiteHeader">
+    {% render 'text', text: 'Site header', as: 'h2', variant: 'heading-large' %}
+  </header>
+</div>
+
+{% stylesheet %}
+  .SiteHeader {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-block: var(--site-header-padding-block);
+    padding-inline: var(--site-header-padding-inline);
+    border-bottom: var(--border-width) solid var(--color-border);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Site Header",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme"
+    }
+  ]
+}
+{% endschema %}

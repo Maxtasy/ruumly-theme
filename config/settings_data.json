@@ -39,7 +39,8 @@
           "button_label": "#FFFFFF",
           "secondary_button": "#FFFFFF",
           "secondary_button_label": "#000000",
-          "secondary_button_border": "#000000"
+          "secondary_button_border": "#000000",
+          "border": "#FFFFFF"
         }
       }
     }
