@@ -1,0 +1,9 @@
+body {
+  background-color: var(--background);
+}
+
+.Section {
+  padding: var(--size-l) var(--size-m);
+  max-width: 1200px;
+  margin: 0 auto;
+}

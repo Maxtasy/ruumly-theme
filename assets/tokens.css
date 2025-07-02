@@ -1,16 +1,63 @@
 :root {
   /* Sizes */
+  --size-xs: 4px;
+  --size-s: 8px;
+  --size-m: 16px;
+  --size-l: 32px;
+  --size-xl: 64px;
+  --size-xxl: 128px;
 
   /* Colors */
+  --background: rgb(179, 179, 179);
 
   /* Typography */
 
   /* Components */
+  --text-color-primary: rgb(0, 0, 0);
+  --text-color-primary-inverted: rgb(255, 255, 255);
+
+  --icon-destructive: rgb(255, 0, 0);
+  --icon-success: rgb(0, 128, 0);
+  --icon-warning: rgb(255, 165, 0);
+
+  --button-border-radius: 8px;
+  --button-font-size: 16px;
+  --button-font-weight: 600;
+  --button-letter-spacing: 2px;
+  --button-primary-text: rgb(255, 255, 255);
+  --button-primary-text-hover: rgb(211, 211, 211);
+  --button-primary-background: rgb(0, 0, 0);
+  --button-primary-background-hover: rgb(63, 63, 63);
+  --button-secondary-text: rgb(0, 0, 0);
+  --button-secondary-text-hover: rgb(61, 61, 61);
+  --button-secondary-background: rgb(255, 255, 255);
+  --button-secondary-background-hover: rgb(187, 187, 187);
+
+  /* Details */
+  --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
   :root {
     /* Colors */
+    --background: rgb(46, 46, 46);
+
+    /* Components */
+    --text-color-primary: rgb(228, 228, 228);
+    --text-color-primary-inverted: rgb(0, 0, 0);
+
+    --icon-destructive: rgb(255, 0, 0);
+    --icon-success: rgb(0, 255, 0);
+    --icon-warning: rgb(255, 165, 0);
+
+    --button-primary-text: rgb(0, 0, 0);
+    --button-primary-text-hover: rgb(43, 43, 43);
+    --button-primary-background: rgb(255, 255, 255);
+    --button-primary-background-hover: rgb(189, 189, 189);
+    --button-secondary-text: rgb(255, 255, 255);
+    --button-secondary-text-hover: rgb(194, 194, 194);
+    --button-secondary-background: rgb(0, 0, 0);
+    --button-secondary-background-hover: rgb(53, 53, 53);
   }
 }
