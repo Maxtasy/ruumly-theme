@@ -1,0 +1,67 @@
+{% doc %}
+  Button
+
+  @param {string} [text] - Button text
+  @param {string} [variant] - Button variant ('primary', 'secondary', 'icon')
+  @param {string} [icon] - Icon handle
+  @param {string} [action] - The action attribute
+{% enddoc %}
+
+{% assign variant = variant | default: 'primary' %}
+
+<button
+  class="Button{% if variant %} Button--{{ variant | camelcase }}{% endif %}"
+  {% if action %}
+    data-action="{{ action }}"
+  {% endif %}
+>
+  {% if text %}
+    {{ text }}
+  {% endif %}
+
+  {% if icon %}
+    {% render 'icon', icon: icon %}
+  {% endif %}
+</button>
+
+{% stylesheet %}
+  .Button {
+    padding: var(--size-m) var(--size-l);
+    border-radius: var(--button-border-radius);
+    box-shadow: var(--shadow);
+    transition: 0.5s;
+    font-size: var(--button-font-size);
+    font-weight: var(--button-font-weight);
+    text-transform: uppercase;
+    letter-spacing: var(--button-letter-spacing);
+    user-select: none;
+  }
+
+  .Button--Primary {
+    color: var(--button-primary-text);
+    background-color: var(--button-primary-background);
+  }
+
+  .Button--Secondary {
+    color: var(--button-secondary-text);
+    background-color: var(--button-secondary-background);
+  }
+
+  .Button--Primary:hover {
+    color: var(--button-primary-text-hover);
+    background-color: var(--button-primary-background-hover);
+  }
+
+  .Button--Secondary:hover {
+    color: var(--button-secondary-text-hover);
+    background-color: var(--button-secondary-background-hover);
+  }
+
+  .Button--Icon {
+    padding: var(--size-xs);
+  }
+
+  .Button[disabled] {
+    opacity: 0.25;
+  }
+{% endstylesheet %}

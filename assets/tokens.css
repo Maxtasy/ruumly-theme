@@ -36,17 +36,32 @@
   /* -------- */
 
   /* Announcement Bar */
-  --announcement-bar-padding-block: var(--size-m);
-  --announcement-bar-padding-inline: var(--size-m);
+  --announcement-bar-padding-block: var(--size-0);
+  --announcement-bar-padding-inline: var(--size-0);
   --announcement-bar-gap: var(--size-m);
 
   /* Site Header */
-  --site-header-padding-block: var(--size-m);
-  --site-header-padding-inline: var(--size-m);
+  --site-header-padding-block: var(--size-0);
+  --site-header-padding-inline: var(--size-0);
 
   /* ---------- */
   /* Components */
   /* ---------- */
+
+  /* Button */
+
+  --button-border-radius: 8px;
+  --button-font-size: 16px;
+  --button-font-weight: 600;
+  --button-letter-spacing: 2px;
+  --button-primary-text: rgb(255, 255, 255);
+  --button-primary-text-hover: rgb(211, 211, 211);
+  --button-primary-background: rgb(0, 0, 0);
+  --button-primary-background-hover: rgb(63, 63, 63);
+  --button-secondary-text: rgb(0, 0, 0);
+  --button-secondary-text-hover: rgb(61, 61, 61);
+  --button-secondary-background: rgb(255, 255, 255);
+  --button-secondary-background-hover: rgb(187, 187, 187);
 
   /* Icon */
   --icon-size-s: 1rem;
@@ -59,12 +74,18 @@
   /* Icon with Text */
   --icon-with-text-gap: var(--size-m);
 
+  /* Section */
+  --section-padding-block: var(--size-m);
+  --section-padding-inline: var(--size-m);
+
   /* Text */
   --text-color: var(--color-text);
 
   /* ------- */
   /* Details */
   /* ------- */
+
+  --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   --border-width: 1px;
   --border-style: solid;
   --border-color: var(--color-border);
@@ -74,6 +95,22 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* Colors */
+
+    /* Components */
+
+    --icon-color-destructive: rgb(255, 0, 0);
+    --icon-color-success: rgb(0, 255, 0);
+    --icon-color-warning: rgb(255, 165, 0);
+
+    --button-primary-text: rgb(0, 0, 0);
+    --button-primary-text-hover: rgb(43, 43, 43);
+    --button-primary-background: rgb(255, 255, 255);
+    --button-primary-background-hover: rgb(189, 189, 189);
+    --button-secondary-text: rgb(255, 255, 255);
+    --button-secondary-text-hover: rgb(194, 194, 194);
+    --button-secondary-background: rgb(0, 0, 0);
+    --button-secondary-background-hover: rgb(53, 53, 53);
+
     --color-sale-text: rgb(255, 65, 65);
     --color-sale-surface: rgb(255, 65, 65, 0.1);
   }

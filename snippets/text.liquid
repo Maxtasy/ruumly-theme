@@ -7,8 +7,41 @@
 {% enddoc %}
 
 {% assign as = as | default: 'p' %}
-{% assign variant = variant | default: 'body-medium' | camelcase %}
+{% assign variant = variant | default: 'body-medium' %}
 
-<{{ as }} class="Text{% if variant %} Text--{{ variant }}{% endif %}">
+<{{ as }} class="Text{% if variant %} Text--{{ variant | camelcase }}{% endif %}">
   {{ text }}
 </{{ as }}>
+
+{% stylesheet %}
+  .Text {
+    font-size: 16px;
+    line-height: 1.5;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--text-color);
+  }
+
+  .Text--BodySmall {
+    font-size: 12px;
+  }
+
+  .Text--BodyMedium {
+    font-size: 16px;
+  }
+
+  .Text--BodyLarge {
+    font-size: 24px;
+  }
+
+  .Text--HeadingSmall {
+    font-size: 24px;
+  }
+
+  .Text--HeadingMedium {
+    font-size: 32px;
+  }
+
+  .Text--HeadingLarge {
+    font-size: 40px;
+  }
+{% endstylesheet %}

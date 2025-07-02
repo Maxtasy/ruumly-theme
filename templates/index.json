@@ -12,7 +12,10 @@
     "main": {
       "type": "main-index",
       "settings": {}
+    },
+    "test-section": {
+      "type": "test-section"
     }
   },
-  "order": ["main"]
+  "order": ["main", "test-section"]
 }
