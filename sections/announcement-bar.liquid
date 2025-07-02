@@ -1,0 +1,44 @@
+<div class="Section ColorScheme--{{ section.settings.color_scheme.id | camelcase }}">
+  <div class="AnnouncementBar">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .AnnouncementBar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--announcement-bar-gap, 0);
+    padding-block: var(--announcement-bar-padding-block);
+    padding-inline: var(--announcement-bar-padding-inline);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "limit": 1,
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Appearance"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar",
+      "category": "Header"
+    }
+  ]
+}
+{% endschema %}

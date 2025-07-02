@@ -1,0 +1,44 @@
+<div class="IconBlock">
+  {% render 'icon', icon: block.settings.icon %}
+</div>
+
+{% stylesheet %}
+  .IconBlock {
+    display: flex;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Icon",
+  "settings": [
+    {
+      "type": "select",
+      "id": "icon",
+      "label": "Icon",
+      "default": "default",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "heart", "label": "Heart" },
+        { "value": "info", "label": "Info" },
+        { "value": "percent", "label": "Percent" },
+        { "value": "star", "label": "Star" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Heart",
+      "settings": {
+        "icon": "heart"
+      }
+    },
+    {
+      "name": "Star",
+      "settings": {
+        "icon": "star"
+      }
+    }
+  ]
+}
+{% endschema %}
