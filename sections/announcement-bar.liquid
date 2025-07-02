@@ -22,7 +22,14 @@
   "enabled_on": {
     "groups": ["header"]
   },
-  "blocks": [{ "type": "@theme" }, { "type": "@app" }],
+  "blocks": [
+    {
+      "type": "icon-with-text-block"
+    },
+    {
+      "type": "@app"
+    }
+  ],
   "settings": [
     {
       "type": "header",
@@ -37,7 +44,52 @@
   "presets": [
     {
       "name": "Announcement Bar",
-      "category": "Header"
+      "category": "Header",
+      "settings": {
+        "color_scheme": "inverted"
+      },
+      "blocks": [
+        {
+          "type": "icon-with-text-block",
+          "settings": {
+            "alignment": "center"
+          },
+          "blocks": [
+            {
+              "type": "icon-block",
+              "settings": {
+                "icon": "info"
+              }
+            },
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "<p>Some Info Text</p>"
+              }
+            }
+          ]
+        },
+        {
+          "type": "icon-with-text-block",
+          "settings": {
+            "alignment": "center"
+          },
+          "blocks": [
+            {
+              "type": "icon-block",
+              "settings": {
+                "icon": "percent"
+              }
+            },
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "<p>Save big on our latest drop</p>"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
