@@ -47,7 +47,27 @@
   ],
   "presets": [
     {
-      "name": "Info Text",
+      "name": "Icon with Text",
+      "settings": {
+        "alignment": "left"
+      },
+      "blocks": [
+        {
+          "type": "icon",
+          "settings": {
+            "icon": "default"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>Some Text</p>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Info Icon with Text",
       "settings": {
         "alignment": "left"
       },
@@ -62,6 +82,26 @@
           "type": "text",
           "settings": {
             "text": "<p>Some Info Text</p>"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sale Icon with Text",
+      "settings": {
+        "alignment": "left"
+      },
+      "blocks": [
+        {
+          "type": "icon",
+          "settings": {
+            "icon": "percent"
+          }
+        },
+        {
+          "type": "text",
+          "settings": {
+            "text": "<p>Save big on our latest drop</p>"
           }
         }
       ]

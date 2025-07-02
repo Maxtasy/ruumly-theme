@@ -1,4 +1,4 @@
-<div class="Section">
+<div class="Section ColorScheme--{{ section.settings.color_scheme.id | camelcase }}">
   <div
     class="AnnouncementBar"
     style="
@@ -18,8 +18,6 @@
     gap: var(--announcement-bar-gap, 0);
     padding-block: var(--announcement-bar-padding-block);
     padding-inline: var(--announcement-bar-padding-inline);
-    background-color: var(--background-color);
-    color: var(--text-color);
   }
 {% endstylesheet %}
 
@@ -37,14 +35,15 @@
       "content": "Section Appearance"
     },
     {
-      "type": "color",
-      "id": "background_color",
-      "label": "Background Color"
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme"
     },
     {
-      "type": "color",
-      "id": "text_color",
-      "label": "Text Color"
+      "type": "checkbox",
+      "id": "show_dividers",
+      "label": "Show dividers",
+      "default": true
     }
   ],
   "presets": [
