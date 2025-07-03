@@ -21,7 +21,7 @@
   {% endif %}
 
   {% if product_option_value.swatch.image %}
-    {% render 'image', image: product_option_value.swatch.image, width: 64, height: 64 %}
+    {% render 'image', variant: 'square', image: product_option_value.swatch.image, width: 64, height: 64 %}
   {% endif %}
 
   <input
