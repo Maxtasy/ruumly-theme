@@ -49,12 +49,24 @@
         "background": {
           "label": "Background"
         },
+        "dark_mode_background": {
+          "label": "Dark Mode Background"
+        },
         "background_gradient": {
           "label": "Background gradient",
           "info": "Background gradient replaces background where possible."
         },
         "text": {
           "label": "Text"
+        },
+        "dark_mode_text": {
+          "label": "Dark Mode Text"
+        },
+        "link": {
+          "label": "Link"
+        },
+        "link_hover": {
+          "label": "Link hover"
         },
         "button_background": {
           "label": "Primary button background"

@@ -47,6 +47,12 @@
             "default": "#FFFFFF"
           },
           {
+            "type": "color",
+            "id": "dark_mode_background",
+            "label": "t:settings_schema.colors.settings.dark_mode_background.label",
+            "default": "#000000"
+          },
+          {
             "type": "color_background",
             "id": "background_gradient",
             "label": "t:settings_schema.colors.settings.background_gradient.label",
@@ -57,6 +63,24 @@
             "id": "text",
             "label": "t:settings_schema.colors.settings.text.label",
             "default": "#000000"
+          },
+          {
+            "type": "color",
+            "id": "dark_mode_text",
+            "label": "t:settings_schema.colors.settings.dark_mode_text.label",
+            "default": "#FFFFFF"
+          },
+          {
+            "type": "color",
+            "id": "link",
+            "label": "t:settings_schema.colors.settings.link.label",
+            "default": "#6B7B52"
+          },
+          {
+            "type": "color",
+            "id": "link_hover",
+            "label": "t:settings_schema.colors.settings.link_hover.label",
+            "default": "#6B8552"
           },
           {
             "type": "color",

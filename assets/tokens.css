@@ -2,6 +2,7 @@
   /* ----- */
   /* Sizes */
   /* ----- */
+
   --size-0: 0px;
   --size-xs: 0.25rem;
   --size-s: 0.5rem;
@@ -13,6 +14,7 @@
   /* ------ */
   /* Colors */
   /* ------ */
+
   --color-surface: var(--color-background);
   --color-surface-secondary: rgb(240, 240, 240);
 
@@ -28,6 +30,7 @@
   /* ---------- */
   /* Typography */
   /* ---------- */
+
   --font-family-body: var(--font-body-family);
   --font-family-heading: var(--font-heading-family);
 
@@ -75,8 +78,8 @@
   --icon-with-text-gap: var(--size-m);
 
   /* Link */
-  --link-color: rgb(54, 54, 54);
-  --link-color-hover: rgb(11, 95, 252);
+  --link-color: var(--color-link);
+  --link-color-hover: var(--color-link-hover);
 
   /* Section */
   --section-padding-block: var(--size-m);
@@ -98,14 +101,20 @@
 /* Dark mode overrides */
 @media (prefers-color-scheme: dark) {
   :root {
+    /* ------ */
     /* Colors */
+    /* ------ */
 
+    --color-surface: var(--color-dark-mode-background);
+
+    --color-sale-text: rgb(255, 65, 65);
+    --color-sale-surface: rgb(255, 65, 65, 0.1);
+
+    /* ---------- */
     /* Components */
+    /* ---------- */
 
-    --icon-color-destructive: rgb(255, 0, 0);
-    --icon-color-success: rgb(0, 255, 0);
-    --icon-color-warning: rgb(255, 165, 0);
-
+    /* Button */
     --button-primary-text: rgb(0, 0, 0);
     --button-primary-text-hover: rgb(43, 43, 43);
     --button-primary-background: rgb(255, 255, 255);
@@ -115,7 +124,12 @@
     --button-secondary-background: rgb(0, 0, 0);
     --button-secondary-background-hover: rgb(53, 53, 53);
 
-    --color-sale-text: rgb(255, 65, 65);
-    --color-sale-surface: rgb(255, 65, 65, 0.1);
+    /* Icon */
+    --icon-color-destructive: rgb(255, 0, 0);
+    --icon-color-success: rgb(0, 255, 0);
+    --icon-color-warning: rgb(255, 165, 0);
+
+    /* Text */
+    --text-color: var(--color-dark-mode-text);
   }
 }

@@ -1,7 +1,7 @@
 .Section {
   padding: var(--section-padding-block) var(--section-padding-inline);
-  background-color: var(--color-background);
-  color: var(--color-text);
+  background-color: var(--color-surface);
+  color: var(--text-color);
 }
 
 .Section--BorderBottom {
