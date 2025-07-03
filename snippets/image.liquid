@@ -1,0 +1,45 @@
+{% doc %}
+  Renders an Image component.
+
+  @param {object} image - The image object containing the source and alt text.
+  @param {number} [width] - The desired render width of the image.
+  @param {number} [height] - The desired render height of the image.
+  @param {boolean} [loading] - The loading attribute for the image, defaults to 'lazy'.
+{% enddoc %}
+
+{% liquid
+  # Handle defaults.
+  assign width = width | default: image.width
+  assign height = height | default: image.height
+  assign loading = loading | default: 'lazy'
+%}
+
+<div
+  class="Image"
+  width="{{ width }}"
+  height="{{ height }}"
+>
+  <img
+    class="Image__Inner"
+    src="{{ image | image_url: width: width, height: height }}"
+    alt="{{ image.alt | escape }}"
+    loading="{{ loading }}"
+    width="{{ width }}"
+    height="{{ height }}"
+  >
+</div>
+
+{% stylesheet %}
+  .Image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .Image__Inner {
+    display: block;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+  }
+{% endstylesheet %}

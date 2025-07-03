@@ -1,0 +1,63 @@
+{% doc %}
+  Renders a Product Option Value component.
+
+  @param {object} product_option_value - The product option object containing position and values.
+  @param {string} [name_prefix] - The prefix for the name attribute of the input element.
+  @param {number} position - The position of the product option in the list.
+  @param {string} [variant] - The variant to render.
+{% enddoc %}
+
+<label
+  class="
+    ProductOptionValue
+    {% if variant %}
+      ProductOptionValue--{{ variant | camelcase }}
+    {% endif %}
+  "
+  style="--background-color: {{ product_option_value.swatch.color }};"
+>
+  {% if variant != 'color' %}
+    {% render 'text', text: product_option_value %}
+  {% endif %}
+
+  {% if product_option_value.swatch.image %}
+    {% render 'image', image: product_option_value.swatch.image, width: 64, height: 64 %}
+  {% endif %}
+
+  <input
+    class="u-Hidden"
+    type="radio"
+    name="{{ name_prefix }}-options-{{ position }}"
+    value="{{ product_option_value }}"
+    {% if product_option_value.selected %}
+      checked
+    {% endif %}
+  >
+</label>
+
+{% stylesheet %}
+  .ProductOptionValue {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .ProductOptionValue:has(input:checked) {
+    outline: var(--product-option-value-border-width-selected) var(--border-style)
+      var(--product-option-value-border-color-selected);
+    outline-offset: 2px;
+  }
+
+  .ProductOptionValue--Color,
+  .ProductOptionValue--Size {
+    width: var(--product-option-value-swatch-size);
+    aspect-ratio: 1;
+    border-radius: var(--product-option-value-swatch-radius);
+    overflow: hidden;
+  }
+
+  .ProductOptionValue--Color {
+    background-color: var(--background-color);
+  }
+{% endstylesheet %}
