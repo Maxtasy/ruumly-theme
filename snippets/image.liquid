@@ -1,0 +1,53 @@
+{% doc %}
+  Image
+
+  @param {object} image - The image object
+  @param {string} [variant] - Image variant (portrait, landscape, square)
+  @param {number} [width] - The desired width to render the image
+  @param {number} [height] - The desired height to render the image
+{% enddoc %}
+
+{% assign variant = variant | default: 'landscape' %}
+{% assign width = width | default: image.width %}
+{% assign height = height | default: image.height %}
+
+<div
+  class="Image{% if variant %} Image--{{ variant | camelcase }}{% endif %}"
+  width="{{ width }}"
+  height="{{ height }}"
+>
+  <img
+    class="Image__Inner"
+    src="{{ image | image_url: width: width, height: height }}"
+    alt="{{ image.alt }}"
+    width="{{ width }}"
+    height="{{ height }}"
+  >
+</div>
+
+{% stylesheet %}
+  .Image {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .Image--Portrait {
+    aspect-ratio: 3/4;
+  }
+
+  .Image--Landscape {
+    aspect-ratio: 4/3;
+  }
+
+  .Image--Square {
+    aspect-ratio: 1;
+  }
+
+  .Image__Inner {
+    object-fit: cover;
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+{% endstylesheet %}
