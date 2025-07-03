@@ -2,6 +2,7 @@
   Renders an Image component.
 
   @param {object} image - The image object containing the source and alt text.
+  @param {string} [variant] - Image variant (portrait, landscape, square)
   @param {number} [width] - The desired render width of the image.
   @param {number} [height] - The desired render height of the image.
   @param {boolean} [loading] - The loading attribute for the image, defaults to 'lazy'.
@@ -9,13 +10,14 @@
 
 {% liquid
   # Handle defaults.
+  assign variant = variant | default: 'landscape'
   assign width = width | default: image.width
   assign height = height | default: image.height
   assign loading = loading | default: 'lazy'
 %}
 
 <div
-  class="Image"
+  class="Image Image--{{ variant | camelcase }}"
   width="{{ width }}"
   height="{{ height }}"
 >
@@ -36,9 +38,21 @@
     height: auto;
   }
 
+  .Image--Portrait {
+    aspect-ratio: 3/4;
+  }
+
+  .Image--Landscape {
+    aspect-ratio: 4/3;
+  }
+
+  .Image--Square {
+    aspect-ratio: 1;
+  }
+
   .Image__Inner {
-    display: block;
     object-fit: cover;
+    display: block;
     width: 100%;
     height: 100%;
   }
