@@ -1,0 +1,14 @@
+<form is="product-form" class="ProductForm">
+  {% render 'product-variant-selector', product: product %}
+
+  {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
+</form>
+
+{% stylesheet %}
+  .ProductForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+    padding: var(--size-m);
+  }
+{% endstylesheet %}

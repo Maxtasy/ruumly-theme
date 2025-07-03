@@ -1,25 +1,31 @@
 {% doc %}
-  Image
+  Renders an Image component.
 
-  @param {object} image - The image object
+  @param {object} image - The image object containing the source and alt text.
   @param {string} [variant] - Image variant (portrait, landscape, square)
-  @param {number} [width] - The desired width to render the image
-  @param {number} [height] - The desired height to render the image
+  @param {number} [width] - The desired render width of the image.
+  @param {number} [height] - The desired render height of the image.
+  @param {boolean} [loading] - The loading attribute for the image, defaults to 'lazy'.
 {% enddoc %}
 
-{% assign variant = variant | default: 'landscape' %}
-{% assign width = width | default: image.width %}
-{% assign height = height | default: image.height %}
+{% liquid
+  # Handle defaults.
+  assign variant = variant | default: 'landscape'
+  assign width = width | default: image.width
+  assign height = height | default: image.height
+  assign loading = loading | default: 'lazy'
+%}
 
 <div
-  class="Image{% if variant %} Image--{{ variant | camelcase }}{% endif %}"
+  class="Image Image--{{ variant | camelcase }}"
   width="{{ width }}"
   height="{{ height }}"
 >
   <img
     class="Image__Inner"
     src="{{ image | image_url: width: width, height: height }}"
-    alt="{{ image.alt }}"
+    alt="{{ image.alt | escape }}"
+    loading="{{ loading }}"
     width="{{ width }}"
     height="{{ height }}"
   >

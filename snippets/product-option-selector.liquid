@@ -1,0 +1,64 @@
+{% doc %}
+  Renders a Product Option Selector component.
+
+  @param {object} product_option - The product option object containing name and values.
+  @param {string} [name_prefix] - The prefix for the name attribute of the input elements.
+{% enddoc %}
+
+{% liquid
+  # Use these strings as default in case the metaobjects are not set.
+  assign default_color_option_names = 'Color, Farbe' | split: ', '
+  assign default_size_option_names = 'Size, Größe' | split: ', '
+
+  assign color_option_names = metaobjects.color_option_names.color_option_names.option_names.value | default: default_color_option_names
+  assign size_option_names = metaobjects.size_option_names.values | first | default: default_size_option_names
+%}
+
+<fieldset is="product-option-selector" class="ProductOptionSelector">
+  <legend class="ProductOptionSelector__Label">
+    {% render 'text', as: 'strong', text: product_option.name %}
+  </legend>
+
+  <ul class="ProductOptionSelector__Values u-NoList">
+    {% for product_option_value in product_option.values %}
+      {% liquid
+        assign product_option_value_variant = ''
+        assign product_option_name_stripped = product_option.name | strip
+
+        if product_option_value.swatch or color_option_names contains product_option_name_stripped
+          assign product_option_value_variant = 'color'
+        elsif size_option_names contains product_option_name_stripped
+          assign product_option_value_variant = 'size'
+        endif
+      %}
+
+      <li class="ProductOptionSelector__Value">
+        {% render 'product-option-value',
+          product_option_value: product_option_value,
+          position: product_option.position,
+          name_prefix: name_prefix,
+          variant: product_option_value_variant
+        %}
+      </li>
+    {% endfor %}
+  </ul>
+</fieldset>
+
+{% stylesheet %}
+  .ProductOptionSelector {
+    margin: 0;
+    padding: 0;
+    border-style: none;
+  }
+
+  .ProductOptionSelector__Label {
+    margin: 0;
+    padding: 0;
+  }
+
+  .ProductOptionSelector__Values {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}

@@ -17,14 +17,26 @@
     {% endif %}
 
     .ColorScheme--{{ scheme.id | camelcase }} {
-      --color-background: rgba({{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }});
+      --color-surface: rgba({{ scheme.settings.surface.red }},{{ scheme.settings.surface.green }},{{ scheme.settings.surface.blue }});
+
       --color-text: rgba({{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }});
-      --color-button: rgba({{ scheme.settings.button.red }},{{ scheme.settings.button.green }},{{ scheme.settings.button.blue }});
-      --color-button-label: rgba({{ scheme.settings.button_label.red }},{{ scheme.settings.button_label.green }},{{ scheme.settings.button_label.blue }});
-      --color-button-border: rgba({{ scheme.settings.button_border.red }},{{ scheme.settings.button_border.green }},{{ scheme.settings.button_border.blue }});
-      --color-secondary-button: rgba({{ scheme.settings.secondary_button.red }},{{ scheme.settings.secondary_button.green }},{{ scheme.settings.secondary_button.blue }});
-      --color-secondary-button-label: rgba({{ scheme.settings.secondary_button_label.red }},{{ scheme.settings.secondary_button_label.green }},{{ scheme.settings.secondary_button_label.blue }});
-      --color-secondary-button-border: rgba({{ scheme.settings.secondary_button_border.red }},{{ scheme.settings.secondary_button_border.green }},{{ scheme.settings.secondary_button_border.blue }});
+
+      --color-link: rgba({{ scheme.settings.link.red }},{{ scheme.settings.link.green }},{{ scheme.settings.link.blue }});
+      --color-link-hover: rgba({{ scheme.settings.link_hover.red }},{{ scheme.settings.link_hover.green }},{{ scheme.settings.link_hover.blue }});
+
+      --primary-button-background: rgba({{ scheme.settings.primary_button_background.red }},{{ scheme.settings.primary_button_background.green }},{{ scheme.settings.primary_button_background.blue }});
+      --primary-button-background-hover: rgba({{ scheme.settings.primary_button_background_hover.red }},{{ scheme.settings.primary_button_background_hover.green }},{{ scheme.settings.primary_button_background_hover.blue }});
+      --primary-button-text: rgba({{ scheme.settings.primary_button_text.red }},{{ scheme.settings.primary_button_text.green }},{{ scheme.settings.primary_button_text.blue }});
+      --primary-button-text-hover: rgba({{ scheme.settings.primary_button_text_hover.red }},{{ scheme.settings.primary_button_text_hover.green }},{{ scheme.settings.primary_button_text_hover.blue }});
+      --primary-button-border: rgba({{ scheme.settings.primary_button_border.red }},{{ scheme.settings.primary_button_border.green }},{{ scheme.settings.primary_button_border.blue }});
+      --primary-button-border-hover: rgba({{ scheme.settings.primary_button_border_hover.red }},{{ scheme.settings.primary_button_border_hover.green }},{{ scheme.settings.primary_button_border_hover.blue }});
+
+      --secondary-button-background: rgba({{ scheme.settings.secondary_button_background.red }},{{ scheme.settings.secondary_button_background.green }},{{ scheme.settings.secondary_button_background.blue }});
+      --secondary-button-background-hover: rgba({{ scheme.settings.secondary_button_background_hover.red }},{{ scheme.settings.secondary_button_background_hover.green }},{{ scheme.settings.secondary_button_background_hover.blue }});
+      --secondary-button-text: rgba({{ scheme.settings.secondary_button_text.red }},{{ scheme.settings.secondary_button_text.green }},{{ scheme.settings.secondary_button_text.blue }});
+      --secondary-button-text-hover: rgba({{ scheme.settings.secondary_button_text_hover.red }},{{ scheme.settings.secondary_button_text_hover.green }},{{ scheme.settings.secondary_button_label_hover.blue }});
+      --secondary-button-border: rgba({{ scheme.settings.secondary_button_border.red }},{{ scheme.settings.secondary_button_border.green }},{{ scheme.settings.secondary_button_border.blue }});
+      --secondary-button-border-hover: rgba({{ scheme.settings.secondary_button_border_hover.red }},{{ scheme.settings.secondary_button_border_hover.green }},{{ scheme.settings.secondary_button_border_hover.blue }});
 
       --color-border: rgba({{ scheme.settings.border.red }},{{ scheme.settings.border.green }},{{ scheme.settings.border.blue }});
     }

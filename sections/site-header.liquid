@@ -11,16 +11,22 @@
     <header class="SiteHeader">
       <div class="SiteHeader__Left">
         <div class="u-Hidden--Desktop">
-          {% render 'icon', icon: 'menu' %}
+          <button>
+            {% render 'icon', icon: 'menu' %}
+          </button>
         </div>
       </div>
 
       <div class="SiteHeader__Middle">
-        {% render 'text', text: 'Ruumly', as: 'h2', variant: 'heading-large' %}
+        <a href="{{ routes.root_url }}">
+          {% render 'text', text: 'Ruumly', as: 'h2', variant: 'heading-large' %}
+        </a>
       </div>
 
       <div class="SiteHeader__Right">
-        {% render 'icon', icon: 'shopping-cart' %}
+        <button>
+          {% render 'icon', icon: 'shopping-cart' %}
+        </button>
       </div>
     </header>
   </div>

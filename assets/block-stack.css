@@ -1,0 +1,29 @@
+.BlockStack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-m);
+}
+
+.BlockStack--AlignCenter {
+  align-items: center;
+}
+
+.BlockStack--AlignEnd {
+  align-items: flex-end;
+}
+
+.BlockStack--AlignStart {
+  align-items: flex-start;
+}
+
+.BlockStack--JustifyCenter {
+  justify-content: center;
+}
+
+.BlockStack--JustifyEnd {
+  justify-content: flex-end;
+}
+
+.BlockStack--JustifyStart {
+  justify-content: flex-start;
+}

@@ -1,0 +1,28 @@
+.InlineStack {
+  display: flex;
+  gap: var(--size-m);
+}
+
+.InlineStack--AlignCenter {
+  align-items: center;
+}
+
+.InlineStack--AlignEnd {
+  align-items: flex-end;
+}
+
+.InlineStack--AlignStart {
+  align-items: flex-start;
+}
+
+.InlineStack--JustifyCenter {
+  justify-content: center;
+}
+
+.InlineStack--JustifyEnd {
+  justify-content: flex-end;
+}
+
+.InlineStack--JustifyStart {
+  justify-content: flex-start;
+}

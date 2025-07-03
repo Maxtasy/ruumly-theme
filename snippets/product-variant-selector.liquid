@@ -1,0 +1,20 @@
+{% doc %}
+  Renders a Product Variant Selector component.
+
+  @param {object} product - The product object containing options and values.
+  @param {string} [name_prefix] - The prefix for the name attribute of the input elements.
+{% enddoc %}
+
+<product-variant-selector class="ProductVariantSelector">
+  {% for product_option in product.options_with_values %}
+    {% render 'product-option-selector', product_option: product_option, name_prefix: name_prefix %}
+  {% endfor %}
+</product-variant-selector>
+
+{% stylesheet %}
+  .ProductVariantSelector {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+{% endstylesheet %}
