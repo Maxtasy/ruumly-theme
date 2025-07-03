@@ -74,6 +74,10 @@
   /* Icon with Text */
   --icon-with-text-gap: var(--size-m);
 
+  /* Link */
+  --link-color: rgb(54, 54, 54);
+  --link-color-hover: rgb(11, 95, 252);
+
   /* Section */
   --section-padding-block: var(--size-m);
   --section-padding-inline: var(--size-m);
