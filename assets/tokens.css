@@ -16,7 +16,6 @@
   /* ------ */
 
   --color-surface: var(--color-background);
-  --color-surface-secondary: rgb(240, 240, 240);
 
   --color-sale-text: rgb(182, 0, 0);
   --color-sale-surface: rgb(255, 220, 220);

@@ -19,6 +19,7 @@
       "default": {
         "settings": {
           "background": "#FFFFFF",
+          "dark_mode_background": "#000000",
           "background_gradient": "",
           "text": "#000000",
           "button": "#6B7B52",
@@ -29,11 +30,12 @@
           "secondary_button_border": "#000000"
         }
       },
-      "inverted": {
+      "secondary": {
         "settings": {
-          "background": "#000000",
+          "background": "#F1F3F6",
+          "dark_mode_background": "#2A2D2F",
           "background_gradient": "",
-          "text": "#FFFFFF",
+          "text": "#000000",
           "button": "#6B7B52",
           "button_border": "transparent",
           "button_label": "#FFFFFF",
@@ -62,7 +64,7 @@
             "secondary_button_border": "#000000"
           }
         },
-        "inverted": {
+        "secondary": {
           "settings": {
             "background": "#000000",
             "background_gradient": "",
