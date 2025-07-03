@@ -26,40 +26,56 @@
 
 {% stylesheet %}
   .Button {
-    padding: var(--size-m) var(--size-l);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--padding-block) var(--padding-inline);
+    color: var(--text-color);
+    background-color: var(--background-color);
+    border: var(--border-width) var(--border-style) var(--border-color);
     border-radius: var(--button-border-radius);
-    box-shadow: var(--shadow);
-    transition: 0.5s;
+    box-shadow: var(--box-shadow);
     font-size: var(--button-font-size);
     font-weight: var(--button-font-weight);
     text-transform: uppercase;
     letter-spacing: var(--button-letter-spacing);
     user-select: none;
+    transition: var(--transition-duration) var(--transition-timing);
+  }
+
+  .Button:hover {
+    background-color: var(--background-color-hover);
+    color: var(--text-color-hover);
+    border-color: var(--border-color-hover);
+  }
+
+  .Button--Primary,
+  .Button--Secondary {
+    --padding-block: var(--size-m);
+    --padding-inline: var(--size-xl);
   }
 
   .Button--Primary {
-    color: var(--button-primary-text);
-    background-color: var(--button-primary-background);
+    --background-color: var(--primary-button-background);
+    --background-color-hover: var(--primary-button-background-hover);
+    --text-color: var(--primary-button-text);
+    --text-color-hover: var(--primary-button-text-hover);
+    --border-color: var(--primary-button-border);
+    --border-color-hover: var(--primary-button-border-hover);
   }
 
   .Button--Secondary {
-    color: var(--button-secondary-text);
-    background-color: var(--button-secondary-background);
-  }
-
-  .Button--Primary:hover {
-    color: var(--button-primary-text-hover);
-    background-color: var(--button-primary-background-hover);
-  }
-
-  .Button--Secondary:hover {
-    color: var(--button-secondary-text-hover);
-    background-color: var(--button-secondary-background-hover);
+    --background-color: var(--secondary-button-background);
+    --background-color-hover: var(--secondary-button-background-hover);
+    --text-color: var(--secondary-button-text);
+    --text-color-hover: var(--secondary-button-text-hover);
+    --border-color: var(--secondary-button-border);
+    --border-color-hover: var(--secondary-button-border-hover);
   }
 
   .Button--Icon {
-    display: inline-flex;
-    padding: var(--size-xs);
+    --padding-block: var(--size-xs);
+    --padding-inline: var(--size-xs);
   }
 
   .Button[disabled] {

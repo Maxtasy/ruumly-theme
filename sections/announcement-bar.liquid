@@ -19,7 +19,7 @@
 
 {% schema %}
 {
-  "name": "Announcement Bar",
+  "name": "t:sections.announcement_bar.name",
   "limit": 1,
   "enabled_on": {
     "groups": ["header"]
@@ -35,18 +35,19 @@
   "settings": [
     {
       "type": "header",
-      "content": "Section Appearance"
+      "content": "t:sections.all.section_appearance.content"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color Scheme"
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
     }
   ],
   "presets": [
     {
-      "name": "Announcement Bar",
-      "category": "Header",
+      "name": "t:sections.announcement_bar.presets.announcement_bar.name",
+      "category": "t:sections.announcement_bar.presets.announcement_bar.category",
       "settings": {
         "color_scheme": "inverted"
       },

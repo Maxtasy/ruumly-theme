@@ -52,18 +52,10 @@
 
   /* Button */
 
-  --button-border-radius: 8px;
+  --button-border-radius: 0;
   --button-font-size: 16px;
   --button-font-weight: 600;
   --button-letter-spacing: 2px;
-  --button-primary-text: rgb(255, 255, 255);
-  --button-primary-text-hover: rgb(211, 211, 211);
-  --button-primary-background: rgb(0, 0, 0);
-  --button-primary-background-hover: rgb(63, 63, 63);
-  --button-secondary-text: rgb(0, 0, 0);
-  --button-secondary-text-hover: rgb(61, 61, 61);
-  --button-secondary-background: rgb(255, 255, 255);
-  --button-secondary-background-hover: rgb(187, 187, 187);
 
   /* Icon */
   --icon-size-s: 1rem;
@@ -91,44 +83,11 @@
   /* Details */
   /* ------- */
 
-  --shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  --box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px;
   --border-width: 1px;
   --border-style: solid;
   --border-color: var(--color-border);
-}
 
-/* Dark mode overrides */
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* ------ */
-    /* Colors */
-    /* ------ */
-
-    --color-surface: var(--color-dark-mode-background);
-
-    --color-sale-text: rgb(255, 65, 65);
-    --color-sale-surface: rgb(255, 65, 65, 0.1);
-
-    /* ---------- */
-    /* Components */
-    /* ---------- */
-
-    /* Button */
-    --button-primary-text: rgb(0, 0, 0);
-    --button-primary-text-hover: rgb(43, 43, 43);
-    --button-primary-background: rgb(255, 255, 255);
-    --button-primary-background-hover: rgb(189, 189, 189);
-    --button-secondary-text: rgb(255, 255, 255);
-    --button-secondary-text-hover: rgb(194, 194, 194);
-    --button-secondary-background: rgb(0, 0, 0);
-    --button-secondary-background-hover: rgb(53, 53, 53);
-
-    /* Icon */
-    --icon-color-destructive: rgb(255, 0, 0);
-    --icon-color-success: rgb(0, 255, 0);
-    --icon-color-warning: rgb(255, 165, 0);
-
-    /* Text */
-    --text-color: var(--color-dark-mode-text);
-  }
+  --transition-duration: 0.3s;
+  --transition-timing: ease-in-out;
 }

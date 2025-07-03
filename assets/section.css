@@ -1,6 +1,6 @@
 .Section {
   padding: var(--section-padding-block) var(--section-padding-inline);
-  background-color: var(--color-background);
+  background-color: var(--color-surface);
   color: var(--color-text);
 }
 
