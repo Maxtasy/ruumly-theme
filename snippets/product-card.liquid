@@ -3,11 +3,30 @@
 
   @param {string} title - Product title
   @param {object} image - The image object containing the source and alt text.
+  @param {string} [badge] - Optional Badge to render on the product card.
+  @param {number} [compare_at_price] - Product compare at price in cents.
+  @param {number} price - Product price in cents.
 {% enddoc %}
 
 <article class="ProductCard">
   <div class="ProductCard__Image">
     {% render 'image', image: image %}
+
+    <div class="ProductCard__Badges">
+      <ul class="u-NoList BadgeList">
+        {% if badge %}
+          <li>
+            {% render 'badge', text: badge %}
+          </li>
+        {% endif %}
+
+        {% if compare_at_price > price %}
+          <li>
+            {% render 'badge', text: 'Sale', variant: 'sale' %}
+          </li>
+        {% endif %}
+      </ul>
+    </div>
   </div>
 
   {% render 'text', text: title, variant: 'body-large' %}
@@ -22,5 +41,12 @@
 
   .ProductCard__Image {
     position: relative;
+  }
+
+  .ProductCard__Badges {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: var(--size-xs);
   }
 {% endstylesheet %}
