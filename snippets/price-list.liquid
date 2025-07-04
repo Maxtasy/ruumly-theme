@@ -1,0 +1,26 @@
+{% doc %}
+  Price List
+
+  @param {number} price - Price in cents
+  @param {number} [compare_at_price] - Compare at price in cents
+{% enddoc %}
+
+<div class="PriceList">
+  {% if compare_at_price %}
+    <del class="Text Text--BodySmall">{{ compare_at_price | divided_by: 100.0 | append: '€' }}</del>
+  {% endif %}
+
+  <strong class="Text">{{ price | divided_by: 100.0 | append: '€' }}</strong>
+</div>
+
+{% stylesheet %}
+  .PriceList {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .PriceList:has(del) strong {
+    color: var(--sale-color);
+  }
+{% endstylesheet %}
