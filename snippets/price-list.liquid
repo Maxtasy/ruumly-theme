@@ -1,5 +1,5 @@
 {% doc %}
-  Price List
+  Renders a Price List component.
 
   @param {number} price - Price in cents
   @param {number} [compare_at_price] - Compare at price in cents
@@ -7,20 +7,22 @@
 
 <div class="PriceList">
   {% if compare_at_price %}
-    <del class="Text Text--BodySmall">{{ compare_at_price | divided_by: 100.0 | append: '€' }}</del>
+    {% assign compare_at_price_text = compare_at_price | money %}
+    {% render 'text', text: compare_at_price_text, variant: 'body-small', as: 'del' %}
   {% endif %}
 
-  <strong class="Text">{{ price | divided_by: 100.0 | append: '€' }}</strong>
+  {% assign price_text = price | money %}
+  {% render 'text', text: price_text, as: 'strong' %}
 </div>
 
 {% stylesheet %}
   .PriceList {
     display: flex;
-    gap: 8px;
     align-items: center;
+    gap: var(--size-s);
   }
 
   .PriceList:has(del) strong {
-    color: var(--sale-color);
+    color: var(--color-sale-text);
   }
 {% endstylesheet %}
