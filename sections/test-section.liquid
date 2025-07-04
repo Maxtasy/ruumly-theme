@@ -40,17 +40,9 @@
 
     {% render 'image', image: images['Milo_Coffee_Table-1-3.webp'], variant: 'portrait' %}
 
-    {% assign sample_product = all_products['arlo-lounge-chair'] %}
+    {% render 'text', text: 'Price List', as: 'h2', variant: 'heading-large' %}
 
-    {% render 'text', text: 'Product Card', as: 'h2', variant: 'heading-large' %}
-
-    {% render 'product-card',
-      title: sample_product.title,
-      image: sample_product.featured_image,
-      badge: 'Bestseller',
-      compare_at_price: sample_product.compare_at_price,
-      price: sample_product.price
-    %}
+    {% render 'price-list', price: 4999, compare_at_price: 7999 %}
 
     {% render 'text', text: 'Badge', as: 'h2', variant: 'heading-large' %}
 
@@ -61,5 +53,17 @@
     {% render 'text', text: 'Sale', as: 'h2', variant: 'heading-medium' %}
 
     {% render 'badge', text: 'Sale', variant: 'sale' %}
+
+    {% render 'text', text: 'Product Card', as: 'h2', variant: 'heading-large' %}
+
+    {% assign sample_product = all_products['arlo-lounge-chair'] %}
+
+    {% render 'product-card',
+      title: sample_product.title,
+      image: sample_product.featured_image,
+      badge: 'Bestseller',
+      compare_at_price: sample_product.compare_at_price,
+      price: sample_product.price
+    %}
   </div>
 </section>
