@@ -1,0 +1,26 @@
+{% doc %}
+  Renders a Product Card component.
+
+  @param {string} title - Product title
+  @param {object} image - The image object containing the source and alt text.
+{% enddoc %}
+
+<article class="ProductCard">
+  <div class="ProductCard__Image">
+    {% render 'image', image: image %}
+  </div>
+
+  {% render 'text', text: title, variant: 'body-large' %}
+</article>
+
+{% stylesheet %}
+  .ProductCard {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+  }
+
+  .ProductCard__Image {
+    position: relative;
+  }
+{% endstylesheet %}
