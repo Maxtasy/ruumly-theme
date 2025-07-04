@@ -1,0 +1,23 @@
+{% doc %}
+  Renders a Badge component.
+
+  @param {string} text - Badge text
+  @param {string} [variant] - Badge variant ('sale')
+{% enddoc %}
+
+<div class="Badge{% if variant == 'sale' %} Badge--Sale{% endif %}">
+  {% render 'text', text: text %}
+</div>
+
+{% stylesheet %}
+  .Badge {
+    padding: var(--size-xs) var(--size-s);
+    border: var(--border-width) var(--border-style) var(--border-color);
+    width: fit-content;
+    background-color: var(--color-surface);
+  }
+
+  .Badge--Sale {
+    background-color: var(--color-sale-surface);
+  }
+{% endstylesheet %}

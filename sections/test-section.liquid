@@ -44,6 +44,22 @@
 
     {% render 'text', text: 'Product Card', as: 'h2', variant: 'heading-large' %}
 
-    {% render 'product-card', title: sample_product.title, image: sample_product.featured_image %}
+    {% render 'product-card',
+      title: sample_product.title,
+      image: sample_product.featured_image,
+      badge: 'Bestseller',
+      compare_at_price: sample_product.compare_at_price,
+      price: sample_product.price
+    %}
+
+    {% render 'text', text: 'Badge', as: 'h2', variant: 'heading-large' %}
+
+    {% render 'text', text: 'Default', as: 'h2', variant: 'heading-medium' %}
+
+    {% render 'badge', text: 'Bestseller' %}
+
+    {% render 'text', text: 'Sale', as: 'h2', variant: 'heading-medium' %}
+
+    {% render 'badge', text: 'Sale', variant: 'sale' %}
   </div>
 </section>

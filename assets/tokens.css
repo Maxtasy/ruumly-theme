@@ -15,8 +15,6 @@
   /* Colors */
   /* ------ */
 
-  --color-surface: var(--color-background);
-
   --color-sale-text: rgb(182, 0, 0);
   --color-sale-surface: rgb(255, 220, 220);
   --color-success-text: rgb(0, 128, 0);
