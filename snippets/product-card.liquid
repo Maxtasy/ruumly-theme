@@ -33,7 +33,7 @@
   </a>
 
   <a href="{{ url }}">
-    {% render 'text', text: title, variant: 'body-large' %}
+    {% render 'text', text: title, variant: 'body-large', as: 'span' %}
   </a>
 
   {% render 'price-list', price: price, compare_at_price: compare_at_price %}
@@ -43,6 +43,7 @@
   .ProductCard {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: var(--size-xs);
   }
 

@@ -66,5 +66,11 @@
       compare_at_price: sample_product.compare_at_price,
       price: sample_product.price
     %}
+
+    {% render 'text', text: 'Product List', as: 'h2', variant: 'heading-large' %}
+
+    {% render 'product-list', products: collections.furniture.products %}
+
+    {% render 'product-list', products: collections.furniture.products, columns_mobile: 1, columns_desktop: 3 %}
   </div>
 </section>
