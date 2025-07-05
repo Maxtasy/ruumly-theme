@@ -5,7 +5,10 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
   constructor() {
     super();
 
-    this.item = null;
+    this.item = {
+      id: null,
+      quantity: 1,
+    };
     this.sectionsToRerender = [];
 
     this.subscribe("product-variant-selector:init", this.handleProductVariantSelectorInit.bind(this));
@@ -21,32 +24,37 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
       this.addToCartButtonElement && this.addToCartButtonElement.disable();
     } else {
       this.addToCartButtonElement && this.addToCartButtonElement.enable();
-
-      this.item = {
-        id: selectedVariantId,
-        quantity: 1, // Default quantity
-      };
     }
+
+    this.item.id = selectedVariantId;
+  }
+
+  handleQuantitySelectorInit(event) {
+    const { quantity } = event;
+
+    this.item.quantity = quantity;
+  }
+
+  handleQuantitySelectorChange(event) {
+    const { quantity } = event;
+
+    this.item.quantity = quantity;
   }
 
   handleProductVariantSelectorChange(event) {
-    const { selectedVariantId } = event;
+    const { available, selectedVariantId } = event;
 
-    if (!selectedVariantId) {
+    if (!available) {
       this.addToCartButtonElement && this.addToCartButtonElement.disable();
-      this.item = null;
     } else {
       this.addToCartButtonElement && this.addToCartButtonElement.enable();
-
-      this.item = {
-        id: selectedVariantId,
-        quantity: 1, // Default quantity
-      };
     }
+
+    this.item.id = selectedVariantId;
 
     // Notify other components that the variant has changed. The Gallery component can use this to update the displayed
     // images.
-    this.publish("product-form:variant-changed", { item: this.item });
+    this.publish("product-form:change", { item: this.item });
   }
 
   async handleSubmit(event) {

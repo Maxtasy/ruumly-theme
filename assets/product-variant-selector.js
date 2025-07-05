@@ -28,16 +28,20 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLDivElement) {
 
     this.selectedOptionValues[optionPosition - 1] = optionSelectedValue;
 
-    this.selectedVariantId = this.productVariants.find((variant) => {
+    const selectedVariant = this.productVariants.find((variant) => {
       return (
         variant.option1 === this.selectedOptionValues[0] &&
         variant.option2 === this.selectedOptionValues[1] &&
         variant.option3 === this.selectedOptionValues[2]
       );
-    })?.id;
+    });
+
+    this.selectedVariantId = selectedVariant ? selectedVariant.id : null;
+    this.available = selectedVariant ? selectedVariant.available : false;
 
     this.publish("product-variant-selector:change", {
       selectedVariantId: this.selectedVariantId,
+      available: this.available,
     });
   }
 }
