@@ -32,7 +32,9 @@
     </div>
   </a>
 
-  {% render 'text', text: title, variant: 'body-large' %}
+  <a href="{{ url }}">
+    {% render 'text', text: title, variant: 'body-large' %}
+  </a>
 
   {% render 'price-list', price: price, compare_at_price: compare_at_price %}
 </article>
