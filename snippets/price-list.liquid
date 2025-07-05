@@ -1,0 +1,28 @@
+{% doc %}
+  Renders a Price List component.
+
+  @param {number} price - Price in cents
+  @param {number} [compare_at_price] - Compare at price in cents
+{% enddoc %}
+
+<div class="PriceList">
+  {% if compare_at_price %}
+    {% assign compare_at_price_text = compare_at_price | money %}
+    {% render 'text', text: compare_at_price_text, variant: 'body-small', as: 'del' %}
+  {% endif %}
+
+  {% assign price_text = price | money %}
+  {% render 'text', text: price_text, as: 'strong' %}
+</div>
+
+{% stylesheet %}
+  .PriceList {
+    display: flex;
+    align-items: center;
+    gap: var(--size-s);
+  }
+
+  .PriceList:has(del) strong {
+    color: var(--color-sale-text);
+  }
+{% endstylesheet %}
