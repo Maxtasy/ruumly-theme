@@ -36,7 +36,9 @@
     {% render 'text', text: title, variant: 'body-large', as: 'span' %}
   </a>
 
-  {% render 'price-list', price: price, compare_at_price: compare_at_price %}
+  <div class="ProductCard__PriceList">
+    {% render 'price-list', price: price, compare_at_price: compare_at_price %}
+  </div>
 </article>
 
 {% stylesheet %}
@@ -56,5 +58,9 @@
     top: 0;
     right: 0;
     padding: var(--size-xs);
+  }
+
+  .ProductCard__PriceList {
+    margin-top: auto;
   }
 {% endstylesheet %}
