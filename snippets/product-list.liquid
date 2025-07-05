@@ -1,0 +1,43 @@
+{% doc %}
+  Renders a Product List component.
+
+  @param {object[]} products - List of products.
+  @param {number} [limit] - The maximum number of product cards to render.
+  @param {number} [columns_mobile] - Number of columns on mobile.
+  @param {number} [columns_desktop] - Number of columns on desktop.
+{% enddoc %}
+
+{% assign columns_mobile = columns_mobile | default: 2 %}
+{% assign columns_desktop = columns_desktop | default: 4 %}
+
+<ul
+  class="ProductList u-NoList"
+  style="
+    --columns-mobile: {{ columns_mobile }};
+    --columns-desktop: {{ columns_desktop }};
+  "
+>
+  {% for product in products limit: limit %}
+    {% render 'product-card',
+      title: product.title,
+      image: product.featured_image,
+      price: product.price,
+      compare_at_price: product.compare_at_price,
+      url: product.url
+    %}
+  {% endfor %}
+</ul>
+
+{% stylesheet %}
+  .ProductList {
+    display: grid;
+    grid-template-columns: repeat(var(--columns-mobile), 1fr);
+    gap: var(--size-m);
+  }
+
+  @media screen and (min-width: 768px) {
+    .ProductList {
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
+    }
+  }
+{% endstylesheet %}
