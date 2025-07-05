@@ -6,38 +6,46 @@
   @param {string} [badge] - Optional Badge to render on the product card.
   @param {number} [compare_at_price] - Product compare at price in cents.
   @param {number} price - Product price in cents.
+  @param {string} url - URL of the Product.
 {% enddoc %}
 
 <article class="ProductCard">
-  <div class="ProductCard__Image">
-    {% render 'image', image: image %}
+  <a href="{{ url }}">
+    <div class="ProductCard__Image">
+      {% render 'image', image: image %}
 
-    <div class="ProductCard__Badges">
-      <ul class="u-NoList BadgeList">
-        {% if badge %}
-          <li>
-            {% render 'badge', text: badge %}
-          </li>
-        {% endif %}
+      <div class="ProductCard__Badges">
+        <ul class="u-NoList BadgeList">
+          {% if badge %}
+            <li>
+              {% render 'badge', text: badge %}
+            </li>
+          {% endif %}
 
-        {% if compare_at_price > price %}
-          <li>
-            {% render 'badge', text: 'Sale', variant: 'sale' %}
-          </li>
-        {% endif %}
-      </ul>
+          {% if compare_at_price > price %}
+            <li>
+              {% render 'badge', text: 'Sale', variant: 'sale' %}
+            </li>
+          {% endif %}
+        </ul>
+      </div>
     </div>
+  </a>
+
+  <a href="{{ url }}">
+    {% render 'text', text: title, variant: 'body-large', as: 'span' %}
+  </a>
+
+  <div class="ProductCard__PriceList">
+    {% render 'price-list', price: price, compare_at_price: compare_at_price %}
   </div>
-
-  {% render 'text', text: title, variant: 'body-large' %}
-
-  {% render 'price-list', price: price, compare_at_price: compare_at_price %}
 </article>
 
 {% stylesheet %}
   .ProductCard {
     display: flex;
     flex-direction: column;
+    align-items: flex-start;
     gap: var(--size-xs);
   }
 
@@ -50,5 +58,9 @@
     top: 0;
     right: 0;
     padding: var(--size-xs);
+  }
+
+  .ProductCard__PriceList {
+    margin-top: auto;
   }
 {% endstylesheet %}

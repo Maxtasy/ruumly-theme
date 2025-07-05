@@ -9,13 +9,21 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-index",
-      "settings": {}
+    "product-list": {
+      "type": "product-list",
+      "settings": {
+        "color_scheme": "",
+        "columns_mobile": 2,
+        "columns_desktop": 4,
+        "product_list": ["arlo-lounge-chair", "milo-coffee-table"],
+        "limit": 0,
+        "heading": "Product List"
+      }
     },
     "test-section": {
-      "type": "test-section"
+      "type": "test-section",
+      "settings": {}
     }
   },
-  "order": ["main", "test-section"]
+  "order": ["product-list", "test-section"]
 }

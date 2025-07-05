@@ -61,9 +61,16 @@
     {% render 'product-card',
       title: sample_product.title,
       image: sample_product.featured_image,
+      url: sample_product.url,
       badge: 'Bestseller',
       compare_at_price: sample_product.compare_at_price,
       price: sample_product.price
     %}
+
+    {% render 'text', text: 'Product List', as: 'h2', variant: 'heading-large' %}
+
+    {% render 'product-list', products: collections.furniture.products %}
+
+    {% render 'product-list', products: collections.furniture.products, columns_mobile: 1, columns_desktop: 3 %}
   </div>
 </section>
