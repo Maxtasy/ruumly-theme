@@ -1,15 +1,16 @@
 {% doc %}
-  Button
+  Renders a Button component.
 
-  @param {string} [text] - Button text
+  @param {string} [text] - Text inside the button
   @param {string} [variant] - Button variant ('primary', 'secondary', 'icon')
-  @param {string} [icon] - Icon handle
+  @param {string} [icon] - Icon handle of the icon to render
   @param {string} [action] - The action attribute
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
 
 <button
+  is="button-component"
   class="Button{% if variant %} Button--{{ variant | camelcase }}{% endif %}"
   {% if action %}
     data-action="{{ action }}"
