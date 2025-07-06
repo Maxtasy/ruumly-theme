@@ -1,3 +1,9 @@
 body {
   background-color: var(--color-surface);
 }
+
+.MaybeStickySection:has(.Section--Sticky) {
+  position: sticky;
+  top: var(--sticky-top-offset, 0);
+  z-index: var(--layer-1);
+}
