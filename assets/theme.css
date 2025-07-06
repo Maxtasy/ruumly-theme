@@ -49,3 +49,9 @@ body {
   font-size: 16px;
   font-family: var(--heading-font-family);
 }
+
+.MaybeStickySection:has(.Section--Sticky) {
+  position: sticky;
+  top: var(--sticky-top-offset, 0);
+  z-index: var(--layer-1);
+}

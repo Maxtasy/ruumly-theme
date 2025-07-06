@@ -2,56 +2,51 @@
   Renders an Image component.
 
   @param {object} image - The image object containing the source and alt text.
-  @param {string} [variant] - Image variant (portrait, landscape, square)
-  @param {number} [width] - The desired render width of the image.
-  @param {number} [height] - The desired render height of the image.
+  @param {string} [variant] - Image variant (portrait, landscape, square).
   @param {boolean} [loading] - The loading attribute for the image, defaults to 'lazy'.
+  @param {boolean} [preload] - Whether to preload the image, defaults to false.
 {% enddoc %}
 
 {% liquid
   # Handle defaults.
-  assign variant = variant | default: 'landscape'
-  assign width = width | default: image.width
-  assign height = height | default: image.height
   assign loading = loading | default: 'lazy'
+  assign preload = preload | default: false
 %}
 
-<div
+<picture
   class="Image Image--{{ variant | camelcase }}"
 >
-  <img
-    class="Image__Inner"
-    src="{{ image | image_url: width: width, height: height }}"
-    alt="{{ image.alt | escape }}"
-    loading="{{ loading }}"
-    width="{{ width }}"
-    height="{{ height }}"
-  >
-</div>
+  {{
+    image
+    | image_url: width: image.width
+    | image_tag: class: 'Image__Inner', alt: image.alt, loading: loading, preload: preload
+  }}
+</picture>
 
 {% stylesheet %}
   .Image {
     display: block;
+    height: 100%;
     width: 100%;
-    height: auto;
   }
 
   .Image--Portrait {
-    aspect-ratio: 3/4;
+    --aspect-ratio: 3/4;
   }
 
   .Image--Landscape {
-    aspect-ratio: 4/3;
+    --aspect-ratio: 4/3;
   }
 
   .Image--Square {
-    aspect-ratio: 1;
+    --aspect-ratio: 1;
   }
 
   .Image__Inner {
-    object-fit: cover;
     display: block;
     width: 100%;
     height: 100%;
+    object-fit: cover;
+    aspect-ratio: var(--aspect-ratio);
   }
 {% endstylesheet %}

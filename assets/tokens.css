@@ -1,4 +1,11 @@
 :root {
+  /* ------ */
+  /* Layers */
+  /* ------ */
+
+  --layer-1: 1;
+  --layer-2: 2;
+
   /* ----- */
   /* Sizes */
   /* ----- */
@@ -56,6 +63,11 @@
   --button-font-weight: 600;
   --button-letter-spacing: 2px;
 
+  /* Drawer */
+  --drawer-background-color: var(--color-surface);
+  --drawer-padding-block: var(--size-m);
+  --drawer-padding-inline: var(--size-m);
+
   /* Icon */
   --icon-size-s: 1rem;
   --icon-size-m: 1.5rem;
@@ -76,6 +88,7 @@
   --product-option-value-swatch-radius: 50%;
   --product-option-value-border-width-selected: 2px;
   --product-option-value-border-color-selected: var(--color-border);
+  --product-option-value-background-color: var(--color-surface-secondary);
 
   /* Section */
   --section-padding-block: var(--size-m);

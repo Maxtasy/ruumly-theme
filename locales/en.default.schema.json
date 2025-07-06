@@ -125,6 +125,10 @@
         "color_scheme": {
           "label": "Color scheme",
           "info": "Select a color scheme to apply to this section"
+        },
+        "sticky": {
+          "label": "Sticky section",
+          "info": "The section will stick to the top of the viewport when scrolling down."
         }
       }
     },
