@@ -1,3 +1,51 @@
 body {
   background-color: var(--color-surface);
 }
+
+.RichText a {
+  color: var(--link-color);
+  transition: color var(--transition-duration) var(--transition-timing);
+  font-family: var(--font-body-family);
+  font-weight: var(--font-weight-bold);
+}
+
+.RichText a:hover {
+  color: var(--link-color-hover);
+}
+
+.RichText p {
+  font-size: 16px;
+  line-height: 1.5;
+  font-family: var(--text-font-family);
+  color: var(--text-color);
+}
+
+.RichText h1 {
+  font-size: 72px;
+  font-family: var(--heading-font-family);
+}
+
+.RichText h2 {
+  font-size: 56px;
+  font-family: var(--heading-font-family);
+}
+
+.RichText h3 {
+  font-size: 40px;
+  font-family: var(--heading-font-family);
+}
+
+.RichText h4 {
+  font-size: 32px;
+  font-family: var(--heading-font-family);
+}
+
+.RichText h5 {
+  font-size: 24px;
+  font-family: var(--heading-font-family);
+}
+
+.RichText h6 {
+  font-size: 16px;
+  font-family: var(--heading-font-family);
+}
