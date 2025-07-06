@@ -74,5 +74,16 @@
     {% render 'product-list', products: collections.furniture.products %}
 
     {% render 'product-list', products: collections.furniture.products, columns_mobile: 1, columns_desktop: 3 %}
+
+    {% render 'text', text: 'Collection Card', as: 'h2', variant: 'heading-large' %}
+
+    {% assign sample_collection = collections.furniture %}
+
+    {% render 'collection-card',
+      image: sample_collection.featured_image,
+      title: sample_collection.title,
+      url: sample_collection.url,
+      description: sample_collection.description
+    %}
   </div>
 </section>

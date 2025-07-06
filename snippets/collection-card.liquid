@@ -1,0 +1,35 @@
+{% doc %}
+  Renders a Collection Card component.
+
+  @param {object} image - The image object containing the source and alt text.
+  @param {string} title - The Collection title.
+  @param {string} url - URL of the Collection.
+  @param {string} [description] - The desciption of the Collection.
+{% enddoc %}
+
+<article class="CollectionCard">
+  <a href="{{ url }}">
+    <div class="CollectionCard__Image">
+      {% render 'image', image: image %}
+    </div>
+  </a>
+
+  <a href="{{ url }}">
+    {% render 'text', text: title, variant: 'body-large', as: 'span' %}
+  </a>
+
+  {% if description %}
+    <div class="RichText">
+      {{ description }}
+    </div>
+  {% endif %}
+</article>
+
+{% stylesheet %}
+  .CollectionCard {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--size-xs);
+  }
+{% endstylesheet %}
