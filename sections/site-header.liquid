@@ -15,6 +15,24 @@
             {% render 'icon', icon: 'menu' %}
           </button>
         </div>
+
+        {% if section.settings.show_search_icon and section.settings.search_icon_position == 'left' %}
+          <button>
+            {% render 'icon', icon: 'search' %}
+          </button>
+        {% endif %}
+
+        {% if section.settings.show_account_icon and section.settings.account_icon_position == 'left' %}
+          <button>
+            {% render 'icon', icon: 'user-round' %}
+          </button>
+        {% endif %}
+
+        {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'left' %}
+          <button>
+            {% render 'icon', icon: 'shopping-cart' %}
+          </button>
+        {% endif %}
       </div>
 
       <div class="SiteHeader__Middle">
@@ -24,25 +42,25 @@
               {% render 'image', image: settings.logo %}
             </div>
           {% else %}
-            {% render 'text', text: 'Ruumly', as: 'h2', variant: 'heading-medium' %}
+            {% render 'text', text: 'Ruumly', as: 'h2', variant: section.settings.title_text_variant %}
           {% endif %}
         </a>
       </div>
 
       <div class="SiteHeader__Right">
-        {% if section.settings.search_icon_position == 'right' %}
+        {% if section.settings.show_search_icon and section.settings.search_icon_position == 'right' %}
           <button>
             {% render 'icon', icon: 'search' %}
           </button>
         {% endif %}
 
-        {% if section.settings.account_icon_position == 'right' %}
+        {% if section.settings.show_account_icon and section.settings.account_icon_position == 'right' %}
           <button>
             {% render 'icon', icon: 'user-round' %}
           </button>
         {% endif %}
 
-        {% if section.settings.cart_icon_position == 'right' %}
+        {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'right' %}
           <button>
             {% render 'icon', icon: 'shopping-cart' %}
           </button>
@@ -65,6 +83,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
+    gap: var(--size-m);
   }
 
   .SiteHeader__Middle {
@@ -120,7 +139,28 @@
       "default": true,
       "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
     },
-
+    {
+      "type": "select",
+      "id": "title_text_variant",
+      "label": "Title Text Variant",
+      "options": [
+        {
+          "value": "heading-small",
+          "label": "Heading Small"
+        },
+        {
+          "value": "heading-medium",
+          "label": "Heading Medium"
+        },
+        {
+          "value": "heading-large",
+          "label": "Heading Large"
+        }
+      ],
+      "default": "heading-medium",
+      "info": "This setting only applies if the logo is not displayed.",
+      "visible_if": "{{ section.settings.show_logo == false }}"
+    },
     {
       "type": "range",
       "id": "logo_width",
