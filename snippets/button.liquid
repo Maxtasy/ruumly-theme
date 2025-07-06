@@ -2,7 +2,7 @@
   Renders a Button component.
 
   @param {string} [text] - Text inside the button
-  @param {string} [variant] - Button variant ('primary', 'secondary', 'icon')
+  @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain')
   @param {string} [icon] - Icon handle of the icon to render
   @param {string} [action] - The action attribute
 {% enddoc %}
@@ -77,6 +77,16 @@
   .Button--Icon {
     --padding-block: var(--size-xs);
     --padding-inline: var(--size-xs);
+  }
+
+  .Button--Plain {
+    --padding-block: var(--size-xs);
+    --padding-inline: var(--size-xs);
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --background-color: transparent;
+    --background-color-hover: transparent;
+    box-shadow: none;
   }
 
   .Button[disabled] {

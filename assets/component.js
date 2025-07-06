@@ -72,3 +72,15 @@ export function defineComponent(tagName, componentClass, extendsElement) {
 
   customElements.define(tagName, componentClass, { extends: extendsElement });
 }
+
+// Global event subscription function
+// This allows components to subscribe to events globally, not just within their own scope.
+globalThis.subscribe = function (eventName, callbackFunction) {
+  document.addEventListener(eventName, (event) => {
+    if (event instanceof CustomEvent) {
+      callbackFunction(event.detail);
+    } else {
+      callbackFunction(event);
+    }
+  });
+};

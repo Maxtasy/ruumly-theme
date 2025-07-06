@@ -1,0 +1,40 @@
+<aside
+  is="drawer-component"
+  class="
+    Drawer
+    Drawer--From{{ from }}
+  "
+  data-name="{{ name }}"
+>
+  <div class="Drawer__Content">
+    {% render 'text', text: 'Drawer', variant: 'body-large' %}
+  </div>
+
+  <div class="Drawer__Close">
+    {% render 'button', variant: 'plain', icon: 'x', action: 'close' %}
+  </div>
+</aside>
+
+{% stylesheet %}
+  .Drawer {
+    position: fixed;
+    inset: 0;
+    z-index: var(--layer-2);
+    display: flex;
+    flex-direction: column;
+    padding: var(--drawer-padding-block) var(--drawer-padding-inline);
+    background-color: var(--drawer-background-color);
+    transform: translateX(100%);
+    transition: transform var(--transition-duration) var(--transition-timing);
+  }
+
+  .Drawer--Active {
+    transform: translateX(0);
+  }
+
+  .Drawer__Close {
+    position: absolute;
+    top: var(--size-m);
+    right: var(--size-m);
+  }
+{% endstylesheet %}

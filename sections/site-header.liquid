@@ -37,9 +37,7 @@
         {% endif %}
 
         {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'left' %}
-          <button>
-            {% render 'icon', icon: 'shopping-cart' %}
-          </button>
+          {% render 'button', variant: 'plain', icon: 'shopping-cart', action: 'open-drawer:cart' %}
         {% endif %}
       </div>
 
@@ -69,9 +67,7 @@
         {% endif %}
 
         {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'right' %}
-          <button>
-            {% render 'icon', icon: 'shopping-cart' %}
-          </button>
+          {% render 'button', variant: 'plain', icon: 'shopping-cart', action: 'open-drawer:cart' %}
         {% endif %}
       </div>
     </header>

@@ -4,6 +4,7 @@
   /* ------ */
 
   --layer-1: 1;
+  --layer-2: 2;
 
   /* ----- */
   /* Sizes */
@@ -61,6 +62,11 @@
   --button-font-size: 16px;
   --button-font-weight: 600;
   --button-letter-spacing: 2px;
+
+  /* Drawer */
+  --drawer-background-color: var(--color-surface);
+  --drawer-padding-block: var(--size-m);
+  --drawer-padding-inline: var(--size-m);
 
   /* Icon */
   --icon-size-s: 1rem;

@@ -4,12 +4,11 @@ export class Button extends CustomComponentMixin(HTMLButtonElement) {
   constructor() {
     super();
 
-    this.addEventListener("click", this.handleClick.bind(this));
+    this.subscribe("click", this.handleClick.bind(this));
   }
 
-  handleClick(event) {
-    // TODO: Publish an event when the button is clicked.
-    console.log("clicked button");
+  handleClick() {
+    this.publish(`button:click`);
   }
 
   disable() {
