@@ -1,10 +1,23 @@
-<div class="Section ColorScheme--{{ section.settings.color_scheme.id | camelcase }}">
+<section
+  {% if section.settings.sticky %}
+    is="section-component"
+    data-section-index="{{ section.index0 }}"
+  {% endif %}
+
+  class="
+    Section
+    {% if section.settings.sticky %}
+      Section--Sticky
+    {% endif %}
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
   <div class="Section__Inner">
     <div class="AnnouncementBar">
       {% content_for 'blocks' %}
     </div>
   </div>
-</div>
+</section>
 
 {% stylesheet %}
   .AnnouncementBar {
@@ -20,6 +33,7 @@
 {% schema %}
 {
   "name": "t:sections.announcement_bar.name",
+  "class": "MaybeStickySection",
   "limit": 1,
   "enabled_on": {
     "groups": ["header"]
@@ -42,6 +56,13 @@
       "id": "color_scheme",
       "label": "t:sections.all.settings.color_scheme.label",
       "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "t:sections.all.settings.sticky.label",
+      "default": false,
+      "info": "t:sections.all.settings.sticky.info"
     }
   ],
   "presets": [

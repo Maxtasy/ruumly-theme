@@ -1,8 +1,16 @@
-<div
+<section
+  {% if section.settings.sticky %}
+    is="section-component"
+    data-section-index="{{ section.index0 }}"
+  {% endif %}
+
   class="
     Section
     {% if section.settings.border_bottom %}
       Section--BorderBottom
+    {% endif %}
+    {% if section.settings.sticky %}
+      Section--Sticky
     {% endif %}
     ColorScheme--{{ section.settings.color_scheme | camelcase }}
   "
@@ -68,7 +76,7 @@
       </div>
     </header>
   </div>
-</div>
+</section>
 
 {% stylesheet %}
   .SiteHeader {
@@ -108,6 +116,7 @@
 {% schema %}
 {
   "name": "Site Header",
+  "class": "MaybeStickySection",
   "settings": [
     {
       "type": "header",
@@ -123,6 +132,13 @@
       "id": "border_bottom",
       "label": "Show bottom border",
       "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "sticky",
+      "label": "t:sections.all.settings.sticky.label",
+      "default": false,
+      "info": "t:sections.all.settings.sticky.info"
     },
     {
       "type": "header",
