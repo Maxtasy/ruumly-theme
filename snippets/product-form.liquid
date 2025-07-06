@@ -1,0 +1,21 @@
+{% doc %}
+  Renders a Product Form component.
+
+  @param {object} product - The product object containing options and values.
+  @param {string} [name_prefix] - The prefix for the name attribute of the input elements.
+{% enddoc %}
+
+<form is="product-form-component" class="ProductForm">
+  {% render 'product-variant-selector', product: product, name_prefix: name_prefix %}
+
+  {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
+</form>
+
+{% stylesheet %}
+  .ProductForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+    padding: var(--size-m);
+  }
+{% endstylesheet %}

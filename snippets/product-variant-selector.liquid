@@ -5,11 +5,20 @@
   @param {string} [name_prefix] - The prefix for the name attribute of the input elements.
 {% enddoc %}
 
-<product-variant-selector class="ProductVariantSelector">
+<div
+  is="product-variant-selector-component"
+  class="ProductVariantSelector"
+  data-product-variants="{{ product.variants | json | replace: '"', '&quot;' }}"
+  data-selected-variant-id="{{ product.selected_or_first_available_variant.id | json }}"
+  data-selected-option1-value="{{ product.selected_or_first_available_variant.options[0] }}"
+  data-selected-option2-value="{{ product.selected_or_first_available_variant.options[1] }}"
+  data-selected-option3-value="{{ product.selected_or_first_available_variant.options[2] }}"
+  data-available="{{ product.selected_or_first_available_variant.available | json }}"
+>
   {% for product_option in product.options_with_values %}
     {% render 'product-option-selector', product_option: product_option, name_prefix: name_prefix %}
   {% endfor %}
-</product-variant-selector>
+</div>
 
 {% stylesheet %}
   .ProductVariantSelector {

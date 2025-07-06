@@ -14,7 +14,12 @@
   assign size_option_names = metaobjects.size_option_names.values | first | default: default_size_option_names
 %}
 
-<fieldset is="product-option-selector" class="ProductOptionSelector">
+<fieldset
+  is="product-option-selector-component"
+  class="ProductOptionSelector"
+  data-option-position="{{ product_option.position }}"
+  data-option-selected-value="{{ product_option.selected_value }}"
+>
   <legend class="ProductOptionSelector__Label">
     {% render 'text', as: 'strong', text: product_option.name %}
   </legend>

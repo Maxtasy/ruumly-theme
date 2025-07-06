@@ -18,6 +18,7 @@
 
     .ColorScheme--{{ scheme.id | camelcase }} {
       --color-surface: rgba({{ scheme.settings.surface.red }},{{ scheme.settings.surface.green }},{{ scheme.settings.surface.blue }});
+      --color-surface-secondary: rgba({{ scheme.settings.surface_secondary.red }},{{ scheme.settings.surface_secondary.green }},{{ scheme.settings.surface_secondary.blue }});
 
       --color-text: rgba({{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }});
 
@@ -34,7 +35,7 @@
       --secondary-button-background: rgba({{ scheme.settings.secondary_button_background.red }},{{ scheme.settings.secondary_button_background.green }},{{ scheme.settings.secondary_button_background.blue }});
       --secondary-button-background-hover: rgba({{ scheme.settings.secondary_button_background_hover.red }},{{ scheme.settings.secondary_button_background_hover.green }},{{ scheme.settings.secondary_button_background_hover.blue }});
       --secondary-button-text: rgba({{ scheme.settings.secondary_button_text.red }},{{ scheme.settings.secondary_button_text.green }},{{ scheme.settings.secondary_button_text.blue }});
-      --secondary-button-text-hover: rgba({{ scheme.settings.secondary_button_text_hover.red }},{{ scheme.settings.secondary_button_text_hover.green }},{{ scheme.settings.secondary_button_label_hover.blue }});
+      --secondary-button-text-hover: rgba({{ scheme.settings.secondary_button_text_hover.red }},{{ scheme.settings.secondary_button_text_hover.green }},{{ scheme.settings.secondary_button_text_hover.blue }});
       --secondary-button-border: rgba({{ scheme.settings.secondary_button_border.red }},{{ scheme.settings.secondary_button_border.green }},{{ scheme.settings.secondary_button_border.blue }});
       --secondary-button-border-hover: rgba({{ scheme.settings.secondary_button_border_hover.red }},{{ scheme.settings.secondary_button_border_hover.green }},{{ scheme.settings.secondary_button_border_hover.blue }});
 
