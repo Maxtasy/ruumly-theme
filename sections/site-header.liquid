@@ -19,14 +19,34 @@
 
       <div class="SiteHeader__Middle">
         <a href="{{ routes.root_url }}">
-          {% render 'text', text: 'Ruumly', as: 'h2', variant: 'heading-large' %}
+          {% if section.settings.show_logo and settings.logo != blank %}
+            <div class="SiteHeader__Logo" style="--width: {{ section.settings.logo_width }}px;">
+              {% render 'image', image: settings.logo %}
+            </div>
+          {% else %}
+            {% render 'text', text: 'Ruumly', as: 'h2', variant: 'heading-medium' %}
+          {% endif %}
         </a>
       </div>
 
       <div class="SiteHeader__Right">
-        <button>
-          {% render 'icon', icon: 'shopping-cart' %}
-        </button>
+        {% if section.settings.search_icon_position == 'right' %}
+          <button>
+            {% render 'icon', icon: 'search' %}
+          </button>
+        {% endif %}
+
+        {% if section.settings.account_icon_position == 'right' %}
+          <button>
+            {% render 'icon', icon: 'user-round' %}
+          </button>
+        {% endif %}
+
+        {% if section.settings.cart_icon_position == 'right' %}
+          <button>
+            {% render 'icon', icon: 'shopping-cart' %}
+          </button>
+        {% endif %}
       </div>
     </header>
   </div>
@@ -35,7 +55,8 @@
 {% stylesheet %}
   .SiteHeader {
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--size-m);
     padding-block: var(--site-header-padding-block);
     padding-inline: var(--site-header-padding-inline);
   }
@@ -52,10 +73,16 @@
     justify-content: center;
   }
 
+  .SiteHeader__Logo {
+    width: var(--width);
+    height: auto;
+  }
+
   .SiteHeader__Right {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    gap: var(--size-m);
   }
 {% endstylesheet %}
 
@@ -77,6 +104,105 @@
       "id": "border_bottom",
       "label": "Show bottom border",
       "default": true
+    },
+    {
+      "type": "header",
+      "content": "Site Header Settings"
+    },
+    {
+      "type": "paragraph",
+      "content": "Logo"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_logo",
+      "label": "Show Logo",
+      "default": true,
+      "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
+    },
+
+    {
+      "type": "range",
+      "id": "logo_width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 100,
+      "unit": "px",
+      "label": "t:settings_schema.logo.settings.logo_width.label"
+    },
+    {
+      "type": "paragraph",
+      "content": "Icons"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_cart_icon",
+      "label": "Show Cart Icon",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "cart_icon_position",
+      "visible_if": "{{ section.settings.show_cart_icon == true }}",
+      "label": "Cart Icon Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account_icon",
+      "label": "Show Account Icon",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "account_icon_position",
+      "visible_if": "{{ section.settings.show_account_icon == true }}",
+      "label": "Account Icon Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_search_icon",
+      "label": "Show Search Icon",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "search_icon_position",
+      "visible_if": "{{ section.settings.show_search_icon == true }}",
+      "label": "Search Icon Position",
+      "options": [
+        {
+          "value": "left",
+          "label": "Left"
+        },
+        {
+          "value": "right",
+          "label": "Right"
+        }
+      ],
+      "default": "right"
     }
   ]
 }
