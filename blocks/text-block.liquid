@@ -1,5 +1,5 @@
 <div class="TextBlock TextBlock--Align{{ block.settings.alignment | camelcase }}">
-  {{ block.settings.text }}
+  {% render 'text', text: block.settings.text, as: 'div', variant: block.settings.variant %}
 </div>
 
 {% stylesheet %}
@@ -21,9 +21,23 @@
   "name": "Text",
   "settings": [
     {
-      "type": "richtext",
+      "type": "inline_richtext",
       "id": "text",
       "label": "Text"
+    },
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "Text Variant",
+      "default": "body-medium",
+      "options": [
+        { "value": "body-small", "label": "Body Small" },
+        { "value": "body-medium", "label": "Body Medium" },
+        { "value": "body-large", "label": "Body Large" },
+        { "value": "heading-small", "label": "Heading Small" },
+        { "value": "heading-medium", "label": "Heading Medium" },
+        { "value": "heading-large", "label": "Heading Large" }
+      ]
     },
     {
       "type": "text_alignment",
@@ -36,7 +50,7 @@
     {
       "name": "Text",
       "settings": {
-        "text": "<p>This is a text block.<p>",
+        "text": "This is a text block.",
         "alignment": "left"
       }
     }

@@ -30,7 +30,7 @@
             "text_block_VnjNGP": {
               "type": "text-block",
               "settings": {
-                "text": "<p>Some Info Text</p>",
+                "text": "Some Info Text",
                 "alignment": "left"
               },
               "blocks": {}
@@ -54,7 +54,7 @@
             "text_block_dgH7Pz": {
               "type": "text-block",
               "settings": {
-                "text": "<p>Save big on our latest drop</p>",
+                "text": "Save big on our latest drop",
                 "alignment": "left"
               },
               "blocks": {}
