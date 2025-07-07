@@ -51,6 +51,16 @@
 
   .ProductCard__Image {
     position: relative;
+    overflow: hidden;
+  }
+
+  .ProductCard__Image img {
+    display: inline-block;
+    transition: transform 0.3s ease-in;
+  }
+
+  .ProductCard__Image:hover img {
+    transform: scale(1.2);
   }
 
   .ProductCard__Badges {
