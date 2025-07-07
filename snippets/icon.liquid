@@ -2,9 +2,12 @@
   Renders an Icon component.
 
   @param {string} icon - The icon to display.
+  @param {string} [size] - The size of the icon.
 {% enddoc %}
 
-<div class="Icon">
+{% assign size = size | default: 'medium' %}
+
+<div class="Icon Icon--Size{{ size | camelcase }}">
   {% case icon %}
     {% when 'default' %}
       <svg
@@ -299,11 +302,29 @@
 
 {% stylesheet %}
   .Icon {
-    width: var(--icon-size-m);
-    height: var(--icon-size-m);
     display: inline-flex;
     align-items: center;
     justify-content: center;
+  }
+
+  .Icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .Icon--SizeSmall {
+    width: var(--icon-size-s);
+    height: var(--icon-size-s);
+  }
+
+  .Icon--SizeMedium {
+    width: var(--icon-size-m);
+    height: var(--icon-size-m);
+  }
+
+  .Icon--SizeLarge {
+    width: var(--icon-size-l);
+    height: var(--icon-size-l);
   }
 
   .Icon:hover {
