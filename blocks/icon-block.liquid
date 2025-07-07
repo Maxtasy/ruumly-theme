@@ -1,5 +1,5 @@
 <div class="IconBlock">
-  {% render 'icon', icon: block.settings.icon %}
+  {% render 'icon', icon: block.settings.icon, size: block.settings.size %}
 </div>
 
 {% stylesheet %}
@@ -23,6 +23,17 @@
         { "value": "info", "label": "Info" },
         { "value": "percent", "label": "Percent" },
         { "value": "star", "label": "Star" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Size",
+      "default": "medium",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
       ]
     }
   ],
