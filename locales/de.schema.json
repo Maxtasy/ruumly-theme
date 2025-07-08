@@ -4,13 +4,13 @@
       "settings": {}
     },
     "colors": {
-      "name": "Colors",
+      "name": "Farben",
       "settings": {
         "surface": {
-          "label": "Surface"
+          "label": "Fläche"
         },
         "surface_gradient": {
-          "label": "Surface gradient"
+          "label": "Fläche Farbverlauf"
         },
         "text": {
           "label": "Text"
@@ -22,44 +22,44 @@
           "label": "Link hover"
         },
         "primary_button_background": {
-          "label": "Primary button background"
+          "label": "Primärer Button Hintergrund"
         },
         "primary_button_background_hover": {
-          "label": "Primary button background hover"
+          "label": "Primärer Button Hintergrund hover"
         },
         "primary_button_text": {
-          "label": "Primary button text"
+          "label": "Primärer Button Text"
         },
         "primary_button_text_hover": {
-          "label": "Primary button text hover"
+          "label": "Primärer Button Text hover"
         },
         "primary_button_border": {
-          "label": "Primary button border"
+          "label": "Primärer Button Umrandung"
         },
         "primary_button_border_hover": {
-          "label": "Primary button border hover"
+          "label": "Primärer Button Umrandung hover"
         },
         "secondary_button_background": {
-          "label": "Secondary button background"
+          "label": "Sekundärer Button Hintergrund"
         },
         "secondary_button_background_hover": {
-          "label": "Secondary button background hover"
+          "label": "Sekundärer Button Hintergrund hover"
         },
         "secondary_button_text": {
-          "label": "Secondary button text"
+          "label": "Sekundärer Button Text"
         },
         "secondary_button_text_hover": {
-          "label": "Secondary button text hover"
+          "label": "Sekundärer Button Text hover"
         },
         "secondary_button_border": {
-          "label": "Secondary button border"
+          "label": "Sekundärer Button Umrandung"
         },
         "secondary_button_border_hover": {
-          "label": "Secondary button border hover"
+          "label": "Sekundärer Button Umrandung hover"
         },
         "border": {
-          "label": "Border",
-          "info": "Used for borders and outlines"
+          "label": "Umrandung",
+          "info": "Wird für Umrandungen benutzt"
         }
       }
     },
@@ -70,48 +70,48 @@
           "label": "Logo"
         },
         "logo_width": {
-          "label": "Width"
+          "label": "Breite"
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Displayed at 32 x 32px"
+          "info": "Angezeigt in 32 x 32px"
         }
       }
     },
     "brand_information": {
-      "name": "Brand information",
+      "name": "Marken Informationen",
       "settings": {
         "paragraph": {
-          "content": "Displays in the footer's brand information block"
+          "content": "Wird im Markeninformationsblock in der Fußzeile angezeigt"
         },
         "brand_headline": {
-          "label": "Headline"
+          "label": "Kopfzeile"
         },
         "brand_description": {
-          "label": "Description"
+          "label": "Beschreibung"
         },
         "brand_image": {
-          "label": "Image"
+          "label": "Bild"
         },
         "brand_image_width": {
-          "label": "Image width"
+          "label": "Bildbreite"
         }
       }
     },
     "typography": {
-      "name": "Typography",
+      "name": "Typografie",
       "settings": {
         "type_header_font": {
-          "label": "Font"
+          "label": "Schriftart"
         },
         "header__1": {
-          "content": "Headings"
+          "content": "Überschriften"
         },
         "header__2": {
-          "content": "Body"
+          "content": "Textinhalt"
         },
         "type_body_font": {
-          "label": "Font"
+          "label": "Schriftart"
         }
       }
     }
@@ -119,25 +119,25 @@
   "sections": {
     "all": {
       "section_appearance": {
-        "content": "Section appearance"
+        "content": "Aussehen der Abschnitt"
       },
       "settings": {
         "color_scheme": {
-          "label": "Color scheme",
-          "info": "Select a color scheme to apply to this section"
+          "label": "Farbschema",
+          "info": "Wählen Sie ein Farbschema, das für diesen Abschnitt gelten soll"
         },
         "sticky": {
-          "label": "Sticky section",
-          "info": "The section will stick to the top of the viewport when scrolling down."
+          "label": "Haftender Abschnitt",
+          "info": "Der Abschnitt bleibt beim Herunterscrollen am oberen Rand des Ansichtsfensters."
         }
       }
     },
     "announcement_bar": {
-      "name": "Announcement bar",
+      "name": "Ankündigungsleiste",
       "presets": {
         "announcement_bar": {
-          "name": "Announcement bar",
-          "category": "Header"
+          "name": "Ankündigungsleiste",
+          "category": "Kopfzeile"
         }
       }
     }
@@ -149,16 +149,16 @@
           "label": "Icon"
         },
         "size": {
-          "label": "Size",
+          "label": "Größe",
           "options": {
             "small": {
-              "label": "Small"
+              "label": "Klein"
             },
             "medium": {
-              "label": "Medium"
+              "label": "Mittel"
             },
             "large": {
-              "label": "Large"
+              "label": "Groß"
             }
           }
         }
@@ -168,10 +168,10 @@
       "name": "Icon Block",
       "presets": {
         "heart": {
-          "name": "Heart"
+          "name": "Herz"
         },
         "star": {
-          "name": "Star"
+          "name": "Stern"
         }
       }
     }

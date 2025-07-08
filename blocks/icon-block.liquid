@@ -10,12 +10,12 @@
 
 {% schema %}
 {
-  "name": "Icon",
+  "name": "t:theme_blocks.icon_block.name",
   "settings": [
     {
       "type": "select",
       "id": "icon",
-      "label": "Icon",
+      "label": "t:theme_blocks.all.settings.icon.label",
       "default": "default",
       "options": [
         { "value": "default", "label": "Default" },
@@ -42,24 +42,24 @@
     {
       "type": "select",
       "id": "size",
-      "label": "Size",
+      "label": "t:theme_blocks.all.settings.size.label",
       "default": "medium",
       "options": [
-        { "value": "small", "label": "Small" },
-        { "value": "medium", "label": "Medium" },
-        { "value": "large", "label": "Large" }
+        { "value": "small", "label": "t:theme_blocks.all.settings.size.options.small.label" },
+        { "value": "medium", "label": "t:theme_blocks.all.settings.size.options.medium.label" },
+        { "value": "large", "label": "t:theme_blocks.all.settings.size.options.large.label" }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Heart",
+      "name": "t:theme_blocks.icon_block.presets.heart.name",
       "settings": {
         "icon": "heart"
       }
     },
     {
-      "name": "Star",
+      "name": "t:theme_blocks.icon_block.presets.star.name",
       "settings": {
         "icon": "star"
       }
