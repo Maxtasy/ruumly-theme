@@ -1,13 +1,25 @@
+{% doc %}
+  Renders a Drawer component.
+
+  @param {string} name - The name of the drawer.
+  @param {string} [from] - The direction from which the drawer slides in. Defaults to 'right'.
+  @param {boolean} [active] - Whether the drawer is currently active. Defaults to `false`.
+  @param {string} content_for_drawer - The content to be displayed inside the drawer.
+{% enddoc %}
+
 <aside
   is="drawer-component"
   class="
     Drawer
-    Drawer--From{{ from }}
+    Drawer--From{{ from | default: 'right' | camelcase }}
+    {% if active %}
+      Drawer--Active
+    {% endif %}
   "
   data-name="{{ name }}"
 >
   <div class="Drawer__Content">
-    {% render 'text', text: 'Drawer', variant: 'body-large' %}
+    {{ content_for_drawer }}
   </div>
 
   <div class="Drawer__Close">
@@ -18,14 +30,26 @@
 {% stylesheet %}
   .Drawer {
     position: fixed;
-    inset: 0;
+    top: 0;
+    bottom: 0;
     z-index: var(--layer-2);
     display: flex;
     flex-direction: column;
     padding: var(--drawer-padding-block) var(--drawer-padding-inline);
+    width: var(--drawer-width);
+    max-width: var(--drawer-max-width);
     background-color: var(--drawer-background-color);
-    transform: translateX(100%);
     transition: transform var(--transition-duration) var(--transition-timing);
+  }
+
+  .Drawer--FromLeft {
+    left: 0;
+    transform: translateX(-100%);
+  }
+
+  .Drawer--FromRight {
+    right: 0;
+    transform: translateX(100%);
   }
 
   .Drawer--Active {

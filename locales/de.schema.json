@@ -140,6 +140,15 @@
           "category": "Kopfzeile"
         }
       }
+    },
+    "cart_drawer": {
+      "name": "Warenkorb Drawer",
+      "presets": {
+        "cart_drawer": {
+          "name": "Warenkorb Drawer",
+          "category": "Drawer"
+        }
+      }
     }
   },
   "theme_blocks": {

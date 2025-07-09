@@ -140,6 +140,15 @@
           "category": "Header"
         }
       }
+    },
+    "cart_drawer": {
+      "name": "Cart Drawer",
+      "presets": {
+        "cart_drawer": {
+          "name": "Cart Drawer",
+          "category": "Drawer"
+        }
+      }
     }
   },
   "theme_blocks": {
