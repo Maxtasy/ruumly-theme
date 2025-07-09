@@ -1,0 +1,50 @@
+<section class="Section">
+  <div class="Section__Inner">
+    {% render 'image', image: section.settings.mobile_image %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "Image Mobile"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "Image Desktop"
+    },
+    {
+      "type": "select",
+      "id": "content_position_horizontal",
+      "label": "Content Position Horizontal",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_position_vertical",
+      "label": "Content Position Vertical",
+      "default": "center",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "bottom", "label": "Bottom" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero"
+    }
+  ]
+}
+{% endschema %}
