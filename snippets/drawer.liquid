@@ -2,9 +2,11 @@
   Renders a Drawer component.
 
   @param {string} name - The name of the drawer.
+  @param {string} [heading] - Text to display as the heading of the drawer.
   @param {string} [from] - The direction from which the drawer slides in. Defaults to 'right'.
   @param {boolean} [active] - Whether the drawer is currently active. Defaults to `false`.
-  @param {string} content_for_drawer - The content to be displayed inside the drawer.
+  @param {string} content - The content to be displayed inside the drawer.
+  @param {string} [footer] - The content to be displayed inside the drawer.
 {% enddoc %}
 
 <aside
@@ -18,9 +20,19 @@
   "
   data-name="{{ name }}"
 >
-  <div class="Drawer__Content">
-    {{ content_for_drawer }}
+  <div class="Drawer__Header">
+    {% if heading %}
+      <h2 class="Drawer__Heading">{{ heading }}</h2>
+    {% endif %}
   </div>
+
+  <div class="Drawer__Content">
+    {{ content }}
+  </div>
+
+  {% if footer != blank %}
+    <div class="Drawer__Footer">{{ footer }}</div>
+  {% endif %}
 
   <div class="Drawer__Close">
     {% render 'button', variant: 'plain', icon: 'x', action: 'close' %}
@@ -35,6 +47,7 @@
     z-index: var(--layer-2);
     display: flex;
     flex-direction: column;
+    gap: var(--size-l);
     padding: var(--drawer-padding-block) var(--drawer-padding-inline);
     width: var(--drawer-width);
     max-width: var(--drawer-max-width);
@@ -45,15 +58,22 @@
   .Drawer--FromLeft {
     left: 0;
     transform: translateX(-100%);
+    border-right: var(--border-width) solid var(--color-border);
   }
 
   .Drawer--FromRight {
     right: 0;
     transform: translateX(100%);
+    border-left: var(--border-width) solid var(--color-border);
   }
 
   .Drawer--Active {
     transform: translateX(0);
+  }
+
+  .Drawer__Content {
+    flex: 1;
+    overflow-y: auto;
   }
 
   .Drawer__Close {

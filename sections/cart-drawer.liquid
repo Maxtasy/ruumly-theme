@@ -1,8 +1,22 @@
 {% capture cart_drawer_content %}
-  Cart Drawer
+  {% if cart.empty? %}
+    Empty Cart
+  {% else %}
+    Item count: {{ cart.item_count }}
+  {% endif %}
 {% endcapture %}
 
-{% render 'drawer', name: 'cart', content_for_drawer: cart_drawer_content %}
+{% capture cart_drawer_footer %}
+  Cart Drawer Footer
+{% endcapture %}
+
+{% render 'drawer',
+  name: 'cart',
+  heading: 'Cart',
+  content: cart_drawer_content,
+  footer: cart_drawer_footer,
+  active: true
+%}
 
 {% schema %}
 {
