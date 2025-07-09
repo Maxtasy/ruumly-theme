@@ -14,7 +14,12 @@
 %}
 
 <picture
-  class="Image Image--{{ variant | camelcase }}"
+  class="
+    Image
+    {% if variant %}
+      Image--{{ variant | camelcase }}
+    {% endif %}
+  "
 >
   {{
     image
