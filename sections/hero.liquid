@@ -1,13 +1,87 @@
-<section class="Section">
+<section class="Section Section--FullWidth Section--PaddingBlockNone">
   <div class="Section__Inner">
-    {% render 'image', image: section.settings.mobile_image %}
+    <div class="Hero" style="--height: {{ section.settings.height }};">
+      <div class="Hero__MobileImage u-Hidden--Desktop">
+        {% render 'image', image: section.settings.mobile_image %}
+      </div>
+
+      <div class="Hero__DesktopImage u-Hidden--Mobile">
+        {% render 'image', image: section.settings.desktop_image %}
+      </div>
+
+      <div class="Hero__Inner">
+        <div
+          class="
+            Hero__Content
+            Hero__Content--Horizontal{{ section.settings.content_position_horizontal | camelcase }}
+            Hero__Content--Vertical{{ section.settings.content_position_vertical | camelcase }}
+          "
+        >
+          {% content_for 'blocks' %}
+        </div>
+      </div>
+    </div>
   </div>
 </section>
+
+{% stylesheet %}
+  .Hero {
+    position: relative;
+    height: var(--height);
+  }
+
+  .Hero__Inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: var(--page-width);
+    height: 100%;
+  }
+
+  .Hero__MobileImage,
+  .Hero__DesktopImage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .Hero__Content {
+    position: absolute;
+  }
+
+  .Hero__Content--HorizontalLeft {
+    left: 0;
+  }
+
+  .Hero__Content--HorizontalRight {
+    right: 0;
+  }
+
+  .Hero__Content--VerticalTop {
+    top: 0;
+  }
+
+  .Hero__Content--VerticalBottom {
+    bottom: 0;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "Hero",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
   "settings": [
+    {
+      "type": "text",
+      "id": "height",
+      "label": "Height",
+      "default": "66vh",
+      "info": "Use a valid CSS value."
+    },
     {
       "type": "image_picker",
       "id": "mobile_image",
@@ -39,6 +113,11 @@
         { "value": "center", "label": "Center" },
         { "value": "bottom", "label": "Bottom" }
       ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-block"
     }
   ],
   "presets": [

@@ -9,6 +9,29 @@
  */
 {
   "sections": {
+    "hero": {
+      "type": "hero",
+      "blocks": {
+        "text_block_NfLDG3": {
+          "type": "text-block",
+          "name": "Text",
+          "settings": {
+            "text": "This is a text block.",
+            "variant": "body-medium",
+            "alignment": "left"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": ["text_block_NfLDG3"],
+      "settings": {
+        "height": "66vh",
+        "mobile_image": "shopify://shop_images/Arlo_Lounge_Chair-2.webp",
+        "desktop_image": "shopify://shop_images/Milo_Coffee_Table-4.webp",
+        "content_position_horizontal": "center",
+        "content_position_vertical": "center"
+      }
+    },
     "product-list": {
       "type": "product-list",
       "settings": {
@@ -25,5 +48,5 @@
       "settings": {}
     }
   },
-  "order": ["product-list", "test-section"]
+  "order": ["hero", "product-list", "test-section"]
 }
