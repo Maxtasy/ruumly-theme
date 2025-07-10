@@ -122,6 +122,9 @@
         "content": "Section appearance"
       },
       "settings": {
+        "border_bottom": {
+          "label": "Show bottom border"
+        },
         "color_scheme": {
           "label": "Color scheme",
           "info": "Select a color scheme to apply to this section"
@@ -146,6 +149,19 @@
         "sticky": {
           "label": "Sticky section",
           "info": "The section will stick to the top of the viewport when scrolling down."
+        },
+        "text_variant": {
+          "options": {
+            "heading-small": {
+              "label": "Heading Small"
+            },
+            "heading-medium": {
+              "label": "Heading Medium"
+            },
+            "heading-large": {
+              "label": "Heading Large"
+            }
+          }
         }
       }
     },
@@ -163,6 +179,28 @@
       "presets": {
         "product_list": {
           "name": "Product List"
+        }
+      }
+    },
+    "site_header": {
+      "name": "Site Header",
+      "settings": {
+        "settings_logo": {
+          "content": "Logo"
+        },
+        "settings_header": {
+          "content": "Site Header Settings"
+        },
+        "settings_icons": {
+          "content": "Icons"
+        },
+        "show_logo": {
+          "label": "Show Logo",
+          "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
+        },
+        "title_text_variant": {
+          "label": "Title Text Variant",
+          "info": "This setting only applies if the logo is not displayed."
         }
       }
     }

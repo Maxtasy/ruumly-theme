@@ -111,22 +111,23 @@
 
 {% schema %}
 {
-  "name": "Site Header",
+  "name": "t:sections.site_header.name",
   "class": "MaybeStickySection",
   "settings": [
     {
       "type": "header",
-      "content": "Section Appearance"
+      "content": "t:sections.all.section_appearance.content"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color Scheme"
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
     },
     {
       "type": "checkbox",
       "id": "border_bottom",
-      "label": "Show bottom border",
+      "label": "t:sections.all.settings.border_bottom.label",
       "default": true
     },
     {
@@ -138,39 +139,39 @@
     },
     {
       "type": "header",
-      "content": "Site Header Settings"
+      "content": "t:sections.site_header.settings.settings_header.content"
     },
     {
       "type": "paragraph",
-      "content": "Logo"
+      "content": "t:sections.site_header.settings.settings_logo.content"
     },
     {
       "type": "checkbox",
       "id": "show_logo",
-      "label": "Show Logo",
+      "label": "t:sections.site_header.settings.show_logo.label",
       "default": true,
-      "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
+      "info": "t:sections.site_header.settings.show_logo.info"
     },
     {
       "type": "select",
       "id": "title_text_variant",
-      "label": "Title Text Variant",
+      "label": "t:sections.site_header.settings.title_text_variant.label",
       "options": [
         {
           "value": "heading-small",
-          "label": "Heading Small"
+          "label": "t:sections.all.settings.text_variant.options.heading-small.label"
         },
         {
           "value": "heading-medium",
-          "label": "Heading Medium"
+          "label": "t:sections.all.settings.text_variant.options.heading-medium.label"
         },
         {
           "value": "heading-large",
-          "label": "Heading Large"
+          "label": "t:sections.all.settings.text_variant.options.heading-large.label"
         }
       ],
       "default": "heading-medium",
-      "info": "This setting only applies if the logo is not displayed.",
+      "info": "t:sections.site_header.settings.title_text_variant.info",
       "visible_if": "{{ section.settings.show_logo == false }}"
     },
     {
@@ -185,7 +186,7 @@
     },
     {
       "type": "paragraph",
-      "content": "Icons"
+      "content": "t:sections.site_header.settings.settings_icons.content"
     },
     {
       "type": "checkbox",

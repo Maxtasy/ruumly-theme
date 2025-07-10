@@ -122,6 +122,9 @@
         "content": "Aussehen der Abschnitt"
       },
       "settings": {
+        "border_bottom": {
+          "label": "Unteren Rand anzeigen"
+        },
         "color_scheme": {
           "label": "Farbschema",
           "info": "Wählen Sie ein Farbschema, das für diesen Abschnitt gelten soll"
@@ -146,6 +149,19 @@
         "sticky": {
           "label": "Haftender Abschnitt",
           "info": "Der Abschnitt bleibt beim Herunterscrollen am oberen Rand des Ansichtsfensters."
+        },
+        "text_variant": {
+          "options": {
+            "heading-small": {
+              "label": "Überschrift klein"
+            },
+            "heading-medium": {
+              "label": "Überschrift mittel"
+            },
+            "heading-large": {
+              "label": "Überschrift groß"
+            }
+          }
         }
       }
     },
@@ -163,6 +179,28 @@
       "presets": {
         "product_list": {
           "name": "Produktliste"
+        }
+      }
+    },
+    "site_header": {
+      "name": "Kopfzeile der Website",
+      "settings": {
+        "settings_logo": {
+          "content": "Logo"
+        },
+        "settings_header": {
+          "content": "Kopfzeileneinstellungen der Website"
+        },
+        "settings_icons": {
+          "content": "Icons"
+        },
+        "show_logo": {
+          "label": "Logo",
+          "info": "Das Logo kann in den Themeneinstellungen ausgewählt werden. Wenn es nicht markiert ist, wird stattdessen der Name des Shops angezeigt."
+        },
+        "title_text_variant": {
+          "label": "Titel Textvariante",
+          "info": "Diese Einstellung gilt nur, wenn das Logo nicht angezeigt wird."
         }
       }
     }
