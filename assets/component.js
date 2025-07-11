@@ -17,6 +17,10 @@ export const CustomComponentMixin = (Base) =>
       });
     }
 
+    unsubscribe(eventName, callbackFunction) {
+      this.removeEventListener(eventName, callbackFunction);
+    }
+
     publish(eventName, data = {}) {
       // For components that have an action attribute (e.g. Button), we want to append it to the event name.
 

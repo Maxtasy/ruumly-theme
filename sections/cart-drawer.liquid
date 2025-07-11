@@ -1,9 +1,20 @@
 {% capture cart_drawer_content %}
-  {% if cart.empty? %}
-    Empty Cart
-  {% else %}
-    Item count: {{ cart.item_count }}
-  {% endif %}
+  <div is="cart-drawer-component" class="CartDrawer">
+    <div class="CartDrawer__Content">
+      {% if cart.empty? %}
+        {% render 'empty-state',
+          heading: section.settings.empty_state_heading,
+          text: section.settings.empty_state_text,
+          link: section.settings.empty_state_link,
+          link_text: section.settings.empty_state_link_text
+        %}
+      {% else %}
+        Item count: {{ cart.item_count }}
+    
+        {% render 'button', text: 'clear', action: 'clear-cart' %}
+      {% endif %}
+    </div>
+  </div>
 {% endcapture %}
 
 {% capture cart_drawer_footer %}
@@ -15,6 +26,8 @@
   heading: 'Cart',
   content: cart_drawer_content,
   footer: cart_drawer_footer,
+  from: section.settings.from,
+  color_scheme: section.settings.color_scheme,
   active: true
 %}
 
@@ -36,6 +49,50 @@
       "label": "t:sections.all.settings.color_scheme.label",
       "default": "default",
       "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "select",
+      "id": "from",
+      "label": "t:sections.cart_drawer.settings.from.label",
+      "default": "right",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.cart_drawer.settings.from.options.left.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.cart_drawer.settings.from.options.right.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cart_drawer.settings.header.empty_state.content"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_heading",
+      "label": "t:sections.cart_drawer.settings.header.empty_state.heading.label",
+      "default": "Your cart is empty"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "t:sections.cart_drawer.settings.header.empty_state.text.label",
+      "default": "Explore our products"
+    },
+    {
+      "type": "url",
+      "id": "empty_state_link",
+      "label": "t:sections.cart_drawer.settings.header.empty_state.link.label",
+      "default": "/collections/all"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_link_text",
+      "label": "t:sections.cart_drawer.settings.header.empty_state.link_text.label",
+      "default": "Continue shopping"
     }
   ],
   "presets": [

@@ -9,7 +9,7 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
       id: null,
       quantity: 1,
     };
-    this.sectionsToRerender = [];
+    this.sectionsToRerender = ["cart-drawer"];
 
     this.subscribe("product-variant-selector:init", this.handleProductVariantSelectorInit.bind(this));
     this.subscribe("product-variant-selector:change", this.handleProductVariantSelectorChange.bind(this));
@@ -71,7 +71,7 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
     }
 
     // Notify other components that the item has been added to the cart.
-    this.publish("product-form:item-added", { item: this.item, sections: this.sectionsToRerender });
+    this.publish("product-form:item-added", { item: this.item, sections: cartResponse.sections });
   }
 
   get addToCartButtonElement() {

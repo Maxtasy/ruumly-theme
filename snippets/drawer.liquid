@@ -7,6 +7,7 @@
   @param {boolean} [active] - Whether the drawer is currently active. Defaults to `false`.
   @param {string} content - The content to be displayed inside the drawer.
   @param {string} [footer] - The content to be displayed inside the drawer.
+  @param {string} [color_scheme] - The color scheme to be used for the drawer. Defaults to 'default'.
 {% enddoc %}
 
 <aside
@@ -17,8 +18,10 @@
     {% if active %}
       Drawer--Active
     {% endif %}
+    ColorScheme--{{ color_scheme | default: 'default' | camelcase }}
   "
   data-name="{{ name }}"
+  data-active="{{ active | default: false }}"
 >
   <div class="Drawer__Header">
     {% if heading %}
