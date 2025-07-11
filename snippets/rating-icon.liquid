@@ -1,0 +1,34 @@
+{% doc %}
+  Renders a Rating Icon component.
+
+  @param {string} [icon] - The icon to use. Defaults to `star`. (star, heart, leafy-green)
+  @param {number} [fill_percentage] - The fill percentage of the icon. Defaults to `100`.
+  @param {string} [fill_color] - The color of the fill. Defaults to `currentColor`.
+  @param {string} [clear_color] - The color of the stop. Defaults to `#fff`.
+  @param {string} [stroke_color] - The color of the stroke. Defaults to `currentColor`.
+{% enddoc %}
+
+{% liquid
+  assign icon = icon | default: 'star'
+  assign fill_percentage = fill_percentage | default: 100
+  assign fill_color = fill_color | default: 'currentColor'
+  assign clear_color = clear_color | default: 'transparent'
+  assign stroke_color = stroke_color | default: 'currentColor'
+  assign gradient_id = 'gradient-' | append: icon | append: '-' | append: fill_percentage | append: '-' | append: fill_color | append: '-' | append: stroke_color
+%}
+
+{% capture defs %}
+  <defs>
+    <linearGradient id="{{ gradient_id }}">
+      <stop offset="{{ fill_percentage | times: 100 }}%" stop-color="{{ fill_color }}" />
+      <stop offset="{{ fill_percentage | times: 100 }}%" stop-color="{{ clear_color }}" />
+      <stop offset="100%" stop-color="{{ clear_color }}" />
+    </linearGradient>
+  </defs>
+{% endcapture %}
+
+{% capture fill_gradient %}
+  fill="url(#{{ gradient_id }})"
+{% endcapture %}
+
+{% render 'icon', icon: icon, defs: defs, fill_gradient: fill_gradient, stroke_color: stroke_color %}
