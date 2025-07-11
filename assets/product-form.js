@@ -9,12 +9,22 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
       id: null,
       quantity: 1,
     };
-    this.sectionsToRerender = ["cart-drawer"];
 
-    this.subscribe("product-variant-selector:init", this.handleProductVariantSelectorInit.bind(this));
-    this.subscribe("product-variant-selector:change", this.handleProductVariantSelectorChange.bind(this));
+    this.handleProductVariantSelectorInit = this.handleProductVariantSelectorInit.bind(this);
+    this.handleProductVariantSelectorChange = this.handleProductVariantSelectorChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
 
-    this.subscribe("submit", this.handleSubmit.bind(this));
+  connectedCallback() {
+    this.subscribe("product-variant-selector:init", this.handleProductVariantSelectorInit);
+    this.subscribe("product-variant-selector:change", this.handleProductVariantSelectorChange);
+    this.subscribe("submit", this.handleSubmit);
+  }
+
+  disconnectedCallback() {
+    this.unsubscribe("product-variant-selector:init", this.handleProductVariantSelectorInit);
+    this.unsubscribe("product-variant-selector:change", this.handleProductVariantSelectorChange);
+    this.unsubscribe("submit", this.handleSubmit);
   }
 
   handleProductVariantSelectorInit(event) {
@@ -64,7 +74,7 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
       throw new Error("No item to add to cart");
     }
 
-    const cartResponse = await cart.addItem({ item: this.item, sections: this.sectionsToRerender });
+    const cartResponse = await cart.addItem({ item: this.item, sections: ["cart-drawer"] });
 
     if (!cartResponse) {
       throw new Error("Failed to add item to cart");
