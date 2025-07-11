@@ -6,6 +6,7 @@
   @param {string} [fill_color] - The color of the fill. Defaults to `currentColor`.
   @param {string} [clear_color] - The color of the stop. Defaults to `#fff`.
   @param {string} [stroke_color] - The color of the stroke. Defaults to `currentColor`.
+  @param {string} [icon_size] - The size of the icon.
 {% enddoc %}
 
 {% liquid
@@ -15,6 +16,7 @@
   assign clear_color = clear_color | default: 'transparent'
   assign stroke_color = stroke_color | default: 'currentColor'
   assign gradient_id = 'gradient-' | append: icon | append: '-' | append: fill_percentage | append: '-' | append: fill_color | append: '-' | append: stroke_color
+  assign icon_size = icon_size | default: 'medium'
 %}
 
 {% capture defs %}
@@ -31,4 +33,4 @@
   fill="url(#{{ gradient_id }})"
 {% endcapture %}
 
-{% render 'icon', icon: icon, defs: defs, fill_gradient: fill_gradient, stroke_color: stroke_color %}
+{% render 'icon', icon: icon, defs: defs, fill_gradient: fill_gradient, stroke_color: stroke_color, size: icon_size %}
