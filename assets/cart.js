@@ -43,7 +43,7 @@ export class Cart {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ items: [item], sections: sections.join(",") }),
+      body: JSON.stringify({ items: [item], sections }),
     });
 
     if (!response.ok) {
