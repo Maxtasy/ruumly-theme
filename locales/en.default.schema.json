@@ -149,6 +149,22 @@
     "cart_drawer": {
       "name": "Cart Drawer",
       "settings": {
+        "empty_state_heading": {
+          "label": "Empty state heading",
+          "default": "Your cart is empty"
+        },
+        "empty_state_text": {
+          "label": "Empty state text",
+          "default": "Explore our products"
+        },
+        "empty_state_link": {
+          "label": "Empty state link",
+          "default": "/collections/all"
+        },
+        "empty_state_link_text": {
+          "label": "Empty state link text",
+          "default": "Continue shopping"
+        },
         "from": {
           "label": "From",
           "options": {
@@ -158,6 +174,11 @@
             "right": {
               "label": "Right"
             }
+          }
+        },
+        "header": {
+          "empty_state": {
+            "content": "Empty state"
           }
         }
       },
