@@ -7,6 +7,7 @@
   @param {number} [compare_at_price] - Product compare at price in cents.
   @param {number} price - Product price in cents.
   @param {string} url - URL of the Product.
+  @param {number} [rating] - Product rating.
 {% enddoc %}
 
 <article class="ProductCard">
@@ -36,6 +37,10 @@
     <a href="{{ url }}">
       {% render 'text', text: title, as: 'b' %}
     </a>
+
+    {% if rating %}
+      {% render 'rating', rating: rating %}
+    {% endif %}
 
     <div class="ProductCard__PriceList">
       {% render 'price-list', price: price, compare_at_price: compare_at_price %}
