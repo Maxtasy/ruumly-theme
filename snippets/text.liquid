@@ -1,24 +1,49 @@
 {% doc %}
   Renders a Text component.
 
-  @param {string} [as] - The HTML tag to use. Defaults to p
-  @param {string} text - text
-  @param {string} [variant] - Text variant ('heading-large', 'heading-medium', 'heading-small', 'body-large', 'body-medium', 'body-small')
+  @param {string} [as] - The HTML tag to use. Defaults to `p`.
+  @param {string} text - The rendered text.
+  @param {string} [variant] - Text variant. Defaults to `body-medium` ('heading-large', 'heading-medium', 'heading-small', 'body-large', 'body-medium', 'body-small')
+  @param {string} [color] - Text color. Defaults to 'primary' ('inherit', 'primary', 'sale', 'destructive', 'success', 'warning')
 {% enddoc %}
 
 {% assign as = as | default: 'p' %}
 {% assign variant = variant | default: 'body-medium' %}
+{% assign color = color | default: 'primary' %}
 
-<{{ as }} class="Text{% if variant %} Text--{{ variant | camelcase }}{% endif %}">
+<{{ as }} class="Text Text--{{ variant | camelcase }} Text--Color{{ color | camelcase }}">
   {{ text }}
 </{{ as }}>
 
 {% stylesheet %}
   .Text {
-    color: var(--text-color);
     font-family: var(--text-font-family);
     font-size: 16px;
     line-height: 1.2;
+  }
+
+  .Text--ColorInherit {
+    color: inherit;
+  }
+
+  .Text--ColorPrimary {
+    color: var(--text-color-primary);
+  }
+
+  .Text--ColorSale {
+    color: var(--text-color-sale);
+  }
+
+  .Text--ColorDestructive {
+    color: var(--text-color-destructive);
+  }
+
+  .Text--ColorSuccess {
+    color: var(--text-color-success);
+  }
+
+  .Text--ColorWarning {
+    color: var(--text-color-warning);
   }
 
   .Text--BodySmall {

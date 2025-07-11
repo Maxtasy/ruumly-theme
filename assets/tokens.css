@@ -23,7 +23,7 @@
   /* ------ */
 
   --color-sale-text: rgb(182, 0, 0);
-  --color-sale-surface: rgb(255, 220, 220);
+  --color-sale-surface: rgb(252, 232, 232);
   --color-success-text: rgb(0, 128, 0);
   --color-success-surface: rgb(175, 253, 175);
   --color-destructive-text: rgb(255, 0, 0);
@@ -100,7 +100,11 @@
   --section-padding-inline: var(--size-m);
 
   /* Text */
-  --text-color: var(--color-text);
+  --text-color-primary: var(--color-text);
+  --text-color-sale: var(--color-sale-text);
+  --text-color-destructive: var(--color-destructive-text);
+  --text-color-success: var(--color-success-text);
+  --text-color-warning: var(--color-warning-text);
   --text-font-family: var(--font-family-body);
   --heading-font-family: var(--font-family-heading);
 
@@ -112,6 +116,7 @@
   --border-width: 1px;
   --border-style: solid;
   --border-color: var(--color-border);
+  --border-color-sale: rgb(182, 0, 0);
 
   --transition-duration: 0.3s;
   --transition-timing: ease-in-out;
