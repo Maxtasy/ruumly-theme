@@ -88,3 +88,9 @@ globalThis.subscribe = function (eventName, callbackFunction) {
     }
   });
 };
+
+// Global event unsubscription function
+// This allows components to unsubscribe from events globally, not just within their own scope.
+globalThis.unsubscribe = function (eventName, callbackFunction) {
+  document.removeEventListener(eventName, callbackFunction);
+};
