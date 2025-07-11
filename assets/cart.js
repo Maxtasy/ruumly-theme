@@ -2,6 +2,7 @@ export class Cart {
   constructor() {
     this.addItems = this.addItems.bind(this);
     this.addItem = this.addItem.bind(this);
+    this.clear = this.clear.bind(this);
   }
 
   async addItems(items) {
@@ -28,7 +29,7 @@ export class Cart {
     }
 
     const data = await response.json();
-    console.log("Items added to cart:", data);
+
     return data;
   }
 
@@ -42,7 +43,7 @@ export class Cart {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ items: [item] }),
+      body: JSON.stringify({ items: [item], sections }),
     });
 
     if (!response.ok) {
@@ -52,6 +53,22 @@ export class Cart {
     const data = await response.json();
 
     return data;
+  }
+
+  async clear({ sections }) {
+    const response = await fetch(`${window.routes.cartClearUrl}.js`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ sections }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to clear cart");
+    }
+
+    return response.json();
   }
 }
 

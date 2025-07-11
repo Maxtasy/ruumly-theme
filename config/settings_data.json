@@ -65,15 +65,16 @@
         },
         "secondary": {
           "settings": {
-            "surface": "#000000",
+            "surface": "#F1F3F6",
             "surface_gradient": "#FFFFFF",
-            "text": "#FFFFFF",
+            "text": "#000000",
             "primary_button_background": "#6B7B52",
+            "primary_button_border": "transparent",
             "primary_button_text": "#FFFFFF",
-            "primary_button_border": "#6B7B52",
             "secondary_button_background": "#FFFFFF",
             "secondary_button_text": "#6B7B52",
-            "secondary_button_border": "#6B7B52"
+            "secondary_button_border": "#6B7B52",
+            "border": "#FFFFFF"
           }
         }
       }

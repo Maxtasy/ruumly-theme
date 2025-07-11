@@ -118,6 +118,11 @@
   },
   "sections": {
     "all": {
+      "header": {
+        "empty_state": {
+          "content": "Leerer Zustand"
+        }
+      },
       "section_appearance": {
         "content": "Aussehen der Abschnitt"
       },
@@ -138,6 +143,28 @@
         "announcement_bar": {
           "name": "Ankündigungsleiste",
           "category": "Kopfzeile"
+        }
+      }
+    },
+    "cart_drawer": {
+      "name": "Warenkorb Drawer",
+      "settings": {
+        "from": {
+          "label": "Von",
+          "options": {
+            "left": {
+              "label": "Links"
+            },
+            "right": {
+              "label": "Rechts"
+            }
+          }
+        }
+      },
+      "presets": {
+        "cart_drawer": {
+          "name": "Warenkorb Drawer",
+          "category": "Drawer"
         }
       }
     }

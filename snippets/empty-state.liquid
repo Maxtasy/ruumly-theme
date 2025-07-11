@@ -1,0 +1,26 @@
+{% doc %}
+  Renders an Empty State component.
+
+  @param {string} [heading] - The heading to display in the empty state.
+  @param {string} [text] - The text to display in the empty state.
+  @param {string} [link] - The link to display in the empty state.
+  @param {string} [link_text] - The text to display in the empty state link.
+{% enddoc %}
+
+<div class="EmptyState">
+  {% if heading %}
+    <div class="EmptyState__Heading">
+      {% render 'text', text: heading, as: 'h2', variant: 'heading-medium' %}
+    </div>
+  {% endif %}
+
+  {% if text %}
+    <div class="EmptyState__Text">
+      {% render 'text', text: text %}
+    </div>
+  {% endif %}
+
+  {% if link %}
+    {% render 'link', text: link_text, url: link %}
+  {% endif %}
+</div>

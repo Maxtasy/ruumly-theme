@@ -1,0 +1,21 @@
+<div is="backdrop-component" class="Backdrop"></div>
+
+{% stylesheet %}
+  .Backdrop {
+    position: fixed;
+    display: none;
+    inset: 0;
+    z-index: var(--layer-1);
+    background-color: var(--backdrop-background-color);
+    opacity: 0;
+    transition: opacity var(--transition-duration) var(--transition-timing);
+  }
+
+  .Backdrop--Active {
+    display: block;
+  }
+
+  .Backdrop--Visible {
+    opacity: 1;
+  }
+{% endstylesheet %}

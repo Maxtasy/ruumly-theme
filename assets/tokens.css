@@ -57,6 +57,9 @@
   /* Components */
   /* ---------- */
 
+  /* Backdrop */
+  --backdrop-background-color: rgba(0, 0, 0, 0.5);
+
   /* Button */
   --button-border-radius: 0;
   --button-font-size: 16px;
@@ -67,6 +70,8 @@
   --drawer-background-color: var(--color-surface);
   --drawer-padding-block: var(--size-m);
   --drawer-padding-inline: var(--size-m);
+  --drawer-width: 100%;
+  --drawer-max-width: 24rem;
 
   /* Icon */
   --icon-size-s: 1rem;

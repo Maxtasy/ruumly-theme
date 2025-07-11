@@ -118,6 +118,11 @@
   },
   "sections": {
     "all": {
+      "header": {
+        "empty_state": {
+          "content": "Empty state"
+        }
+      },
       "section_appearance": {
         "content": "Section appearance"
       },
@@ -138,6 +143,28 @@
         "announcement_bar": {
           "name": "Announcement bar",
           "category": "Header"
+        }
+      }
+    },
+    "cart_drawer": {
+      "name": "Cart Drawer",
+      "settings": {
+        "from": {
+          "label": "From",
+          "options": {
+            "left": {
+              "label": "Left"
+            },
+            "right": {
+              "label": "Right"
+            }
+          }
+        }
+      },
+      "presets": {
+        "cart_drawer": {
+          "name": "Cart Drawer",
+          "category": "Drawer"
         }
       }
     }
