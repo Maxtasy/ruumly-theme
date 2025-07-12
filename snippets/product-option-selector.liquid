@@ -20,9 +20,11 @@
   data-option-position="{{ product_option.position }}"
   data-option-selected-value="{{ product_option.selected_value }}"
 >
-  <legend class="ProductOptionSelector__Label">
+  <legend class="u-Hidden">{{ product_option.name }}</legend>
+
+  <div class="ProductOptionSelector__Label">
     {% render 'text', as: 'strong', text: product_option.name %}
-  </legend>
+  </div>
 
   <ul class="ProductOptionSelector__Values u-NoList">
     {% for product_option_value in product_option.values %}
@@ -51,6 +53,9 @@
 
 {% stylesheet %}
   .ProductOptionSelector {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
     margin: 0;
     padding: 0;
     border-style: none;

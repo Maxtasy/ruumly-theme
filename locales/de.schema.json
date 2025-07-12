@@ -118,6 +118,11 @@
   },
   "sections": {
     "all": {
+      "header": {
+        "empty_state": {
+          "content": "Leerer Zustand"
+        }
+      },
       "section_appearance": {
         "content": "Aussehen der Abschnitt"
       },
@@ -201,6 +206,49 @@
         "title_text_variant": {
           "label": "Titel Textvariante",
           "info": "Diese Einstellung gilt nur, wenn das Logo nicht angezeigt wird."
+        }
+      }
+    },
+    "cart_drawer": {
+      "name": "Warenkorb Drawer",
+      "settings": {
+        "empty_state_heading": {
+          "label": "Leerzustand Kopfzeile",
+          "default": "Ihr Warenkorb ist leer"
+        },
+        "empty_state_text": {
+          "label": "Leerzustand Text",
+          "default": "Entdecken Sie unsere Produkte"
+        },
+        "empty_state_link": {
+          "label": "Leerzustand Link",
+          "default": "/collections/all"
+        },
+        "empty_state_link_text": {
+          "label": "Leerzustand Link Text",
+          "default": "Weiter einkaufen"
+        },
+        "from": {
+          "label": "Von",
+          "options": {
+            "left": {
+              "label": "Links"
+            },
+            "right": {
+              "label": "Rechts"
+            }
+          }
+        },
+        "header": {
+          "empty_state": {
+            "content": "Leerzustand"
+          }
+        }
+      },
+      "presets": {
+        "cart_drawer": {
+          "name": "Warenkorb Drawer",
+          "category": "Drawer"
         }
       }
     }

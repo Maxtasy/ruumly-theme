@@ -23,7 +23,8 @@
       image: product.featured_image,
       price: product.price,
       compare_at_price: product.compare_at_price,
-      url: product.url
+      url: product.url,
+      rating: product.metafields.custom.rating.value.rating
     %}
   {% endfor %}
 </ul>

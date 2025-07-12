@@ -1,0 +1,104 @@
+{% capture cart_drawer_content %}
+  <div is="cart-drawer-component" class="CartDrawer">
+    <div class="CartDrawer__Content">
+      {% if cart.empty? %}
+        {% render 'empty-state',
+          heading: section.settings.empty_state_heading,
+          text: section.settings.empty_state_text,
+          link: section.settings.empty_state_link,
+          link_text: section.settings.empty_state_link_text
+        %}
+      {% else %}
+        Item count: {{ cart.item_count }}
+    
+        {% render 'button', text: 'clear', action: 'clear-cart' %}
+      {% endif %}
+    </div>
+  </div>
+{% endcapture %}
+
+{% capture cart_drawer_footer %}
+  Cart Drawer Footer
+{% endcapture %}
+
+{% render 'drawer',
+  name: 'cart',
+  heading: 'Cart',
+  content: cart_drawer_content,
+  footer: cart_drawer_footer,
+  from: section.settings.from,
+  color_scheme: section.settings.color_scheme
+%}
+
+{% schema %}
+{
+  "name": "t:sections.cart_drawer.name",
+  "disabled_on": {
+    "groups": ["header", "footer"],
+    "templates": ["index", "product", "collection", "page", "blog", "article"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "default": "default",
+      "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "select",
+      "id": "from",
+      "label": "t:sections.cart_drawer.settings.from.label",
+      "default": "right",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:sections.cart_drawer.settings.from.options.left.label"
+        },
+        {
+          "value": "right",
+          "label": "t:sections.cart_drawer.settings.from.options.right.label"
+        }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.cart_drawer.settings.header.empty_state.content"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_heading",
+      "label": "t:sections.cart_drawer.settings.empty_state_heading.label",
+      "default": "t:sections.cart_drawer.settings.empty_state_heading.default"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "t:sections.cart_drawer.settings.empty_state_text.label",
+      "default": "t:sections.cart_drawer.settings.empty_state_text.default"
+    },
+    {
+      "type": "url",
+      "id": "empty_state_link",
+      "label": "t:sections.cart_drawer.settings.empty_state_link.label",
+      "default": "t:sections.cart_drawer.settings.empty_state_link.default"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_link_text",
+      "label": "t:sections.cart_drawer.settings.empty_state_link_text.label",
+      "default": "t:sections.cart_drawer.settings.empty_state_link_text.default"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.cart_drawer.presets.cart_drawer.name",
+      "category": "t:sections.cart_drawer.presets.cart_drawer.category"
+    }
+  ]
+}
+{% endschema %}

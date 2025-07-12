@@ -118,6 +118,11 @@
   },
   "sections": {
     "all": {
+      "header": {
+        "empty_state": {
+          "content": "Empty state"
+        }
+      },
       "section_appearance": {
         "content": "Section appearance"
       },
@@ -201,6 +206,49 @@
         "title_text_variant": {
           "label": "Title Text Variant",
           "info": "This setting only applies if the logo is not displayed."
+        }
+      }
+    },
+    "cart_drawer": {
+      "name": "Cart Drawer",
+      "settings": {
+        "empty_state_heading": {
+          "label": "Empty state heading",
+          "default": "Your cart is empty"
+        },
+        "empty_state_text": {
+          "label": "Empty state text",
+          "default": "Explore our products"
+        },
+        "empty_state_link": {
+          "label": "Empty state link",
+          "default": "/collections/all"
+        },
+        "empty_state_link_text": {
+          "label": "Empty state link text",
+          "default": "Continue shopping"
+        },
+        "from": {
+          "label": "From",
+          "options": {
+            "left": {
+              "label": "Left"
+            },
+            "right": {
+              "label": "Right"
+            }
+          }
+        },
+        "header": {
+          "empty_state": {
+            "content": "Empty state"
+          }
+        }
+      },
+      "presets": {
+        "cart_drawer": {
+          "name": "Cart Drawer",
+          "category": "Drawer"
         }
       }
     }
