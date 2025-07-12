@@ -1,29 +1,49 @@
 {% doc %}
   Renders a Button component.
 
-  @param {string} [text] - Text inside the button
-  @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain')
-  @param {string} [icon] - Icon handle of the icon to render
-  @param {string} [action] - The action attribute
+  @param {string} [text] - Text inside the button.
+  @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain').
+  @param {string} [icon] - Icon handle of the icon to render.
+  @param {string} [action] - The action attribute.
+  @param {string} [url] - The URL of the button.
+  @param {boolean} [external] - Whether the URL should be opened in a new window.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
 
-<button
-  is="button-component"
-  class="Button{% if variant %} Button--{{ variant | camelcase }}{% endif %}"
-  {% if action %}
-    data-action="{{ action }}"
-  {% endif %}
->
-  {% if text %}
-    {{ text }}
-  {% endif %}
+{% if url %}
+  <a
+    class="Button{% if variant %} Button--{{ variant | camelcase }}{% endif %}"
+    href="{{ url }}"
+    {% if external %}
+      target="_blank"
+    {% endif %}
+  >
+    {% if text %}
+      {{ text }}
+    {% endif %}
 
-  {% if icon %}
-    {% render 'icon', icon: icon %}
-  {% endif %}
-</button>
+    {% if icon %}
+      {% render 'icon', icon: icon %}
+    {% endif -%}
+  </a>
+{% else %}
+  <button
+    is="button-component"
+    class="Button{% if variant %} Button--{{ variant | camelcase }}{% endif %}"
+    {% if action %}
+      data-action="{{ action }}"
+    {% endif %}
+  >
+    {% if text %}
+      {{ text }}
+    {% endif %}
+
+    {% if icon %}
+      {% render 'icon', icon: icon %}
+    {% endif %}
+  </button>
+{% endif %}
 
 {% stylesheet %}
   .Button {

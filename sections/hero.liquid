@@ -49,22 +49,27 @@
 
   .Hero__Content {
     position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+    padding: var(--size-m);
+    background-color: var(--hero-content-background-color);
   }
 
   .Hero__Content--HorizontalLeft {
-    left: 0;
+    left: var(--size-m);
   }
 
   .Hero__Content--HorizontalRight {
-    right: 0;
+    right: var(--size-m);
   }
 
   .Hero__Content--VerticalTop {
-    top: 0;
+    top: var(--size-m);
   }
 
   .Hero__Content--VerticalBottom {
-    bottom: 0;
+    bottom: var(--size-m);
   }
 {% endstylesheet %}
 
@@ -72,7 +77,7 @@
 {
   "name": "Hero",
   "disabled_on": {
-    "groups": ["header", "footer"]
+    "groups": ["header", "footer", "aside"]
   },
   "settings": [
     {
@@ -117,7 +122,13 @@
   ],
   "blocks": [
     {
-      "type": "text-block"
+      "type": "text-content-block"
+    },
+    {
+      "type": "button-block"
+    },
+    {
+      "type": "button-group-block"
     }
   ],
   "presets": [

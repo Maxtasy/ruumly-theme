@@ -1,0 +1,27 @@
+<div class="TextContentBlock">
+  {% content_for 'blocks' %}
+</div>
+
+{% stylesheet %}
+  .TextContentBlock {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Text Content Block",
+  "blocks": [
+    {
+      "type": "text-block"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Text Content Block"
+    }
+  ]
+}
+{% endschema %}

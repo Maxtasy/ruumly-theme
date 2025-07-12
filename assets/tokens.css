@@ -49,6 +49,9 @@
   --announcement-bar-padding-inline: var(--size-0);
   --announcement-bar-gap: var(--size-m);
 
+  /* Hero */
+  --hero-content-background-color: rgba(255, 255, 255, 0.616);
+
   /* Site Header */
   --site-header-padding-block: var(--size-0);
   --site-header-padding-inline: var(--size-0);

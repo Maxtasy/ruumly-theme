@@ -1,0 +1,67 @@
+<div class="ButtonBlock ButtonBlock--Align{{ block.settings.alignment | camelcase }}">
+  {% render 'button', text: block.settings.button_text, variant: block.settings.variant %}
+</div>
+
+{% stylesheet %}
+  .ButtonBlock {
+    display: flex;
+  }
+
+  .ButtonBlock--AlignLeft {
+    justify-content: flex-start;
+  }
+
+  .ButtonBlock--AlignCenter {
+    justify-content: center;
+  }
+
+  .ButtonBlock--AlignRight {
+    justify-content: flex-end;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Button Block",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Click me"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button Link"
+    },
+    {
+      "type": "checkbox",
+      "id": "external",
+      "label": "Open externally",
+      "info": "If checked the URL will open in a new window.",
+      "visible_if": "{{ block.settings.button_link }}"
+    },
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "Button Variant",
+      "default": "primary",
+      "options": [
+        { "value": "primary", "label": "Primary" },
+        { "value": "secondary", "label": "Secondary" }
+      ]
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "Alignment"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Button Block"
+    }
+  ]
+}
+{% endschema %}
