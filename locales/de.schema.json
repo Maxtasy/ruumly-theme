@@ -1,6 +1,62 @@
 {
   "global": {
     "settings": {
+      "button_text": {
+        "label": "Button Text",
+        "default": "Klick mich"
+      },
+      "button_link": {
+        "label": "Button Link"
+      },
+      "button_variant": {
+        "label": "Button Variante",
+        "options": {
+          "primary": {
+            "label": "Primär"
+          },
+          "secondary": {
+            "label": "Sekundär"
+          }
+        }
+      },
+      "content_position_horizontal": {
+        "label": "Inhalt Position Horizontal",
+        "options": {
+          "left": {
+            "label": "Links"
+          },
+          "center": {
+            "label": "Mitte"
+          },
+          "right": {
+            "label": "Rechts"
+          }
+        }
+      },
+      "content_position_vertical": {
+        "label": "Inhalt Position Vertikal",
+        "options": {
+          "top": {
+            "label": "Oben"
+          },
+          "center": {
+            "label": "Mitte"
+          },
+          "bottom": {
+            "label": "Unten"
+          }
+        }
+      },
+      "external": {
+        "label": "Extern öffnen",
+        "info": "Wenn diese Option aktiviert ist, wird die URL in einem neuen Fenster geöffnet."
+      },
+      "image_mobile": {
+        "label": "Bild Mobile"
+      },
+      "image_desktop": {
+        "label": "Bild Desktop"
+      },
       "position": {
         "options": {
           "left": {
@@ -13,6 +69,9 @@
             "label": "Rechts"
           }
         }
+      },
+      "tag": {
+        "label": "Tag"
       },
       "text": {
         "label": "Text"
@@ -190,19 +249,6 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
-        "positions": {
-          "options": {
-            "left": {
-              "label": "Links"
-            },
-            "center": {
-              "label": "Mitte"
-            },
-            "right": {
-              "label": "Rechts"
-            }
-          }
-        },
         "product_limit": {
           "label": "Maximale Anzahl an Produktkarten",
           "info": "Ignorieren wenn 0"
@@ -222,6 +268,20 @@
         "announcement_bar": {
           "name": "Ankündigungsleiste",
           "category": "Kopfzeile"
+        }
+      }
+    },
+    "hero": {
+      "name": "Hero",
+      "settings": {
+        "height": {
+          "label": "Höhe",
+          "info": "Verwenden Sie einen gültigen CSS-Wert."
+        }
+      },
+      "presets": {
+        "hero": {
+          "name": "Hero"
         }
       }
     },
@@ -344,6 +404,22 @@
         }
       }
     },
+    "button_block": {
+      "name": "Button Block",
+      "presets": {
+        "button_block": {
+          "name": "Button Block"
+        }
+      }
+    },
+    "button_group_block": {
+      "name": "Buttongruppe Block",
+      "presets": {
+        "button_group_block": {
+          "name": "Buttongruppe Block"
+        }
+      }
+    },
     "icon_block": {
       "name": "Icon Block",
       "presets": {
@@ -398,6 +474,14 @@
           "settings": {
             "text": "Das ist ein Text Block."
           }
+        }
+      }
+    },
+    "text_content_block": {
+      "name": "Textinhalt Block",
+      "presets": {
+        "text_content_block": {
+          "name": "Textinhalt Block"
         }
       }
     }

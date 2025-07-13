@@ -1,0 +1,140 @@
+<section class="Section Section--FullWidth Section--PaddingBlockNone">
+  <div class="Section__Inner">
+    <div class="Hero" style="--height: {{ section.settings.height }};">
+      <div class="Hero__MobileImage u-Hidden--Desktop">
+        {% render 'image', image: section.settings.mobile_image %}
+      </div>
+
+      <div class="Hero__DesktopImage u-Hidden--Mobile">
+        {% render 'image', image: section.settings.desktop_image %}
+      </div>
+
+      <div class="Hero__Inner">
+        <div
+          class="
+            Hero__Content
+            Hero__Content--Horizontal{{ section.settings.content_position_horizontal | camelcase }}
+            Hero__Content--Vertical{{ section.settings.content_position_vertical | camelcase }}
+          "
+        >
+          {% content_for 'blocks' %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .Hero {
+    position: relative;
+    height: var(--height);
+  }
+
+  .Hero__Inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: var(--page-width);
+    height: 100%;
+  }
+
+  .Hero__MobileImage,
+  .Hero__DesktopImage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+
+  .Hero__Content {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+    padding: var(--size-m);
+    background-color: var(--hero-content-background-color);
+  }
+
+  .Hero__Content--HorizontalLeft {
+    left: var(--size-m);
+  }
+
+  .Hero__Content--HorizontalRight {
+    right: var(--size-m);
+  }
+
+  .Hero__Content--VerticalTop {
+    top: var(--size-m);
+  }
+
+  .Hero__Content--VerticalBottom {
+    bottom: var(--size-m);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.hero.name",
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  },
+  "settings": [
+    {
+      "type": "text",
+      "id": "height",
+      "label": "t:sections.hero.settings.height.label",
+      "default": "66vh",
+      "info": "t:sections.hero.settings.height.info"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:global.settings.image_mobile.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "t:global.settings.image_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "content_position_horizontal",
+      "label": "t:global.settings.content_position_horizontal.label",
+      "default": "center",
+      "options": [
+        { "value": "left", "label": "t:global.settings.content_position_horizontal.options.left.label" },
+        { "value": "center", "label": "t:global.settings.content_position_horizontal.options.center.label" },
+        { "value": "right", "label": "t:global.settings.content_position_horizontal.options.right.label" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "content_position_vertical",
+      "label": "t:global.settings.content_position_vertical.label",
+      "default": "center",
+      "options": [
+        { "value": "top", "label": "t:global.settings.content_position_vertical.options.top.label" },
+        { "value": "center", "label": "t:global.settings.content_position_vertical.options.center.label" },
+        { "value": "bottom", "label": "t:global.settings.content_position_vertical.options.bottom.label" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-content-block"
+    },
+    {
+      "type": "button-block"
+    },
+    {
+      "type": "button-group-block"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.hero.presets.hero.name"
+    }
+  ]
+}
+{% endschema %}

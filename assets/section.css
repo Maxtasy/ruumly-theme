@@ -8,7 +8,21 @@
   border-bottom: var(--border-width) var(--border-style) var(--border-color);
 }
 
+.Section--PaddingBlockNone {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
 .Section__Inner {
   margin: 0 auto;
   max-width: var(--page-width);
+}
+
+.Section--FullWidth {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.Section--FullWidth .Section__Inner {
+  max-width: 100%;
 }

@@ -1,0 +1,67 @@
+<div class="ButtonBlock ButtonBlock--Align{{ block.settings.alignment | camelcase }}">
+  {% render 'button', text: block.settings.button_text, variant: block.settings.variant %}
+</div>
+
+{% stylesheet %}
+  .ButtonBlock {
+    display: flex;
+  }
+
+  .ButtonBlock--AlignLeft {
+    justify-content: flex-start;
+  }
+
+  .ButtonBlock--AlignCenter {
+    justify-content: center;
+  }
+
+  .ButtonBlock--AlignRight {
+    justify-content: flex-end;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:theme_blocks.button_block.name",
+  "settings": [
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "t:global.settings.button_text.label",
+      "default": "t:global.settings.button_text.default"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "t:global.settings.button_link.label"
+    },
+    {
+      "type": "checkbox",
+      "id": "external",
+      "label": "t:global.settings.external.label",
+      "info": "t:global.settings.external.info",
+      "visible_if": "{{ block.settings.button_link }}"
+    },
+    {
+      "type": "select",
+      "id": "variant",
+      "label": "t:global.settings.button_variant.label",
+      "default": "primary",
+      "options": [
+        { "value": "primary", "label": "t:global.settings.button_variant.options.primary.label" },
+        { "value": "secondary", "label": "t:global.settings.button_variant.options.secondary.label" }
+      ]
+    },
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "t:global.settings.text_alignment.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:theme_blocks.button_block.presets.button_block.name"
+    }
+  ]
+}
+{% endschema %}

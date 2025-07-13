@@ -1,6 +1,62 @@
 {
   "global": {
     "settings": {
+      "button_text": {
+        "label": "Button Text",
+        "default": "Click me"
+      },
+      "button_link": {
+        "label": "Button Link"
+      },
+      "button_variant": {
+        "label": "Button Variant",
+        "options": {
+          "primary": {
+            "label": "Primary"
+          },
+          "secondary": {
+            "label": "Secondary"
+          }
+        }
+      },
+      "content_position_horizontal": {
+        "label": "Content Position Horizontal",
+        "options": {
+          "left": {
+            "label": "Left"
+          },
+          "center": {
+            "label": "Center"
+          },
+          "right": {
+            "label": "Right"
+          }
+        }
+      },
+      "content_position_vertical": {
+        "label": "Content Position Vertical",
+        "options": {
+          "top": {
+            "label": "Top"
+          },
+          "center": {
+            "label": "Center"
+          },
+          "bottom": {
+            "label": "Bottom"
+          }
+        }
+      },
+      "external": {
+        "label": "Open externally",
+        "info": "If checked the URL will open in a new window."
+      },
+      "image_mobile": {
+        "label": "Image Mobile"
+      },
+      "image_desktop": {
+        "label": "Image Desktop"
+      },
       "position": {
         "options": {
           "left": {
@@ -13,6 +69,9 @@
             "label": "Right"
           }
         }
+      },
+      "tag": {
+        "label": "Tag"
       },
       "text": {
         "label": "Text"
@@ -190,19 +249,6 @@
           "label": "Heading",
           "default": "Heading"
         },
-        "positions": {
-          "options": {
-            "left": {
-              "label": "Left"
-            },
-            "center": {
-              "label": "Center"
-            },
-            "right": {
-              "label": "Right"
-            }
-          }
-        },
         "product_limit": {
           "label": "Maximum Product Cards",
           "info": "Ignore when 0"
@@ -222,6 +268,20 @@
         "announcement_bar": {
           "name": "Announcement bar",
           "category": "Header"
+        }
+      }
+    },
+    "hero": {
+      "name": "Hero",
+      "settings": {
+        "height": {
+          "label": "Height",
+          "info": "Use a valid CSS value."
+        }
+      },
+      "presets": {
+        "hero": {
+          "name": "Hero"
         }
       }
     },
@@ -344,6 +404,22 @@
         }
       }
     },
+    "button_block": {
+      "name": "Button Block",
+      "presets": {
+        "button_block": {
+          "name": "Button Block"
+        }
+      }
+    },
+    "button_group_block": {
+      "name": "Button Group Block",
+      "presets": {
+        "button_group_block": {
+          "name": "Button Group Block"
+        }
+      }
+    },
     "icon_block": {
       "name": "Icon Block",
       "presets": {
@@ -398,6 +474,14 @@
           "settings": {
             "text": "This is a Text Block."
           }
+        }
+      }
+    },
+    "text_content_block": {
+      "name": "Text Content Block",
+      "presets": {
+        "text_content_block": {
+          "name": "Text Content Block"
         }
       }
     }

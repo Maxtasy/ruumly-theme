@@ -1,0 +1,47 @@
+<div class="ButtonGroupBlock ButtonGroupBlock--Align{{ block.settings.alignment | camelcase }}">
+  {% content_for 'blocks' %}
+</div>
+
+{% stylesheet %}
+  .ButtonGroupBlock {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-s);
+    align-items: center;
+  }
+
+  .ButtonGroupBlock--AlignLeft {
+    justify-content: flex-start;
+  }
+
+  .ButtonGroupBlock--AlignCenter {
+    justify-content: center;
+  }
+
+  .ButtonGroupBlock--AlignRight {
+    justify-content: flex-end;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:theme_blocks.button_group_block.name",
+  "settings": [
+    {
+      "type": "text_alignment",
+      "id": "alignment",
+      "label": "t:global.settings.text_alignment.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "button-block"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:theme_blocks.button_group_block.presets.button_group_block.name"
+    }
+  ]
+}
+{% endschema %}
