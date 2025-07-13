@@ -213,19 +213,6 @@
         "sticky": {
           "label": "Haftender Abschnitt",
           "info": "Der Abschnitt bleibt beim Herunterscrollen am oberen Rand des Ansichtsfensters."
-        },
-        "text_variant": {
-          "options": {
-            "heading-small": {
-              "label": "Überschrift klein"
-            },
-            "heading-medium": {
-              "label": "Überschrift mittel"
-            },
-            "heading-large": {
-              "label": "Überschrift groß"
-            }
-          }
         }
       }
     },

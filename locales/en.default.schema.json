@@ -213,19 +213,6 @@
         "sticky": {
           "label": "Sticky section",
           "info": "The section will stick to the top of the viewport when scrolling down."
-        },
-        "text_variant": {
-          "options": {
-            "heading-small": {
-              "label": "Heading Small"
-            },
-            "heading-medium": {
-              "label": "Heading Medium"
-            },
-            "heading-large": {
-              "label": "Heading Large"
-            }
-          }
         }
       }
     },
