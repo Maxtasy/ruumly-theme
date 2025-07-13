@@ -22,45 +22,45 @@
 
 {% schema %}
 {
-  "name": "Button Block",
+  "name": "t:theme_blocks.button_block.name",
   "settings": [
     {
       "type": "text",
       "id": "button_text",
-      "label": "Button Text",
-      "default": "Click me"
+      "label": "t:global.settings.button_text.label",
+      "default": "t:global.settings.button_text.default"
     },
     {
       "type": "url",
       "id": "button_link",
-      "label": "Button Link"
+      "label": "t:global.settings.button_link.label"
     },
     {
       "type": "checkbox",
       "id": "external",
-      "label": "Open externally",
-      "info": "If checked the URL will open in a new window.",
+      "label": "t:global.settings.external.label",
+      "info": "t:global.settings.external.info",
       "visible_if": "{{ block.settings.button_link }}"
     },
     {
       "type": "select",
       "id": "variant",
-      "label": "Button Variant",
+      "label": "t:global.settings.button_variant.label",
       "default": "primary",
       "options": [
-        { "value": "primary", "label": "Primary" },
-        { "value": "secondary", "label": "Secondary" }
+        { "value": "primary", "label": "t:global.settings.button_variant.options.primary.label" },
+        { "value": "secondary", "label": "t:global.settings.button_variant.options.secondary.label" }
       ]
     },
     {
       "type": "text_alignment",
       "id": "alignment",
-      "label": "Alignment"
+      "label": "t:global.settings.text_alignment.label"
     }
   ],
   "presets": [
     {
-      "name": "Button Block"
+      "name": "t:theme_blocks.button_block.presets.button_block.name"
     }
   ]
 }

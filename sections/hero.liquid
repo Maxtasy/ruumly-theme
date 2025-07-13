@@ -75,7 +75,7 @@
 
 {% schema %}
 {
-  "name": "Hero",
+  "name": "t:sections.hero.name",
   "disabled_on": {
     "groups": ["header", "footer", "aside"]
   },
@@ -83,40 +83,40 @@
     {
       "type": "text",
       "id": "height",
-      "label": "Height",
+      "label": "t:sections.hero.settings.height.label",
       "default": "66vh",
-      "info": "Use a valid CSS value."
+      "info": "t:sections.hero.settings.height.info"
     },
     {
       "type": "image_picker",
       "id": "mobile_image",
-      "label": "Image Mobile"
+      "label": "t:global.settings.image_mobile.label"
     },
     {
       "type": "image_picker",
       "id": "desktop_image",
-      "label": "Image Desktop"
+      "label": "t:global.settings.image_desktop.label"
     },
     {
       "type": "select",
       "id": "content_position_horizontal",
-      "label": "Content Position Horizontal",
+      "label": "t:global.settings.content_position_horizontal.label",
       "default": "center",
       "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
+        { "value": "left", "label": "t:global.settings.content_position_horizontal.options.left.label" },
+        { "value": "center", "label": "t:global.settings.content_position_horizontal.options.center.label" },
+        { "value": "right", "label": "t:global.settings.content_position_horizontal.options.right.label" }
       ]
     },
     {
       "type": "select",
       "id": "content_position_vertical",
-      "label": "Content Position Vertical",
+      "label": "t:global.settings.content_position_vertical.label",
       "default": "center",
       "options": [
-        { "value": "top", "label": "Top" },
-        { "value": "center", "label": "Center" },
-        { "value": "bottom", "label": "Bottom" }
+        { "value": "top", "label": "t:global.settings.content_position_vertical.options.top.label" },
+        { "value": "center", "label": "t:global.settings.content_position_vertical.options.center.label" },
+        { "value": "bottom", "label": "t:global.settings.content_position_vertical.options.bottom.label" }
       ]
     }
   ],
@@ -133,7 +133,7 @@
   ],
   "presets": [
     {
-      "name": "Hero"
+      "name": "t:sections.hero.presets.hero.name"
     }
   ]
 }
