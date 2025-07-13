@@ -1,0 +1,47 @@
+{% doc %}
+  Renders a Modal component.
+
+  @param {string} name - The name of the modal.
+  @param {string} [title] - The title of the modal.
+  @param {string} content - The content of the modal.
+{% enddoc %}
+
+<dialog is="modal-component" data-name="{{ name }}" class="Modal">
+  <div class="Modal__Content">
+    {% if title != blank %}
+      {% render 'text', text: title, variant: 'heading-small', as: 'h3' %}
+    {% endif %}
+
+    {{ content }}
+  </div>
+
+  <div class="Modal__Close">
+    {% render 'button', variant: 'plain', icon: 'x', action: 'close' %}
+  </div>
+</dialog>
+
+{% stylesheet %}
+  .Modal {
+    background-color: var(--modal-background-color);
+    padding: var(--modal-padding-block) var(--modal-padding-inline);
+    width: var(--modal-width);
+    max-width: var(--modal-max-width);
+    border: var(--border-width) var(--border-style) var(--border-color);
+  }
+
+  .Modal::backdrop {
+    background-color: var(--backdrop-background-color);
+  }
+
+  .Modal__Content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .Modal__Close {
+    position: absolute;
+    top: var(--size-m);
+    right: var(--size-m);
+  }
+{% endstylesheet %}

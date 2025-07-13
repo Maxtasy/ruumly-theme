@@ -91,6 +91,13 @@
   --link-color: var(--color-link);
   --link-color-hover: var(--color-link-hover);
 
+  /* Modal */
+  --modal-background-color: var(--color-surface);
+  --modal-padding-block: var(--size-m);
+  --modal-padding-inline: var(--size-m);
+  --modal-width: 100%;
+  --modal-max-width: 24rem;
+
   /* Product Option Value */
   --product-option-value-swatch-size: 3rem;
   --product-option-value-swatch-radius: 50%;
