@@ -17,6 +17,10 @@ export const CustomComponentMixin = (Base) =>
       });
     }
 
+    unsubscribe(eventName, callbackFunction) {
+      this.removeEventListener(eventName, callbackFunction);
+    }
+
     publish(eventName, data = {}) {
       // For components that have an action attribute (e.g. Button), we want to append it to the event name.
 
@@ -83,4 +87,10 @@ globalThis.subscribe = function (eventName, callbackFunction) {
       callbackFunction(event);
     }
   });
+};
+
+// Global event unsubscription function
+// This allows components to unsubscribe from events globally, not just within their own scope.
+globalThis.unsubscribe = function (eventName, callbackFunction) {
+  document.removeEventListener(eventName, callbackFunction);
 };

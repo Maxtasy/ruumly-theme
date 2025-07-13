@@ -18,51 +18,55 @@
 
 {% schema %}
 {
-  "name": "Product List",
+  "name": "t:sections.product_list.name",
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  },
   "settings": [
     {
       "type": "header",
-      "content": "Section Appearance"
+      "content": "t:sections.all.section_appearance.content"
     },
     {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color Scheme"
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
     },
     {
       "type": "number",
       "id": "columns_mobile",
-      "label": "Columns Mobile",
+      "label": "t:sections.all.settings.columns_mobile.label",
       "default": 2
     },
     {
       "type": "number",
       "id": "columns_desktop",
-      "label": "Columns Desktop",
+      "label": "t:sections.all.settings.columns_desktop.label",
       "default": 4
     },
     {
       "type": "product_list",
       "id": "product_list",
-      "label": "Products"
+      "label": "t:sections.all.settings.product_list.label"
     },
     {
       "type": "number",
       "id": "limit",
-      "label": "Maximum Product Cards",
+      "label": "t:sections.all.settings.product_limit.label",
       "default": 0,
-      "info": "Ignore when 0"
+      "info": "t:sections.all.settings.product_limit.info"
     },
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
-      "default": "Product List"
+      "label": "t:sections.all.settings.heading.label",
+      "default": "t:sections.all.settings.heading.default"
     }
   ],
   "presets": [
     {
-      "name": "Product List"
+      "name": "t:sections.product_list.presets.product_list.name"
     }
   ]
 }

@@ -72,7 +72,18 @@
     "site_header": {
       "type": "site-header",
       "settings": {
-        "color_scheme": "default"
+        "color_scheme": "default",
+        "border_bottom": true,
+        "sticky": true,
+        "show_logo": true,
+        "title_text_variant": "heading-medium",
+        "logo_width": 100,
+        "show_cart_icon": true,
+        "cart_icon_position": "right",
+        "show_account_icon": true,
+        "account_icon_position": "right",
+        "show_search_icon": true,
+        "search_icon_position": "right"
       }
     }
   },

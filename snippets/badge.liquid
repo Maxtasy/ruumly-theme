@@ -5,8 +5,13 @@
   @param {string} [variant] - Badge variant ('sale')
 {% enddoc %}
 
+{% assign badge_text_color = 'primary' %}
+{% if variant == 'sale' %}
+  {% assign badge_text_color = 'sale' %}
+{% endif %}
+
 <div class="Badge{% if variant == 'sale' %} Badge--Sale{% endif %}">
-  {% render 'text', text: text %}
+  {% render 'text', text: text, color: badge_text_color %}
 </div>
 
 {% stylesheet %}
@@ -19,5 +24,6 @@
 
   .Badge--Sale {
     background-color: var(--color-sale-surface);
+    border-color: var(--border-color-sale);
   }
 {% endstylesheet %}

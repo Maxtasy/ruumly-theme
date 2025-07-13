@@ -1,4 +1,50 @@
 {
+  "global": {
+    "settings": {
+      "position": {
+        "options": {
+          "left": {
+            "label": "Left"
+          },
+          "center": {
+            "label": "Center"
+          },
+          "right": {
+            "label": "Right"
+          }
+        }
+      },
+      "text": {
+        "label": "Text"
+      },
+      "text_alignment": {
+        "label": "Alignment"
+      },
+      "text_variant": {
+        "label": "Text Variant",
+        "options": {
+          "body-small": {
+            "label": "Body Small"
+          },
+          "body-medium": {
+            "label": "Body Medium"
+          },
+          "body-large": {
+            "label": "Body Large"
+          },
+          "heading-small": {
+            "label": "Heading Small"
+          },
+          "heading-medium": {
+            "label": "Heading Medium"
+          },
+          "heading-large": {
+            "label": "Heading Large"
+          }
+        }
+      }
+    }
+  },
   "settings_schema": {
     "global": {
       "settings": {}
@@ -118,13 +164,51 @@
   },
   "sections": {
     "all": {
+      "header": {
+        "empty_state": {
+          "content": "Empty state"
+        }
+      },
       "section_appearance": {
         "content": "Section appearance"
       },
       "settings": {
+        "border_bottom": {
+          "label": "Show bottom border"
+        },
         "color_scheme": {
           "label": "Color scheme",
           "info": "Select a color scheme to apply to this section"
+        },
+        "columns_desktop": {
+          "label": "Columns Desktop"
+        },
+        "columns_mobile": {
+          "label": "Columns Mobile"
+        },
+        "heading": {
+          "label": "Heading",
+          "default": "Heading"
+        },
+        "positions": {
+          "options": {
+            "left": {
+              "label": "Left"
+            },
+            "center": {
+              "label": "Center"
+            },
+            "right": {
+              "label": "Right"
+            }
+          }
+        },
+        "product_limit": {
+          "label": "Maximum Product Cards",
+          "info": "Ignore when 0"
+        },
+        "product_list": {
+          "label": "Product List"
         },
         "sticky": {
           "label": "Sticky section",
@@ -140,10 +224,106 @@
           "category": "Header"
         }
       }
+    },
+    "product_list": {
+      "name": "Product List",
+      "presets": {
+        "product_list": {
+          "name": "Product List"
+        }
+      }
+    },
+    "site_header": {
+      "name": "Site Header",
+      "settings": {
+        "account_icon_position": {
+          "label": "Account Icon position"
+        },
+        "cart_icon_position": {
+          "label": "Cart Icon posotion"
+        },
+        "search_icon_position": {
+          "label": "Search Icon Position"
+        },
+        "settings_logo": {
+          "content": "Logo"
+        },
+        "settings_header": {
+          "content": "Site Header Settings"
+        },
+        "settings_icons": {
+          "content": "Icons"
+        },
+        "show_account_icon": {
+          "label": "Show Account Icon"
+        },
+        "show_cart_icon": {
+          "label": "Show Cart Icon"
+        },
+        "show_logo": {
+          "label": "Show Logo",
+          "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
+        },
+        "show_search_icon": {
+          "label": "Show Search Icon"
+        },
+        "title_text_variant": {
+          "label": "Title Text Variant",
+          "info": "This setting only applies if the logo is not displayed."
+        }
+      }
+    },
+    "cart_drawer": {
+      "name": "Cart Drawer",
+      "settings": {
+        "empty_state_heading": {
+          "label": "Empty state heading",
+          "default": "Your cart is empty"
+        },
+        "empty_state_text": {
+          "label": "Empty state text",
+          "default": "Explore our products"
+        },
+        "empty_state_link": {
+          "label": "Empty state link",
+          "default": "/collections/all"
+        },
+        "empty_state_link_text": {
+          "label": "Empty state link text",
+          "default": "Continue shopping"
+        },
+        "from": {
+          "label": "From",
+          "options": {
+            "left": {
+              "label": "Left"
+            },
+            "right": {
+              "label": "Right"
+            }
+          }
+        },
+        "header": {
+          "empty_state": {
+            "content": "Empty state"
+          }
+        }
+      },
+      "presets": {
+        "cart_drawer": {
+          "name": "Cart Drawer",
+          "category": "Drawer"
+        }
+      }
     }
   },
   "theme_blocks": {
     "all": {
+      "headers": {
+        "block_settings": {
+          "content": "Block Settings"
+        }
+      },
       "settings": {
         "icon": {
           "label": "Icon"
@@ -172,6 +352,52 @@
         },
         "star": {
           "name": "Star"
+        }
+      }
+    },
+    "icon_with_text_block": {
+      "name": "Icon with Text Block",
+      "presets": {
+        "icon_with_text": {
+          "name": "Icon with Text",
+          "blocks": {
+            "text_block": {
+              "settings": {
+                "text": "This is the Text Block"
+              }
+            }
+          }
+        },
+        "info_icon_with_text": {
+          "name": "Info Icon with Text",
+          "blocks": {
+            "text_block": {
+              "settings": {
+                "text": "Some Info Text"
+              }
+            }
+          }
+        },
+        "sale_icon_with_text": {
+          "name": "Sale Icon with Text",
+          "blocks": {
+            "text_block": {
+              "settings": {
+                "text": "Save big on our latest drop"
+              }
+            }
+          }
+        }
+      }
+    },
+    "text_block": {
+      "name": "Text Block",
+      "presets": {
+        "text_block": {
+          "name": "Text Block",
+          "settings": {
+            "text": "This is a Text Block."
+          }
         }
       }
     }

@@ -1,0 +1,72 @@
+{% doc %}
+  Renders a Rating component.
+
+  @param {number} [rating] - The rating to display.
+  @param {string} [icon] - The icon to display.
+  @param {string} [icon_size] - The size of the icon.
+  @param {number} [max_rating] - The maximum rating to display.
+  @param {number} [rating_count] - The number of ratings.
+{% enddoc %}
+
+{% liquid
+  assign icon = icon | default: 'star'
+  assign icon_size = icon_size | default: 'small'
+  assign rating = rating | default: 5
+  assign max_rating = max_rating | default: 5
+%}
+
+<div class="Rating">
+  <div class="Rating__Numbers">
+    {% assign rating_numbers_text = rating %}
+    {% render 'text', text: rating_numbers_text, variant: 'body-small' %}
+  </div>
+
+  <div class="Rating__Icons{% if icon_size == 'small' %} Rating__Icons--Small{% endif %}">
+    {% assign remainder = rating %}
+
+    {% for i in (1..max_rating) %}
+      {% if remainder >= 1 %}
+        {% assign fill_percentage = 1 %}
+      {% elsif remainder <= 0 %}
+        {% assign fill_percentage = 0 %}
+      {% else %}
+        {% assign fill_percentage = remainder %}
+      {% endif %}
+
+      {% assign remainder = remainder | minus: 1 %}
+
+      <div class="Rating__Item">
+        {% render 'rating-icon', icon: icon, fill_percentage: fill_percentage, icon_size: icon_size %}
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if rating_count %}
+    {% assign rating_count_text = '(' | append: rating_count | append: ')' %}
+    {% render 'text', text: rating_count_text, variant: 'body-small' %}
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .Rating {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+  }
+
+  .Rating__Icons {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+  }
+
+  .Rating__Icons--Small {
+    gap: 0;
+  }
+
+  .Rating__Item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+{% endstylesheet %}
