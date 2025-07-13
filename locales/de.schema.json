@@ -1,4 +1,50 @@
 {
+  "global": {
+    "settings": {
+      "position": {
+        "options": {
+          "left": {
+            "label": "Links"
+          },
+          "center": {
+            "label": "Mitte"
+          },
+          "right": {
+            "label": "Rechts"
+          }
+        }
+      },
+      "text": {
+        "label": "Text"
+      },
+      "text_alignment": {
+        "label": "Ausrichtung"
+      },
+      "text_variant": {
+        "label": "Textvariante",
+        "options": {
+          "body-small": {
+            "label": "Haupttext klein"
+          },
+          "body-medium": {
+            "label": "Haupttext mittel"
+          },
+          "body-large": {
+            "label": "Haupttext groß"
+          },
+          "heading-small": {
+            "label": "Überschrift klein"
+          },
+          "heading-medium": {
+            "label": "Überschrift mittel"
+          },
+          "heading-large": {
+            "label": "Überschrift groß"
+          }
+        }
+      }
+    }
+  },
   "settings_schema": {
     "global": {
       "settings": {}
@@ -127,9 +173,42 @@
         "content": "Aussehen der Abschnitt"
       },
       "settings": {
+        "border_bottom": {
+          "label": "Unteren Rand anzeigen"
+        },
         "color_scheme": {
           "label": "Farbschema",
           "info": "Wählen Sie ein Farbschema, das für diesen Abschnitt gelten soll"
+        },
+        "columns_desktop": {
+          "label": "Columns Desktop"
+        },
+        "columns_mobile": {
+          "label": "Spalten Mobile"
+        },
+        "heading": {
+          "label": "Überschrift",
+          "default": "Überschrift"
+        },
+        "positions": {
+          "options": {
+            "left": {
+              "label": "Links"
+            },
+            "center": {
+              "label": "Mitte"
+            },
+            "right": {
+              "label": "Rechts"
+            }
+          }
+        },
+        "product_limit": {
+          "label": "Maximale Anzahl an Produktkarten",
+          "info": "Ignorieren wenn 0"
+        },
+        "product_list": {
+          "label": "Produktliste"
         },
         "sticky": {
           "label": "Haftender Abschnitt",
@@ -143,6 +222,54 @@
         "announcement_bar": {
           "name": "Ankündigungsleiste",
           "category": "Kopfzeile"
+        }
+      }
+    },
+    "product_list": {
+      "name": "Produktliste",
+      "presets": {
+        "product_list": {
+          "name": "Produktliste"
+        }
+      }
+    },
+    "site_header": {
+      "name": "Kopfzeile der Website",
+      "settings": {
+        "account_icon_position": {
+          "label": "Position des Kontosymbols"
+        },
+        "cart_icon_position": {
+          "label": "Warenkorb-Symbol posotion"
+        },
+        "search_icon_position": {
+          "label": "Suchsymbol Position"
+        },
+        "settings_logo": {
+          "content": "Logo"
+        },
+        "settings_header": {
+          "content": "Kopfzeileneinstellungen der Website"
+        },
+        "settings_icons": {
+          "content": "Icons"
+        },
+        "show_account_icon": {
+          "label": "Kontosymbol anzeigen"
+        },
+        "show_cart_icon": {
+          "label": "Warenkorb-Symbol anzeigen"
+        },
+        "show_logo": {
+          "label": "Logo",
+          "info": "Das Logo kann in den Themeneinstellungen ausgewählt werden. Wenn es nicht markiert ist, wird stattdessen der Name des Shops angezeigt."
+        },
+        "show_search_icon": {
+          "label": "Suchsymbol anzeigen"
+        },
+        "title_text_variant": {
+          "label": "Titel Textvariante",
+          "info": "Diese Einstellung gilt nur, wenn das Logo nicht angezeigt wird."
         }
       }
     },
@@ -192,6 +319,11 @@
   },
   "theme_blocks": {
     "all": {
+      "headers": {
+        "block_settings": {
+          "content": "Block Einstellungen"
+        }
+      },
       "settings": {
         "icon": {
           "label": "Icon"
@@ -220,6 +352,52 @@
         },
         "star": {
           "name": "Stern"
+        }
+      }
+    },
+    "icon_with_text_block": {
+      "name": "Icon mit Text Block",
+      "presets": {
+        "icon_with_text": {
+          "name": "Icon mit Text",
+          "blocks": {
+            "text_block": {
+              "settings": {
+                "text": "Das ist der Text Block"
+              }
+            }
+          }
+        },
+        "info_icon_with_text": {
+          "name": "Info Icon mit Text",
+          "blocks": {
+            "text_block": {
+              "settings": {
+                "text": "Ein Info Text"
+              }
+            }
+          }
+        },
+        "sale_icon_with_text": {
+          "name": "Sale Icon mit Text",
+          "blocks": {
+            "text_block": {
+              "settings": {
+                "text": "Sparen Sie bei unserem neuesten Angebot"
+              }
+            }
+          }
+        }
+      }
+    },
+    "text_block": {
+      "name": "Text Block",
+      "presets": {
+        "text_block": {
+          "name": "Text Block",
+          "settings": {
+            "text": "Das ist ein Text Block."
+          }
         }
       }
     }
