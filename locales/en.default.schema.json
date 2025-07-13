@@ -70,6 +70,9 @@
           }
         }
       },
+      "tag": {
+        "label": "Tag"
+      },
       "text": {
         "label": "Text"
       },
