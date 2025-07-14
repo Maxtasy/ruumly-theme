@@ -277,6 +277,12 @@
         "height": {
           "label": "Höhe",
           "info": "Verwenden Sie einen gültigen CSS-Wert."
+        },
+        "overlay_color": {
+          "label": "Overlay Farbe"
+        },
+        "overlay_opacity": {
+          "label": "Overlay Deckkraft"
         }
       },
       "presets": {
