@@ -1,6 +1,13 @@
 <section class="Section Section--FullWidth Section--PaddingBlockNone">
   <div class="Section__Inner">
-    <div class="Hero" style="--height: {{ section.settings.height }};">
+    <div
+      class="Hero"
+      style="
+        --height: {{ section.settings.height }};
+        --overlay-color: {{ section.settings.overlay_color }};
+        --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+      "
+    >
       <div class="Hero__MobileImage u-Hidden--Desktop">
         {% render 'image', image: section.settings.mobile_image %}
       </div>
@@ -8,6 +15,8 @@
       <div class="Hero__DesktopImage u-Hidden--Mobile">
         {% render 'image', image: section.settings.desktop_image %}
       </div>
+
+      <div class="Hero__Overlay"></div>
 
       <div class="Hero__Inner">
         <div
@@ -28,6 +37,13 @@
   .Hero {
     position: relative;
     height: var(--height);
+  }
+
+  .Hero__Overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--overlay-color);
+    opacity: var(--overlay-opacity);
   }
 
   .Hero__Inner {
@@ -118,6 +134,22 @@
         { "value": "center", "label": "t:global.settings.content_position_vertical.options.center.label" },
         { "value": "bottom", "label": "t:global.settings.content_position_vertical.options.bottom.label" }
       ]
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:sections.hero.settings.overlay_color.label",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "t:sections.hero.settings.overlay_opacity.label",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 33,
+      "unit": "%"
     }
   ],
   "blocks": [

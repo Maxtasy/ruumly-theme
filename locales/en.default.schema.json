@@ -277,6 +277,12 @@
         "height": {
           "label": "Height",
           "info": "Use a valid CSS value."
+        },
+        "overlay_color": {
+          "label": "Overlay Color"
+        },
+        "overlay_opacity": {
+          "label": "Overlay Opacity"
         }
       },
       "presets": {
