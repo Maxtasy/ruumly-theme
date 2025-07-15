@@ -22,6 +22,8 @@
   /* Colors */
   /* ------ */
 
+  --accent-color: var(--primary-button-background);
+  --color-on-accent: var(--primary-button-text);
   --color-sale-text: rgb(182, 0, 0);
   --color-sale-surface: rgb(252, 232, 232);
   --color-success-text: rgb(0, 128, 0);

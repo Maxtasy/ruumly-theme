@@ -1,0 +1,23 @@
+{% doc %}
+  Renders a Quantity Selector component.
+
+  @param {number} quantity - The currently selected quantity.
+{% enddoc %}
+
+<div is="quantity-selector-component" class="QuantitySelector">
+  {% render 'button', variant: 'plain', icon: 'minus', action: 'decrement', size: 'small' %}
+
+  <span class="QuantitySelector__Quantity">
+    {{ quantity }}
+  </span>
+
+  {% render 'button', variant: 'plain', icon: 'plus', action: 'increment', size: 'small' %}
+</div>
+
+{% stylesheet %}
+  .QuantitySelector {
+    display: flex;
+    align-items: center;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}

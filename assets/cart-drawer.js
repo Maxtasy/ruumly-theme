@@ -7,21 +7,24 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
 
     this.handleClearCart = this.handleClearCart.bind(this);
     this.handleItemAdded = this.handleItemAdded.bind(this);
+    this.handleCartUpdate = this.handleCartUpdate.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("button:click:clear-cart", this.handleClearCart);
+    this.subscribe("line-item:update", this.handleCartUpdate);
 
     globalThis.subscribe("product-form:item-added", this.handleItemAdded);
   }
 
   disconnectedCallback() {
     this.unsubscribe("button:click:clear-cart", this.handleClearCart);
+    this.unsubscribe("line-item:update", this.handleCartUpdate);
 
     globalThis.unsubscribe("product-form:item-added", this.handleItemAdded);
   }
 
-  handleItemAdded({ sections }) {
+  handleItemAdded({ sections, items }) {
     const { "cart-drawer": updatedCartDrawer } = sections;
 
     if (updatedCartDrawer) {
@@ -40,7 +43,33 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
       });
 
       this.closest(".Drawer").open();
+
+      this.publish("cart-drawer:updated", { itemCount: items.length });
     }
+  }
+
+  async handleCartUpdate({ sections }) {
+    const { "cart-drawer": updatedCartDrawer } = sections;
+
+    if (updatedCartDrawer) {
+      this.rerenderCartDrawer(updatedCartDrawer);
+    }
+  }
+
+  async rerenderCartDrawer(updatedCartDrawer) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(updatedCartDrawer, "text/html");
+
+    const elementsToReRender = [".CartDrawer__Content"];
+
+    elementsToReRender.forEach((element) => {
+      const elementToReplace = this.querySelector(element);
+      const newElement = doc.querySelector(element);
+
+      if (elementToReplace && newElement) {
+        elementToReplace.innerHTML = newElement.innerHTML;
+      }
+    });
   }
 
   async handleClearCart() {
@@ -61,6 +90,8 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
         elementToReplace.innerHTML = newElement.innerHTML;
       }
     });
+
+    this.publish("cart-drawer:updated", { itemCount: 0 });
   }
 }
 

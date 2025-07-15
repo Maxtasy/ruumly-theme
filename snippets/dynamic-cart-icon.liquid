@@ -1,0 +1,39 @@
+{% doc %}
+  Renders a Dynamic Cart Icon component. It automatically updates the cart indicator text based on the cart item count.
+{% enddoc %}
+
+<div is="dynamic-cart-icon-component" class="DynamicCartIcon">
+  {% render 'button', variant: 'plain', icon: 'shopping-cart', action: 'open-drawer:cart' %}
+
+  <span
+    class="
+      DynamicCartIcon__Indicator
+      {% if cart.item_count > 0 %}
+        DynamicCartIcon__Indicator--Active
+      {% endif %}
+    "
+  >
+    {% render 'text', text: cart.item_count, variant: 'body-small', color: 'inherit', as: 'b' %}
+  </span>
+</div>
+
+{% stylesheet %}
+  .DynamicCartIcon {
+    position: relative;
+  }
+
+  .DynamicCartIcon__Indicator {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    right: 0;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    color: var(--color-on-accent);
+    pointer-events: none;
+  }
+{% endstylesheet %}
