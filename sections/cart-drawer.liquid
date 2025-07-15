@@ -18,8 +18,16 @@
 {% endcapture %}
 
 {% capture cart_drawer_footer %}
-  Cart Drawer Footer
+  {% if cart.empty? == false %}
+    <div class="CartDrawer__Summary">
+      {{ cart.total_price | money }}
+
+      {% render 'button' text: 'checkout', url: '/checkout' %}
+    </div>
+  {% endif %}
 {% endcapture %}
+
+{% render 'button', text: 'button' %}
 
 {% render 'drawer',
   name: 'cart',
