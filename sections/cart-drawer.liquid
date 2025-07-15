@@ -18,16 +18,8 @@
 {% endcapture %}
 
 {% capture cart_drawer_footer %}
-  {% if cart.empty? == false %}
-    <div class="CartDrawer__Summary">
-      {{ cart.total_price | money }}
-
-      {% render 'button', text: 'checkout', url: '/checkout' %}
-    </div>
-  {% endif %}
+  {% render 'cart-summary' %}
 {% endcapture %}
-
-{% render 'button', text: 'button' %}
 
 {% render 'drawer',
   name: 'cart',
@@ -35,7 +27,8 @@
   content: cart_drawer_content,
   footer: cart_drawer_footer,
   from: section.settings.from,
-  color_scheme: section.settings.color_scheme
+  color_scheme: section.settings.color_scheme,
+  active: true
 %}
 
 {% schema %}
