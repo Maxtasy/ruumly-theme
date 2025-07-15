@@ -223,13 +223,24 @@
   },
   "sections": {
     "all": {
-      "header": {
+      "headers": {
         "empty_state": {
           "content": "Empty state"
+        },
+        "section_appearance": {
+          "content": "Section appearance"
+        },
+        "site_header_settings": {
+          "content": "Site Header Settings"
         }
       },
-      "section_appearance": {
-        "content": "Section appearance"
+      "paragraphs": {
+        "logo": {
+          "content": "Logo"
+        },
+        "icons": {
+          "content": "Icons"
+        }
       },
       "settings": {
         "border_bottom": {
@@ -311,15 +322,6 @@
         "search_icon_position": {
           "label": "Search Icon Position"
         },
-        "settings_logo": {
-          "content": "Logo"
-        },
-        "settings_header": {
-          "content": "Site Header Settings"
-        },
-        "settings_icons": {
-          "content": "Icons"
-        },
         "show_account_icon": {
           "label": "Show Account Icon"
         },
@@ -367,11 +369,6 @@
             "right": {
               "label": "Right"
             }
-          }
-        },
-        "header": {
-          "empty_state": {
-            "content": "Empty state"
           }
         }
       },
