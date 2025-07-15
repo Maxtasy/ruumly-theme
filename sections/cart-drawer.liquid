@@ -22,7 +22,7 @@
     <div class="CartDrawer__Summary">
       {{ cart.total_price | money }}
 
-      {% render 'button' text: 'checkout', url: '/checkout' %}
+      {% render 'button', text: 'checkout', url: '/checkout' %}
     </div>
   {% endif %}
 {% endcapture %}
