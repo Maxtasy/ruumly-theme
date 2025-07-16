@@ -42,7 +42,11 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     if (updatedCartDrawer) {
       this.rerenderCartDrawer(updatedCartDrawer);
 
-      this.publish("cart-drawer:updated", { itemCount: items.length });
+      const totalItemCount = items.reduce((total, item) => {
+        return total + item.quantity;
+      }, 0);
+
+      this.publish("cart-drawer:updated", { itemCount: totalItemCount });
     }
   }
 
