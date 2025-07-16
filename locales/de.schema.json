@@ -51,11 +51,30 @@
         "label": "Extern öffnen",
         "info": "Wenn diese Option aktiviert ist, wird die URL in einem neuen Fenster geöffnet."
       },
+      "gap": {
+        "label": "Abstand",
+        "options": {
+          "none": {
+            "label": "Ohne"
+          }
+        }
+      },
       "image_mobile": {
         "label": "Bild Mobile"
       },
       "image_desktop": {
         "label": "Bild Desktop"
+      },
+      "layout": {
+        "label": "Ausrichtung",
+        "options": {
+          "horizontal": {
+            "label": "Horizontal"
+          },
+          "vertical": {
+            "label": "Vertikal"
+          }
+        }
       },
       "position": {
         "options": {

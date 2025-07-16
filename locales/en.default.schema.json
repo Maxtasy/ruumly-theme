@@ -51,11 +51,30 @@
         "label": "Open externally",
         "info": "If checked the URL will open in a new window."
       },
+      "gap": {
+        "label": "Gap",
+        "options": {
+          "none": {
+            "label": "None"
+          }
+        }
+      },
       "image_mobile": {
         "label": "Image Mobile"
       },
       "image_desktop": {
         "label": "Image Desktop"
+      },
+      "layout": {
+        "label": "Layout",
+        "options": {
+          "horizontal": {
+            "label": "Horizontal"
+          },
+          "vertical": {
+            "label": "Vertical"
+          }
+        }
       },
       "position": {
         "options": {

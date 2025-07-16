@@ -1,4 +1,11 @@
-<div class="IconWithTextBlock IconWithTextBlock--Align{{ block.settings.alignment | camelcase }}">
+<div
+  class="
+    IconWithTextBlock
+    IconWithTextBlock--Align{{ block.settings.alignment | camelcase }}
+    IconWithTextBlock--Layout{{ block.settings.layout | camelcase }}
+  "
+  style="--icon-with-text-gap: var(--size-{{ block.settings.gap }});"
+>
   {% content_for 'blocks' %}
 </div>
 
@@ -10,15 +17,31 @@
   }
 
   .IconWithTextBlock--AlignLeft {
-    text-align: left;
+    justify-content: flex-start;
   }
 
   .IconWithTextBlock--AlignCenter {
-    text-align: center;
+    justify-content: center;
   }
 
   .IconWithTextBlock--AlignRight {
-    text-align: right;
+    justify-content: flex-end;
+  }
+
+  .IconWithTextBlock--LayoutVertical {
+    flex-direction: column;
+  }
+
+  .IconWithTextBlock--LayoutVertical.IconWithTextBlock--AlignLeft {
+    align-items: flex-start;
+  }
+
+  .IconWithTextBlock--LayoutVertical.IconWithTextBlock--AlignCenter {
+    align-items: center;
+  }
+
+  .IconWithTextBlock--LayoutVertical.IconWithTextBlock--AlignRight {
+    align-items: flex-end;
   }
 {% endstylesheet %}
 
@@ -35,6 +58,31 @@
       "id": "alignment",
       "label": "t:global.settings.text_alignment.label",
       "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:global.settings.layout.label",
+      "default": "horizontal",
+      "options": [
+        { "value": "horizontal", "label": "t:global.settings.layout.options.horizontal.label" },
+        { "value": "vertical", "label": "t:global.settings.layout.options.vertical.label" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "gap",
+      "label": "t:global.settings.gap.label",
+      "default": "m",
+      "options": [
+        { "value": "0", "label": "t:global.settings.gap.options.none.label" },
+        { "value": "xs", "label": "XS" },
+        { "value": "s", "label": "S" },
+        { "value": "m", "label": "M" },
+        { "value": "l", "label": "L" },
+        { "value": "xl", "label": "XL" },
+        { "value": "xxl", "label": "XXL" }
+      ]
     }
   ],
   "blocks": [
