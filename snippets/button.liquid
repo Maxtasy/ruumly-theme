@@ -2,18 +2,24 @@
   Renders a Button component.
 
   @param {string} [text] - Text inside the button.
-  @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain').
+  @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain', 'link').
   @param {string} [icon] - Icon handle of the icon to render.
   @param {string} [action] - The action attribute.
   @param {string} [url] - The URL of the button.
   @param {boolean} [external] - Whether the URL should be opened in a new window.
+  @param {string} [size] - Button size ('small', 'medium', 'large').
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
+{% assign size = size | default: 'medium' %}
 
 {% if url %}
   <a
-    class="Button{% if variant %} Button--{{ variant | camelcase }}{% endif %}"
+    class="
+      Button
+      Button--{{ variant | camelcase }}
+      Button--Size{{ size | camelcase }}
+    "
     href="{{ url }}"
     {% if external %}
       target="_blank"
@@ -55,11 +61,6 @@
     background-color: var(--background-color);
     border: var(--border-width) var(--border-style) var(--border-color);
     border-radius: var(--button-border-radius);
-    box-shadow: var(--box-shadow);
-    font-size: var(--button-font-size);
-    font-weight: var(--button-font-weight);
-    text-transform: uppercase;
-    letter-spacing: var(--button-letter-spacing);
     user-select: none;
     transition: var(--transition-duration) var(--transition-timing);
   }
@@ -74,6 +75,11 @@
   .Button--Secondary {
     --padding-block: var(--size-m);
     --padding-inline: var(--size-xl);
+    text-transform: uppercase;
+    box-shadow: var(--box-shadow);
+    font-weight: var(--button-font-weight);
+    letter-spacing: var(--button-letter-spacing);
+    font-size: var(--button-font-size);
   }
 
   .Button--Primary {
@@ -97,6 +103,7 @@
   .Button--Icon {
     --padding-block: var(--size-xs);
     --padding-inline: var(--size-xs);
+    box-shadow: var(--box-shadow);
   }
 
   .Button--Plain {
@@ -106,7 +113,30 @@
     --border-color-hover: transparent;
     --background-color: transparent;
     --background-color-hover: transparent;
-    box-shadow: none;
+  }
+
+  .Button--Link {
+    --padding-block: 0;
+    --padding-inline: 0;
+    --border-color: transparent;
+    --border-color-hover: transparent;
+    --background-color: transparent;
+    --background-color-hover: transparent;
+  }
+
+  .Button--SizeSmall {
+    --padding-block: var(--size-xs);
+    --padding-inline: var(--size-xs);
+  }
+
+  .Button--SizeMedium {
+    --padding-block: var(--size-m);
+    --padding-inline: var(--size-xl);
+  }
+
+  .Button--SizeLarge {
+    --padding-block: var(--size-l);
+    --padding-inline: var(--size-xxl);
   }
 
   .Button[disabled] {

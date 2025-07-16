@@ -81,7 +81,11 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
     }
 
     // Notify other components that the item has been added to the cart.
-    this.publish("product-form:item-added", { item: this.item, sections: cartResponse.sections });
+    this.publish("product-form:item-added", {
+      item: this.item,
+      sections: cartResponse.sections,
+      items: cartResponse.items,
+    });
   }
 
   get addToCartButtonElement() {

@@ -55,6 +55,22 @@ export class Cart {
     return data;
   }
 
+  async update({ updates, sections }) {
+    const response = await fetch(`${window.routes.cartUpdateUrl}.js`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ updates, sections }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to update cart");
+    }
+
+    return response.json();
+  }
+
   async clear({ sections }) {
     const response = await fetch(`${window.routes.cartClearUrl}.js`, {
       method: "POST",

@@ -352,10 +352,6 @@
           "label": "Empty state text",
           "default": "Explore our products"
         },
-        "empty_state_link": {
-          "label": "Empty state link",
-          "default": "/collections/all"
-        },
         "empty_state_link_text": {
           "label": "Empty state link text",
           "default": "Continue shopping"
