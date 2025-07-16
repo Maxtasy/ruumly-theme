@@ -1,0 +1,42 @@
+{% if cart.empty? == false %}
+  <div class="CartDrawer__Summary">
+    <div class="CartDrawer__SummaryLines">
+      <div class="CartDrawer__SummaryLine">
+        {% assign subtotal_text = 'global.subtotal' | t | append: ':' %}
+        {% render 'text', text: subtotal_text %}
+
+        {% assign formatted_total_price = cart.total_price | money %}
+        {% render 'text', text: formatted_total_price %}
+      </div>
+
+      <div class="CartDrawer__SummaryLine">
+        {% assign shipping_text = 'global.shipping' | t | append: ':' %}
+        {% render 'text', text: shipping_text %}
+
+        {% assign formatted_shipping_price = 495 | money %}
+        {% render 'text', text: formatted_shipping_price %}
+      </div>
+    </div>
+
+    {% render 'button', text: 'checkout', url: '/checkout' %}
+  </div>
+{% endif %}
+
+{% stylesheet %}
+  .CartDrawer__Summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .CartDrawer__SummaryLine {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .CartDrawer__SummaryLines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}

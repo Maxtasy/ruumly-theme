@@ -223,13 +223,24 @@
   },
   "sections": {
     "all": {
-      "header": {
+      "headers": {
         "empty_state": {
           "content": "Leerer Zustand"
+        },
+        "section_appearance": {
+          "content": "Aussehen der Abschnitt"
+        },
+        "site_header_settings": {
+          "content": "Kopfzeileneinstellungen der Website"
         }
       },
-      "section_appearance": {
-        "content": "Aussehen der Abschnitt"
+      "paragraphs": {
+        "logo": {
+          "content": "Logo"
+        },
+        "icons": {
+          "content": "Icons"
+        }
       },
       "settings": {
         "border_bottom": {
@@ -277,6 +288,12 @@
         "height": {
           "label": "Höhe",
           "info": "Verwenden Sie einen gültigen CSS-Wert."
+        },
+        "overlay_color": {
+          "label": "Overlay Farbe"
+        },
+        "overlay_opacity": {
+          "label": "Overlay Deckkraft"
         }
       },
       "presets": {
@@ -304,15 +321,6 @@
         },
         "search_icon_position": {
           "label": "Suchsymbol Position"
-        },
-        "settings_logo": {
-          "content": "Logo"
-        },
-        "settings_header": {
-          "content": "Kopfzeileneinstellungen der Website"
-        },
-        "settings_icons": {
-          "content": "Icons"
         },
         "show_account_icon": {
           "label": "Kontosymbol anzeigen"
@@ -361,11 +369,6 @@
             "right": {
               "label": "Rechts"
             }
-          }
-        },
-        "header": {
-          "empty_state": {
-            "content": "Leerzustand"
           }
         }
       },

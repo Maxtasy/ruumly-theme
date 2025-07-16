@@ -3,7 +3,7 @@
 {% endcapture %}
 
 {% capture cart_drawer_footer %}
-  Cart Drawer Footer
+  {% render 'cart-summary' %}
 {% endcapture %}
 
 {% render 'drawer',
@@ -35,7 +35,7 @@
   "settings": [
     {
       "type": "header",
-      "content": "t:sections.all.section_appearance.content"
+      "content": "t:sections.all.headers.section_appearance.content"
     },
     {
       "type": "color_scheme",
@@ -62,7 +62,7 @@
     },
     {
       "type": "header",
-      "content": "t:sections.cart_drawer.settings.header.empty_state.content"
+      "content": "t:sections.all.headers.empty_state.content"
     },
     {
       "type": "text",
