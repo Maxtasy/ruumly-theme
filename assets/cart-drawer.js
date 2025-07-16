@@ -28,19 +28,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     const { "cart-drawer": updatedCartDrawer } = sections;
 
     if (updatedCartDrawer) {
-      const parser = new DOMParser();
-      const doc = parser.parseFromString(updatedCartDrawer, "text/html");
-
-      const elementsToReRender = [".CartDrawer__Content"];
-
-      elementsToReRender.forEach((element) => {
-        const elementToReplace = this.querySelector(element);
-        const newElement = doc.querySelector(element);
-
-        if (elementToReplace && newElement) {
-          elementToReplace.innerHTML = newElement.innerHTML;
-        }
-      });
+      this.rerenderCartDrawer(updatedCartDrawer);
 
       this.closest(".Drawer").open();
 
@@ -53,23 +41,15 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
 
     if (updatedCartDrawer) {
       this.rerenderCartDrawer(updatedCartDrawer);
+
+      this.publish("cart-drawer:updated", { itemCount: items.length });
     }
   }
 
   async rerenderCartDrawer(updatedCartDrawer) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(updatedCartDrawer, "text/html");
-
-    const elementsToReRender = [".CartDrawer__Content"];
-
-    elementsToReRender.forEach((element) => {
-      const elementToReplace = this.querySelector(element);
-      const newElement = doc.querySelector(element);
-
-      if (elementToReplace && newElement) {
-        elementToReplace.innerHTML = newElement.innerHTML;
-      }
-    });
+    this.innerHTML = doc.querySelector(".CartDrawer").innerHTML;
   }
 
   async handleClearCart() {

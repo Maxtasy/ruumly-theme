@@ -352,10 +352,6 @@
           "label": "Leerzustand Text",
           "default": "Entdecken Sie unsere Produkte"
         },
-        "empty_state_link": {
-          "label": "Leerzustand Link",
-          "default": "/collections/all"
-        },
         "empty_state_link_text": {
           "label": "Leerzustand Link Text",
           "default": "Weiter einkaufen"

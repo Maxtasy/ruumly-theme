@@ -1,0 +1,89 @@
+<div is="cart-drawer-component" class="CartDrawer">
+  {% if cart.empty? %}
+    {% render 'empty-state',
+      heading: section.settings.empty_state_heading,
+      text: section.settings.empty_state_text,
+      link: section.settings.empty_state_link,
+      link_text: section.settings.empty_state_link_text
+    %}
+  {% else %}
+    <div class="CartDrawer__Content u-NoScrollbar">
+      <ul class="CartDrawer__LineItems u-NoList">
+        {% for line_item in cart.items %}
+          <li class="CartDrawer__LineItem">
+            {% render 'line-item',
+              title: line_item.title,
+              image: line_item.image,
+              price: line_item.price,
+              compare_at_price: line_item.compare_at_price,
+              quantity: line_item.quantity,
+              total: line_item.total_price,
+              url: line_item.url,
+              key: line_item.key
+            %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="CartDrawer__Summary">
+      <div class="CartDrawer__SummaryLines">
+        <div class="CartDrawer__SummaryLine">
+          {% assign subtotal_text = 'global.subtotal' | t | append: ':' %}
+          {% render 'text', text: subtotal_text %}
+
+          {% assign formatted_total_price = cart.total_price | money %}
+          {% render 'text', text: formatted_total_price %}
+        </div>
+
+        <div class="CartDrawer__SummaryLine">
+          {% assign shipping_text = 'global.shipping' | t | append: ':' %}
+          {% render 'text', text: shipping_text %}
+
+          {% assign formatted_shipping_price = 495 | money %}
+          {% render 'text', text: formatted_shipping_price %}
+        </div>
+      </div>
+
+      {% render 'button', text: 'checkout', url: '/checkout' %}
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .CartDrawer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+    height: 100%;
+  }
+
+  .CartDrawer:has(.EmptyState) {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .CartDrawer__Content {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  .CartDrawer__Summary {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+    margin-top: auto;
+    border-top: var(--border-width) var(--border-style) var(--border-color);
+  }
+
+  .CartDrawer__SummaryLine {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .CartDrawer__SummaryLines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}

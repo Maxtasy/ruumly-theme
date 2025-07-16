@@ -1,29 +1,15 @@
 {% capture cart_drawer_content %}
-  {% render 'cart-drawer-content' %}
-{% endcapture %}
-
-{% capture cart_drawer_footer %}
-  {% render 'cart-summary' %}
+  {% render 'cart-drawer' %}
 {% endcapture %}
 
 {% render 'drawer',
   name: 'cart',
   heading: 'Cart',
   content: cart_drawer_content,
-  footer: cart_drawer_footer,
   from: section.settings.from,
   color_scheme: section.settings.color_scheme,
   active: true
 %}
-
-{% stylesheet %}
-  .CartDrawer:has(.EmptyState) {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
@@ -80,7 +66,7 @@
       "type": "url",
       "id": "empty_state_link",
       "label": "t:sections.cart_drawer.settings.empty_state_link.label",
-      "default": "t:sections.cart_drawer.settings.empty_state_link.default"
+      "default": "/collections"
     },
     {
       "type": "text",

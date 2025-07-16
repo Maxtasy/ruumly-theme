@@ -24,3 +24,12 @@
     {% render 'link', text: link_text, url: link %}
   {% endif %}
 </div>
+
+{% stylesheet %}
+  .EmptyState {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: var(--size-m);
+  }
+{% endstylesheet %}
