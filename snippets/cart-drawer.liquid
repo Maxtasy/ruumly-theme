@@ -15,8 +15,8 @@
               product_title: line_item.product.title,
               variant_title: line_item.variant.title,
               image: line_item.image,
-              price: line_item.price,
-              compare_at_price: line_item.compare_at_price,
+              price: line_item.variant.price,
+              compare_at_price: line_item.variant.compare_at_price,
               quantity: line_item.quantity,
               url: line_item.url,
               key: line_item.key
@@ -68,11 +68,18 @@
     overflow-y: auto;
   }
 
+  .CartDrawer__LineItems {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
   .CartDrawer__Summary {
     display: flex;
     flex-direction: column;
     gap: var(--size-m);
     margin-top: auto;
+    padding: var(--size-m) 0 0;
     border-top: var(--border-width) var(--border-style) var(--border-color);
   }
 

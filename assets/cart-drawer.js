@@ -36,7 +36,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     }
   }
 
-  async handleCartUpdate({ sections }) {
+  async handleCartUpdate({ sections, items }) {
     const { "cart-drawer": updatedCartDrawer } = sections;
 
     if (updatedCartDrawer) {

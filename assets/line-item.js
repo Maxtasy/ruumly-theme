@@ -21,7 +21,10 @@ class LineItem extends CustomComponentMixin(HTMLDivElement) {
     });
 
     if (response) {
-      this.publish("line-item:update", { sections: response.sections });
+      this.publish("line-item:update", {
+        sections: response.sections,
+        items: response.items,
+      });
     }
   }
 }
