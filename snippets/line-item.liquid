@@ -1,14 +1,13 @@
 {% doc %}
   Renders a Line Item component.
 
-  @param {string} title - The title of the line item.
+  @param {string} product_title - The title of the product.
+  @param {string} [variant_title] - The title of the variant.
   @param {string} image - The image of the line item.
   @param {string} price - The price of the line item.
   @param {string} compare_at_price - The compare at price of the line item.
   @param {string} quantity - The quantity of the line item.
   @param {string} key - The key of the line item.
-  @param {string} total - The total of the line item.
-  @param {string} [variant_title] - The variant title of the line item.
   @param {string} url - The URL of the line item.
 {% enddoc %}
 
@@ -22,8 +21,12 @@
   </a>
 
   <div class="LineItem__Details">
-    <a class="LineItem__Title" href="{{ url }}">
-      {% render 'text', text: title %}
+    <a class="LineItem__Titles" href="{{ url }}">
+      {% render 'text', text: product_title %}
+
+      {% if variant_title %}
+        {% render 'text', text: variant_title, variant: 'body-small' %}
+      {% endif %}
     </a>
 
     <div class="LineItem__Price">
@@ -53,6 +56,12 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-s);
+  }
+
+  .LineItem__Titles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
   }
 
   .LineItem__Actions {

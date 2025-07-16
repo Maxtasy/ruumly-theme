@@ -12,12 +12,12 @@
         {% for line_item in cart.items %}
           <li class="CartDrawer__LineItem">
             {% render 'line-item',
-              title: line_item.title,
+              product_title: line_item.product.title,
+              variant_title: line_item.variant.title,
               image: line_item.image,
               price: line_item.price,
               compare_at_price: line_item.compare_at_price,
               quantity: line_item.quantity,
-              total: line_item.total_price,
               url: line_item.url,
               key: line_item.key
             %}
