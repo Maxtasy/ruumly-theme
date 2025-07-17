@@ -5,6 +5,7 @@
   @param {string} [variant] - Image variant (portrait, landscape, square).
   @param {boolean} [loading] - The loading attribute for the image, defaults to 'lazy'.
   @param {boolean} [preload] - Whether to preload the image, defaults to false.
+  @param {object} [placeholder] - The placeholder image to use. Defaults to 'image'. Refer to the [`placeholder_svg_tag`](https://shopify.dev/docs/api/liquid/filters/placeholder_svg_tag) filter for more information.
 {% enddoc %}
 
 {% liquid
@@ -21,15 +22,35 @@
     {% endif %}
   "
 >
-  {{
-    image
-    | image_url: width: image.width
-    | image_tag: class: 'Image__Inner', alt: image.alt, loading: loading, preload: preload
-  }}
+  {% if image %}
+    {{
+      image
+      | image_url: width: image.width
+      | image_tag: class: 'Image__Inner', alt: image.alt, loading: loading, preload: preload
+    }}
+  {% else %}
+    {% liquid
+      assign placeholder = placeholder | default: 'image'
+      assign placeholder_src = placeholder | placeholder_svg_tag | base64_encode | prepend: 'data:image/svg+xml;base64,'
+    %}
+
+    <img
+      class="Image__Inner Image__Inner--Placeholder"
+      src="{{ placeholder_src }}"
+      alt="{{ placeholder }}"
+      width="{{ placeholder.width }}"
+      height="{{ placeholder.height }}"
+    >
+
+    <div class="Image__Text">
+      {% render 'text', text: 'Fallback Image' %}
+    </div>
+  {% endif %}
 </picture>
 
 {% stylesheet %}
   .Image {
+    position: relative;
     display: block;
     height: 100%;
     width: 100%;
@@ -53,5 +74,19 @@
     height: 100%;
     object-fit: cover;
     aspect-ratio: var(--aspect-ratio);
+  }
+
+  .Image__Text {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--color-surface);
+    padding: var(--size-s);
+    text-align: center;
+  }
+
+  .Image__Inner--Placeholder {
+    background: linear-gradient(to right, var(--image-fallback-gradient-start), var(--image-fallback-gradient-end));
   }
 {% endstylesheet %}
