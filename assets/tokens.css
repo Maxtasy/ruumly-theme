@@ -32,6 +32,8 @@
   --color-destructive-surface: rgb(255, 220, 220);
   --color-warning-text: rgb(255, 165, 0);
   --color-warning-surface: rgb(255, 245, 220);
+  --color-info-text: rgb(0, 58, 112);
+  --color-info-surface: rgb(85, 193, 255);
 
   /* ---------- */
   /* Typography */
