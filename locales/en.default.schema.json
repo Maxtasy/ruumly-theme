@@ -321,6 +321,15 @@
         }
       }
     },
+    "menu_drawer": {
+      "name": "Menu Drawer",
+      "presets": {
+        "menu_drawer": {
+          "name": "Menu Drawer",
+          "category": "Drawer"
+        }
+      }
+    },
     "product_list": {
       "name": "Product List",
       "presets": {

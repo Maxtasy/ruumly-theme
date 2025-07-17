@@ -1,0 +1,21 @@
+{% capture menu_drawer_content %}
+  {% render 'menu-drawer' %}
+{% endcapture %}
+
+{% render 'drawer', name: 'menu', heading: 'Menu', content: menu_drawer_content, from: 'left' %}
+
+{% schema %}
+{
+  "name": "t:sections.menu_drawer.name",
+  "disabled_on": {
+    "groups": ["header", "footer"],
+    "templates": ["index", "product", "collection", "page", "blog", "article"]
+  },
+  "presets": [
+    {
+      "name": "t:sections.menu_drawer.presets.menu_drawer.name",
+      "category": "t:sections.menu_drawer.presets.menu_drawer.category"
+    }
+  ]
+}
+{% endschema %}
