@@ -19,9 +19,7 @@
     <header class="SiteHeader">
       <div class="SiteHeader__Left">
         <div class="u-Hidden--Desktop">
-          <button>
-            {% render 'icon', icon: 'menu' %}
-          </button>
+          {% render 'button', variant: 'plain', icon: 'menu', action: 'open-drawer:menu' %}
         </div>
 
         {% if section.settings.show_search_icon and section.settings.search_icon_position == 'left' %}
