@@ -89,6 +89,10 @@
   /* Icon with Text */
   --icon-with-text-gap: var(--size-m);
 
+  /* Image */
+  --image-fallback-gradient-start: #f0f0f0;
+  --image-fallback-gradient-end: #f8f8f8;
+
   /* Link */
   --link-color: var(--color-link);
   --link-color-hover: var(--color-link-hover);
