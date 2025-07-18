@@ -497,10 +497,7 @@
       "name": "Text Block",
       "presets": {
         "text_block": {
-          "name": "Text Block",
-          "settings": {
-            "text": "This is a Text Block."
-          }
+          "name": "Text Block"
         }
       }
     },
