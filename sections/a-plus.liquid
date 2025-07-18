@@ -1,0 +1,43 @@
+<section class="Section ColorScheme--{{ section.settings.color_scheme.id | camelcase }}">
+  <div class="Section__Inner">
+    <div class="APlus">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .APlus {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "A Plus",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "a-plus-block"
+    }
+  ],
+  "presets": [
+    {
+      "name": "A Plus"
+    }
+  ]
+}
+{% endschema %}

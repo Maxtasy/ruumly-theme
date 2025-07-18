@@ -1,0 +1,98 @@
+<div
+  class="
+    APlusBlock
+    {% if block.settings.image_position == "right" %}
+      APlusBlock--ImageRight
+    {% endif %}
+  "
+>
+  <div class="APlusBlock__Images">
+    {% render 'image', variant: 'square', image: block.settings.image %}
+
+    <div class="APlusBlock__SecondaryImage">
+      {% render 'image', variant: 'square', image: block.settings.secondary_image %}
+    </div>
+  </div>
+
+  <div class="APlusBlock__Text">
+    {% content_for 'blocks' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .APlusBlock {
+    --secondary-image-size: 100px;
+    display: flex;
+    gap: calc(var(--secondary-image-size) / 2 + var(--size-m));
+  }
+
+  .APlusBlock__Images {
+    position: relative;
+    width: 40%;
+  }
+
+  .APlusBlock--ImageRight .APlusBlock__Images {
+    order: 1;
+  }
+
+  .APlusBlock__SecondaryImage {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: var(--secondary-image-size);
+    transform: translate(50%, -50%);
+    border: var(--border-width) var(--border-style) var(--border-color);
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .APlusBlock--ImageRight .APlusBlock__SecondaryImage {
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  .APlusBlock__Text {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "A Plus Block",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_image",
+      "label": "Secondary Image"
+    },
+    {
+      "type": "select",
+      "id": "image_position",
+      "label": "Image Position",
+      "default": "left",
+      "options": [
+        { "value": "left", "label": "t:global.settings.position.options.left.label" },
+        { "value": "right", "label": "t:global.settings.position.options.right.label" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "type": "text-block"
+    }
+  ],
+  "presets": [
+    {
+      "name": "A Plus Block"
+    }
+  ]
+}
+{% endschema %}
