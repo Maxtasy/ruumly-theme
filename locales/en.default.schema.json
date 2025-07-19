@@ -59,11 +59,20 @@
           }
         }
       },
-      "image_mobile": {
-        "label": "Image Mobile"
+      "image": {
+        "label": "Image"
       },
       "image_desktop": {
         "label": "Image Desktop"
+      },
+      "image_mobile": {
+        "label": "Image Mobile"
+      },
+      "image_position_desktop": {
+        "label": "Image Position Desktop"
+      },
+      "image_position_mobile": {
+        "label": "Image Position Mobile"
       },
       "layout": {
         "label": "Layout",
@@ -78,16 +87,25 @@
       },
       "position": {
         "options": {
-          "left": {
-            "label": "Left"
+          "bottom": {
+            "label": "Bottom"
           },
           "center": {
             "label": "Center"
           },
+          "left": {
+            "label": "Left"
+          },
           "right": {
             "label": "Right"
+          },
+          "top": {
+            "label": "Top"
           }
         }
+      },
+      "secondary_image": {
+        "label": "Secondary Image"
       },
       "tag": {
         "label": "Tag"
@@ -292,6 +310,12 @@
         }
       }
     },
+    "a_plus": {
+      "name": "A Plus",
+      "presets": {
+        "name": "A Plus"
+      }
+    },
     "announcement_bar": {
       "name": "Announcement bar",
       "presets": {
@@ -428,6 +452,14 @@
               "label": "Large"
             }
           }
+        }
+      }
+    },
+    "a_plus_block": {
+      "name": "A Plus Block",
+      "presets": {
+        "a_plus_block": {
+          "name": "A Plus Block"
         }
       }
     },
