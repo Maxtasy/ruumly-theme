@@ -16,7 +16,7 @@
 
 {% schema %}
 {
-  "name": "A Plus",
+  "name": "t:sections.a_plus.name",
   "settings": [
     {
       "type": "header",
@@ -36,7 +36,50 @@
   ],
   "presets": [
     {
-      "name": "A Plus"
+      "name": "t:sections.a_plus.presets.name",
+      "blocks": [
+        {
+          "type": "a-plus-block",
+          "blocks": [
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "Heading",
+                "variant": "heading-medium"
+              }
+            },
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta voluptas sed explicabo enim voluptatibus aliquid magnam soluta vel sequi.",
+                "variant": "body-medium"
+              }
+            }
+          ]
+        },
+        {
+          "type": "a-plus-block",
+          "settings": {
+            "image_position_desktop": "right"
+          },
+          "blocks": [
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "Heading",
+                "variant": "heading-medium"
+              }
+            },
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta voluptas sed explicabo enim voluptatibus aliquid magnam soluta vel sequi.",
+                "variant": "body-medium"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }

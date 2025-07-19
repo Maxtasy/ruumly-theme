@@ -1,9 +1,10 @@
 <div
   class="
     APlusBlock
-    {% if block.settings.image_position == "right" %}
-      APlusBlock--ImageRight
+    {% if block.settings.image_position_desktop == "right" %}
+      APlusBlock--ImagePositionDesktopRight
     {% endif %}
+    APlusBlock--ImagePositionMobile{{ block.settings.image_position_mobile | camelcase }}
   "
 >
   <div class="APlusBlock__Images">
@@ -31,8 +32,42 @@
     width: 40%;
   }
 
-  .APlusBlock--ImageRight .APlusBlock__Images {
-    order: 1;
+  @media screen and (max-width: 768px) {
+    .APlusBlock {
+      flex-direction: column;
+    }
+
+    .APlusBlock--ImagePositionMobileBottom .APlusBlock__Images {
+      order: 1;
+    }
+
+    .APlusBlock__Images {
+      width: 100%;
+    }
+
+    .APlusBlock--ImagePositionMobileBottom .APlusBlock__SecondaryImage {
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .APlusBlock--ImagePositionMobileTop .APlusBlock__SecondaryImage {
+      top: unset;
+      bottom: 0;
+      left: 50%;
+      transform: translate(-50%, 50%);
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .APlusBlock--ImagePositionDesktopRight .APlusBlock__Images {
+      order: 1;
+    }
+
+    .APlusBlock--ImagePositionDesktopRight .APlusBlock__SecondaryImage {
+      left: 0;
+      transform: translate(-50%, -50%);
+    }
   }
 
   .APlusBlock__SecondaryImage {
@@ -46,11 +81,6 @@
     overflow: hidden;
   }
 
-  .APlusBlock--ImageRight .APlusBlock__SecondaryImage {
-    left: 0;
-    transform: translate(-50%, -50%);
-  }
-
   .APlusBlock__Text {
     flex-grow: 1;
     display: flex;
@@ -61,22 +91,32 @@
 
 {% schema %}
 {
-  "name": "A Plus Block",
+  "name": "t:theme_blocks.a_plus_block.name",
   "settings": [
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image"
+      "label": "t:global.settings.image.label"
     },
     {
       "type": "image_picker",
       "id": "secondary_image",
-      "label": "Secondary Image"
+      "label": "t:global.settings.secondary_image.label"
     },
     {
       "type": "select",
-      "id": "image_position",
-      "label": "Image Position",
+      "id": "image_position_mobile",
+      "label": "t:global.settings.image_position_mobile.label",
+      "default": "top",
+      "options": [
+        { "value": "top", "label": "t:global.settings.position.options.top.label" },
+        { "value": "bottom", "label": "t:global.settings.position.options.bottom.label" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "image_position_desktop",
+      "label": "t:global.settings.image_position_desktop.label",
       "default": "left",
       "options": [
         { "value": "left", "label": "t:global.settings.position.options.left.label" },
@@ -91,7 +131,23 @@
   ],
   "presets": [
     {
-      "name": "A Plus Block"
+      "name": "t:theme_blocks.a_plus_block.presets.a_plus_block.name",
+      "blocks": [
+        {
+          "type": "text-block",
+          "settings": {
+            "text": "Heading",
+            "variant": "heading-medium"
+          }
+        },
+        {
+          "type": "text-block",
+          "settings": {
+            "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta voluptas sed explicabo enim voluptatibus aliquid magnam soluta vel sequi.",
+            "variant": "body-medium"
+          }
+        }
+      ]
     }
   ]
 }
