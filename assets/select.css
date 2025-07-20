@@ -3,4 +3,5 @@
   border: var(--border-width) var(--border-style) var(--border-color);
   color: var(--text-color-primary);
   background-color: var(--color-surface);
+  cursor: pointer;
 }
