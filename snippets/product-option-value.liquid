@@ -40,13 +40,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(--product-option-value-background-color);
+    background-color: var(--t-background-light);
+    box-shadow: var(--box-shadow);
     cursor: pointer;
   }
 
   .ProductOptionValue:has(input:checked) {
-    outline: var(--product-option-value-border-width-selected) var(--border-style)
-      var(--product-option-value-border-color-selected);
+    outline: var(--border-width) var(--border-style) var(--t-border);
     outline-offset: 2px;
   }
 

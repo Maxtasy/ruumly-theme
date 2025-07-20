@@ -3,3 +3,7 @@
   flex-direction: column;
   gap: var(--size-xs);
 }
+
+.BadgeList--AlignRight {
+  align-items: flex-end;
+}

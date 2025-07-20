@@ -57,18 +57,18 @@
     align-items: center;
     justify-content: center;
     padding: var(--padding-block) var(--padding-inline);
-    color: var(--text-color);
-    background-color: var(--background-color);
-    border: var(--border-width) var(--border-style) var(--border-color);
+    color: var(--button-text-color);
+    background-color: var(--button-background-color);
+    border: var(--border-width) var(--border-style) var(--button-border);
     border-radius: var(--button-border-radius);
     user-select: none;
     transition: var(--transition-duration) var(--transition-timing);
   }
 
   .Button:hover {
-    background-color: var(--background-color-hover);
-    color: var(--text-color-hover);
-    border-color: var(--border-color-hover);
+    background-color: var(--button-background-hover-color);
+    color: var(--button-text-hover-color);
+    border-color: var(--button-border-hover);
   }
 
   .Button--Primary,
@@ -83,45 +83,41 @@
   }
 
   .Button--Primary {
-    --background-color: var(--primary-button-background);
-    --background-color-hover: var(--primary-button-background-hover);
-    --text-color: var(--primary-button-text);
-    --text-color-hover: var(--primary-button-text-hover);
-    --border-color: var(--primary-button-border);
-    --border-color-hover: var(--primary-button-border-hover);
+    --button-background-color: var(--t-primary);
+    --button-background-hover-color: var(--t-primary-hover);
+    --button-text-color: var(--t-background-dark);
+    --button-text-hover-color: var(--t-background-dark);
+    --button-border: var(--t-primary);
+    --button-border-hover: var(--t-primary-hover);
   }
 
   .Button--Secondary {
-    --background-color: var(--secondary-button-background);
-    --background-color-hover: var(--secondary-button-background-hover);
-    --text-color: var(--secondary-button-text);
-    --text-color-hover: var(--secondary-button-text-hover);
-    --border-color: var(--secondary-button-border);
-    --border-color-hover: var(--secondary-button-border-hover);
+    --button-background-color: var(--t-background-light);
+    --button-background-hover-color: var(--t-background-light-hover);
+    --button-text-color: var(--t-text);
+    --button-text-hover-color: var(--t-text);
+    --button-border: var(--t-text);
+    --button-border-hover: var(--t-text);
   }
 
   .Button--Icon {
-    --padding-block: var(--size-xs);
-    --padding-inline: var(--size-xs);
+    --padding-block: var(--size-s);
+    --padding-inline: var(--size-s);
     box-shadow: var(--box-shadow);
   }
 
   .Button--Plain {
     --padding-block: var(--size-xs);
     --padding-inline: var(--size-xs);
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --background-color: transparent;
-    --background-color-hover: transparent;
+    --button-border: transparent;
+    --button-border-hover: transparent;
+    --button-background-color: transparent;
+    --button-background-hover-color: transparent;
   }
 
   .Button--Link {
     --padding-block: 0;
     --padding-inline: 0;
-    --border-color: transparent;
-    --border-color-hover: transparent;
-    --background-color: transparent;
-    --background-color-hover: transparent;
   }
 
   .Button--SizeSmall {
@@ -141,5 +137,6 @@
 
   .Button[disabled] {
     opacity: 0.25;
+    cursor: default;
   }
 {% endstylesheet %}

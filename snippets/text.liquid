@@ -4,7 +4,7 @@
   @param {string} [as] - The HTML tag to use. Defaults to `p`.
   @param {string} text - The rendered text.
   @param {string} [variant] - Text variant. Defaults to `body-medium` ('heading-large', 'heading-medium', 'heading-small', 'body-large', 'body-medium', 'body-small')
-  @param {string} [color] - Text color. Defaults to 'primary' ('inherit', 'primary', 'sale', 'destructive', 'success', 'warning')
+  @param {string} [color] - Text color. Defaults to 'primary' ('inherit', 'primary', 'primary-muted', 'sale', 'destructive', 'success', 'warning')
 {% enddoc %}
 
 {% assign as = as | default: 'p' %}
@@ -27,23 +27,27 @@
   }
 
   .Text--ColorPrimary {
-    color: var(--text-color-primary);
+    color: var(--t-text);
+  }
+
+  .Text--ColorPrimaryMuted {
+    color: var(--t-text-muted);
   }
 
   .Text--ColorSale {
-    color: var(--text-color-sale);
+    color: var(--t-text-sale);
   }
 
   .Text--ColorDestructive {
-    color: var(--text-color-destructive);
+    color: var(--t-danger);
   }
 
   .Text--ColorSuccess {
-    color: var(--text-color-success);
+    color: var(--t-success);
   }
 
   .Text--ColorWarning {
-    color: var(--text-color-warning);
+    color: var(--t-warning);
   }
 
   .Text--BodySmall {
