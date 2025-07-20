@@ -117,6 +117,9 @@
   --section-padding-block: var(--size-m);
   --section-padding-inline: var(--size-m);
 
+  /* Select */
+  --select-background-color: var(--color-surface);
+
   /* Text */
   --text-color-primary: var(--color-text);
   --text-color-sale: var(--color-sale-text);
