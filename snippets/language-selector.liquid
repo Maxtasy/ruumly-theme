@@ -1,0 +1,20 @@
+{% if localization.available_languages.size > 1 %}
+  <div is="language-selector-component" class="LanguageSelector">
+    {% form 'localization' %}
+      <select class="Select" name="language">
+        {% for language in localization.available_languages %}
+          <option
+            value="{{ language.iso_code }}"
+            {% if language.iso_code == localization.language.iso_code %}
+              selected
+            {% endif %}
+          >
+            {{ language.endonym_name }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <input type="hidden" name="language_code" value="{{ localization.language.iso_code }}">
+    {% endform %}
+  </div>
+{% endif %}

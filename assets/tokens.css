@@ -83,6 +83,9 @@
   --section-padding-block: var(--size-m);
   --section-padding-inline: var(--size-m);
 
+  /* Select */
+  --select-background-color: var(--color-surface);
+
   /* Text */
   --text-font-family: var(--font-family-body);
   --heading-font-family: var(--font-family-heading);
