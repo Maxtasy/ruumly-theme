@@ -482,6 +482,9 @@
     "icon_block": {
       "name": "Icon Block",
       "presets": {
+        "icon_block": {
+          "name": "Icon Block"
+        },
         "heart": {
           "name": "Heart"
         },
@@ -494,34 +497,13 @@
       "name": "Icon with Text Block",
       "presets": {
         "icon_with_text": {
-          "name": "Icon with Text",
-          "blocks": {
-            "text_block": {
-              "settings": {
-                "text": "This is the Text Block"
-              }
-            }
-          }
+          "name": "Icon with Text"
         },
         "info_icon_with_text": {
-          "name": "Info Icon with Text",
-          "blocks": {
-            "text_block": {
-              "settings": {
-                "text": "Some Info Text"
-              }
-            }
-          }
+          "name": "Info Icon with Text"
         },
         "sale_icon_with_text": {
-          "name": "Sale Icon with Text",
-          "blocks": {
-            "text_block": {
-              "settings": {
-                "text": "Save big on our latest drop"
-              }
-            }
-          }
+          "name": "Sale Icon with Text"
         }
       }
     },
