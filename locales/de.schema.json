@@ -59,11 +59,20 @@
           }
         }
       },
-      "image_mobile": {
-        "label": "Bild Mobile"
+      "image": {
+        "label": "Bild"
       },
       "image_desktop": {
         "label": "Bild Desktop"
+      },
+      "image_mobile": {
+        "label": "Bild Mobile"
+      },
+      "image_position_desktop": {
+        "label": "Bild Position Desktop"
+      },
+      "image_position_mobile": {
+        "label": "Bild Position Mobile"
       },
       "layout": {
         "label": "Ausrichtung",
@@ -78,16 +87,25 @@
       },
       "position": {
         "options": {
-          "left": {
-            "label": "Links"
+          "bottom": {
+            "label": "Unten"
           },
           "center": {
             "label": "Mitte"
           },
+          "left": {
+            "label": "Links"
+          },
           "right": {
             "label": "Rechts"
+          },
+          "top": {
+            "label": "Oben"
           }
         }
+      },
+      "secondary_image": {
+        "label": "Zweites Bild"
       },
       "tag": {
         "label": "Tag"
@@ -292,6 +310,12 @@
         }
       }
     },
+    "a_plus": {
+      "name": "A Plus",
+      "presets": {
+        "name": "A Plus"
+      }
+    },
     "announcement_bar": {
       "name": "Ankündigungsleiste",
       "presets": {
@@ -431,6 +455,14 @@
         }
       }
     },
+    "a_plus_block": {
+      "name": "A Plus Block",
+      "presets": {
+        "a_plus_block": {
+          "name": "A Plus Block"
+        }
+      }
+    },
     "button_block": {
       "name": "Button Block",
       "presets": {
@@ -497,10 +529,7 @@
       "name": "Text Block",
       "presets": {
         "text_block": {
-          "name": "Text Block",
-          "settings": {
-            "text": "Das ist ein Text Block."
-          }
+          "name": "Text Block"
         }
       }
     },

@@ -1,0 +1,86 @@
+<section class="Section ColorScheme--{{ section.settings.color_scheme.id | camelcase }}">
+  <div class="Section__Inner">
+    <div class="APlus">
+      {% content_for 'blocks' %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .APlus {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.a_plus.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "a-plus-block"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.a_plus.presets.name",
+      "blocks": [
+        {
+          "type": "a-plus-block",
+          "blocks": [
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "Heading",
+                "variant": "heading-medium"
+              }
+            },
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta voluptas sed explicabo enim voluptatibus aliquid magnam soluta vel sequi.",
+                "variant": "body-medium"
+              }
+            }
+          ]
+        },
+        {
+          "type": "a-plus-block",
+          "settings": {
+            "image_position_desktop": "right"
+          },
+          "blocks": [
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "Heading",
+                "variant": "heading-medium"
+              }
+            },
+            {
+              "type": "text-block",
+              "settings": {
+                "text": "Lorem ipsum dolor sit amet consectetur adipisicing elit. In dicta voluptas sed explicabo enim voluptatibus aliquid magnam soluta vel sequi.",
+                "variant": "body-medium"
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
