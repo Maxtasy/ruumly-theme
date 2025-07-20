@@ -17,29 +17,41 @@
     {% endif %}
 
     .ColorScheme--{{ scheme.id | camelcase }} {
-      --color-surface: rgba({{ scheme.settings.surface.red }},{{ scheme.settings.surface.green }},{{ scheme.settings.surface.blue }});
-      --color-surface-secondary: rgba({{ scheme.settings.surface_secondary.red }},{{ scheme.settings.surface_secondary.green }},{{ scheme.settings.surface_secondary.blue }});
+      --t-background-dark: rgba({{ scheme.settings.background_dark.red }},{{ scheme.settings.background_dark.green }},{{ scheme.settings.background_dark.blue }});
+      --t-background: rgba({{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }});
 
-      --color-text: rgba({{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }});
+      --t-background-light: rgba({{ scheme.settings.background_light.red }},{{ scheme.settings.background_light.green }},{{ scheme.settings.background_light.blue }});
 
-      --color-link: rgba({{ scheme.settings.link.red }},{{ scheme.settings.link.green }},{{ scheme.settings.link.blue }});
-      --color-link-hover: rgba({{ scheme.settings.link_hover.red }},{{ scheme.settings.link_hover.green }},{{ scheme.settings.link_hover.blue }});
+      {% assign background_light_hover = scheme.settings.background_light | color_darken: 10 %}
+      --t-background-light-hover: rgba({{ background_light_hover.red }},{{ background_light_hover.green }},{{ background_light_hover.blue }});
 
-      --primary-button-background: rgba({{ scheme.settings.primary_button_background.red }},{{ scheme.settings.primary_button_background.green }},{{ scheme.settings.primary_button_background.blue }});
-      --primary-button-background-hover: rgba({{ scheme.settings.primary_button_background_hover.red }},{{ scheme.settings.primary_button_background_hover.green }},{{ scheme.settings.primary_button_background_hover.blue }});
-      --primary-button-text: rgba({{ scheme.settings.primary_button_text.red }},{{ scheme.settings.primary_button_text.green }},{{ scheme.settings.primary_button_text.blue }});
-      --primary-button-text-hover: rgba({{ scheme.settings.primary_button_text_hover.red }},{{ scheme.settings.primary_button_text_hover.green }},{{ scheme.settings.primary_button_text_hover.blue }});
-      --primary-button-border: rgba({{ scheme.settings.primary_button_border.red }},{{ scheme.settings.primary_button_border.green }},{{ scheme.settings.primary_button_border.blue }});
-      --primary-button-border-hover: rgba({{ scheme.settings.primary_button_border_hover.red }},{{ scheme.settings.primary_button_border_hover.green }},{{ scheme.settings.primary_button_border_hover.blue }});
+      {% assign background_light_opaque = scheme.settings.background_light | color_modify: 'alpha', 0.66 %}
+      --t-background-light-opaque: rgba({{ background_light_opaque.red }},{{ background_light_opaque.green }},{{ background_light_opaque.blue }}, {{ background_light_opaque.alpha }});
 
-      --secondary-button-background: rgba({{ scheme.settings.secondary_button_background.red }},{{ scheme.settings.secondary_button_background.green }},{{ scheme.settings.secondary_button_background.blue }});
-      --secondary-button-background-hover: rgba({{ scheme.settings.secondary_button_background_hover.red }},{{ scheme.settings.secondary_button_background_hover.green }},{{ scheme.settings.secondary_button_background_hover.blue }});
-      --secondary-button-text: rgba({{ scheme.settings.secondary_button_text.red }},{{ scheme.settings.secondary_button_text.green }},{{ scheme.settings.secondary_button_text.blue }});
-      --secondary-button-text-hover: rgba({{ scheme.settings.secondary_button_text_hover.red }},{{ scheme.settings.secondary_button_text_hover.green }},{{ scheme.settings.secondary_button_text_hover.blue }});
-      --secondary-button-border: rgba({{ scheme.settings.secondary_button_border.red }},{{ scheme.settings.secondary_button_border.green }},{{ scheme.settings.secondary_button_border.blue }});
-      --secondary-button-border-hover: rgba({{ scheme.settings.secondary_button_border_hover.red }},{{ scheme.settings.secondary_button_border_hover.green }},{{ scheme.settings.secondary_button_border_hover.blue }});
+      --t-text: rgba({{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }});
+      --t-text-muted: rgba({{ scheme.settings.text_muted.red }},{{ scheme.settings.text_muted.green }},{{ scheme.settings.text_muted.blue }});
 
-      --color-border: rgba({{ scheme.settings.border.red }},{{ scheme.settings.border.green }},{{ scheme.settings.border.blue }});
+      --t-highlight: rgba({{ scheme.settings.highlight.red }},{{ scheme.settings.highlight.green }},{{ scheme.settings.highlight.blue }});
+      --t-border: rgba({{ scheme.settings.border.red }},{{ scheme.settings.border.green }},{{ scheme.settings.border.blue }});
+      --t-border-muted: rgba({{ scheme.settings.border_muted.red }},{{ scheme.settings.border_muted.green }},{{ scheme.settings.border_muted.blue }});
+
+      --t-primary: rgba({{ scheme.settings.primary.red }},{{ scheme.settings.primary.green }},{{ scheme.settings.primary.blue }});
+
+      {% assign primary_hover = scheme.settings.primary | color_darken: 10 %}
+      --t-primary-hover: rgba({{ primary_hover.red }},{{ primary_hover.green }},{{ primary_hover.blue }});
+
+      --t-secondary: rgba({{ scheme.settings.secondary.red }},{{ scheme.settings.secondary.green }},{{ scheme.settings.secondary.blue }});
+
+      {% assign secondary_hover = scheme.settings.secondary | color_darken: 10 %}
+      --t-secondary-hover: rgba({{ secondary_hover.red }},{{ secondary_hover.green }},{{ secondary_hover.blue }});
+
+      --t-backdrop-background-color: rgba(0, 0, 0, 0.5);
+
+      --t-text-sale: rgb(177, 0, 0);
+      --t-danger: rgba({{ scheme.settings.danger.red }},{{ scheme.settings.danger.green }},{{ scheme.settings.danger.blue }});
+      --t-warning: rgba({{ scheme.settings.warning.red }},{{ scheme.settings.warning.green }},{{ scheme.settings.warning.blue }});
+      --t-success: rgba({{ scheme.settings.success.red }},{{ scheme.settings.success.green }},{{ scheme.settings.success.blue }});
+      --t-info: rgba({{ scheme.settings.info.red }},{{ scheme.settings.info.green }},{{ scheme.settings.info.blue }});
     }
   {% endfor %}
 

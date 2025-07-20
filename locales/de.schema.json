@@ -482,6 +482,9 @@
     "icon_block": {
       "name": "Icon Block",
       "presets": {
+        "icon_block": {
+          "name": "Icon Block"
+        },
         "heart": {
           "name": "Herz"
         },
@@ -494,34 +497,13 @@
       "name": "Icon mit Text Block",
       "presets": {
         "icon_with_text": {
-          "name": "Icon mit Text",
-          "blocks": {
-            "text_block": {
-              "settings": {
-                "text": "Das ist der Text Block"
-              }
-            }
-          }
+          "name": "Icon mit Text"
         },
         "info_icon_with_text": {
-          "name": "Info Icon mit Text",
-          "blocks": {
-            "text_block": {
-              "settings": {
-                "text": "Ein Info Text"
-              }
-            }
-          }
+          "name": "Info Icon mit Text"
         },
         "sale_icon_with_text": {
-          "name": "Sale Icon mit Text",
-          "blocks": {
-            "text_block": {
-              "settings": {
-                "text": "Sparen Sie bei unserem neuesten Angebot"
-              }
-            }
-          }
+          "name": "Sale Icon mit Text"
         }
       }
     },
