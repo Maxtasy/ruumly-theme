@@ -80,7 +80,9 @@
   --product-option-value-border-width-selected: 2px;
 
   /* Section */
-  --section-padding-block: var(--size-m);
+  --section-padding-block-s: 1rem;
+  --section-padding-block-m: 2rem;
+  --section-padding-block-l: 4rem;
   --section-padding-inline: var(--size-m);
 
   /* Select */

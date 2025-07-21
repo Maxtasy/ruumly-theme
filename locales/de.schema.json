@@ -297,6 +297,23 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
+        "padding_block": {
+          "label": "Padding Block",
+          "options": {
+            "none": {
+              "label": "Ohne"
+            },
+            "small": {
+              "label": "Klein"
+            },
+            "medium": {
+              "label": "Mittel"
+            },
+            "large": {
+              "label": "Groß"
+            }
+          }
+        },
         "product_limit": {
           "label": "Maximale Anzahl an Produktkarten",
           "info": "Ignorieren wenn 0"
