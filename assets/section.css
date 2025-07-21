@@ -1,5 +1,5 @@
 .Section {
-  padding: var(--section-padding-block) var(--section-padding-inline);
+  padding-inline: var(--section-padding-inline);
   background-color: var(--t-background);
   color: var(--t-text);
 }
@@ -9,8 +9,19 @@
 }
 
 .Section--PaddingBlockNone {
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-block: 0;
+}
+
+.Section--PaddingBlockSmall {
+  padding-block: var(--section-padding-block-s);
+}
+
+.Section--PaddingBlockMedium {
+  padding-block: var(--section-padding-block-m);
+}
+
+.Section--PaddingBlockLarge {
+  padding-block: var(--section-padding-block-l);
 }
 
 .Section__Inner {
@@ -19,8 +30,7 @@
 }
 
 .Section--FullWidth {
-  padding-left: 0;
-  padding-right: 0;
+  padding-inline: 0;
 }
 
 .Section--FullWidth .Section__Inner {

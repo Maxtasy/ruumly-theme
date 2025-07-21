@@ -297,6 +297,23 @@
           "label": "Heading",
           "default": "Heading"
         },
+        "padding_block": {
+          "label": "Padding Block",
+          "options": {
+            "none": {
+              "label": "None"
+            },
+            "small": {
+              "label": "Small"
+            },
+            "medium": {
+              "label": "Medium"
+            },
+            "large": {
+              "label": "Large"
+            }
+          }
+        },
         "product_limit": {
           "label": "Maximum Product Cards",
           "info": "Ignore when 0"
