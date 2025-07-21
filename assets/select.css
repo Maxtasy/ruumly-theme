@@ -1,7 +1,7 @@
 .Select {
   padding: var(--size-xs) var(--size-s);
-  border: var(--border-width) var(--border-style) var(--border-color);
-  color: var(--text-color-primary);
-  background-color: var(--color-surface);
+  border: var(--border-width) var(--border-style) var(--t-border);
+  color: var(--t-text);
+  background-color: var(--t-background);
   cursor: pointer;
 }
