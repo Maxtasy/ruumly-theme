@@ -30,9 +30,7 @@
         {% endif %}
 
         {% if section.settings.show_account_icon and section.settings.account_icon_position == 'left' %}
-          <button>
-            {% render 'icon', icon: 'user-round' %}
-          </button>
+          {% render 'button', icon: 'user-round', url: routes.account_url, variant: 'plain', size: 'small' %}
         {% endif %}
 
         {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'left' %}
@@ -60,9 +58,7 @@
         {% endif %}
 
         {% if section.settings.show_account_icon and section.settings.account_icon_position == 'right' %}
-          <button>
-            {% render 'icon', icon: 'user-round' %}
-          </button>
+          {% render 'button', icon: 'user-round', url: routes.account_url, variant: 'plain', size: 'small' %}
         {% endif %}
 
         {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'right' %}
