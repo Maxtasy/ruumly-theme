@@ -145,6 +145,26 @@
     "global": {
       "settings": {}
     },
+    "brand_information": {
+      "name": "Brand information",
+      "settings": {
+        "paragraph": {
+          "content": "Displays in the footer's brand information block"
+        },
+        "brand_headline": {
+          "label": "Headline"
+        },
+        "brand_description": {
+          "label": "Description"
+        },
+        "brand_image": {
+          "label": "Image"
+        },
+        "brand_image_width": {
+          "label": "Image width"
+        }
+      }
+    },
     "colors": {
       "name": "Colors",
       "settings": {
@@ -220,23 +240,22 @@
         }
       }
     },
-    "brand_information": {
-      "name": "Brand information",
+    "product_card": {
+      "name": "Product Card",
       "settings": {
-        "paragraph": {
-          "content": "Displays in the footer's brand information block"
-        },
-        "brand_headline": {
-          "label": "Headline"
-        },
-        "brand_description": {
-          "label": "Description"
-        },
-        "brand_image": {
-          "label": "Image"
-        },
-        "brand_image_width": {
-          "label": "Image width"
+        "hover_effect": {
+          "label": "Hover Effect",
+          "options": {
+            "none": {
+              "label": "None"
+            },
+            "swap": {
+              "label": "Swap"
+            },
+            "zoom": {
+              "label": "Zoom"
+            }
+          }
         }
       }
     },

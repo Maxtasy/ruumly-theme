@@ -97,6 +97,7 @@
   --border-width: 1px;
   --border-style: solid;
 
-  --transition-duration: 0.3s;
+  --transition-duration-short: 0.15s;
+  --transition-duration-medium: 0.3s;
   --transition-timing: ease-in-out;
 }

@@ -3,17 +3,30 @@
 
   @param {string} title - Product title
   @param {object} image - The image object containing the source and alt text.
+  @param {object} [swap_image] - The image to swap to when hover effect set to swap.
   @param {string} [badge] - Optional Badge to render on the product card.
   @param {number} [compare_at_price] - Product compare at price in cents.
   @param {number} price - Product price in cents.
   @param {string} url - URL of the Product.
   @param {number} [rating] - Product rating.
+  @param {string} [hover_effect] - The hover effect for the image. ('none', 'swap', 'zoom')
 {% enddoc %}
 
-<article class="ProductCard">
+{% assign hover_effect = hover_effect | default: settings.product_card_hover_effect %}
+
+<article
+  class="
+    ProductCard
+    ProductCard--Hover{{ hover_effect | camelcase }}
+  "
+>
   <a href="{{ url }}">
     <div class="ProductCard__Image">
       {% render 'image', image: image, variant: 'square' %}
+
+      {% if hover_effect == 'swap' and swap_image %}
+        {% render 'image', image: swap_image, variant: 'square' %}
+      {% endif %}
 
       <div class="ProductCard__Badges">
         <ul class="u-NoList BadgeList BadgeList--AlignRight">
@@ -66,13 +79,35 @@
     overflow: hidden;
   }
 
-  .ProductCard__Image img {
+  .ProductCard--HoverZoom .ProductCard__Image .Image {
     transform: scale(0.8);
-    transition: var(--transition-duration) var(--transition-timing);
+    transition: var(--transition-duration-medium) var(--transition-timing);
   }
 
-  .ProductCard__Image:hover img {
+  .ProductCard--HoverZoom .ProductCard__Image:hover .Image {
     transform: scale(1);
+  }
+
+  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image {
+    transition: transform var(--transition-duration-short) var(--transition-timing);
+  }
+
+  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:first-of-type {
+    transform: translateX(0);
+  }
+
+  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:first-of-type {
+    transform: translateX(-100%);
+  }
+
+  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:nth-of-type(2) {
+    position: absolute;
+    inset: 0;
+    transform: translateX(100%);
+  }
+
+  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
+    transform: translateX(0);
   }
 
   .ProductCard__Badges {
