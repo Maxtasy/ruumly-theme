@@ -4,7 +4,7 @@ body {
 
 .RichText a {
   color: var(--link-color);
-  transition: color var(--transition-duration) var(--transition-timing);
+  transition: color var(--transition-duration-medium) var(--transition-timing);
   font-family: var(--font-body-family);
   font-weight: var(--font-weight-bold);
 }
