@@ -1,0 +1,59 @@
+<section
+  class="
+    Section
+    Section--PaddingBlockSmall
+  "
+>
+  <div class="Section__Inner">
+    <div class="Footer">
+      <div class="Footer__Content">
+        {% for link in section.settings.link_list.links %}
+          {% if link.links.size > 0 %}
+            {% render 'link-group', heading: link.title, links: link.links %}
+          {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .Footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--size-m);
+  }
+
+  .Footer__Content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  @media screen and (min-width: 769px) {
+    .Footer {
+      align-items: flex-start;
+    }
+
+    .Footer__Content {
+      flex-direction: row;
+      gap: var(--size-xl);
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Footer",
+  "tag": "footer",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "link_list",
+      "label": "Link List",
+      "default": "footer"
+    }
+  ]
+}
+{% endschema %}
