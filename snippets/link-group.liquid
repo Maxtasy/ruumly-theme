@@ -1,0 +1,34 @@
+{% doc %}
+  Renders a Link Group component.
+
+  @param {string} [heading] - The heading for the link group.
+  @param {object} links - An array of link objects.
+{% enddoc %}
+
+<div class="LinkGroup">
+  {% if heading %}
+    {% render 'text', text: heading, as: 'strong' %}
+  {% endif %}
+
+  <ul class="LinkGroup__Items u-NoList">
+    {% for link in links %}
+      <li>
+        {% render 'link', text: link.title, url: link.url %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+{% stylesheet %}
+  .LinkGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .LinkGroup__Items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
