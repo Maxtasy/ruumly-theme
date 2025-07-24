@@ -163,5 +163,30 @@
         "label": "t:settings_schema.typography.settings.type_body_font.label"
       }
     ]
+  },
+  {
+    "name": "t:settings_schema.product_card.name",
+    "settings": [
+      {
+        "type": "select",
+        "id": "product_card_hover_effect",
+        "label": "t:settings_schema.product_card.settings.hover_effect.label",
+        "default": "none",
+        "options": [
+          {
+            "value": "none",
+            "label": "t:settings_schema.product_card.settings.hover_effect.options.none.label"
+          },
+          {
+            "value": "swap",
+            "label": "t:settings_schema.product_card.settings.hover_effect.options.swap.label"
+          },
+          {
+            "value": "zoom",
+            "label": "t:settings_schema.product_card.settings.hover_effect.options.zoom.label"
+          }
+        ]
+      }
+    ]
   }
 ]

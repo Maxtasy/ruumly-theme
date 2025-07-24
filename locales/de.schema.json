@@ -145,6 +145,26 @@
     "global": {
       "settings": {}
     },
+    "brand_information": {
+      "name": "Marken Informationen",
+      "settings": {
+        "paragraph": {
+          "content": "Wird im Markeninformationsblock in der Fußzeile angezeigt"
+        },
+        "brand_headline": {
+          "label": "Kopfzeile"
+        },
+        "brand_description": {
+          "label": "Beschreibung"
+        },
+        "brand_image": {
+          "label": "Bild"
+        },
+        "brand_image_width": {
+          "label": "Bildbreite"
+        }
+      }
+    },
     "colors": {
       "name": "Farben",
       "settings": {
@@ -220,23 +240,22 @@
         }
       }
     },
-    "brand_information": {
-      "name": "Marken Informationen",
+    "product_card": {
+      "name": "Produktkarte",
       "settings": {
-        "paragraph": {
-          "content": "Wird im Markeninformationsblock in der Fußzeile angezeigt"
-        },
-        "brand_headline": {
-          "label": "Kopfzeile"
-        },
-        "brand_description": {
-          "label": "Beschreibung"
-        },
-        "brand_image": {
-          "label": "Bild"
-        },
-        "brand_image_width": {
-          "label": "Bildbreite"
+        "hover_effect": {
+          "label": "Hovereffekt",
+          "options": {
+            "none": {
+              "label": "Ohne"
+            },
+            "swap": {
+              "label": "Bildtausch"
+            },
+            "zoom": {
+              "label": "Vergrößern"
+            }
+          }
         }
       }
     },
