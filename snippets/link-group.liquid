@@ -1,0 +1,21 @@
+{% doc %}
+  Renders a Link Group component.
+
+  @param {string} [heading] - The heading for the link group.
+  @param {array} links - An array of links objects with 'text' and 'url' properties.
+{% enddoc %}
+
+{% if heading %}
+  {% render 'text', text: heading, variant: 'body-large', as: 'strong' %}
+{% endif %}
+
+<ul class="LinkList u-NoList">
+  {% for link in links %}
+    <li>
+      {% render 'link', text: link.text, url: link.url %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% stylesheet %}
+{% endstylesheet %}
