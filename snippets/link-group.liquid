@@ -2,20 +2,33 @@
   Renders a Link Group component.
 
   @param {string} [heading] - The heading for the link group.
-  @param {array} links - An array of links objects with 'text' and 'url' properties.
+  @param {object} links - An array of link objects with 'text' and 'url' properties.
 {% enddoc %}
 
-{% if heading %}
-  {% render 'text', text: heading, variant: 'body-large', as: 'strong' %}
-{% endif %}
+<div class="LinkGroup">
+  {% if heading %}
+    {% render 'text', text: heading, as: 'strong' %}
+  {% endif %}
 
-<ul class="LinkList u-NoList">
-  {% for link in links %}
-    <li>
-      {% render 'link', text: link.text, url: link.url %}
-    </li>
-  {% endfor %}
-</ul>
+  <ul class="LinkGroup__Items u-NoList">
+    {% for link in links %}
+      <li>
+        {% render 'link', text: link.title, url: link.url %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
 
 {% stylesheet %}
+  .LinkGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .LinkGroup__Items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
 {% endstylesheet %}
