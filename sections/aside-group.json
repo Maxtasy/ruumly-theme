@@ -2,9 +2,12 @@
   "type": "aside",
   "name": "Aside Group",
   "sections": {
+    "menu-drawer": {
+      "type": "menu-drawer"
+    },
     "cart-drawer": {
       "type": "cart-drawer"
     }
   },
-  "order": ["cart-drawer"]
+  "order": ["menu-drawer", "cart-drawer"]
 }
