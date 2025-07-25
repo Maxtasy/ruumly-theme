@@ -10,8 +10,6 @@
       DynamicCartIcon__Indicator
       {% if cart.item_count > 0 %}
         DynamicCartIcon__Indicator--Active
-        {% else %}
-         DynamicCartIcon__Indicator--Hidden
       {% endif %}
     "
   >
@@ -26,7 +24,7 @@
 
   .DynamicCartIcon__Indicator {
     position: absolute;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     top: 0;
@@ -39,7 +37,7 @@
     pointer-events: none;
   }
 
-  .DynamicCartIcon__Indicator--Hidden {
-    display: none;
+  .DynamicCartIcon__Indicator--Active {
+    display: flex;
   }
 {% endstylesheet %}
