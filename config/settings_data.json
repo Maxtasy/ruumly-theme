@@ -10,11 +10,13 @@
 {
   "current": {
     "logo": "shopify://shop_images/Ruumly_Logo_8c9ec203-239b-4095-8796-d9dcd8e1efb6.png",
-    "logo_width": 90,
     "favicon": "shopify://shop_images/Ruumly_Favicon.png",
     "type_header_font": "montserrat_n4",
     "type_body_font": "inter_n4",
+    "product_card_hover_effect": "swap",
+    "logo_width": 90,
     "page_width": 1200,
+    "content_for_index": [],
     "color_schemes": {
       "default": {
         "settings": {
@@ -56,8 +58,7 @@
           "info": "#71619b"
         }
       }
-    },
-    "product_card_hover_effect": "swap"
+    }
   },
   "presets": {
     "Default": {
