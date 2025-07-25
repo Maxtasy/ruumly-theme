@@ -166,62 +166,55 @@
       }
     },
     "colors": {
-      "name": "Farben",
+      "name": "Colors",
       "settings": {
-        "surface": {
-          "label": "Fläche"
+        "background_dark": {
+          "label": "Hintergrund Dunkel"
         },
-        "surface_gradient": {
-          "label": "Fläche Farbverlauf"
+        "background": {
+          "label": "Hintergrund"
+        },
+        "background_light": {
+          "label": "Hintergrund Hell"
+        },
+        "background_gradient_dark": {
+          "label": "Hintergrundverlauf Dunkel"
+        },
+        "background_gradient": {
+          "label": "Hintergrundverlauf"
         },
         "text": {
           "label": "Text"
         },
-        "link": {
-          "label": "Link"
+        "text_muted": {
+          "label": "Text Gedämpft"
         },
-        "link_hover": {
-          "label": "Link hover"
-        },
-        "primary_button_background": {
-          "label": "Primärer Button Hintergrund"
-        },
-        "primary_button_background_hover": {
-          "label": "Primärer Button Hintergrund hover"
-        },
-        "primary_button_text": {
-          "label": "Primärer Button Text"
-        },
-        "primary_button_text_hover": {
-          "label": "Primärer Button Text hover"
-        },
-        "primary_button_border": {
-          "label": "Primärer Button Umrandung"
-        },
-        "primary_button_border_hover": {
-          "label": "Primärer Button Umrandung hover"
-        },
-        "secondary_button_background": {
-          "label": "Sekundärer Button Hintergrund"
-        },
-        "secondary_button_background_hover": {
-          "label": "Sekundärer Button Hintergrund hover"
-        },
-        "secondary_button_text": {
-          "label": "Sekundärer Button Text"
-        },
-        "secondary_button_text_hover": {
-          "label": "Sekundärer Button Text hover"
-        },
-        "secondary_button_border": {
-          "label": "Sekundärer Button Umrandung"
-        },
-        "secondary_button_border_hover": {
-          "label": "Sekundärer Button Umrandung hover"
+        "highlight": {
+          "label": "Highlight"
         },
         "border": {
-          "label": "Umrandung",
-          "info": "Wird für Umrandungen benutzt"
+          "label": "Rand"
+        },
+        "border_muted": {
+          "label": "Rand Gedämpft"
+        },
+        "primary": {
+          "label": "Primär"
+        },
+        "secondary": {
+          "label": "Sekundär"
+        },
+        "danger": {
+          "label": "Gefahr"
+        },
+        "warning": {
+          "label": "Warnung"
+        },
+        "success": {
+          "label": "Erfolg"
+        },
+        "info": {
+          "label": "Info"
         }
       }
     },

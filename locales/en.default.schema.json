@@ -168,60 +168,53 @@
     "colors": {
       "name": "Colors",
       "settings": {
-        "surface": {
-          "label": "Surface"
+        "background_dark": {
+          "label": "Background Dark"
         },
-        "surface_gradient": {
-          "label": "Surface gradient"
+        "background": {
+          "label": "Background"
+        },
+        "background_light": {
+          "label": "Background Light"
+        },
+        "background_gradient_dark": {
+          "label": "Background Gradient Dark"
+        },
+        "background_gradient": {
+          "label": "Background Gradient"
         },
         "text": {
           "label": "Text"
         },
-        "link": {
-          "label": "Link"
+        "text_muted": {
+          "label": "Text Muted"
         },
-        "link_hover": {
-          "label": "Link hover"
-        },
-        "primary_button_background": {
-          "label": "Primary button background"
-        },
-        "primary_button_background_hover": {
-          "label": "Primary button background hover"
-        },
-        "primary_button_text": {
-          "label": "Primary button text"
-        },
-        "primary_button_text_hover": {
-          "label": "Primary button text hover"
-        },
-        "primary_button_border": {
-          "label": "Primary button border"
-        },
-        "primary_button_border_hover": {
-          "label": "Primary button border hover"
-        },
-        "secondary_button_background": {
-          "label": "Secondary button background"
-        },
-        "secondary_button_background_hover": {
-          "label": "Secondary button background hover"
-        },
-        "secondary_button_text": {
-          "label": "Secondary button text"
-        },
-        "secondary_button_text_hover": {
-          "label": "Secondary button text hover"
-        },
-        "secondary_button_border": {
-          "label": "Secondary button border"
-        },
-        "secondary_button_border_hover": {
-          "label": "Secondary button border hover"
+        "highlight": {
+          "label": "Highlight"
         },
         "border": {
-          "label": "Border",
-          "info": "Used for borders and outlines"
+          "label": "Border"
+        },
+        "border_muted": {
+          "label": "Border Muted"
+        },
+        "primary": {
+          "label": "Primary"
+        },
+        "secondary": {
+          "label": "Secondary"
+        },
+        "danger": {
+          "label": "Danger"
+        },
+        "warning": {
+          "label": "Warning"
+        },
+        "success": {
+          "label": "Success"
+        },
+        "info": {
+          "label": "Info"
         }
       }
     },

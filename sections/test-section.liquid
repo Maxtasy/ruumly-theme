@@ -1,12 +1,44 @@
-<section class="Section Section--PaddingBlockLarge">
+<section
+  class="
+    Section
+    Section--PaddingBlockLarge
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
   <div class="Section__Inner">
     {% render 'text', text: 'Test Section', as: 'h2', variant: 'heading-medium' %}
 
-    <div class="InlineStack">
-      {% render 'card' %}
+    <div class="TestSection">
       {% render 'card' %}
       {% render 'card' %}
       {% render 'card' %}
     </div>
   </div>
 </section>
+
+{% stylesheet %}
+  .TestSection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--size-m);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Test Section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "default"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Test Section"
+    }
+  ]
+}
+{% endschema %}

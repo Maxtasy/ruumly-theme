@@ -17,45 +17,45 @@
     {% endif %}
 
     .ColorScheme--{{ scheme.id | camelcase }} {
-      --t-background-dark: rgba({{ scheme.settings.background_dark.red }},{{ scheme.settings.background_dark.green }},{{ scheme.settings.background_dark.blue }});
-      --t-background: rgba({{ scheme.settings.background.red }},{{ scheme.settings.background.green }},{{ scheme.settings.background.blue }});
+      --t-background-dark: {{ scheme.settings.background_dark | color_to_oklch }};
+      --t-background: {{ scheme.settings.background | color_to_oklch }};
+      --t-background-light: {{ scheme.settings.background_light | color_to_oklch }};
 
-      --t-background-light: rgba({{ scheme.settings.background_light.red }},{{ scheme.settings.background_light.green }},{{ scheme.settings.background_light.blue }});
+      --t-background-light-hover: {{ scheme.settings.background_light | color_darken: 10 | color_to_oklch }};
+      --t-background-light-opaque: {{ scheme.settings.background_light | color_modify: 'alpha', 0.66 | color_to_oklch }};
 
-      {% assign background_light_hover = scheme.settings.background_light | color_darken: 10 %}
-      --t-background-light-hover: rgba({{ background_light_hover.red }},{{ background_light_hover.green }},{{ background_light_hover.blue }});
+      --t-gradient-background-dark: {{ scheme.settings.background_gradient_dark }};
+      --t-gradient-background: {{ scheme.settings.background_gradient }};
 
-      {% assign background_light_opaque = scheme.settings.background_light | color_modify: 'alpha', 0.66 %}
-      --t-background-light-opaque: rgba({{ background_light_opaque.red }},{{ background_light_opaque.green }},{{ background_light_opaque.blue }}, {{ background_light_opaque.alpha }});
+      --t-text: {{ scheme.settings.text | color_to_oklch }};
+      --t-text-muted: {{ scheme.settings.text_muted | color_to_oklch }};
 
-      --t-gradient-background: linear-gradient(0deg, var(--t-background) 66%, var(--t-background-light));
+      --t-highlight: {{ scheme.settings.highlight | color_to_oklch }};
+      --t-border: {{ scheme.settings.border | color_to_oklch }};
+      --t-border-muted: {{ scheme.settings.border_muted | color_to_oklch }};
 
-      --t-text: rgba({{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }});
-      --t-text-muted: rgba({{ scheme.settings.text_muted.red }},{{ scheme.settings.text_muted.green }},{{ scheme.settings.text_muted.blue }});
+      --t-primary: {{ scheme.settings.primary | color_to_oklch }};
 
-      --t-highlight: rgba({{ scheme.settings.highlight.red }},{{ scheme.settings.highlight.green }},{{ scheme.settings.highlight.blue }});
-      --t-border: rgba({{ scheme.settings.border.red }},{{ scheme.settings.border.green }},{{ scheme.settings.border.blue }});
-      --t-border-muted: rgba({{ scheme.settings.border_muted.red }},{{ scheme.settings.border_muted.green }},{{ scheme.settings.border_muted.blue }});
+      --t-primary-hover: {{ scheme.settings.primary | color_darken: 10 | color_to_oklch }};
 
-      --t-primary: rgba({{ scheme.settings.primary.red }},{{ scheme.settings.primary.green }},{{ scheme.settings.primary.blue }});
+      --t-secondary: {{ scheme.settings.secondary | color_to_oklch }};
 
-      {% assign primary_hover = scheme.settings.primary | color_darken: 10 %}
-      --t-primary-hover: rgba({{ primary_hover.red }},{{ primary_hover.green }},{{ primary_hover.blue }});
-
-      --t-secondary: rgba({{ scheme.settings.secondary.red }},{{ scheme.settings.secondary.green }},{{ scheme.settings.secondary.blue }});
-
-      {% assign secondary_hover = scheme.settings.secondary | color_darken: 10 %}
-      --t-secondary-hover: rgba({{ secondary_hover.red }},{{ secondary_hover.green }},{{ secondary_hover.blue }});
+      --t-secondary-hover: {{ scheme.settings.secondary | color_darken: 10 | color_to_oklch }};
 
       --t-backdrop-background-color: rgba(0, 0, 0, 0.5);
 
-      --t-text-sale: rgb(177, 0, 0);
-      --t-danger: rgba({{ scheme.settings.danger.red }},{{ scheme.settings.danger.green }},{{ scheme.settings.danger.blue }});
-      --t-warning: rgba({{ scheme.settings.warning.red }},{{ scheme.settings.warning.green }},{{ scheme.settings.warning.blue }});
-      --t-success: rgba({{ scheme.settings.success.red }},{{ scheme.settings.success.green }},{{ scheme.settings.success.blue }});
-      --t-info: rgba({{ scheme.settings.info.red }},{{ scheme.settings.info.green }},{{ scheme.settings.info.blue }});
+      --t-danger: {{ scheme.settings.danger | color_to_oklch }};
+      --t-warning: {{ scheme.settings.warning | color_to_oklch }};
+      --t-success: {{ scheme.settings.success | color_to_oklch }};
+      --t-info: {{ scheme.settings.info | color_to_oklch }};
 
-      --t-border-card: var(--t-background);
+      {% if scheme.id == 'secondary' %}
+        --t-border-card: var(--t-border);
+        --t-text-sale: var(--t-text);
+      {% else %}
+        --t-border-card: var(--t-background);
+        --t-text-sale: var(--t-background-dark);
+      {% endif %}
     }
   {% endfor %}
 
