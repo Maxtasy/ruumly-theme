@@ -316,6 +316,9 @@
           "label": "Heading",
           "default": "Heading"
         },
+        "link_list": {
+          "label": "Link List"
+        },
         "padding_block": {
           "label": "Padding Block",
           "options": {
@@ -360,6 +363,9 @@
           "category": "Header"
         }
       }
+    },
+    "footer": {
+      "name": "Footer"
     },
     "hero": {
       "name": "Hero",

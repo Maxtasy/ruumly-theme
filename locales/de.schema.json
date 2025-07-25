@@ -316,6 +316,9 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
+        "link_list": {
+          "label": "Linkliste"
+        },
         "padding_block": {
           "label": "Padding Block",
           "options": {
@@ -360,6 +363,9 @@
           "category": "Kopfzeile"
         }
       }
+    },
+    "footer": {
+      "name": "Fußzeile"
     },
     "hero": {
       "name": "Hero",
