@@ -284,7 +284,10 @@
           "content": "Leerer Zustand"
         },
         "section_appearance": {
-          "content": "Aussehen der Abschnitt"
+          "content": "Aussehen des Abschnitts"
+        },
+        "section_content": {
+          "content": "Inhalt des Abschnitts"
         },
         "site_header_settings": {
           "content": "Kopfzeileneinstellungen der Website"
@@ -301,6 +304,9 @@
       "settings": {
         "border_bottom": {
           "label": "Unteren Rand anzeigen"
+        },
+        "collection": {
+          "label": "Kollektion"
         },
         "color_scheme": {
           "label": "Farbschema",

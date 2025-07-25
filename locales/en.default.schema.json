@@ -281,10 +281,13 @@
     "all": {
       "headers": {
         "empty_state": {
-          "content": "Empty state"
+          "content": "Empty State"
         },
         "section_appearance": {
-          "content": "Section appearance"
+          "content": "Section Appearance"
+        },
+        "section_content": {
+          "content": "Section Content"
         },
         "site_header_settings": {
           "content": "Site Header Settings"
@@ -301,6 +304,9 @@
       "settings": {
         "border_bottom": {
           "label": "Show bottom border"
+        },
+        "collection": {
+          "label": "Collection"
         },
         "color_scheme": {
           "label": "Color scheme",
