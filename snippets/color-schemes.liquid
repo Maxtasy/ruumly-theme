@@ -28,6 +28,8 @@
       {% assign background_light_opaque = scheme.settings.background_light | color_modify: 'alpha', 0.66 %}
       --t-background-light-opaque: rgba({{ background_light_opaque.red }},{{ background_light_opaque.green }},{{ background_light_opaque.blue }}, {{ background_light_opaque.alpha }});
 
+      --t-gradient-background: linear-gradient(0deg, var(--t-background) 66%, var(--t-background-light));
+
       --t-text: rgba({{ scheme.settings.text.red }},{{ scheme.settings.text.green }},{{ scheme.settings.text.blue }});
       --t-text-muted: rgba({{ scheme.settings.text_muted.red }},{{ scheme.settings.text_muted.green }},{{ scheme.settings.text_muted.blue }});
 
@@ -52,6 +54,8 @@
       --t-warning: rgba({{ scheme.settings.warning.red }},{{ scheme.settings.warning.green }},{{ scheme.settings.warning.blue }});
       --t-success: rgba({{ scheme.settings.success.red }},{{ scheme.settings.success.green }},{{ scheme.settings.success.blue }});
       --t-info: rgba({{ scheme.settings.info.red }},{{ scheme.settings.info.green }},{{ scheme.settings.info.blue }});
+
+      --t-border-card: var(--t-background);
     }
   {% endfor %}
 

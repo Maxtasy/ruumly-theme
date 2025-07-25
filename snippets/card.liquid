@@ -1,0 +1,17 @@
+<div class="Card">
+  {{ content }}
+</div>
+
+{% stylesheet %}
+  .Card {
+    width: 300px;
+    height: 200px;
+    background: var(--t-gradient-background);
+    border: var(--border-width) solid var(--t-border-card);
+    border-top-color: var(--t-highlight);
+    box-shadow: var(--box-shadow);
+    padding: var(--size-l);
+    cursor: pointer;
+    border-radius: 8px;
+  }
+{% endstylesheet %}
