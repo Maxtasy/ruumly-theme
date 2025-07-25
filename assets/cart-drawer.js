@@ -13,6 +13,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
   connectedCallback() {
     this.subscribe("button:click:clear-cart", this.handleClearCart);
     this.subscribe("line-item:update", this.handleCartUpdate);
+    this.subscribe("line-item:remove", this.handleCartUpdate);
 
     globalThis.subscribe("product-form:item-added", this.handleItemAdded);
   }
@@ -20,6 +21,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
   disconnectedCallback() {
     this.unsubscribe("button:click:clear-cart", this.handleClearCart);
     this.unsubscribe("line-item:update", this.handleCartUpdate);
+    this.unsubscribe("line-item:remove", this.handleCartUpdate);
 
     globalThis.unsubscribe("product-form:item-added", this.handleItemAdded);
   }

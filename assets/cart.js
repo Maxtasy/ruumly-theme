@@ -71,6 +71,23 @@ export class Cart {
     return response.json();
   }
 
+  async remove({ key, sections }) {
+    const updates = { [`${key}`]: 0 };
+    const response = await fetch(`${window.routes.cartUpdateUrl}.js`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ updates, sections }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to remove item from cart");
+    }
+
+    return response.json();
+  }
+
   async clear({ sections }) {
     const response = await fetch(`${window.routes.cartClearUrl}.js`, {
       method: "POST",
