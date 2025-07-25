@@ -36,7 +36,7 @@
     <div class="LineItem__Actions">
       {% render 'quantity-selector', quantity: quantity %}
 
-      {% render 'button', text: 'Remove', variant: 'link', action: 'remove' %}
+      {% render 'button', text: 'Remove', variant: 'link', action: 'remove', size: 'small' %}
     </div>
   </div>
 </div>
@@ -67,6 +67,7 @@
   .LineItem__Actions {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: var(--size-s);
   }
 {% endstylesheet %}
