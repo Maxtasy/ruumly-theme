@@ -24,7 +24,7 @@
 
   .DynamicCartIcon__Indicator {
     position: absolute;
-    display: flex;
+    display: none;
     align-items: center;
     justify-content: center;
     top: 0;
@@ -35,5 +35,9 @@
     border-radius: 50%;
     color: var(--t-background-dark);
     pointer-events: none;
+  }
+
+  .DynamicCartIcon__Indicator--Active {
+    display: flex;
   }
 {% endstylesheet %}
