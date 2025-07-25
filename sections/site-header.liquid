@@ -24,9 +24,7 @@
         </div>
 
         {% if section.settings.show_search_icon and section.settings.search_icon_position == 'left' %}
-          <button>
-            {% render 'icon', icon: 'search' %}
-          </button>
+          {% render 'button', icon: 'search', variant: 'plain', size: 'small', action: 'modal-open:search' %}
         {% endif %}
 
         {% if section.settings.show_account_icon and section.settings.account_icon_position == 'left' %}
@@ -52,9 +50,7 @@
 
       <div class="SiteHeader__Right">
         {% if section.settings.show_search_icon and section.settings.search_icon_position == 'right' %}
-          <button>
-            {% render 'icon', icon: 'search' %}
-          </button>
+          {% render 'button', icon: 'search', variant: 'plain', size: 'small', action: 'modal-open:search' %}
         {% endif %}
 
         {% if section.settings.show_account_icon and section.settings.account_icon_position == 'right' %}
