@@ -1,5 +1,12 @@
-<section class="Section">
+<section class="Section Section--PaddingBlockLarge">
   <div class="Section__Inner">
     {% render 'text', text: 'Test Section', as: 'h2', variant: 'heading-medium' %}
+
+    <div class="InlineStack">
+      {% render 'card' %}
+      {% render 'card' %}
+      {% render 'card' %}
+      {% render 'card' %}
+    </div>
   </div>
 </section>
