@@ -361,6 +361,14 @@
         }
       }
     },
+    "footer": {
+      "name": "Fußzeile",
+      "settings": {
+        "link_list": {
+          "label": "Linkliste"
+        }
+      }
+    },
     "hero": {
       "name": "Hero",
       "settings": {

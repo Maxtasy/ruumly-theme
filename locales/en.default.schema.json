@@ -361,6 +361,14 @@
         }
       }
     },
+    "footer": {
+      "name": "Footer",
+      "settings": {
+        "link_list": {
+          "label": "Link List"
+        }
+      }
+    },
     "hero": {
       "name": "Hero",
       "settings": {
