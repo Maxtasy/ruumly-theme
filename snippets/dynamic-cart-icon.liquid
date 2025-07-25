@@ -10,6 +10,8 @@
       DynamicCartIcon__Indicator
       {% if cart.item_count > 0 %}
         DynamicCartIcon__Indicator--Active
+        {% else %}
+         DynamicCartIcon__Indicator--Hidden
       {% endif %}
     "
   >
@@ -35,5 +37,9 @@
     border-radius: 50%;
     color: var(--t-background-dark);
     pointer-events: none;
+  }
+
+  .DynamicCartIcon__Indicator--Hidden {
+    display: none;
   }
 {% endstylesheet %}
