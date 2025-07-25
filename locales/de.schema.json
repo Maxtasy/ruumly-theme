@@ -316,6 +316,9 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
+        "link_list": {
+          "label": "Linkliste"
+        },
         "padding_block": {
           "label": "Padding Block",
           "options": {
@@ -362,12 +365,7 @@
       }
     },
     "footer": {
-      "name": "Fußzeile",
-      "settings": {
-        "link_list": {
-          "label": "Linkliste"
-        }
-      }
+      "name": "Fußzeile"
     },
     "hero": {
       "name": "Hero",
