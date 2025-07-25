@@ -36,7 +36,11 @@
 {% else %}
   <button
     is="button-component"
-    class="Button{% if variant %} Button--{{ variant | camelcase }}{% endif %}"
+    class="
+      Button
+      Button--{{ variant | camelcase }}
+      Button--Size{{ size | camelcase }}
+    "
     {% if action %}
       data-action="{{ action }}"
     {% endif %}
