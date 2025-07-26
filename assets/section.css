@@ -1,5 +1,5 @@
 .Section {
-  padding-inline: var(--section-padding-inline);
+  padding-inline: var(--section-padding-inline-mobile);
   background-color: var(--t-background);
   color: var(--t-text);
 }
@@ -35,4 +35,10 @@
 
 .Section--FullWidth .Section__Inner {
   max-width: 100%;
+}
+
+@media screen and (min-width: 769px) {
+  .Section {
+    padding-inline: var(--section-padding-inline-desktop);
+  }
 }
