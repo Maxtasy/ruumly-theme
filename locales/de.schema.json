@@ -20,7 +20,7 @@
         }
       },
       "card_min_width": {
-        "label": "Card Min Width"
+        "label": "Mindestgröße der Karte"
       },
       "content_position_horizontal": {
         "label": "Inhalt Position Horizontal",
@@ -63,13 +63,13 @@
         }
       },
       "grid_settings": {
-        "label": "Grid Settings",
+        "label": "Raster Einstellungen",
         "options": {
           "auto_fit": {
-            "label": "Auto Fit"
+            "label": "Automatische Anpassung"
           },
           "advanced": {
-            "label": "Advanced"
+            "label": "Fortgeschritten"
           }
         }
       },
@@ -401,10 +401,10 @@
       }
     },
     "product_grid": {
-      "name": "Product Grid",
+      "name": "Produktraster",
       "presets": {
         "product_grid": {
-          "name": "Product Grid"
+          "name": "Produktraster"
         }
       }
     },
