@@ -19,6 +19,9 @@
           }
         }
       },
+      "card_min_width": {
+        "label": "Mindestgröße der Karte"
+      },
       "content_position_horizontal": {
         "label": "Inhalt Position Horizontal",
         "options": {
@@ -56,6 +59,17 @@
         "options": {
           "none": {
             "label": "Ohne"
+          }
+        }
+      },
+      "grid_settings": {
+        "label": "Raster Einstellungen",
+        "options": {
+          "auto_fit": {
+            "label": "Automatische Anpassung"
+          },
+          "advanced": {
+            "label": "Fortgeschritten"
           }
         }
       },
@@ -142,9 +156,6 @@
     }
   },
   "settings_schema": {
-    "global": {
-      "settings": {}
-    },
     "brand_information": {
       "name": "Marken Informationen",
       "settings": {
@@ -386,6 +397,14 @@
         "menu_drawer": {
           "name": "Menü Drawer",
           "category": "Drawer"
+        }
+      }
+    },
+    "product_grid": {
+      "name": "Produktraster",
+      "presets": {
+        "product_grid": {
+          "name": "Produktraster"
         }
       }
     },

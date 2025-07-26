@@ -9,10 +9,18 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-collection",
-      "settings": {}
+    "product-grid": {
+      "type": "product-grid",
+      "settings": {
+        "color_scheme": "default",
+        "padding_block": "medium",
+        "grid_settings": "auto-fit",
+        "columns_mobile": 1,
+        "columns_desktop": 4,
+        "grid_gap": "m",
+        "card_min_width_px": 220
+      }
     }
   },
-  "order": ["main"]
+  "order": ["product-grid"]
 }

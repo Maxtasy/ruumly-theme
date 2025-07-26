@@ -57,6 +57,7 @@
   --drawer-max-width: 24rem;
 
   /* Icon */
+  --icon-size-xs: 0.75rem;
   --icon-size-s: 1rem;
   --icon-size-m: 1.5rem;
   --icon-size-l: 2rem;

@@ -10,7 +10,7 @@
 
 {% liquid
   assign icon = icon | default: 'star'
-  assign icon_size = icon_size | default: 'small'
+  assign icon_size = icon_size | default: 'extra-small'
   assign rating = rating | default: 5
   assign max_rating = max_rating | default: 5
 %}
@@ -18,10 +18,15 @@
 <div class="Rating">
   <div class="Rating__Numbers">
     {% assign rating_numbers_text = rating %}
-    {% render 'text', text: rating_numbers_text, variant: 'body-small' %}
+    {% render 'text', text: rating_numbers_text, variant: 'body-small', color: 'inherit' %}
   </div>
 
-  <div class="Rating__Icons{% if icon_size == 'small' %} Rating__Icons--Small{% endif %}">
+  <div
+    class="
+      Rating__Icons
+      Rating__Icons--{{ icon_size | camelcase }}
+    "
+  >
     {% assign remainder = rating %}
 
     {% for i in (1..max_rating) %}
@@ -52,12 +57,17 @@
     display: flex;
     align-items: center;
     gap: var(--size-xs);
+    color: var(--t-text-muted);
   }
 
   .Rating__Icons {
     display: flex;
     align-items: center;
     gap: var(--size-xs);
+  }
+
+  .Rating__Icons--ExtraSmall {
+    gap: 0;
   }
 
   .Rating__Icons--Small {
