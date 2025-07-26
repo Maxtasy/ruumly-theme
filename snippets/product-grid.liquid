@@ -1,0 +1,59 @@
+{% doc %}
+  Renders a Product Grid component.
+
+  @param {object} products - List of product objects. The products to render inside the grid.
+  @param {string} [card_min_width_px] - Defaults to `200px`.
+  @param {string} [columns_mobile] - Will disable the `auto-fit` behaviour and instead use a fixed column count.
+  @param {string} [columns_desktop] - Will disable the `auto-fit` behaviour and instead use a fixed column count.
+  @param {string} [grid_gap] - Defaults to `m`.
+{% enddoc %}
+
+<div
+  class="
+    ProductGrid
+    {% if columns_mobile %}
+      ProductGrid--FixedColumnsMobile
+    {% endif %}
+    {% if columns_desktop %}
+      ProductGrid--FixedColumnsDesktop
+    {% endif %}
+  "
+  style="
+    --card-min-width: {{ card_min_width_px | default: 200 }};
+    --columns-mobile: {{ columns_mobile }};
+    --columns-desktop: {{ columns_desktop }};
+    --gap: var(--size-{{ grid_gap | default: 'm' }});
+  "
+>
+  {% for product in products %}
+    {% render 'product-card',
+      title: product.title,
+      image: product.featured_image,
+      swap_image: product.images[1],
+      price: product.price,
+      compare_at_price: product.compare_at_price,
+      url: product.url,
+      rating: product.metafields.custom.rating.value.rating
+    %}
+  {% endfor %}
+</div>
+
+{% stylesheet %}
+  .ProductGrid {
+    --min-width: calc(var(--card-min-width) * 1px);
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(var(--min-width), 1fr));
+    gap: var(--gap);
+  }
+
+  .ProductGrid--FixedColumnsMobile {
+    grid-template-columns: repeat(var(--columns-mobile), minmax(var(--min-width), 1fr));
+  }
+
+  @media screen and (min-width: 769px) {
+    .ProductGrid--FixedColumnsDesktop {
+      grid-template-columns: repeat(var(--columns-desktop), minmax(var(--min-width), 1fr));
+    }
+  }
+{% endstylesheet %}

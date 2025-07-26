@@ -19,6 +19,9 @@
           }
         }
       },
+      "card_min_width": {
+        "label": "Card Min Width"
+      },
       "content_position_horizontal": {
         "label": "Inhalt Position Horizontal",
         "options": {
@@ -56,6 +59,17 @@
         "options": {
           "none": {
             "label": "Ohne"
+          }
+        }
+      },
+      "grid_settings": {
+        "label": "Grid Settings",
+        "options": {
+          "auto_fit": {
+            "label": "Auto Fit"
+          },
+          "advanced": {
+            "label": "Advanced"
           }
         }
       },
@@ -142,9 +156,6 @@
     }
   },
   "settings_schema": {
-    "global": {
-      "settings": {}
-    },
     "brand_information": {
       "name": "Marken Informationen",
       "settings": {
@@ -386,6 +397,14 @@
         "menu_drawer": {
           "name": "Menü Drawer",
           "category": "Drawer"
+        }
+      }
+    },
+    "product_grid": {
+      "name": "Product Grid",
+      "presets": {
+        "product_grid": {
+          "name": "Product Grid"
         }
       }
     },

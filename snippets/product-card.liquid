@@ -107,7 +107,10 @@
   .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:nth-of-type(2) {
     position: absolute;
     inset: 0;
-    transform: translateX(100%);
+
+    /* Add 1px to the translate to account for fractional pixels that might get rounded by the browser and would lead
+    to the second image being barely visible. */
+    transform: translateX(calc(100% + 1px));
   }
 
   .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
