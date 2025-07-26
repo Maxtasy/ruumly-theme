@@ -65,8 +65,8 @@
       "grid_settings": {
         "label": "Grid Settings",
         "options": {
-          "auto_fit": {
-            "label": "Auto Fit"
+          "auto_fill": {
+            "label": "Auto Fill"
           },
           "advanced": {
             "label": "Advanced"

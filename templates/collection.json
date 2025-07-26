@@ -14,7 +14,7 @@
       "settings": {
         "color_scheme": "default",
         "padding_block": "medium",
-        "grid_settings": "auto-fit",
+        "grid_settings": "auto-fill",
         "columns_mobile": 1,
         "columns_desktop": 4,
         "grid_gap": "m",

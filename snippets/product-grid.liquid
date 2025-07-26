@@ -3,8 +3,8 @@
 
   @param {object} products - List of product objects. The products to render inside the grid.
   @param {string} [card_min_width_px] - Defaults to `200px`.
-  @param {string} [columns_mobile] - Will disable the `auto-fit` behaviour and instead use a fixed column count.
-  @param {string} [columns_desktop] - Will disable the `auto-fit` behaviour and instead use a fixed column count.
+  @param {string} [columns_mobile] - Will disable the `auto-fill` behaviour and instead use a fixed column count.
+  @param {string} [columns_desktop] - Will disable the `auto-fill` behaviour and instead use a fixed column count.
   @param {string} [grid_gap] - Defaults to `m`.
 {% enddoc %}
 
@@ -43,7 +43,7 @@
     --min-width: calc(var(--card-min-width) * 1px);
 
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(var(--min-width), 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
     gap: var(--gap);
   }
 

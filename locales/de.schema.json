@@ -65,8 +65,8 @@
       "grid_settings": {
         "label": "Raster Einstellungen",
         "options": {
-          "auto_fit": {
-            "label": "Automatische Anpassung"
+          "auto_fill": {
+            "label": "Automatisch befüllen"
           },
           "advanced": {
             "label": "Fortgeschritten"
