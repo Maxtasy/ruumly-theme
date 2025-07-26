@@ -288,7 +288,7 @@
     "all": {
       "headers": {
         "empty_state": {
-          "content": "Empty state"
+          "content": "Empty State"
         },
         "section_appearance": {
           "content": "Section Appearance"
@@ -311,6 +311,9 @@
       "settings": {
         "border_bottom": {
           "label": "Show bottom border"
+        },
+        "collection": {
+          "label": "Collection"
         },
         "color_scheme": {
           "label": "Color scheme",

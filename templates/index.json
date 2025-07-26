@@ -79,22 +79,42 @@
       },
       "block_order": ["text_content_block_4LfLEB", "button_group_block_nMFniz"],
       "settings": {
+        "padding_block": "none",
         "height": "50vh",
         "mobile_image": "shopify://shop_images/Arlo_Lounge_Chair-2.webp",
         "desktop_image": "shopify://shop_images/Milo_Coffee_Table-4.webp",
         "content_position_horizontal": "center",
-        "content_position_vertical": "bottom"
+        "content_position_vertical": "bottom",
+        "overlay_color": "#000000",
+        "overlay_opacity": 33
       }
     },
-    "product-list": {
+    "product_list_hjrBVX": {
       "type": "product-list",
+      "name": "t:sections.product_list.presets.product_list.name",
       "settings": {
         "color_scheme": "",
+        "padding_block": "medium",
         "columns_mobile": 2,
         "columns_desktop": 4,
-        "product_list": ["arlo-lounge-chair", "milo-coffee-table", "t-shirt"],
-        "limit": 0,
-        "heading": "Product List"
+        "heading": "Heading",
+        "collection": "gaming-chairs",
+        "product_list": [],
+        "limit": 4
+      }
+    },
+    "product_list_937CA7": {
+      "type": "product-list",
+      "name": "t:sections.product_list.presets.product_list.name",
+      "settings": {
+        "color_scheme": "",
+        "padding_block": "medium",
+        "columns_mobile": 2,
+        "columns_desktop": 4,
+        "heading": "Heading",
+        "collection": "gaming-desks",
+        "product_list": [],
+        "limit": 4
       }
     },
     "test-section": {
@@ -102,5 +122,5 @@
       "settings": {}
     }
   },
-  "order": ["hero", "product-list", "test-section"]
+  "order": ["hero", "product_list_hjrBVX", "product_list_937CA7", "test-section"]
 }

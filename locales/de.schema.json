@@ -312,6 +312,9 @@
         "border_bottom": {
           "label": "Unteren Rand anzeigen"
         },
+        "collection": {
+          "label": "Kollektion"
+        },
         "color_scheme": {
           "label": "Farbschema",
           "info": "Wählen Sie ein Farbschema, das für diesen Abschnitt gelten soll"
