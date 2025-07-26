@@ -30,6 +30,9 @@
       --t-text: {{ scheme.settings.text | color_to_oklch }};
       --t-text-muted: {{ scheme.settings.text_muted | color_to_oklch }};
 
+      --t-link: {{ scheme.settings.link | color_to_oklch }};
+      --t-link-hover: {{ scheme.settings.link | color_darken: 10 | color_to_oklch }};
+
       --t-highlight: {{ scheme.settings.highlight | color_to_oklch }};
       --t-border: {{ scheme.settings.border | color_to_oklch }};
       --t-border-muted: {{ scheme.settings.border_muted | color_to_oklch }};

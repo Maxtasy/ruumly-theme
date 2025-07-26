@@ -200,6 +200,9 @@
         "text_muted": {
           "label": "Text Muted"
         },
+        "link": {
+          "label": "Link"
+        },
         "highlight": {
           "label": "Highlight"
         },
@@ -288,7 +291,10 @@
           "content": "Empty state"
         },
         "section_appearance": {
-          "content": "Section appearance"
+          "content": "Section Appearance"
+        },
+        "section_content": {
+          "content": "Section Content"
         },
         "site_header_settings": {
           "content": "Site Header Settings"

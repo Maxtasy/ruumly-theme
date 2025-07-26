@@ -3,14 +3,14 @@ body {
 }
 
 .RichText a {
-  color: var(--link-color);
+  color: var(--t-link);
   transition: color var(--transition-duration-medium) var(--transition-timing);
   font-family: var(--font-body-family);
   font-weight: var(--font-weight-bold);
 }
 
 .RichText a:hover {
-  color: var(--link-color-hover);
+  color: var(--t-link-hover);
 }
 
 .RichText p {

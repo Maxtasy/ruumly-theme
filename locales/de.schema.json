@@ -200,6 +200,9 @@
         "text_muted": {
           "label": "Text Gedämpft"
         },
+        "link": {
+          "label": "Link"
+        },
         "highlight": {
           "label": "Highlight"
         },
@@ -288,7 +291,10 @@
           "content": "Leerer Zustand"
         },
         "section_appearance": {
-          "content": "Aussehen der Abschnitt"
+          "content": "Aussehen des Abschnitts"
+        },
+        "section_content": {
+          "content": "Inhalt des Abschnitts"
         },
         "site_header_settings": {
           "content": "Kopfzeileneinstellungen der Website"

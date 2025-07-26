@@ -74,6 +74,12 @@
           },
           {
             "type": "color",
+            "id": "link",
+            "label": "t:settings_schema.colors.settings.link.label",
+            "default": "#5f6b64"
+          },
+          {
+            "type": "color",
             "id": "highlight",
             "label": "t:settings_schema.colors.settings.highlight.label",
             "default": "#ffffff"
@@ -100,7 +106,7 @@
             "type": "color",
             "id": "secondary",
             "label": "t:settings_schema.colors.settings.secondary.label",
-            "default": "#6b5f68"
+            "default": "#9b8a97"
           },
           {
             "type": "color",

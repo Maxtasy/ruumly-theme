@@ -2,6 +2,7 @@
   class="
     Section
     Section--PaddingBlockSmall
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
   "
 >
   <div class="Section__Inner">
@@ -48,6 +49,20 @@
   "name": "t:sections.footer.name",
   "tag": "footer",
   "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
+    },
     {
       "type": "link_list",
       "id": "link_list",
