@@ -1,4 +1,5 @@
 {% liquid
+  # TODO: Add the settings for collection and product_list. For now the section only works on the collection template.
   assign products = section.settings.collection.products | default: section.settings.product_list | default: collection.products
 
   assign columns_mobile = null
