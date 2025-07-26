@@ -1,4 +1,10 @@
-<div class="ButtonGroupBlock ButtonGroupBlock--Align{{ block.settings.alignment | camelcase }}">
+<div
+  class="
+    ButtonGroupBlock
+    ButtonGroupBlock--Align{{ block.settings.alignment | camelcase }}
+  "
+  style="--button-group-gap: var(--size-{{ block.settings.gap }});"
+>
   {% content_for 'blocks' %}
 </div>
 
@@ -6,7 +12,7 @@
   .ButtonGroupBlock {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--size-s);
+    gap: var(--button-group-gap);
     align-items: center;
   }
 
@@ -31,6 +37,21 @@
       "type": "text_alignment",
       "id": "alignment",
       "label": "t:global.settings.text_alignment.label"
+    },
+    {
+      "type": "select",
+      "id": "gap",
+      "label": "t:global.settings.gap.label",
+      "default": "m",
+      "options": [
+        { "value": "0", "label": "t:global.settings.gap.options.none.label" },
+        { "value": "xs", "label": "XS" },
+        { "value": "s", "label": "S" },
+        { "value": "m", "label": "M" },
+        { "value": "l", "label": "L" },
+        { "value": "xl", "label": "XL" },
+        { "value": "xxl", "label": "XXL" }
+      ]
     }
   ],
   "blocks": [
