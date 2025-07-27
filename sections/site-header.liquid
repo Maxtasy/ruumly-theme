@@ -13,6 +13,10 @@
     {% if section.settings.sticky %}
       Section--Sticky
     {% endif %}
+    {% if section.settings.box_shadow %}
+      Section--BoxShadow
+    {% endif %}
+    Section--GradientBackground
     ColorScheme--{{ section.settings.color_scheme | camelcase }}
   "
 >
@@ -123,6 +127,12 @@
     },
     {
       "type": "checkbox",
+      "id": "box_shadow",
+      "label": "t:sections.all.settings.box_shadow.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
       "id": "sticky",
       "label": "t:sections.all.settings.sticky.label",
       "default": false,
@@ -130,7 +140,7 @@
     },
     {
       "type": "header",
-      "content": "t:sections.all.headers.site_header_settings.content"
+      "content": "t:sections.all.headers.section_content.content"
     },
     {
       "type": "paragraph",
@@ -173,7 +183,8 @@
       "step": 10,
       "default": 100,
       "unit": "px",
-      "label": "t:settings_schema.logo.settings.logo_width.label"
+      "label": "t:settings_schema.logo.settings.logo_width.label",
+      "visible_if": "{{ section.settings.show_logo == true }}"
     },
     {
       "type": "paragraph",

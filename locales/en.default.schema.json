@@ -312,6 +312,9 @@
         "border_bottom": {
           "label": "Show bottom border"
         },
+        "box_shadow": {
+          "label": "Box Shadow"
+        },
         "collection": {
           "label": "Collection"
         },

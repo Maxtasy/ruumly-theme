@@ -8,8 +8,16 @@
   border-bottom: var(--border-width) var(--border-style) var(--t-border);
 }
 
+.Section--BoxShadow {
+  box-shadow: var(--box-shadow);
+}
+
 .Section--PaddingBlockNone {
   padding-block: 0;
+}
+
+.Section--GradientBackground {
+  background: var(--t-gradient-background);
 }
 
 .Section--PaddingBlockSmall {

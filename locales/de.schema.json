@@ -312,6 +312,9 @@
         "border_bottom": {
           "label": "Unteren Rand anzeigen"
         },
+        "box_shadow": {
+          "label": "Box Schatten"
+        },
         "collection": {
           "label": "Kollektion"
         },
