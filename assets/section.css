@@ -1,6 +1,6 @@
 .Section {
   padding-inline: var(--section-padding-inline-mobile);
-  background-color: var(--t-background);
+  background-color: var(--t-background-dark);
   color: var(--t-text);
 }
 
@@ -17,7 +17,7 @@
 }
 
 .Section--GradientBackground {
-  background: var(--t-gradient-background);
+  background: var(--t-gradient-background-dark);
 }
 
 .Section--PaddingBlockSmall {
