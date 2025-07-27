@@ -84,7 +84,8 @@
   --section-padding-block-s: 1rem;
   --section-padding-block-m: 2rem;
   --section-padding-block-l: 4rem;
-  --section-padding-inline: var(--size-m);
+  --section-padding-inline-mobile: var(--size-m);
+  --section-padding-inline-desktop: var(--size-xxl);
 
   /* Text */
   --text-font-family: var(--font-family-body);
