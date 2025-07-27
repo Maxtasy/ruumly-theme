@@ -9,7 +9,11 @@
     <div
       class="Hero"
       style="
-        --height: {{ section.settings.height }};
+        {% if section.settings.subtract_header_group_height %}
+          --height: calc({{ section.settings.height }} - var(--header-group-height));
+        {% else %}
+          --height: {{ section.settings.height }};
+        {% endif %}
         --overlay-color: {{ section.settings.overlay_color }};
         --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
       "
@@ -124,6 +128,17 @@
       "label": "t:sections.hero.settings.height.label",
       "default": "66vh",
       "info": "t:sections.hero.settings.height.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "subtract_header_group_height",
+      "label": "t:sections.hero.settings.subtract_header_group_height.label",
+      "info": "t:sections.hero.settings.subtract_header_group_height.info",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
     },
     {
       "type": "image_picker",

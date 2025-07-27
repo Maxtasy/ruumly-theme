@@ -395,6 +395,10 @@
         },
         "overlay_opacity": {
           "label": "Overlay Opacity"
+        },
+        "subtract_header_group_height": {
+          "label": "Subtract header group height",
+          "info": "Will subtract the height of all sections in the header group. Useful if the Hero section should fit the whole view port height."
         }
       },
       "presets": {
