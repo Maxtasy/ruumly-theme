@@ -38,7 +38,7 @@
 }
 
 @media screen and (min-width: 769px) {
-  .Section {
+  .Section:not(.Section--FullWidth) {
     padding-inline: var(--section-padding-inline-desktop);
   }
 }
