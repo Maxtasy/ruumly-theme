@@ -17,15 +17,22 @@
     gap: 2rem;
   }
 
+  .ProductConfigurator__Gallery {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: var(--t-background);
+  }
+
   @media screen and (min-width: 769px) {
     .ProductConfigurator {
       flex-direction: row;
     }
 
     .ProductConfigurator__Gallery {
+      /* Takes up all the remaining space */
       flex-grow: 1;
-      aspect-ratio: 1;
-      background-color: var(--t-background);
+
+      width: auto;
     }
 
     .ProductConfigurator__Form {
