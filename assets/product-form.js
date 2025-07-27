@@ -10,6 +10,8 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
       quantity: 1,
     };
 
+    this.updateVariantUrlParameter = this.parsedData.updateVariantUrlParameter;
+
     this.handleProductVariantSelectorInit = this.handleProductVariantSelectorInit.bind(this);
     this.handleProductVariantSelectorChange = this.handleProductVariantSelectorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,6 +63,12 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
     }
 
     this.item.id = selectedVariantId;
+
+    if (this.updateVariantUrlParameter) {
+      const url = new URL(window.location.href);
+      url.searchParams.set("variant", this.item.id);
+      window.history.replaceState({}, "", url);
+    }
 
     // Notify other components that the variant has changed. The Gallery component can use this to update the displayed
     // images.

@@ -32,7 +32,7 @@
       swap_image: product.images[1],
       price: product.price,
       compare_at_price: product.compare_at_price,
-      url: product.url,
+      url: product.selected_or_first_available_variant.url,
       rating: product.metafields.custom.rating.value.rating
     %}
   {% endfor %}

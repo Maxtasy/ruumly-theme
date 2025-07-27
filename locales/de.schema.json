@@ -416,6 +416,9 @@
         }
       }
     },
+    "product_configurator": {
+      "name": "Produktkonfigurator"
+    },
     "product_grid": {
       "name": "Produktraster",
       "presets": {

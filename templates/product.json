@@ -9,10 +9,10 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "main-product",
+    "product-configurator": {
+      "type": "product-configurator",
       "settings": {}
     }
   },
-  "order": ["main"]
+  "order": ["product-configurator"]
 }

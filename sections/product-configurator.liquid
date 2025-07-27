@@ -1,0 +1,41 @@
+<section class="Section Section--PaddingBlockMedium">
+  <div class="Section__Inner">
+    <div class="ProductConfigurator">
+      <div class="ProductConfigurator__Gallery">Gallery</div>
+
+      <div class="ProductConfigurator__Form">
+        {% render 'product-form', product: product, name_prefix: section.id, update_variant_url_parameter: true %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .ProductConfigurator {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  @media screen and (min-width: 769px) {
+    .ProductConfigurator {
+      flex-direction: row;
+    }
+
+    .ProductConfigurator__Gallery {
+      flex-grow: 1;
+      aspect-ratio: 1;
+      background-color: var(--t-background);
+    }
+
+    .ProductConfigurator__Form {
+      width: 40%;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Product Configurator"
+}
+{% endschema %}
