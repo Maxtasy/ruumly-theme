@@ -1,0 +1,44 @@
+{% doc %}
+  Renders a Payment Methods component.
+
+  @param {boolean} [greyscale] - Whether the Payment Methods should be rendered in black and white.
+{% enddoc %}
+
+{% assign payment_methods = shop.enabled_payment_types %}
+
+{% if payment_methods.size < 1 %}
+  {% assign payment_methods = 'american_express, diners_club, maestro, master, discover, apple_pay, google_pay, klarna, paypal, shopify_pay, visa'
+    | split: ', '
+  %}
+{% endif %}
+
+<ul
+  class="
+    PaymentMethods
+    {% if greyscale %}
+      PaymentMethods--Greyscale
+    {% endif %}
+    u-NoList
+  "
+>
+  {% for payment_method in payment_methods %}
+    <li>
+      <div class="Icon">
+        {{ payment_method | payment_type_svg_tag }}
+      </div>
+    </li>
+  {% endfor %}
+</ul>
+
+{% stylesheet %}
+  .PaymentMethods {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--size-s);
+  }
+
+  .PaymentMethods--Greyscale {
+    filter: grayscale();
+  }
+{% endstylesheet %}
