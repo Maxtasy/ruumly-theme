@@ -1,5 +1,5 @@
 {% capture menu_drawer_content %}
-  {% render 'menu-drawer' %}
+  {% render 'menu-drawer', link_list: section.settings.link_list %}
 {% endcapture %}
 
 {% render 'drawer', name: 'menu', heading: 'Menu', content: menu_drawer_content, from: 'left' %}
@@ -11,6 +11,14 @@
     "groups": ["header", "footer"],
     "templates": ["index", "product", "collection", "page", "blog", "article"]
   },
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "link_list",
+      "label": "t:sections.all.settings.link_list.label",
+      "default": "main-menu"
+    }
+  ],
   "presets": [
     {
       "name": "t:sections.menu_drawer.presets.menu_drawer.name",

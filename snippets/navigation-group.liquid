@@ -1,0 +1,44 @@
+{% doc %}
+  Renders a Navigation Group component.
+
+  @param {object} links - An array of link objects.
+{% enddoc %}
+
+<ul class="NavigationGroup u-NoList">
+  {% for link in links %}
+    <li class="NavigationGroup__Item">
+      <a href="{{ link.url }}">
+        {% render 'text', text: link.title, as: 'strong' %}
+      </a>
+    </li>
+
+    {% if link.links.size > 0 %}
+      <li class="NavigationGroup__Item">
+        {% render 'navigation-group', links: link.links %}
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+
+{% stylesheet %}
+  .NavigationGroup {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .NavigationGroup__Item {
+    padding: var(--size-s) 0;
+  }
+
+  .NavigationGroup__Item:not(:first-child):not(:has(.NavigationGroup)) {
+    border-top: var(--border-width) var(--border-style) var(--t-border);
+  }
+
+  .NavigationGroup .NavigationGroup {
+    margin-left: var(--size-m);
+  }
+
+  .NavigationGroup .NavigationGroup .NavigationGroup__Item {
+    border: none;
+  }
+{% endstylesheet %}
