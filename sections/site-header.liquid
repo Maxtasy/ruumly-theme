@@ -23,6 +23,10 @@
   <div class="Section__Inner">
     <header class="SiteHeader">
       <div class="SiteHeader__Left">
+        <div class="u-Hidden--Mobile">
+          {% render 'navigation-group', direction: 'horizontal', links: section.settings.link_list.links %}
+        </div>
+
         <div class="u-Hidden--Desktop">
           {% render 'button', variant: 'plain', icon: 'menu', action: 'open-drawer:menu', size: 'small' %}
         </div>
@@ -141,6 +145,12 @@
     {
       "type": "header",
       "content": "t:sections.all.headers.section_content.content"
+    },
+    {
+      "type": "link_list",
+      "id": "link_list",
+      "label": "t:sections.all.settings.link_list.label",
+      "default": "main-menu"
     },
     {
       "type": "paragraph",
