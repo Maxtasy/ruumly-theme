@@ -2,7 +2,13 @@
   {% render 'menu-drawer', link_list: section.settings.link_list %}
 {% endcapture %}
 
-{% render 'drawer', name: 'menu', heading: 'Menu', content: menu_drawer_content, from: 'left' %}
+{% render 'drawer',
+  name: 'menu',
+  heading: 'Menu',
+  content: menu_drawer_content,
+  from: 'left',
+  color_scheme: section.settings.color_scheme
+%}
 
 {% schema %}
 {
@@ -13,10 +19,18 @@
   },
   "settings": [
     {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
       "label": "t:sections.all.settings.color_scheme.label",
       "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
     },
     {
       "type": "link_list",
