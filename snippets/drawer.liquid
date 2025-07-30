@@ -25,7 +25,7 @@
 >
   <div class="Drawer__Header">
     {% if heading %}
-      <h2 class="Drawer__Heading">{{ heading }}</h2>
+      {% render 'text', as: 'h2', variant: 'heading-small', text: heading %}
     {% endif %}
   </div>
 
