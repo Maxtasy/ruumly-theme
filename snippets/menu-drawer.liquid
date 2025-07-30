@@ -1,1 +1,22 @@
-{% render 'navigation-group', links: link_list.links %}
+{% doc %}
+  @param {boolean} language_selector - Whether to render the language selector.
+  @param {object} link_list - The link list to render in the navigation group.
+{% enddoc %}
+
+<div class="MenuDrawer">
+  {% render 'navigation-group', links: link_list.links %}
+
+  {% if language_selector %}
+    {% render 'language-selector' %}
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .MenuDrawer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--size-m);
+    height: 100%;
+  }
+{% endstylesheet %}

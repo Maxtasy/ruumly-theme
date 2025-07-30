@@ -1,5 +1,5 @@
 {% capture menu_drawer_content %}
-  {% render 'menu-drawer', link_list: section.settings.link_list %}
+  {% render 'menu-drawer', link_list: section.settings.link_list, language_selector: section.settings.language_selector %}
 {% endcapture %}
 
 {% render 'drawer', name: 'menu', heading: 'Menu', content: menu_drawer_content, from: 'left' %}
@@ -17,6 +17,13 @@
       "id": "link_list",
       "label": "t:sections.all.settings.link_list.label",
       "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "language_selector",
+      "label": "t:sections.all.settings.language_selector.label",
+      "default": true,
+      "info": "t:sections.all.settings.language_selector.info"
     }
   ],
   "presets": [
