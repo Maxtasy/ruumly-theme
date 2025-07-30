@@ -332,6 +332,10 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
+        "language_selector": {
+          "label": "Sprachauswahl",
+          "info": "Wird nur bei mehreren Sprachen im Store angezeigt."
+        },
         "link_list": {
           "label": "Linkliste"
         },

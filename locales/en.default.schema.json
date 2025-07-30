@@ -332,6 +332,10 @@
           "label": "Heading",
           "default": "Heading"
         },
+        "language_selector": {
+          "label": "Language Selector",
+          "info": "Will only show if store has multiple languages."
+        },
         "link_list": {
           "label": "Link List"
         },
