@@ -3,9 +3,11 @@
 
   @param {object} links - An array of link objects.
   @param {string} [direction] - Set the direction of the navigation group. Defaults to horizontal.
+  @param {boolean} [nested] - Whether the navigation group is nested in another navigation group.
 {% enddoc %}
 
 {% assign direction = direction | default: 'vertical' %}
+{% assign nested = nested | default: false %}
 
 <ul
   class="
@@ -23,8 +25,12 @@
 
     {% if link.links.size > 0 and direction == 'vertical' %}
       <li class="NavigationGroup__Item">
-        {% render 'navigation-group', links: link.links %}
+        {% render 'navigation-group', links: link.links, nested: true %}
       </li>
+    {% endif %}
+
+    {% if forloop.last == false and nested == false %}
+      {% render 'divider' %}
     {% endif %}
   {% endfor %}
 </ul>
@@ -32,6 +38,7 @@
 {% stylesheet %}
   .NavigationGroup {
     display: flex;
+    gap: var(--size-m);
   }
 
   .NavigationGroup--DirectionVertical {
@@ -43,19 +50,8 @@
     gap: var(--size-m);
   }
 
-  .NavigationGroup--DirectionVertical .NavigationGroup__Item {
-    padding: var(--size-s) 0;
-  }
-
-  .NavigationGroup--DirectionVertical .NavigationGroup__Item:not(:first-child):not(:has(.NavigationGroup)) {
-    border-top: var(--border-width) var(--border-style) var(--t-border);
-  }
-
-  .NavigationGroup--DirectionVertical .NavigationGroup .NavigationGroup {
+  .NavigationGroup--DirectionVertical .NavigationGroup {
     margin-left: var(--size-m);
-  }
-
-  .NavigationGroup--DirectionVertical .NavigationGroup .NavigationGroup .NavigationGroup__Item {
-    border: none;
+    gap: var(--size-s);
   }
 {% endstylesheet %}
