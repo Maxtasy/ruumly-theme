@@ -23,9 +23,12 @@
   <div class="Section__Inner">
     <header class="SiteHeader">
       <div class="SiteHeader__Left">
-        {% if section.settings.language_selector %}
-          {% render 'language-selector' %}
-        {% endif %}
+        <div class="u-Hidden--Mobile">
+          {% if section.settings.language_selector %}
+            {% render 'language-selector' %}
+          {% endif %}
+        </div>
+
         <div class="u-Hidden--Desktop">
           {% render 'button', variant: 'plain', icon: 'menu', action: 'open-drawer:menu', size: 'small' %}
         </div>
