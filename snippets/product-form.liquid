@@ -4,6 +4,7 @@
   @param {object} product - The product object containing options and values.
   @param {string} [name_prefix] - The prefix for the name attribute of the input elements.
   @param {boolean} [update_variant_url_parameter] - Whether to update the `variant` URL parameter in the URL when the selected variant changes.
+  @param {object} [blocks] - The blocks object of a section (for example product configurator).
 {% enddoc %}
 
 <form
@@ -11,11 +12,19 @@
   class="ProductForm"
   data-update-variant-url-parameter="{{ update_variant_url_parameter | default: false }}"
 >
-  {% render 'product-variant-selector',
-    product: product,
-    name_prefix: name_prefix,
-    visually_hidden: product.has_only_default_variant
-  %}
+  {% for block in blocks %}
+    {% case block.type %}
+      {% when 'title' %}
+        {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
+
+      {% when 'product-variant-selector' %}
+        {% render 'product-variant-selector',
+          product: product,
+          name_prefix: name_prefix,
+          visually_hidden: product.has_only_default_variant
+        %}
+    {% endcase %}
+  {% endfor %}
 
   {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
 </form>
