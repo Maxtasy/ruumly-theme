@@ -11,7 +11,11 @@
   class="ProductForm"
   data-update-variant-url-parameter="{{ update_variant_url_parameter | default: false }}"
 >
-  {% render 'product-variant-selector', product: product, name_prefix: name_prefix %}
+  {% render 'product-variant-selector',
+    product: product,
+    name_prefix: name_prefix,
+    visually_hidden: product.has_only_default_variant
+  %}
 
   {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
 </form>
