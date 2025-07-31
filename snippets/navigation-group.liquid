@@ -2,9 +2,18 @@
   Renders a Navigation Group component.
 
   @param {object} links - An array of link objects.
+  @param {string} [direction] - Set the direction of the navigation group. Defaults to horizontal.
 {% enddoc %}
 
-<ul class="NavigationGroup u-NoList">
+{% assign direction = direction | default: 'vertical' %}
+
+<ul
+  class="
+    NavigationGroup
+    NavigationGroup--Direction{{ direction | camelcase }}
+    u-NoList
+  "
+>
   {% for link in links %}
     <li class="NavigationGroup__Item">
       <a href="{{ link.url }}">
@@ -12,7 +21,7 @@
       </a>
     </li>
 
-    {% if link.links.size > 0 %}
+    {% if link.links.size > 0 and direction == 'vertical' %}
       <li class="NavigationGroup__Item">
         {% render 'navigation-group', links: link.links %}
       </li>
@@ -23,22 +32,30 @@
 {% stylesheet %}
   .NavigationGroup {
     display: flex;
+  }
+
+  .NavigationGroup--DirectionVertical {
     flex-direction: column;
   }
 
-  .NavigationGroup__Item {
+  .NavigationGroup--DirectionHorizontal {
+    flex-wrap: wrap;
+    gap: var(--size-m);
+  }
+
+  .NavigationGroup--DirectionVertical .NavigationGroup__Item {
     padding: var(--size-s) 0;
   }
 
-  .NavigationGroup__Item:not(:first-child):not(:has(.NavigationGroup)) {
+  .NavigationGroup--DirectionVertical .NavigationGroup__Item:not(:first-child):not(:has(.NavigationGroup)) {
     border-top: var(--border-width) var(--border-style) var(--t-border);
   }
 
-  .NavigationGroup .NavigationGroup {
+  .NavigationGroup--DirectionVertical .NavigationGroup .NavigationGroup {
     margin-left: var(--size-m);
   }
 
-  .NavigationGroup .NavigationGroup .NavigationGroup__Item {
+  .NavigationGroup--DirectionVertical .NavigationGroup .NavigationGroup .NavigationGroup__Item {
     border: none;
   }
 {% endstylesheet %}
