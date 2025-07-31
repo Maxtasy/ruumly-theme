@@ -26,5 +26,17 @@
     flex-direction: column;
     gap: var(--size-m);
     padding: var(--size-m);
+    background-color: var(--t-background);
+    background: var(--t-gradient-background);
+    border: var(--border-width) solid var(--t-border-card);
+    border-top-color: var(--t-highlight);
+    border-radius: var(--t-border-radius);
+    box-shadow: var(--box-shadow);
+  }
+
+  @media screen and (min-width: 769px) {
+    .ProductForm {
+      padding: var(--size-xl);
+    }
   }
 {% endstylesheet %}
