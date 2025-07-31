@@ -57,6 +57,12 @@
       </div>
 
       <div class="SiteHeader__Right">
+        <div class="u-Hidden--Mobile">
+          {% if section.settings.language_selector %}
+            {% render 'language-selector' %}
+          {% endif %}
+        </div>
+
         {% if section.settings.show_search_icon and section.settings.search_icon_position == 'right' %}
           {% render 'button', icon: 'search', variant: 'plain', size: 'small', action: 'modal-open:search' %}
         {% endif %}
@@ -199,6 +205,13 @@
     {
       "type": "paragraph",
       "content": "t:sections.all.paragraphs.icons.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "language_selector",
+      "label": "t:sections.all.settings.language_selector.label",
+      "default": true,
+      "info": "t:sections.all.settings.language_selector.info"
     },
     {
       "type": "checkbox",
