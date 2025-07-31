@@ -27,6 +27,8 @@
           {% if section.settings.language_selector %}
             {% render 'language-selector' %}
           {% endif %}
+
+          {% render 'navigation-group', direction: 'horizontal', links: section.settings.link_list.links %}
         </div>
 
         <div class="u-Hidden--Desktop">
@@ -147,6 +149,12 @@
     {
       "type": "header",
       "content": "t:sections.all.headers.section_content.content"
+    },
+    {
+      "type": "link_list",
+      "id": "link_list",
+      "label": "t:sections.all.settings.link_list.label",
+      "default": "main-menu"
     },
     {
       "type": "paragraph",
