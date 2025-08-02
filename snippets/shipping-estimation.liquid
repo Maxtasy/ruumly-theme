@@ -1,0 +1,16 @@
+{% doc %}
+  Renders a Shipping Estimation component.
+
+  @param {boolean} available - Determines which color to use for the text.
+  @param {string} text - The text to render.
+{% enddoc %}
+
+<div class="ShippingEstimation">
+  {% if available %}
+    {% assign color = 'success' %}
+  {% else %}
+    {% assign color = 'destructive' %}
+  {% endif %}
+
+  {% render 'text', text: text, color: color, as: 'strong' %}
+</div>

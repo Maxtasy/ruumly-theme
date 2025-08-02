@@ -25,17 +25,29 @@
         %}
 
       {% when 'price-list' %}
-        {% render 'price-list', price: product.price %}
+        {% render 'price-list', price: product.price, compare_at_price: product.compare_at_price %}
 
       {% when 'quantity-selector' %}
-        {% render 'quantity-selector', quantity: product.quantity %}
+        {% render 'quantity-selector', quantity: 1 %}
 
       {% when 'product-rating' %}
-        {% render 'rating' %}
+        {% if product.metafields.custom.rating.value.rating %}
+          {% render 'rating', rating: product.metafields.custom.rating.value.rating %}
+        {% endif %}
+
+      {% when 'buy-buttons' %}
+        {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
+
+      {% when 'shipping-estimation' %}
+        {% if product.available %}
+          {% assign text = 'components.shipping_estimation.available' | t %}
+        {% else %}
+          {% assign text = 'components.shipping_estimation.unavailable' | t %}
+        {% endif %}
+
+        {% render 'shipping-estimation', available: product.available, text: text %}
     {% endcase %}
   {% endfor %}
-
-  {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
 </form>
 
 {% stylesheet %}

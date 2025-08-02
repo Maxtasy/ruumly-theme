@@ -2,5 +2,11 @@
   "global": {
     "subtotal": "Zwischensumme",
     "shipping": "Versand"
+  },
+  "components": {
+    "shipping_estimation": {
+      "available": "Auf Lager: In 1-3 Tagen bei dir",
+      "unavailable": "Ausverkauft"
+    }
   }
 }
