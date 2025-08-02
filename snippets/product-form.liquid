@@ -23,6 +23,15 @@
           name_prefix: name_prefix,
           visually_hidden: product.has_only_default_variant
         %}
+
+      {% when 'price-list' %}
+        {% render 'price-list', price: product.price %}
+
+      {% when 'quantity-selector' %}
+        {% render 'quantity-selector', quantity: product.quantity %}
+
+      {% when 'product-rating' %}
+        {% render 'rating' %}
     {% endcase %}
   {% endfor %}
 
