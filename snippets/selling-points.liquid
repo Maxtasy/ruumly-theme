@@ -1,0 +1,19 @@
+{% doc %}
+  Renders a Selling Points component.
+{% enddoc %}
+
+<div class="SellingPoints">
+  {% render 'icon-with-text', icon: 'info', text: 'Free shipping from 49€' %}
+
+  {% render 'icon-with-text', icon: 'heart', text: 'Designed with love in beutelsbach' %}
+
+  {% render 'icon-with-text', icon: 'star', text: '315,000+ satisfied customers' %}
+</div>
+
+{% stylesheet %}
+  .SellingPoints {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}

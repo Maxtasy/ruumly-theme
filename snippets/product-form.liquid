@@ -46,6 +46,9 @@
         {% endif %}
 
         {% render 'shipping-estimation', available: product.available, text: text %}
+
+      {% when 'selling-points' %}
+        {% render 'selling-points' %}
     {% endcase %}
   {% endfor %}
 </form>
