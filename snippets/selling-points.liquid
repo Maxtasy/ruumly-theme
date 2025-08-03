@@ -1,13 +1,15 @@
 {% doc %}
   Renders a Selling Points component.
+
+  @param {object} selling_points - List of selling point objects. Each of them consists of an image and text.
 {% enddoc %}
 
 <div class="SellingPoints">
-  {% render 'icon-with-text', icon: 'info', text: 'Free shipping from 49€' %}
+  {% for selling_point in selling_points %}
+    {% assign text_html = selling_point.text | metafield_tag %}
 
-  {% render 'icon-with-text', icon: 'heart', text: 'Designed with love in beutelsbach' %}
-
-  {% render 'icon-with-text', icon: 'star', text: '315,000+ satisfied customers' %}
+    {% render 'icon-with-text', image: selling_point.icon, text: text_html, rich_text: true %}
+  {% endfor %}
 </div>
 
 {% stylesheet %}

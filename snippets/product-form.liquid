@@ -48,7 +48,9 @@
         {% render 'shipping-estimation', available: product.available, text: text %}
 
       {% when 'selling-points' %}
-        {% render 'selling-points' %}
+        {% render 'selling-points',
+          selling_points: shop.metaobjects.selling_points['selling-points-1hylegwq'].selling_points.value
+        %}
     {% endcase %}
   {% endfor %}
 </form>
