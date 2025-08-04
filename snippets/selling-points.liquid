@@ -4,13 +4,15 @@
   @param {object} selling_points - List of selling point objects. Each of them consists of an image and text.
 {% enddoc %}
 
-<div class="SellingPoints">
+<ul class="SellingPoints u-NoList">
   {% for selling_point in selling_points %}
-    {% assign text_html = selling_point.text | metafield_tag %}
+    <li>
+      {% assign text_html = selling_point.text | metafield_tag %}
 
-    {% render 'icon-with-text', image: selling_point.icon, text: text_html, rich_text: true %}
+      {% render 'icon-with-text', image: selling_point.icon, text: text_html, rich_text: true %}
+    </li>
   {% endfor %}
-</div>
+</ul>
 
 {% stylesheet %}
   .SellingPoints {
