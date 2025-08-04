@@ -505,6 +505,32 @@
       }
     }
   },
+  "blocks": {
+    "buy_buttons": {
+      "name": "Buy Buttons"
+    },
+    "price_list": {
+      "name": "Price List"
+    },
+    "product_rating": {
+      "name": "Product Rating"
+    },
+    "product_variant_selector": {
+      "name": "Product Variant Selector"
+    },
+    "quantity_selector": {
+      "name": "Quantity Selector"
+    },
+    "selling_points": {
+      "name": "Selling Points"
+    },
+    "shipping_estimation": {
+      "name": "Shipping Estimation"
+    },
+    "titel": {
+      "name": "Title"
+    }
+  },
   "theme_blocks": {
     "all": {
       "headers": {

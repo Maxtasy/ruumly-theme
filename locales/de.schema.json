@@ -505,6 +505,32 @@
       }
     }
   },
+  "blocks": {
+    "buy_buttons": {
+      "name": "Kauf Buttons"
+    },
+    "price_list": {
+      "name": "Preisliste"
+    },
+    "product_rating": {
+      "name": "Produktbewertung"
+    },
+    "product_variant_selector": {
+      "name": "Produktvarianten Auswahl"
+    },
+    "quantity_selector": {
+      "name": "Mengenauswahl"
+    },
+    "selling_points": {
+      "name": "Verkaufsargumente"
+    },
+    "shipping_estimation": {
+      "name": "Schätzung des Versands"
+    },
+    "titel": {
+      "name": "Titel"
+    }
+  },
   "theme_blocks": {
     "all": {
       "headers": {
