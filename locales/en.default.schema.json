@@ -433,6 +433,11 @@
     },
     "product_list": {
       "name": "Product List",
+      "settings": {
+        "enable_quick_add_button": {
+          "label": "Quick Add Button"
+        }
+      },
       "presets": {
         "product_list": {
           "name": "Product List"

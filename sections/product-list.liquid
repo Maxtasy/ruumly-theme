@@ -23,7 +23,8 @@
       products: products,
       columns_mobile: section.settings.columns_mobile,
       columns_desktop: section.settings.columns_desktop,
-      limit: limit
+      limit: limit,
+      enable_quick_add_button: section.settings.enable_quick_add_button
     %}
   </div>
 </section>
@@ -95,6 +96,12 @@
       "label": "t:sections.all.settings.product_limit.label",
       "default": 0,
       "info": "t:sections.all.settings.product_limit.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add_button",
+      "label": "t:sections.product_list.settings.enable_quick_add_button.label",
+      "default": false
     }
   ],
   "presets": [

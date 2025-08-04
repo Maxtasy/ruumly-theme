@@ -10,6 +10,7 @@
   @param {string} url - URL of the Product.
   @param {number} [rating] - Product rating.
   @param {string} [hover_effect] - The hover effect for the image. ('none', 'swap', 'zoom')
+  @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
 {% enddoc %}
 
 {% assign hover_effect = hover_effect | default: settings.product_card_hover_effect %}
@@ -46,18 +47,26 @@
     </div>
   </a>
 
-  <div class="ProductCard__Details">
-    <a href="{{ url }}">
-      {% render 'text', text: title, as: 'b' %}
-    </a>
+  <div class="ProductCard__Bottom">
+    <div class="ProductCard__Details">
+      <a href="{{ url }}">
+        {% render 'text', text: title, as: 'b' %}
+      </a>
 
-    {% if rating %}
-      {% render 'rating', rating: rating %}
-    {% endif %}
+      {% if rating %}
+        {% render 'rating', rating: rating %}
+      {% endif %}
 
-    <div class="ProductCard__PriceList">
-      {% render 'price-list', price: price, compare_at_price: compare_at_price %}
+      <div class="ProductCard__PriceList">
+        {% render 'price-list', price: price, compare_at_price: compare_at_price %}
+      </div>
     </div>
+
+    {% if enable_quick_add_button %}
+      <div class="ProductCard__Actions">
+        {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add' %}
+      </div>
+    {% endif %}
   </div>
 </article>
 
@@ -117,11 +126,21 @@
     transform: translateX(0);
   }
 
+  .ProductCard__Actions {
+  }
+
   .ProductCard__Badges {
     position: absolute;
     top: 0;
     right: 0;
     padding: var(--size-xs);
+  }
+
+  .ProductCard__Bottom {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: var(--size-s);
   }
 
   .ProductCard__Details {
@@ -131,8 +150,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-xs);
-    padding: var(--size-m);
-    width: 100%;
   }
 
   .ProductCard__PriceList {
