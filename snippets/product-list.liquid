@@ -5,6 +5,7 @@
   @param {number} [limit] - The maximum number of product cards to render.
   @param {number} [columns_mobile] - Number of columns on mobile.
   @param {number} [columns_desktop] - Number of columns on desktop.
+  @param {boolean} [quick_add] - Renders a quick add button to the product card.
 {% enddoc %}
 
 {% assign columns_mobile = columns_mobile | default: 2 %}
@@ -25,7 +26,8 @@
       price: product.price,
       compare_at_price: product.compare_at_price,
       url: product.selected_or_first_available_variant.url,
-      rating: product.metafields.custom.rating.value.rating
+      rating: product.metafields.custom.rating.value.rating,
+      quick_add: quick_add
     %}
   {% endfor %}
 </ul>
