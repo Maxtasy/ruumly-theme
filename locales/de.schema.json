@@ -434,7 +434,7 @@
     "product_list": {
       "name": "Produktliste",
       "settings": {
-        "quick_add": {
+        "enable_quick_add_button": {
           "label": "Button für schnelles hinzufügen"
         }
       },
