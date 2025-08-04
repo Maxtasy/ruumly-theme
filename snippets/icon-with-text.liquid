@@ -1,14 +1,26 @@
 {% doc %}
   Renders an Icon with Text component.
 
-  @param {string} icon - The name of the icon to render.
+  @param {string} [icon] - The name of the icon to render.
+  @param {object} [image] - The image to use as the icon.
   @param {string} text - The text to display alongside the icon.
+  @param {boolean} [rich_text] - Whether the renderd text is rich text.
 {% enddoc %}
 
 <div class="IconWithText">
-  {% render 'icon', icon: icon %}
+  <div class="IconWithText__Icon">
+    {% if image %}
+      {% render 'image', image: image %}
+    {% else %}
+      {% render 'icon', icon: icon %}
+    {% endif %}
+  </div>
 
-  {% render 'text', text: text %}
+  {% if rich_text %}
+    {% assign as = 'div' %}
+  {% endif %}
+
+  {% render 'text', text: text, as: as %}
 </div>
 
 {% stylesheet %}
@@ -16,5 +28,9 @@
     display: flex;
     align-items: center;
     gap: var(--icon-with-text-gap);
+  }
+
+  .IconWithText__Icon {
+    width: var(--icon-size-m);
   }
 {% endstylesheet %}

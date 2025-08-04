@@ -2,5 +2,11 @@
   "global": {
     "subtotal": "Subtotal",
     "shipping": "Shipping"
+  },
+  "components": {
+    "shipping_estimation": {
+      "available": "In stock: With you in 1-3 days",
+      "unavailable": "Out of stock"
+    }
   }
 }

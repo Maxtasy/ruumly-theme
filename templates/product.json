@@ -11,6 +11,50 @@
   "sections": {
     "product-configurator": {
       "type": "product-configurator",
+      "blocks": {
+        "title_RJwRG7": {
+          "type": "title",
+          "settings": {}
+        },
+        "product_variant_selector_EBVxnF": {
+          "type": "product-variant-selector",
+          "settings": {}
+        },
+        "price_list_PbRtyp": {
+          "type": "price-list",
+          "settings": {}
+        },
+        "quantity_selector_wE9nfX": {
+          "type": "quantity-selector",
+          "settings": {}
+        },
+        "product_rating_QNbfjC": {
+          "type": "product-rating",
+          "settings": {}
+        },
+        "shipping_estimation_RRER7L": {
+          "type": "shipping-estimation",
+          "settings": {}
+        },
+        "buy_buttons_8NEeYf": {
+          "type": "buy-buttons",
+          "settings": {}
+        },
+        "selling_points_GxLPAj": {
+          "type": "selling-points",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "title_RJwRG7",
+        "product_variant_selector_EBVxnF",
+        "price_list_PbRtyp",
+        "quantity_selector_wE9nfX",
+        "product_rating_QNbfjC",
+        "shipping_estimation_RRER7L",
+        "buy_buttons_8NEeYf",
+        "selling_points_GxLPAj"
+      ],
       "settings": {}
     }
   },

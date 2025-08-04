@@ -4,7 +4,12 @@
       <div class="ProductConfigurator__Gallery">Gallery</div>
 
       <div class="ProductConfigurator__Form">
-        {% render 'product-form', product: product, name_prefix: section.id, update_variant_url_parameter: true %}
+        {% render 'product-form',
+          product: product,
+          name_prefix: section.id,
+          update_variant_url_parameter: true,
+          blocks: section.blocks
+        %}
       </div>
     </div>
   </div>
@@ -43,6 +48,43 @@
 
 {% schema %}
 {
-  "name": "Product Configurator"
+  "name": "Product Configurator",
+  "blocks": [
+    {
+      "name": "t:blocks.titel.name",
+      "type": "title"
+    },
+    {
+      "name": "t:blocks.product_variant_selector.name",
+      "type": "product-variant-selector",
+      "limit": 1
+    },
+    {
+      "name": "t:blocks.price_list.name",
+      "type": "price-list"
+    },
+    {
+      "name": "t:blocks.quantity_selector.name",
+      "type": "quantity-selector",
+      "limit": 1
+    },
+    {
+      "name": "t:blocks.product_rating.name",
+      "type": "product-rating"
+    },
+    {
+      "name": "t:blocks.buy_buttons.name",
+      "type": "buy-buttons",
+      "limit": 1
+    },
+    {
+      "name": "t:blocks.shipping_estimation.name",
+      "type": "shipping-estimation"
+    },
+    {
+      "name": "t:blocks.selling_points.name",
+      "type": "selling-points"
+    }
+  ]
 }
 {% endschema %}

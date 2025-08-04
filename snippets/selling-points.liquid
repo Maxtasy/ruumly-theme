@@ -1,0 +1,23 @@
+{% doc %}
+  Renders a Selling Points component.
+
+  @param {object} selling_points - List of selling point objects. Each of them consists of an image and text.
+{% enddoc %}
+
+<ul class="SellingPoints u-NoList">
+  {% for selling_point in selling_points %}
+    <li>
+      {% assign text_html = selling_point.text | metafield_tag %}
+
+      {% render 'icon-with-text', image: selling_point.icon, text: text_html, rich_text: true %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% stylesheet %}
+  .SellingPoints {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
