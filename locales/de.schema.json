@@ -332,6 +332,18 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
+        "iamge_loading": {
+          "label": "Ladeeigenschaft der Bilder",
+          "info": "Verwenden Sie „Lazy“, wenn der Abschnitt unterhalb der Falz platziert ist.",
+          "options": {
+            "lazy": {
+              "label": "Lazy"
+            },
+            "eager": {
+              "label": "Eager"
+            }
+          }
+        },
         "language_selector": {
           "label": "Sprachauswahl",
           "info": "Wird nur bei mehreren Sprachen im Store angezeigt."

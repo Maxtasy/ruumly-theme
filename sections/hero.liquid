@@ -19,11 +19,11 @@
       "
     >
       <div class="Hero__MobileImage u-Hidden--Desktop">
-        {% render 'image', image: section.settings.mobile_image %}
+        {% render 'image', image: section.settings.mobile_image, loading: section.settings.image_loading %}
       </div>
 
       <div class="Hero__DesktopImage u-Hidden--Mobile">
-        {% render 'image', image: section.settings.desktop_image %}
+        {% render 'image', image: section.settings.desktop_image, loading: section.settings.image_loading %}
       </div>
 
       <div class="Hero__Overlay"></div>
@@ -149,6 +149,17 @@
       "type": "image_picker",
       "id": "desktop_image",
       "label": "t:global.settings.image_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "image_loading",
+      "label": "t:sections.all.settings.iamge_loading.label",
+      "default": "eager",
+      "info": "t:sections.all.settings.iamge_loading.info",
+      "options": [
+        { "value": "lazy", "label": "t:sections.all.settings.iamge_loading.options.lazy.label" },
+        { "value": "eager", "label": "t:sections.all.settings.iamge_loading.options.eager.label" }
+      ]
     },
     {
       "type": "select",
