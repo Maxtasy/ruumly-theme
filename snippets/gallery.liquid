@@ -1,0 +1,20 @@
+{% doc %}
+  Renders a Product Gallery.
+
+  @param {object} images - A list of images to render in the Gallery.
+  @param {string} [variant] - Variant of the gallery. ('slider', 'stack')
+  @param {boolean} [navigation] - Whether to render navigation arrows.
+  @param {boolean} [pagination] - Whether to render pagination.
+{% enddoc %}
+
+{% assign variant = variant | default: 'slider' %}
+{% assign navigation = navigation | default: true %}
+{% assign pagination = pagination | default: true %}
+
+<div class="ProductGallery">
+  {% for image in images %}
+    <div class="ProductGallery__Item">
+      {% render 'image', image: product.images %}
+    </div>
+  {% endfor %}
+</div>
