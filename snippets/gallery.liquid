@@ -1,8 +1,8 @@
 {% doc %}
-  Renders a Product Gallery.
+  Renders a Gallery component.
 
   @param {object} images - A list of images to render in the Gallery.
-  @param {string} [variant] - Variant of the gallery. ('slider', 'stack')
+  @param {string} [variant] - Variant of the gallery. ('slider', 'stack', 'grid')
   @param {boolean} [navigation] - Whether to render navigation arrows.
   @param {boolean} [pagination] - Whether to render pagination.
 {% enddoc %}
@@ -11,10 +11,43 @@
 {% assign navigation = navigation | default: true %}
 {% assign pagination = pagination | default: true %}
 
-<div class="ProductGallery">
+<div
+  class="
+    Gallery
+    Gallery--{{ variant | camelcase }}
+  "
+>
   {% for image in images %}
-    <div class="ProductGallery__Item">
-      {% render 'image', image: product.images %}
+    <div class="Gallery__Item">
+      {% render 'image', image: image %}
     </div>
   {% endfor %}
 </div>
+
+{% stylesheet %}
+  .Gallery {
+  }
+
+  .Gallery--Stack {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .Gallery--Grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--size-s);
+  }
+
+  .Gallery--Slider {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+  }
+
+  .Gallery__Item {
+    flex-shrink: 0;
+    scroll-snap-align: center;
+  }
+{% endstylesheet %}
