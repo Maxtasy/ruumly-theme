@@ -15,6 +15,7 @@
   class="
     Gallery
     Gallery--{{ variant | camelcase }}
+    u-NoScrollbar
   "
 >
   {% for image in images %}
@@ -26,6 +27,7 @@
 
 {% stylesheet %}
   .Gallery {
+    width: 100%;
   }
 
   .Gallery--Stack {
@@ -47,6 +49,7 @@
   }
 
   .Gallery__Item {
+    width: 100%;
     flex-shrink: 0;
     scroll-snap-align: center;
   }

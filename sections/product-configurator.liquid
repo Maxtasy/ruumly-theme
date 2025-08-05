@@ -1,7 +1,9 @@
 <section class="Section Section--PaddingBlockMedium">
   <div class="Section__Inner">
     <div class="ProductConfigurator">
-      <div class="ProductConfigurator__Gallery">Gallery</div>
+      <div class="ProductConfigurator__Gallery">
+        {% render 'gallery', images: product.images, variant: section.settings.gallery %}
+      </div>
 
       <div class="ProductConfigurator__Form">
         {% render 'product-form',
@@ -25,7 +27,6 @@
   .ProductConfigurator__Gallery {
     width: 100%;
     aspect-ratio: 1;
-    background-color: var(--t-background);
   }
 
   @media screen and (min-width: 769px) {
@@ -42,6 +43,7 @@
 
     .ProductConfigurator__Form {
       width: 40%;
+      flex-shrink: 0;
     }
   }
 {% endstylesheet %}
@@ -49,6 +51,23 @@
 {% schema %}
 {
   "name": "t:sections.product_configurator.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "select",
+      "id": "gallery",
+      "label": "Gallery",
+      "default": "slider",
+      "options": [
+        { "value": "stack", "label": "Stack" },
+        { "value": "slider", "label": "Slider" },
+        { "value": "grid", "label": "Grid" }
+      ]
+    }
+  ],
   "blocks": [
     {
       "name": "t:blocks.titel.name",
