@@ -332,6 +332,18 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
+        "iamge_loading": {
+          "label": "Bild wird geladen",
+          "info": "Verwenden Sie „Zögerlich“, wenn der Abschnitt unterhalb der Falz platziert ist.",
+          "options": {
+            "lazy": {
+              "label": "Zögerlich"
+            },
+            "eager": {
+              "label": "Eifrig"
+            }
+          }
+        },
         "language_selector": {
           "label": "Sprachauswahl",
           "info": "Wird nur bei mehreren Sprachen im Store angezeigt."

@@ -332,6 +332,18 @@
           "label": "Heading",
           "default": "Heading"
         },
+        "iamge_loading": {
+          "label": "Image Loading",
+          "info": "Use lazy if the section is placed below the fold.",
+          "options": {
+            "lazy": {
+              "label": "Lazy"
+            },
+            "eager": {
+              "label": "Eager"
+            }
+          }
+        },
         "language_selector": {
           "label": "Language Selector",
           "info": "Will only show if store has multiple languages."
