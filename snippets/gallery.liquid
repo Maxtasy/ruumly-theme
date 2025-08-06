@@ -12,6 +12,7 @@
 {% assign pagination = pagination | default: true %}
 
 <div
+  is="gallery-component"
   class="
     Gallery
     Gallery--{{ variant | camelcase }}
@@ -25,23 +26,25 @@
     {% endfor %}
   </div>
 
-  <div class="Gallery__Navigation">
-    {% if navigation %}
-      {% render 'button', icon: 'arrow-left', variant: 'plain', size: 'small' %}
-    {% endif %}
+  {% if variant == 'slider' %}
+    <div class="Gallery__Navigation">
+      {% if navigation %}
+        {% render 'button', icon: 'arrow-left', variant: 'plain', size: 'small', action: 'prev' %}
+      {% endif %}
 
-    {% if pagination %}
-      <div class="Gallery__Pagination">
-        {% for image in images %}
-          {% render 'pagination-item', index: forloop.index0, active: forloop.first %}
-        {% endfor %}
-      </div>
-    {% endif %}
+      {% if pagination %}
+        <div class="Gallery__Pagination">
+          {% for image in images %}
+            {% render 'pagination-item', index: forloop.index0, active: forloop.first %}
+          {% endfor %}
+        </div>
+      {% endif %}
 
-    {% if navigation %}
-      {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small' %}
-    {% endif %}
-  </div>
+      {% if navigation %}
+        {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small', action: 'next' %}
+      {% endif %}
+    </div>
+  {% endif %}
 </div>
 
 {% stylesheet %}
