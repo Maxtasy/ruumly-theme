@@ -328,6 +328,20 @@
         "columns_mobile": {
           "label": "Columns Mobile"
         },
+        "gallery": {
+          "label": "Gallery",
+          "options": {
+            "stack": {
+              "label": "Stack"
+            },
+            "slider": {
+              "label": "Slider"
+            },
+            "grid": {
+              "label": "Grid"
+            }
+          }
+        },
         "heading": {
           "label": "Heading",
           "default": "Heading"

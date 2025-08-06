@@ -2,6 +2,7 @@
   Renders a Button component.
 
   @param {string} [text] - Text inside the button.
+  @param {string} [content] - Content to render inside the button.
   @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain', 'link').
   @param {string} [icon] - Icon handle of the icon to render.
   @param {string} [action] - The action attribute.
@@ -32,6 +33,10 @@
     {% if icon %}
       {% render 'icon', icon: icon %}
     {% endif -%}
+
+    {% if content %}
+      {{ content }}
+    {% endif %}
   </a>
 {% else %}
   <button
@@ -51,6 +56,10 @@
 
     {% if icon %}
       {% render 'icon', icon: icon %}
+    {% endif %}
+
+    {% if content %}
+      {{ content }}
     {% endif %}
   </button>
 {% endif %}

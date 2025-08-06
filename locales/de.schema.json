@@ -328,6 +328,20 @@
         "columns_mobile": {
           "label": "Spalten Mobile"
         },
+        "gallery": {
+          "label": "Galerie",
+          "options": {
+            "stack": {
+              "label": "Gestapelt"
+            },
+            "slider": {
+              "label": "Slider"
+            },
+            "grid": {
+              "label": "Raster"
+            }
+          }
+        },
         "heading": {
           "label": "Überschrift",
           "default": "Überschrift"
