@@ -9,6 +9,7 @@
   @param {string} [url] - The URL of the button.
   @param {boolean} [external] - Whether the URL should be opened in a new window.
   @param {string} [size] - Button size ('small', 'medium', 'large').
+  @param {boolean} [disabled] - Whether the button should be disabled.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
@@ -46,6 +47,10 @@
       Button--{{ variant | camelcase }}
       Button--Size{{ size | camelcase }}
     "
+    {% if disabled %}
+      disabled
+    {% endif %}
+
     {% if action %}
       data-action="{{ action }}"
     {% endif %}

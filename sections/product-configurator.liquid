@@ -2,7 +2,11 @@
   <div class="Section__Inner">
     <div class="ProductConfigurator">
       <div class="ProductConfigurator__Gallery">
-        {% render 'gallery', images: product.images, variant: section.settings.gallery %}
+        {% render 'gallery',
+          images: product.images,
+          variant_desktop: section.settings.gallery_desktop,
+          variant_mobile: section.settings.gallery_mobile
+        %}
       </div>
 
       <div class="ProductConfigurator__Form">
@@ -58,13 +62,24 @@
     },
     {
       "type": "select",
-      "id": "gallery",
-      "label": "t:sections.all.settings.gallery.label",
+      "id": "gallery_desktop",
+      "label": "t:sections.all.settings.gallery_desktop.label",
+      "default": "grid",
+      "options": [
+        { "value": "stack", "label": "t:sections.all.settings.gallery_desktop.options.stack.label" },
+        { "value": "slider", "label": "t:sections.all.settings.gallery_desktop.options.slider.label" },
+        { "value": "grid", "label": "t:sections.all.settings.gallery_desktop.options.grid.label" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "gallery_mobile",
+      "label": "t:sections.all.settings.gallery_mobile.label",
       "default": "slider",
       "options": [
-        { "value": "stack", "label": "t:sections.all.settings.gallery.options.stack.label" },
-        { "value": "slider", "label": "t:sections.all.settings.gallery.options.slider.label" },
-        { "value": "grid", "label": "t:sections.all.settings.gallery.options.grid.label" }
+        { "value": "stack", "label": "t:sections.all.settings.gallery_mobile.options.stack.label" },
+        { "value": "slider", "label": "t:sections.all.settings.gallery_mobile.options.slider.label" },
+        { "value": "grid", "label": "t:sections.all.settings.gallery_mobile.options.grid.label" }
       ]
     }
   ],
