@@ -360,7 +360,7 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
-        "iamge_loading": {
+        "image_loading": {
           "label": "Ladeeigenschaft der Bilder",
           "info": "Verwenden Sie „Lazy“, wenn der Abschnitt unterhalb der Falz platziert ist.",
           "options": {

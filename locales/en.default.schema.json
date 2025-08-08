@@ -360,7 +360,7 @@
           "label": "Heading",
           "default": "Heading"
         },
-        "iamge_loading": {
+        "image_loading": {
           "label": "Image Loading",
           "info": "Use lazy if the section is placed below the fold.",
           "options": {
