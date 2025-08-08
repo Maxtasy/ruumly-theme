@@ -37,34 +37,36 @@
     {% endfor %}
   </div>
 
-  <div
-    class="
-      Gallery__Navigation
-      {% if variant_mobile != 'slider' %}
-        u-Hidden--Mobile
+  {% if images.size > 1 %}
+    <div
+      class="
+        Gallery__Navigation
+        {% if variant_mobile != 'slider' %}
+          u-Hidden--Mobile
+        {% endif %}
+
+        {% if variant_desktop != 'slider' %}
+          u-Hidden--Desktop
+        {% endif %}
+      "
+    >
+      {% if navigation %}
+        {% render 'button', icon: 'arrow-left', variant: 'plain', size: 'small', action: 'prev', disabled: true %}
       {% endif %}
 
-      {% if variant_desktop != 'slider' %}
-        u-Hidden--Desktop
+      {% if pagination %}
+        <div class="Gallery__Pagination">
+          {% for image in images %}
+            {% render 'pagination-item', index: forloop.index0, active: forloop.first %}
+          {% endfor %}
+        </div>
       {% endif %}
-    "
-  >
-    {% if navigation %}
-      {% render 'button', icon: 'arrow-left', variant: 'plain', size: 'small', action: 'prev', disabled: true %}
-    {% endif %}
 
-    {% if pagination %}
-      <div class="Gallery__Pagination">
-        {% for image in images %}
-          {% render 'pagination-item', index: forloop.index0, active: forloop.first %}
-        {% endfor %}
-      </div>
-    {% endif %}
-
-    {% if navigation %}
-      {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small', action: 'next' %}
-    {% endif %}
-  </div>
+      {% if navigation %}
+        {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small', action: 'next' %}
+      {% endif %}
+    </div>
+  {% endif %}
 </div>
 
 {% stylesheet %}
