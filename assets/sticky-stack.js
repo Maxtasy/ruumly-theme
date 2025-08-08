@@ -1,6 +1,8 @@
 class StickyStack {
   constructor() {
     this.stickyElements = [];
+
+    this.totalStickyHeight = 0;
   }
 
   addElement(element) {
@@ -23,6 +25,10 @@ class StickyStack {
 
       offsetHeight += element.height;
     });
+
+    this.totalStickyHeight = offsetHeight;
+
+    document.body.style.setProperty("--total-sticky-height", `${this.totalStickyHeight}px`);
   }
 }
 
