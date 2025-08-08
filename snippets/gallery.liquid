@@ -6,6 +6,8 @@
   @param {string} [variant_mobile] - Variant of the gallery for mobile. ('slider', 'stack', 'grid')
   @param {boolean} [navigation] - Whether to render navigation arrows.
   @param {boolean} [pagination] - Whether to render pagination.
+  @param {number} [columns_desktop] - Number of columns on desktop.
+  @param {number} [columns_mobile] - Number of columns on mobile.
 {% enddoc %}
 
 {% assign variant_desktop = variant_desktop | default: 'grid' %}
@@ -19,6 +21,10 @@
     Gallery
     Gallery--Desktop{{ variant_desktop | camelcase }}
     Gallery--Mobile{{ variant_mobile | camelcase }}
+  "
+  style="
+    --columns-mobile: {{ columns_mobile }};
+    --columns-desktop: {{ columns_desktop }};
   "
 >
   <div class="Gallery__Media u-NoScrollbar">
@@ -97,7 +103,7 @@
 
     .Gallery--MobileGrid .Gallery__Media {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(var(--columns-mobile), 1fr);
       gap: var(--size-s);
     }
 
@@ -117,7 +123,7 @@
 
     .Gallery--DesktopGrid .Gallery__Media {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
       gap: var(--size-s);
     }
 
