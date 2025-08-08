@@ -328,6 +328,34 @@
         "columns_mobile": {
           "label": "Spalten Mobile"
         },
+        "gallery_desktop": {
+          "label": "Galerie Desktop",
+          "options": {
+            "stack": {
+              "label": "Stack"
+            },
+            "slider": {
+              "label": "Slider"
+            },
+            "grid": {
+              "label": "Grid"
+            }
+          }
+        },
+        "gallery_mobile": {
+          "label": "Galerie Mobile",
+          "options": {
+            "stack": {
+              "label": "Stack"
+            },
+            "slider": {
+              "label": "Slider"
+            },
+            "grid": {
+              "label": "Grid"
+            }
+          }
+        },
         "heading": {
           "label": "Überschrift",
           "default": "Überschrift"

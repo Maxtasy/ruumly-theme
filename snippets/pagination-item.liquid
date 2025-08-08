@@ -1,0 +1,31 @@
+{% doc %}
+  Renders a Pagination Item component.
+
+  @param {boolean} [active] - Whether the pagination item is active.
+  @param {number} index - The index of the pagination item within the pagination group.
+{% enddoc %}
+
+{% capture pagination_item %}
+  <div class="PaginationItem{% if active %} PaginationItem--Active{% endif %}"></div>
+{% endcapture %}
+
+{% assign action = 'navigate-' | append: index %}
+
+{% render 'button', content: pagination_item, action: action, variant: 'plain', size: 'small' %}
+
+{% stylesheet %}
+  .PaginationItem {
+    width: var(--icon-size-m);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background-color: var(--t-background-light);
+    opacity: 0.5;
+    transform: scale(0.8);
+    transition: all var(--transition-duration) linear;
+  }
+
+  .PaginationItem--Active {
+    opacity: 1;
+    transform: scale(1);
+  }
+{% endstylesheet %}

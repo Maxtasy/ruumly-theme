@@ -2,12 +2,14 @@
   Renders a Button component.
 
   @param {string} [text] - Text inside the button.
+  @param {string} [content] - Content to render inside the button.
   @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain', 'link').
   @param {string} [icon] - Icon handle of the icon to render.
   @param {string} [action] - The action attribute.
   @param {string} [url] - The URL of the button.
   @param {boolean} [external] - Whether the URL should be opened in a new window.
   @param {string} [size] - Button size ('small', 'medium', 'large').
+  @param {boolean} [disabled] - Whether the button should be disabled.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
@@ -32,6 +34,10 @@
     {% if icon %}
       {% render 'icon', icon: icon %}
     {% endif -%}
+
+    {% if content %}
+      {{ content }}
+    {% endif %}
   </a>
 {% else %}
   <button
@@ -41,6 +47,10 @@
       Button--{{ variant | camelcase }}
       Button--Size{{ size | camelcase }}
     "
+    {% if disabled %}
+      disabled
+    {% endif %}
+
     {% if action %}
       data-action="{{ action }}"
     {% endif %}
@@ -51,6 +61,10 @@
 
     {% if icon %}
       {% render 'icon', icon: icon %}
+    {% endif %}
+
+    {% if content %}
+      {{ content }}
     {% endif %}
   </button>
 {% endif %}
