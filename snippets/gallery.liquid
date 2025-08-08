@@ -6,12 +6,16 @@
   @param {string} [variant_mobile] - Variant of the gallery for mobile. ('slider', 'stack', 'grid')
   @param {boolean} [navigation] - Whether to render navigation arrows.
   @param {boolean} [pagination] - Whether to render pagination.
+  @param {number} [columns_desktop] - Number of columns on desktop.
+  @param {number} [columns_mobile] - Number of columns on mobile.
 {% enddoc %}
 
 {% assign variant_desktop = variant_desktop | default: 'grid' %}
 {% assign variant_mobile = variant_mobile | default: 'slider' %}
 {% assign navigation = navigation | default: true %}
 {% assign pagination = pagination | default: true %}
+{% assign columns_desktop = columns_desktop | default: 3 %}
+{% assign columns_mobile = columns_mobile | default: 2 %}
 
 <div
   is="gallery-component"
@@ -19,6 +23,10 @@
     Gallery
     Gallery--Desktop{{ variant_desktop | camelcase }}
     Gallery--Mobile{{ variant_mobile | camelcase }}
+  "
+  style="
+    --columns-mobile: {{ columns_mobile }};
+    --columns-desktop: {{ columns_desktop }};
   "
 >
   <div class="Gallery__Media u-NoScrollbar">
@@ -29,34 +37,36 @@
     {% endfor %}
   </div>
 
-  <div
-    class="
-      Gallery__Navigation
-      {% if variant_mobile != 'slider' %}
-        u-Hidden--Mobile
+  {% if images.size > 1 %}
+    <div
+      class="
+        Gallery__Navigation
+        {% if variant_mobile != 'slider' %}
+          u-Hidden--Mobile
+        {% endif %}
+
+        {% if variant_desktop != 'slider' %}
+          u-Hidden--Desktop
+        {% endif %}
+      "
+    >
+      {% if navigation %}
+        {% render 'button', icon: 'arrow-left', variant: 'plain', size: 'small', action: 'prev', disabled: true %}
       {% endif %}
 
-      {% if variant_desktop != 'slider' %}
-        u-Hidden--Desktop
+      {% if pagination %}
+        <div class="Gallery__Pagination">
+          {% for image in images %}
+            {% render 'pagination-item', index: forloop.index0, active: forloop.first %}
+          {% endfor %}
+        </div>
       {% endif %}
-    "
-  >
-    {% if navigation %}
-      {% render 'button', icon: 'arrow-left', variant: 'plain', size: 'small', action: 'prev', disabled: true %}
-    {% endif %}
 
-    {% if pagination %}
-      <div class="Gallery__Pagination">
-        {% for image in images %}
-          {% render 'pagination-item', index: forloop.index0, active: forloop.first %}
-        {% endfor %}
-      </div>
-    {% endif %}
-
-    {% if navigation %}
-      {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small', action: 'next' %}
-    {% endif %}
-  </div>
+      {% if navigation %}
+        {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small', action: 'next' %}
+      {% endif %}
+    </div>
+  {% endif %}
 </div>
 
 {% stylesheet %}
@@ -97,7 +107,7 @@
 
     .Gallery--MobileGrid .Gallery__Media {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(var(--columns-mobile), 1fr);
       gap: var(--size-s);
     }
 
@@ -117,7 +127,7 @@
 
     .Gallery--DesktopGrid .Gallery__Media {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
       gap: var(--size-s);
     }
 

@@ -33,9 +33,7 @@ class Gallery extends CustomComponentMixin(HTMLDivElement) {
   }
 
   handleNextClick() {
-    if (this.currentIndex >= this.mediaItemElements.length - 1) {
-      return;
-    }
+    if (this.currentIndex >= this.mediaItemElements.length - 1) return;
 
     this.currentIndex += 1;
 
