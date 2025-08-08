@@ -361,14 +361,14 @@
           "default": "Überschrift"
         },
         "iamge_loading": {
-          "label": "Bild wird geladen",
-          "info": "Verwenden Sie „Zögerlich“, wenn der Abschnitt unterhalb der Falz platziert ist.",
+          "label": "Ladeeigenschaft der Bilder",
+          "info": "Verwenden Sie „Lazy“, wenn der Abschnitt unterhalb der Falz platziert ist.",
           "options": {
             "lazy": {
-              "label": "Zögerlich"
+              "label": "Lazy"
             },
             "eager": {
-              "label": "Eifrig"
+              "label": "Eager"
             }
           }
         },
