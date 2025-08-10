@@ -72,7 +72,11 @@
   @media screen and (min-width: 769px) {
     .ProductForm {
       position: sticky;
+
+      /* We add the section padding here since we want to maintain the distance to all the sticky elements in the
+      header group. */
       top: calc(var(--total-sticky-height) + var(--section-padding-block-m));
+
       padding: var(--size-xl);
     }
   }
