@@ -32,7 +32,7 @@
 
       {% when 'product-rating' %}
         {% if product.metafields.custom.rating.value.rating %}
-          {% render 'rating', rating: product.metafields.custom.rating.value.rating %}
+          {% render 'rating', rating: product.metafields.custom.rating.value.rating, icon_size: 'small' %}
         {% endif %}
 
       {% when 'buy-buttons' %}
