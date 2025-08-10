@@ -13,7 +13,7 @@
   <div class="Section__Inner">
     {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
-    {% if section.settings.collection %}
+    {% if section.settings.collection.products %}
       {% assign products = section.settings.collection.products %}
     {% else %}
       {% assign products = section.settings.product_list %}
