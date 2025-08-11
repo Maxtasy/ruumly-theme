@@ -75,7 +75,20 @@
           {% assign disabled = true %}
         {% endif %}
 
-        {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add', disabled: disabled %}
+        {% if selected_variant.has_only_default_variant %}
+          {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add', disabled: disabled %}
+        {% else %}
+          {% assign modal_name = 'quick-add-form-' | append: product.handle %}
+          {% assign action = 'open-modal:' | append: modal_name %}
+
+          {% render 'button', icon: 'shopping-cart', size: 'small', action: action, disabled: disabled %}
+
+          {% capture modal_content %}
+            {% render 'quick-add-product-form', product: product %}
+          {% endcapture %}
+
+          {% render 'modal', name: modal_name, content: modal_content %}
+        {% endif %}
       </div>
     {% endif %}
   </div>
