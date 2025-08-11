@@ -75,7 +75,7 @@
           {% assign disabled = true %}
         {% endif %}
 
-        {% if selected_variant.has_only_default_variant %}
+        {% if product.has_only_default_variant %}
           {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add', disabled: disabled %}
         {% else %}
           {% assign modal_name = 'quick-add-form-' | append: product.handle %}
