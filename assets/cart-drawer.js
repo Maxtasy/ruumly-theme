@@ -16,6 +16,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     this.subscribe("line-item:remove", this.handleCartUpdate);
 
     globalThis.subscribe("product-form:item-added", this.handleItemAdded);
+    globalThis.subscribe("product-card:item-added", this.handleItemAdded);
   }
 
   disconnectedCallback() {
@@ -24,6 +25,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     this.unsubscribe("line-item:remove", this.handleCartUpdate);
 
     globalThis.unsubscribe("product-form:item-added", this.handleItemAdded);
+    globalThis.unsubscribe("product-card:item-added", this.handleItemAdded);
   }
 
   handleItemAdded({ sections, items }) {
@@ -34,7 +36,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
 
       this.closest(".Drawer").open();
 
-      this.publish("cart-drawer:updated", { itemCount: items.length });
+      this.publish("cart-drawer:updated", { totalQuantity: this.totalQuantity });
     }
   }
 
@@ -44,11 +46,11 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     if (updatedCartDrawer) {
       this.rerenderCartDrawer(updatedCartDrawer);
 
-      const totalItemCount = items.reduce((total, item) => {
+      const totalQuantity = items.reduce((total, item) => {
         return total + item.quantity;
       }, 0);
 
-      this.publish("cart-drawer:updated", { itemCount: totalItemCount });
+      this.publish("cart-drawer:updated", { totalQuantity });
     }
   }
 
@@ -77,7 +79,11 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
       }
     });
 
-    this.publish("cart-drawer:updated", { itemCount: 0 });
+    this.publish("cart-drawer:updated", { totalQuantity: 0 });
+  }
+
+  get totalQuantity() {
+    return [...this.querySelectorAll(".QuantitySelector")].reduce((total, el) => (total += el.quantity), 0);
   }
 }
 

@@ -11,15 +11,22 @@
   @param {number} [rating] - Product rating.
   @param {string} [hover_effect] - The hover effect for the image. ('none', 'swap', 'zoom')
   @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
+  @param {object} [product] - The product reference.
 {% enddoc %}
 
 {% assign hover_effect = hover_effect | default: settings.product_card_hover_effect %}
+{% assign selected_variant = product.selected_or_first_available_variant %}
 
 <article
   class="
     ProductCard
     ProductCard--Hover{{ hover_effect | camelcase }}
   "
+  {% if enable_quick_add_button %}
+    is="product-card-component"
+    data-has-only-default-variant="{{ product.has_only_default_variant }}"
+    data-selected-variant-id="{{ selected_variant.id | json }}"
+  {% endif %}
 >
   <a href="{{ url }}">
     <div class="ProductCard__Image">
@@ -64,7 +71,11 @@
 
     {% if enable_quick_add_button %}
       <div class="ProductCard__Actions">
-        {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add' %}
+        {% if selected_variant.available != true %}
+          {% assign disabled = true %}
+        {% endif %}
+
+        {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add', disabled: disabled %}
       </div>
     {% endif %}
   </div>
