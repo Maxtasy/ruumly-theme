@@ -3,10 +3,24 @@
 
   @param {boolean} [active] - Whether the pagination item is active.
   @param {number} index - The index of the pagination item within the pagination group.
+  @param {string} [variant] - The style for the pagination item. ('bullet', 'bar', 'thumbnail')
+  @param {object} [image] - The image to render as a thumbnail.
 {% enddoc %}
 
+{% assign variant = variant | default: 'bullets' %}
+
 {% capture pagination_item %}
-  <div class="PaginationItem{% if active %} PaginationItem--Active{% endif %}"></div>
+  <div
+    class="
+      PaginationItem
+      PaginationItem--{{ variant | camelcase }}
+      {% if active %} PaginationItem--Active{% endif %}
+    "
+  >
+    {% if image and variant == 'thumbnail' %}
+      {% render 'image', image: image %}
+    {% endif %}
+  </div>
 {% endcapture %}
 
 {% assign action = 'navigate-' | append: index %}
@@ -15,17 +29,38 @@
 
 {% stylesheet %}
   .PaginationItem {
-    width: var(--icon-size-m);
-    aspect-ratio: 1;
-    border-radius: 50%;
-    background-color: var(--t-background-light);
-    opacity: 0.5;
-    transform: scale(0.8);
     transition: all var(--transition-duration) linear;
+    aspect-ratio: 1;
+  }
+
+  .PaginationItem--Bullet,
+  .PaginationItem--Bar {
+    width: var(--icon-size-m);
+    background-color: var(--t-background-light);
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  .PaginationItem--Bullet {
+    border-radius: 50%;
+  }
+
+  .PaginationItem--Bar {
+    aspect-ratio: 4/1;
+    border-radius: 100vmax;
+  }
+
+  .PaginationItem--Thumbnail {
+    width: var(--size-xxl);
   }
 
   .PaginationItem--Active {
     opacity: 1;
     transform: scale(1);
+  }
+
+  .PaginationItem--Thumbnail.PaginationItem--Active {
+    outline: var(--border-width) var(--border-style) var(--t-border);
+    outline-offset: 2px;
   }
 {% endstylesheet %}
