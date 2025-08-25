@@ -1,4 +1,9 @@
-<section class="Section Section--PaddingBlockMedium">
+<section
+  class="
+    Section Section--PaddingBlockMedium
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
   <div class="Section__Inner">
     <div class="ProductConfigurator">
       <div class="ProductConfigurator__Gallery">
@@ -61,6 +66,12 @@
     {
       "type": "header",
       "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
     },
     {
       "type": "select",
