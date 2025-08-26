@@ -476,6 +476,9 @@
       "settings": {
         "enable_quick_add_button": {
           "label": "Button für schnelles hinzufügen"
+        },
+        "enable_wishlist_button": {
+          "label": "Button für Wunschliste"
         }
       },
       "presets": {
