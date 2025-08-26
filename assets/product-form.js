@@ -96,6 +96,10 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
     });
   }
 
+  get shippingEstimationElement() {
+    return this.querySelector(".ShippingEstimation");
+  }
+
   get addToCartButtonElement() {
     return this.querySelector("[data-action='add-to-cart']");
   }
