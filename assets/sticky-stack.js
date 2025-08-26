@@ -2,7 +2,7 @@ class StickyStack {
   constructor() {
     this.stickyElements = [];
 
-    this.totalStickyHeight = 0;
+    window.addEventListener("resize", this.updateStickyElements.bind(this));
   }
 
   addElement(element) {
@@ -23,12 +23,10 @@ class StickyStack {
     this.stickyElements.forEach((element) => {
       element.closest(".MaybeStickySection").style.setProperty("--sticky-top-offset", `${offsetHeight}px`);
 
-      offsetHeight += element.height;
+      offsetHeight += element.offsetHeight;
     });
 
-    this.totalStickyHeight = offsetHeight;
-
-    document.body.style.setProperty("--total-sticky-height", `${this.totalStickyHeight}px`);
+    document.body.style.setProperty("--total-sticky-height", `${offsetHeight}px`);
   }
 }
 

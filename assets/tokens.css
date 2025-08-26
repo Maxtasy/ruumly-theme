@@ -74,6 +74,8 @@
   --modal-padding-inline: var(--size-m);
   --modal-width: 100%;
   --modal-max-width: 24rem;
+  --modal-min-height: 4.5rem;
+  --modal-max-height: 48rem;
 
   /* Product Option Value */
   --product-option-value-swatch-size: 3rem;

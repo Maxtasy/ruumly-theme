@@ -33,7 +33,8 @@
       price: product.price,
       compare_at_price: product.compare_at_price,
       url: product.selected_or_first_available_variant.url,
-      rating: product.metafields.custom.rating.value.rating
+      rating: product.metafields.custom.rating.value.rating,
+      product: product
     %}
   {% endfor %}
 </div>

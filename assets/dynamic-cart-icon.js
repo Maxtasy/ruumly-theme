@@ -15,9 +15,10 @@ class DynamicCartIconComponent extends CustomComponentMixin(HTMLDivElement) {
     globalThis.unsubscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
   }
 
-  handleCartDrawerUpdated({ itemCount }) {
-    this.querySelector(".DynamicCartIcon__Indicator .Text").textContent = itemCount;
-    if (itemCount > 0) {
+  handleCartDrawerUpdated({ totalQuantity }) {
+    this.querySelector(".DynamicCartIcon__Indicator .Text").textContent = totalQuantity;
+
+    if (totalQuantity > 0) {
       this.showIndicator();
     } else {
       this.hideIndicator();

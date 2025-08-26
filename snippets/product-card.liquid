@@ -12,15 +12,22 @@
   @param {string} [hover_effect] - The hover effect for the image. ('none', 'swap', 'zoom')
   @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
   @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card.
+  @param {object} [product] - The product reference.
 {% enddoc %}
 
 {% assign hover_effect = hover_effect | default: settings.product_card_hover_effect %}
+{% assign selected_variant = product.selected_or_first_available_variant %}
 
 <article
   class="
     ProductCard
     ProductCard--Hover{{ hover_effect | camelcase }}
   "
+  {% if enable_quick_add_button %}
+    is="product-card-component"
+    data-has-only-default-variant="{{ product.has_only_default_variant }}"
+    data-selected-variant-id="{{ selected_variant.id | json }}"
+  {% endif %}
 >
   <a href="{{ url }}">
     <div class="ProductCard__Image">
@@ -66,7 +73,24 @@
     {% if enable_quick_add_button or enable_wishlist_button %}
       <div class="ProductCard__Actions">
         {% if enable_quick_add_button %}
-          {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add' %}
+          {% if selected_variant.available != true %}
+            {% assign disabled = true %}
+          {% endif %}
+
+          {% if product.has_only_default_variant %}
+            {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add', disabled: disabled %}
+          {% else %}
+            {% assign modal_name = 'quick-add-form-' | append: product.handle %}
+            {% assign action = 'open-modal:' | append: modal_name %}
+
+            {% render 'button', icon: 'shopping-cart', size: 'small', action: action, disabled: disabled %}
+
+            {% capture modal_content %}
+              {% render 'quick-add-product-form', product: product %}
+            {% endcapture %}
+
+            {% render 'modal', name: modal_name, content: modal_content %}
+          {% endif %}
         {% endif %}
 
         {% if enable_wishlist_button %}
@@ -147,16 +171,23 @@
   }
 
   .ProductCard__Bottom {
+    /* Make sure the bottom section takes up the remaining space */
+    flex: 1;
+
     display: flex;
     align-items: center;
     gap: var(--size-xs);
     width: 100%;
     padding: var(--size-s);
+    gap: var(--size-s);
   }
 
   .ProductCard__Details {
     /* Make sure the details section takes up the remaining space */
     flex: 1;
+
+    /* Make sure the details section takes up the height of its parent */
+    height: 100%;
 
     display: flex;
     flex-direction: column;

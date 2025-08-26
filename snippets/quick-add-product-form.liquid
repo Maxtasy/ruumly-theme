@@ -1,0 +1,32 @@
+<form
+  is="product-form-component"
+  class="ProductQuickAddForm"
+>
+  {% render 'text', text: product.title, variant: 'heading-small', as: 'h3' %}
+
+  {% render 'price-list', price: product.price, compare_at_price: product.compare_at_price %}
+
+  {% render 'product-variant-selector',
+    product: product,
+    name_prefix: name_prefix,
+    visually_hidden: product.has_only_default_variant
+  %}
+
+  {% if product.available %}
+    {% assign text = 'components.shipping_estimation.available' | t %}
+  {% else %}
+    {% assign text = 'components.shipping_estimation.unavailable' | t %}
+  {% endif %}
+
+  {% render 'shipping-estimation', available: product.available, text: text %}
+
+  {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
+</form>
+
+{% stylesheet %}
+  .ProductQuickAddForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+{% endstylesheet %}
