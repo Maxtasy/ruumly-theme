@@ -6,6 +6,7 @@
   @param {number} [columns_mobile] - Number of columns on mobile.
   @param {number} [columns_desktop] - Number of columns on desktop.
   @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
+  @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card.
 {% enddoc %}
 
 {% assign columns_mobile = columns_mobile | default: 2 %}
@@ -28,6 +29,7 @@
       url: product.selected_or_first_available_variant.url,
       rating: product.metafields.custom.rating.value.rating,
       enable_quick_add_button: enable_quick_add_button,
+      enable_wishlist_button: enable_wishlist_button,
       product: product
     %}
   {% endfor %}

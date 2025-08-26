@@ -11,6 +11,7 @@
   @param {number} [rating] - Product rating.
   @param {string} [hover_effect] - The hover effect for the image. ('none', 'swap', 'zoom')
   @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
+  @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card.
   @param {object} [product] - The product reference.
 {% enddoc %}
 
@@ -69,25 +70,31 @@
       </div>
     </div>
 
-    {% if enable_quick_add_button %}
+    {% if enable_quick_add_button or enable_wishlist_button %}
       <div class="ProductCard__Actions">
-        {% if selected_variant.available != true %}
-          {% assign disabled = true %}
+        {% if enable_quick_add_button %}
+          {% if selected_variant.available != true %}
+            {% assign disabled = true %}
+          {% endif %}
+
+          {% if product.has_only_default_variant %}
+            {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add', disabled: disabled %}
+          {% else %}
+            {% assign modal_name = 'quick-add-form-' | append: product.handle %}
+            {% assign action = 'open-modal:' | append: modal_name %}
+
+            {% render 'button', icon: 'shopping-cart', size: 'small', action: action, disabled: disabled %}
+
+            {% capture modal_content %}
+              {% render 'quick-add-product-form', product: product %}
+            {% endcapture %}
+
+            {% render 'modal', name: modal_name, content: modal_content %}
+          {% endif %}
         {% endif %}
 
-        {% if product.has_only_default_variant %}
-          {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add', disabled: disabled %}
-        {% else %}
-          {% assign modal_name = 'quick-add-form-' | append: product.handle %}
-          {% assign action = 'open-modal:' | append: modal_name %}
-
-          {% render 'button', icon: 'shopping-cart', size: 'small', action: action, disabled: disabled %}
-
-          {% capture modal_content %}
-            {% render 'quick-add-product-form', product: product %}
-          {% endcapture %}
-
-          {% render 'modal', name: modal_name, content: modal_content %}
+        {% if enable_wishlist_button %}
+          {% render 'button', icon: 'heart', size: 'small', action: 'wishlist:add' %}
         {% endif %}
       </div>
     {% endif %}
@@ -151,6 +158,9 @@
   }
 
   .ProductCard__Actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
   }
 
   .ProductCard__Badges {
@@ -166,6 +176,7 @@
 
     display: flex;
     align-items: center;
+    gap: var(--size-xs);
     width: 100%;
     padding: var(--size-s);
     gap: var(--size-s);
