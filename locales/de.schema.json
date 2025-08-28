@@ -396,6 +396,20 @@
             }
           }
         },
+        "pagination_style": {
+          "label": "Pagination Style",
+          "options": {
+            "bullet": {
+              "label": "Bullets"
+            },
+            "bar": {
+              "label": "Bars"
+            },
+            "thumbnail": {
+              "label": "Thumbnails"
+            }
+          }
+        },
         "product_limit": {
           "label": "Maximale Anzahl an Produktkarten",
           "info": "Ignorieren wenn 0"

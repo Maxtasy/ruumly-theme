@@ -7,7 +7,8 @@
           variant_desktop: section.settings.gallery_desktop,
           variant_mobile: section.settings.gallery_mobile,
           columns_desktop: section.settings.columns_desktop,
-          columns_mobile: section.settings.columns_mobile
+          columns_mobile: section.settings.columns_mobile,
+          pagination_style: section.settings.pagination_style
         %}
       </div>
 
@@ -97,6 +98,17 @@
       "label": "t:sections.all.settings.columns_mobile.label",
       "default": 2,
       "visible_if": "{{ section.settings.gallery_mobile == 'grid' }}"
+    },
+    {
+      "type": "select",
+      "id": "pagination_style",
+      "label": "t:sections.all.settings.pagination_style.label",
+      "default": "bullet",
+      "options": [
+        { "value": "bullet", "label": "t:sections.all.settings.pagination_style.options.bullet.label" },
+        { "value": "bar", "label": "t:sections.all.settings.pagination_style.options.bar.label" },
+        { "value": "thumbnail", "label": "t:sections.all.settings.pagination_style.options.thumbnail.label" }
+      ]
     }
   ],
   "blocks": [
