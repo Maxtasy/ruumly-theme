@@ -7,14 +7,14 @@
   @param {object} [image] - The image to render as a thumbnail.
 {% enddoc %}
 
-{% assign variant = variant | default: 'bullets' %}
+{% assign variant = variant | default: 'bullet' %}
 
 {% capture pagination_item %}
   <div
     class="
       PaginationItem
       PaginationItem--{{ variant | camelcase }}
-      {% if active %} PaginationItem--Active{% endif %}
+      {% if active %}PaginationItem--Active{% endif %}
     "
   >
     {% if image and variant == 'thumbnail' %}
