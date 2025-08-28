@@ -2,14 +2,22 @@
   Renders a Shipping Estimation component.
 
   @param {boolean} available - Determines which color to use for the text.
-  @param {string} text - The text to render.
+  @param {string} available_text - The available text to render.
+  @param {string} unavailable_text - The unavailable text to render.
 {% enddoc %}
 
-<div is="shipping-estimation-component" class="ShippingEstimation">
+<div
+  is="shipping-estimation-component"
+  class="ShippingEstimation"
+  data-available-text="{{ available_text }}"
+  data-unavailable-text="{{ unavailable_text }}"
+>
   {% if available %}
     {% assign color = 'success' %}
+    {% assign text = available_text %}
   {% else %}
     {% assign color = 'destructive' %}
+    {% assign text = unavailable_text %}
   {% endif %}
 
   {% render 'text', text: text, color: color, as: 'strong' %}

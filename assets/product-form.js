@@ -58,8 +58,10 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
 
     if (!available) {
       this.addToCartButtonElement && this.addToCartButtonElement.disable();
+      this.shippingEstimationElement && this.shippingEstimationElement.setUnavailable();
     } else {
       this.addToCartButtonElement && this.addToCartButtonElement.enable();
+      this.shippingEstimationElement && this.shippingEstimationElement.setAvailable();
     }
 
     this.item.id = selectedVariantId;

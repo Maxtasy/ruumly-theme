@@ -39,13 +39,14 @@
         {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
 
       {% when 'shipping-estimation' %}
-        {% if product.selected_variant.available %}
-          {% assign text = 'components.shipping_estimation.available' | t %}
-        {% else %}
-          {% assign text = 'components.shipping_estimation.unavailable' | t %}
-        {% endif %}
+        {% assign available_text = 'components.shipping_estimation.available' | t %}
+        {% assign unavailable_text = 'components.shipping_estimation.unavailable' | t %}
 
-        {% render 'shipping-estimation', available: product.selected_variant.available, text: text %}
+        {% render 'shipping-estimation',
+          available: product.selected_variant.available,
+          available_text: available_text,
+          unavailable_text: unavailable_text
+        %}
 
       {% when 'selling-points' %}
         {% render 'selling-points',

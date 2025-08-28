@@ -6,9 +6,19 @@ export class ShippingEstimation extends CustomComponentMixin(HTMLDivElement) {
   }
 
   setAvailable() {
-    this.querySelector(".Text").classList.remove("Text--ColorDestructive");
+    this.textElement.classList.remove("Text--ColorDestructive");
+    this.textElement.classList.add("Text--ColorSuccess");
+    this.textElement.textContent = this.parsedData.availableText;
+  }
 
-    this.querySelector(".Text").classList.add("Text--ColorSuccess");
+  setUnavailable() {
+    this.textElement.classList.add("Text--ColorDestructive");
+    this.textElement.classList.remove("Text--ColorSuccess");
+    this.textElement.textContent = this.parsedData.unavailableText;
+  }
+
+  get textElement() {
+    return this.querySelector(".Text");
   }
 }
 

@@ -12,13 +12,14 @@
     visually_hidden: product.has_only_default_variant
   %}
 
-  {% if product.available %}
-    {% assign text = 'components.shipping_estimation.available' | t %}
-  {% else %}
-    {% assign text = 'components.shipping_estimation.unavailable' | t %}
-  {% endif %}
+  {% assign available_text = 'components.shipping_estimation.available' | t %}
+  {% assign unavailable_text = 'components.shipping_estimation.unavailable' | t %}
 
-  {% render 'shipping-estimation', available: product.available, text: text %}
+  {% render 'shipping-estimation',
+    available: product.selected_or_first_available_variant.available,
+    available_text: available_text,
+    unavailable_text: unavailable_text
+  %}
 
   {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
 </form>
