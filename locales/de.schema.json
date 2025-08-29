@@ -379,6 +379,9 @@
         "link_list": {
           "label": "Linkliste"
         },
+        "link_text": {
+          "label": "Link Text"
+        },
         "padding_block": {
           "label": "Padding Block",
           "options": {
@@ -406,6 +409,12 @@
         "sticky": {
           "label": "Haftender Abschnitt",
           "info": "Der Abschnitt bleibt beim Herunterscrollen am oberen Rand des Ansichtsfensters."
+        },
+        "text": {
+          "label": "Text"
+        },
+        "url": {
+          "label": "Link URL"
         }
       }
     },

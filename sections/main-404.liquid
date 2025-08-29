@@ -1,10 +1,16 @@
-<section class="Section Section--PaddingBlockLarge">
+<section
+  class="
+    Section
+    Section--PaddingBlockLarge
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
   <div class="Section__Inner">
     {% render 'empty-state',
-      heading: '404 - Not found',
-      text: 'The page you tried to view does not exist.',
-      link_text: 'Back to Home',
-      link: '/index'
+      heading: section.settings.heading,
+      text: section.settings.text,
+      link_text: section.settings.link_text,
+      link: section.settings.link_url
     %}
   </div>
 </section>
@@ -18,69 +24,38 @@
       "content": "t:sections.all.headers.section_appearance.content"
     },
     {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
+    },
+    {
       "type": "text",
       "id": "heading",
-      "label": "Heading"
+      "label": "t:sections.all.settings.heading.label",
+      "default": "404 - Not found"
     },
     {
       "type": "text",
       "id": "text",
-      "label": "Text"
+      "label": "t:sections.all.settings.text.label",
+      "default": "The page you tried to view does not exist."
     },
     {
-      "type": "select",
-      "id": "gallery_mobile",
-      "label": "t:sections.all.settings.gallery_mobile.label",
-      "default": "slider",
-      "options": [
-        { "value": "stack", "label": "t:sections.all.settings.gallery_mobile.options.stack.label" },
-        { "value": "slider", "label": "t:sections.all.settings.gallery_mobile.options.slider.label" },
-        { "value": "grid", "label": "t:sections.all.settings.gallery_mobile.options.grid.label" }
-      ]
+      "type": "text",
+      "id": "link_text",
+      "label": "t:sections.all.settings.link_text.label",
+      "default": "Back to home"
     },
     {
-      "type": "number",
-      "id": "columns_mobile",
-      "label": "t:sections.all.settings.columns_mobile.label",
-      "default": 2,
-      "visible_if": "{{ section.settings.gallery_mobile == 'grid' }}"
-    }
-  ],
-  "blocks": [
-    {
-      "name": "t:blocks.titel.name",
-      "type": "title"
-    },
-    {
-      "name": "t:blocks.product_variant_selector.name",
-      "type": "product-variant-selector",
-      "limit": 1
-    },
-    {
-      "name": "t:blocks.price_list.name",
-      "type": "price-list"
-    },
-    {
-      "name": "t:blocks.quantity_selector.name",
-      "type": "quantity-selector",
-      "limit": 1
-    },
-    {
-      "name": "t:blocks.product_rating.name",
-      "type": "product-rating"
-    },
-    {
-      "name": "t:blocks.buy_buttons.name",
-      "type": "buy-buttons",
-      "limit": 1
-    },
-    {
-      "name": "t:blocks.shipping_estimation.name",
-      "type": "shipping-estimation"
-    },
-    {
-      "name": "t:blocks.selling_points.name",
-      "type": "selling-points"
+      "type": "url",
+      "id": "link_url",
+      "label": "Link URL",
+      "default": "/"
     }
   ]
 }

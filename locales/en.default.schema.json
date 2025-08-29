@@ -379,6 +379,9 @@
         "link_list": {
           "label": "Link List"
         },
+        "link_text": {
+          "label": "Link Text"
+        },
         "padding_block": {
           "label": "Padding Block",
           "options": {
@@ -406,6 +409,12 @@
         "sticky": {
           "label": "Sticky section",
           "info": "The section will stick to the top of the viewport when scrolling down."
+        },
+        "text": {
+          "label": "Text"
+        },
+        "url": {
+          "label": "Link URL"
         }
       }
     },
