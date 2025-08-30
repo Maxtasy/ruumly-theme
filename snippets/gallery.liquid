@@ -59,13 +59,25 @@
       {% endif %}
 
       {% if pagination %}
-        <div class="Gallery__Pagination">
+        <div class="Gallery__Pagination u-Hidden--Desktop">
           {% for image in images %}
             {% render 'pagination-item',
               index: forloop.index0,
               active: forloop.first,
-              variant_desktop: pagination_style_desktop,
-              variant_mobile: pagination_style_mobile,
+              variant: pagination_style_mobile,
+              image: image
+            %}
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      {% if pagination %}
+        <div class="Gallery__Pagination u-Hidden--Mobile">
+          {% for image in images %}
+            {% render 'pagination-item',
+              index: forloop.index0,
+              active: forloop.first,
+              variant: pagination_style_desktop,
               image: image
             %}
           {% endfor %}

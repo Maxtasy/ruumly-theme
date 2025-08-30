@@ -3,33 +3,22 @@
 
   @param {boolean} [active] - Whether the pagination item is active.
   @param {number} index - The index of the pagination item within the pagination group.
-  @param {string} [variant_desktop] - The style for the pagination item on desktop. ('bullet', 'bar', 'thumbnail')
-  @param {string} [variant_mobile] - The style for the pagination item on mobile. ('bullet', 'bar', 'thumbnail')
+  @param {string} [variant] - The style for the pagination item. ('bullet', 'bar', 'thumbnail')
   @param {object} [image] - The image to render as a thumbnail.
 {% enddoc %}
 
-{% assign variant_desktop = variant_desktop | default: 'bullet' %}
-{% assign variant_mobile = variant_mobile | default: 'bullet' %}
+{% assign variant = variant | default: 'bullet' %}
 
 {% capture pagination_item %}
   <div
     class="
       PaginationItem
-      PaginationItem__Desktop--{{ variant_desktop | camelcase }}
-      PaginationItem__Mobile--{{ variant_mobile | camelcase }}
+      PaginationItem--Variant{{ variant | camelcase }}
       {% if active %}PaginationItem--Active{% endif %}
     "
   >
-    {% if image and variant_desktop == 'thumbnail' %}
-      <div class="u-Hidden--Mobile">
+    {% if image and variant == 'thumbnail' %}
       {% render 'image', image: image %}
-      </div>
-    {% endif %}
-
-    {% if image and variant_mobile == 'thumbnail' %}
-      <div class="u-Hidden--Desktop">
-      {% render 'image', image: image %}
-      </div>
     {% endif %}
   </div>
 {% endcapture %}
@@ -44,69 +33,34 @@
     aspect-ratio: 1;
   }
 
-  @media screen and (min-width: 769px) {
-    .PaginationItem__Desktop--Bullet,
-    .PaginationItem__Desktop--Bar {
-      width: var(--icon-size-m);
-      background-color: var(--t-background-light);
-      transform: scale(0.8);
-      opacity: 0.5;
-    }
-
-    .PaginationItem__Desktop--Bullet {
-      border-radius: 50%;
-    }
-
-    .PaginationItem__Desktop--Bar {
-      aspect-ratio: 4/1;
-      border-radius: 100vmax;
-    }
-
-    .PaginationItem__Desktop--Thumbnail {
-      width: var(--size-xxl);
-    }
-
-    .PaginationItem--Active {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .PaginationItem__Desktop--Thumbnail.PaginationItem--Active {
-      outline: var(--border-width) var(--border-style) var(--t-border);
-      outline-offset: 2px;
-    }
+  .PaginationItem--VariantBullet,
+  .PaginationItem--VariantBar {
+    width: var(--icon-size-m);
+    background-color: var(--t-background-light);
+    transform: scale(0.8);
+    opacity: 0.5;
   }
 
-  @media screen and (max-width: 768px) {
-    .PaginationItem__Mobile--Bullet,
-    .PaginationItem__Mobile--Bar {
-      width: var(--icon-size-m);
-      background-color: var(--t-background-light);
-      transform: scale(0.8);
-      opacity: 0.5;
-    }
+  .PaginationItem--VariantBullet {
+    border-radius: 50%;
+  }
 
-    .PaginationItem__Mobile--Bullet {
-      border-radius: 50%;
-    }
+  .PaginationItem--VariantBar {
+    aspect-ratio: 4/1;
+    border-radius: 100vmax;
+  }
 
-    .PaginationItem__Mobile--Bar {
-      aspect-ratio: 4/1;
-      border-radius: 100vmax;
-    }
+  .PaginationItem--VariantThumbnail {
+    width: var(--size-xxl);
+  }
 
-    .PaginationItem__Mobile--Thumbnail {
-      width: var(--size-xxl);
-    }
+  .PaginationItem--Active {
+    opacity: 1;
+    transform: scale(1);
+  }
 
-    .PaginationItem--Active {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    .PaginationItem__Mobile--Thumbnail.PaginationItem--Active {
-      outline: var(--border-width) var(--border-style) var(--t-border);
-      outline-offset: 2px;
-    }
+  .PaginationItem--VariantThumbnail.PaginationItem--Active {
+    outline: var(--border-width) var(--border-style) var(--t-border);
+    outline-offset: 2px;
   }
 {% endstylesheet %}
