@@ -1,0 +1,62 @@
+<section
+  class="
+    Section
+    Section--PaddingBlockLarge
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
+  <div class="Section__Inner">
+    {% render 'empty-state',
+      heading: section.settings.heading,
+      text: section.settings.text,
+      link_text: section.settings.link_text,
+      link: section.settings.link_url
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_404.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "t:sections.all.settings.heading.label",
+      "default": "404 - Not found"
+    },
+    {
+      "type": "text",
+      "id": "text",
+      "label": "t:sections.all.settings.text.label",
+      "default": "The page you tried to view does not exist."
+    },
+    {
+      "type": "text",
+      "id": "link_text",
+      "label": "t:sections.all.settings.link_text.label",
+      "default": "Back to home"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:sections.all.settings.link_url.label",
+      "default": "/"
+    }
+  ]
+}
+{% endschema %}

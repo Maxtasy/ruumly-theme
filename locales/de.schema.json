@@ -379,6 +379,12 @@
         "link_list": {
           "label": "Linkliste"
         },
+        "link_text": {
+          "label": "Link Text"
+        },
+        "link_url": {
+          "label": "Link URL"
+        },
         "padding_block": {
           "label": "Padding Block",
           "options": {
@@ -420,6 +426,12 @@
         "sticky": {
           "label": "Haftender Abschnitt",
           "info": "Der Abschnitt bleibt beim Herunterscrollen am oberen Rand des Ansichtsfensters."
+        },
+        "text": {
+          "label": "Text"
+        },
+        "url": {
+          "label": "Link URL"
         }
       }
     },
@@ -476,6 +488,9 @@
     },
     "product_configurator": {
       "name": "Produktkonfigurator"
+    },
+    "main_404": {
+      "name": "404 Abschnitt"
     },
     "product_grid": {
       "name": "Produktraster",
