@@ -382,6 +382,9 @@
         "link_text": {
           "label": "Link Text"
         },
+        "link_url": {
+          "label": "Link URL"
+        },
         "padding_block": {
           "label": "Padding Block",
           "options": {
@@ -471,6 +474,9 @@
     },
     "product_configurator": {
       "name": "Product Configurator"
+    },
+    "main_404": {
+      "name": "404 Section"
     },
     "product_grid": {
       "name": "Product Grid",
