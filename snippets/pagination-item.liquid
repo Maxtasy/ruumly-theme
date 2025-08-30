@@ -21,7 +21,15 @@
     "
   >
     {% if image and variant_desktop == 'thumbnail' %}
+      <div class="u-Hidden--Mobile">
       {% render 'image', image: image %}
+      </div>
+    {% endif %}
+
+    {% if image and variant_mobile == 'thumbnail' %}
+      <div class="u-Hidden--Desktop">
+      {% render 'image', image: image %}
+      </div>
     {% endif %}
   </div>
 {% endcapture %}
