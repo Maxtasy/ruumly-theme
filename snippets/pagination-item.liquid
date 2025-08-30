@@ -15,12 +15,12 @@
   <div
     class="
       PaginationItem
-      PaginationItem__desktop--{{ variant_desktop | camelcase }}
-      PaginationItem__mobile--{{ variant_mobile | camelcase }}
+      PaginationItem__Desktop--{{ variant_desktop | camelcase }}
+      PaginationItem__Mobile--{{ variant_mobile | camelcase }}
       {% if active %}PaginationItem--Active{% endif %}
     "
   >
-    {% if image and variant_desktop and variant_mobile == 'thumbnail' %}
+    {% if image and variant_desktop == 'thumbnail' %}
       {% render 'image', image: image %}
     {% endif %}
   </div>
@@ -35,25 +35,26 @@
     transition: all var(--transition-duration) linear;
     aspect-ratio: 1;
   }
+
   @media screen and (min-width: 769px) {
-    .PaginationItem__desktop--Bullet,
-    .PaginationItem__desktop--Bar {
+    .PaginationItem__Desktop--Bullet,
+    .PaginationItem__Desktop--Bar {
       width: var(--icon-size-m);
       background-color: var(--t-background-light);
       transform: scale(0.8);
       opacity: 0.5;
     }
 
-    .PaginationItem__desktop--Bullet {
+    .PaginationItem__Desktop--Bullet {
       border-radius: 50%;
     }
 
-    .PaginationItem__desktop--Bar {
+    .PaginationItem__Desktop--Bar {
       aspect-ratio: 4/1;
       border-radius: 100vmax;
     }
 
-    .PaginationItem_desktop--Thumbnail {
+    .PaginationItem__Desktop--Thumbnail {
       width: var(--size-xxl);
     }
 
@@ -62,31 +63,31 @@
       transform: scale(1);
     }
 
-    .PaginationItem__desktop--Thumbnail.PaginationItem--Active {
+    .PaginationItem__Desktop--Thumbnail.PaginationItem--Active {
       outline: var(--border-width) var(--border-style) var(--t-border);
       outline-offset: 2px;
     }
   }
 
   @media screen and (max-width: 768px) {
-    .PaginationItem__mobile--Bullet,
-    .PaginationItem__mobile--Bar {
+    .PaginationItem__Mobile--Bullet,
+    .PaginationItem__Mobile--Bar {
       width: var(--icon-size-m);
       background-color: var(--t-background-light);
       transform: scale(0.8);
       opacity: 0.5;
     }
 
-    .PaginationItem__mobile--Bullet {
+    .PaginationItem__Mobile--Bullet {
       border-radius: 50%;
     }
 
-    .PaginationItem__mobile--Bar {
+    .PaginationItem__Mobile--Bar {
       aspect-ratio: 4/1;
       border-radius: 100vmax;
     }
 
-    .PaginationItem_mobile--Thumbnail {
+    .PaginationItem__Mobile--Thumbnail {
       width: var(--size-xxl);
     }
 
@@ -95,7 +96,7 @@
       transform: scale(1);
     }
 
-    .PaginationItem__mobile--Thumbnail.PaginationItem--Active {
+    .PaginationItem__Mobile--Thumbnail.PaginationItem--Active {
       outline: var(--border-width) var(--border-style) var(--t-border);
       outline-offset: 2px;
     }
