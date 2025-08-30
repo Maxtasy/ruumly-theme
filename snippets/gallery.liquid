@@ -2,31 +2,37 @@
   Renders a Gallery component.
 
   @param {object} images - A list of images to render in the Gallery.
-  @param {string} [variant_desktop] - Variant of the gallery for desktop. ('slider', 'stack', 'grid')
   @param {string} [variant_mobile] - Variant of the gallery for mobile. ('slider', 'stack', 'grid')
-  @param {boolean} [navigation] - Whether to render navigation arrows.
-  @param {boolean} [pagination] - Whether to render pagination.
-  @param {string} [pagination_style_desktop] - The style for the pagination items on desktop. ('bullet', 'bar', 'thumbnail')
+  @param {string} [variant_desktop] - Variant of the gallery for desktop. ('slider', 'stack', 'grid')
+  @param {boolean} [enable_navigation_mobile] - Whether to render navigation arrows on mobile.
+  @param {boolean} [enable_navigation_desktop] - Whether to render navigation arrows on desktop.
+  @param {boolean} [enable_pagination_mobile] - Whether to render pagination on mobile.
+  @param {boolean} [enable_pagination_desktop] - Whether to render pagination on desktop.
   @param {string} [pagination_style_mobile] - The style for the pagination items on mobile. ('bullet', 'bar', 'thumbnail')
-  @param {number} [columns_desktop] - Number of columns on desktop.
+  @param {string} [pagination_style_desktop] - The style for the pagination items on desktop. ('bullet', 'bar', 'thumbnail')
   @param {number} [columns_mobile] - Number of columns on mobile.
+  @param {number} [columns_desktop] - Number of columns on desktop.
 {% enddoc %}
 
-{% assign variant_desktop = variant_desktop | default: 'grid' %}
 {% assign variant_mobile = variant_mobile | default: 'slider' %}
-{% assign navigation = navigation | default: true %}
-{% assign pagination = pagination | default: true %}
-{% assign columns_desktop = columns_desktop | default: 3 %}
+{% assign variant_desktop = variant_desktop | default: 'grid' %}
+{% assign enable_navigation_mobile = enable_navigation_mobile | default: true, allow_false: true %}
+{% assign enable_navigation_desktop = enable_navigation_desktop | default: true, allow_false: true %}
+{% assign enable_pagination_mobile = enable_pagination_mobile | default: true, allow_false: true %}
+{% assign enable_pagination_desktop = enable_pagination_desktop | default: true, allow_false: true %}
 {% assign columns_mobile = columns_mobile | default: 2 %}
-{% assign pagination_style_desktop = pagination_style_desktop | default: 'bullet' %}
+{% assign columns_desktop = columns_desktop | default: 3 %}
 {% assign pagination_style_mobile = pagination_style_mobile | default: 'bullet' %}
+{% assign pagination_style_desktop = pagination_style_desktop | default: 'bullet' %}
 
 <div
   is="gallery-component"
   class="
     Gallery
-    Gallery--Desktop{{ variant_desktop | camelcase }}
     Gallery--Mobile{{ variant_mobile | camelcase }}
+    Gallery--Desktop{{ variant_desktop | camelcase }}
+    {% if enable_navigation_mobile %}Gallery--NavigationMobile{% endif %}
+    {% if enable_navigation_desktop %}Gallery--NavigationDesktop{% endif %}
   "
   style="
     --columns-mobile: {{ columns_mobile }};
@@ -54,11 +60,11 @@
         {% endif %}
       "
     >
-      {% if navigation %}
+      {% if enable_navigation_mobile or enable_navigation_desktop %}
         {% render 'button', icon: 'arrow-left', variant: 'plain', size: 'small', action: 'prev', disabled: true %}
       {% endif %}
 
-      {% if pagination %}
+      {% if enable_pagination_mobile %}
         <div class="Gallery__Pagination u-Hidden--Desktop">
           {% for image in images %}
             {% render 'pagination-item',
@@ -71,7 +77,7 @@
         </div>
       {% endif %}
 
-      {% if pagination %}
+      {% if enable_pagination_desktop %}
         <div class="Gallery__Pagination u-Hidden--Mobile">
           {% for image in images %}
             {% render 'pagination-item',
@@ -84,7 +90,7 @@
         </div>
       {% endif %}
 
-      {% if navigation %}
+      {% if enable_navigation_mobile or enable_navigation_desktop %}
         {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small', action: 'next' %}
       {% endif %}
     </div>
@@ -120,6 +126,12 @@
     flex-wrap: wrap;
   }
 
+  [data-action='next'],
+  [data-action='prev'] {
+    /* Will be handled device specific */
+    display: none;
+  }
+
   @media screen and (max-width: 768px) {
     .Gallery--MobileStack .Gallery__Media {
       display: flex;
@@ -137,6 +149,11 @@
       display: flex;
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
+    }
+
+    .Gallery--NavigationMobile [data-action='next'],
+    .Gallery--NavigationMobile [data-action='prev'] {
+      display: flex;
     }
   }
 
@@ -157,6 +174,11 @@
       display: flex;
       overflow-x: scroll;
       scroll-snap-type: x mandatory;
+    }
+
+    .Gallery--NavigationDesktop [data-action='next'],
+    .Gallery--NavigationDesktop [data-action='prev'] {
+      display: flex;
     }
   }
 {% endstylesheet %}
