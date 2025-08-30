@@ -6,7 +6,8 @@
   @param {string} [variant_mobile] - Variant of the gallery for mobile. ('slider', 'stack', 'grid')
   @param {boolean} [navigation] - Whether to render navigation arrows.
   @param {boolean} [pagination] - Whether to render pagination.
-  @param {string} [pagination_style] - The style for the pagination items. ('bullet', 'bar', 'thumbnail')
+  @param {string} [pagination_style_desktop] - The style for the pagination items on desktop. ('bullet', 'bar', 'thumbnail')
+  @param {string} [pagination_style_mobile] - The style for the pagination items on mobile. ('bullet', 'bar', 'thumbnail')
   @param {number} [columns_desktop] - Number of columns on desktop.
   @param {number} [columns_mobile] - Number of columns on mobile.
 {% enddoc %}
@@ -17,7 +18,8 @@
 {% assign pagination = pagination | default: true %}
 {% assign columns_desktop = columns_desktop | default: 3 %}
 {% assign columns_mobile = columns_mobile | default: 2 %}
-{% assign pagination_style = pagination_style | default: 'bullet' %}
+{% assign pagination_style_desktop = pagination_style_desktop | default: 'bullet' %}
+{% assign pagination_style_mobile = pagination_style_mobile | default: 'bullet' %}
 
 <div
   is="gallery-component"
@@ -62,7 +64,8 @@
             {% render 'pagination-item',
               index: forloop.index0,
               active: forloop.first,
-              variant: pagination_style,
+              variant_desktop: pagination_style_desktop,
+              variant_mobile: pagination_style_mobile,
               image: image
             %}
           {% endfor %}
