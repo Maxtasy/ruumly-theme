@@ -402,8 +402,22 @@
             }
           }
         },
-        "pagination_style": {
-          "label": "Pagination Style",
+        "pagination_style_desktop": {
+          "label": "Pagination Style Desktop",
+          "options": {
+            "bullet": {
+              "label": "Bullets"
+            },
+            "bar": {
+              "label": "Bars"
+            },
+            "thumbnail": {
+              "label": "Thumbnails"
+            }
+          }
+        },
+        "pagination_style_mobile": {
+          "label": "Pagination Style Mobile",
           "options": {
             "bullet": {
               "label": "Bullets"

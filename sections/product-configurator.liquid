@@ -14,7 +14,8 @@
           variant_mobile: section.settings.gallery_mobile,
           columns_desktop: section.settings.columns_desktop,
           columns_mobile: section.settings.columns_mobile,
-          pagination_style: section.settings.pagination_style
+          pagination_style_desktop: section.settings.pagination_style_desktop,
+          pagination_style_mobile: section.settings.pagination_style_mobile
         %}
       </div>
 
@@ -76,22 +77,8 @@
       "info": "t:sections.all.settings.color_scheme.info"
     },
     {
-      "type": "select",
-      "id": "gallery_desktop",
-      "label": "t:sections.all.settings.gallery_desktop.label",
-      "default": "grid",
-      "options": [
-        { "value": "stack", "label": "t:sections.all.settings.gallery_desktop.options.stack.label" },
-        { "value": "slider", "label": "t:sections.all.settings.gallery_desktop.options.slider.label" },
-        { "value": "grid", "label": "t:sections.all.settings.gallery_desktop.options.grid.label" }
-      ]
-    },
-    {
-      "type": "number",
-      "id": "columns_desktop",
-      "label": "t:sections.all.settings.columns_desktop.label",
-      "default": 2,
-      "visible_if": "{{ section.settings.gallery_desktop == 'grid' }}"
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
     },
     {
       "type": "select",
@@ -105,6 +92,18 @@
       ]
     },
     {
+      "type": "select",
+      "id": "pagination_style_mobile",
+      "label": "t:sections.all.settings.pagination_style_mobile.label",
+      "default": "bullet",
+      "options": [
+        { "value": "bullet", "label": "t:sections.all.settings.pagination_style_mobile.options.bullet.label" },
+        { "value": "bar", "label": "t:sections.all.settings.pagination_style_mobile.options.bar.label" },
+        { "value": "thumbnail", "label": "t:sections.all.settings.pagination_style_mobile.options.thumbnail.label" }
+      ],
+      "visible_if": "{{ section.settings.gallery_mobile == 'slider' }}"
+    },
+    {
       "type": "number",
       "id": "columns_mobile",
       "label": "t:sections.all.settings.columns_mobile.label",
@@ -113,14 +112,33 @@
     },
     {
       "type": "select",
-      "id": "pagination_style",
-      "label": "t:sections.all.settings.pagination_style.label",
+      "id": "gallery_desktop",
+      "label": "t:sections.all.settings.gallery_desktop.label",
+      "default": "grid",
+      "options": [
+        { "value": "stack", "label": "t:sections.all.settings.gallery_desktop.options.stack.label" },
+        { "value": "slider", "label": "t:sections.all.settings.gallery_desktop.options.slider.label" },
+        { "value": "grid", "label": "t:sections.all.settings.gallery_desktop.options.grid.label" }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "pagination_style_desktop",
+      "label": "t:sections.all.settings.pagination_style_desktop.label",
       "default": "bullet",
       "options": [
-        { "value": "bullet", "label": "t:sections.all.settings.pagination_style.options.bullet.label" },
-        { "value": "bar", "label": "t:sections.all.settings.pagination_style.options.bar.label" },
-        { "value": "thumbnail", "label": "t:sections.all.settings.pagination_style.options.thumbnail.label" }
-      ]
+        { "value": "bullet", "label": "t:sections.all.settings.pagination_style_desktop.options.bullet.label" },
+        { "value": "bar", "label": "t:sections.all.settings.pagination_style_desktop.options.bar.label" },
+        { "value": "thumbnail", "label": "t:sections.all.settings.pagination_style_desktop.options.thumbnail.label" }
+      ],
+      "visible_if": "{{ section.settings.gallery_desktop == 'slider' }}"
+    },
+    {
+      "type": "number",
+      "id": "columns_desktop",
+      "label": "t:sections.all.settings.columns_desktop.label",
+      "default": 2,
+      "visible_if": "{{ section.settings.gallery_desktop == 'grid' }}"
     }
   ],
   "blocks": [

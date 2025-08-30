@@ -13,7 +13,7 @@
   <div
     class="
       PaginationItem
-      PaginationItem--{{ variant | camelcase }}
+      PaginationItem--Variant{{ variant | camelcase }}
       {% if active %}PaginationItem--Active{% endif %}
     "
   >
@@ -33,24 +33,24 @@
     aspect-ratio: 1;
   }
 
-  .PaginationItem--Bullet,
-  .PaginationItem--Bar {
+  .PaginationItem--VariantBullet,
+  .PaginationItem--VariantBar {
     width: var(--icon-size-m);
     background-color: var(--t-background-light);
     transform: scale(0.8);
     opacity: 0.5;
   }
 
-  .PaginationItem--Bullet {
+  .PaginationItem--VariantBullet {
     border-radius: 50%;
   }
 
-  .PaginationItem--Bar {
+  .PaginationItem--VariantBar {
     aspect-ratio: 4/1;
     border-radius: 100vmax;
   }
 
-  .PaginationItem--Thumbnail {
+  .PaginationItem--VariantThumbnail {
     width: var(--size-xxl);
   }
 
@@ -59,7 +59,7 @@
     transform: scale(1);
   }
 
-  .PaginationItem--Thumbnail.PaginationItem--Active {
+  .PaginationItem--VariantThumbnail.PaginationItem--Active {
     outline: var(--border-width) var(--border-style) var(--t-border);
     outline-offset: 2px;
   }
