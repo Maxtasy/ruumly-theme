@@ -501,7 +501,21 @@
       }
     },
     "product_configurator": {
-      "name": "Product Configurator"
+      "name": "Product Configurator",
+      "settings": {
+        "enable_pagination_mobile": {
+          "label": "Enable Pagination Mobile"
+        },
+        "enable_pagination_desktop": {
+          "label": "Enable Pagination Desktop"
+        },
+        "enable_navigtation_mobile": {
+          "label": "Enable Navigation Mobile"
+        },
+        "enable_navigatiobn_desktop": {
+          "label": "Enable Navigation Desktop"
+        }
+      }
     },
     "main_404": {
       "name": "404 Section"
