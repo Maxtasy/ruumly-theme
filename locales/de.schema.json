@@ -501,7 +501,21 @@
       }
     },
     "product_configurator": {
-      "name": "Produktkonfigurator"
+      "name": "Produktkonfigurator",
+      "settings": {
+        "enable_pagination_mobile": {
+          "label": "Pagination auf Mobile aktivieren"
+        },
+        "enable_pagination_desktop": {
+          "label": "Pagination auf Desktop aktivieren"
+        },
+        "enable_navigtation_mobile": {
+          "label": "Navigation auf Mobile aktivieren"
+        },
+        "enable_navigatiobn_desktop": {
+          "label": "Navigation auf Desktop aktivieren"
+        }
+      }
     },
     "main_404": {
       "name": "404 Abschnitt"
