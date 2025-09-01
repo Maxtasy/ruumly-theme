@@ -200,5 +200,20 @@
         ]
       }
     ]
+  },
+  {
+    "name": "Store Settings",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:settings_schema.store_settings.headers.shipping.content"
+      },
+      {
+        "type": "number",
+        "id": "free_shipping_threshold",
+        "label": "t:settings_schema.store_settings.settings.free_shipping_threshold.label",
+        "info": "t:settings_schema.store_settings.settings.free_shipping_threshold.info"
+      }
+    ]
   }
 ]

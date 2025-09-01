@@ -266,6 +266,20 @@
         }
       }
     },
+    "store_settings": {
+      "name": "Store Settings",
+      "headers": {
+        "shipping": {
+          "content": "Shipping"
+        }
+      },
+      "settings": {
+        "free_shipping_threshold": {
+          "label": "Free Shipping Threshold",
+          "info": "In Cents"
+        }
+      }
+    },
     "typography": {
       "name": "Typography",
       "settings": {
