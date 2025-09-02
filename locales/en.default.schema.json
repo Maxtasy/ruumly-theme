@@ -266,6 +266,26 @@
         }
       }
     },
+    "store_settings": {
+      "name": "Store Settings",
+      "headers": {
+        "shipping": {
+          "content": "Shipping"
+        }
+      },
+      "settings": {
+        "achieved_free_shipping_text": {
+          "label": "Achieved Free Shipping Text"
+        },
+        "free_shipping_threshold": {
+          "label": "Free Shipping Threshold",
+          "info": "In Cents"
+        },
+        "until_free_shipping_text": {
+          "label": "Until Free Shipping Text"
+        }
+      }
+    },
     "typography": {
       "name": "Typography",
       "settings": {
@@ -578,17 +598,33 @@
     "cart_drawer": {
       "name": "Cart Drawer",
       "settings": {
+        "enable_free_shipping_alert": {
+          "label": "Free Shipping Alert",
+          "info": "Make sure to also define a free shipping threshold in the Theme Settings."
+        },
         "empty_state_heading": {
           "label": "Empty state heading",
           "default": "Your cart is empty"
+        },
+        "empty_state_link": {
+          "label": "Empty state link",
+        },
+        "empty_state_link_text": {
+          "label": "Empty state link text",
+          "default": "Continue shopping"
         },
         "empty_state_text": {
           "label": "Empty state text",
           "default": "Explore our products"
         },
-        "empty_state_link_text": {
-          "label": "Empty state link text",
-          "default": "Continue shopping"
+        "free_shipping_remaining_text": {
+          "label": "Free Shipping Remaining Text",
+          "default": "%REMAINING% remaining until free shipping",
+          "info": "Use %REMAINING% as a placeholder for the remaining amount."
+        },
+        "free_shipping_reached_text": {
+          "label": "Free Shipping Reached Text",
+          "default": "Your order is free of shipping costs",
         },
         "from": {
           "label": "From",

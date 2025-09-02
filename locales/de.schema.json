@@ -266,6 +266,26 @@
         }
       }
     },
+    "store_settings": {
+      "name": "Store Einstellungen",
+      "headers": {
+        "shipping": {
+          "content": "Versand"
+        }
+      },
+      "settings": {
+        "achieved_free_shipping_text": {
+          "label": "Kostenloser Versand erreicht Text"
+        },
+        "free_shipping_threshold": {
+          "label": "Free Shipping Threshold",
+          "info": "In Cents"
+        },
+        "until_free_shipping_text": {
+          "label": "Bis zum kostenlosen Versand Text"
+        }
+      }
+    },
     "typography": {
       "name": "Typografie",
       "settings": {
@@ -578,17 +598,24 @@
     "cart_drawer": {
       "name": "Warenkorb Drawer",
       "settings": {
+        "enable_free_shipping_alert": {
+          "label": "Informationen zum kostenlosen Versand",
+          "info": "Stellen Sie sicher, dass Sie auch einen Schwellenwert für den kostenlosen Versand in den Theme-Einstellungen festlegen."
+        },
         "empty_state_heading": {
           "label": "Leerzustand Kopfzeile",
           "default": "Ihr Warenkorb ist leer"
         },
-        "empty_state_text": {
-          "label": "Leerzustand Text",
-          "default": "Entdecken Sie unsere Produkte"
+        "empty_state_link": {
+          "label": "Leerzustand Link",
         },
         "empty_state_link_text": {
           "label": "Leerzustand Link Text",
           "default": "Weiter einkaufen"
+        },
+        "empty_state_text": {
+          "label": "Leerzustand Text",
+          "default": "Entdecken Sie unsere Produkte"
         },
         "from": {
           "label": "Von",
@@ -600,7 +627,16 @@
               "label": "Rechts"
             }
           }
-        }
+        },
+        "free_shipping_remaining_text": {
+          "label": "Kostenloser Versand Verbleibender Text",
+          "default": "Noch %REMAINING% für kostenlosen Versand",
+          "info": "Verwenden Sie %REMAINING% als Platzhalter für den Restbetrag."
+        },
+        "free_shipping_reached_text": {
+          "label": "Kostenloser Versand erreicht Text",
+          "default": "Die Bestellung ist versandkostenfrei.",
+        },
       },
       "presets": {
         "cart_drawer": {
