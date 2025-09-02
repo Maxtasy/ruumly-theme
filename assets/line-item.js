@@ -1,5 +1,6 @@
 import { cart } from "./cart.js";
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { getClosestSectionId } from "./utils.js";
 
 class LineItem extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
@@ -19,7 +20,7 @@ class LineItem extends CustomComponentMixin(HTMLDivElement) {
   async handleQuantityUpdate({ desiredQuantity }) {
     const response = await cart.update({
       updates: { [`${this.key}`]: desiredQuantity },
-      sections: "cart-drawer",
+      sections: getClosestSectionId(".CartDrawer"),
     });
 
     if (response) {
@@ -31,7 +32,7 @@ class LineItem extends CustomComponentMixin(HTMLDivElement) {
   }
 
   async handleRemove() {
-    const response = await cart.remove({ key: this.key, sections: "cart-drawer" });
+    const response = await cart.remove({ key: this.key, sections: getClosestSectionId(".CartDrawer") });
 
     if (response) {
       this.publish("line-item:remove", {

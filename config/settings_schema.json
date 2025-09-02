@@ -213,16 +213,6 @@
         "id": "free_shipping_threshold",
         "label": "t:settings_schema.store_settings.settings.free_shipping_threshold.label",
         "info": "t:settings_schema.store_settings.settings.free_shipping_threshold.info"
-      },
-      {
-        "type": "text",
-        "id": "until_free_shipping_text",
-        "label": "t:settings_schema.store_settings.settings.until_free_shipping_text.label"
-      },
-      {
-        "type": "text",
-        "id": "achieved_free_shipping_text",
-        "label": "t:settings_schema.store_settings.settings.achieved_free_shipping_text.label"
       }
     ]
   }

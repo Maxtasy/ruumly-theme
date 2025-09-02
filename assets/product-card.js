@@ -1,5 +1,6 @@
 import { cart } from "./cart.js";
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { getClosestSectionId } from "./utils.js";
 
 export class ProductCard extends CustomComponentMixin(HTMLElement) {
   constructor() {
@@ -23,7 +24,7 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
     if (this.hasOnlyDefaultVariant) {
       const response = await cart.addItem({
         item: { id: this.selectedVariantId, quantity: 1 },
-        sections: "cart-drawer",
+        sections: getClosestSectionId(".CartDrawer"),
       });
 
       if (response.items && response.sections) {

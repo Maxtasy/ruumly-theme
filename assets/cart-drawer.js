@@ -1,5 +1,6 @@
 import { cart } from "./cart.js";
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { getClosestSectionId } from "./utils.js";
 
 export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
@@ -29,7 +30,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
   }
 
   handleItemAdded({ sections, items }) {
-    const { "cart-drawer": updatedCartDrawer } = sections;
+    const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`];
 
     if (updatedCartDrawer) {
       this.rerenderCartDrawer(updatedCartDrawer);
@@ -41,7 +42,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
   }
 
   async handleCartUpdate({ sections, items }) {
-    const { "cart-drawer": updatedCartDrawer } = sections;
+    const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`];
 
     if (updatedCartDrawer) {
       this.rerenderCartDrawer(updatedCartDrawer);

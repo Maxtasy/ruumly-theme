@@ -1,5 +1,13 @@
 {% capture cart_drawer_content %}
-  {% render 'cart-drawer', enable_free_shipping_alert: section.settings.enable_free_shipping_alert %}
+  {% render 'cart-drawer',
+    enable_free_shipping_alert: section.settings.enable_free_shipping_alert,
+    free_shipping_remaining_text: section.settings.free_shipping_remaining_text,
+    free_shipping_reached_text: section.settings.free_shipping_reached_text,
+    empty_state_heading: section.settings.empty_state_heading,
+    empty_state_text: section.settings.empty_state_text,
+    empty_state_link: section.settings.empty_state_link,
+    empty_state_link_text: section.settings.empty_state_link_text,
+  %}
 {% endcapture %}
 
 {% render 'drawer',
@@ -46,10 +54,30 @@
       ]
     },
     {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
+    },
+    {
       "type": "checkbox",
       "id": "enable_free_shipping_alert",
       "label": "t:sections.cart_drawer.settings.enable_free_shipping_alert.label",
-      "default": true
+      "default": true,
+      "info": "t:sections.cart_drawer.settings.enable_free_shipping_alert.info"
+    },
+    {
+      "type": "text",
+      "id": "free_shipping_remaining_text",
+      "label": "t:sections.cart_drawer.settings.free_shipping_remaining_text.label",
+      "default": "t:sections.cart_drawer.settings.free_shipping_remaining_text.default",
+      "info": "t:sections.cart_drawer.settings.free_shipping_remaining_text.info",
+      "visible_if": "{{ section.settings.enable_free_shipping_alert }}"
+    },
+    {
+      "type": "text",
+      "id": "free_shipping_reached_text",
+      "label": "t:sections.cart_drawer.settings.free_shipping_reached_text.label",
+      "default": "t:sections.cart_drawer.settings.free_shipping_reached_text.default",
+      "visible_if": "{{ section.settings.enable_free_shipping_alert }}"
     },
     {
       "type": "header",
