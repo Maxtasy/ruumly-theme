@@ -598,6 +598,9 @@
     "cart_drawer": {
       "name": "Warenkorb Drawer",
       "settings": {
+        "enable_free_shipping_alert": {
+          "label": "Informationen zum kostenlosen Versand"
+        },
         "empty_state_heading": {
           "label": "Leerzustand Kopfzeile",
           "default": "Ihr Warenkorb ist leer"

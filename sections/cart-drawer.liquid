@@ -1,5 +1,5 @@
 {% capture cart_drawer_content %}
-  {% render 'cart-drawer' %}
+  {% render 'cart-drawer', enable_free_shipping_alert: section.settings.enable_free_shipping_alert %}
 {% endcapture %}
 
 {% render 'drawer',
@@ -44,6 +44,12 @@
           "label": "t:sections.cart_drawer.settings.from.options.right.label"
         }
       ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_free_shipping_alert",
+      "label": "t:sections.cart_drawer.settings.enable_free_shipping_alert.label",
+      "default": true
     },
     {
       "type": "header",

@@ -598,6 +598,9 @@
     "cart_drawer": {
       "name": "Cart Drawer",
       "settings": {
+        "enable_free_shipping_alert": {
+          "label": "Free Shipping Information"
+        },
         "empty_state_heading": {
           "label": "Empty state heading",
           "default": "Your cart is empty"

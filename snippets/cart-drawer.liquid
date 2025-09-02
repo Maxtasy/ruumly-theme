@@ -1,3 +1,11 @@
+{% doc %}
+  Renders a Cart Drawer Component.
+
+  @param {boolean} enable_free_shipping_alert - Whether to render free shipping alert.
+{% enddoc %}
+
+{% assign enable_free_shipping_alert = enable_free_shipping_alert | default: true, allow_false: true %}
+
 <div is="cart-drawer-component" class="CartDrawer">
   {% if cart.empty? %}
     {% render 'empty-state',
@@ -8,7 +16,11 @@
     %}
   {% else %}
     <div class="CartDrawer__Content u-NoScrollbar">
-      {% if settings.free_shipping_threshold != 0 %}
+      <script>
+        console.log({{ enable_free_shipping_alert | json }});
+      </script>
+
+      {% if settings.free_shipping_threshold != 0 and enable_free_shipping_alert %}
         {% assign remaining_amount = settings.free_shipping_threshold | minus: cart.total_price %}
 
         {% if remaining_amount <= 0 %}
