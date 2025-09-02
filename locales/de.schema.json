@@ -274,9 +274,15 @@
         }
       },
       "settings": {
+        "achieved_free_shipping_text": {
+          "label": "Kostenloser Versand erreicht Text"
+        },
         "free_shipping_threshold": {
-          "label": "Versandkostenfreie Bestellung",
+          "label": "Free Shipping Threshold",
           "info": "In Cents"
+        },
+        "until_free_shipping_text": {
+          "label": "Bis zum kostenlosen Versand Text"
         }
       }
     },

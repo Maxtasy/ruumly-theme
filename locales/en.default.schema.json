@@ -274,9 +274,15 @@
         }
       },
       "settings": {
+        "achieved_free_shipping_text": {
+          "label": "Achieved Free Shipping Text"
+        },
         "free_shipping_threshold": {
           "label": "Free Shipping Threshold",
           "info": "In Cents"
+        },
+        "until_free_shipping_text": {
+          "label": "Until Free Shipping Text"
         }
       }
     },

@@ -12,10 +12,10 @@
         {% assign remaining_amount = settings.free_shipping_threshold | minus: cart.total_price %}
 
         {% if remaining_amount <= 0 %}
-          {% assign text = 'Your order is free of shipping costs' %}
+          {% assign text = settings.achieved_free_shipping_text %}
           {% assign variant = 'success' %}
         {% else %}
-          {% assign text = remaining_amount | money | append: ' until free shipping' %}
+          {% assign text = remaining_amount | money | append: ' ' | append: settings.until_free_shipping_text %}
         {% endif %}
 
         {% render 'alert', text: text, variant: variant %}
