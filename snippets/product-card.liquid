@@ -116,6 +116,12 @@
     overflow: hidden;
   }
 
+  .ProductCard > a {
+    /* Reserve space for the image to prevent layout shift */
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
   .ProductCard__Image {
     position: relative;
 
