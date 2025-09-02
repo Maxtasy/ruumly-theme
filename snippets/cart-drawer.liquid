@@ -32,11 +32,8 @@
           {% assign text = free_shipping_reached_text %}
           {% assign variant = 'success' %}
         {% else %}
-          {% assign text = free_shipping_remaining_text
-            | replace: '%REMAINING%', remaining_amount
-            | money
-            | append: ' '
-          %}
+          {% assign remaining_amount_money = remaining_amount | money %}
+          {% assign text = free_shipping_remaining_text | replace: '%REMAINING%', remaining_amount_money %}
         {% endif %}
 
         {% render 'alert', text: text, variant: variant %}
