@@ -754,6 +754,9 @@
         }
       }
     },
+    "rating_block": {
+      "name": "Bewertungsblock"
+    },
     "text_block": {
       "name": "Text Block",
       "presets": {
