@@ -71,8 +71,17 @@
           {% assign shipping_text = 'global.shipping' | t | append: ':' %}
           {% render 'text', text: shipping_text %}
 
-          {% assign formatted_shipping_price = 495 | money %}
-          {% render 'text', text: formatted_shipping_price %}
+          {% if settings.free_shipping_threshold != blank
+            and settings.free_shipping_threshold != 0
+            and cart.total_price >= settings.free_shipping_threshold
+          %}
+            {% assign text = 'global.free' | t %}
+            {% assign color = 'success' %}
+          {% else %}
+            {% assign text = 495 | money %}
+          {% endif %}
+
+          {% render 'text', text: text, color: color %}
         </div>
       </div>
 

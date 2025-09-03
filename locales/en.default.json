@@ -1,5 +1,6 @@
 {
   "global": {
+    "free": "Free",
     "subtotal": "Subtotal",
     "shipping": "Shipping"
   },

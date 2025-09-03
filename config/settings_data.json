@@ -14,6 +14,7 @@
     "type_header_font": "montserrat_n4",
     "type_body_font": "inter_n4",
     "product_card_hover_effect": "swap",
+    "free_shipping_threshold": 5000,
     "logo_width": 90,
     "page_width": 1200,
     "content_for_index": [],
