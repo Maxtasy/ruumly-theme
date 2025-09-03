@@ -31,7 +31,6 @@ class Modal extends CustomComponentMixin(HTMLDialogElement) {
   }
 
   handleOpenEvent() {
-    console.log("opening");
     this.showModal();
   }
 

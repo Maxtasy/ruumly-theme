@@ -32,13 +32,7 @@
         </div>
 
         {% if section.settings.show_search_icon and section.settings.search_icon_position == 'left' %}
-          {% render 'button',
-            icon: 'search',
-            variant: 'plain',
-            size: 'small',
-            action: 'modal-open:search',
-            url: '/search'
-          %}
+          {% render 'button', icon: 'search', variant: 'plain', size: 'small', action: 'open-modal:search' %}
         {% endif %}
 
         {% if section.settings.show_account_icon and section.settings.account_icon_position == 'left' %}
@@ -70,13 +64,7 @@
         </div>
 
         {% if section.settings.show_search_icon and section.settings.search_icon_position == 'right' %}
-          {% render 'button',
-            icon: 'search',
-            variant: 'plain',
-            size: 'small',
-            action: 'modal-open:search',
-            url: '/search'
-          %}
+          {% render 'button', icon: 'search', variant: 'plain', size: 'small', action: 'open-modal:search' %}
         {% endif %}
 
         {% if section.settings.show_account_icon and section.settings.account_icon_position == 'right' %}

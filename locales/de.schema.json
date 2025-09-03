@@ -537,9 +537,6 @@
         }
       }
     },
-    "main_search": {
-      "name": "Suchmodul"
-    },
     "main_404": {
       "name": "404 Abschnitt"
     },
@@ -566,6 +563,9 @@
           "name": "Produktliste"
         }
       }
+    },
+    "search_modal": {
+      "name": "Suchdialog"
     },
     "site_header": {
       "name": "Kopfzeile der Website",
