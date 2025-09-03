@@ -537,6 +537,9 @@
         }
       }
     },
+    "main_search": {
+      "name": "Search Modal"
+    },
     "main_404": {
       "name": "404 Section"
     },
@@ -607,7 +610,7 @@
           "default": "Your cart is empty"
         },
         "empty_state_link": {
-          "label": "Empty state link",
+          "label": "Empty state link"
         },
         "empty_state_link_text": {
           "label": "Empty state link text",
@@ -624,7 +627,7 @@
         },
         "free_shipping_reached_text": {
           "label": "Free Shipping Reached Text",
-          "default": "Your order is free of shipping costs",
+          "default": "Your order is free of shipping costs"
         },
         "from": {
           "label": "From",

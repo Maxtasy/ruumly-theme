@@ -537,6 +537,9 @@
         }
       }
     },
+    "main_search": {
+      "name": "Suchmodul"
+    },
     "main_404": {
       "name": "404 Abschnitt"
     },
@@ -607,7 +610,7 @@
           "default": "Ihr Warenkorb ist leer"
         },
         "empty_state_link": {
-          "label": "Leerzustand Link",
+          "label": "Leerzustand Link"
         },
         "empty_state_link_text": {
           "label": "Leerzustand Link Text",
@@ -635,8 +638,8 @@
         },
         "free_shipping_reached_text": {
           "label": "Kostenloser Versand erreicht Text",
-          "default": "Die Bestellung ist versandkostenfrei.",
-        },
+          "default": "Die Bestellung ist versandkostenfrei."
+        }
       },
       "presets": {
         "cart_drawer": {
