@@ -755,7 +755,15 @@
       }
     },
     "rating_block": {
-      "name": "Bewertungsblock"
+      "name": "Bewertungsblock",
+      "settings": {
+        "rating": {
+          "label": "Bewertung"
+        }
+      },
+      "presets": {
+        "name": "Rating Block"
+      }
     },
     "text_block": {
       "name": "Text Block",
