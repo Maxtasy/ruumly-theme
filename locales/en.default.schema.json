@@ -762,7 +762,10 @@
         }
       },
       "presets": {
-        "name": "Rating Block"
+        "name": "Rating Block",
+        "settings": {
+          "rating": "4.5"
+        }
       }
     },
     "text_block": {
