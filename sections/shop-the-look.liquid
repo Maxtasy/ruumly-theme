@@ -1,0 +1,29 @@
+<section
+  class="
+    Section
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
+  <div class="Section__Inner">
+    {% render 'image', image: product.featured_image %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Shop the Look",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color Scheme",
+      "default": "default"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Shop the Look"
+    }
+  ]
+}
+{% endschema %}
