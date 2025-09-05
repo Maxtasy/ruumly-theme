@@ -5,7 +5,7 @@
   "
 >
   <div class="Section__Inner">
-    {% render 'image', image: product.featured_image %}
+    {% render 'image', image: section.settings.image %}
   </div>
 </section>
 
@@ -14,10 +14,23 @@
   "name": "Shop the Look",
   "settings": [
     {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
       "type": "color_scheme",
       "id": "color_scheme",
-      "label": "Color Scheme",
-      "default": "default"
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "t:global.settings.image.label"
     }
   ],
   "presets": [
