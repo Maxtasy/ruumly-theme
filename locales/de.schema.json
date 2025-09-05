@@ -755,14 +755,14 @@
       }
     },
     "rating_block": {
-      "name": "Bewertungsblock",
+      "name": "Bewertung Block",
       "settings": {
         "rating": {
           "label": "Bewertung"
         }
       },
       "presets": {
-        "name": "Rating Block",
+        "name": "Bewertung",
         "settings": {
           "rating": "4.5"
         }
