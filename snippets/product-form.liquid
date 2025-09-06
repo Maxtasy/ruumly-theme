@@ -5,6 +5,7 @@
   @param {string} [name_prefix] - The prefix for the name attribute of the input elements.
   @param {boolean} [update_variant_url_parameter] - Whether to update the `variant` URL parameter in the URL when the selected variant changes.
   @param {object} [blocks] - The blocks object of a section (for example product configurator).
+  @param {string} [gradient_prefix] - Unique gradient prefix.
 {% enddoc %}
 
 <form
@@ -32,7 +33,11 @@
 
       {% when 'product-rating' %}
         {% if product.metafields.custom.rating.value.rating %}
-          {% render 'rating', rating: product.metafields.custom.rating.value.rating, icon_size: 'small' %}
+          {% render 'rating',
+            rating: product.metafields.custom.rating.value.rating,
+            icon_size: 'small',
+            gradient_prefix: gradient_prefix
+          %}
         {% endif %}
 
       {% when 'buy-buttons' %}

@@ -1,5 +1,5 @@
 {% assign rating = block.settings.rating | plus: 0 %}
-{% render 'rating', rating: rating %}
+{% render 'rating', rating: rating, gradient_prefix: block.id %}
 
 {% schema %}
 {
@@ -13,9 +13,9 @@
   ],
   "presets": [
     {
-      "name": "t:theme_blocks.rating_block.presets.name",
+      "name": "t:theme_blocks.rating_block.presets.rating_block.name",
       "settings": {
-        "rating": "t:theme_blocks.rating_block.presets.settings.rating"
+        "rating": "4.5"
       }
     }
   ]

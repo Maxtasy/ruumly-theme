@@ -762,9 +762,8 @@
         }
       },
       "presets": {
-        "name": "Bewertung",
-        "settings": {
-          "rating": "4.5"
+        "rating_block": {
+          "name": "Bewertung"
         }
       }
     },
