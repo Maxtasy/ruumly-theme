@@ -1,6 +1,7 @@
 <section
   class="
     Section
+    Section--PaddingBlockMedium
     ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
   "
 >
@@ -8,27 +9,40 @@
     <div class="ShopTheLook">
       <div class="ShopTheLook__Image">
         {% render 'image', image: section.settings.image %}
-      </div>
-      <div
-        class="ShopTheLook__Indicator"
-        style="--x-position: 25; --y-position: 25"
-        data-handle="1-0"
-      >
-        {% render 'indicator-item' %}
-      </div>
-      <div class="ShopTheLook__Indicator">
-        {% render 'indicator-item' %}
-      </div>
-      <div class="ShopTheLook__Indicator">
-        {% render 'indicator-item' %}
+
+        {% for block in section.blocks %}
+          <div
+            class="ShopTheLook__Indicator"
+            style="--position-top: {{ block.settings.position_top }}; --position-left: {{ block.settings.position_left }}"
+          >
+            {% assign unique_handle = section.id | append: forloop.index0 %}
+
+            {% render 'indicator', unique_handle: unique_handle, product: block.settings.product %}
+          </div>
+        {% endfor %}
       </div>
     </div>
   </div>
 </section>
 
+{% stylesheet %}
+  .ShopTheLook__Image {
+    position: relative;
+  }
+
+  .ShopTheLook__Indicator {
+    position: absolute;
+    top: calc(var(--position-top) * 1%);
+    left: calc(var(--position-left) * 1%);
+  }
+{% endstylesheet %}
+
 {% schema %}
 {
   "name": "t:sections.hero.settings.shop_the_look.name",
+  "disabled_on": {
+    "groups": ["header", "aside", "footer"]
+  },
   "settings": [
     {
       "type": "header",
@@ -50,6 +64,39 @@
       "label": "t:global.settings.image.label"
     }
   ],
+  "blocks": [
+    {
+      "name": "Product Indicator",
+      "type": "product_indicator",
+      "settings": [
+        {
+          "type": "range",
+          "id": "position_top",
+          "label": "Position Top",
+          "default": 50,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%"
+        },
+        {
+          "type": "range",
+          "id": "position_left",
+          "label": "Position Left",
+          "default": 50,
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
       "name": "t:sections.hero.settings.shop_the_look.presets.name"
@@ -57,13 +104,3 @@
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-  .ShopTheLook_Image {
-    position: relative;
-  }
-
-  .ShopTheLook_Indicator {
-    position: absolute;
-  }
-{% endstylesheet %}
