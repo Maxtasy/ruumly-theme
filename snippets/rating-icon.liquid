@@ -17,6 +17,8 @@
   assign stroke_color = stroke_color | default: 'currentColor'
   comment
     We assume the `section` object to be available here since the component will always be rendered within a section.
+  endcomment
+  comment
     theme-check-disable-next-line UndefinedObject
   endcomment
   assign gradient_id = 'gradient-' | append: section.id | append: '-' | append: icon | append: '-' | append: fill_percentage | append: '-' | append: fill_color | append: '-' | append: stroke_color
