@@ -5,13 +5,30 @@
   "
 >
   <div class="Section__Inner">
-    {% render 'image', image: section.settings.image %}
+    <div class="ShopTheLook">
+      <div class="ShopTheLook__Image">
+        {% render 'image', image: section.settings.image %}
+      </div>
+      <div
+        class="ShopTheLook__Indicator"
+        style="--x-position: 25; --y-position: 25"
+        data-handle="1-0"
+      >
+        {% render 'indicator-item' %}
+      </div>
+      <div class="ShopTheLook__Indicator">
+        {% render 'indicator-item' %}
+      </div>
+      <div class="ShopTheLook__Indicator">
+        {% render 'indicator-item' %}
+      </div>
+    </div>
   </div>
 </section>
 
 {% schema %}
 {
-  "name": "Shop the Look",
+  "name": "t:sections.hero.settings.shop_the_look.name",
   "settings": [
     {
       "type": "header",
@@ -35,8 +52,18 @@
   ],
   "presets": [
     {
-      "name": "Shop the Look"
+      "name": "t:sections.hero.settings.shop_the_look.presets.name"
     }
   ]
 }
 {% endschema %}
+
+{% stylesheet %}
+  .ShopTheLook_Image {
+    position: relative;
+  }
+
+  .ShopTheLook_Indicator {
+    position: absolute;
+  }
+{% endstylesheet %}

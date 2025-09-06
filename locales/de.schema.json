@@ -500,6 +500,12 @@
         "overlay_opacity": {
           "label": "Overlay Deckkraft"
         },
+        "shop_the_look": {
+          "name": "Shop the Look",
+          "presets": {
+            "name": "Shop the Look"
+          }
+        },
         "subtract_header_group_height": {
           "label": "Höhe der Kopfzeilengruppe abziehen",
           "info": "Subtrahiert die Höhe aller Abschnitte in der Kopfzeilengruppe. Nützlich, wenn der Hero-Abschnitt die gesamte Höhe des Ansichtsfensters einnehmen soll."
