@@ -7,7 +7,6 @@
   @param {string} [clear_color] - The color of the stop. Defaults to `#fff`.
   @param {string} [stroke_color] - The color of the stroke. Defaults to `currentColor`.
   @param {string} [icon_size] - The size of the icon.
-  @param {string} [gradient_prefix] - Unique gradient prefix.
 {% enddoc %}
 
 {% liquid
@@ -16,7 +15,11 @@
   assign fill_color = fill_color | default: 'currentColor'
   assign clear_color = clear_color | default: 'transparent'
   assign stroke_color = stroke_color | default: 'currentColor'
-  assign gradient_id = 'gradient-' | append: gradient_prefix | append: '-' | append: icon | append: '-' | append: fill_percentage | append: '-' | append: fill_color | append: '-' | append: stroke_color
+  comment
+    We assume the `section` object to be available here since the component will always be rendered within a section.
+    theme-check-disable-next-line UndefinedObject
+  endcomment
+  assign gradient_id = 'gradient-' | append: section.id | append: '-' | append: icon | append: '-' | append: fill_percentage | append: '-' | append: fill_color | append: '-' | append: stroke_color
   assign icon_size = icon_size | default: 'medium'
 %}
 
