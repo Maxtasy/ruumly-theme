@@ -754,6 +754,19 @@
         }
       }
     },
+    "rating_block": {
+      "name": "Bewertung Block",
+      "settings": {
+        "rating": {
+          "label": "Bewertung"
+        }
+      },
+      "presets": {
+        "rating_block": {
+          "name": "Bewertung"
+        }
+      }
+    },
     "text_block": {
       "name": "Text Block",
       "presets": {
