@@ -9,8 +9,17 @@
       "available": "In stock: With you in 1-3 days",
       "unavailable": "Out of stock"
     },
+    "menu_button": {
+      "aria_label": "Open menu"
+    },
     "search_button": {
       "aria_label": "Open search"
+    },
+    "shopping_cart_button": {
+      "aria_label": "Open shopping cart"
+    },
+    "user_button": {
+      "aria_label": "Open profile"
     }
   }
 }

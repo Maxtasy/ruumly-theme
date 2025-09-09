@@ -3,7 +3,13 @@
 {% enddoc %}
 
 <div is="dynamic-cart-icon-component" class="DynamicCartIcon">
-  {% render 'button', variant: 'plain', icon: 'shopping-cart', action: 'open-drawer:cart', size: 'small' %}
+  {% render 'button',
+    variant: 'plain',
+    icon: 'shopping-cart',
+    action: 'open-drawer:cart',
+    size: 'small',
+    aria_label_key: 'components.shopping_cart_button.aria_label'
+  %}
 
   <span
     class="
