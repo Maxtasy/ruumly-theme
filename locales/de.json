@@ -5,9 +5,36 @@
     "shipping": "Versand"
   },
   "components": {
+    "add_to_cart_button": {
+      "aria_label": "In den Warenkorb"
+    },
+    "close_button": {
+      "aria_label": "Schließen"
+    },
     "shipping_estimation": {
       "available": "Auf Lager: In 1-3 Tagen bei dir",
       "unavailable": "Ausverkauft"
+    },
+    "menu_button": {
+      "aria_label": "Menü öffnen"
+    },
+    "minus_button": {
+      "aria_label": "Minus"
+    },
+    "plus_button": {
+      "aria_label": "Plus"
+    },
+    "search_button": {
+      "aria_label": "Suche öffnen"
+    },
+    "shopping_cart_button": {
+      "aria_label": "Warenkorb öffnen"
+    },
+    "user_button": {
+      "aria_label": "Profil öffnen"
+    },
+    "wishlist_button": {
+      "aria_label": "Zur Wunschliste hinzufügen"
     }
   }
 }

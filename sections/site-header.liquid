@@ -28,15 +28,33 @@
         </div>
 
         <div class="u-Hidden--Desktop">
-          {% render 'button', variant: 'plain', icon: 'menu', action: 'open-drawer:menu', size: 'small' %}
+          {% render 'button',
+            variant: 'plain',
+            icon: 'menu',
+            action: 'open-drawer:menu',
+            size: 'small',
+            aria_label_key: 'components.menu_button.aria_label'
+          %}
         </div>
 
         {% if section.settings.show_search_icon and section.settings.search_icon_position == 'left' %}
-          {% render 'button', icon: 'search', variant: 'plain', size: 'small', action: 'open-modal:search' %}
+          {% render 'button',
+            icon: 'search',
+            variant: 'plain',
+            size: 'small',
+            action: 'open-modal:search',
+            aria_label: 'components.search_button.aria_label'
+          %}
         {% endif %}
 
         {% if section.settings.show_account_icon and section.settings.account_icon_position == 'left' %}
-          {% render 'button', icon: 'user-round', url: routes.account_url, variant: 'plain', size: 'small' %}
+          {% render 'button',
+            icon: 'user-round',
+            url: routes.account_url,
+            variant: 'plain',
+            size: 'small',
+            aria_label_key: 'components.user_button.aria_label'
+          %}
         {% endif %}
 
         {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'left' %}
@@ -64,11 +82,23 @@
         </div>
 
         {% if section.settings.show_search_icon and section.settings.search_icon_position == 'right' %}
-          {% render 'button', icon: 'search', variant: 'plain', size: 'small', action: 'open-modal:search' %}
+          {% render 'button',
+            icon: 'search',
+            variant: 'plain',
+            size: 'small',
+            action: 'open-modal:search',
+            aria_label_key: 'components.search_button.aria_label'
+          %}
         {% endif %}
 
         {% if section.settings.show_account_icon and section.settings.account_icon_position == 'right' %}
-          {% render 'button', icon: 'user-round', url: routes.account_url, variant: 'plain', size: 'small' %}
+          {% render 'button',
+            icon: 'user-round',
+            url: routes.account_url,
+            variant: 'plain',
+            size: 'small',
+            aria_label_key: 'components.user_button.aria_label'
+          %}
         {% endif %}
 
         {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'right' %}
