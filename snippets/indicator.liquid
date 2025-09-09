@@ -6,7 +6,7 @@
 {% enddoc %}
 
 {% capture button_content %}
-  <div class="Indicator Indicator--Active"></div>
+  <div class="Indicator"></div>
 {% endcapture %}
 
 {% assign action = 'open-modal:' | append: unique_handle %}
@@ -29,18 +29,26 @@
 
 {% stylesheet %}
   .Indicator {
-    transition: all var(--transition-duration) linear;
     aspect-ratio: 1;
     width: var(--icon-size-m);
     background-color: var(--t-background-light);
     transform: scale(0.8);
-    opacity: 0.5;
     border-radius: var(--t-border-radius-circle);
     border: var(--border-width) var(--border-style) black;
+    animation: pulse 1.5s infinite;
   }
 
-  .Indicator--Active {
-    opacity: 1;
-    transform: scale(1);
+  .Indicator:hover {
+    animation: none;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1);
+    }
   }
 {% endstylesheet %}
