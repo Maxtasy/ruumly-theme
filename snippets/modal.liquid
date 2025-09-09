@@ -16,13 +16,19 @@
   </div>
 
   <div class="Modal__Close">
-    {% render 'button', variant: 'plain', icon: 'x', action: 'close', size: 'small' %}
+    {% render 'button',
+      variant: 'plain',
+      icon: 'x',
+      action: 'close',
+      size: 'small',
+      aria_label_key: 'components.close_button.aria_label'
+    %}
   </div>
 </dialog>
 
 {% stylesheet %}
   .Modal {
-    padding: var(--modal-padding-block) var(--modal-padding-inline);
+    padding: var(--modal-padding-top) var(--modal-padding-inline) var(--modal-padding-bottom);
     width: var(--modal-width);
     max-width: var(--modal-max-width);
     min-height: var(--modal-min-height);

@@ -70,7 +70,8 @@
   --image-fallback-gradient-end: #f8f8f8;
 
   /* Modal */
-  --modal-padding-block: var(--size-m);
+  --modal-padding-top: var(--size-xxl);
+  --modal-padding-bottom: var(--size-m);
   --modal-padding-inline: var(--size-m);
   --modal-width: 100%;
   --modal-max-width: 24rem;

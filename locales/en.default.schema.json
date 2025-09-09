@@ -772,6 +772,19 @@
         }
       }
     },
+    "rating_block": {
+      "name": "Rating Block",
+      "settings": {
+        "rating": {
+          "label": "Rating"
+        }
+      },
+      "presets": {
+        "rating_block": {
+          "name": "Rating"
+        }
+      }
+    },
     "text_block": {
       "name": "Text Block",
       "presets": {

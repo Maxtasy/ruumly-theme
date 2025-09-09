@@ -6,6 +6,7 @@
   @param {string} [columns_mobile] - Will disable the `auto-fill` behaviour and instead use a fixed column count.
   @param {string} [columns_desktop] - Will disable the `auto-fill` behaviour and instead use a fixed column count.
   @param {string} [grid_gap] - Defaults to `m`.
+  @param {string} [gradient_prefix] - Unique gradient prefix.
 {% enddoc %}
 
 <div
@@ -34,7 +35,8 @@
       compare_at_price: product.compare_at_price,
       url: product.selected_or_first_available_variant.url,
       rating: product.metafields.custom.rating.value.rating,
-      product: product
+      product: product,
+      gradient_prefix: gradient_prefix
     %}
   {% endfor %}
 </div>

@@ -13,6 +13,7 @@
   @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
   @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card.
   @param {object} [product] - The product reference.
+  @param {string} [gradient_prefix] - Unique gradient prefix.
 {% enddoc %}
 
 {% assign hover_effect = hover_effect | default: settings.product_card_hover_effect %}
@@ -62,7 +63,7 @@
       </a>
 
       {% if rating %}
-        {% render 'rating', rating: rating %}
+        {% render 'rating', rating: rating, gradient_prefix: gradient_prefix %}
       {% endif %}
 
       <div class="ProductCard__PriceList">
@@ -78,12 +79,24 @@
           {% endif %}
 
           {% if product.has_only_default_variant %}
-            {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add', disabled: disabled %}
+            {% render 'button',
+              icon: 'shopping-cart',
+              size: 'small',
+              action: 'quick-add',
+              disabled: disabled,
+              aria_label_key: 'components.add_to_cart_button.aria_label'
+            %}
           {% else %}
             {% assign modal_name = 'quick-add-form-' | append: product.handle %}
             {% assign action = 'open-modal:' | append: modal_name %}
 
-            {% render 'button', icon: 'shopping-cart', size: 'small', action: action, disabled: disabled %}
+            {% render 'button',
+              icon: 'shopping-cart',
+              size: 'small',
+              action: action,
+              disabled: disabled,
+              aria_label_key: 'components.add_to_cart_button.aria_label'
+            %}
 
             {% capture modal_content %}
               {% render 'quick-add-product-form', product: product %}
@@ -94,7 +107,12 @@
         {% endif %}
 
         {% if enable_wishlist_button %}
-          {% render 'button', icon: 'heart', size: 'small', action: 'wishlist:add' %}
+          {% render 'button',
+            icon: 'heart',
+            size: 'small',
+            action: 'wishlist:add',
+            aria_label_key: 'components.wishlist_button.aria_label'
+          %}
         {% endif %}
       </div>
     {% endif %}

@@ -61,9 +61,15 @@
             }
           },
           "block_order": ["icon_block_hqMeNP", "text_block_dgH7Pz"]
+        },
+        "rating_block": {
+          "type": "rating-block",
+          "settings": {
+            "rating": "4.8"
+          }
         }
       },
-      "block_order": ["icon_with_text_block_afwXKX", "icon_with_text_block_9Bfrz4"],
+      "block_order": ["icon_with_text_block_afwXKX", "icon_with_text_block_9Bfrz4", "rating_block"],
       "name": "Announcement Bar",
       "settings": {
         "color_scheme": "secondary"
