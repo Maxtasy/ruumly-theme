@@ -450,6 +450,15 @@
             }
           }
         },
+        "position_left": {
+          "label": "Position Links"
+        },
+        "position_top": {
+          "label": "Position Oben"
+        },
+        "product": {
+          "label": "Produkt"
+        },
         "product_limit": {
           "label": "Maximale Anzahl an Produktkarten",
           "info": "Ignorieren wenn 0"
@@ -511,6 +520,9 @@
         }
       }
     },
+    "main_404": {
+      "name": "404 Abschnitt"
+    },
     "menu_drawer": {
       "name": "Menü Drawer",
       "presets": {
@@ -536,9 +548,6 @@
           "label": "Navigation auf Desktop aktivieren"
         }
       }
-    },
-    "main_404": {
-      "name": "404 Abschnitt"
     },
     "product_grid": {
       "name": "Produktraster",
@@ -566,6 +575,15 @@
     },
     "search_modal": {
       "name": "Suchdialog"
+    },
+    "shop_the_look": {
+      "name": "Den Look kaufen",
+      "blocks": {
+        "name": "Produktindikator"
+      },
+      "presets": {
+        "name": "Den Look kaufen"
+      }
     },
     "site_header": {
       "name": "Kopfzeile der Website",

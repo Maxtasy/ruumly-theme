@@ -450,6 +450,15 @@
             }
           }
         },
+        "position_left": {
+          "label": "Position Left"
+        },
+        "position_top": {
+          "label": "Position Top"
+        },
+        "product": {
+          "label": "Product"
+        },
         "product_limit": {
           "label": "Maximum Product Cards",
           "info": "Ignore when 0"
@@ -511,6 +520,9 @@
         }
       }
     },
+    "main_404": {
+      "name": "404 Section"
+    },
     "menu_drawer": {
       "name": "Menu Drawer",
       "presets": {
@@ -536,9 +548,6 @@
           "label": "Enable Navigation Desktop"
         }
       }
-    },
-    "main_404": {
-      "name": "404 Section"
     },
     "product_grid": {
       "name": "Product Grid",
@@ -566,6 +575,15 @@
     },
     "search_modal": {
       "name": "Search Modal"
+    },
+    "shop_the_look": {
+      "name": "Shop the Look",
+      "blocks": {
+        "name": "Product Indicator"
+      },
+      "presets": {
+        "name": "Shop the Look"
+      }
     },
     "site_header": {
       "name": "Site Header",
