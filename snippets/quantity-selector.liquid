@@ -5,13 +5,25 @@
 {% enddoc %}
 
 <div is="quantity-selector-component" class="QuantitySelector">
-  {% render 'button', variant: 'plain', icon: 'minus', action: 'decrement', size: 'small' %}
+  {% render 'button',
+    variant: 'plain',
+    icon: 'minus',
+    action: 'decrement',
+    size: 'small',
+    aria_label_key: 'components.minus_button.aria_label'
+  %}
 
   <span class="QuantitySelector__Quantity">
     {{ quantity }}
   </span>
 
-  {% render 'button', variant: 'plain', icon: 'plus', action: 'increment', size: 'small' %}
+  {% render 'button',
+    variant: 'plain',
+    icon: 'plus',
+    action: 'increment',
+    size: 'small',
+    aria_label_key: 'components.plus_button.aria_label'
+  %}
 </div>
 
 {% stylesheet %}

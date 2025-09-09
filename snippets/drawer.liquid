@@ -38,7 +38,13 @@
   {% endif %}
 
   <div class="Drawer__Close">
-    {% render 'button', variant: 'plain', icon: 'x', action: 'close', size: 'small' %}
+    {% render 'button',
+      variant: 'plain',
+      icon: 'x',
+      action: 'close',
+      size: 'small',
+      aria_label_key: 'components.close_button.aria_label'
+    %}
   </div>
 </aside>
 

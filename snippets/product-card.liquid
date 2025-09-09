@@ -79,12 +79,24 @@
           {% endif %}
 
           {% if product.has_only_default_variant %}
-            {% render 'button', icon: 'shopping-cart', size: 'small', action: 'quick-add', disabled: disabled %}
+            {% render 'button',
+              icon: 'shopping-cart',
+              size: 'small',
+              action: 'quick-add',
+              disabled: disabled,
+              aria_label_key: 'components.add_to_cart_button.aria_label'
+            %}
           {% else %}
             {% assign modal_name = 'quick-add-form-' | append: product.handle %}
             {% assign action = 'open-modal:' | append: modal_name %}
 
-            {% render 'button', icon: 'shopping-cart', size: 'small', action: action, disabled: disabled %}
+            {% render 'button',
+              icon: 'shopping-cart',
+              size: 'small',
+              action: action,
+              disabled: disabled,
+              aria_label_key: 'components.add_to_cart_button.aria_label'
+            %}
 
             {% capture modal_content %}
               {% render 'quick-add-product-form', product: product %}
@@ -95,7 +107,12 @@
         {% endif %}
 
         {% if enable_wishlist_button %}
-          {% render 'button', icon: 'heart', size: 'small', action: 'wishlist:add' %}
+          {% render 'button',
+            icon: 'heart',
+            size: 'small',
+            action: 'wishlist:add',
+            aria_label_key: 'components.wishlist_button.aria_label'
+          %}
         {% endif %}
       </div>
     {% endif %}
