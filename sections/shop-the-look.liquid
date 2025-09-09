@@ -39,7 +39,7 @@
 
 {% schema %}
 {
-  "name": "t:sections.hero.settings.shop_the_look.name",
+  "name": "t:sections.shop_the_look.name",
   "disabled_on": {
     "groups": ["header", "aside", "footer"]
   },
@@ -66,13 +66,13 @@
   ],
   "blocks": [
     {
-      "name": "Product Indicator",
+      "name": "t:sections.shop_the_look.blocks.name",
       "type": "product_indicator",
       "settings": [
         {
           "type": "range",
           "id": "position_top",
-          "label": "Position Top",
+          "label": "t:sections.all.settings.position_top.label",
           "default": 50,
           "min": 0,
           "max": 100,
@@ -82,7 +82,7 @@
         {
           "type": "range",
           "id": "position_left",
-          "label": "Position Left",
+          "label": "t:sections.all.settings.position_left.label",
           "default": 50,
           "min": 0,
           "max": 100,
@@ -92,14 +92,14 @@
         {
           "type": "product",
           "id": "product",
-          "label": "Product"
+          "label": "t:sections.all.settings.product.label"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "t:sections.hero.settings.shop_the_look.presets.name"
+      "name": "t:sections.shop_the_look.presets.name"
     }
   ]
 }

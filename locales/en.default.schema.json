@@ -450,6 +450,15 @@
             }
           }
         },
+        "position_left": {
+          "label": "Position Left"
+        },
+        "position_top": {
+          "label": "Position Top"
+        },
+        "product": {
+          "label": "Product"
+        },
         "product_limit": {
           "label": "Maximum Product Cards",
           "info": "Ignore when 0"
@@ -500,12 +509,6 @@
         "overlay_opacity": {
           "label": "Overlay Opacity"
         },
-        "shop_the_look": {
-          "name": "Shop the Look",
-          "presets": {
-            "name": "Shop the Look"
-          }
-        },
         "subtract_header_group_height": {
           "label": "Subtract header group height",
           "info": "Will subtract the height of all sections in the header group. Useful if the Hero section should fit the whole view port height."
@@ -516,6 +519,9 @@
           "name": "Hero"
         }
       }
+    },
+    "main_404": {
+      "name": "404 Section"
     },
     "menu_drawer": {
       "name": "Menu Drawer",
@@ -543,9 +549,6 @@
         }
       }
     },
-    "main_404": {
-      "name": "404 Section"
-    },
     "product_grid": {
       "name": "Product Grid",
       "presets": {
@@ -572,6 +575,15 @@
     },
     "search_modal": {
       "name": "Search Modal"
+    },
+    "shop_the_look": {
+      "name": "Shop the Look",
+      "blocks": {
+        "name": "Product Indicator"
+      },
+      "presets": {
+        "name": "Shop the Look"
+      }
     },
     "site_header": {
       "name": "Site Header",

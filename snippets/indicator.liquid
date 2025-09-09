@@ -1,7 +1,7 @@
 {% doc %}
   Renders an Indicator component.
 
-  @param {number} unique_handle - The index of the indicator item within the indicator group.
+  @param {number} unique_handle - Defines the index associated with the indicator.
   @param {object} product - Defines the product associated with the indicator.
 {% enddoc %}
 
@@ -35,8 +35,8 @@
     background-color: var(--t-background-light);
     transform: scale(0.8);
     opacity: 0.5;
-    border-radius: 50%;
-    border: 1px solid black;
+    border-radius: var(--t-border-radius-circle);
+    border: var(--border-width) var(--border-style) black;
   }
 
   .Indicator--Active {

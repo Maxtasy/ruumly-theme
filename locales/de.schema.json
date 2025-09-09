@@ -450,6 +450,15 @@
             }
           }
         },
+        "position_left": {
+          "label": "Position Links"
+        },
+        "position_top": {
+          "label": "Position Oben"
+        },
+        "product": {
+          "label": "Produkt"
+        },
         "product_limit": {
           "label": "Maximale Anzahl an Produktkarten",
           "info": "Ignorieren wenn 0"
@@ -500,12 +509,6 @@
         "overlay_opacity": {
           "label": "Overlay Deckkraft"
         },
-        "shop_the_look": {
-          "name": "Shop the Look",
-          "presets": {
-            "name": "Shop the Look"
-          }
-        },
         "subtract_header_group_height": {
           "label": "Höhe der Kopfzeilengruppe abziehen",
           "info": "Subtrahiert die Höhe aller Abschnitte in der Kopfzeilengruppe. Nützlich, wenn der Hero-Abschnitt die gesamte Höhe des Ansichtsfensters einnehmen soll."
@@ -516,6 +519,9 @@
           "name": "Hero"
         }
       }
+    },
+    "main_404": {
+      "name": "404 Abschnitt"
     },
     "menu_drawer": {
       "name": "Menü Drawer",
@@ -543,9 +549,6 @@
         }
       }
     },
-    "main_404": {
-      "name": "404 Abschnitt"
-    },
     "product_grid": {
       "name": "Produktraster",
       "presets": {
@@ -572,6 +575,15 @@
     },
     "search_modal": {
       "name": "Suchdialog"
+    },
+    "shop_the_look": {
+      "name": "Den Look kaufen",
+      "blocks": {
+        "name": "Produktindikator"
+      },
+      "presets": {
+        "name": "Den Look kaufen"
+      }
     },
     "site_header": {
       "name": "Kopfzeile der Website",

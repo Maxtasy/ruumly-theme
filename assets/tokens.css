@@ -101,6 +101,7 @@
   --border-width: 1px;
   --border-style: solid;
   --t-border-radius: 8px;
+  --t-border-radius-circle: 50%;
 
   --transition-duration-short: 0.15s;
   --transition-duration-medium: 0.3s;
