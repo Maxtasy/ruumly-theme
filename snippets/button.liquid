@@ -11,6 +11,7 @@
   @param {string} [size] - Button size ('small', 'medium', 'large').
   @param {boolean} [disabled] - Whether the button should be disabled.
   @param {string} [aria_label] - The value for the aria-label attribute.
+  @param {string} [aria_label_key] - The key to get the aria-label from the locale files automatically.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
@@ -28,7 +29,12 @@
       target="_blank"
     {% endif %}
 
-    {% if aria_label %}
+    {% if aria_label or aria_label_key %}
+      {% assign aria_label = aria_label %}
+      {% if aria_label == blank %}
+        {% assign aria_label = aria_label_key | t %}
+      {% endif %}
+
       aria-label="{{ aria_label }}"
     {% endif %}
   >
@@ -60,7 +66,12 @@
       data-action="{{ action }}"
     {% endif %}
 
-    {% if aria_label %}
+    {% if aria_label or aria_label_key %}
+      {% assign aria_label = aria_label %}
+      {% if aria_label == blank %}
+        {% assign aria_label = aria_label_key | t %}
+      {% endif %}
+
       aria-label="{{ aria_label }}"
     {% endif %}
   >
