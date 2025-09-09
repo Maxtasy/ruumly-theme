@@ -10,6 +10,7 @@
   @param {boolean} [external] - Whether the URL should be opened in a new window.
   @param {string} [size] - Button size ('small', 'medium', 'large').
   @param {boolean} [disabled] - Whether the button should be disabled.
+  @param {string} [aria_label] - The value for the aria-label attribute.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
@@ -25,6 +26,10 @@
     href="{{ url }}"
     {% if external %}
       target="_blank"
+    {% endif %}
+
+    {% if aria_label %}
+      aria-label="{{ aria_label }}"
     {% endif %}
   >
     {% if text %}
@@ -53,6 +58,10 @@
 
     {% if action %}
       data-action="{{ action }}"
+    {% endif %}
+
+    {% if aria_label %}
+      aria-label="{{ aria_label }}"
     {% endif %}
   >
     {% if text %}
