@@ -6,6 +6,7 @@
   @param {string} [icon_size] - The size of the icon.
   @param {number} [max_rating] - The maximum rating to display.
   @param {number} [rating_count] - The number of ratings.
+  @param {string} [gradient_prefix] - Unique gradient prefix.
 {% enddoc %}
 
 {% liquid
@@ -41,7 +42,12 @@
       {% assign remainder = remainder | minus: 1 %}
 
       <div class="Rating__Item">
-        {% render 'rating-icon', icon: icon, fill_percentage: fill_percentage, icon_size: icon_size %}
+        {% render 'rating-icon',
+          icon: icon,
+          fill_percentage: fill_percentage,
+          icon_size: icon_size,
+          gradient_prefix: gradient_prefix
+        %}
       </div>
     {% endfor %}
   </div>

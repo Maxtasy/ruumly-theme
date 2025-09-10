@@ -1,0 +1,53 @@
+{% doc %}
+  Renders an Indicator component.
+
+  @param {number} unique_handle - Connects the indicator with the modal.
+  @param {object} product - Defines the product associated with the indicator.
+{% enddoc %}
+
+{% capture button_content %}
+  <div class="Indicator"></div>
+{% endcapture %}
+
+{% assign action = 'open-modal:' | append: unique_handle %}
+
+{% render 'button', content: button_content, action: action, variant: 'plain', size: 'small' %}
+
+{% capture modal_content %}
+  {% render 'product-card',
+    title: product.title,
+    image: product.featured_image,
+    price: product.price,
+    compare_at_price: product.compare_at_price,
+    url: product.selected_or_first_available_variant.url,
+    rating: product.metafields.custom.rating.value.rating,
+    product: product
+  %}
+{% endcapture %}
+
+{% render 'modal', name: unique_handle, content: modal_content %}
+
+{% stylesheet %}
+  .Indicator {
+    aspect-ratio: 1;
+    width: var(--icon-size-m);
+    background-color: var(--t-background-light);
+    border-radius: var(--t-border-radius-circle);
+    border: var(--border-width) var(--border-style) var(--t-border);
+    animation: pulse 1.5s infinite;
+  }
+
+  .Indicator:hover {
+    animation-play-state: paused;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      transform: scale(0.8);
+    }
+    50% {
+      transform: scale(1);
+    }
+  }
+{% endstylesheet %}

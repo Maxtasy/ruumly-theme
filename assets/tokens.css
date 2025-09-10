@@ -70,7 +70,8 @@
   --image-fallback-gradient-end: #f8f8f8;
 
   /* Modal */
-  --modal-padding-block: var(--size-m);
+  --modal-padding-top: var(--size-xxl);
+  --modal-padding-bottom: var(--size-m);
   --modal-padding-inline: var(--size-m);
   --modal-width: 100%;
   --modal-max-width: 24rem;
@@ -101,6 +102,7 @@
   --border-width: 1px;
   --border-style: solid;
   --t-border-radius: 8px;
+  --t-border-radius-circle: 50%;
 
   --transition-duration-short: 0.15s;
   --transition-duration-medium: 0.3s;
