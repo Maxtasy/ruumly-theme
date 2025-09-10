@@ -32,6 +32,12 @@
     {% liquid
       assign placeholder = placeholder | default: 'image'
       assign placeholder_src = placeholder | placeholder_svg_tag | base64_encode | prepend: 'data:image/svg+xml;base64,'
+      comment
+        The image URL we use for the placeholder image is hosted on the Shopify CDN - The `RemoteAsset` error is irrelevant.
+      endcomment
+      comment
+        theme-check-disable-next-line RemoteAsset
+      endcomment
     %}
 
     <img
