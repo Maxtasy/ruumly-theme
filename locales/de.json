@@ -11,9 +11,8 @@
     "close_button": {
       "aria_label": "Schließen"
     },
-    "shipping_estimation": {
-      "available": "Auf Lager: In 1-3 Tagen bei dir",
-      "unavailable": "Ausverkauft"
+    "language_selector": {
+      "aria_label": "Sprachauswahl"
     },
     "menu_button": {
       "aria_label": "Menü öffnen"
@@ -27,6 +26,10 @@
     "search_button": {
       "aria_label": "Suche öffnen"
     },
+    "shipping_estimation": {
+      "available": "Auf Lager: In 1-3 Tagen bei dir",
+      "unavailable": "Ausverkauft"
+    },
     "shopping_cart_button": {
       "aria_label": "Warenkorb öffnen"
     },
@@ -35,6 +38,11 @@
     },
     "wishlist_button": {
       "aria_label": "Zur Wunschliste hinzufügen"
+    }
+  },
+  "navigation": {
+    "index": {
+      "aria_label": "Zur Startseite"
     }
   }
 }

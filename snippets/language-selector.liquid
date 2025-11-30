@@ -1,7 +1,7 @@
 {% if localization.available_languages.size > 1 %}
   <div is="language-selector-component" class="LanguageSelector">
     {% form 'localization' %}
-      <select class="Select" name="language">
+      <select class="Select" name="language" aria-label="{{ 'components.language_selector.aria_label' | t }}">
         {% for language in localization.available_languages %}
           <option
             value="{{ language.iso_code }}"

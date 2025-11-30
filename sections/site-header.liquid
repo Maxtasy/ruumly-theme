@@ -63,7 +63,7 @@
       </div>
 
       <div class="SiteHeader__Middle">
-        <a href="{{ routes.root_url }}">
+        <a href="{{ routes.root_url }}" aria-label="{{ 'navigation.index.aria_label' | t }}">
           {% if section.settings.show_logo and settings.logo != blank %}
             <div class="SiteHeader__Logo" style="--width: {{ section.settings.logo_width }}px;">
               {% render 'image', image: settings.logo %}

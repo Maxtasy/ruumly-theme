@@ -11,9 +11,8 @@
     "close_button": {
       "aria_label": "Close"
     },
-    "shipping_estimation": {
-      "available": "In stock: With you in 1-3 days",
-      "unavailable": "Out of stock"
+    "language_selector": {
+      "aria_label": "Language Selector"
     },
     "menu_button": {
       "aria_label": "Open menu"
@@ -27,6 +26,10 @@
     "search_button": {
       "aria_label": "Open search"
     },
+    "shipping_estimation": {
+      "available": "In stock: With you in 1-3 days",
+      "unavailable": "Out of stock"
+    },
     "shopping_cart_button": {
       "aria_label": "Open shopping cart"
     },
@@ -35,6 +38,11 @@
     },
     "wishlist_button": {
       "aria_label": "Add to wishlist"
+    }
+  },
+  "navigation": {
+    "index": {
+      "aria_label": "Navigate to home page"
     }
   }
 }
