@@ -61,7 +61,16 @@
       "
     >
       {% if enable_navigation_mobile or enable_navigation_desktop %}
-        {% render 'button', icon: 'arrow-left', variant: 'plain', size: 'small', action: 'prev', disabled: true %}
+        {% assign previous_aria_label = 'components.previous_button.aria_label' | t %}
+
+        {% render 'button',
+          icon: 'arrow-left',
+          variant: 'plain',
+          size: 'small',
+          action: 'prev',
+          disabled: true,
+          aria_label: previous_aria_label
+        %}
       {% endif %}
 
       {% if enable_pagination_mobile %}
@@ -91,7 +100,15 @@
       {% endif %}
 
       {% if enable_navigation_mobile or enable_navigation_desktop %}
-        {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small', action: 'next' %}
+        {% assign next_aria_label = 'components.next_button.aria_label' | t %}
+
+        {% render 'button',
+          icon: 'arrow-right',
+          variant: 'plain',
+          size: 'small',
+          action: 'next',
+          aria_label: next_aria_label
+        %}
       {% endif %}
     </div>
   {% endif %}

@@ -16,7 +16,11 @@
   class="LineItem"
   data-key="{{ key }}"
 >
-  <a class="LineItem__Image" href="{{ url }}">
+  <a
+    class="LineItem__Image"
+    href="{{ url }}"
+    aria-label="{{ 'components.product_link.aria_label' | t: product_title: product_title }}"
+  >
     {% render 'image', image: image, variant: 'square' %}
   </a>
 

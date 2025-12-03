@@ -20,8 +20,20 @@
     "minus_button": {
       "aria_label": "Minus"
     },
+    "next_button": {
+      "aria_label": "Nächstes"
+    },
     "plus_button": {
       "aria_label": "Plus"
+    },
+    "pagination_item": {
+      "aria_label": "Gehe zu Item {{ position }}"
+    },
+    "previous_button": {
+      "aria_label": "Vorheriges"
+    },
+    "product_link": {
+      "aria_label": "Gehe zu {{ product_title }}"
     },
     "search_button": {
       "aria_label": "Suche öffnen"
