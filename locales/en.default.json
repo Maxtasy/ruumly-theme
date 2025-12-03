@@ -29,6 +29,9 @@
     "previous_button": {
       "aria_label": "Previous"
     },
+    "product_link": {
+      "aria_label": "Go to {{ product_title }}"
+    },
     "search_button": {
       "aria_label": "Open search"
     },
