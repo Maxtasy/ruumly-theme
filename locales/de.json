@@ -20,8 +20,14 @@
     "minus_button": {
       "aria_label": "Minus"
     },
+    "next_button": {
+      "aria_label": "Nächstes"
+    },
     "plus_button": {
       "aria_label": "Plus"
+    },
+    "previous_button": {
+      "aria_label": "Vorheriges"
     },
     "search_button": {
       "aria_label": "Suche öffnen"
