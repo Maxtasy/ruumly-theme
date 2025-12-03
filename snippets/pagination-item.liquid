@@ -25,7 +25,13 @@
 
 {% assign action = 'navigate-' | append: index %}
 
-{% render 'button', content: pagination_item, action: action, variant: 'plain', size: 'small' %}
+{% render 'button',
+  content: pagination_item,
+  action: action,
+  variant: 'plain',
+  size: 'small',
+  aria_label: 'Pagination Item'
+%}
 
 {% stylesheet %}
   .PaginationItem {

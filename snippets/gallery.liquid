@@ -61,7 +61,14 @@
       "
     >
       {% if enable_navigation_mobile or enable_navigation_desktop %}
-        {% render 'button', icon: 'arrow-left', variant: 'plain', size: 'small', action: 'prev', disabled: true %}
+        {% render 'button',
+          icon: 'arrow-left',
+          variant: 'plain',
+          size: 'small',
+          action: 'prev',
+          disabled: true,
+          aria_label: 'Previous'
+        %}
       {% endif %}
 
       {% if enable_pagination_mobile %}
@@ -91,7 +98,7 @@
       {% endif %}
 
       {% if enable_navigation_mobile or enable_navigation_desktop %}
-        {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small', action: 'next' %}
+        {% render 'button', icon: 'arrow-right', variant: 'plain', size: 'small', action: 'next', aria_label: 'Next' %}
       {% endif %}
     </div>
   {% endif %}
