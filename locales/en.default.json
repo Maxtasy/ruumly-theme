@@ -26,6 +26,9 @@
     "plus_button": {
       "aria_label": "Plus"
     },
+    "pagination_item": {
+      "aria_label": "Go to item {{ position }}"
+    },
     "previous_button": {
       "aria_label": "Previous"
     },

@@ -24,13 +24,15 @@
 {% endcapture %}
 
 {% assign action = 'navigate-' | append: index %}
+{% assign position = index | plus: 1 %}
+{% assign pagination_item_label = 'components.pagination_item.aria_label' | t: position: position %}
 
 {% render 'button',
   content: pagination_item,
   action: action,
   variant: 'plain',
   size: 'small',
-  aria_label: 'Pagination Item'
+  aria_label: pagination_item_label
 %}
 
 {% stylesheet %}
