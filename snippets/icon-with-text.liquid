@@ -10,7 +10,9 @@
 <div class="IconWithText">
   <div class="IconWithText__Icon">
     {% if image %}
-      {% render 'image', image: image %}
+      {% assign image_alt_fallback = 'components.image.icon.default_alt_text' | t %}
+
+      {% render 'image', image: image, image_alt_fallback: image_alt_fallback %}
     {% else %}
       {% render 'icon', icon: icon %}
     {% endif %}

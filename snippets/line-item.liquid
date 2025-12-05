@@ -21,7 +21,9 @@
     href="{{ url }}"
     aria-label="{{ 'components.product_link.aria_label' | t: product_title: product_title }}"
   >
-    {% render 'image', image: image, variant: 'square' %}
+    {% assign image_alt_fallback = 'components.image.product.default_alt_text' | t %}
+
+    {% render 'image', image: image, variant: 'square', image_alt_fallback: image_alt_fallback %}
   </a>
 
   <div class="LineItem__Details">

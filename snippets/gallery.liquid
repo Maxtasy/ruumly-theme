@@ -42,7 +42,9 @@
   <div class="Gallery__Media u-NoScrollbar">
     {% for image in images %}
       <div class="Gallery__Item">
-        {% render 'image', image: image %}
+        {% assign image_alt_fallback = 'components.image.product.default_alt_text' | t %}
+
+        {% render 'image', image: image, image_alt_fallback: image_alt_fallback %}
       </div>
     {% endfor %}
   </div>

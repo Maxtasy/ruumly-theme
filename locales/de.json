@@ -11,6 +11,14 @@
     "close_button": {
       "aria_label": "Schließen"
     },
+    "image": {
+      "product": {
+        "default_alt_text": "Produktbild"
+      },
+      "icon": {
+        "default_alt_text": "Icon"
+      }
+    },
     "language_selector": {
       "aria_label": "Sprachauswahl"
     },
