@@ -7,12 +7,37 @@ export class AnnouncementBar extends CustomComponentMixin(HTMLDivElement) {
     this.index = 0;
     this.autoscrollTimeout = 2000;
     this.interactionTimeout = 5000;
-    this.intervall = null;
+    this.interval = null;
     this.timeout = null;
 
-    this.start();
+    this.determineSlidability();
 
     this.subscribe("touchstart", this.pause.bind(this));
+    window.addEventListener("resize", this.determineSlidability.bind(this));
+  }
+
+  activateSlider() {
+    this.classList.add("AnnouncementBar--Slider");
+
+    this.start();
+  }
+
+  deactivateSlider() {
+    this.classList.remove("AnnouncementBar--Slider");
+
+    this.stop();
+  }
+
+  determineSlidability() {
+    const totalChildrenWidth = [...this.children].reduce((totalWidth, child) => {
+      return (totalWidth += child.children[0].offsetWidth);
+    }, 0);
+
+    if (totalChildrenWidth > this.offsetWidth) {
+      this.activateSlider();
+    } else {
+      this.deactivateSlider();
+    }
   }
 
   next() {
@@ -22,19 +47,29 @@ export class AnnouncementBar extends CustomComponentMixin(HTMLDivElement) {
       this.index = 0;
     }
 
-    this.announcementItemElements[this.index].scrollIntoView({ block: "nearest", behavior: "smooth" });
+    this.announcementItemElements[this.index].scrollIntoView({
+      block: "nearest",
+      behavior: "smooth",
+      container: "nearest",
+    });
   }
 
   start() {
     clearTimeout(this.timeout);
+    clearInterval(this.interval);
 
-    this.intervall = setInterval(() => {
+    this.interval = setInterval(() => {
       this.next();
     }, this.autoscrollTimeout);
   }
 
+  stop() {
+    clearTimeout(this.timeout);
+    clearInterval(this.interval);
+  }
+
   pause() {
-    clearInterval(this.intervall);
+    clearInterval(this.interval);
 
     this.timeout = setTimeout(() => {
       this.start();

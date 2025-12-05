@@ -30,20 +30,21 @@
     padding-inline: var(--announcement-bar-padding-inline);
   }
 
-  @media screen and (max-width: 768px) {
-    .AnnouncementBar {
-      overflow-x: scroll;
-      scroll-snap-type: x mandatory;
-      justify-content: flex-start;
-    }
+  .AnnouncementBar > * {
+    flex-shrink: 0;
+  }
 
-    .AnnouncementBar > * {
-      display: flex;
-      justify-content: center;
-      width: 100%;
-      flex-shrink: 0;
-      scroll-snap-align: center;
-    }
+  .AnnouncementBar--Slider {
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    justify-content: flex-start;
+  }
+
+  .AnnouncementBar--Slider > * {
+    display: flex;
+    justify-content: center;
+    scroll-snap-align: center;
+    width: 100%;
   }
 {% endstylesheet %}
 
