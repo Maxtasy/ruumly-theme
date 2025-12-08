@@ -1,0 +1,85 @@
+<section
+  class="
+    Section
+    Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
+  <div class="Section__Inner">
+    <div class="Tabs">
+      {% for block in section.blocks %}
+        <div>{{ block.settings.title | default: block.settings.collection.title }}</div>
+      {% endfor %}
+
+      {% for block in section.blocks %}
+        {% render 'product-list', products: block.settings.collection.products %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .APlus {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "tabs",
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "select",
+      "id": "padding_block",
+      "label": "t:sections.all.settings.padding_block.label",
+      "default": "medium",
+      "options": [
+        { "value": "none", "label": "t:sections.all.settings.padding_block.options.none.label" },
+        { "value": "small", "label": "t:sections.all.settings.padding_block.options.small.label" },
+        { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
+        { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "name": "Tab-Block",
+      "type": "tab-block",
+      "limit": 4,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "info": "If this field is used, will overwrite the collection title."
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "tabs"
+    }
+  ]
+}
+{% endschema %}
