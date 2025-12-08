@@ -118,10 +118,35 @@
         "limit": 4
       }
     },
+    "tabs_YGYmEL": {
+      "type": "tabs",
+      "blocks": {
+        "tab_block_dgDpmc": {
+          "type": "tab-block",
+          "settings": {
+            "title": "",
+            "collection": "furniture"
+          }
+        },
+        "tab_block_LQ8Gw4": {
+          "type": "tab-block",
+          "settings": {
+            "title": "",
+            "collection": "plants"
+          }
+        }
+      },
+      "block_order": ["tab_block_dgDpmc", "tab_block_LQ8Gw4"],
+      "name": "tabs",
+      "settings": {
+        "color_scheme": "",
+        "padding_block": "medium"
+      }
+    },
     "test-section": {
       "type": "test-section",
       "settings": {}
     }
   },
-  "order": ["hero", "product_list_hjrBVX", "product_list_937CA7", "test-section"]
+  "order": ["hero", "product_list_hjrBVX", "product_list_937CA7", "tabs_YGYmEL", "test-section"]
 }
