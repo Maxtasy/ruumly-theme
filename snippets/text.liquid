@@ -5,13 +5,23 @@
   @param {string} text - The rendered text.
   @param {string} [variant] - Text variant. Defaults to `body-medium` ('heading-large', 'heading-medium', 'heading-small', 'body-large', 'body-medium', 'body-small')
   @param {string} [color] - Text color. Defaults to 'primary' ('inherit', 'primary', 'primary-muted', 'sale', 'destructive', 'success', 'warning')
+  @param {string} [transform] - Text tramsform. ('uppercase')
 {% enddoc %}
 
 {% assign as = as | default: 'p' %}
 {% assign variant = variant | default: 'body-medium' %}
 {% assign color = color | default: 'primary' %}
 
-<{{ as }} class="Text Text--{{ variant | camelcase }} Text--Color{{ color | camelcase }}">
+<{{ as }}
+  class="
+    Text
+    Text--{{ variant | camelcase }}
+    Text--Color{{ color | camelcase }}
+    {% if transform %}
+      Text--Transform{{ transform | camelcase }}
+    {% endif %}
+  "
+>
   {{ text }}
 </{{ as }}>
 
@@ -99,5 +109,9 @@
     font-family: var(--heading-font-family);
     font-size: 72px;
     line-height: 1.5;
+  }
+
+  .Text--TransformUppercase {
+    text-transform: uppercase;
   }
 {% endstylesheet %}
