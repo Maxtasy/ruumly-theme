@@ -82,7 +82,7 @@
 
 {% schema %}
 {
-  "name": "tabs",
+  "name": "t:sections.tabs.name",
   "disabled_on": {
     "groups": ["header", "footer", "aside"]
   },
@@ -122,25 +122,25 @@
   ],
   "blocks": [
     {
-      "name": "Tab-Block",
+      "name": "t:sections.tabs.blocks.name",
       "type": "tab-block",
       "limit": 4,
       "settings": [
         {
           "type": "text",
           "id": "title",
-          "label": "Title",
-          "info": "If this field is used, will overwrite the collection title."
+          "label": "t:sections.tabs.settings.title.label",
+          "info": "t:sections.tabs.settings.title.info"
         },
         {
           "type": "collection",
           "id": "collection",
-          "label": "Collection"
+          "label": "t:sections.tabs.settings.collection.label"
         },
         {
           "type": "number",
           "id": "limit",
-          "label": "Limit number of products",
+          "label": "t:sections.tabs.settings.limit.label",
           "default": 4
         }
       ]
@@ -148,7 +148,7 @@
   ],
   "presets": [
     {
-      "name": "tabs"
+      "name": "t:sections.tabs.presets.tabs.name"
     }
   ]
 }

@@ -616,6 +616,29 @@
         }
       }
     },
+    "tabs": {
+      "name": "Tabs",
+      "blocks": {
+        "name": "Tab Block"
+      },
+      "settings": {
+        "title": {
+          "label": "Title",
+          "info": "If this field is used, will overwrite the collection title."
+        },
+        "collection": {
+          "label": "Collection"
+        },
+        "limit": {
+          "label": "Limit number of products."
+        }
+      },
+      "presets": {
+        "tabs": {
+          "name": "Tabs"
+        }
+      }
+    },
     "cart_drawer": {
       "name": "Cart Drawer",
       "settings": {
