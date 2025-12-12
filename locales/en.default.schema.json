@@ -493,6 +493,56 @@
         }
       }
     },
+    "cart_drawer": {
+      "name": "Cart Drawer",
+      "settings": {
+        "enable_free_shipping_alert": {
+          "label": "Free Shipping Alert",
+          "info": "Make sure to also define a free shipping threshold in the Theme Settings."
+        },
+        "empty_state_heading": {
+          "label": "Empty state heading",
+          "default": "Your cart is empty"
+        },
+        "empty_state_link": {
+          "label": "Empty state link"
+        },
+        "empty_state_link_text": {
+          "label": "Empty state link text",
+          "default": "Continue shopping"
+        },
+        "empty_state_text": {
+          "label": "Empty state text",
+          "default": "Explore our products"
+        },
+        "free_shipping_remaining_text": {
+          "label": "Free Shipping Remaining Text",
+          "default": "%REMAINING% remaining until free shipping",
+          "info": "Use %REMAINING% as a placeholder for the remaining amount."
+        },
+        "free_shipping_reached_text": {
+          "label": "Free Shipping Reached Text",
+          "default": "Your order is free of shipping costs"
+        },
+        "from": {
+          "label": "From",
+          "options": {
+            "left": {
+              "label": "Left"
+            },
+            "right": {
+              "label": "Right"
+            }
+          }
+        }
+      },
+      "presets": {
+        "cart_drawer": {
+          "name": "Cart Drawer",
+          "category": "Drawer"
+        }
+      }
+    },
     "footer": {
       "name": "Footer"
     },
@@ -616,53 +666,26 @@
         }
       }
     },
-    "cart_drawer": {
-      "name": "Cart Drawer",
+    "tabs": {
+      "name": "Tabs",
+      "blocks": {
+        "name": "Tab"
+      },
       "settings": {
-        "enable_free_shipping_alert": {
-          "label": "Free Shipping Alert",
-          "info": "Make sure to also define a free shipping threshold in the Theme Settings."
+        "title": {
+          "label": "Title",
+          "info": "If this field is used, will overwrite the collection title."
         },
-        "empty_state_heading": {
-          "label": "Empty state heading",
-          "default": "Your cart is empty"
+        "collection": {
+          "label": "Collection"
         },
-        "empty_state_link": {
-          "label": "Empty state link"
-        },
-        "empty_state_link_text": {
-          "label": "Empty state link text",
-          "default": "Continue shopping"
-        },
-        "empty_state_text": {
-          "label": "Empty state text",
-          "default": "Explore our products"
-        },
-        "free_shipping_remaining_text": {
-          "label": "Free Shipping Remaining Text",
-          "default": "%REMAINING% remaining until free shipping",
-          "info": "Use %REMAINING% as a placeholder for the remaining amount."
-        },
-        "free_shipping_reached_text": {
-          "label": "Free Shipping Reached Text",
-          "default": "Your order is free of shipping costs"
-        },
-        "from": {
-          "label": "From",
-          "options": {
-            "left": {
-              "label": "Left"
-            },
-            "right": {
-              "label": "Right"
-            }
-          }
+        "limit": {
+          "label": "Limit number of products."
         }
       },
       "presets": {
-        "cart_drawer": {
-          "name": "Cart Drawer",
-          "category": "Drawer"
+        "tabs": {
+          "name": "Tabs"
         }
       }
     }
