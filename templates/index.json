@@ -121,26 +121,45 @@
     "tabs_YGYmEL": {
       "type": "tabs",
       "blocks": {
+        "tab_block_CYnWDU": {
+          "type": "tab-block",
+          "settings": {
+            "title": "Chairs",
+            "collection": "gaming-chairs",
+            "limit": 4
+          }
+        },
+        "tab_block_xfzQ8T": {
+          "type": "tab-block",
+          "settings": {
+            "title": "Desks",
+            "collection": "gaming-desks",
+            "limit": 4
+          }
+        },
         "tab_block_dgDpmc": {
           "type": "tab-block",
           "settings": {
             "title": "",
-            "collection": "furniture"
+            "collection": "furniture",
+            "limit": 4
           }
         },
         "tab_block_LQ8Gw4": {
           "type": "tab-block",
           "settings": {
             "title": "",
-            "collection": "plants"
+            "collection": "plants",
+            "limit": 4
           }
         }
       },
-      "block_order": ["tab_block_dgDpmc", "tab_block_LQ8Gw4"],
-      "name": "tabs",
+      "block_order": ["tab_block_CYnWDU", "tab_block_xfzQ8T", "tab_block_dgDpmc", "tab_block_LQ8Gw4"],
+      "name": "Tabs",
       "settings": {
         "color_scheme": "",
-        "padding_block": "medium"
+        "padding_block": "medium",
+        "heading": "Heading"
       }
     },
     "test-section": {
