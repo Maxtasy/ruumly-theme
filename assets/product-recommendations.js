@@ -3,6 +3,8 @@ import { CustomComponentMixin, defineComponent } from "./component.js";
 class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
     super();
+
+    // TODO: Get locale dymamically
     const locale = "de";
     this.productRecommendationsSectionId = "product-recommendations";
     this.productId = this.parsedData.productId;
@@ -10,15 +12,25 @@ class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
   }
 
   connectedCallback() {
-    this.getRecommendations();
+    this.observer = new IntersectionObserver(() => {
+      this.getRecommendations();
+    });
+
+    this.observer.observe(this);
   }
 
   async getRecommendations() {
     const response = await fetch(this.recommendationsUrl);
     const data = await response.text();
-    console.log(data);
 
-    // To-Do: Replace markup in section
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(data, "text/html");
+
+    const newSectionElement = doc.querySelector(`.ProductRecommendations[data-product-id='${this.productId}']`);
+
+    this.innerHTML = newSectionElement.innerHTML;
+
+    this.observer.disconnect();
   }
 }
 
