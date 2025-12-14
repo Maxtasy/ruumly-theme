@@ -1,12 +1,13 @@
 {% doc %}
   Renders a Product List component.
 
-  @param {object[]} products - List of products.
+  @param {object[]} [products] - List of products.
   @param {number} [limit] - The maximum number of product cards to render.
   @param {number} [columns_mobile] - Number of columns on mobile.
   @param {number} [columns_desktop] - Number of columns on desktop.
   @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
   @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card.
+  @param {boolean} [use_placeholders] - If set to true, renders placeholder product cards.
 {% enddoc %}
 
 {% assign columns_mobile = columns_mobile | default: 2 %}
@@ -19,22 +20,28 @@
     --columns-desktop: {{ columns_desktop }};
   "
 >
-  {% for product in products limit: limit %}
-    <li>
-      {% render 'product-card',
-        title: product.title,
-        image: product.featured_image,
-        swap_image: product.images[1],
-        price: product.price,
-        compare_at_price: product.compare_at_price,
-        url: product.selected_or_first_available_variant.url,
-        rating: product.metafields.custom.rating.value.rating,
-        enable_quick_add_button: enable_quick_add_button,
-        enable_wishlist_button: enable_wishlist_button,
-        product: product
-      %}
-    </li>
-  {% endfor %}
+  {% if use_placeholders %}
+    {% for i in (1..limit) %}
+      <li>{% render 'product-card-skeleton' %}</li>
+    {% endfor %}
+  {% else %}
+    {% for product in products limit: limit %}
+      <li>
+        {% render 'product-card',
+          title: product.title,
+          image: product.featured_image,
+          swap_image: product.images[1],
+          price: product.price,
+          compare_at_price: product.compare_at_price,
+          url: product.selected_or_first_available_variant.url,
+          rating: product.metafields.custom.rating.value.rating,
+          enable_quick_add_button: enable_quick_add_button,
+          enable_wishlist_button: enable_wishlist_button,
+          product: product
+        %}
+      </li>
+    {% endfor %}
+  {% endif %}
 </ul>
 
 {% stylesheet %}

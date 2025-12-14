@@ -10,7 +10,11 @@
 
     <div is="product-recommendations-component" class="ProductRecommendations" data-product-id="{{ product.id }}">
       <div class="ProductRecommendations__Content">
-        {% render 'product-list', products: recommendations.products %}
+        {% if recommendations.performed? %}
+          {% render 'product-list', products: recommendations.products %}
+        {% else %}
+          {% render 'product-list', use_placeholders: true, limit: 4 %}
+        {% endif %}
       </div>
     </div>
   </div>

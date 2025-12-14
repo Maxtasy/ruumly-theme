@@ -13,7 +13,7 @@ class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
 
   connectedCallback() {
     this.observer = new IntersectionObserver(() => {
-      this.getRecommendations();
+      // this.getRecommendations();
     });
 
     this.observer.observe(this);
