@@ -4,8 +4,7 @@ class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
     super();
 
-    // TODO: Get locale dymamically
-    const locale = "de";
+    const locale = window.Shopify.locale;
     this.productRecommendationsSectionId = "product-recommendations";
     this.productId = this.parsedData.productId;
     this.recommendationsUrl = `/${locale}/recommendations/products?product_id=${this.productId}&section_id=${this.productRecommendationsSectionId}`;
