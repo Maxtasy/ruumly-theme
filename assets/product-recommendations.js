@@ -12,8 +12,14 @@ class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
   }
 
   connectedCallback() {
-    this.observer = new IntersectionObserver(() => {
-      // this.getRecommendations();
+    this.observer = new IntersectionObserver((entries) => {
+      const isIntersecting = entries.find((entry) => {
+        return entry.target === this;
+      })?.isIntersecting;
+
+      if (isIntersecting) {
+        this.getRecommendations();
+      }
     });
 
     this.observer.observe(this);

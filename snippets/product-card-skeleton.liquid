@@ -1,1 +1,60 @@
-Placeholder
+<article class="ProductCardSkeleton">
+  <div class="ProductCardSkeleton__Image u-SkeletonShimmer"></div>
+
+  <div class="ProductCardSkeleton__Bottom">
+    <div class="ProductCardSkeleton__Details">
+      {% render 'text-skeleton' %}
+
+      {% render 'text-skeleton' %}
+
+      {% render 'text-skeleton' %}
+    </div>
+  </div>
+</article>
+
+{% stylesheet %}
+  .ProductCardSkeleton {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--size-xs);
+    height: 100%;
+    background-color: var(--t-background);
+    background: var(--t-gradient-background);
+    border: var(--border-width) solid var(--t-border-card);
+    border-top-color: var(--t-highlight);
+    border-radius: var(--t-border-radius);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+  }
+
+  .ProductCardSkeleton__Image {
+    width: 100%;
+    aspect-ratio: 1;
+    background-color: grey;
+  }
+
+  .ProductCardSkeleton__Details {
+    /* Make sure the details section takes up the remaining space */
+    flex: 1;
+
+    /* Make sure the details section takes up the height of its parent */
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+  }
+
+  .ProductCardSkeleton__Bottom {
+    /* Make sure the bottom section takes up the remaining space */
+    flex: 1;
+
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+    width: 100%;
+    padding: var(--size-s);
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
