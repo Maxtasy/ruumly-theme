@@ -623,6 +623,14 @@
         }
       }
     },
+    "product_recommendations": {
+      "name": "Produktvorschläge",
+      "presets": {
+        "product_recommendations": {
+          "name": "Produktvorschläge"
+        }
+      }
+    },
     "search_modal": {
       "name": "Suchdialog"
     },
