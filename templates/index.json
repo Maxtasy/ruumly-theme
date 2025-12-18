@@ -89,6 +89,18 @@
         "overlay_opacity": 33
       }
     },
+    "collection_list": {
+      "type": "collection-list",
+      "name": "t:sections.collection_list.presets.collection_list.name",
+      "settings": {
+        "color_scheme": "",
+        "padding_block": "medium",
+        "columns_mobile": 2,
+        "columns_desktop": 4,
+        "heading": "Our top collections",
+        "collection_list": ["gaming-chairs", "gaming-desks", "furniture", "plants"]
+      }
+    },
     "product_list_hjrBVX": {
       "type": "product-list",
       "name": "t:sections.product_list.presets.product_list.name",
@@ -167,5 +179,5 @@
       "settings": {}
     }
   },
-  "order": ["hero", "product_list_hjrBVX", "product_list_937CA7", "tabs_YGYmEL", "test-section"]
+  "order": ["hero", "collection_list", "product_list_hjrBVX", "product_list_937CA7", "tabs_YGYmEL", "test-section"]
 }

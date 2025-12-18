@@ -338,12 +338,15 @@
         "collection": {
           "label": "Kollektion"
         },
+        "collection_list": {
+          "label": "Kollektionsliste"
+        },
         "color_scheme": {
           "label": "Farbschema",
           "info": "Wählen Sie ein Farbschema, das für diesen Abschnitt gelten soll"
         },
         "columns_desktop": {
-          "label": "Columns Desktop"
+          "label": "Spalten Desktop"
         },
         "columns_mobile": {
           "label": "Spalten Mobile"
@@ -540,6 +543,14 @@
         "cart_drawer": {
           "name": "Warenkorb Drawer",
           "category": "Drawer"
+        }
+      }
+    },
+    "collection_list": {
+      "name": "Kollektionsliste",
+      "presets": {
+        "collection_list": {
+          "name": "Kollektionsliste"
         }
       }
     },

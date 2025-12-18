@@ -338,6 +338,9 @@
         "collection": {
           "label": "Collection"
         },
+        "collection_list": {
+          "label": "Collection List"
+        },
         "color_scheme": {
           "label": "Color scheme",
           "info": "Select a color scheme to apply to this section"
@@ -540,6 +543,14 @@
         "cart_drawer": {
           "name": "Cart Drawer",
           "category": "Drawer"
+        }
+      }
+    },
+    "collection_list": {
+      "name": "Collection List",
+      "presets": {
+        "collection_list": {
+          "name": "Collection List"
         }
       }
     },

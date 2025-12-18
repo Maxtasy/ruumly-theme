@@ -1,0 +1,42 @@
+{% doc %}
+  Renders a Collection List component.
+
+  @param {object[]} [collections] - List of collections.
+  @param {number} [columns_mobile] - Number of columns on mobile.
+  @param {number} [columns_desktop] - Number of columns on desktop.
+{% enddoc %}
+
+{% assign columns_mobile = columns_mobile | default: 2 %}
+{% assign columns_desktop = columns_desktop | default: 4 %}
+
+<ul
+  class="CollectionList u-NoList"
+  style="
+    --columns-mobile: {{ columns_mobile }};
+    --columns-desktop: {{ columns_desktop }};
+  "
+>
+  {% for collection in collections %}
+    <li>
+      {% render 'collection-card', title: collection.title, image: collection.image, url: collection.url %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% stylesheet %}
+  .CollectionList {
+    display: grid;
+    grid-template-columns: repeat(var(--columns-mobile), 1fr);
+    gap: var(--size-m);
+  }
+
+  .CollectionList > li {
+    height: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    .CollectionList {
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
+    }
+  }
+{% endstylesheet %}
