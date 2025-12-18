@@ -59,7 +59,16 @@
         "gallery_desktop": "grid",
         "columns_desktop": 2
       }
+    },
+    "product_recommendations_Q48Afw": {
+      "type": "product-recommendations",
+      "name": "Product Recommendations",
+      "settings": {
+        "color_scheme": "",
+        "padding_block": "medium",
+        "heading": "Heading"
+      }
     }
   },
-  "order": ["product-configurator"]
+  "order": ["product-configurator", "product_recommendations_Q48Afw"]
 }

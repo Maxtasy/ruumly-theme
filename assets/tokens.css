@@ -94,6 +94,19 @@
   --text-font-family: var(--font-family-body);
   --heading-font-family: var(--font-family-heading);
 
+  --text-size-body-small: 12px;
+  --text-size-body-medium: 16px;
+  --text-size-body-large: 24px;
+
+  --text-size-heading-extra-small: 16px;
+  --text-size-heading-small: 24px;
+  --text-size-heading-medium: 32px;
+  --text-size-heading-large: 40px;
+  --text-size-heading-extra-large: 56px;
+  --text-size-heading-ultra-large: 72px;
+
+  --heading-line-height: 1.5;
+
   /* ------- */
   /* Details */
   /* ------- */
