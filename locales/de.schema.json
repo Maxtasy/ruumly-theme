@@ -351,6 +351,12 @@
         "columns_mobile": {
           "label": "Spalten Mobile"
         },
+        "enable_quick_add_button": {
+          "label": "Button für schnelles hinzufügen"
+        },
+        "enable_wishlist_button": {
+          "label": "Button für Wunschliste"
+        },
         "gallery_desktop": {
           "label": "Galerie Desktop",
           "options": {
@@ -620,14 +626,6 @@
     },
     "product_list": {
       "name": "Produktliste",
-      "settings": {
-        "enable_quick_add_button": {
-          "label": "Button für schnelles hinzufügen"
-        },
-        "enable_wishlist_button": {
-          "label": "Button für Wunschliste"
-        }
-      },
       "presets": {
         "product_list": {
           "name": "Produktliste"
@@ -658,16 +656,16 @@
       "name": "Kopfzeile der Website",
       "settings": {
         "account_icon_position": {
-          "label": "Position des Kontosymbols"
+          "label": "Konto-Symbol Position"
         },
         "cart_icon_position": {
-          "label": "Warenkorb-Symbol posotion"
+          "label": "Warenkorb-Symbol Position"
         },
         "search_icon_position": {
-          "label": "Suchsymbol Position"
+          "label": "Such-Symbol Position"
         },
         "show_account_icon": {
-          "label": "Kontosymbol anzeigen"
+          "label": "Konto-Symbol anzeigen"
         },
         "show_cart_icon": {
           "label": "Warenkorb-Symbol anzeigen"
@@ -677,11 +675,21 @@
           "info": "Das Logo kann in den Themeneinstellungen ausgewählt werden. Wenn es nicht markiert ist, wird stattdessen der Name des Shops angezeigt."
         },
         "show_search_icon": {
-          "label": "Suchsymbol anzeigen"
+          "label": "Such-Symbol anzeigen"
+        },
+        "show_wishlist_icon": {
+          "label": "Wunschlisten-Symbol anzeigen"
         },
         "title_text_variant": {
           "label": "Titel Textvariante",
           "info": "Diese Einstellung gilt nur, wenn das Logo nicht angezeigt wird."
+        },
+        "wishlist_icon_position": {
+          "label": "Wunschlisten-Symbol Position"
+        },
+        "wishlist_page": {
+          "label": "Wunschlisten-Seite",
+          "info": "Wählen sie die Seite aus, auf der die Wunschlisten-Section genutzt wird."
         }
       }
     },
@@ -705,6 +713,14 @@
       "presets": {
         "tabs": {
           "name": "Tabs"
+        }
+      }
+    },
+    "wishlist": {
+      "name": "Wunschliste",
+      "presets": {
+        "wishlist": {
+          "name": "Wunschliste"
         }
       }
     }

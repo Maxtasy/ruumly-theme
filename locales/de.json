@@ -57,6 +57,9 @@
       "aria_label": "Profil öffnen"
     },
     "wishlist_button": {
+      "aria_label": "Wunschliste öffnen"
+    },
+    "wishlist_add_button": {
       "aria_label": "Zur Wunschliste hinzufügen"
     }
   },
