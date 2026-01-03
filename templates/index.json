@@ -113,7 +113,8 @@
         "collection": "gaming-chairs",
         "product_list": [],
         "limit": 4,
-        "enable_quick_add_button": true
+        "enable_quick_add_button": true,
+        "enable_wishlist_button": true
       }
     },
     "product_list_937CA7": {

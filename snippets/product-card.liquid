@@ -106,10 +106,27 @@
         {% endif %}
 
         {% if enable_wishlist_button %}
+          {% capture event_details %}
+            {
+              "productId": {{ product.id }}
+            }
+          {% endcapture %}
+
+          {% assign event_details = event_details | escape %}
+
           {% render 'button',
             icon: 'heart',
             size: 'small',
             action: 'wishlist:add',
+            event_details: event_details,
+            aria_label_key: 'components.wishlist_add_button.aria_label'
+          %}
+
+          {% render 'button',
+            icon: 'heart',
+            size: 'small',
+            action: 'wishlist:remove',
+            event_details: event_details,
             aria_label_key: 'components.wishlist_add_button.aria_label'
           %}
         {% endif %}

@@ -6,6 +6,7 @@
   @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain', 'link').
   @param {string} [icon] - Icon handle of the icon to render.
   @param {string} [action] - The action attribute.
+  @param {string} [event_details] - The event details to send with the action.
   @param {string} [url] - The URL of the button.
   @param {boolean} [external] - Whether the URL should be opened in a new window.
   @param {string} [size] - Button size ('small', 'medium', 'large').
@@ -64,6 +65,10 @@
 
     {% if action %}
       data-action="{{ action }}"
+    {% endif %}
+
+    {% if event_details %}
+      data-event-details="{{ event_details }}"
     {% endif %}
 
     {% if aria_label or aria_label_key %}

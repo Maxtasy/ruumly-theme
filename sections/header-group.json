@@ -89,7 +89,10 @@
         "show_account_icon": true,
         "account_icon_position": "right",
         "show_search_icon": true,
-        "search_icon_position": "right"
+        "search_icon_position": "right",
+        "wishlist_page": "wishlist",
+        "show_wishlist_icon": true,
+        "wishlist_icon_position": "right"
       }
     }
   },
