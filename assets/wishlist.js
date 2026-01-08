@@ -1,10 +1,10 @@
-// TODO: Add aria label for remove button
-// TODO: Use antoher icon for remove button (filled heart)
 // TODO: Add wishlist buttons component that handles state of wishlist buttons (wishlist module loops over all these elements and sets state)
 // TODO: Render products in wishlist section
 class Wishlist {
   constructor() {
     this.items = this.getLocalStorage();
+
+    this.setWishlistButtonStates();
 
     document.addEventListener("button:click:wishlist:add", this.handleWishlistAdd.bind(this));
     document.addEventListener("button:click:wishlist:remove", this.handleWishlistRemove.bind(this));
@@ -52,6 +52,15 @@ class Wishlist {
     const wishlistDataRaw = localStorage.getItem("wishlist");
 
     return wishlistDataRaw ? JSON.parse(wishlistDataRaw) : [];
+  }
+
+  setWishlistButtonStates() {
+    const wishlistButtonElements = document.querySelectorAll(".WishlistButtons");
+
+    wishlistButtonElements.forEach((wishlistButtonElement) => {
+      console.log(wishlistButtonElement.productId);
+      // TODO Handle hierarchy issue
+    });
   }
 }
 
