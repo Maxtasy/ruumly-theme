@@ -38,6 +38,7 @@ export class WishlistButtons extends CustomComponentMixin(HTMLDivElement) {
   handleWishlistAddButtonClick() {
     //TODO Duplicate add icon
     const iconElement = this.querySelector("[data-action='wishlist:add'] .Icon");
+    const finalPositionIconElement = document.querySelector("[aria-label='Open wishlist'] .Icon");
 
     const clonedIconElement = iconElement.cloneNode(true);
 
@@ -48,16 +49,19 @@ export class WishlistButtons extends CustomComponentMixin(HTMLDivElement) {
     clonedIconElement.style.transition = "all 1s linear";
 
     const initialPosition = iconElement.getBoundingClientRect();
-    console.log(initialPosition);
+    const finalPosition = finalPositionIconElement.getBoundingClientRect();
 
     clonedIconElement.style.top = `${initialPosition.y}px`;
     clonedIconElement.style.left = `${initialPosition.x}px`;
     //TODO Set final position of duplicate
     window.requestAnimationFrame(() => {
-      clonedIconElement.style.top = `0px`;
-      clonedIconElement.style.left = `0px`;
+      clonedIconElement.style.top = `${finalPosition.y}px`;
+      clonedIconElement.style.left = `${finalPosition.x}px`;
     });
     //TODO Delete duplicate from dom
+    clonedIconElement.addEventListener("transitionend", () => {
+      clonedIconElement.remove();
+    });
     //TODO Use translate instead of top left (performance)
 
     this.toggleAdded(true);
