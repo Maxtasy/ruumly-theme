@@ -31,7 +31,13 @@
 </div>
 
 {% stylesheet %}
-  .WishlistButtons {
+  .WishlistButtons [data-action] .Icon {
+    scale: 0;
+    transition: scale var(--transition-duration-long) var(--transition-timing);
+  }
+
+  .WishlistButtons--Initialized [data-action] .Icon {
+    scale: 1;
   }
 
   .WishlistButtons [data-action='wishlist:remove'] {
