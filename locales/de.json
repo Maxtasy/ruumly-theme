@@ -61,6 +61,9 @@
     },
     "wishlist_add_button": {
       "aria_label": "Zur Wunschliste hinzufügen"
+    },
+    "wishlist_remove_button": {
+      "aria_label": "Von Wunschliste entfernen"
     }
   },
   "navigation": {
