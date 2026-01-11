@@ -8,7 +8,7 @@ export class Button extends CustomComponentMixin(HTMLButtonElement) {
   }
 
   handleClick() {
-    this.publish(`button:click`);
+    this.publish(`button:click`, this.parsedData.eventDetails);
   }
 
   disable() {

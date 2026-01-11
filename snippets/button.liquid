@@ -6,12 +6,14 @@
   @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain', 'link').
   @param {string} [icon] - Icon handle of the icon to render.
   @param {string} [action] - The action attribute.
+  @param {string} [event_details] - The event details to send with the action.
   @param {string} [url] - The URL of the button.
   @param {boolean} [external] - Whether the URL should be opened in a new window.
   @param {string} [size] - Button size ('small', 'medium', 'large').
   @param {boolean} [disabled] - Whether the button should be disabled.
   @param {string} [aria_label] - The value for the aria-label attribute.
   @param {string} [aria_label_key] - The key to get the aria-label from the locale files automatically.
+  @param {string} [attributes] - Optional additional attributes.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
@@ -37,6 +39,8 @@
 
       aria-label="{{ aria_label }}"
     {% endif %}
+
+    {{ attributes }}
   >
     {% if text %}
       {{ text }}
@@ -66,6 +70,10 @@
       data-action="{{ action }}"
     {% endif %}
 
+    {% if event_details %}
+      data-event-details="{{ event_details }}"
+    {% endif %}
+
     {% if aria_label or aria_label_key %}
       {% assign aria_label = aria_label %}
       {% if aria_label == blank %}
@@ -74,6 +82,8 @@
 
       aria-label="{{ aria_label }}"
     {% endif %}
+
+    {{ attributes }}
   >
     {% if text %}
       {{ text }}

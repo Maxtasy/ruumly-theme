@@ -57,6 +57,17 @@
           %}
         {% endif %}
 
+        {% if section.settings.show_wishlist_icon and section.settings.wishlist_icon_position == 'left' %}
+          {% render 'button',
+            icon: 'heart',
+            url: section.settings.wishlist_page.url,
+            variant: 'plain',
+            size: 'small',
+            aria_label_key: 'components.wishlist_button.aria_label',
+            attributes: 'data-wishlist-page-button'
+          %}
+        {% endif %}
+
         {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'left' %}
           {% render 'dynamic-cart-icon' %}
         {% endif %}
@@ -98,6 +109,17 @@
             variant: 'plain',
             size: 'small',
             aria_label_key: 'components.user_button.aria_label'
+          %}
+        {% endif %}
+
+        {% if section.settings.show_wishlist_icon and section.settings.wishlist_icon_position == 'right' %}
+          {% render 'button',
+            icon: 'heart',
+            url: section.settings.wishlist_page.url,
+            variant: 'plain',
+            size: 'small',
+            aria_label_key: 'components.wishlist_button.aria_label',
+            attributes: 'data-wishlist-page-button'
           %}
         {% endif %}
 
@@ -288,6 +310,35 @@
         }
       ],
       "default": "right"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wishlist_icon",
+      "label": "t:sections.site_header.settings.show_wishlist_icon.label",
+      "default": false
+    },
+    {
+      "type": "select",
+      "id": "wishlist_icon_position",
+      "visible_if": "{{ section.settings.show_wishlist_icon == true }}",
+      "label": "t:sections.site_header.settings.wishlist_icon_position.label",
+      "options": [
+        {
+          "value": "left",
+          "label": "t:global.settings.position.options.left.label"
+        },
+        {
+          "value": "right",
+          "label": "t:global.settings.position.options.right.label"
+        }
+      ],
+      "default": "right"
+    },
+    {
+      "type": "page",
+      "id": "wishlist_page",
+      "label": "t:sections.site_header.settings.wishlist_page.label",
+      "info": "t:sections.site_header.settings.wishlist_page.info"
     },
     {
       "type": "checkbox",

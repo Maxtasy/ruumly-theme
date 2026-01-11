@@ -57,7 +57,13 @@
       "aria_label": "Open profile"
     },
     "wishlist_button": {
+      "aria_label": "Open wishlist"
+    },
+    "wishlist_add_button": {
       "aria_label": "Add to wishlist"
+    },
+    "wishlist_remove_button": {
+      "aria_label": "Remove from wishlist"
     }
   },
   "navigation": {

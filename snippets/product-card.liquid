@@ -106,12 +106,7 @@
         {% endif %}
 
         {% if enable_wishlist_button %}
-          {% render 'button',
-            icon: 'heart',
-            size: 'small',
-            action: 'wishlist:add',
-            aria_label_key: 'components.wishlist_button.aria_label'
-          %}
+          {% render 'wishlist-buttons', product_id: product.id %}
         {% endif %}
       </div>
     {% endif %}

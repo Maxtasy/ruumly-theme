@@ -1,0 +1,54 @@
+{% doc %}
+  Renders a wishlist buttons component.
+
+  @param {number} product_id - The unique id of the product connected with.
+{% enddoc %}
+
+{% capture event_details %}
+  {
+    "productId": {{ product_id }}
+  }
+{% endcapture %}
+
+{% assign event_details = event_details | escape %}
+
+<div is="wishlist-buttons-component" class="WishlistButtons" data-product-id="{{ product_id }}">
+  {% render 'button',
+    icon: 'heart',
+    size: 'small',
+    action: 'wishlist:add',
+    event_details: event_details,
+    aria_label_key: 'components.wishlist_add_button.aria_label'
+  %}
+
+  {% render 'button',
+    icon: 'heart-full',
+    size: 'small',
+    action: 'wishlist:remove',
+    event_details: event_details,
+    aria_label_key: 'components.wishlist_remove_button.aria_label'
+  %}
+</div>
+
+{% stylesheet %}
+  .WishlistButtons [data-action] .Icon {
+    scale: 0;
+    transition: scale var(--transition-duration-long) var(--transition-timing);
+  }
+
+  .WishlistButtons--Initialized [data-action] .Icon {
+    scale: 1;
+  }
+
+  .WishlistButtons [data-action='wishlist:remove'] {
+    display: none;
+  }
+
+  .WishlistButtons--Added [data-action='wishlist:add'] {
+    display: none;
+  }
+
+  .WishlistButtons--Added [data-action='wishlist:remove'] {
+    display: flex;
+  }
+{% endstylesheet %}

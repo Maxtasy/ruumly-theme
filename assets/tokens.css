@@ -5,6 +5,7 @@
 
   --layer-1: 1;
   --layer-2: 2;
+  --layer-10: 10;
 
   /* ----- */
   /* Sizes */
@@ -119,5 +120,6 @@
 
   --transition-duration-short: 0.15s;
   --transition-duration-medium: 0.3s;
+  --transition-duration-long: 0.6s;
   --transition-timing: ease-in-out;
 }

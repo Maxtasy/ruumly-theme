@@ -351,6 +351,12 @@
         "columns_mobile": {
           "label": "Columns Mobile"
         },
+        "enable_quick_add_button": {
+          "label": "Quick Add Button"
+        },
+        "enable_wishlist_button": {
+          "label": "Wishlist Button"
+        },
         "gallery_desktop": {
           "label": "Gallery Desktop",
           "options": {
@@ -620,14 +626,6 @@
     },
     "product_list": {
       "name": "Product List",
-      "settings": {
-        "enable_quick_add_button": {
-          "label": "Quick Add Button"
-        },
-        "enable_wishlist_button": {
-          "label": "Wishlist Button"
-        }
-      },
       "presets": {
         "product_list": {
           "name": "Product List"
@@ -658,10 +656,10 @@
       "name": "Site Header",
       "settings": {
         "account_icon_position": {
-          "label": "Account Icon position"
+          "label": "Account Icon Position"
         },
         "cart_icon_position": {
-          "label": "Cart Icon posotion"
+          "label": "Cart Icon Position"
         },
         "search_icon_position": {
           "label": "Search Icon Position"
@@ -679,9 +677,19 @@
         "show_search_icon": {
           "label": "Show Search Icon"
         },
+        "show_wishlist_icon": {
+          "label": "Show Wishlist Icon"
+        },
         "title_text_variant": {
           "label": "Title Text Variant",
           "info": "This setting only applies if the logo is not displayed."
+        },
+        "wishlist_icon_position": {
+          "label": "Wishlist Icon Position"
+        },
+        "wishlist_page": {
+          "label": "Wishlist Page",
+          "info": "Select the page where the wishlist section is being used."
         }
       }
     },
@@ -705,6 +713,14 @@
       "presets": {
         "tabs": {
           "name": "Tabs"
+        }
+      }
+    },
+    "wishlist": {
+      "name": "Wishlist",
+      "presets": {
+        "wishlist": {
+          "name": "Wishlist"
         }
       }
     }
