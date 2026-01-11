@@ -29,6 +29,7 @@ class Wishlist {
 
     this.addItem(item);
     this.setLocalStrorage();
+    this.publishEvent();
   }
 
   handleWishlistRemove(event) {
@@ -39,6 +40,7 @@ class Wishlist {
     if (this.items.find((i) => i.productId === item.productId)) {
       this.removeItem(item);
       this.setLocalStrorage();
+      this.publishEvent();
     }
   }
 
@@ -50,6 +52,10 @@ class Wishlist {
     const wishlistDataRaw = localStorage.getItem("wishlist");
 
     return wishlistDataRaw ? JSON.parse(wishlistDataRaw) : [];
+  }
+
+  publishEvent() {
+    globalThis.dispatchEvent(new CustomEvent("wishlist:update", { detail: this.items }));
   }
 }
 

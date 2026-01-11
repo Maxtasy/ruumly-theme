@@ -58,14 +58,7 @@
         {% endif %}
 
         {% if section.settings.show_wishlist_icon and section.settings.wishlist_icon_position == 'left' %}
-          {% render 'button',
-            icon: 'heart',
-            url: section.settings.wishlist_page.url,
-            variant: 'plain',
-            size: 'small',
-            aria_label_key: 'components.wishlist_button.aria_label',
-            attributes: 'data-wishlist-page-button'
-          %}
+          {% render 'dynamic-wishlist-icon', url: section.settings.wishlist_page.url %}
         {% endif %}
 
         {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'left' %}
@@ -113,14 +106,7 @@
         {% endif %}
 
         {% if section.settings.show_wishlist_icon and section.settings.wishlist_icon_position == 'right' %}
-          {% render 'button',
-            icon: 'heart',
-            url: section.settings.wishlist_page.url,
-            variant: 'plain',
-            size: 'small',
-            aria_label_key: 'components.wishlist_button.aria_label',
-            attributes: 'data-wishlist-page-button'
-          %}
+          {% render 'dynamic-wishlist-icon', url: section.settings.wishlist_page.url %}
         {% endif %}
 
         {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'right' %}
