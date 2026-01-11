@@ -36,33 +36,33 @@ export class WishlistButtons extends CustomComponentMixin(HTMLDivElement) {
   }
 
   handleWishlistAddButtonClick() {
-    //TODO Duplicate add icon
     const iconElement = this.querySelector("[data-action='wishlist:add'] .Icon");
-    const finalPositionIconElement = document.querySelector("[aria-label='Open wishlist'] .Icon");
+    const destinationElement = document.querySelector("[data-wishlist-page-button] .Icon");
 
     const clonedIconElement = iconElement.cloneNode(true);
 
     this.appendChild(clonedIconElement);
-    //TODO Set initial position of duplicate
+
     clonedIconElement.style.position = "fixed";
-    clonedIconElement.style.zIndex = "9000";
-    clonedIconElement.style.transition = "all 1s linear";
+    clonedIconElement.style.zIndex = "var(--layer-10)";
+    clonedIconElement.style.transition = "transform var(--transition-duration-long) var(--transition-timing)";
 
     const initialPosition = iconElement.getBoundingClientRect();
-    const finalPosition = finalPositionIconElement.getBoundingClientRect();
+    const finalPosition = destinationElement.getBoundingClientRect();
 
     clonedIconElement.style.top = `${initialPosition.y}px`;
     clonedIconElement.style.left = `${initialPosition.x}px`;
-    //TODO Set final position of duplicate
+
     window.requestAnimationFrame(() => {
-      clonedIconElement.style.top = `${finalPosition.y}px`;
-      clonedIconElement.style.left = `${finalPosition.x}px`;
+      const xDelta = finalPosition.x - initialPosition.x;
+      const yDelta = finalPosition.y - initialPosition.y;
+
+      clonedIconElement.style.transform = `translate(${xDelta}px, ${yDelta}px)`;
     });
-    //TODO Delete duplicate from dom
+
     clonedIconElement.addEventListener("transitionend", () => {
       clonedIconElement.remove();
     });
-    //TODO Use translate instead of top left (performance)
 
     this.toggleAdded(true);
   }

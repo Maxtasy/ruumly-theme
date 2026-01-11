@@ -13,6 +13,7 @@
   @param {boolean} [disabled] - Whether the button should be disabled.
   @param {string} [aria_label] - The value for the aria-label attribute.
   @param {string} [aria_label_key] - The key to get the aria-label from the locale files automatically.
+  @param {string} [attributes] - Optional additional attributes.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
@@ -38,6 +39,8 @@
 
       aria-label="{{ aria_label }}"
     {% endif %}
+
+    {{ attributes }}
   >
     {% if text %}
       {{ text }}
@@ -79,6 +82,8 @@
 
       aria-label="{{ aria_label }}"
     {% endif %}
+
+    {{ attributes }}
   >
     {% if text %}
       {{ text }}
