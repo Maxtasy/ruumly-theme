@@ -39,30 +39,32 @@ export class WishlistButtons extends CustomComponentMixin(HTMLDivElement) {
     const iconElement = this.querySelector("[data-action='wishlist:add'] .Icon");
     const destinationElement = document.querySelector("[data-wishlist-page-button] .Icon");
 
-    const clonedIconElement = iconElement.cloneNode(true);
+    if (destinationElement) {
+      const clonedIconElement = iconElement.cloneNode(true);
 
-    this.appendChild(clonedIconElement);
+      this.appendChild(clonedIconElement);
 
-    clonedIconElement.style.position = "fixed";
-    clonedIconElement.style.zIndex = "var(--layer-10)";
-    clonedIconElement.style.transition = "transform var(--transition-duration-long) var(--transition-timing)";
+      clonedIconElement.style.position = "fixed";
+      clonedIconElement.style.zIndex = "var(--layer-10)";
+      clonedIconElement.style.transition = "transform var(--transition-duration-long) var(--transition-timing)";
 
-    const initialPosition = iconElement.getBoundingClientRect();
-    const finalPosition = destinationElement.getBoundingClientRect();
+      const initialPosition = iconElement.getBoundingClientRect();
+      const finalPosition = destinationElement.getBoundingClientRect();
 
-    clonedIconElement.style.top = `${initialPosition.y}px`;
-    clonedIconElement.style.left = `${initialPosition.x}px`;
+      clonedIconElement.style.top = `${initialPosition.y}px`;
+      clonedIconElement.style.left = `${initialPosition.x}px`;
 
-    window.requestAnimationFrame(() => {
-      const xDelta = finalPosition.x - initialPosition.x;
-      const yDelta = finalPosition.y - initialPosition.y;
+      window.requestAnimationFrame(() => {
+        const xDelta = finalPosition.x - initialPosition.x;
+        const yDelta = finalPosition.y - initialPosition.y;
 
-      clonedIconElement.style.transform = `translate(${xDelta}px, ${yDelta}px)`;
-    });
+        clonedIconElement.style.transform = `translate(${xDelta}px, ${yDelta}px)`;
+      });
 
-    clonedIconElement.addEventListener("transitionend", () => {
-      clonedIconElement.remove();
-    });
+      clonedIconElement.addEventListener("transitionend", () => {
+        clonedIconElement.remove();
+      });
+    }
 
     this.toggleAdded(true);
   }
