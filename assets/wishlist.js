@@ -1,5 +1,3 @@
-// TODO: Add wishlist buttons component that handles state of wishlist buttons (wishlist module loops over all these elements and sets state)
-// TODO: Render products in wishlist section
 class Wishlist {
   constructor() {
     this.items = this.getLocalStorage();
