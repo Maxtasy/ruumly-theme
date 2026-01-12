@@ -8,7 +8,9 @@
   <div class="Section__Inner">
     {% render 'text', text: 'Test Section', as: 'h2', variant: 'heading-medium' %}
 
-    <div class="TestSection"></div>
+    <div class="TestSection">
+      {% render 'accordion', label: 'What is accodion?', content: 'I am a accordion' %}
+    </div>
   </div>
 </section>
 
