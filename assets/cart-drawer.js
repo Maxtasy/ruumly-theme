@@ -30,7 +30,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
   }
 
   handleItemAdded({ sections, items }) {
-    const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`];
+    const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`] || sections["cart-drawer"];
 
     if (updatedCartDrawer) {
       this.rerenderCartDrawer(updatedCartDrawer);
