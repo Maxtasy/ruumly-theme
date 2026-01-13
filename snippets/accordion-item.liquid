@@ -1,0 +1,60 @@
+{% doc %}
+  Renders an Accordion Item component.
+
+  @param {string} label - Text for the clickable header
+  @param {string} content - The content of the accordion
+  @param {boolean} [open] - Whether the accordion is open. (default: false)
+{% enddoc %}
+
+<div class="AccordionItem">
+  <label class="AccordionItem__Header">
+    {% render 'text', text: label, variant: 'body-large' %}
+    {% render 'icon', icon: 'plus' %}
+
+    <input
+      class="u-Hidden"
+      type="checkbox"
+      {% if open %}
+        checked
+      {% endif %}
+    >
+  </label>
+
+  <div class="AccordionItem__Content u-NoScrollbar">
+    {{ content }}
+  </div>
+</div>
+
+{% stylesheet %}
+  .AccordionItem {
+    background-color: var(--accordion-background);
+    width: 100%;
+    padding: var(--size-m);
+    border-radius: var(--t-border-radius);
+  }
+
+  .AccordionItem__Header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+  }
+
+  .AccordionItem__Content {
+    display: none;
+    padding-top: var(--size-s);
+  }
+
+  .AccordionItem:has(input[type='checkbox']:checked) .AccordionItem__Content {
+    display: block;
+  }
+
+  .AccordionItem__Header:has(input[type='checkbox']:checked) .Icon path:last-child {
+    transform: rotate(270deg);
+  }
+
+  .AccordionItem__Header .Icon path:last-child {
+    transition: transform var(--transition-duration-medium) var(--transition-timing);
+    transform-origin: center;
+  }
+{% endstylesheet %}

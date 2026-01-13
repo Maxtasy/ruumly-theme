@@ -1,0 +1,18 @@
+{% doc %}
+  Renders an Accordion component. Takes in accordion items as children.
+
+  @param {string} accordion_items - The individual items for this accordion
+{% enddoc %}
+
+<ul class="Accordion u-NoList">
+  {{ accordion_items }}
+</ul>
+
+{% stylesheet %}
+  .Accordion {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+    width: 100%;
+  }
+{% endstylesheet %}
