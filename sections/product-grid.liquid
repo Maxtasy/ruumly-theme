@@ -26,7 +26,8 @@
       grid_gap: grid_gap,
       card_min_width_px: card_min_width_px,
       columns_mobile: columns_mobile,
-      columns_desktop: columns_desktop
+      columns_desktop: columns_desktop,
+      enable_pagination: section.settings.enable_pagination
     %}
   </div>
 </section>
@@ -112,6 +113,12 @@
       "max": 500,
       "step": 5,
       "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_pagination",
+      "label": "Enable Pagination",
+      "default": false
     }
   ],
   "presets": [
