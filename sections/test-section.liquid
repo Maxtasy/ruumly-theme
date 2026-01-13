@@ -9,17 +9,30 @@
     {% render 'text', text: 'Test Section', as: 'h2', variant: 'heading-medium' %}
 
     <div class="TestSection">
-      {% render 'accordion', label: 'What is accodion?', content: 'I am a accordion' %}
+      {% capture accordion_items %}
+        <li>
+          {% render 'accordion-item', label: "What is accordion", content: "This is accordion", open: true %}
+        </li>
+
+        <li>
+          {% render 'accordion-item', label: "What is accordion", content: "This is accordion" %}
+        </li>
+
+        <li>
+          {% capture icon %}
+            {% render 'icon', icon: "heart" %}
+          {% endcapture %}
+
+          {% render 'accordion-item', label: "What is accordion", content: icon %}
+        </li>
+      {% endcapture %}
+
+      {% render 'accordion', accordion_items: accordion_items %}
     </div>
   </div>
 </section>
 
 {% stylesheet %}
-  .TestSection {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: var(--size-m);
-  }
 {% endstylesheet %}
 
 {% schema %}

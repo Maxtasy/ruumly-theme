@@ -1,65 +1,18 @@
 {% doc %}
-  Accordion Item
+  Renders an Accordion component. Takes in accordion items as children.
 
-  @param {string} label - Label text
-  @param {string} content - Hidden content by default
+  @param {string} accordion_items - The individual items for this accordion
 {% enddoc %}
 
 <ul class="Accordion u-NoList">
-  <li>
-    <label>
-      {% render 'text', text: label, variant: 'body-large' %}
-      {% render 'icon', icon: 'plus' %}
-
-      <input class="u-Hidden" type="checkbox">
-    </label>
-
-    <div class="Accordion__Content u-NoScrollbar">
-      {% render 'text', text: content %}
-    </div>
-  </li>
+  {{ accordion_items }}
 </ul>
 
 {% stylesheet %}
   .Accordion {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--size-s);
     width: 100%;
-  }
-
-  .Accordion li {
-    background-color: rgb(255, 255, 255);
-    width: 100%;
-    padding: 8px;
-    border-radius: var(--t-border-radius);
-  }
-
-  .Accordion li label {
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-  }
-
-  .Accordion__Content {
-    max-height: 0;
-    overflow-y: auto;
-    transition: max-height 0.5s;
-    padding: 0 8px;
-  }
-
-  .Accordion li:has(input[type='checkbox']:checked) .Accordion__Content {
-    max-height: 400px;
-  }
-
-  .Accordion li:has(input[type='checkbox']:checked) .Icon path:last-child {
-    transform: rotate(270deg);
-  }
-
-  .Accordion .Icon path:last-child {
-    transition: transform 300ms ease-in-out;
-    transform-origin: center;
   }
 {% endstylesheet %}
