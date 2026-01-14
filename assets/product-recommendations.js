@@ -4,10 +4,9 @@ class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
     super();
 
-    const locale = window.Shopify.locale;
-    this.productRecommendationsSectionId = "product-recommendations";
+    this.sectionId = "product-recommendations";
     this.productId = this.parsedData.productId;
-    this.recommendationsUrl = `/${locale}/recommendations/products?product_id=${this.productId}&section_id=${this.productRecommendationsSectionId}`;
+    this.recommendationsUrl = `${window.routes.productRecommendations}?product_id=${this.productId}&section_id=${this.sectionId}`;
   }
 
   connectedCallback() {
