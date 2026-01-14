@@ -1,6 +1,6 @@
 {% liquid
-  # TODO: Add the settings for collection and product_list. For now the section only works on the collection template.
-  assign products = section.settings.collection.products | default: section.settings.product_list | default: collection.products
+  assign products = section.settings.product_list
+  assign collection_reference = section.settings.collection_reference | default: collection
 
   assign columns_mobile = null
   assign columns_desktop = null
@@ -23,6 +23,7 @@
   <div class="Section__Inner">
     {% render 'product-grid',
       products: products,
+      collection_reference: collection_reference,
       grid_gap: grid_gap,
       card_min_width_px: card_min_width_px,
       columns_mobile: columns_mobile,
@@ -119,6 +120,17 @@
       "id": "enable_pagination",
       "label": "Enable Pagination",
       "default": false
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "Product List"
+    },
+    {
+      "type": "collection",
+      "id": "collection_reference",
+      "label": "Collection",
+      "info": "On PLPs defaults to the global collection object. Set if you want to use pagination."
     }
   ],
   "presets": [

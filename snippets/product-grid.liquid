@@ -3,52 +3,78 @@
 
   TODO: Use ul/li, ProductGrid__Items, ProductGrid__Pagination
 
-  @param {object} products - List of product objects. The products to render inside the grid.
+  @param {object} [products] - List of product objects. The products to render inside the grid.
+  @param {object} [collection_reference] - Collection object. Use this if you want to have pagination.
   @param {string} [card_min_width_px] - Defaults to `200px`.
   @param {string} [columns_mobile] - Will disable the `auto-fill` behaviour and instead use a fixed column count.
   @param {string} [columns_desktop] - Will disable the `auto-fill` behaviour and instead use a fixed column count.
   @param {string} [grid_gap] - Defaults to `m`.
-  @param {boolean} [enable_pagination] - Whether the pagination is enabled.
+  @param {boolean} [enable_pagination] - Whether the pagination is enabled. Only works if collection is provided.
 {% enddoc %}
+<script>
+  console.log({{ products | json }});
+  console.log({{ collection_reference | json }});
+</script>
+
+{% assign enable_pagination = true %}
 
 <div class="ProductGrid">
-  <ul
-    class="
-      ProductGrid__Items
-      {% if columns_mobile %}
-        ProductGrid__Items--FixedColumnsMobile
+  {% paginate collection_reference.products by 2 %}
+    <ul
+      class="
+        ProductGrid__Items
+        {% if columns_mobile %}
+          ProductGrid__Items--FixedColumnsMobile
+        {% endif %}
+        {% if columns_desktop %}
+          ProductGrid__Items--FixedColumnsDesktop
+        {% endif %}
+        u-NoList
+      "
+      style="
+        --card-min-width: {{ card_min_width_px | default: 200 }};
+        --columns-mobile: {{ columns_mobile }};
+        --columns-desktop: {{ columns_desktop }};
+        --gap: var(--size-{{ grid_gap | default: 'm' }});
+      "
+    >
+      {% if collection_reference and enable_pagination %}
+        {% for product in collection_reference.products %}
+          <li>
+            {% render 'product-card',
+              title: product.title,
+              image: product.featured_image,
+              swap_image: product.images[1],
+              price: product.price,
+              compare_at_price: product.compare_at_price,
+              url: product.selected_or_first_available_variant.url,
+              rating: product.metafields.custom.rating.value.rating,
+              product: product
+            %}
+          </li>
+        {% endfor %}
+      {% else %}
+        {% for product in products %}
+          <li>
+            {% render 'product-card',
+              title: product.title,
+              image: product.featured_image,
+              swap_image: product.images[1],
+              price: product.price,
+              compare_at_price: product.compare_at_price,
+              url: product.selected_or_first_available_variant.url,
+              rating: product.metafields.custom.rating.value.rating,
+              product: product
+            %}
+          </li>
+        {% endfor %}
       {% endif %}
-      {% if columns_desktop %}
-        ProductGrid__Items--FixedColumnsDesktop
-      {% endif %}
-      u-NoList
-    "
-    style="
-      --card-min-width: {{ card_min_width_px | default: 200 }};
-      --columns-mobile: {{ columns_mobile }};
-      --columns-desktop: {{ columns_desktop }};
-      --gap: var(--size-{{ grid_gap | default: 'm' }});
-    "
-  >
-    {% for product in products %}
-      <li>
-        {% render 'product-card',
-          title: product.title,
-          image: product.featured_image,
-          swap_image: product.images[1],
-          price: product.price,
-          compare_at_price: product.compare_at_price,
-          url: product.selected_or_first_available_variant.url,
-          rating: product.metafields.custom.rating.value.rating,
-          product: product
-        %}
-      </li>
-    {% endfor %}
-  </ul>
+    </ul>
 
-  {% if enable_pagination %}
-    <div class="ProductGrid__Pagination">pagination</div>
-  {% endif %}
+    {% if collection_reference and enable_pagination %}
+      <div class="ProductGrid__Pagination">Pagination</div>
+    {% endif %}
+  {% endpaginate %}
 </div>
 
 {% stylesheet %}
