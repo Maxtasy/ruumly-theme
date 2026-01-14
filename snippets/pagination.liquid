@@ -1,0 +1,64 @@
+{% doc %}
+  Renders a Pagination component.
+  TODO: Outsource aria-label into locale files.
+  TODO: Outsource "Prev" / "Next" into locale files.
+  TODO: Use Link/Text components for links and texts.
+
+  @param {object} paginate - The paginate object.
+{% enddoc %}
+
+{% if paginate.pages > 1 %}
+  <nav class="Pagination" role="navigation" aria-label="Pagination">
+    {% if paginate.previous %}
+      <a href="{{ paginate.previous.url }}" class="Pagination__Prev">Prev</a>
+    {% else %}
+      <span class="Pagination__Prev Pagination__Prev--Disabled">Prev</span>
+    {% endif %}
+
+    <ul class="Pagination__List u-NoList">
+      {% for part in paginate.parts %}
+        {% if part.is_link %}
+          <li>
+            <a href="{{ part.url }}" class="Pagination__Link">
+              {{ part.title }}
+            </a>
+          </li>
+        {% else %}
+          {% if part.title == paginate.current_page %}
+            <li>
+              <span class="Pagination__Link Pagination__Link--Active">
+                {{ part.title }}
+              </span>
+            </li>
+          {% else %}
+            <li>
+              <span class="Pagination__Ellipsis">
+                {{ part.title }}
+              </span>
+            </li>
+          {% endif %}
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    {% if paginate.next %}
+      <a href="{{ paginate.next.url }}" class="Pagination__Next">Next</a>
+    {% else %}
+      <span class="Pagination__Next Pagination__Next--Disabled">Next</span>
+    {% endif %}
+  </nav>
+{% endif %}
+
+{% stylesheet %}
+  .Pagination {
+    display: flex;
+    align-items: center;
+    gap: var(--size-m);
+  }
+
+  .Pagination__List {
+    display: flex;
+    align-items: center;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
