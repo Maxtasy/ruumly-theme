@@ -30,7 +30,9 @@
     {% endif %}
 
     {% if forloop.last == false and nested == false %}
-      {% render 'divider' %}
+      <li role="presentation">
+        {% render 'divider' %}
+      </li>
     {% endif %}
   {% endfor %}
 </ul>
