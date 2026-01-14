@@ -1,8 +1,6 @@
 {% doc %}
   Renders a Product Grid component.
 
-  TODO: Use ul/li, ProductGrid__Items, ProductGrid__Pagination
-
   @param {object} [products] - List of product objects. The products to render inside the grid.
   @param {object} [collection_reference] - Collection object. Use this if you want to have pagination.
   @param {string} [card_min_width_px] - Defaults to `200px`.
@@ -11,10 +9,6 @@
   @param {string} [grid_gap] - Defaults to `m`.
   @param {boolean} [enable_pagination] - Whether the pagination is enabled. Only works if collection is provided.
 {% enddoc %}
-<script>
-  console.log({{ products | json }});
-  console.log({{ collection_reference | json }});
-</script>
 
 {% assign enable_pagination = true %}
 
@@ -72,7 +66,9 @@
     </ul>
 
     {% if collection_reference and enable_pagination %}
-      <div class="ProductGrid__Pagination">Pagination</div>
+      <div class="ProductGrid__Pagination">
+        {% render 'pagination', paginate: paginate %}
+      </div>
     {% endif %}
   {% endpaginate %}
 </div>
