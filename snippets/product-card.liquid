@@ -37,21 +37,23 @@
         {% render 'image', image: swap_image, variant: 'square' %}
       {% endif %}
 
-      <div class="ProductCard__Badges">
-        <ul class="u-NoList BadgeList BadgeList--AlignRight">
-          {% if badge %}
-            <li>
-              {% render 'badge', text: badge %}
-            </li>
-          {% endif %}
+      {% if badge or compare_at_price > price %}
+        <div class="ProductCard__Badges">
+          <ul class="u-NoList BadgeList BadgeList--AlignRight">
+            {% if badge %}
+              <li>
+                {% render 'badge', text: badge %}
+              </li>
+            {% endif %}
 
-          {% if compare_at_price > price %}
-            <li>
-              {% render 'badge', text: 'Sale', variant: 'sale' %}
-            </li>
-          {% endif %}
-        </ul>
-      </div>
+            {% if compare_at_price > price %}
+              <li>
+                {% render 'badge', text: 'Sale', variant: 'sale' %}
+              </li>
+            {% endif %}
+          </ul>
+        </div>
+      {% endif %}
     </div>
   </a>
 
