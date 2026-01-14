@@ -28,7 +28,8 @@
       card_min_width_px: card_min_width_px,
       columns_mobile: columns_mobile,
       columns_desktop: columns_desktop,
-      enable_pagination: section.settings.enable_pagination
+      enable_pagination: section.settings.enable_pagination,
+      per_page: section.settings.per_page
     %}
   </div>
 </section>
@@ -120,6 +121,16 @@
       "id": "enable_pagination",
       "label": "t:sections.product_grid.settings.enable_pagination.label",
       "default": false
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "label": "t:sections.product_grid.settings.per_page.label",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 16,
+      "visible_if": "{{ section.settings.enable_pagination == true }}"
     },
     {
       "type": "product_list",

@@ -8,12 +8,13 @@
   @param {string} [columns_desktop] - Will disable the `auto-fill` behaviour and instead use a fixed column count.
   @param {string} [grid_gap] - Defaults to `m`.
   @param {boolean} [enable_pagination] - Whether the pagination is enabled. Only works if collection is provided.
+  @param {number} [per_page] - Products to render per page. Default is set to 16.
 {% enddoc %}
 
-{% assign enable_pagination = true %}
+{% assign per_page = per_page | default: 16 %}
 
 <div class="ProductGrid">
-  {% paginate collection_reference.products by 2 %}
+  {% paginate collection_reference.products by per_page %}
     <ul
       class="
         ProductGrid__Items
