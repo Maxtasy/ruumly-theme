@@ -618,6 +618,19 @@
     },
     "product_grid": {
       "name": "Product Grid",
+      "settings": {
+        "collection_reference": {
+          "label": "Collection",
+          "info": "On PLPs defaults to the global collection object. Set if you want to use pagination."
+        },
+        "enable_pagination": {
+          "label": "Enable Pagination",
+          "info": "Only works when product list and collection settings are unset."
+        },
+        "per_page": {
+          "label": "Per Page"
+        }
+      },
       "presets": {
         "product_grid": {
           "name": "Product Grid"

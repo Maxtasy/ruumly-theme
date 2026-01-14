@@ -618,6 +618,19 @@
     },
     "product_grid": {
       "name": "Produktraster",
+      "settings": {
+        "collection_reference": {
+          "label": "Kollektion",
+          "info": "Wenn nicht ausgefüllt wird bei PLPs das globale collection-object verwendet. Legen Sie dies fest, wenn Sie eine Paginierung verwenden möchten."
+        },
+        "enable_pagination": {
+          "label": "Paginierung aktivieren",
+          "info": "Funktioniert nur wenn Produktliste und Kollektion Einstellungen nicht gesetzt sind."
+        },
+        "per_page": {
+          "label": "Pro Seite"
+        }
+      },
       "presets": {
         "product_grid": {
           "name": "Produktraster"

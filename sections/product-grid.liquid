@@ -1,6 +1,6 @@
 {% liquid
-  # TODO: Add the settings for collection and product_list. For now the section only works on the collection template.
-  assign products = section.settings.collection.products | default: section.settings.product_list | default: collection.products
+  assign collection_reference = section.settings.collection_reference | default: collection
+  assign products = section.settings.product_list | default: collection_reference.products
 
   assign columns_mobile = null
   assign columns_desktop = null
@@ -23,10 +23,13 @@
   <div class="Section__Inner">
     {% render 'product-grid',
       products: products,
+      collection_reference: collection_reference,
       grid_gap: grid_gap,
       card_min_width_px: card_min_width_px,
       columns_mobile: columns_mobile,
-      columns_desktop: columns_desktop
+      columns_desktop: columns_desktop,
+      enable_pagination: section.settings.enable_pagination,
+      per_page: section.settings.per_page
     %}
   </div>
 </section>
@@ -112,6 +115,34 @@
       "max": 500,
       "step": 5,
       "unit": "px"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_pagination",
+      "label": "t:sections.product_grid.settings.enable_pagination.label",
+      "default": false,
+      "info": "t:sections.product_grid.settings.enable_pagination.info"
+    },
+    {
+      "type": "range",
+      "id": "per_page",
+      "label": "t:sections.product_grid.settings.per_page.label",
+      "min": 1,
+      "max": 100,
+      "step": 1,
+      "default": 16,
+      "visible_if": "{{ section.settings.enable_pagination == true }}"
+    },
+    {
+      "type": "product_list",
+      "id": "product_list",
+      "label": "t:sections.all.settings.product_list.label"
+    },
+    {
+      "type": "collection",
+      "id": "collection_reference",
+      "label": "t:sections.product_grid.settings.collection_reference.label",
+      "info": "t:sections.product_grid.settings.collection_reference.info"
     }
   ],
   "presets": [
