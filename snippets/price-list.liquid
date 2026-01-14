@@ -3,6 +3,7 @@
 
   @param {number} price - Price in cents
   @param {number} [compare_at_price] - Compare at price in cents
+  @param {string} [info] - Additional info text
 {% enddoc %}
 
 <div class="PriceList">
@@ -13,6 +14,10 @@
 
   {% assign price_text = price | money %}
   {% render 'text', text: price_text, as: 'strong' %}
+
+  {% if info %}
+    {% render 'text', text: info %}
+  {% endif %}
 </div>
 
 {% stylesheet %}

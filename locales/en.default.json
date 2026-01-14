@@ -40,6 +40,9 @@
     "previous_button": {
       "aria_label": "Previous"
     },
+    "price_list": {
+      "info_html": "incl. tax excl. <a href='/policies/shipping-policy'>shipping</a>"
+    },
     "product_link": {
       "aria_label": "Go to {{ product_title }}"
     },

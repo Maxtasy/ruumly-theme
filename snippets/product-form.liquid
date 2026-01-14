@@ -25,7 +25,8 @@
         %}
 
       {% when 'price-list' %}
-        {% render 'price-list', price: product.price, compare_at_price: product.compare_at_price %}
+        {% assign info = 'components.price_list.info_html' | t %}
+        {% render 'price-list', price: product.price, compare_at_price: product.compare_at_price, info: info %}
 
       {% when 'quantity-selector' %}
         {% render 'quantity-selector', quantity: 1 %}

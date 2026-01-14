@@ -40,6 +40,9 @@
     "previous_button": {
       "aria_label": "Vorheriges"
     },
+    "price_list": {
+      "info_html": "inkl. MwSt. zzgl. <a href='/policies/shipping-policy'>Versand</a>"
+    },
     "product_link": {
       "aria_label": "Gehe zu {{ product_title }}"
     },
