@@ -618,6 +618,15 @@
     },
     "product_grid": {
       "name": "Produktraster",
+      "settings": {
+        "enable_pagination": {
+          "label": "Paginierung aktivieren"
+        },
+        "collection_reference": {
+          "label": "Kollektion",
+          "info": "Bei PLPs wird standardmäßig das globale Kollektions-Objekt verwendet. Legen Sie dies fest, wenn Sie eine Paginierung verwenden möchten."
+        }
+      },
       "presets": {
         "product_grid": {
           "name": "Produktraster"
