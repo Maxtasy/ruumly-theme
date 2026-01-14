@@ -624,7 +624,7 @@
         },
         "collection_reference": {
           "label": "Kollektion",
-          "info": "Bei PLPs wird standardmäßig das globale Kollektions-Objekt verwendet. Legen Sie dies fest, wenn Sie eine Paginierung verwenden möchten."
+          "info": "Wenn nicht ausgefüllt wird bei PLPs das globale collection-object verwendet. Legen Sie dies fest, wenn Sie eine Paginierung verwenden möchten."
         }
       },
       "presets": {
