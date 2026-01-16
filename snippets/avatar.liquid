@@ -1,0 +1,31 @@
+{% doc %}
+  Renders a Avatar component.
+
+  @param {object} [image] - The URL of the link
+  @param {string} [initials] - The initials to render in the avatar
+{% enddoc %}
+
+<div class="Avatar">
+  {% if image %}
+    {% render 'image', image: image %}
+  {% endif %}
+
+  {% if initials %}
+    {% render 'text', text: initials, as: 'strong', variant: 'heading-medium' %}
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .Avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    height: 80px;
+    border-radius: var(--t-border-radius-circle);
+    color: black;
+    background-color: var(--avatar-background);
+    border: var(--border-width) var(--border-style) black;
+    overflow: hidden;
+  }
+{% endstylesheet %}

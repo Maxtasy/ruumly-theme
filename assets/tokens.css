@@ -48,6 +48,9 @@
   /* Accordion */
   --accordion-background: var(--t-background);
 
+  /* Avatar */
+  --avatar-background: var(--t-backgrouund);
+
   /* Button */
   --button-border-radius: 0;
   --button-font-size: 16px;
