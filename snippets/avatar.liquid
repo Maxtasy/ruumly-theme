@@ -1,0 +1,50 @@
+{% doc %}
+  Renders an Avatar component.
+
+  @param {object} [image] - The image to use
+  @param {string} [initials] - The initials to render in the avatar
+  @param {string} [size] - The avatar size ("small", "medium"). default: "small"
+{% enddoc %}
+
+{% liquid
+  assign size = size | default: 'small'
+  assign text_variant = 'body-' | append: size
+%}
+
+<div
+  class="
+    Avatar
+    Avatar--Size{{ size | camelcase }}
+  "
+>
+  {% if image %}
+    {% render 'image', image: image %}
+  {% endif %}
+
+  {% if initials %}
+    {% render 'text', text: initials, as: 'strong', variant: text_variant %}
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .Avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1;
+    border-radius: var(--t-border-radius-circle);
+    background-color: var(--t-background);
+    background: var(--t-gradient-background);
+    border: var(--border-width) var(--border-style) var(--t-border);
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .Avatar--SizeSmall {
+    width: var(--size-l);
+  }
+
+  .Avatar--SizeMedium {
+    width: var(--size-xxl);
+  }
+{% endstylesheet %}
