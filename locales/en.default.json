@@ -56,6 +56,9 @@
     "shopping_cart_button": {
       "aria_label": "Open shopping cart"
     },
+    "social_proof": {
+      "default_text_html": "<strong>John Doe</strong> and <strong>Jane Doe</strong> recommend this product."
+    },
     "user_button": {
       "aria_label": "Open profile"
     },

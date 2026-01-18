@@ -1,0 +1,45 @@
+{% doc %}
+  Renders a Social Proof component.
+
+  @param {object} image_1 - The first image to use
+  @param {object} image_2 - The second image to use
+  @param {string} [text] - The text to display in the social proof
+{% enddoc %}
+
+{% liquid
+  assign default_text = 'components.social_proof.default_text_html' | t
+  assign text = text | default: default_text
+%}
+
+<div class="SocialProof">
+  <div class="SocialProof__Avatars">
+    {% render 'avatar', size: 'small', image: image_1 %}
+    {% render 'avatar', size: 'small', image: image_2 %}
+  </div>
+
+  {% render 'text', text: text %}
+</div>
+
+{% stylesheet %}
+  .SocialProof {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-s);
+    padding: var(--size-xs) var(--size-s);
+    background: var(--t-gradient-background);
+    border-radius: var(--t-border-radius-max);
+  }
+
+  .SocialProof__Avatars {
+    display: flex;
+    align-items: center;
+  }
+
+  .SocialProof__Avatars > :last-child {
+    z-index: 1;
+
+    /* Overlap first image */
+    margin-left: calc(var(--size-s) * -1);
+  }
+{% endstylesheet %}
