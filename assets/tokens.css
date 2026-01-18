@@ -117,6 +117,7 @@
   --border-style: solid;
   --t-border-radius: 8px;
   --t-border-radius-circle: 50%;
+  --t-border-radius-max: 100vmax;
 
   --transition-duration-short: 0.15s;
   --transition-duration-medium: 0.3s;
