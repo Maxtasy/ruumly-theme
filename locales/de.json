@@ -8,6 +8,9 @@
     "add_to_cart_button": {
       "aria_label": "In den Warenkorb"
     },
+    "blog_article_card": {
+      "button_text": "Mehr erfahren"
+    },
     "close_button": {
       "aria_label": "Schließen"
     },

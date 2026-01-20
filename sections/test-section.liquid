@@ -38,6 +38,22 @@
       {% render 'avatar', initials: 'AC', size: 'medium' %}
 
       {% render 'social-proof', image_1: images['developer-user1.png'], image_2: images['developer-user2.jpg'] %}
+
+      {% render 'blog-article-card',
+        image: images['developer-user1.png'],
+        title: 'New Employee',
+        excerpt: 'John Doe fits perfect in our team.',
+        url: '/'
+      %}
+
+      {% assign test_blog_article = articles['news/summer-sale-starting-now'] %}
+
+      {% render 'blog-article-card',
+        image: test_blog_article.image,
+        title: test_blog_article.title,
+        excerpt: test_blog_article.excerpt,
+        url: test_blog_article.url
+      %}
     </div>
   </div>
 </section>
