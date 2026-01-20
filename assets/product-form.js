@@ -14,18 +14,21 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
 
     this.handleProductVariantSelectorInit = this.handleProductVariantSelectorInit.bind(this);
     this.handleProductVariantSelectorChange = this.handleProductVariantSelectorChange.bind(this);
+    this.handleQuantitySelectorChange = this.handleQuantitySelectorChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("product-variant-selector:init", this.handleProductVariantSelectorInit);
     this.subscribe("product-variant-selector:change", this.handleProductVariantSelectorChange);
+    this.subscribe("quantity-selector:change", this.handleQuantitySelectorChange);
     this.subscribe("submit", this.handleSubmit);
   }
 
   disconnectedCallback() {
     this.unsubscribe("product-variant-selector:init", this.handleProductVariantSelectorInit);
     this.unsubscribe("product-variant-selector:change", this.handleProductVariantSelectorChange);
+    this.unsubscribe("quantity-selector:change", this.handleQuantitySelectorChange);
     this.unsubscribe("submit", this.handleSubmit);
   }
 

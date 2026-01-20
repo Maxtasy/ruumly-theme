@@ -24,6 +24,8 @@ class QuantitySelector extends CustomComponentMixin(HTMLDivElement) {
       this.quantity++;
 
       this.quantityElement.innerText = this.quantity;
+
+      this.publish("quantity-selector:change", { quantity: this.quantity });
     }
   }
 
@@ -31,9 +33,13 @@ class QuantitySelector extends CustomComponentMixin(HTMLDivElement) {
     if (this.connectedToLineItem) {
       this.publish("quantity-selector:update", { desiredQuantity: this.quantity - 1 });
     } else {
+      if (this.quantity <= 1) return;
+
       this.quantity--;
 
       this.quantityElement.innerText = this.quantity;
+
+      this.publish("quantity-selector:change", { quantity: this.quantity });
     }
   }
 
