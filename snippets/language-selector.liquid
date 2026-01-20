@@ -1,20 +1,32 @@
 {% if localization.available_languages.size > 1 %}
   <div is="language-selector-component" class="LanguageSelector">
     {% form 'localization' %}
-      <select class="Select" name="language" aria-label="{{ 'components.language_selector.aria_label' | t }}">
-        {% for language in localization.available_languages %}
-          <option
-            value="{{ language.iso_code }}"
-            {% if language.iso_code == localization.language.iso_code %}
-              selected
-            {% endif %}
-          >
-            {{ language.endonym_name }}
-          </option>
-        {% endfor %}
-      </select>
+      <div class="SelectedLanguage">
+        <select class="Select" name="language" aria-label="{{ 'components.language_selector.aria_label' | t }}">
+          {% for language in localization.available_languages %}
+            <option
+              value="{{ language.iso_code }}"
+              {% if language.iso_code == localization.language.iso_code %}
+                selected
+              {% endif %}
+            >
+              {{ language.endonym_name }}
+            </option>
+          {% endfor %}
+        </select>
+        {% assign flag_icon = 'flag-' | append: localization.language.iso_code %}
+        {% render 'icon', icon: flag_icon %}
+      </div>
 
       <input type="hidden" name="language_code" value="{{ localization.language.iso_code }}">
     {% endform %}
   </div>
 {% endif %}
+
+{% stylesheet %}
+  .SelectedLanguage {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+  }
+{% endstylesheet %}
