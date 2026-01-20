@@ -1,0 +1,52 @@
+{% doc %}
+  Renders a Blog Article Card component.
+
+  @param {object} image - Image to render in the blog article card.
+  @param {string} title - The blog article title.
+  @param {string} excerpt - The summary of the blog article.
+  @param {string} url - The URL of the blog article.
+{% enddoc %}
+
+<article class="BlogArticleCard">
+  <div class="BlogArticleCard__Image">
+    {% render 'image', image: image %}
+  </div>
+
+  <div class="BlogArticleCard__Content">
+    {% render 'text', text: title, variant: 'heading-small' %}
+
+    {% render 'text', text: excerpt %}
+
+    <a href="{{ url }}">
+      {% assign button_text = 'components.blog_article_card.button_text' | t %}
+      {% render 'button', text: button_text %}
+    </a>
+  </div>
+</article>
+
+{% stylesheet %}
+  .BlogArticleCard {
+    display: flex;
+    flex-direction: column;
+    border: var(--border-width) solid var(--t-border-card);
+    border-top-color: var(--t-highlight);
+    border-radius: var(--t-border-radius);
+    background-color: var(--t-background);
+    background: var(--t-gradient-background);
+    box-shadow: var(--box-shadow);
+    overflow: hidden;
+  }
+
+  .BlogArticleCard__Image {
+    /* Reserve space for the image to prevent layout shift */
+    width: 100%;
+    aspect-ratio: 1;
+  }
+
+  .BlogArticleCard__Content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+    padding: var(--size-s);
+  }
+{% endstylesheet %}
