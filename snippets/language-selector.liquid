@@ -1,7 +1,7 @@
 {% if localization.available_languages.size > 1 %}
   <div is="language-selector-component" class="LanguageSelector">
     {% form 'localization' %}
-      <select class="Select" name="language" aria-label="{{ 'components.language_selector.aria_label' | t }}">
+      <select name="language" aria-label="{{ 'components.language_selector.aria_label' | t }}">
         {% for language in localization.available_languages %}
           <option
             value="{{ language.iso_code }}"
@@ -14,7 +14,7 @@
         {% endfor %}
       </select>
 
-      <div class="LanguageSelector__Overlay">
+      <div class="LanguageSelector__SelectedLanguage">
         {% assign flag_icon = 'flag-' | append: localization.language.iso_code %}
         {% render 'icon', icon: flag_icon %}
 
@@ -29,19 +29,19 @@
 {% endif %}
 
 {% stylesheet %}
-  .Select {
+  .LanguageSelector {
+    position: relative;
+  }
+
+  .LanguageSelector select {
     position: absolute;
-    padding: var(--size-xl);
+    inset: 0;
     opacity: 0;
   }
 
-  .LanguageSelector__Overlay {
-    position: relative;
-    z-index: 1;
+  .LanguageSelector__SelectedLanguage {
     display: flex;
     align-items: center;
     gap: var(--size-xs);
-    pointer-events: none;
-    text-transform: none;
   }
 {% endstylesheet %}
