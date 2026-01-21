@@ -1,21 +1,26 @@
 {% if localization.available_languages.size > 1 %}
   <div is="language-selector-component" class="LanguageSelector">
     {% form 'localization' %}
-      <div class="SelectedLanguage">
-        <select class="Select" name="language" aria-label="{{ 'components.language_selector.aria_label' | t }}">
-          {% for language in localization.available_languages %}
-            <option
-              value="{{ language.iso_code }}"
-              {% if language.iso_code == localization.language.iso_code %}
-                selected
-              {% endif %}
-            >
-              {{ language.endonym_name }}
-            </option>
-          {% endfor %}
-        </select>
+      <select name="language" aria-label="{{ 'components.language_selector.aria_label' | t }}">
+        {% for language in localization.available_languages %}
+          <option
+            value="{{ language.iso_code }}"
+            {% if language.iso_code == localization.language.iso_code %}
+              selected
+            {% endif %}
+          >
+            {{ language.endonym_name }}
+          </option>
+        {% endfor %}
+      </select>
+
+      <div class="LanguageSelector__SelectedLanguage">
         {% assign flag_icon = 'flag-' | append: localization.language.iso_code %}
         {% render 'icon', icon: flag_icon %}
+
+        {% render 'text', text: localization.language.endonym_name %}
+
+        {% render 'icon', icon: 'chevron-down', size: 'small' %}
       </div>
 
       <input type="hidden" name="language_code" value="{{ localization.language.iso_code }}">
@@ -24,7 +29,17 @@
 {% endif %}
 
 {% stylesheet %}
-  .SelectedLanguage {
+  .LanguageSelector {
+    position: relative;
+  }
+
+  .LanguageSelector select {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+  }
+
+  .LanguageSelector__SelectedLanguage {
     display: flex;
     align-items: center;
     gap: var(--size-xs);
