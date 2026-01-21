@@ -13,9 +13,9 @@
   <div class="Section__Inner">
     {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
-    {% assign blog_articles = section.settings.blog %}
+    {% assign blog_articles = section.settings.blog.articles %}
 
-    {% render 'blog_article_card', image: %}
+    {% render 'blog-article-list' %}
   </div>
 </section>
 
@@ -58,7 +58,7 @@
       "type": "number",
       "id": "columns_desktop",
       "label": "t:sections.all.settings.columns_desktop.label",
-      "default": 2
+      "default": 3
     },
     {
       "type": "header",
@@ -73,20 +73,19 @@
     {
       "type": "blog",
       "id": "blog",
-      "label": "t:sections.all.settings.blog.label"
+      "label": "t:sections.blog_article_list.settings.blog.label"
+    },
+    {
+      "type": "article",
+      "id": "blog_article_list",
+      "label": "t:sections.blog_article_list.settings.blog_article_list.label"
     },
     {
       "type": "number",
       "id": "limit",
-      "label": "t:sections.all.settings.product_limit.label",
+      "label": "t:sections.all.settings.blog_article_limit.label",
       "default": 0,
-      "info": "t:sections.all.settings.product_limit.info"
-    },
-    {
-      "type": "checkbox",
-      "id": "enable_show_more_button",
-      "label": "t:sections.all.settings.enable_quick_add_button.label",
-      "default": false
+      "info": "t:sections.all.settings.blog_article_limit.info"
     }
   ],
   "presets": [
