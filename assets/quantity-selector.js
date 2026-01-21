@@ -19,6 +19,8 @@ class QuantitySelector extends CustomComponentMixin(HTMLDivElement) {
 
   handleIncrement() {
     if (this.connectedToLineItem) {
+      this.loadingElement?.classList.add("QuantitySelector__Loading--Active");
+
       this.publish("quantity-selector:update", { desiredQuantity: this.quantity + 1 });
     } else {
       this.quantity++;
@@ -31,6 +33,8 @@ class QuantitySelector extends CustomComponentMixin(HTMLDivElement) {
 
   handleDecrement() {
     if (this.connectedToLineItem) {
+      this.loadingElement?.classList.add("QuantitySelector__Loading--Active");
+
       this.publish("quantity-selector:update", { desiredQuantity: this.quantity - 1 });
     } else {
       if (this.quantity <= 1) return;
@@ -45,6 +49,10 @@ class QuantitySelector extends CustomComponentMixin(HTMLDivElement) {
 
   get quantityElement() {
     return this.querySelector(".QuantitySelector__Quantity");
+  }
+
+  get loadingElement() {
+    return this.querySelector(".QuantitySelector__Loading");
   }
 }
 
