@@ -15,9 +15,7 @@
   %}
 
   <div class="QuantitySelector__Loading">
-    <div class="LoadingSpinner">
-      {% render 'icon', icon: 'loader-circle', size: 'small' %}
-    </div>
+    {% render 'loading-spinner', size: 'medium' %}
   </div>
 
   <span class="QuantitySelector__Quantity">
@@ -42,10 +40,6 @@
     gap: var(--size-s);
   }
 
-  .LoadingSpinner .Icon {
-    animation: spin 1s infinite ease-in-out;
-  }
-
   .QuantitySelector__Loading {
     position: absolute;
     inset: 0;
@@ -58,14 +52,5 @@
 
   .QuantitySelector__Loading--Active {
     display: flex;
-  }
-
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
   }
 {% endstylesheet %}

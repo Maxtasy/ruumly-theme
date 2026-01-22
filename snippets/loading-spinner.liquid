@@ -1,0 +1,32 @@
+{% doc %}
+  Renders a Loading Spinner component.
+
+  @param {string} [size] - The size of the loading spinner ('small', 'medium') default: 'small'
+{% enddoc %}
+
+{% assign size = size | default: 'small' %}
+
+<div class="LoadingSpinner">
+  {% render 'icon', icon: 'loader-circle', size: size %}
+</div>
+
+{% stylesheet %}
+  .LoadingSpinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .LoadingSpinner .Icon {
+    animation: spin 1s infinite ease-in-out;
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+{% endstylesheet %}
