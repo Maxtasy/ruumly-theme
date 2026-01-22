@@ -29,7 +29,7 @@
       </li>
     {% endif %}
 
-    {% if forloop.last == false and nested == false %}
+    {% if forloop.last == false and nested == false and direction == 'vertical' %}
       <li role="presentation">
         {% render 'divider' %}
       </li>
