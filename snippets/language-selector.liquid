@@ -16,6 +16,13 @@
         </select>
         {% assign flag_icon = 'flag-' | append: localization.language.iso_code %}
         {% render 'icon', icon: flag_icon %}
+
+        {% assign shopify_flag_url = 'https://cdn.shopify.com/static/images/flags/'
+          | append: localization.language.iso_code
+          | append: '.svg?'
+        %}
+
+        <img src="{{ shopify_flag_url }}" alt="" width="24px" height="24px">
       </div>
 
       <input type="hidden" name="language_code" value="{{ localization.language.iso_code }}">
