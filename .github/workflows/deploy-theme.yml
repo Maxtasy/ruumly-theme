@@ -24,7 +24,7 @@ jobs:
           node-version: 18
 
       - name: Install Shopify CLI
-        run: npm install -g @shopify/cli @shopify/theme
+        run: npm install -g @shopify/cli
 
       - name: Confirm shopify cli version and secrets injection
         run: |
