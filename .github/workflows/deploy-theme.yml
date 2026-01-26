@@ -26,14 +26,24 @@ jobs:
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli @shopify/theme
 
+      - name: Confirm shopify cli version and secrets injection
+        run: |
+          shopify version
+          echo "Store: $SHOPIFY_FLAG_STORE"
+          echo "Token set: ${SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN:+yes}"
+
       - name: Get live theme ID
         id: live_theme
         run: |
-          CURRENT_LIVE_THEME_ID=$(shopify theme list --role=live -j | jq -r '.[0].id')
+          CURRENT_LIVE_THEME_ID=$(shopify theme list \
+          --role=live -j \
+          | jq -r '.[0].id')
+
           if [ -z "$CURRENT_LIVE_THEME_ID" ] || [ "$CURRENT_LIVE_THEME_ID" = "null" ]; then
-            echo "❌ No live theme found"
+            echo "❌ No live theme found or unable to retrieve live theme ID."
             exit 1
           fi
+
           echo "current_live_theme_id=$CURRENT_LIVE_THEME_ID" >> $GITHUB_OUTPUT
 
       - name: Duplicate live theme
