@@ -19,10 +19,16 @@
 
         {% assign shopify_flag_url = 'https://cdn.shopify.com/static/images/flags/'
           | append: localization.language.iso_code
-          | append: '.svg?'
+          | append: '.svg?width=40&height=30'
         %}
 
-        <img src="{{ shopify_flag_url }}" alt="" width="24px" height="24px">
+        {% if localization.language.iso_code == 'en' %}
+          {% assign shopify_flag_url = 'https://cdn.shopify.com/static/images/flags/gb.svg?width=40&height=30' %}
+        {% endif %}
+
+        <div class="Icon Icon--SizeMedium">
+          <img src="{{ shopify_flag_url }}" alt="{{ language.endonym_name }}" width="" height="">
+        </div>
       </div>
 
       <input type="hidden" name="language_code" value="{{ localization.language.iso_code }}">
