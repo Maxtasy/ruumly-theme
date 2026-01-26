@@ -29,7 +29,9 @@
       columns_mobile: columns_mobile,
       columns_desktop: columns_desktop,
       enable_pagination: section.settings.enable_pagination,
-      per_page: section.settings.per_page
+      per_page: section.settings.per_page,
+      enable_quick_add_button: section.settings.enable_quick_add_button,
+      enable_wishlist_button: section.settings.enable_wishlist_button
     %}
   </div>
 </section>
@@ -122,6 +124,18 @@
       "label": "t:sections.product_grid.settings.enable_pagination.label",
       "default": false,
       "info": "t:sections.product_grid.settings.enable_pagination.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_quick_add_button",
+      "label": "t:sections.all.settings.enable_quick_add_button.label",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_wishlist_button",
+      "label": "t:sections.all.settings.enable_wishlist_button.label",
+      "default": false
     },
     {
       "type": "range",
