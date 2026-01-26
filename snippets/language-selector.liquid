@@ -14,20 +14,22 @@
             </option>
           {% endfor %}
         </select>
-        {% assign flag_icon = 'flag-' | append: localization.language.iso_code %}
-        {% render 'icon', icon: flag_icon %}
 
-        {% assign shopify_flag_url = 'https://cdn.shopify.com/static/images/flags/'
-          | append: localization.language.iso_code
-          | append: '.svg?width=40&height=30'
+        {% liquid
+          assign shopify_flag_template_url = 'https://cdn.shopify.com/static/images/flags/ISO_CODE.svg?width=40&height=30'
+
+          if localization.language.iso_code == 'en'
+            assign iso_code = 'gb'
+          else
+            assign iso_code = localization.language.iso_code
+          endif
+
+          assign shopify_flag_url = shopify_flag_template_url | replace: 'ISO_CODE', iso_code
         %}
 
-        {% if localization.language.iso_code == 'en' %}
-          {% assign shopify_flag_url = 'https://cdn.shopify.com/static/images/flags/gb.svg?width=40&height=30' %}
-        {% endif %}
-
         <div class="Icon Icon--SizeMedium">
-          <img src="{{ shopify_flag_url }}" alt="" width="" height="">
+          {%- comment -%}theme-check-disable-next-line RemoteAsset{%- endcomment -%}
+          <img src="{{ shopify_flag_url }}" alt="{{ localization.language.endonym_name }}" width="24" height="18">
         </div>
       </div>
 
