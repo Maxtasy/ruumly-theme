@@ -15,12 +15,6 @@ jobs:
       SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
 
     steps:
-      - name: Confirm shopify cli version and secrets injection
-        run: |
-          shopify version
-          echo "Store: $SHOPIFY_FLAG_STORE"
-          echo "Token set: ${SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN:+yes}"
-
       - name: Checkout repo
         uses: actions/checkout@v4
 
@@ -31,6 +25,12 @@ jobs:
 
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli @shopify/theme
+
+      - name: Confirm shopify cli version and secrets injection
+        run: |
+          shopify version
+          echo "Store: $SHOPIFY_FLAG_STORE"
+          echo "Token set: ${SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN:+yes}"
 
       - name: Get live theme ID
         id: live_theme
