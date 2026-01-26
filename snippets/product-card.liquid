@@ -37,7 +37,17 @@
         {% render 'image', image: swap_image, variant: 'square' %}
       {% endif %}
 
-      {% if badge or compare_at_price > price %}
+      {% liquid
+        assign six_months_ago_unix = 'now' | date: '%s' | minus: 15552000
+        assign product_created_at_unix = product.created_at | date: '%s' | plus: 0
+        assign is_new = false
+
+        if product_created_at_unix > six_months_ago_unix
+          assign is_new = true
+        endif
+      %}
+
+      {% if badge or compare_at_price > price or is_new %}
         <div class="ProductCard__Badges">
           <ul class="u-NoList BadgeList BadgeList--AlignRight">
             {% if badge %}
@@ -48,7 +58,15 @@
 
             {% if compare_at_price > price %}
               <li>
-                {% render 'badge', text: 'Sale', variant: 'sale' %}
+                {% assign sale_text = 'components.badge.sale' | t %}
+                {% render 'badge', text: sale_text, variant: 'sale' %}
+              </li>
+            {% endif %}
+
+            {% if is_new %}
+              <li>
+                {% assign new_text = 'components.badge.new' | t %}
+                {% render 'badge', text: new_text %}
               </li>
             {% endif %}
           </ul>
