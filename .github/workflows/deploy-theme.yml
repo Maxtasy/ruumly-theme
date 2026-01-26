@@ -15,9 +15,10 @@ jobs:
       SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
 
     steps:
-      - name: Confirm secrets are injected
+      - name: Confirm shopify cli version and secrets injection
         run: |
-          echo "Store set: ${SHOPIFY_FLAG_STORE:+yes}"
+          shopify version
+          echo "Store: $SHOPIFY_FLAG_STORE"
           echo "Token set: ${SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN:+yes}"
 
       - name: Checkout repo
@@ -34,11 +35,15 @@ jobs:
       - name: Get live theme ID
         id: live_theme
         run: |
-          CURRENT_LIVE_THEME_ID=$(shopify theme list --role=live -j --store $SHOPIFY_FLAG_STORE --password $SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN | jq -r '.[0].id')
+          CURRENT_LIVE_THEME_ID=$(shopify theme list \
+          --role=live -j \
+          | jq -r '.[0].id')
+
           if [ -z "$CURRENT_LIVE_THEME_ID" ] || [ "$CURRENT_LIVE_THEME_ID" = "null" ]; then
-            echo "❌ No live theme found"
+            echo "❌ No live theme found or unable to retrieve live theme ID."
             exit 1
           fi
+
           echo "current_live_theme_id=$CURRENT_LIVE_THEME_ID" >> $GITHUB_OUTPUT
 
       - name: Duplicate live theme
@@ -46,8 +51,6 @@ jobs:
         id: duplicate
         run: |
           NEW_THEME_ID=$(shopify theme duplicate \
-            --store $SHOPIFY_FLAG_STORE \
-            --password $SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN \
             --theme-id ${{ steps.live_theme.outputs.current_live_theme_id }} \
             --name "main-$(date +%Y%m%d-%H%M)-${GITHUB_SHA::7}" \
             --json | jq -r '.id')
@@ -56,8 +59,6 @@ jobs:
       - name: Push theme code to duplicated theme
         run: |
           shopify theme push \
-            --store $SHOPIFY_FLAG_STORE \
-            --password $SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN \
             --theme-id ${{ steps.duplicate.outputs.new_theme_id }} \
             --unpublished \
             --force
@@ -65,6 +66,4 @@ jobs:
       - name: Publish duplicated theme
         run: |
           shopify theme publish \
-            --store $SHOPIFY_FLAG_STORE \
-            --password $SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN \
             --theme-id ${{ steps.duplicate.outputs.new_theme_id }}
