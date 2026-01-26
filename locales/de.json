@@ -8,6 +8,10 @@
     "add_to_cart_button": {
       "aria_label": "In den Warenkorb"
     },
+    "badge": {
+      "sale": "Sale",
+      "new": "Neu"
+    },
     "blog_article_card": {
       "button_text": "Mehr erfahren"
     },

@@ -49,7 +49,11 @@ class Gallery extends CustomComponentMixin(HTMLDivElement) {
   }
 
   updateImage() {
-    this.mediaItemElements[this.currentIndex].scrollIntoView({ behavior: "smooth" });
+    this.mediaItemElements[this.currentIndex].scrollIntoView({
+      behavior: "smooth",
+      // Scrolls the view port up to the gallery
+      block: "center",
+    });
   }
 
   updatePagination() {
