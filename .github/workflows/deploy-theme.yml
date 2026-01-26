@@ -15,6 +15,11 @@ jobs:
       SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
 
     steps:
+      - name: Confirm secrets are injected
+        run: |
+          echo "Store set: ${SHOPIFY_FLAG_STORE:+yes}"
+          echo "Token set: ${SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN:+yes}"
+
       - name: Checkout repo
         uses: actions/checkout@v4
 
