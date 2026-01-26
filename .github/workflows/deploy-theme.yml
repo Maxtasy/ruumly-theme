@@ -35,9 +35,7 @@ jobs:
       - name: Get live theme ID
         id: live_theme
         run: |
-          CURRENT_LIVE_THEME_ID=$(shopify theme list \
-          --role=live -j \
-          | jq -r '.[0].id')
+          CURRENT_LIVE_THEME_ID=$(shopify theme list --role=live -j | jq -r '.[0].id')
 
           if [ -z "$CURRENT_LIVE_THEME_ID" ] || [ "$CURRENT_LIVE_THEME_ID" = "null" ]; then
             echo "❌ No live theme found or unable to retrieve live theme ID."
