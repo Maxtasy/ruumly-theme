@@ -26,46 +26,21 @@ jobs:
 
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli@3.89.0
-      - name: Confirm shopify cli version and secrets injection
-        run: |
-          shopify version
-          echo "Shopify CLI Access Token set: ${SHOPIFY_CLI_ACCESS_TOKEN:+yes}"
 
-      - name: Get live theme ID
-        id: live_theme
+      - name: Deploy as New Theme and Publish
         run: |
-          CURRENT_LIVE_THEME_ID=$(shopify theme list \
+          # 1. Push to a new unpublished theme and capture the ID
+          # We use --unpublished to create a fresh copy
+          NEW_THEME_ID=$(shopify theme push \
             --store=$SHOPIFY_STORE \
-            --token=$SHOPIFY_CLI_ACCESS_TOKEN \
-            --json | jq -r '.[] | select(.role=="live") | .id')
-
-          if [ -z "$CURRENT_LIVE_THEME_ID" ] || [ "$CURRENT_LIVE_THEME_ID" = "null" ]; then
-            echo "❌ No live theme found or unable to retrieve live theme ID."
-            exit 1
-          fi
-
-          echo "current_live_theme_id=$CURRENT_LIVE_THEME_ID" >> $GITHUB_OUTPUT
-
-      - name: Duplicate live theme
-        if: github.ref == 'refs/heads/main'
-        id: duplicate
-        run: |
-          NEW_THEME_ID=$(shopify theme duplicate \
-            --store=$SHOPIFY_STORE \
-            --theme-id ${{ steps.live_theme.outputs.current_live_theme_id }} \
-            --name "main-$(date +%Y%m%d-%H%M)-${GITHUB_SHA::7}" \
+            --unpublished \
+            --theme="Release: ${GITHUB_SHA::7}" \
             --json | jq -r '.id')
-          echo "new_theme_id=$NEW_THEME_ID" >> $GITHUB_OUTPUT
 
-      - name: Push theme code to duplicated theme
-        run: |
-          shopify theme push \
-            --store=$SHOPIFY_STORE \
-            --theme-id ${{ steps.duplicate.outputs.new_theme_id }} \
-            --unpublished
+          echo "Deploying to Theme ID: $NEW_THEME_ID"
 
-      - name: Publish duplicated theme
-        run: |
+          # 2. Publish that theme to make it live
           shopify theme publish \
             --store=$SHOPIFY_STORE \
-            --theme-id ${{ steps.duplicate.outputs.new_theme_id }}
+            --theme=$NEW_THEME_ID \
+            --force
