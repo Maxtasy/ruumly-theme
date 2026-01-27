@@ -10,6 +10,10 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
+      SHOPIFY_FLAG_FORCE: 1
 
     steps:
       - name: Checkout repo
@@ -18,19 +22,17 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.10
 
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli@3.89.0
 
-      - name: Deploy and Publish
-        env:
-          # Use the new token you just generated via CURL
-          SHOPIFY_CLI_ACCESS_TOKEN: ${{ secrets.SHOPIFY_CLI_ACCESS_TOKEN }}
+      - name: Deploy and Publish Theme
         run: |
           # 1. Create a new theme from your code
           NEW_THEME_ID=$(shopify theme push \
-            --store="${{ secrets.SHOPIFY_STORE }}" \
+            --store $SHOPIFY_FLAG_STORE \
+            --password $SHOPIFY_CLI_THEME_TOKEN \
             --unpublished \
             --theme="CI-Deploy-${GITHUB_SHA::7}" \
             --json | jq -r '.id')
@@ -39,6 +41,7 @@ jobs:
 
           # 2. Make it the live theme
           shopify theme publish \
-            --store="${{ secrets.SHOPIFY_STORE }}" \
+            --store $SHOPIFY_FLAG_STORE \
+            --password $SHOPIFY_CLI_THEME_TOKEN \
             --theme=$NEW_THEME_ID \
             --force
