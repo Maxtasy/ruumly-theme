@@ -11,9 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_FLAG_STORE }}
-      SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY }}
-      SHOPIFY_CLI_PARTNERS_TOKEN: ${{ secrets.SHOPIFY_PARTNERS_TOKEN }}
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_ACCESS_TOKEN: ${{ secrets.SHOPIFY_CLI_ACCESS_TOKEN }}
 
     steps:
       - name: Checkout repo
@@ -22,21 +21,19 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 20
 
       - name: Install Shopify CLI
-        run: npm install -g @shopify/cli
-
+        run: npm install -g @shopify/cli@3.89.0
       - name: Confirm shopify cli version and secrets injection
         run: |
           shopify version
-          echo "Shopify API Key: ${SHOPIFY_API_KEY:+yes}"
-          echo "Shopify Partners Token set: ${SHOPIFY_CLI_PARTNERS_TOKEN:+yes}"
+          echo "Shopify CLI Access Token set: ${SHOPIFY_CLI_ACCESS_TOKEN:+yes}"
 
       - name: Get live theme ID
         id: live_theme
         run: |
-          CURRENT_LIVE_THEME_ID=$(shopify theme list --role=live -j | jq -r '.[0].id')
+          CURRENT_LIVE_THEME_ID=$(shopify theme list --store=$SHOPIFY_STORE --force --role=live -j | jq -r '.[0].id')
 
           if [ -z "$CURRENT_LIVE_THEME_ID" ] || [ "$CURRENT_LIVE_THEME_ID" = "null" ]; then
             echo "❌ No live theme found or unable to retrieve live theme ID."
@@ -50,6 +47,8 @@ jobs:
         id: duplicate
         run: |
           NEW_THEME_ID=$(shopify theme duplicate \
+            --store=$SHOPIFY_STORE \
+            --force \
             --theme-id ${{ steps.live_theme.outputs.current_live_theme_id }} \
             --name "main-$(date +%Y%m%d-%H%M)-${GITHUB_SHA::7}" \
             --json | jq -r '.id')
@@ -58,11 +57,13 @@ jobs:
       - name: Push theme code to duplicated theme
         run: |
           shopify theme push \
+            --store=$SHOPIFY_STORE \
+            --force \
             --theme-id ${{ steps.duplicate.outputs.new_theme_id }} \
-            --unpublished \
-            --force
+            --unpublished
 
       - name: Publish duplicated theme
         run: |
           shopify theme publish \
+            --store=$SHOPIFY_STORE \
             --theme-id ${{ steps.duplicate.outputs.new_theme_id }}
