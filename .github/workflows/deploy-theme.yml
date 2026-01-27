@@ -11,10 +11,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
 
-    env:
-      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
-      SHOPIFY_CLI_ACCESS_TOKEN: ${{ secrets.SHOPIFY_CLI_ACCESS_TOKEN }}
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -32,15 +28,17 @@ jobs:
           # 1. Push to a new unpublished theme and capture the ID
           # We use --unpublished to create a fresh copy
           NEW_THEME_ID=$(shopify theme push \
-            --store=$SHOPIFY_STORE \
+            --store=${{ secrets.SHOPIFY_STORE }} \
             --unpublished \
             --theme="Release: ${GITHUB_SHA::7}" \
+            --token="${{ secrets.SHOPIFY_CLI_ACCESS_TOKEN }}" \
             --json | jq -r '.id')
 
           echo "Deploying to Theme ID: $NEW_THEME_ID"
 
           # 2. Publish that theme to make it live
           shopify theme publish \
-            --store=$SHOPIFY_STORE \
+            --store=${{ secrets.SHOPIFY_STORE }} \
             --theme=$NEW_THEME_ID \
+            --token="${{ secrets.SHOPIFY_CLI_ACCESS_TOKEN }}" \
             --force
