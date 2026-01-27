@@ -11,8 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
-      SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN: ${{ secrets.SHOPIFY_ADMIN_TOKEN }}
+      SHOPIFY_API_KEY: ${{ secrets.SHOPIFY_API_KEY }}
+      SHOPIFY_CLI_PARTNERS_TOKEN: ${{ secrets.SHOPIFY_PARTNERS_TOKEN }}
 
     steps:
       - name: Checkout repo
@@ -29,8 +29,8 @@ jobs:
       - name: Confirm shopify cli version and secrets injection
         run: |
           shopify version
-          echo "Store: $SHOPIFY_FLAG_STORE"
-          echo "Token set: ${SHOPIFY_CLI_ADMIN_API_ACCESS_TOKEN:+yes}"
+          echo "Shopify API Key: ${SHOPIFY_API_KEY:+yes}"
+          echo "Shopify Partners Token set: ${SHOPIFY_CLI_PARTNERS_TOKEN:+yes}"
 
       - name: Get live theme ID
         id: live_theme
