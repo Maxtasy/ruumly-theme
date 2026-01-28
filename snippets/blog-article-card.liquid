@@ -15,12 +15,12 @@
   <div class="BlogArticleCard__Content">
     {% render 'text', text: title, variant: 'heading-small' %}
 
-    {% render 'text', text: excerpt %}
+    {% render 'text', text: excerpt, as: 'div' %}
 
-    <a href="{{ url }}">
+    <div class="BlogArticleCard__CallToAction">
       {% assign button_text = 'components.blog_article_card.button_text' | t %}
-      {% render 'button', text: button_text %}
-    </a>
+      {% render 'button', text: button_text, url: url %}
+    </div>
   </div>
 </article>
 
@@ -45,9 +45,16 @@
   }
 
   .BlogArticleCard__Content {
+    /* Make sure the bottom section takes up the remaining space */
+    flex: 1;
+
     display: flex;
     flex-direction: column;
     gap: var(--size-s);
     padding: var(--size-s);
+  }
+
+  .BlogArticleCard__CallToAction {
+    margin-top: auto;
   }
 {% endstylesheet %}

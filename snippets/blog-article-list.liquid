@@ -1,8 +1,7 @@
 {% doc %}
   Renders a Blog Aricle List component.
 
-  @param {object[]} [blog] - List of blog articles.
-  @param {object} [blog_article] - An article.
+  @param {object[]} [blog_articles] - List of blog articles.
   @param {number} [limit] - The maximum number of blog article cards to render.
   @param {number} [columns_mobile] - Number of columns on mobile.
   @param {number} [columns_desktop] - Number of columns on desktop.
@@ -18,29 +17,16 @@
     --columns-desktop: {{ columns_desktop }};
   "
 >
-  {% if blog %}
-    {% for article in blog.articles limit: limit %}
-      <li>
-        {% render 'blog-article-card',
-          image: article.image,
-          title: article.title,
-          excerpt: article.excerpt,
-          url: article.url
-        %}
-      </li>
-    {% endfor %}
-  {% endif %}
-
-  {% if blog_article %}
+  {% for article in blog_articles limit: limit %}
     <li>
       {% render 'blog-article-card',
-        image: blog_article.image,
-        title: blog_article.title,
-        excerpt: blog_article.excerpt,
-        url: blog_article.url
+        image: article.image,
+        title: article.title,
+        excerpt: article.excerpt,
+        url: article.url
       %}
     </li>
-  {% endif %}
+  {% endfor %}
 </ul>
 
 {% stylesheet %}
