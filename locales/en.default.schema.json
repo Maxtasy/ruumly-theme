@@ -330,8 +330,7 @@
       },
       "settings": {
         "blog_article_limit": {
-          "label": "Maximum Blog Article Cards",
-          "info": "Ignore when 0"
+          "label": "Maximum Blog Article Cards"
         },
         "border_bottom": {
           "label": "Show bottom border"
@@ -478,6 +477,10 @@
         },
         "product_list": {
           "label": "Product List"
+        },
+        "set_limit": {
+          "label": "Set Limit",
+          "info": "Sets a limit to Blog Article Cards"
         },
         "sticky": {
           "label": "Sticky section",
