@@ -479,8 +479,7 @@
           "label": "Product List"
         },
         "set_limit": {
-          "label": "Set Limit",
-          "info": "Sets a limit to Blog Article Cards"
+          "label": "Set Limit"
         },
         "sticky": {
           "label": "Sticky section",

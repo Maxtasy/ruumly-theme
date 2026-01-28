@@ -479,8 +479,7 @@
           "label": "Produktliste"
         },
         "set_limit": {
-          "label": "Limit festlegen",
-          "info": "Legt eine Begrenzung für Blog-Artikel-Karten fest"
+          "label": "Limit festlegen"
         },
         "sticky": {
           "label": "Haftender Abschnitt",
