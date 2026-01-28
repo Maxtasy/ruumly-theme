@@ -1,7 +1,7 @@
 {% if localization.available_languages.size > 1 %}
   <div is="language-selector-component" class="LanguageSelector">
     {% form 'localization' %}
-      <select name="language" aria-label="{{ 'components.language_selector.aria_label' | t }}">
+      <select class="Select" name="language" aria-label="{{ 'components.language_selector.aria_label' | t }}">
         {% for language in localization.available_languages %}
           <option
             value="{{ language.iso_code }}"
@@ -14,9 +14,23 @@
         {% endfor %}
       </select>
 
+      {% liquid
+        assign shopify_flag_template_url = 'https://cdn.shopify.com/static/images/flags/ISO_CODE.svg?width=40&height=30'
+
+        if localization.language.iso_code == 'en'
+          assign iso_code = 'gb'
+        else
+          assign iso_code = localization.language.iso_code
+        endif
+
+        assign shopify_flag_url = shopify_flag_template_url | replace: 'ISO_CODE', iso_code
+      %}
+
       <div class="LanguageSelector__SelectedLanguage">
-        {% assign flag_icon = 'flag-' | append: localization.language.iso_code %}
-        {% render 'icon', icon: flag_icon %}
+        <div class="Icon Icon--SizeMedium">
+          {%- comment -%}theme-check-disable-next-line RemoteAsset{%- endcomment -%}
+          <img src="{{ shopify_flag_url }}" alt="{{ localization.language.endonym_name }}" width="24" height="18">
+        </div>
 
         {% render 'text', text: localization.language.endonym_name %}
 
