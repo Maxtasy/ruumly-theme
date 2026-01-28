@@ -13,9 +13,14 @@
   <div class="Section__Inner">
     {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
-    {% assign blog_articles = section.settings.blog.articles %}
+    {% assign blog_articles = section.settings.blog.articles | default: section.settings.blog_article_list %}
 
-    {% render 'blog-article-list' %}
+    {% render 'blog-article-list',
+      blog_articles: blog_articles,
+      columns_mobile: section.settings.columns_mobile,
+      columns_desktop: section.settings.columns_desktop,
+      limit: limit
+    %}
   </div>
 </section>
 
@@ -76,7 +81,7 @@
       "label": "t:sections.blog_article_list.settings.blog.label"
     },
     {
-      "type": "article",
+      "type": "article_list",
       "id": "blog_article_list",
       "label": "t:sections.blog_article_list.settings.blog_article_list.label"
     },

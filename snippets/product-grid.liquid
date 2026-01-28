@@ -9,6 +9,8 @@
   @param {string} [grid_gap] - Defaults to `m`.
   @param {boolean} [enable_pagination] - Whether the pagination is enabled. Only works if collection is provided.
   @param {number} [per_page] - Products to render per page. Default is set to 16.
+  @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card within the product grid.
+  @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card within the product grid.
 {% enddoc %}
 
 {% assign per_page = per_page | default: 16 %}
@@ -44,7 +46,9 @@
               compare_at_price: product.compare_at_price,
               url: product.selected_or_first_available_variant.url,
               rating: product.metafields.custom.rating.value.rating,
-              product: product
+              product: product,
+              enable_quick_add_button: enable_quick_add_button,
+              enable_wishlist_button: enable_wishlist_button
             %}
           </li>
         {% endfor %}
@@ -59,7 +63,9 @@
               compare_at_price: product.compare_at_price,
               url: product.selected_or_first_available_variant.url,
               rating: product.metafields.custom.rating.value.rating,
-              product: product
+              product: product,
+              enable_quick_add_button: enable_quick_add_button,
+              enable_wishlist_button: enable_wishlist_button
             %}
           </li>
         {% endfor %}

@@ -329,6 +329,10 @@
         }
       },
       "settings": {
+        "blog_article_limit": {
+          "label": "Maximum Blog Article Cards",
+          "info": "Ignore when 0"
+        },
         "border_bottom": {
           "label": "Show bottom border"
         },
@@ -499,6 +503,22 @@
         "announcement_bar": {
           "name": "Announcement bar",
           "category": "Header"
+        }
+      }
+    },
+    "blog_article_list": {
+      "name": "Blog Article List",
+      "settings": {
+        "blog": {
+          "label": "Blog"
+        },
+        "blog_article_list": {
+          "label": "Blog Article List"
+        }
+      },
+      "presets": {
+        "blog_article_list": {
+          "name": "Blog Article List"
         }
       }
     },
