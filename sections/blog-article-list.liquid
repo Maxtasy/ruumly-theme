@@ -8,6 +8,8 @@
 {% assign limit = section.settings.limit %}
 {% if section.settings.set_limit and section.settings.limit > 0 %}
   {% assign limit = section.settings.limit %}
+{% else %}
+  {% assign limit = null %}
 {% endif %}
 
 <section
