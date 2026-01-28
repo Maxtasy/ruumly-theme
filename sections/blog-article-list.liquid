@@ -1,3 +1,10 @@
+{%- comment -%}
+  Theme check is not aware that article_list exists as a setting type
+{%- endcomment -%}
+{%- comment -%}
+  theme-check-disable ValidSchema
+{%- endcomment -%}
+
 {% assign limit = section.settings.limit %}
 {% if section.settings.limit == 0 %}
   {% assign limit = null %}
