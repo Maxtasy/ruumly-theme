@@ -17,6 +17,6 @@
   },
   "homepage": "https://github.com/Maxtasy/ruumly-theme#readme",
   "devDependencies": {
-    "@shopify/cli": "^3.83.3"
+    "@shopify/cli": "^3.89.0"
   }
 }
