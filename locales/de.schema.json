@@ -329,6 +329,10 @@
         }
       },
       "settings": {
+        "blog_article_limit": {
+          "label": "Maximale Anzahl von Blog-Artikel-Karten",
+          "info": "Bei 0 ignorieren"
+        },
         "border_bottom": {
           "label": "Unteren Rand anzeigen"
         },
@@ -499,6 +503,22 @@
         "announcement_bar": {
           "name": "Ankündigungsleiste",
           "category": "Kopfzeile"
+        }
+      }
+    },
+    "blog_article_list": {
+      "name": "Blog-Artikel-Liste",
+      "settings": {
+        "blog": {
+          "label": "Blog"
+        },
+        "blog_article_list": {
+          "label": "Blog-Artikel-Liste"
+        }
+      },
+      "presets": {
+        "blog_article_list": {
+          "name": "Blog-Artikel-Liste"
         }
       }
     },

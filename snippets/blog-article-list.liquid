@@ -1,0 +1,50 @@
+{% doc %}
+  Renders a Blog Aricle List component.
+
+  @param {object[]} [blog_articles] - List of blog articles.
+  @param {number} [limit] - The maximum number of blog article cards to render.
+  @param {number} [columns_mobile] - Number of columns on mobile.
+  @param {number} [columns_desktop] - Number of columns on desktop.
+{% enddoc %}
+
+{% assign columns_mobile = columns_mobile | default: 2 %}
+{% assign columns_desktop = columns_desktop | default: 4 %}
+
+<ul
+  class="BlogArticleList u-NoList"
+  style="
+    --columns-mobile: {{ columns_mobile }};
+    --columns-desktop: {{ columns_desktop }};
+  "
+>
+  {% assign blog = blogs.news %}
+
+  {% for article in blog.articles limit: limit %}
+    <li>
+      {% render 'blog-article-card',
+        image: article.image,
+        title: article.title,
+        excerpt: article.excerpt,
+        url: article.url
+      %}
+    </li>
+  {% endfor %}
+</ul>
+
+{% stylesheet %}
+  .BlogArticleList {
+    display: grid;
+    grid-template-columns: repeat(var(--columns-mobile), 1fr);
+    gap: var(--size-m);
+  }
+
+  .BlogArticleList > li {
+    height: 100%;
+  }
+
+  @media screen and (min-width: 768px) {
+    .ProductList {
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
+    }
+  }
+{% endstylesheet %}
