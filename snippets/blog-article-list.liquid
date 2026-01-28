@@ -1,14 +1,15 @@
 {% doc %}
   Renders a Blog Aricle List component.
 
-  @param {object[]} [blog_articles] - List of blog articles.
+  @param {object[]} [blog] - List of blog articles.
+  @param {object} [blog_article] - An article.
   @param {number} [limit] - The maximum number of blog article cards to render.
   @param {number} [columns_mobile] - Number of columns on mobile.
   @param {number} [columns_desktop] - Number of columns on desktop.
 {% enddoc %}
 
-{% assign columns_mobile = columns_mobile | default: 2 %}
-{% assign columns_desktop = columns_desktop | default: 4 %}
+{% assign columns_mobile = columns_mobile | default: 1 %}
+{% assign columns_desktop = columns_desktop | default: 3 %}
 
 <ul
   class="BlogArticleList u-NoList"
@@ -17,18 +18,29 @@
     --columns-desktop: {{ columns_desktop }};
   "
 >
-  {% assign blog = blogs.news %}
+  {% if blog %}
+    {% for article in blog.articles limit: limit %}
+      <li>
+        {% render 'blog-article-card',
+          image: article.image,
+          title: article.title,
+          excerpt: article.excerpt,
+          url: article.url
+        %}
+      </li>
+    {% endfor %}
+  {% endif %}
 
-  {% for article in blog.articles limit: limit %}
+  {% if blog_article %}
     <li>
       {% render 'blog-article-card',
-        image: article.image,
-        title: article.title,
-        excerpt: article.excerpt,
-        url: article.url
+        image: blog_article.image,
+        title: blog_article.title,
+        excerpt: blog_article.excerpt,
+        url: blog_article.url
       %}
     </li>
-  {% endfor %}
+  {% endif %}
 </ul>
 
 {% stylesheet %}
@@ -43,7 +55,7 @@
   }
 
   @media screen and (min-width: 768px) {
-    .ProductList {
+    .BlogArticleList {
       grid-template-columns: repeat(var(--columns-desktop), 1fr);
     }
   }

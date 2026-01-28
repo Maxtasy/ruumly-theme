@@ -13,9 +13,16 @@
   <div class="Section__Inner">
     {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
-    {% assign blog_articles = section.settings.blog.articles %}
+    {% assign selected_blog = section.settings.blog | default: null %}
+    {% assign blog_article = section.settings.blog_article_list | default: null %}
 
-    {% render 'blog-article-list' %}
+    {% render 'blog-article-list',
+      blog: selected_blog,
+      blog_article: blog_article,
+      columns_mobile: section.settings.columns_mobile,
+      columns_desktop: section.settings.columns_desktop,
+      limit: limit
+    %}
   </div>
 </section>
 
