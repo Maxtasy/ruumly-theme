@@ -4,15 +4,16 @@ on:
   push:
     branches:
       - main
+      - ci/github-action-fixes
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     env:
-      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
-      SHOPIFY_CLI_ACCESS_TOKEN: ${{ secrets.SHOPIFY_CLI_ACCESS_TOKEN }}
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
+      SHOPIFY_FLAG_FORCE: 1
 
     steps:
       - name: Checkout repo
@@ -21,49 +22,35 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 20.10.0
 
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli@3.89.0
-      - name: Confirm shopify cli version and secrets injection
-        run: |
-          shopify version
-          echo "Shopify CLI Access Token set: ${SHOPIFY_CLI_ACCESS_TOKEN:+yes}"
 
-      - name: Get live theme ID
-        id: live_theme
+      - name: Deploy and Publish Theme
         run: |
-          CURRENT_LIVE_THEME_ID=$(shopify theme list --store=$SHOPIFY_STORE --force --role=live -j | jq -r '.[0].id')
+          # 1. Create a formatted timestamp (e.g., 2026-01-27_23-15)
+          DEPLOY_TIME=$(date +'%Y-%m-%d_%H-%M')
+          THEME_NAME="${DEPLOY_TIME} (${GITHUB_SHA::7})"
+            
+            echo "Deploying theme: $THEME_NAME"
 
-          if [ -z "$CURRENT_LIVE_THEME_ID" ] || [ "$CURRENT_LIVE_THEME_ID" = "null" ]; then
-            echo "❌ No live theme found or unable to retrieve live theme ID."
+          # 2. Push to a new unpublished theme and capture the nested ID
+          NEW_THEME_ID=$(shopify theme push \
+            --store="${{ secrets.SHOPIFY_STORE }}" \
+            --unpublished \
+            --theme="$THEME_NAME" \
+            --json | jq -r '.theme.id')
+
+          if [ "$NEW_THEME_ID" = "null" ] || [ -z "$NEW_THEME_ID" ]; then
+            echo "❌ Failed to capture Theme ID. Check if the push succeeded."
             exit 1
           fi
 
-          echo "current_live_theme_id=$CURRENT_LIVE_THEME_ID" >> $GITHUB_OUTPUT
+          echo "Successfully pushed to Theme ID: $NEW_THEME_ID"
 
-      - name: Duplicate live theme
-        if: github.ref == 'refs/heads/main'
-        id: duplicate
-        run: |
-          NEW_THEME_ID=$(shopify theme duplicate \
-            --store=$SHOPIFY_STORE \
-            --force \
-            --theme-id ${{ steps.live_theme.outputs.current_live_theme_id }} \
-            --name "main-$(date +%Y%m%d-%H%M)-${GITHUB_SHA::7}" \
-            --json | jq -r '.id')
-          echo "new_theme_id=$NEW_THEME_ID" >> $GITHUB_OUTPUT
-
-      - name: Push theme code to duplicated theme
-        run: |
-          shopify theme push \
-            --store=$SHOPIFY_STORE \
-            --force \
-            --theme-id ${{ steps.duplicate.outputs.new_theme_id }} \
-            --unpublished
-
-      - name: Publish duplicated theme
-        run: |
+          # 3. Publish the theme
           shopify theme publish \
-            --store=$SHOPIFY_STORE \
-            --theme-id ${{ steps.duplicate.outputs.new_theme_id }}
+            --store="${{ secrets.SHOPIFY_STORE }}" \
+            --theme=$NEW_THEME_ID \
+            --force
