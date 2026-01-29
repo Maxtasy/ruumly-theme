@@ -761,6 +761,14 @@
     }
   },
   "blocks": {
+    "settings": {
+      "limit": {
+        "label": "Limit"
+      },
+      "set_limit": {
+        "label": "Limit festlegen"
+      }
+    },
     "buy_buttons": {
       "name": "Kauf Buttons"
     },

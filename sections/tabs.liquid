@@ -30,13 +30,13 @@
 
       <div class="Tabs__Content">
         {% for block in section.blocks %}
+          {% assign limit = null %}
           {% if block.settings.set_limit %}
-            {% assign block_limit = block.settings.limit %}
-          {% else %}
-            {% assign block_limit = null %}
+            {% assign limit = block.settings.limit %}
           {% endif %}
+
           <div class="Tabs__Item">
-            {% render 'product-list', products: block.settings.collection.products, limit: block_limit %}
+            {% render 'product-list', products: block.settings.collection.products, limit: limit %}
           </div>
         {% endfor %}
       </div>
@@ -145,13 +145,13 @@
         {
           "type": "checkbox",
           "id": "set_limit",
-          "label": "t:sections.all.settings.set_limit.label",
+          "label": "t:blocks.settings.set_limit.label",
           "default": false
         },
         {
           "type": "number",
           "id": "limit",
-          "label": "t:sections.tabs.settings.limit.label",
+          "label": "t:blocks.settings.limit.label",
           "default": 4,
           "visible_if": "{{ block.settings.set_limit }}"
         }
