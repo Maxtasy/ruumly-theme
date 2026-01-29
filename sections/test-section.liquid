@@ -9,51 +9,7 @@
     {% render 'text', text: 'Test Section', as: 'h2', variant: 'heading-medium' %}
 
     <div class="TestSection">
-      {% capture accordion_items %}
-        <li>
-          {% render 'accordion-item', label: "What is accordion", content: "This is accordion", open: true %}
-        </li>
-
-        <li>
-          {% render 'accordion-item', label: "What is accordion", content: "This is accordion" %}
-        </li>
-
-        <li>
-          {% capture icon %}
-            {% render 'icon', icon: "heart" %}
-          {% endcapture %}
-
-          {% render 'accordion-item', label: "What is accordion", content: icon %}
-        </li>
-      {% endcapture %}
-
-      {% render 'accordion', accordion_items: accordion_items %}
-
-      {% render 'avatar', initials: 'AC' %}
-
-      {% render 'avatar', image: images['developer-user1.png'] %}
-
-      {% render 'avatar', image: images['developer-user1.png'], size: 'medium' %}
-
-      {% render 'avatar', initials: 'AC', size: 'medium' %}
-
-      {% render 'social-proof', image_1: images['developer-user1.png'], image_2: images['developer-user2.jpg'] %}
-
-      {% render 'blog-article-card',
-        image: images['developer-user1.png'],
-        title: 'New Employee',
-        excerpt: 'John Doe fits perfect in our team.',
-        url: '/'
-      %}
-
-      {% assign test_blog_article = articles['news/summer-sale-starting-now'] %}
-
-      {% render 'blog-article-card',
-        image: test_blog_article.image,
-        title: test_blog_article.title,
-        excerpt: test_blog_article.excerpt,
-        url: test_blog_article.url
-      %}
+      {% render 'text', text: 'Insert your test component here' %}
     </div>
   </div>
 </section>
