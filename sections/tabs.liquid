@@ -33,7 +33,7 @@
           {% if block.settings.set_limit %}
             {% assign block_limit = block.settings.limit %}
           {% else %}
-            {% assign block_limit = block.settings.limit %}
+            {% assign block_limit = null %}
           {% endif %}
           <div class="Tabs__Item">
             {% render 'product-list', products: block.settings.collection.products, limit: block_limit %}
