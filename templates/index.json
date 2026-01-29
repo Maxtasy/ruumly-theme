@@ -46,7 +46,8 @@
           "type": "button-group-block",
           "name": "t:theme_blocks.button_group_block.presets.button_group_block.name",
           "settings": {
-            "alignment": "center"
+            "alignment": "center",
+            "gap": "m"
           },
           "blocks": {
             "button_block_EJP9p9": {
@@ -81,8 +82,10 @@
       "settings": {
         "padding_block": "none",
         "height": "50vh",
+        "subtract_header_group_height": false,
         "mobile_image": "shopify://shop_images/Arlo_Lounge_Chair-2.webp",
         "desktop_image": "shopify://shop_images/Milo_Coffee_Table-4.webp",
+        "image_loading": "eager",
         "content_position_horizontal": "center",
         "content_position_vertical": "bottom",
         "overlay_color": "#000000",
@@ -101,36 +104,6 @@
         "collection_list": ["gaming-chairs", "gaming-desks", "furniture", "plants"]
       }
     },
-    "product_list_hjrBVX": {
-      "type": "product-list",
-      "name": "t:sections.product_list.presets.product_list.name",
-      "settings": {
-        "color_scheme": "",
-        "padding_block": "medium",
-        "columns_mobile": 2,
-        "columns_desktop": 4,
-        "heading": "Gaming Chairs",
-        "collection": "gaming-chairs",
-        "product_list": [],
-        "limit": 4,
-        "enable_quick_add_button": true,
-        "enable_wishlist_button": true
-      }
-    },
-    "product_list_937CA7": {
-      "type": "product-list",
-      "name": "t:sections.product_list.presets.product_list.name",
-      "settings": {
-        "color_scheme": "",
-        "padding_block": "medium",
-        "columns_mobile": 2,
-        "columns_desktop": 4,
-        "heading": "Gaming Desks",
-        "collection": "gaming-desks",
-        "product_list": [],
-        "limit": 4
-      }
-    },
     "tabs_YGYmEL": {
       "type": "tabs",
       "blocks": {
@@ -139,6 +112,7 @@
           "settings": {
             "title": "Chairs",
             "collection": "gaming-chairs",
+            "set_limit": true,
             "limit": 4
           }
         },
@@ -147,6 +121,7 @@
           "settings": {
             "title": "Desks",
             "collection": "gaming-desks",
+            "set_limit": true,
             "limit": 4
           }
         },
@@ -155,6 +130,7 @@
           "settings": {
             "title": "",
             "collection": "furniture",
+            "set_limit": true,
             "limit": 4
           }
         },
@@ -163,6 +139,7 @@
           "settings": {
             "title": "",
             "collection": "plants",
+            "set_limit": true,
             "limit": 4
           }
         }
@@ -172,13 +149,99 @@
       "settings": {
         "color_scheme": "",
         "padding_block": "medium",
-        "heading": "Heading"
+        "heading": "Explore by category"
       }
     },
-    "test-section": {
-      "type": "test-section",
-      "settings": {}
+    "a_plus_pWYUnb": {
+      "type": "a-plus",
+      "blocks": {
+        "a_plus_block_CAHYLM": {
+          "type": "a-plus-block",
+          "settings": {
+            "image": "shopify://shop_images/woods.jpg",
+            "secondary_image": "shopify://shop_images/wood_texture.jpg",
+            "image_position_mobile": "top",
+            "image_position_desktop": "left"
+          },
+          "blocks": {
+            "text_block_frDXH9": {
+              "type": "text-block",
+              "settings": {
+                "text": "Local Materials",
+                "variant": "heading-medium",
+                "as": "div",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "text_block_wfzydA": {
+              "type": "text-block",
+              "settings": {
+                "text": "Crafted from sustainably sourced local wood, our pieces celebrate the natural beauty and character of regional timber. Each grain pattern tells a story of responsible forestry and environmental stewardship. By choosing locally harvested materials, we support regional artisans and reduce our carbon footprint, ensuring that every purchase contributes to a more sustainable future. Experience the warmth, durability, and timeless elegance that only authentic wood craftsmanship can deliver.",
+                "variant": "body-medium",
+                "as": "div",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["text_block_frDXH9", "text_block_wfzydA"]
+        },
+        "a_plus_block_pCATdb": {
+          "type": "a-plus-block",
+          "settings": {
+            "image": "shopify://shop_images/woodwork.jpg",
+            "secondary_image": "shopify://shop_images/tools.jpg",
+            "image_position_mobile": "top",
+            "image_position_desktop": "right"
+          },
+          "blocks": {
+            "text_block_6VCMbi": {
+              "type": "text-block",
+              "settings": {
+                "text": "Best craftsmanship",
+                "variant": "heading-medium",
+                "as": "div",
+                "alignment": "left"
+              },
+              "blocks": {}
+            },
+            "text_block_LxtHfU": {
+              "type": "text-block",
+              "settings": {
+                "text": "Every piece we create is a testament to meticulous craftsmanship and unwavering dedication to excellence. Our artisans invest countless hours perfecting each detail, from the initial selection of premium materials to the final finishing touches. We believe that true quality lies not just in what you see, but in the care and precision that goes into every step of the creation process. Each product is handled with respect and passion, ensuring that when it arrives at your home, it carries the mark of genuine craftsmanship—built to last, designed to inspire, and made with you in mind.",
+                "variant": "body-medium",
+                "as": "div",
+                "alignment": "left"
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": ["text_block_6VCMbi", "text_block_LxtHfU"]
+        }
+      },
+      "block_order": ["a_plus_block_CAHYLM", "a_plus_block_pCATdb"],
+      "name": "t:sections.a_plus.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "padding_block": "medium"
+      }
+    },
+    "blog_article_list_yeMPL7": {
+      "type": "blog-article-list",
+      "name": "t:sections.blog_article_list.presets.blog_article_list.name",
+      "settings": {
+        "color_scheme": "",
+        "padding_block": "medium",
+        "columns_mobile": 1,
+        "columns_desktop": 3,
+        "heading": "News",
+        "blog": "",
+        "blog_article_list": ["news/new-spring-collection", "news/new-autumn-collection", "news/new-summer-collection"],
+        "set_limit": false,
+        "limit": 3
+      }
     }
   },
-  "order": ["hero", "collection_list", "product_list_hjrBVX", "product_list_937CA7", "tabs_YGYmEL", "test-section"]
+  "order": ["hero", "collection_list", "tabs_YGYmEL", "a_plus_pWYUnb", "blog_article_list_yeMPL7"]
 }
