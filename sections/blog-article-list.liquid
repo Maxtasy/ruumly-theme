@@ -5,9 +5,9 @@
   theme-check-disable ValidSchema
 {%- endcomment -%}
 
-{% assign limit = section.settings.limit %}
-{% if section.settings.limit == 0 %}
-  {% assign limit = null %}
+{% assign limit = null %}
+{% if section.settings.set_limit %}
+  {% assign limit = section.settings.limit %}
 {% endif %}
 
 <section
@@ -93,11 +93,17 @@
       "label": "t:sections.blog_article_list.settings.blog_article_list.label"
     },
     {
+      "type": "checkbox",
+      "id": "set_limit",
+      "label": "t:sections.all.settings.set_limit.label",
+      "default": false
+    },
+    {
       "type": "number",
       "id": "limit",
       "label": "t:sections.all.settings.blog_article_limit.label",
-      "default": 0,
-      "info": "t:sections.all.settings.blog_article_limit.info"
+      "default": 3,
+      "visible_if": "{{ section.settings.set_limit }}"
     }
   ],
   "presets": [

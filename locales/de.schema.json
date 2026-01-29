@@ -330,8 +330,7 @@
       },
       "settings": {
         "blog_article_limit": {
-          "label": "Maximale Anzahl von Blog-Artikel-Karten",
-          "info": "Bei 0 ignorieren"
+          "label": "Maximale Anzahl von Blog-Artikel-Karten"
         },
         "border_bottom": {
           "label": "Unteren Rand anzeigen"
@@ -478,6 +477,9 @@
         },
         "product_list": {
           "label": "Produktliste"
+        },
+        "set_limit": {
+          "label": "Limit festlegen"
         },
         "sticky": {
           "label": "Haftender Abschnitt",
@@ -759,6 +761,14 @@
     }
   },
   "blocks": {
+    "settings": {
+      "limit": {
+        "label": "Limit"
+      },
+      "set_limit": {
+        "label": "Limit festlegen"
+      }
+    },
     "buy_buttons": {
       "name": "Kauf Buttons"
     },
