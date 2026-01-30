@@ -417,6 +417,12 @@
         "link_url": {
           "label": "Link URL"
         },
+        "overlay_color": {
+          "label": "Overlay Farbe"
+        },
+        "overlay_opacity": {
+          "label": "Overlay Deckkraft"
+        },
         "padding_block": {
           "label": "Padding Block",
           "options": {
@@ -484,6 +490,10 @@
         "sticky": {
           "label": "Haftender Abschnitt",
           "info": "Der Abschnitt bleibt beim Herunterscrollen am oberen Rand des Ansichtsfensters."
+        },
+        "subtract_header_group_height": {
+          "label": "Höhe der Kopfzeilengruppe abziehen",
+          "info": "Subtrahiert die Höhe aller Abschnitte in der Kopfzeilengruppe. Nützlich, wenn der Hero-Abschnitt die gesamte Höhe des Ansichtsfensters einnehmen soll."
         },
         "text": {
           "label": "Text"
@@ -574,6 +584,14 @@
         }
       }
     },
+    "collection_banner": {
+      "name": "Kollektionsbanner",
+      "presets": {
+        "collection_banner": {
+          "name": "Kollektionsbanner"
+        }
+      }
+    },
     "collection_list": {
       "name": "Kollektionsliste",
       "presets": {
@@ -591,16 +609,6 @@
         "height": {
           "label": "Höhe",
           "info": "Verwenden Sie einen gültigen CSS-Wert."
-        },
-        "overlay_color": {
-          "label": "Overlay Farbe"
-        },
-        "overlay_opacity": {
-          "label": "Overlay Deckkraft"
-        },
-        "subtract_header_group_height": {
-          "label": "Höhe der Kopfzeilengruppe abziehen",
-          "info": "Subtrahiert die Höhe aller Abschnitte in der Kopfzeilengruppe. Nützlich, wenn der Hero-Abschnitt die gesamte Höhe des Ansichtsfensters einnehmen soll."
         }
       },
       "presets": {

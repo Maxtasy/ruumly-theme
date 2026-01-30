@@ -1,0 +1,156 @@
+<section
+  class="
+    Section
+    Section--FullWidth
+    Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
+  "
+>
+  <div class="Section__Inner">
+    <div
+      class="CollectionBanner"
+      style="
+        {% if section.settings.subtract_header_group_height %}
+          --height: calc({{ section.settings.height }} - var(--header-group-height));
+        {% else %}
+          --height: {{ section.settings.height }};
+        {% endif %}
+        --overlay-color: {{ section.settings.overlay_color }};
+        --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+      "
+    >
+      <div class="CollectionBanner__MobileImage u-Hidden--Desktop">
+        {% render 'image', image: section.settings.mobile_image, loading: section.settings.image_loading %}
+      </div>
+
+      <div class="CollectionBanner__DesktopImage u-Hidden--Mobile">
+        {% render 'image', image: section.settings.desktop_image, loading: section.settings.image_loading %}
+      </div>
+
+      <div class="CollectionBanner__Overlay"></div>
+
+      <div class="CollectionBanner__Inner">
+        {% render 'text', text: collection.title, as: 'h1' %}
+
+        {% render 'text', text: collection.description %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .CollectionBanner {
+    position: relative;
+    height: var(--height);
+  }
+
+  .CollectionBanner__Overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--overlay-color);
+    opacity: var(--overlay-opacity);
+  }
+
+  .CollectionBanner__Inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    max-width: var(--page-width);
+    height: 100%;
+  }
+
+  .CollectionBanner__MobileImage,
+  .CollectionBanner__DesktopImage {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.collection_banner.name",
+  "disabled_on": {
+    "groups": ["header", "footer", "aside"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "select",
+      "id": "padding_block",
+      "label": "t:sections.all.settings.padding_block.label",
+      "default": "none",
+      "options": [
+        { "value": "none", "label": "t:sections.all.settings.padding_block.options.none.label" },
+        { "value": "small", "label": "t:sections.all.settings.padding_block.options.small.label" },
+        { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
+        { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "height",
+      "label": "t:sections.all.settings.height.label",
+      "default": "66vh",
+      "info": "t:sections.all.settings.height.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "subtract_header_group_height",
+      "label": "t:sections.all.settings.subtract_header_group_height.label",
+      "info": "t:sections.all.settings.subtract_header_group_height.info",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile_image",
+      "label": "t:global.settings.image_mobile.label"
+    },
+    {
+      "type": "image_picker",
+      "id": "desktop_image",
+      "label": "t:global.settings.image_desktop.label"
+    },
+    {
+      "type": "select",
+      "id": "image_loading",
+      "label": "t:sections.all.settings.image_loading.label",
+      "default": "eager",
+      "info": "t:sections.all.settings.image_loading.info",
+      "options": [
+        { "value": "lazy", "label": "t:sections.all.settings.image_loading.options.lazy.label" },
+        { "value": "eager", "label": "t:sections.all.settings.image_loading.options.eager.label" }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "t:sections.all.settings.overlay_color.label",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "t:sections.all.settings.overlay_opacity.label",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "default": 33,
+      "unit": "%"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.collcection_banner.presets.collection_banner.name"
+    }
+  ]
+}
+{% endschema %}
