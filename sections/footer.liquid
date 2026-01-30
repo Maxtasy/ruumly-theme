@@ -7,12 +7,25 @@
 >
   <div class="Section__Inner">
     <div class="Footer">
-      <div class="Footer__Content">
+      <div class="Footer__ContentPrimary">
         {% for link in section.settings.link_list.links %}
           {% if link.links.size > 0 %}
             {% render 'link-group', heading: link.title, links: link.links %}
           {% endif %}
         {% endfor %}
+      </div>
+
+      <div class="Footer__ContentSecondary">
+        {% capture text %}
+        © {{ 'now' | date: '%Y' }} {{ shop.name }}
+        {% endcapture %}
+        <script>
+          console.log({{ text | json }});
+        </script>
+
+        {% render 'text', text: text %}
+
+        {% render 'payment-methods' %}
       </div>
     </div>
   </div>
@@ -26,9 +39,16 @@
     gap: var(--size-m);
   }
 
-  .Footer__Content {
+  .Footer__ContentPrimary {
     display: flex;
     flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .Footer__ContentSecondary {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: var(--size-m);
   }
 
@@ -37,9 +57,15 @@
       align-items: flex-start;
     }
 
-    .Footer__Content {
-      flex-direction: row;
+    .Footer__ContentPrimary {
       gap: var(--size-xl);
+      flex-direction: row;
+    }
+
+    .Footer__ContentSecondary {
+      gap: var(--size-m);
+      flex-direction: row;
+      justify-content: center;
     }
   }
 {% endstylesheet %}
