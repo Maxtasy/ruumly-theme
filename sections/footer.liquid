@@ -21,7 +21,7 @@
           assign copyright_text = '© ' | append: current_year | append: ' ' | append: shop.name
         %}
 
-        {% render 'text', text: copyright_text %}
+        {% render 'text', text: copyright_text, color: 'primary-muted' %}
 
         {% render 'payment-methods' %}
       </div>
