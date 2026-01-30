@@ -19,9 +19,6 @@
         {% capture text %}
         © {{ 'now' | date: '%Y' }} {{ shop.name }}
         {% endcapture %}
-        <script>
-          console.log({{ text | json }});
-        </script>
 
         {% render 'text', text: text %}
 
