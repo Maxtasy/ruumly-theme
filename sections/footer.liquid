@@ -7,12 +7,23 @@
 >
   <div class="Section__Inner">
     <div class="Footer">
-      <div class="Footer__Content">
+      <div class="Footer__ContentPrimary">
         {% for link in section.settings.link_list.links %}
           {% if link.links.size > 0 %}
             {% render 'link-group', heading: link.title, links: link.links %}
           {% endif %}
         {% endfor %}
+      </div>
+
+      <div class="Footer__ContentSecondary">
+        {% liquid
+          assign current_year = 'now' | date: '%Y'
+          assign copyright_text = '© ' | append: current_year | append: ' ' | append: shop.name
+        %}
+
+        {% render 'text', text: copyright_text, color: 'primary-muted' %}
+
+        {% render 'payment-methods' %}
       </div>
     </div>
   </div>
@@ -23,12 +34,19 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: var(--size-l);
+  }
+
+  .Footer__ContentPrimary {
+    display: flex;
+    flex-direction: column;
     gap: var(--size-m);
   }
 
-  .Footer__Content {
+  .Footer__ContentSecondary {
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: var(--size-m);
   }
 
@@ -37,9 +55,15 @@
       align-items: flex-start;
     }
 
-    .Footer__Content {
-      flex-direction: row;
+    .Footer__ContentPrimary {
       gap: var(--size-xl);
+      flex-direction: row;
+    }
+
+    .Footer__ContentSecondary {
+      gap: var(--size-m);
+      flex-direction: row;
+      justify-content: center;
     }
   }
 {% endstylesheet %}
