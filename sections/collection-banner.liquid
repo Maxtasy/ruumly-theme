@@ -18,12 +18,22 @@
         --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
       "
     >
+      {% assign mobile_image = collection.featured_image %}
+      {% if section.settings.mobile_image %}
+        {% assign mobile_image = section.settings.mobile_image %}
+      {% endif %}
+
       <div class="CollectionBanner__MobileImage u-Hidden--Desktop">
-        {% render 'image', image: section.settings.mobile_image, loading: section.settings.image_loading %}
+        {% render 'image', image: mobile_image, loading: section.settings.image_loading %}
       </div>
 
+      {% assign desktop_image = collection.featured_image %}
+      {% if section.settings.desktop_image %}
+        {% assign desktop_image = section.settings.desktop_image %}
+      {% endif %}
+
       <div class="CollectionBanner__DesktopImage u-Hidden--Mobile">
-        {% render 'image', image: section.settings.desktop_image, loading: section.settings.image_loading %}
+        {% render 'image', image: desktop_image, loading: section.settings.image_loading %}
       </div>
 
       <div class="CollectionBanner__Overlay"></div>
@@ -53,8 +63,10 @@
   .CollectionBanner__Inner {
     position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: var(--size-xs);
     margin: 0 auto;
     max-width: var(--page-width);
     height: 100%;
