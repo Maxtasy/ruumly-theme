@@ -392,6 +392,10 @@
           "label": "Heading",
           "default": "Heading"
         },
+        "height": {
+          "label": "Height",
+          "info": "Use a valid CSS value."
+        },
         "image_loading": {
           "label": "Image Loading",
           "info": "Use lazy if the section is placed below the fold.",
@@ -605,12 +609,6 @@
     },
     "hero": {
       "name": "Hero",
-      "settings": {
-        "height": {
-          "label": "Height",
-          "info": "Use a valid CSS value."
-        }
-      },
       "presets": {
         "hero": {
           "name": "Hero"

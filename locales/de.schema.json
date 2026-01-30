@@ -392,6 +392,10 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
+        "height": {
+          "label": "Höhe",
+          "info": "Verwenden Sie einen gültigen CSS-Wert."
+        },
         "image_loading": {
           "label": "Ladeeigenschaft der Bilder",
           "info": "Verwenden Sie „Lazy“, wenn der Abschnitt unterhalb der Falz platziert ist.",
@@ -605,12 +609,6 @@
     },
     "hero": {
       "name": "Hero",
-      "settings": {
-        "height": {
-          "label": "Höhe",
-          "info": "Verwenden Sie einen gültigen CSS-Wert."
-        }
-      },
       "presets": {
         "hero": {
           "name": "Hero"
