@@ -10,7 +10,8 @@
     },
     "badge": {
       "sale": "Sale",
-      "new": "New"
+      "new": "New",
+      "sold_out": "Sold Out"
     },
     "blog_article_card": {
       "button_text": "Read more"
