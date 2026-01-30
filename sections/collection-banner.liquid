@@ -18,30 +18,27 @@
         --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
       "
     >
-      {% assign mobile_image = collection.featured_image %}
-      {% if section.settings.mobile_image %}
-        {% assign mobile_image = section.settings.mobile_image %}
-      {% endif %}
-
       <div class="CollectionBanner__MobileImage u-Hidden--Desktop">
+        {% assign mobile_image = section.settings.mobile_image | default: collection.featured_image %}
         {% render 'image', image: mobile_image, loading: section.settings.image_loading %}
       </div>
 
-      {% assign desktop_image = collection.featured_image %}
-      {% if section.settings.desktop_image %}
-        {% assign desktop_image = section.settings.desktop_image %}
-      {% endif %}
-
       <div class="CollectionBanner__DesktopImage u-Hidden--Mobile">
+        {% assign desktop_image = section.settings.desktop_image | default: collection.featured_image %}
         {% render 'image', image: desktop_image, loading: section.settings.image_loading %}
       </div>
 
       <div class="CollectionBanner__Overlay"></div>
 
       <div class="CollectionBanner__Inner">
-        {% render 'text', text: collection.title, as: 'h1' %}
+        {% assign collection_heading = section.settings.collection_heading | default: collection.title %}
+        {% assign heading_as = section.settings.heading_as %}
+        {% render 'text', text: collection_heading, variant: 'heading-large', as: heading_as %}
 
-        {% render 'text', text: collection.description %}
+        {% assign collection_description = section.settings.collection_description | default: collection.description %}
+        {% if collection_description %}
+          {% render 'text', text: collection_description %}
+        {% endif %}
       </div>
     </div>
   </div>
@@ -120,6 +117,34 @@
     {
       "type": "header",
       "content": "t:sections.all.headers.section_content.content"
+    },
+    {
+      "type": "text",
+      "id": "collection_heading",
+      "label": "t:sections.all.settings.heading.label"
+    },
+    {
+      "type": "select",
+      "id": "heading_as",
+      "label": "t:global.settings.tag.label",
+      "info": "t:global.settings.tag.heading_info",
+      "default": "h1",
+      "options": [
+        { "value": "h1", "label": "h1" },
+        { "value": "h2", "label": "h2" },
+        { "value": "h3", "label": "h3" },
+        { "value": "h4", "label": "h4" },
+        { "value": "h5", "label": "h5" },
+        { "value": "h6", "label": "h6" },
+        { "value": "p", "label": "p" },
+        { "value": "span", "label": "span" },
+        { "value": "div", "label": "div" }
+      ]
+    },
+    {
+      "type": "text",
+      "id": "collection_description",
+      "label": "t:sections.collection_banner.settings.collection_description.label"
     },
     {
       "type": "image_picker",

@@ -122,7 +122,8 @@
         "label": "Secondary Image"
       },
       "tag": {
-        "label": "Tag"
+        "label": "Tag",
+        "heading_info": "The heading tag to use"
       },
       "text": {
         "label": "Text"
@@ -590,6 +591,11 @@
     },
     "collection_banner": {
       "name": "Collection Banner",
+      "settings": {
+        "collection_description": {
+          "label": "Collection Description"
+        }
+      },
       "presets": {
         "collection_banner": {
           "name": "Collection Banner"
