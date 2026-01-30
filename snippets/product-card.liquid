@@ -47,7 +47,7 @@
         endif
       %}
 
-      {% if badge or compare_at_price > price or is_new %}
+      {% if badge or compare_at_price > price or is_new or product.available == false %}
         <div class="ProductCard__Badges">
           <ul class="u-NoList BadgeList BadgeList--AlignRight">
             {% if badge %}
@@ -67,6 +67,13 @@
               <li>
                 {% assign new_text = 'components.badge.new' | t %}
                 {% render 'badge', text: new_text %}
+              </li>
+            {% endif %}
+
+            {% if product.available == false %}
+              <li>
+                {% assign sold_out_text = 'components.badge.sold_out' | t %}
+                {% render 'badge', text: sold_out_text %}
               </li>
             {% endif %}
           </ul>
