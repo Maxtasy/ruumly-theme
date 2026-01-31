@@ -122,7 +122,8 @@
         "label": "Zweites Bild"
       },
       "tag": {
-        "label": "Tag"
+        "label": "Tag",
+        "heading_info": "Der zu verwendende Heading-Tag"
       },
       "text": {
         "label": "Text"
@@ -392,6 +393,10 @@
           "label": "Überschrift",
           "default": "Überschrift"
         },
+        "height": {
+          "label": "Höhe",
+          "info": "Verwenden Sie einen gültigen CSS-Wert."
+        },
         "image_loading": {
           "label": "Ladeeigenschaft der Bilder",
           "info": "Verwenden Sie „Lazy“, wenn der Abschnitt unterhalb der Falz platziert ist.",
@@ -416,6 +421,12 @@
         },
         "link_url": {
           "label": "Link URL"
+        },
+        "overlay_color": {
+          "label": "Overlay Farbe"
+        },
+        "overlay_opacity": {
+          "label": "Overlay Deckkraft"
         },
         "padding_block": {
           "label": "Padding Block",
@@ -484,6 +495,10 @@
         "sticky": {
           "label": "Haftender Abschnitt",
           "info": "Der Abschnitt bleibt beim Herunterscrollen am oberen Rand des Ansichtsfensters."
+        },
+        "subtract_header_group_height": {
+          "label": "Höhe der Kopfzeilengruppe abziehen",
+          "info": "Subtrahiert die Höhe aller Abschnitte in der Kopfzeilengruppe. Nützlich, wenn der Hero-Abschnitt die gesamte Höhe des Ansichtsfensters einnehmen soll."
         },
         "text": {
           "label": "Text"
@@ -574,6 +589,19 @@
         }
       }
     },
+    "collection_banner": {
+      "name": "Kollektionsbanner",
+      "settings": {
+        "collection_description": {
+          "label": "Beschreibung der Kollektion"
+        }
+      },
+      "presets": {
+        "collection_banner": {
+          "name": "Kollektionsbanner"
+        }
+      }
+    },
     "collection_list": {
       "name": "Kollektionsliste",
       "presets": {
@@ -587,22 +615,6 @@
     },
     "hero": {
       "name": "Hero",
-      "settings": {
-        "height": {
-          "label": "Höhe",
-          "info": "Verwenden Sie einen gültigen CSS-Wert."
-        },
-        "overlay_color": {
-          "label": "Overlay Farbe"
-        },
-        "overlay_opacity": {
-          "label": "Overlay Deckkraft"
-        },
-        "subtract_header_group_height": {
-          "label": "Höhe der Kopfzeilengruppe abziehen",
-          "info": "Subtrahiert die Höhe aller Abschnitte in der Kopfzeilengruppe. Nützlich, wenn der Hero-Abschnitt die gesamte Höhe des Ansichtsfensters einnehmen soll."
-        }
-      },
       "presets": {
         "hero": {
           "name": "Hero"

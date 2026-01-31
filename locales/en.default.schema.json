@@ -122,7 +122,8 @@
         "label": "Secondary Image"
       },
       "tag": {
-        "label": "Tag"
+        "label": "Tag",
+        "heading_info": "The heading tag to use"
       },
       "text": {
         "label": "Text"
@@ -392,6 +393,10 @@
           "label": "Heading",
           "default": "Heading"
         },
+        "height": {
+          "label": "Height",
+          "info": "Use a valid CSS value."
+        },
         "image_loading": {
           "label": "Image Loading",
           "info": "Use lazy if the section is placed below the fold.",
@@ -416,6 +421,12 @@
         },
         "link_url": {
           "label": "Link URL"
+        },
+        "overlay_color": {
+          "label": "Overlay Color"
+        },
+        "overlay_opacity": {
+          "label": "Overlay Opacity"
         },
         "padding_block": {
           "label": "Padding Block",
@@ -484,6 +495,10 @@
         "sticky": {
           "label": "Sticky section",
           "info": "The section will stick to the top of the viewport when scrolling down."
+        },
+        "subtract_header_group_height": {
+          "label": "Subtract header group height",
+          "info": "Will subtract the height of all sections in the header group. Useful if the Hero section should fit the whole view port height."
         },
         "text": {
           "label": "Text"
@@ -574,6 +589,19 @@
         }
       }
     },
+    "collection_banner": {
+      "name": "Collection Banner",
+      "settings": {
+        "collection_description": {
+          "label": "Collection Description"
+        }
+      },
+      "presets": {
+        "collection_banner": {
+          "name": "Collection Banner"
+        }
+      }
+    },
     "collection_list": {
       "name": "Collection List",
       "presets": {
@@ -587,22 +615,6 @@
     },
     "hero": {
       "name": "Hero",
-      "settings": {
-        "height": {
-          "label": "Height",
-          "info": "Use a valid CSS value."
-        },
-        "overlay_color": {
-          "label": "Overlay Color"
-        },
-        "overlay_opacity": {
-          "label": "Overlay Opacity"
-        },
-        "subtract_header_group_height": {
-          "label": "Subtract header group height",
-          "info": "Will subtract the height of all sections in the header group. Useful if the Hero section should fit the whole view port height."
-        }
-      },
       "presets": {
         "hero": {
           "name": "Hero"

@@ -9,6 +9,22 @@
  */
 {
   "sections": {
+    "collection_banner_qtKQ8y": {
+      "type": "collection-banner",
+      "name": "t:sections.collection_banner.presets.collection_banner.name",
+      "settings": {
+        "color_scheme": "secondary",
+        "padding_block": "none",
+        "height": "25vh",
+        "subtract_header_group_height": false,
+        "collection_heading": "",
+        "heading_as": "h1",
+        "collection_description": "",
+        "image_loading": "eager",
+        "overlay_color": "#000000",
+        "overlay_opacity": 33
+      }
+    },
     "product-grid": {
       "type": "product-grid",
       "settings": {
@@ -18,9 +34,15 @@
         "columns_mobile": 1,
         "columns_desktop": 4,
         "grid_gap": "m",
-        "card_min_width_px": 220
+        "card_min_width_px": 220,
+        "enable_pagination": false,
+        "per_page": 16,
+        "product_list": [],
+        "collection_reference": "",
+        "enable_quick_add_button": false,
+        "enable_wishlist_button": false
       }
     }
   },
-  "order": ["product-grid"]
+  "order": ["collection_banner_qtKQ8y", "product-grid"]
 }
