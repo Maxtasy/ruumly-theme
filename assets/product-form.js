@@ -89,16 +89,32 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
 
     const cartResponse = await cart.addItem({ item: this.item, sections: ["cart-drawer"] });
 
-    if (!cartResponse) {
-      throw new Error("Failed to add item to cart");
+    if (cartResponse.status === "success") {
+      // Notify other components that the item has been added to the cart.
+      this.publish("product-form:item-added", {
+        item: this.item,
+        sections: cartResponse.data.sections,
+        items: cartResponse.data.items,
+      });
+
+      return;
     }
 
-    // Notify other components that the item has been added to the cart.
-    this.publish("product-form:item-added", {
-      item: this.item,
-      sections: cartResponse.sections,
-      items: cartResponse.items,
-    });
+    if (cartResponse.status === "partial-success") {
+      // TODO: Display the error message to the user in a modal or similar.
+      const errorMessage = cartResponse.data.description;
+
+      // Notify other components that the item has been added to the cart.
+      this.publish("product-form:item-partially-added", {
+        item: this.item,
+        sections: cartResponse.data.sections,
+        items: cartResponse.data.items,
+      });
+
+      return;
+    }
+
+    throw new Error("Failed to add item to cart");
   }
 
   get shippingEstimationElement() {
