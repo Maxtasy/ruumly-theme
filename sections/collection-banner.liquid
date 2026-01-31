@@ -3,6 +3,7 @@
     Section
     Section--FullWidth
     Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
   "
 >
   <div class="Section__Inner">
@@ -64,9 +65,16 @@
     align-items: center;
     justify-content: center;
     gap: var(--size-xs);
+    padding-inline: var(--section-padding-inline-mobile);
     margin: 0 auto;
     max-width: var(--page-width);
     height: 100%;
+  }
+
+  @media screen and (min-width: 769px) {
+    .CollectionBanner__Inner {
+      padding-inline: var(--section-padding-inline-desktop);
+    }
   }
 
   .CollectionBanner__MobileImage,
@@ -87,6 +95,12 @@
     {
       "type": "header",
       "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
     },
     {
       "type": "select",
