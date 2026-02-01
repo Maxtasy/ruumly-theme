@@ -8,6 +8,7 @@
   @param {string} compare_at_price - The compare at price of the line item.
   @param {number} quantity - The quantity of the line item.
   @param {string} key - The key of the line item.
+  @param {string} variant_id - The variant ID of the line item.
   @param {string} url - The URL of the line item.
 {% enddoc %}
 
@@ -15,40 +16,58 @@
   is="line-item-component"
   class="LineItem"
   data-key="{{ key }}"
+  data-variant-id="{{ variant_id }}"
 >
-  <a
-    class="LineItem__Image"
-    href="{{ url }}"
-    aria-label="{{ 'components.product_link.aria_label' | t: product_title: product_title }}"
-  >
-    {% assign image_alt_fallback = 'components.image.product.default_alt_text' | t %}
+  <div class="LineItem__Main">
+    <a
+      class="LineItem__Image"
+      href="{{ url }}"
+      aria-label="{{ 'components.product_link.aria_label' | t: product_title: product_title }}"
+    >
+      {% assign image_alt_fallback = 'components.image.product.default_alt_text' | t %}
 
-    {% render 'image', image: image, variant: 'square', image_alt_fallback: image_alt_fallback %}
-  </a>
-
-  <div class="LineItem__Details">
-    <a class="LineItem__Titles" href="{{ url }}">
-      {% render 'text', text: product_title %}
-
-      {% if variant_title and variant_title != 'Default Title' %}
-        {% render 'text', text: variant_title, variant: 'body-small', color: 'primary-muted' %}
-      {% endif %}
+      {% render 'image', image: image, variant: 'square', image_alt_fallback: image_alt_fallback %}
     </a>
 
-    <div class="LineItem__Price">
-      {% render 'price-list', price: price, compare_at_price: compare_at_price %}
-    </div>
+    <div class="LineItem__Details">
+      <a class="LineItem__Titles" href="{{ url }}">
+        {% render 'text', text: product_title %}
 
-    <div class="LineItem__Actions">
-      {% render 'quantity-selector', quantity: quantity %}
+        {% if variant_title and variant_title != 'Default Title' %}
+          {% render 'text', text: variant_title, variant: 'body-small', color: 'primary-muted' %}
+        {% endif %}
+      </a>
 
-      {% render 'button', text: 'Remove', variant: 'link', action: 'remove', size: 'small' %}
+      <div class="LineItem__Price">
+        {% render 'price-list', price: price, compare_at_price: compare_at_price %}
+      </div>
+
+      <div class="LineItem__Actions">
+        {% render 'quantity-selector', quantity: quantity %}
+
+        {% render 'button', text: 'Remove', variant: 'link', action: 'remove', size: 'small' %}
+      </div>
     </div>
+  </div>
+
+  <div class="LineItem__Alerts">
+    <template class="LineItem__AlertTemplate">
+      {% render 'alert', variant: 'warning', text: '', text_variant: 'body-small' %}
+    </template>
   </div>
 </div>
 
 {% stylesheet %}
   .LineItem {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+    padding: var(--size-xs);
+    background: var(--t-gradient-background);
+    border: var(--border-width) var(--border-style) var(--t-border-muted);
+  }
+
+  .LineItem__Main {
     display: flex;
     gap: var(--size-m);
   }
@@ -64,7 +83,7 @@
 
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 
   .LineItem__Titles {
@@ -78,5 +97,16 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--size-s);
+
+    /* Push down to very bottom of container */
+    margin-top: auto;
+  }
+
+  .LineItem__Alerts {
+    display: none;
+  }
+
+  .LineItem__Alerts--Active {
+    display: block;
   }
 {% endstylesheet %}

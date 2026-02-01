@@ -1,15 +1,13 @@
-class SectionRenderingAPI {
+class SectionRenderingApi {
   constructor() {
-    this.baseUrl = `${window.routes.root}?sections=`;
+    this.baseUrl = `${window.routes.home}?sections=`;
   }
 
-  async fetchSections(sectionIds) {
-    const url = new URL(this.baseUrl + sectionIds.join(","));
-    const response = await fetch(url.toString(), {
+  // `context` can be used to render the sections in a specific context (e.g., a product page).
+  // Values: 'product', 'collection', 'cart', etc.
+  async fetchSections(sectionIds, context) {
+    const response = await fetch(`${this.baseUrl}${context ? `${context}/` : ""}${sectionIds.join(",")}`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
 
     if (!response.ok) {
@@ -22,4 +20,4 @@ class SectionRenderingAPI {
   }
 }
 
-export const sectionRenderingAPI = new SectionRenderingAPI();
+export const sectionRenderingApi = new SectionRenderingApi();

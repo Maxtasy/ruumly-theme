@@ -101,14 +101,12 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
     }
 
     if (cartResponse.status === "partial-success") {
-      // TODO: Display the error message to the user in a modal or similar.
       const errorMessage = cartResponse.data.description;
 
-      // Notify other components that the item has been added to the cart.
+      // Notify other components that the item has been added (partially) to the cart.
       this.publish("product-form:item-partially-added", {
         item: this.item,
-        sections: cartResponse.data.sections,
-        items: cartResponse.data.items,
+        errorMessage,
       });
 
       return;

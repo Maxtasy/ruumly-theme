@@ -45,14 +45,26 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     }
   }
 
-  handleItemPartiallyAdded() {
-    // TODO: Get updated cart drawer markup via section rendering api and rerender.
-    console.log("Handling partially added item...");
+  handleItemPartiallyAdded({ errorMessage, item }) {
     sectionRenderingApi.fetchSections(["cart-drawer"]).then((sections) => {
-      const updatedCartDrawer = sections["cart-drawer"];
+      const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`] || sections["cart-drawer"];
 
       if (updatedCartDrawer) {
         this.rerenderCartDrawer(updatedCartDrawer);
+
+        // Select associated line item and update its alerts.
+
+        const lineItemElement = [...this.lineItemElements].find(
+          (lineItemElement) => lineItemElement.parsedData.variantId === item.id,
+        );
+
+        if (lineItemElement) {
+          lineItemElement.updateAlerts([errorMessage]);
+        }
+
+        //  Open cart drawer and notify other components about the update.
+
+        this.closest(".Drawer").open();
 
         this.publish("cart-drawer:updated", { totalQuantity: this.totalQuantity });
       }
@@ -99,6 +111,10 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     });
 
     this.publish("cart-drawer:updated", { totalQuantity: 0 });
+  }
+
+  get lineItemElements() {
+    return this.querySelectorAll(".LineItem");
   }
 
   get totalQuantity() {
