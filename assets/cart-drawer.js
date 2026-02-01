@@ -45,30 +45,30 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     }
   }
 
-  handleItemPartiallyAdded({ errorMessage, item }) {
-    sectionRenderingApi.fetchSections(["cart-drawer"]).then((sections) => {
-      const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`] || sections["cart-drawer"];
+  async handleItemPartiallyAdded({ errorMessage, item }) {
+    const sections = await sectionRenderingApi.fetchSections(["cart-drawer"]);
 
-      if (updatedCartDrawer) {
-        this.rerenderCartDrawer(updatedCartDrawer);
+    const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`] || sections["cart-drawer"];
 
-        // Select associated line item and update its alerts.
+    if (updatedCartDrawer) {
+      this.rerenderCartDrawer(updatedCartDrawer);
 
-        const lineItemElement = [...this.lineItemElements].find(
-          (lineItemElement) => lineItemElement.parsedData.variantId === item.id,
-        );
+      // Select associated line item and update its alerts.
 
-        if (lineItemElement) {
-          lineItemElement.updateAlerts([errorMessage]);
-        }
+      const lineItemElement = [...this.lineItemElements].find(
+        (lineItemElement) => lineItemElement.parsedData.variantId === item.id,
+      );
 
-        //  Open cart drawer and notify other components about the update.
-
-        this.closest(".Drawer").open();
-
-        this.publish("cart-drawer:updated", { totalQuantity: this.totalQuantity });
+      if (lineItemElement) {
+        lineItemElement.updateAlerts([errorMessage]);
       }
-    });
+
+      //  Open cart drawer and notify other components about the update.
+
+      this.closest(".Drawer").open();
+
+      this.publish("cart-drawer:updated", { totalQuantity: this.totalQuantity });
+    }
   }
 
   async handleCartUpdate({ sections, items }) {
