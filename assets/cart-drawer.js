@@ -1,5 +1,6 @@
 import { cart } from "./cart.js";
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { sectionRenderingApi } from "./section-rendering-api.js";
 import { getClosestSectionId } from "./utils.js";
 
 export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
@@ -8,6 +9,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
 
     this.handleClearCart = this.handleClearCart.bind(this);
     this.handleItemAdded = this.handleItemAdded.bind(this);
+    this.handleItemPartiallyAdded = this.handleItemPartiallyAdded.bind(this);
     this.handleCartUpdate = this.handleCartUpdate.bind(this);
   }
 
@@ -17,6 +19,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     this.subscribe("line-item:remove", this.handleCartUpdate);
 
     globalThis.subscribe("product-form:item-added", this.handleItemAdded);
+    globalThis.subscribe("product-form:item-partially-added", this.handleItemPartiallyAdded);
     globalThis.subscribe("product-card:item-added", this.handleItemAdded);
   }
 
@@ -26,6 +29,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     this.unsubscribe("line-item:remove", this.handleCartUpdate);
 
     globalThis.unsubscribe("product-form:item-added", this.handleItemAdded);
+    globalThis.unsubscribe("product-form:item-partially-added", this.handleItemPartiallyAdded);
     globalThis.unsubscribe("product-card:item-added", this.handleItemAdded);
   }
 
@@ -34,6 +38,32 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
 
     if (updatedCartDrawer) {
       this.rerenderCartDrawer(updatedCartDrawer);
+
+      this.closest(".Drawer").open();
+
+      this.publish("cart-drawer:updated", { totalQuantity: this.totalQuantity });
+    }
+  }
+
+  async handleItemPartiallyAdded({ errorMessage, item }) {
+    const sections = await sectionRenderingApi.fetchSections(["cart-drawer"]);
+
+    const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`] || sections["cart-drawer"];
+
+    if (updatedCartDrawer) {
+      this.rerenderCartDrawer(updatedCartDrawer);
+
+      // Select associated line item and update its alerts.
+
+      const lineItemElement = [...this.lineItemElements].find(
+        (lineItemElement) => lineItemElement.parsedData.variantId === item.id,
+      );
+
+      if (lineItemElement) {
+        lineItemElement.updateAlerts([errorMessage]);
+      }
+
+      //  Open cart drawer and notify other components about the update.
 
       this.closest(".Drawer").open();
 
@@ -81,6 +111,10 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
     });
 
     this.publish("cart-drawer:updated", { totalQuantity: 0 });
+  }
+
+  get lineItemElements() {
+    return this.querySelectorAll(".LineItem");
   }
 
   get totalQuantity() {
