@@ -99,6 +99,9 @@
           }
         }
       },
+      "limit": {
+        "label": "Limit"
+      },
       "position": {
         "options": {
           "bottom": {
@@ -120,6 +123,9 @@
       },
       "secondary_image": {
         "label": "Secondary Image"
+      },
+      "set_limit": {
+        "label": "Set Limit"
       },
       "tag": {
         "label": "Tag",
@@ -773,14 +779,6 @@
     }
   },
   "blocks": {
-    "settings": {
-      "limit": {
-        "label": "Limit"
-      },
-      "set_limit": {
-        "label": "Set Limit"
-      }
-    },
     "buy_buttons": {
       "name": "Buy Buttons"
     },

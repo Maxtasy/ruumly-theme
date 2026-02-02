@@ -99,6 +99,9 @@
           }
         }
       },
+      "limit": {
+        "label": "Limit"
+      },
       "position": {
         "options": {
           "bottom": {
@@ -120,6 +123,9 @@
       },
       "secondary_image": {
         "label": "Zweites Bild"
+      },
+      "set_limit": {
+        "label": "Limit festlegen"
       },
       "tag": {
         "label": "Tag",
@@ -773,14 +779,6 @@
     }
   },
   "blocks": {
-    "settings": {
-      "limit": {
-        "label": "Limit"
-      },
-      "set_limit": {
-        "label": "Limit festlegen"
-      }
-    },
     "buy_buttons": {
       "name": "Kauf Buttons"
     },
