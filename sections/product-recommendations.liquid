@@ -11,7 +11,11 @@
     <div is="product-recommendations-component" class="ProductRecommendations" data-product-id="{{ product.id }}">
       <div class="ProductRecommendations__Content">
         {% if recommendations.performed? %}
-          {% render 'product-list', products: recommendations.products %}
+          {% assign limit = null %}
+          {% if section.settings.limit %}
+            {% assign limit = section.settings.limit %}
+          {% endif %}
+          {% render 'product-list', products: recommendations.products, limit: limit %}
         {% else %}
           {% render 'product-list', use_placeholders: true, limit: 4 %}
         {% endif %}
@@ -58,6 +62,19 @@
       "id": "heading",
       "label": "t:sections.all.settings.heading.label",
       "default": "t:sections.all.settings.heading.default"
+    },
+    {
+      "type": "checkbox",
+      "id": "set_limit",
+      "label": "t:blocks.settings.set_limit.label",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "limit",
+      "label": "t:blocks.settings.limit.label",
+      "default": 4,
+      "visible_if": "{{ section.settings.set_limit }}"
     }
   ],
   "presets": [
