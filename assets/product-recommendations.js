@@ -4,9 +4,10 @@ class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
     super();
 
+    this.limit = this.parsedData.limit;
     this.sectionId = "product-recommendations";
     this.productId = this.parsedData.productId;
-    this.recommendationsUrl = `${window.routes.productRecommendations}?product_id=${this.productId}&section_id=${this.sectionId}`;
+    this.recommendationsUrl = `${window.routes.productRecommendations}?product_id=${this.productId}&section_id=${this.sectionId}&limit=${this.limit}`;
   }
 
   connectedCallback() {
