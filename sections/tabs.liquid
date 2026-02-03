@@ -36,7 +36,13 @@
           {% endif %}
 
           <div class="Tabs__Item">
-            {% render 'product-list', products: block.settings.collection.products, limit: limit %}
+            {% if block.settings.collection.products %}
+              {% assign products = block.settings.collection.products %}
+            {% else %}
+              {% assign products = block.settings.product_list %}
+            {% endif %}
+
+            {% render 'product-list', products: products, limit: limit %}
           </div>
         {% endfor %}
       </div>
@@ -141,6 +147,11 @@
           "type": "collection",
           "id": "collection",
           "label": "t:sections.tabs.settings.collection.label"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "t:sections.all.settings.product_list.label"
         },
         {
           "type": "checkbox",
