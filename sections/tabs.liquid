@@ -19,8 +19,7 @@
               value="{{ block.settings.collection.handle }}"
               {% if forloop.first %}
                 checked
-              {% endif -%}
-              Heading
+              {% endif %}
             >
             {% assign tab_title = block.settings.title | default: block.settings.collection.title %}
             {% render 'text', text: tab_title, transform: 'uppercase' %}
@@ -36,12 +35,7 @@
           {% endif %}
 
           <div class="Tabs__Item">
-            {% if block.settings.collection.products %}
-              {% assign products = block.settings.collection.products %}
-            {% else %}
-              {% assign products = block.settings.product_list %}
-            {% endif %}
-
+            {% assign products = block.settings.collection.products | default: block.settings.product_list %}
             {% render 'product-list', products: products, limit: limit %}
           </div>
         {% endfor %}
