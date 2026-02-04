@@ -10,10 +10,20 @@ export class AnnouncementBar extends CustomComponentMixin(HTMLDivElement) {
     this.interval = null;
     this.timeout = null;
 
-    this.determineSlidability();
+    this.pause = this.pause.bind(this);
+    this.determineSlidability = this.determineSlidability.bind(this);
 
-    this.subscribe("touchstart", this.pause.bind(this));
-    window.addEventListener("resize", this.determineSlidability.bind(this));
+    this.determineSlidability();
+  }
+
+  connectedCallback() {
+    this.subscribe("touchstart", this.pause);
+    globalThis.addEventListener("resize", this.determineSlidability);
+  }
+
+  disconnectedCallback() {
+    this.unsubscribe("touchstart", this.pause);
+    globalThis.removeEventListener("resize", this.determineSlidability);
   }
 
   activateSlider() {
