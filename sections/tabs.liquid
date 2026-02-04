@@ -19,8 +19,7 @@
               value="{{ block.settings.collection.handle }}"
               {% if forloop.first %}
                 checked
-              {% endif -%}
-              Heading
+              {% endif %}
             >
             {% assign tab_title = block.settings.title | default: block.settings.collection.title %}
             {% render 'text', text: tab_title, transform: 'uppercase' %}
@@ -36,7 +35,8 @@
           {% endif %}
 
           <div class="Tabs__Item">
-            {% render 'product-list', products: block.settings.collection.products, limit: limit %}
+            {% assign products = block.settings.collection.products | default: block.settings.product_list %}
+            {% render 'product-list', products: products, limit: limit %}
           </div>
         {% endfor %}
       </div>
@@ -141,6 +141,11 @@
           "type": "collection",
           "id": "collection",
           "label": "t:sections.tabs.settings.collection.label"
+        },
+        {
+          "type": "product_list",
+          "id": "product_list",
+          "label": "t:sections.all.settings.product_list.label"
         },
         {
           "type": "checkbox",
