@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "npx shopify theme dev -e development"
+    "dev": "npx shopify theme dev -e development",
+    "prepare": "husky"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/Maxtasy/ruumly-theme#readme",
   "devDependencies": {
-    "@shopify/cli": "^3.89.0"
+    "@shopify/cli": "^3.89.0",
+    "husky": "^9.1.7"
   }
 }

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Cross-platform colors
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+YELLOW=$(tput setaf 3)
+BLUE=$(tput setaf 4)
+BOLD=$(tput bold)
+RESET=$(tput sgr0)
+
+BRANCH=$(git branch --show-current)
+
+echo "${BLUE}${BOLD}Checking branch name:${RESET} ${BRANCH}"
+
+if [[ ! "$BRANCH" =~ ^(feature|component|section|fix|chore|ci|a11y)/[a-z0-9-]+(-[a-z0-9-]+)*$ ]]; then
+  echo "${RED}${BOLD}❌ Invalid branch name:${RESET} ${RED}${BRANCH}${RESET}"
+  echo "${YELLOW}Allowed prefixes:${RESET} feature/, component/, section/, fix/, chore/, ci/, a11y/"
+  echo ""
+  echo "${BLUE}💡 Hint: You can rename your branch with:${RESET}"
+  echo "  ${BOLD}git branch -m <NEW_BRANCH_NAME>${RESET}"
+  exit 1
+fi
+
+echo "${GREEN}${BOLD}✅ Branch name validation passed${RESET}"
