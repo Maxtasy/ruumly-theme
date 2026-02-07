@@ -31,7 +31,7 @@ jobs:
         run: |
           OLDEST_UNPUBLISHED_THEME_ID=$(shopify theme list \
             --store="${{ secrets.SHOPIFY_STORE }}" \
-            --unpublished \
+            --role=unpublished \
             --json | jq -r '.[0].id')
 
           if [ "$OLDEST_UNPUBLISHED_THEME_ID" != "null" ] && [ -n "$OLDEST_UNPUBLISHED_THEME_ID" ]; then
