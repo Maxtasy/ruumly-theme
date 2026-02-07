@@ -162,7 +162,10 @@
             src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}"
             width="120"
             height="40"
-            alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}"
+            alt="PLACEHOLDER"
+            {%- comment -%}
+              alt="{{ 'gift_cards.issued.add_to_apple_wallet' | t }}"
+            {%- endcomment -%}
             loading="lazy"
           >
         </a>
@@ -173,9 +176,15 @@
           <span class="svg-wrapper">
             {{- 'icon-success.svg' | inline_asset_content -}}
           </span>
-          {{ 'gift_cards.issued.copy_code_success' | t }}
+          {%- comment -%}
+            {{ 'gift_cards.issued.copy_code_success' | t }}
+          {%- endcomment -%}
         </template>
-        <button class="button gift-card__copy-button">{{ 'gift_cards.issued.copy_code' | t }}</button>
+        <button class="button gift-card__copy-button">
+          {%- comment -%}
+            {{ 'gift_cards.issued.copy_code' | t }}
+          {%- endcomment -%}
+        </button>
         <a
           href="{{ shop.url }}"
           class="button button--secondary"
@@ -183,19 +192,28 @@
           rel="noopener"
           aria-describedby="a11y-new-window-message"
         >
-          {{ 'gift_cards.issued.shop_link' | t }}
+          {%- comment -%}
+            {{ 'gift_cards.issued.shop_link' | t }}
+          {%- endcomment -%}
         </a>
       </div>
     </main>
 
     <div hidden>
-      <span id="a11y-new-window-message">{{ 'accessibility.link_messages.new_window' | t }}</span>
+      <span id="a11y-new-window-message">
+        {%- comment -%}
+          {{ 'accessibility.link_messages.new_window' | t }}
+        {%- endcomment -%}
+      </span>
     </div>
   </body>
 </html>
 
 <script>
-  var string = { qrImageAlt: {{ 'gift_cards.issued.qr_image_alt' | t | json }} };
+  var string = { qrImageAlt: 'PLACEHOLDER' };
+  {%- comment -%}
+    var string = { qrImageAlt: {{ 'gift_cards.issued.qr_image_alt' | t | json }} };
+  {%- endcomment -%}
   document.addEventListener('DOMContentLoaded', function() {
    new QRCode( document.querySelector('.gift-card__qr-code'), {
     text: document.querySelector('.gift-card__qr-code').dataset.identifier,
