@@ -1,0 +1,79 @@
+{% doc %}
+  Renders a Text Field component.
+
+  @param {string} [label] - The label for the text field.
+  @param {string} [type] - The type of the text field. ("text", "password", "email", "text-area") Default: "text"
+  @param {number} [rows] - The amount of rows for the text field. Only used if type set to "text-area". Default: 5
+  @param {boolean} [required] - Whether the text field is required.
+  @param {string} [placeholder] - The placeholder for the text field.
+  @param {boolean} [disabled] - Whether the text field is disabled.
+  @param {string} [value] - The value for the text field.
+{% enddoc %}
+
+{% assign type = type | default: 'text' %}
+
+<label class="TextField">
+  {% if label %}
+    <div class="TextField__Label">
+      {% render 'text', text: label %}
+    </div>
+  {% endif %}
+
+  {% if type == 'text-area' %}
+    <textarea
+      class="TextField__TextArea"
+      rows="{{ rows | default: 5 }}"
+      {% if required %}
+        required
+      {% endif %}
+      {% if disabled %}
+        disabled
+      {% endif %}
+      {% if placeholder %}
+        placeholder="{{ placeholder }}"
+      {% endif %}
+    >{{ value }}</textarea>
+  {% else %}
+    <input
+      class="TextField__Input"
+      type="{{ type }}"
+      {% if required %}
+        required
+      {% endif %}
+      {% if disabled %}
+        disabled
+      {% endif %}
+      {% if placeholder %}
+        placeholder="{{ placeholder }}"
+      {% endif %}
+      {% if value %}
+        value="{{ value }}"
+      {% endif %}
+    >
+  {% endif %}
+</label>
+
+{% stylesheet %}
+  .TextField {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+  }
+
+  .TextField__TextArea,
+  .TextField__Input {
+    border-radius: var(--t-border-radius);
+    padding-block: var(--size-s);
+    padding-inline: var(--size-s);
+    border: var(--border-width) var(--border-style) var(--t-border-muted);
+    font-family: var(--font-family-body);
+    font-size: var(--text-size-body-medium);
+    transition: border-color var(--transition-duration-medium) var(--transition-timing);
+  }
+
+  .TextField__TextArea:focus-visible,
+  .TextField__Input:focus-visible {
+    outline: none;
+    border-color: var(--t-text);
+  }
+{% endstylesheet %}
