@@ -27,6 +27,22 @@ jobs:
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli@3.89.0
 
+      - name: Delete oldest unpublished theme
+        run: |
+          OLDEST_UNPUBLISHED_THEME_ID=$(shopify theme list \
+            --store="${{ secrets.SHOPIFY_STORE }}" \
+            --unpublished \
+            --json | jq -r '.[0].id')
+
+          if [ "$OLDEST_UNPUBLISHED_THEME_ID" != "null" ] && [ -n "$OLDEST_UNPUBLISHED_THEME_ID" ]; then
+            echo "Deleting oldest unpublished theme with ID: $OLDEST_UNPUBLISHED_THEME_ID"
+            shopify theme delete \
+              --store="${{ secrets.SHOPIFY_STORE }}" \
+              --theme=$OLDEST_UNPUBLISHED_THEME_ID
+          else
+            echo "No unpublished themes to delete."
+          fi
+
       - name: Deploy and Publish Theme
         run: |
           # 1. Create a formatted timestamp (e.g., 2026-01-27_23-15)
