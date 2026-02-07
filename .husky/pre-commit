@@ -1,15 +1,24 @@
 #!/usr/bin/env bash
 
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[0;33m'
+BLUE='\033[0;34m'
+RESET='\033[0m'
+BOLD='\033[1m'
+
 BRANCH=$(git branch --show-current)
-echo "Checking branch: $BRANCH"
+
+echo -e "${BLUE}${BOLD}Checking branch name:${RESET} ${BRANCH}"
 
 if [[ ! "$BRANCH" =~ ^(feature|component|section|fix|chore|ci|a11y)/[a-z0-9-]+(-[a-z0-9-]+)*$ ]]; then
-  echo "❌ Invalid branch name: $BRANCH"
-  echo "Allowed prefixes: feature/, component/, section/, fix/, chore/, ci/, a11y/"
+  echo -e "${RED}${BOLD}❌ Invalid branch name:${RESET} ${RED}${BRANCH}${RESET}"
+  echo -e "${YELLOW}Allowed prefixes:${RESET} feature/, component/, section/, fix/, chore/, ci/, a11y/"
   echo ""
-  echo "💡 Hint: You can rename your branch with:"
-  echo "   git branch -m <NEW_BRANCH_NAME>"
+  echo -e "${BLUE}💡 Hint: You can rename your branch with:${RESET}"
+  echo -e "  ${BOLD}git branch -m <NEW_BRANCH_NAME>${RESET}"
   exit 1
 fi
 
-echo "✅ Branch name validation passed"
+echo -e "${GREEN}${BOLD}✅ Branch name validation passed${RESET}"
