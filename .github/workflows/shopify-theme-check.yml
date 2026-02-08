@@ -3,15 +3,6 @@ name: Shopify Theme Check
 on:
   pull_request:
     types: [opened, synchronize, reopened]
-    paths:
-      - "assets/**"
-      - "blocks/**"
-      - "config/**"
-      - "layout/**"
-      - "locales/**"
-      - "sections/**"
-      - "snippets/**"
-      - "templates/**"
   workflow_dispatch:
 
 jobs:
@@ -22,7 +13,29 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            theme:
+              - 'assets/**'
+              - 'blocks/**'
+              - 'config/**'
+              - 'layout/**'
+              - 'locales/**'
+              - 'sections/**'
+              - 'snippets/**'
+              - 'templates/**'
+
+      - name: Relevant files changed?
+        run: echo "Files changed = ${{ steps.filter.outputs.theme }}"
+
       - name: Run Shopify Theme Check
+        if: steps.filter.outputs.theme == 'true'
         run: |
           npm install -g @shopify/cli
           shopify theme check
+
+      - name: No relevant changes — auto pass
+        if: steps.filter.outputs.theme != 'true'
+        run: echo "No theme files changed, skipping check."
