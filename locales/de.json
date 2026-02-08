@@ -42,6 +42,11 @@
     "plus_button": {
       "aria_label": "Plus"
     },
+    "pagination": {
+      "aria_label": "Paginierung",
+      "pagination_next": "Weiter",
+      "pagination_prev": "Zurück"
+    },
     "pagination_item": {
       "aria_label": "Gehe zu Item {{ position }}"
     },
