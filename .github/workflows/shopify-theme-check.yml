@@ -1,0 +1,28 @@
+name: Shopify Theme Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    paths:
+      - "assets/**"
+      - "blocks/**"
+      - "config/**"
+      - "layout/**"
+      - "locales/**"
+      - "sections/**"
+      - "snippets/**"
+      - "templates/**"
+  workflow_dispatch:
+
+jobs:
+  theme-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Run Shopify Theme Check
+        run: |
+          npm install -g @shopify/cli
+          shopify theme check
