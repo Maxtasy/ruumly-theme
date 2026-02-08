@@ -19,9 +19,6 @@
           }
         }
       },
-      "card_min_width": {
-        "label": "Mindestgröße der Karte"
-      },
       "content_position_horizontal": {
         "label": "Inhalt Position Horizontal",
         "options": {
@@ -59,17 +56,6 @@
         "options": {
           "none": {
             "label": "Ohne"
-          }
-        }
-      },
-      "grid_settings": {
-        "label": "Raster Einstellungen",
-        "options": {
-          "auto_fill": {
-            "label": "Automatisch befüllen"
-          },
-          "advanced": {
-            "label": "Fortgeschritten"
           }
         }
       },

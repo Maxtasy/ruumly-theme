@@ -30,11 +30,9 @@
       "settings": {
         "color_scheme": "default",
         "padding_block": "medium",
-        "grid_settings": "auto-fill",
         "columns_mobile": 1,
         "columns_desktop": 4,
         "grid_gap": "m",
-        "card_min_width_px": 220,
         "enable_pagination": false,
         "per_page": 16,
         "product_list": [],

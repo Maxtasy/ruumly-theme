@@ -2,15 +2,9 @@
   assign collection_reference = section.settings.collection_reference | default: collection
   assign products = section.settings.product_list | default: collection_reference.products
 
-  assign columns_mobile = null
-  assign columns_desktop = null
-  assign card_min_width_px = section.settings.card_min_width_px
-
-  if section.settings.grid_settings == 'advanced'
-    assign columns_mobile = section.settings.columns_mobile
-    assign columns_desktop = section.settings.columns_desktop
-    assign grid_gap = section.settings.grid_gap
-  endif
+  assign columns_mobile = section.settings.columns_mobile
+  assign columns_desktop = section.settings.columns_desktop
+  assign grid_gap = section.settings.grid_gap
 %}
 
 <section
@@ -25,7 +19,6 @@
       products: products,
       collection_reference: collection_reference,
       grid_gap: grid_gap,
-      card_min_width_px: card_min_width_px,
       columns_mobile: columns_mobile,
       columns_desktop: columns_desktop,
       enable_pagination: section.settings.enable_pagination,
@@ -66,31 +59,16 @@
       ]
     },
     {
-      "type": "select",
-      "id": "grid_settings",
-      "label": "t:global.settings.grid_settings.label",
-      "default": "auto-fill",
-      "options": [
-        {
-          "value": "advanced",
-          "label": "t:global.settings.grid_settings.options.advanced.label"
-        },
-        { "value": "auto-fill", "label": "t:global.settings.grid_settings.options.auto_fill.label" }
-      ]
-    },
-    {
       "type": "number",
       "id": "columns_mobile",
       "label": "t:sections.all.settings.columns_mobile.label",
-      "default": 2,
-      "visible_if": "{{ section.settings.grid_settings == 'advanced' }}"
+      "default": 2
     },
     {
       "type": "number",
       "id": "columns_desktop",
       "label": "t:sections.all.settings.columns_desktop.label",
-      "default": 4,
-      "visible_if": "{{ section.settings.grid_settings == 'advanced' }}"
+      "default": 4
     },
     {
       "type": "select",
@@ -105,18 +83,7 @@
         { "value": "l", "label": "L" },
         { "value": "xl", "label": "XL" },
         { "value": "xxl", "label": "XXL" }
-      ],
-      "visible_if": "{{ section.settings.grid_settings == 'advanced' }}"
-    },
-    {
-      "type": "range",
-      "id": "card_min_width_px",
-      "label": "t:global.settings.card_min_width.label",
-      "default": 150,
-      "min": 50,
-      "max": 500,
-      "step": 5,
-      "unit": "px"
+      ]
     },
     {
       "type": "checkbox",
