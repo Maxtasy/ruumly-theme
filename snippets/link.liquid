@@ -3,15 +3,23 @@
 
   @param {string} text - Link text
   @param {string} url - The URL of the link
+  @param {string} [attributes] - Additional attributes for the link
+  @param {string} [color] - The color of the link ('primary')
   @param {boolean} [external] - Whether the link should be opened in a new window
 {% enddoc %}
 
 <a
-  class="Link"
+  class="
+    Link
+    {% if color %}
+      Link--Color{{ color | camelcase }}
+    {% endif %}
+  "
   href="{{ url }}"
   {% if external %}
     target="_blank"
   {% endif %}
+  {{ attributes }}
 >
   {{- text -}}
 </a>
@@ -21,9 +29,14 @@
     color: var(--t-link);
     transition: color var(--transition-duration-medium) var(--transition-timing);
     font-family: var(--font-body-family);
+    line-height: var(--text-line-height);
   }
 
   .Link:hover {
     color: var(--t-link-hover);
+  }
+
+  .Link--ColorPrimary {
+    color: var(--t-text);
   }
 {% endstylesheet %}

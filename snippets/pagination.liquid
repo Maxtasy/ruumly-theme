@@ -1,51 +1,95 @@
 {% doc %}
   Renders a Pagination component.
-  TODO: Outsource aria-label into locale files.
-  TODO: Outsource "Prev" / "Next" into locale files.
-  TODO: Use Link/Text components for links and texts.
 
   @param {object} paginate - The paginate object.
+  @param {string} [variant] - The variant of the pagination ('text', 'icons'). Default: 'icons'
 {% enddoc %}
 
-{% if paginate.pages > 1 %}
-  <nav class="Pagination" role="navigation" aria-label="Pagination">
+{% liquid
+  assign variant = variant | default: 'icons'
+  assign pagination_next_text = 'components.pagination.pagination_next' | t
+  assign pagination_prev_text = 'components.pagination.pagination_prev' | t
+%}
+
+{% capture previous_content %}
+  {% if variant == 'text' %}
     {% if paginate.previous %}
-      <a href="{{ paginate.previous.url }}" class="Pagination__Prev">Prev</a>
+      {% render 'link',
+        text: pagination_prev_text,
+        url: paginate.previous.url,
+        color: 'primary',
+        attributes: 'rel="prev"'
+      %}
     {% else %}
-      <span class="Pagination__Prev Pagination__Prev--Disabled">Prev</span>
+      {% render 'text', text: pagination_prev_text, color: 'primary-muted', as: 'span' %}
     {% endif %}
+  {% else %}
+    {% assign disabled = true %}
+    {% if paginate.previous %}
+      {% assign disabled = false %}
+    {% endif %}
+    {% render 'button',
+      icon: 'arrow-left',
+      variant: 'plain',
+      size: 'small',
+      url: paginate.previous.url,
+      disabled: disabled
+    %}
+  {% endif %}
+{% endcapture %}
+
+{% capture next_content %}
+  {% if variant == 'text' %}
+    {% if paginate.next %}
+      {% render 'link',
+        text: pagination_next_text,
+        url: paginate.next.url,
+        color: 'primary',
+        attributes: 'rel="next"'
+      %}
+    {% else %}
+      {% render 'text', text: pagination_next_text, color: 'primary-muted', as: 'span' %}
+    {% endif %}
+  {% else %}
+    {% assign disabled = true %}
+    {% if paginate.next %}
+      {% assign disabled = false %}
+    {% endif %}
+    {% render 'button',
+      icon: 'arrow-right',
+      variant: 'plain',
+      size: 'small',
+      url: paginate.next.url,
+      disabled: disabled
+    %}
+  {% endif %}
+{% endcapture %}
+
+{% if paginate.pages > 1 %}
+  <nav class="Pagination" role="navigation" aria-label="{{ 'components.pagination.aria_label' | t }}">
+    {{ previous_content }}
 
     <ul class="Pagination__List u-NoList">
       {% for part in paginate.parts %}
         {% if part.is_link %}
           <li>
-            <a href="{{ part.url }}" class="Pagination__Link">
-              {{ part.title }}
-            </a>
+            {% render 'link', text: part.title, url: part.url, color: 'primary' %}
           </li>
         {% else %}
           {% if part.title == paginate.current_page %}
             <li>
-              <span class="Pagination__Link Pagination__Link--Active">
-                {{ part.title }}
-              </span>
+              {% render 'text', text: part.title, text_decoration: 'underline', color: 'primary-muted', as: 'span' %}
             </li>
           {% else %}
             <li>
-              <span class="Pagination__Ellipsis">
-                {{ part.title }}
-              </span>
+              {% render 'text', text: part.title, as: 'span' %}
             </li>
           {% endif %}
         {% endif %}
       {% endfor %}
     </ul>
 
-    {% if paginate.next %}
-      <a href="{{ paginate.next.url }}" class="Pagination__Next">Next</a>
-    {% else %}
-      <span class="Pagination__Next Pagination__Next--Disabled">Next</span>
-    {% endif %}
+    {{ next_content }}
   </nav>
 {% endif %}
 
@@ -59,6 +103,6 @@
   .Pagination__List {
     display: flex;
     align-items: center;
-    gap: var(--size-s);
+    gap: var(--size-m);
   }
 {% endstylesheet %}
