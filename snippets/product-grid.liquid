@@ -3,7 +3,6 @@
 
   @param {object} [products] - List of product objects. The products to render inside the grid.
   @param {object} [collection_reference] - Collection object. Use this if you want to have pagination.
-  @param {string} [card_min_width_px] - Defaults to `200px`.
   @param {string} [columns_mobile] - Will disable the `auto-fill` behaviour and instead use a fixed column count.
   @param {string} [columns_desktop] - Will disable the `auto-fill` behaviour and instead use a fixed column count.
   @param {string} [grid_gap] - Defaults to `m`.
@@ -29,7 +28,6 @@
         u-NoList
       "
       style="
-        --card-min-width: {{ card_min_width_px | default: 200 }};
         --columns-mobile: {{ columns_mobile }};
         --columns-desktop: {{ columns_desktop }};
         --gap: var(--size-{{ grid_gap | default: 'm' }});
@@ -89,20 +87,14 @@
   }
 
   .ProductGrid__Items {
-    --min-width: calc(var(--card-min-width) * 1px);
-
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(var(--min-width), 1fr));
+    grid-template-columns: repeat(var(--columns-mobile), 1fr);
     gap: var(--gap);
   }
 
-  .ProductGrid__Items--FixedColumnsMobile {
-    grid-template-columns: repeat(var(--columns-mobile), minmax(var(--min-width), 1fr));
-  }
-
   @media screen and (min-width: 769px) {
-    .ProductGrid__Items--FixedColumnsDesktop {
-      grid-template-columns: repeat(var(--columns-desktop), minmax(var(--min-width), 1fr));
+    .ProductGrid__Items {
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
     }
   }
 {% endstylesheet %}

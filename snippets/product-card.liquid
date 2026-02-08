@@ -31,10 +31,10 @@
 >
   <a href="{{ url }}">
     <div class="ProductCard__Image">
-      {% render 'image', image: image, variant: 'square' %}
+      {% render 'image', image: image, variant: 'square', sizes: '480px', widths: '480' %}
 
       {% if hover_effect == 'swap' and swap_image %}
-        {% render 'image', image: swap_image, variant: 'square' %}
+        {% render 'image', image: swap_image, variant: 'square', sizes: '480px', widths: '480' %}
       {% endif %}
 
       {% liquid

@@ -19,9 +19,6 @@
           }
         }
       },
-      "card_min_width": {
-        "label": "Card Min Width"
-      },
       "content_position_horizontal": {
         "label": "Content Position Horizontal",
         "options": {
@@ -59,17 +56,6 @@
         "options": {
           "none": {
             "label": "None"
-          }
-        }
-      },
-      "grid_settings": {
-        "label": "Grid Settings",
-        "options": {
-          "auto_fill": {
-            "label": "Auto Fill"
-          },
-          "advanced": {
-            "label": "Advanced"
           }
         }
       },
