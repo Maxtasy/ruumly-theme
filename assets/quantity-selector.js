@@ -17,6 +17,11 @@ class QuantitySelector extends CustomComponentMixin(HTMLDivElement) {
     this.subscribe("button:click:decrement", this.handleDecrement);
   }
 
+  disconnectedCallback() {
+    this.unsubscribe("button:click:increment", this.handleIncrement);
+    this.unsubscribe("button:click:decrement", this.handleDecrement);
+  }
+
   handleIncrement() {
     if (this.connectedToLineItem) {
       this.loadingElement?.classList.add("QuantitySelector__Loading--Active");
