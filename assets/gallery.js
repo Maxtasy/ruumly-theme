@@ -16,6 +16,12 @@ class Gallery extends CustomComponentMixin(HTMLDivElement) {
     this.subscribe("button:click:next", this.handleNextClick);
   }
 
+  disconnectedCallback() {
+    this.unsubscribe("button:click:prev", this.handlePrevClick);
+
+    this.unsubscribe("button:click:next", this.handleNextClick);
+  }
+
   handlePrevClick() {
     if (this.currentIndex <= 0) return;
 
