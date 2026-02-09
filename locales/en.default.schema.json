@@ -86,7 +86,11 @@
         }
       },
       "limit": {
-        "label": "Limit"
+        "label": "Limit",
+        "info": {
+          "blog_article_card": "Maximum Blog Article Cards",
+          "product_card": "Maximum Product Cards"
+        }
       },
       "position": {
         "options": {
@@ -658,11 +662,6 @@
     },
     "product_list": {
       "name": "Product List",
-      "settings": {
-        "limit": {
-          "info": "Maximum Product Cards"
-        }
-      },
       "presets": {
         "product_list": {
           "name": "Product List"
