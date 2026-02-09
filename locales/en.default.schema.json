@@ -517,9 +517,6 @@
         },
         "blog_article_list": {
           "label": "Blog Article List"
-        },
-        "limit": {
-          "info": "Maximum Blog Article Cards"
         }
       },
       "presets": {
@@ -741,9 +738,6 @@
         },
         "collection": {
           "label": "Collection"
-        },
-        "limit": {
-          "label": "Limit number of products."
         }
       },
       "presets": {
