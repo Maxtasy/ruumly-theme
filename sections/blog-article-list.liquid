@@ -95,14 +95,15 @@
     {
       "type": "checkbox",
       "id": "set_limit",
-      "label": "t:sections.all.settings.set_limit.label",
+      "label": "t:global.settings.set_limit.label",
       "default": false
     },
     {
       "type": "number",
       "id": "limit",
-      "label": "t:sections.all.settings.blog_article_limit.label",
+      "label": "t:global.settings.limit.label",
       "default": 3,
+      "info": "t:sections.blog_article_list.settings.limit.info",
       "visible_if": "{{ section.settings.set_limit }}"
     }
   ],

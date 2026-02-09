@@ -322,9 +322,6 @@
         }
       },
       "settings": {
-        "blog_article_limit": {
-          "label": "Maximale Anzahl von Blog-Artikel-Karten"
-        },
         "border_bottom": {
           "label": "Unteren Rand anzeigen"
         },
@@ -516,6 +513,9 @@
         },
         "blog_article_list": {
           "label": "Blog-Artikel-Liste"
+        },
+        "limit": {
+          "info": "Maximale Blogartikelkarten"
         }
       },
       "presets": {

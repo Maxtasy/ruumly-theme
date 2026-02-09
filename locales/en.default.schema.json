@@ -322,9 +322,6 @@
         }
       },
       "settings": {
-        "blog_article_limit": {
-          "label": "Maximum Blog Article Cards"
-        },
         "border_bottom": {
           "label": "Show bottom border"
         },
@@ -516,6 +513,9 @@
         },
         "blog_article_list": {
           "label": "Blog Article List"
+        },
+        "limit": {
+          "info": "Maximum Blog Article Cards"
         }
       },
       "presets": {
@@ -660,7 +660,7 @@
       "name": "Product List",
       "settings": {
         "limit": {
-          "info": "Maximum product cards"
+          "info": "Maximum Product Cards"
         }
       },
       "presets": {
