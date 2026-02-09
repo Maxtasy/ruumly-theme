@@ -7,7 +7,15 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLFieldSetElement) {
     this.optionPosition = this.parsedData.optionPosition;
     this.optionSelectedValue = this.parsedData.optionSelectedValue;
 
-    this.subscribe("change", this.handleChange.bind(this));
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  connectedCallback() {
+    this.subscribe("change", this.handleChange);
+  }
+
+  disconnectedCallback() {
+    this.unsubscribe("change", this.handleChange);
   }
 
   handleChange(event) {
