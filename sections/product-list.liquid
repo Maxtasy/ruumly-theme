@@ -94,13 +94,14 @@
     {
       "type": "checkbox",
       "id": "set_limit",
-      "label": "t:sections.all.settings.set_limit.label"
+      "label": "t:global.settings.set_limit.label"
     },
     {
       "type": "number",
       "id": "limit",
-      "label": "t:sections.all.settings.product_limit.label",
+      "label": "t:global.settings.limit.label",
       "default": 0,
+      "info": "t:sections.product_list.settings.limit.info",
       "visible_if": "{{ section.settings.set_limit }}"
     },
     {

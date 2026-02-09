@@ -474,15 +474,8 @@
         "product": {
           "label": "Product"
         },
-        "product_limit": {
-          "label": "Maximum Product Cards",
-          "info": "Ignore when 0"
-        },
         "product_list": {
           "label": "Product List"
-        },
-        "set_limit": {
-          "label": "Set Limit"
         },
         "sticky": {
           "label": "Sticky section",
@@ -665,6 +658,11 @@
     },
     "product_list": {
       "name": "Product List",
+      "settings": {
+        "limit": {
+          "info": "Maximum product cards"
+        }
+      },
       "presets": {
         "product_list": {
           "name": "Product List"
