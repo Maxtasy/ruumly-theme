@@ -2,10 +2,10 @@ class Wishlist {
   constructor() {
     this.items = this.getLocalStorage();
 
-    document.addEventListener("button:click:wishlist:add", this.handleWishlistAdd.bind(this));
-    document.addEventListener("button:click:wishlist:remove", this.handleWishlistRemove.bind(this));
+    globalThis.addEventListener("button:click:wishlist:add", this.handleWishlistAdd.bind(this));
+    globalThis.addEventListener("button:click:wishlist:remove", this.handleWishlistRemove.bind(this));
 
-    window.wishlist = this;
+    globalThis.wishlist = this;
   }
 
   addItem(item) {
