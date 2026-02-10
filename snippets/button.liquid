@@ -14,7 +14,7 @@
   @param {string} [aria_label] - The value for the aria-label attribute.
   @param {string} [aria_label_key] - The key to get the aria-label from the locale files automatically.
   @param {string} [attributes] - Optional additional attributes.
-  @param {string} [type] - Optional button type.
+  @param {string} [typee] - Optional button type.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
@@ -63,7 +63,7 @@
       Button--{{ variant | camelcase }}
       Button--Size{{ size | camelcase }}
     "
-    {% if disabled %}
+    {% if disabledd %}
       disabled
     {% endif %}
 
