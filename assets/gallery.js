@@ -12,13 +12,11 @@ class Gallery extends CustomComponentMixin(HTMLDivElement) {
 
   connectedCallback() {
     this.subscribe("button:click:prev", this.handlePrevClick);
-
     this.subscribe("button:click:next", this.handleNextClick);
   }
 
   disconnectedCallback() {
     this.unsubscribe("button:click:prev", this.handlePrevClick);
-
     this.unsubscribe("button:click:next", this.handleNextClick);
   }
 
