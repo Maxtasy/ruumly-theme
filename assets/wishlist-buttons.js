@@ -4,29 +4,35 @@ export class WishlistButtons extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
     super();
 
-    this.init();
-  }
-
-  init() {
     this.productId = this.parsedData.productId;
-
-    this.subscribe("button:click:wishlist:add", this.handleWishlistAddButtonClick.bind(this));
-    this.subscribe("button:click:wishlist:remove", this.handleWishlistRemoveButtonClick.bind(this));
 
     this.setState();
 
-    window.requestAnimationFrame(() => {
+    globalThis.requestAnimationFrame(() => {
       this.classList.add("WishlistButtons--Initialized");
     });
+
+    this.handleWishlistAddButtonClick = this.handleWishlistAddButtonClick.bind(this);
+    this.handleWishlistRemoveButtonClick = this.handleWishlistRemoveButtonClick.bind(this);
+  }
+
+  connectedCallback() {
+    this.subscribe("button:click:wishlist:add", this.handleWishlistAddButtonClick);
+    this.subscribe("button:click:wishlist:remove", this.handleWishlistRemoveButtonClick);
+  }
+
+  disconnectedCallback() {
+    this.unsubscribe("button:click:wishlist:add", this.handleWishlistAddButtonClick);
+    this.unsubscribe("button:click:wishlist:remove", this.handleWishlistRemoveButtonClick);
   }
 
   setState() {
-    if (!window.wishlist) {
+    if (!globalThis.wishlist) {
       console.warn("Wishlist module not available");
       return;
     }
 
-    const found = window.wishlist.items.find((item) => {
+    const found = globalThis.wishlist.items.find((item) => {
       return item.productId === this.productId;
     });
 
@@ -39,7 +45,7 @@ export class WishlistButtons extends CustomComponentMixin(HTMLDivElement) {
     const iconElement = this.querySelector("[data-action='wishlist:add'] .Icon");
     const destinationElement = document.querySelector("[data-wishlist-page-button] .Icon");
 
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersReducedMotion = globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     if (destinationElement && !prefersReducedMotion) {
       const clonedIconElement = iconElement.cloneNode(true);
@@ -56,7 +62,7 @@ export class WishlistButtons extends CustomComponentMixin(HTMLDivElement) {
       clonedIconElement.style.top = `${initialPosition.y}px`;
       clonedIconElement.style.left = `${initialPosition.x}px`;
 
-      window.requestAnimationFrame(() => {
+      globalThis.requestAnimationFrame(() => {
         const xDelta = finalPosition.x - initialPosition.x;
         const yDelta = finalPosition.y - initialPosition.y;
 

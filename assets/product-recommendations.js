@@ -8,9 +8,19 @@ class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
     this.sectionId = "product-recommendations";
     this.productId = this.parsedData.productId;
     this.recommendationsUrl = `${window.routes.productRecommendations}?product_id=${this.productId}&section_id=${this.sectionId}&limit=${this.limit}`;
+
+    this.observer = null;
   }
 
   connectedCallback() {
+    this.setObserver();
+  }
+
+  disconnectedCallback() {
+    this.observer?.disconnect();
+  }
+
+  setObserver() {
     this.observer = new IntersectionObserver((entries) => {
       const isIntersecting = entries.find((entry) => {
         return entry.target === this;

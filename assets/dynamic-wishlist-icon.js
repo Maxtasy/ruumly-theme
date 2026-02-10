@@ -4,22 +4,28 @@ class DynamicWishlistIconComponent extends CustomComponentMixin(HTMLDivElement) 
   constructor() {
     super();
 
-    this.init();
+    this.handleWishlistUpdate = this.handleWishlistUpdate.bind(this);
   }
 
-  init() {
-    globalThis.addEventListener("wishlist:update", (event) => {
-      const itemCount = event.detail.length;
-
-      if (itemCount > 0) {
-        this.showIndicator();
-        this.setIndicatorCount(itemCount);
-      } else {
-        this.hideIndicator();
-      }
-    });
+  connectedCallback() {
+    globalThis.addEventListener("wishlist:update", this.handleWishlistUpdate);
 
     this.setState();
+  }
+
+  disconnectedCallback() {
+    globalThis.removeEventListener("wishlist:update", this.handleWishlistUpdate);
+  }
+
+  handleWishlistUpdate(event) {
+    const itemCount = event.detail.length;
+
+    if (itemCount > 0) {
+      this.showIndicator();
+      this.setIndicatorCount(itemCount);
+    } else {
+      this.hideIndicator();
+    }
   }
 
   setState() {
