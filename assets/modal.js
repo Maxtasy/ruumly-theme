@@ -18,7 +18,6 @@ class Modal extends CustomComponentMixin(HTMLDialogElement) {
     globalThis.subscribe(`button:click:open-modal:${this.name}`, this.handleOpenEvent);
 
     this.subscribe("button:click:close", this.handleCloseEvent);
-
     this.subscribe("click", this.handleClickEvent);
   }
 
@@ -26,7 +25,6 @@ class Modal extends CustomComponentMixin(HTMLDialogElement) {
     globalThis.unsubscribe(`button:click:open-modal:${this.name}`, this.handleOpenEvent);
 
     this.unsubscribe("button:click:close", this.handleCloseEvent);
-
     this.unsubscribe("click", this.handleClickEvent);
   }
 
