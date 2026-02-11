@@ -1,10 +1,40 @@
 {% doc %}
   Renders a Comment component.
 
-  @param {string} avatar - The image object of the comment author's avatar.
   @param {string} name - The name of the comment author.
   @param {string} created_at - The creation date of the comment.
   @param {string} text - The text content of the comment.
 {% enddoc %}
 
-<div class="Comment"></div>
+<div class="Comment">
+  <div class="Comment__Author">
+    {% render 'avatar', initials: 'M', size: 'medium' %}
+
+    <div class="Comment__AuthorName">
+      {% render 'text', text: name, as: 'strong' %}
+
+      {% render 'text', text: created_at, variant: 'body-small' %}
+    </div>
+  </div>
+
+  {% render 'text', text: text %}
+</div>
+
+{% stylesheet %}
+  .Comment {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .Comment__Author {
+    display: flex;
+    align-items: center;
+    gap: var(--size-m);
+  }
+
+  .Comment__AuthorName {
+    display: flex;
+    flex-direction: column;
+  }
+{% endstylesheet %}

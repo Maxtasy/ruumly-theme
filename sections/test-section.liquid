@@ -11,19 +11,7 @@
     <div class="TestSection">
       {% render 'text', text: 'Insert your test component here' %}
 
-      {% render 'text-field' %}
-
-      {% render 'text-field', label: 'disabled', disabled: true, value: 'value' %}
-
-      {% render 'text-field', label: 'Label', placeholder: 'placeholder' %}
-
-      {% render 'text-field', label: 'email', placeholder: 'placeholder', type: 'email', required: true %}
-
-      {% render 'text-field', label: 'password', placeholder: 'placeholder', type: 'password' %}
-
-      {% render 'text-field', label: 'text area', placeholder: 'placeholder', type: 'text-area' %}
-
-      {% render 'text-field', label: 'text area', value: 'value', type: 'text-area', rows: 3 %}
+      {% render 'comment', name: article.user.name, created_at: 'Vor 2 Tagen', text: 'Dieser Artikel ist super!' %}
     </div>
   </div>
 </section>
