@@ -6,25 +6,82 @@
   "
 >
   <div class="Section__Inner">
-    <form class="CommentForm">
-      {% render 'text-field', label: 'Your name', placeholder: 'Enter name' %}
+    <div class="Comments">
+      {% if blog.comments_enabled? %}
+        {% form 'new_comment', article, class: 'Comments__Form' %}
+          {{ form.errors | default_errors }}
 
-      {% render 'text-field', label: 'Your email', placeholder: 'Enter email', type: 'email' %}
+          {% render 'text-field',
+            label: 'Your name',
+            placeholder: 'John Doe',
+            name: 'comment[author]',
+            value: form.author
+          %}
 
-      {% render 'text-field', label: 'Your message', placeholder: 'Enter message', type: 'text-area' %}
+          {% render 'text-field',
+            label: 'Your email',
+            placeholder: 'john.doe@mail.com',
+            type: 'email',
+            name: 'comment[email]',
+            value: form.email
+          %}
 
-      {% render 'text', text: 'Please note that your comments must be approved before they are published.' %}
+          {% render 'text-field',
+            label: 'Your message',
+            placeholder: 'Enter message...',
+            type: 'text-area',
+            name: 'comment[body]',
+            value: form.body
+          %}
 
-      {% render 'button', variant: 'primary', content: 'post comment' %}
-    </form>
+          {% if blog.moderated? %}
+            {% render 'text', text: 'Please note that your comments must be approved before they are published.' %}
+          {% endif %}
+
+          {% render 'button', variant: 'primary', content: 'post comment' %}
+        {% endform %}
+
+        <ul class="Comments__Comments u-NoList">
+          {% for comment in article.comments %}
+            <li>
+              {% render 'comment', author: comment.author, created_at: comment.created_at, content: comment.content %}
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        {% render 'text', text: 'Comments disabled.' %}
+      {% endif %}
+    </div>
   </div>
 </section>
+
+{% stylesheet %}
+  .Comments {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xl);
+  }
+
+  .Comments__Form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .Comments__Comments {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:sections.comment.name",
   "enabled_on": {
-    "templates": ["blog"]
+    "templates": ["article"]
   },
   "settings": [
     {
@@ -68,11 +125,3 @@
   ]
 }
 {% endschema %}
-
-{% stylesheet %}
-  .CommentForm {
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-m);
-  }
-{% endstylesheet %}

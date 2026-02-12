@@ -1,24 +1,24 @@
 {% doc %}
   Renders a Comment component.
 
-  @param {string} name - The name of the comment author.
+  @param {string} author - The author of the comment author.
   @param {string} created_at - The creation date of the comment.
-  @param {string} text - The text content of the comment.
+  @param {string} content - The content of the comment.
 {% enddoc %}
 
 <div class="Comment">
   <div class="Comment__Header">
     {% liquid
-      assign name_parts = name | split: ' '
-      assign first_initial = name_parts[0] | slice: 0
-      assign second_initial = name_parts[1] | slice: 0
+      assign author_parts = author | split: ' '
+      assign first_initial = author_parts[0] | slice: 0
+      assign second_initial = author_parts[1] | slice: 0
       assign initials = first_initial | append: second_initial
     %}
 
     {% render 'avatar', initials: initials, size: 'medium' %}
 
     <div class="Comment__Details">
-      {% render 'text', text: name, as: 'strong' %}
+      {% render 'text', text: author, as: 'strong' %}
 
       {% capture passed_time_formatted %}
         {% render 'passed-time', created_at: created_at %}
@@ -29,7 +29,7 @@
   </div>
 
   <div class="Comment__Content">
-    {% render 'text', text: text %}
+    {% render 'text', text: content %}
   </div>
 </div>
 
@@ -37,13 +37,13 @@
   .Comment {
     display: flex;
     flex-direction: column;
-    gap: var(--size-m);
+    gap: var(--size-s);
   }
 
   .Comment__Header {
     display: flex;
     align-items: center;
-    gap: var(--size-m);
+    gap: var(--size-s);
   }
 
   .Comment__Details {
