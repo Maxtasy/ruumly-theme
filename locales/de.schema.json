@@ -575,6 +575,14 @@
         }
       }
     },
+    "comment": {
+      "name": "Kommentar",
+      "presets": {
+        "comment": {
+          "name": "Kommentar"
+        }
+      }
+    },
     "collection_banner": {
       "name": "Kollektionsbanner",
       "settings": {

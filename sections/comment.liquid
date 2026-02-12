@@ -1,0 +1,71 @@
+<section
+  class="
+    Section
+    Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
+  <div class="Section__Inner">
+    <div class="CommentInput">
+      {% render 'text-field', label: 'Your name', placeholder: 'Enter name' %}
+
+      {% render 'text-field', label: 'Your email', placeholder: 'Enter email', type: 'email' %}
+
+      {% render 'text-field', label: 'Your message', placeholder: 'Enter message', type: 'text-area' %}
+
+      {% render 'text', text: 'Please note that your comments must be approved before they are published.' %}
+
+      {% render 'button', variant: 'primary', content: 'post comment' %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.comment.name",
+  "enabled_on": {
+    "templates": ["blog"]
+  },
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "select",
+      "id": "padding_block",
+      "label": "t:sections.all.settings.padding_block.label",
+      "default": "medium",
+      "options": [
+        { "value": "none", "label": "t:sections.all.settings.padding_block.options.none.label" },
+        { "value": "small", "label": "t:sections.all.settings.padding_block.options.small.label" },
+        { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
+        { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
+      ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.comment.presets.comment.name"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+  .CommentInput {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+{% endstylesheet %}
