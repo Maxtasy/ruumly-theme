@@ -11,19 +11,13 @@
     <div class="TestSection">
       {% render 'text', text: 'Insert your test component here' %}
 
-      {% render 'text-field' %}
+      {% render 'comment',
+        name: 'Martina Meyer-Esders',
+        created_at: '2026-01-20 19:27:00 +0100',
+        text: "It's an great articel!"
+      %}
 
-      {% render 'text-field', label: 'disabled', disabled: true, value: 'value' %}
-
-      {% render 'text-field', label: 'Label', placeholder: 'placeholder' %}
-
-      {% render 'text-field', label: 'email', placeholder: 'placeholder', type: 'email', required: true %}
-
-      {% render 'text-field', label: 'password', placeholder: 'placeholder', type: 'password' %}
-
-      {% render 'text-field', label: 'text area', placeholder: 'placeholder', type: 'text-area' %}
-
-      {% render 'text-field', label: 'text area', value: 'value', type: 'text-area', rows: 3 %}
+      {% render 'comment', name: 'Martina', created_at: '2026-01-20 19:27:00 +0100', text: "It's an great articel!" %}
     </div>
   </div>
 </section>
