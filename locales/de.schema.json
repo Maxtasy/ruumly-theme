@@ -577,6 +577,13 @@
     },
     "comment": {
       "name": "Kommentar",
+      "settings": {
+        "placeholder_text": {
+          "label": "Platzhalter Text",
+          "info": "Der Platzhaltertext, wenn keine Kommentare verfügbar sind.",
+          "default": "Noch keine Kommentare. Fügen Sie über das obige Formular einen Kommentar hinzu."
+        }
+      },
       "presets": {
         "comment": {
           "name": "Kommentar"

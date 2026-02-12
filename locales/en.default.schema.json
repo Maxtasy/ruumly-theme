@@ -577,6 +577,13 @@
     },
     "comment": {
       "name": "Comment",
+      "settings": {
+        "placeholder_text": {
+          "label": "Placeholder Text",
+          "info": "The placeholder text, if no comments available.",
+          "default": "No comments yet. Add a comment via the form above."
+        }
+      },
       "presets": {
         "comment": {
           "name": "Comment"

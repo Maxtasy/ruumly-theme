@@ -6,7 +6,7 @@
   "
 >
   <div class="Section__Inner">
-    <div class="CommentInput">
+    <form class="CommentForm">
       {% render 'text-field', label: 'Your name', placeholder: 'Enter name' %}
 
       {% render 'text-field', label: 'Your email', placeholder: 'Enter email', type: 'email' %}
@@ -16,7 +16,7 @@
       {% render 'text', text: 'Please note that your comments must be approved before they are published.' %}
 
       {% render 'button', variant: 'primary', content: 'post comment' %}
-    </div>
+    </form>
   </div>
 </section>
 
@@ -52,6 +52,13 @@
     {
       "type": "header",
       "content": "t:sections.all.headers.section_content.content"
+    },
+    {
+      "type": "text",
+      "id": "placeholder_text",
+      "label": "t:sections.comment.settings.placeholder_text.label",
+      "info": "t:sections.comment.settings.placeholder_text.info",
+      "default": "t:sections.comment.settings.placeholder_text.default"
     }
   ],
   "presets": [
@@ -63,7 +70,7 @@
 {% endschema %}
 
 {% stylesheet %}
-  .CommentInput {
+  .CommentForm {
     display: flex;
     flex-direction: column;
     gap: var(--size-m);
