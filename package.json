@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": "npx shopify theme dev -e development",
-    "prepare": "husky"
+    "prepare": "husky",
+    "test:e2e": "npx playwright test tests/e2e",
+    "test:visual": "npx playwright test tests/visual",
+    "test:visual:update": "npx playwright test tests/visual --update-snapshots",
+    "test:e2e:headed": "npx playwright test tests/e2e --headed",
+    "test:visual:headed": "npx playwright test tests/visual --headed"
   },
   "repository": {
     "type": "git",
@@ -18,7 +23,10 @@
   },
   "homepage": "https://github.com/Maxtasy/ruumly-theme#readme",
   "devDependencies": {
+    "@playwright/test": "^1.58.2",
     "@shopify/cli": "^3.89.0",
+    "@types/node": "^25.2.3",
+    "dotenv": "^17.2.4",
     "husky": "^9.1.7"
   }
 }
