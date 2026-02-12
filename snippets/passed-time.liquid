@@ -1,0 +1,36 @@
+{% liquid
+  assign year_seconds = 31536000
+  assign month_seconds = 2592000
+  assign week_seconds = 604800
+  assign day_seconds = 86400
+  assign hour_seconds = 3600
+  assign minute_seconds = 60
+
+  assign created_at_seconds = created_at | date: '%s' | plus: 0
+  assign now_seconds = 'now' | date: '%s' | plus: 0
+  assign passed_seconds = now_seconds | minus: created_at_seconds
+  assign passed_years = passed_seconds | divided_by: year_seconds
+  assign passed_months = passed_seconds | divided_by: month_seconds
+  assign passed_weeks = passed_seconds | divided_by: week_seconds
+  assign passed_days = passed_seconds | divided_by: day_seconds
+  assign passed_hours = passed_seconds | divided_by: hour_seconds
+  assign passed_minutes = passed_seconds | divided_by: minute_seconds
+
+  if passed_years > 0
+    assign date_text = 'date.passed_time.years' | t: count: passed_years
+  elsif passed_months > 0
+    assign date_text = 'date.passed_time.months' | t: count: passed_months
+  elsif passed_weeks > 0
+    assign date_text = 'date.passed_time.weeks' | t: count: passed_weeks
+  elsif passed_days > 0
+    assign date_text = 'date.passed_time.days' | t: count: passed_days
+  elsif passed_hours > 0
+    assign date_text = 'date.passed_time.hours' | t: count: passed_hours
+  elsif passed_minutes > 0
+    assign date_text = 'date.passed_time.minutes' | t: count: passed_minutes
+  else
+    assign date_text = 'date.passed_time.just_now' | t
+  endif
+%}
+
+{{ date_text }}
