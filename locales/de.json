@@ -28,7 +28,7 @@
       },
       "minutes": {
         "one": "vor {{ count }} Minute",
-        "other": "vor {{ count }} Minutes"
+        "other": "vor {{ count }} Minuten"
       },
       "just_now": "gerade eben"
     }
