@@ -4,7 +4,15 @@ export class Button extends CustomComponentMixin(HTMLButtonElement) {
   constructor() {
     super();
 
-    this.subscribe("click", this.handleClick.bind(this));
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  connectedCallback() {
+    this.subscribe("click", this.handleClick);
+  }
+
+  disonnectedCallback() {
+    this.unsubscribe("click", this.handleClick);
   }
 
   handleClick() {

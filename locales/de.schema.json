@@ -19,9 +19,6 @@
           }
         }
       },
-      "card_min_width": {
-        "label": "Mindestgröße der Karte"
-      },
       "content_position_horizontal": {
         "label": "Inhalt Position Horizontal",
         "options": {
@@ -62,17 +59,6 @@
           }
         }
       },
-      "grid_settings": {
-        "label": "Raster Einstellungen",
-        "options": {
-          "auto_fill": {
-            "label": "Automatisch befüllen"
-          },
-          "advanced": {
-            "label": "Fortgeschritten"
-          }
-        }
-      },
       "image": {
         "label": "Bild"
       },
@@ -99,6 +85,13 @@
           }
         }
       },
+      "limit": {
+        "label": "Limit",
+        "info": {
+          "blog_article_card": "Maximale Blogartikelkarten",
+          "product_card": "Maximale Produktkarten"
+        }
+      },
       "position": {
         "options": {
           "bottom": {
@@ -120,6 +113,9 @@
       },
       "secondary_image": {
         "label": "Zweites Bild"
+      },
+      "set_limit": {
+        "label": "Limit festlegen"
       },
       "tag": {
         "label": "Tag",
@@ -330,9 +326,6 @@
         }
       },
       "settings": {
-        "blog_article_limit": {
-          "label": "Maximale Anzahl von Blog-Artikel-Karten"
-        },
         "border_bottom": {
           "label": "Unteren Rand anzeigen"
         },
@@ -482,15 +475,8 @@
         "product": {
           "label": "Produkt"
         },
-        "product_limit": {
-          "label": "Maximale Anzahl an Produktkarten",
-          "info": "Ignorieren wenn 0"
-        },
         "product_list": {
           "label": "Produktliste"
-        },
-        "set_limit": {
-          "label": "Limit festlegen"
         },
         "sticky": {
           "label": "Haftender Abschnitt",
@@ -586,6 +572,14 @@
         "cart_drawer": {
           "name": "Warenkorb Drawer",
           "category": "Drawer"
+        }
+      }
+    },
+    "comment": {
+      "name": "Kommentar",
+      "presets": {
+        "comment": {
+          "name": "Kommentar"
         }
       }
     },
@@ -752,9 +746,6 @@
         },
         "collection": {
           "label": "Kollektion"
-        },
-        "limit": {
-          "label": "Maximale Anzahl an Produkten"
         }
       },
       "presets": {
@@ -773,14 +764,6 @@
     }
   },
   "blocks": {
-    "settings": {
-      "limit": {
-        "label": "Limit"
-      },
-      "set_limit": {
-        "label": "Limit festlegen"
-      }
-    },
     "buy_buttons": {
       "name": "Kauf Buttons"
     },

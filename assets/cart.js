@@ -47,12 +47,18 @@ export class Cart {
     });
 
     if (!response.ok) {
-      throw new Error("Failed to add item to cart");
+      if (response.status !== 422) {
+        throw new Error("Failed to add item to cart");
+      }
+
+      const error = await response.json();
+
+      return { status: "partial-success", data: error };
     }
 
     const data = await response.json();
 
-    return data;
+    return { status: "success", data };
   }
 
   async update({ updates, sections }) {

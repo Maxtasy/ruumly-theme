@@ -11,6 +11,10 @@ class LanguageSelector extends CustomComponentMixin(HTMLDivElement) {
     this.selectElement.addEventListener("change", this.handleSelectorChange);
   }
 
+  disconnectedCallback() {
+    this.selectElement.removeEventListener("change", this.handleSelectorChange);
+  }
+
   handleSelectorChange(event) {
     const selectedLanguage = event.target.value;
     this.inputElement.value = selectedLanguage;

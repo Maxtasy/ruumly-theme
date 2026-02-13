@@ -2,7 +2,7 @@ class StickyStack {
   constructor() {
     this.stickyElements = [];
 
-    window.addEventListener("resize", this.updateStickyElements.bind(this));
+    globalThis.addEventListener("resize", this.updateStickyElements.bind(this));
   }
 
   addElement(element) {

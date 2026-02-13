@@ -45,6 +45,10 @@
   max-width: 100%;
 }
 
+.Section--Narrow .Section__Inner {
+  max-width: 600px;
+}
+
 @media screen and (min-width: 769px) {
   .Section:not(.Section--FullWidth) {
     padding-inline: var(--section-padding-inline-desktop);

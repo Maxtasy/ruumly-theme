@@ -8,12 +8,22 @@
   <div class="Section__Inner">
     {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
-    <div is="product-recommendations-component" class="ProductRecommendations" data-product-id="{{ product.id }}">
+    {% assign limit = null %}
+    {% if section.settings.set_limit %}
+      {% assign limit = section.settings.limit %}
+    {% endif %}
+
+    <div
+      is="product-recommendations-component"
+      class="ProductRecommendations"
+      data-product-id="{{ product.id }}"
+      data-limit="{{ limit }}"
+    >
       <div class="ProductRecommendations__Content">
         {% if recommendations.performed? %}
           {% render 'product-list', products: recommendations.products %}
         {% else %}
-          {% render 'product-list', use_placeholders: true, limit: 4 %}
+          {% render 'product-list', use_placeholders: true, limit: limit %}
         {% endif %}
       </div>
     </div>
@@ -58,6 +68,20 @@
       "id": "heading",
       "label": "t:sections.all.settings.heading.label",
       "default": "t:sections.all.settings.heading.default"
+    },
+    {
+      "type": "checkbox",
+      "id": "set_limit",
+      "label": "t:global.settings.set_limit.label",
+      "default": true
+    },
+    {
+      "type": "number",
+      "id": "limit",
+      "label": "t:global.settings.limit.label",
+      "default": 4,
+      "info": "t:global.settings.limit.info.product_card",
+      "visible_if": "{{ section.settings.set_limit }}"
     }
   ],
   "presets": [

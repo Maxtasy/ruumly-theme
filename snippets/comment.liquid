@@ -1,0 +1,53 @@
+{% doc %}
+  Renders a Comment component.
+
+  @param {string} author - The author of the comment author.
+  @param {string} created_at - The creation date of the comment.
+  @param {string} content - The content of the comment.
+{% enddoc %}
+
+<div class="Comment">
+  <div class="Comment__Header">
+    {% liquid
+      assign author_parts = author | split: ' '
+      assign first_initial = author_parts[0] | slice: 0
+      assign second_initial = author_parts[1] | slice: 0
+      assign initials = first_initial | append: second_initial
+    %}
+
+    {% render 'avatar', initials: initials, size: 'medium' %}
+
+    <div class="Comment__Details">
+      {% render 'text', text: author, as: 'strong' %}
+
+      {% capture passed_time_formatted %}
+        {% render 'passed-time', created_at: created_at %}
+      {% endcapture %}
+
+      {% render 'text', text: passed_time_formatted, variant: 'body-small' %}
+    </div>
+  </div>
+
+  <div class="Comment__Content">
+    {% render 'text', text: content %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .Comment {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .Comment__Header {
+    display: flex;
+    align-items: center;
+    gap: var(--size-s);
+  }
+
+  .Comment__Details {
+    display: flex;
+    flex-direction: column;
+  }
+{% endstylesheet %}

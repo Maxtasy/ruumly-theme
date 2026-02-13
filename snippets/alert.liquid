@@ -3,6 +3,7 @@
 
   @param {string} [heading] - The heading of the alert.
   @param {string} [text] - The text of the alert.
+  @param {string} [text_variant] - The text variant of the alert.
   @param {string} [variant] - The variant of the alert. Defaults to info.
 {% enddoc %}
 
@@ -23,12 +24,15 @@
 {% endcase %}
 
 <div
+  is="alert-component"
   class="
     Alert
     Alert--{{ variant | camelcase }}
   "
 >
-  {% render 'icon', icon: icon_handle %}
+  <div class="Alert__Icon">
+    {% render 'icon', icon: icon_handle %}
+  </div>
 
   <div>
     {% if heading %}
@@ -36,7 +40,7 @@
     {% endif %}
 
     {% if text %}
-      {% render 'text', text: text, color: 'inherit' %}
+      {% render 'text', text: text, color: 'inherit', variant: text_variant %}
     {% endif %}
   </div>
 </div>
@@ -45,7 +49,7 @@
   .Alert {
     display: flex;
     align-items: center;
-    padding: var(--size-s) var(--size-m);
+    padding: var(--size-s);
     gap: var(--size-s);
     color: var(--t-background-dark);
   }
@@ -64,5 +68,10 @@
 
   .Alert--Success {
     background-color: var(--t-success);
+  }
+
+  .Alert__Icon {
+    /* Prevent icon from shrinking */
+    flex-shrink: 0;
   }
 {% endstylesheet %}

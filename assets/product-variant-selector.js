@@ -13,7 +13,7 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLDivElement) {
     ];
     this.available = this.parsedData.available;
 
-    this.subscribe("product-option-selector:change", this.handleProductOptionSelectorChange.bind(this));
+    this.handleProductOptionSelectorChange = this.handleProductOptionSelectorChange.bind(this);
   }
 
   connectedCallback() {
@@ -21,6 +21,12 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLDivElement) {
       selectedVariantId: this.selectedVariantId,
       available: this.available,
     });
+
+    this.subscribe("product-option-selector:change", this.handleProductOptionSelectorChange);
+  }
+
+  disconnectedCallback() {
+    this.unsubscribe("product-option-selector:change", this.handleProductOptionSelectorChange);
   }
 
   handleProductOptionSelectorChange(event) {

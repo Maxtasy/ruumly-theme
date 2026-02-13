@@ -19,9 +19,6 @@
           }
         }
       },
-      "card_min_width": {
-        "label": "Card Min Width"
-      },
       "content_position_horizontal": {
         "label": "Content Position Horizontal",
         "options": {
@@ -62,17 +59,6 @@
           }
         }
       },
-      "grid_settings": {
-        "label": "Grid Settings",
-        "options": {
-          "auto_fill": {
-            "label": "Auto Fill"
-          },
-          "advanced": {
-            "label": "Advanced"
-          }
-        }
-      },
       "image": {
         "label": "Image"
       },
@@ -99,6 +85,13 @@
           }
         }
       },
+      "limit": {
+        "label": "Limit",
+        "info": {
+          "blog_article_card": "Maximum Blog Article Cards",
+          "product_card": "Maximum Product Cards"
+        }
+      },
       "position": {
         "options": {
           "bottom": {
@@ -120,6 +113,9 @@
       },
       "secondary_image": {
         "label": "Secondary Image"
+      },
+      "set_limit": {
+        "label": "Set Limit"
       },
       "tag": {
         "label": "Tag",
@@ -330,9 +326,6 @@
         }
       },
       "settings": {
-        "blog_article_limit": {
-          "label": "Maximum Blog Article Cards"
-        },
         "border_bottom": {
           "label": "Show bottom border"
         },
@@ -482,15 +475,8 @@
         "product": {
           "label": "Product"
         },
-        "product_limit": {
-          "label": "Maximum Product Cards",
-          "info": "Ignore when 0"
-        },
         "product_list": {
           "label": "Product List"
-        },
-        "set_limit": {
-          "label": "Set Limit"
         },
         "sticky": {
           "label": "Sticky section",
@@ -586,6 +572,14 @@
         "cart_drawer": {
           "name": "Cart Drawer",
           "category": "Drawer"
+        }
+      }
+    },
+    "comment": {
+      "name": "Comment",
+      "presets": {
+        "comment": {
+          "name": "Comment"
         }
       }
     },
@@ -752,9 +746,6 @@
         },
         "collection": {
           "label": "Collection"
-        },
-        "limit": {
-          "label": "Limit number of products."
         }
       },
       "presets": {
@@ -773,14 +764,6 @@
     }
   },
   "blocks": {
-    "settings": {
-      "limit": {
-        "label": "Limit"
-      },
-      "set_limit": {
-        "label": "Set Limit"
-      }
-    },
     "buy_buttons": {
       "name": "Buy Buttons"
     },

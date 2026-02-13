@@ -1,8 +1,61 @@
 {
   "global": {
     "free": "Free",
-    "subtotal": "Subtotal",
-    "shipping": "Shipping"
+    "shipping": "Shipping",
+    "submit": "Submit",
+    "subtotal": "Subtotal"
+  },
+  "date": {
+    "passed_time": {
+      "years": {
+        "one": "{{ count }} year ago",
+        "other": "{{ count }} years ago"
+      },
+      "months": {
+        "one": "{{ count }} month ago",
+        "other": "{{ count }} months ago"
+      },
+      "weeks": {
+        "one": "{{ count }} week ago",
+        "other": "{{ count }} weeks ago"
+      },
+      "days": {
+        "one": "{{ count }} day ago",
+        "other": "{{ count }} days ago"
+      },
+      "hours": {
+        "one": "{{ count }} hour ago",
+        "other": "{{ count }} hours ago"
+      },
+      "minutes": {
+        "one": "{{ count }} minute ago",
+        "other": "{{ count }} minutes ago"
+      },
+      "just_now": "just now"
+    }
+  },
+  "comments": {
+    "comments_count": {
+      "one": "{{ count }} comment",
+      "other": "{{ count }} comments"
+    },
+    "comments_disabled": "Comments disabled.",
+    "comments_moderated": "Please note that your comments must be approved before they are published.",
+    "comments_none": "No comments yet. Add a comment via the form above."
+  },
+  "inputs": {
+    "name": {
+      "label": "Your name",
+      "placeholder": "John Doe"
+    },
+    "email": {
+      "label": "Your email",
+      "placeholder": "john.doe@mail.com"
+    },
+    "message": {
+      "label": "Your message",
+      "placeholder": "Your message..."
+    }
   },
   "components": {
     "add_to_cart_button": {
@@ -41,6 +94,11 @@
     },
     "plus_button": {
       "aria_label": "Plus"
+    },
+    "pagination": {
+      "aria_label": "Pagination",
+      "pagination_next": "Next",
+      "pagination_prev": "Prev"
     },
     "pagination_item": {
       "aria_label": "Go to item {{ position }}"

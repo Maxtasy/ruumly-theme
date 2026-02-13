@@ -12,7 +12,7 @@ class HeaderGroup {
     this.calculateTotalHeight();
     this.updateCssVariable();
 
-    window.addEventListener("resize", this.debouncedResizeHandler);
+    globalThis.addEventListener("resize", this.debouncedResizeHandler);
   }
 
   calculateTotalHeight() {

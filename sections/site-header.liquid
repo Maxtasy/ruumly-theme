@@ -1,3 +1,68 @@
+{%- comment -%}
+  Capture icons for left and right side depending on their position settings.
+{%- endcomment -%}
+{% assign left_icons = '' %}
+{% assign right_icons = '' %}
+{% if section.settings.show_search_icon %}
+  {% capture search_icon %}
+    {% render 'button',
+      icon: 'search',
+      variant: 'plain',
+      size: 'small',
+      action: 'open-modal:search',
+      aria_label: 'components.search_button.aria_label'
+    %}
+  {% endcapture %}
+
+  {% if section.settings.search_icon_position == 'left' %}
+    {% assign left_icons = left_icons | append: search_icon %}
+  {% else %}
+    {% assign right_icons = right_icons | append: search_icon %}
+  {% endif %}
+{% endif %}
+
+{% if section.settings.show_account_icon %}
+  {% capture account_icon %}
+    {% render 'button',
+      icon: 'user-round',
+      url: routes.account_url,
+      variant: 'plain',
+      size: 'small',
+      aria_label_key: 'components.user_button.aria_label'
+    %}
+  {% endcapture %}
+
+  {% if section.settings.account_icon_position == 'left' %}
+    {% assign left_icons = left_icons | append: account_icon %}
+  {% else %}
+    {% assign right_icons = right_icons | append: account_icon %}
+  {% endif %}
+{% endif %}
+
+{% if section.settings.show_wishlist_icon %}
+  {% capture wishlist_icon %}
+    {% render 'dynamic-wishlist-icon', url: section.settings.wishlist_page.url %}
+  {% endcapture %}
+
+  {% if section.settings.wishlist_icon_position == 'left' %}
+    {% assign left_icons = left_icons | append: wishlist_icon %}
+  {% else %}
+    {% assign right_icons = right_icons | append: wishlist_icon %}
+  {% endif %}
+{% endif %}
+
+{% if section.settings.show_cart_icon %}
+  {% capture cart_icon %}
+    {% render 'dynamic-cart-icon' %}
+  {% endcapture %}
+
+  {% if section.settings.cart_icon_position == 'left' %}
+    {% assign left_icons = left_icons | append: cart_icon %}
+  {% else %}
+    {% assign right_icons = right_icons | append: cart_icon %}
+  {% endif %}
+{% endif %}
+
 <section
   {% if section.settings.sticky %}
     is="section-component"
@@ -41,35 +106,11 @@
           %}
         </div>
 
-        <div class="SiteHeader__Icons">
-          {% if section.settings.show_search_icon and section.settings.search_icon_position == 'left' %}
-            {% render 'button',
-              icon: 'search',
-              variant: 'plain',
-              size: 'small',
-              action: 'open-modal:search',
-              aria_label: 'components.search_button.aria_label'
-            %}
-          {% endif %}
-
-          {% if section.settings.show_account_icon and section.settings.account_icon_position == 'left' %}
-            {% render 'button',
-              icon: 'user-round',
-              url: routes.account_url,
-              variant: 'plain',
-              size: 'small',
-              aria_label_key: 'components.user_button.aria_label'
-            %}
-          {% endif %}
-
-          {% if section.settings.show_wishlist_icon and section.settings.wishlist_icon_position == 'left' %}
-            {% render 'dynamic-wishlist-icon', url: section.settings.wishlist_page.url %}
-          {% endif %}
-
-          {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'left' %}
-            {% render 'dynamic-cart-icon' %}
-          {% endif %}
-        </div>
+        {% if left_icons != blank %}
+          <div class="SiteHeader__Icons">
+            {{ left_icons }}
+          </div>
+        {% endif %}
       </div>
 
       <div class="SiteHeader__Middle">
@@ -91,35 +132,11 @@
           {% endif %}
         </div>
 
-        <div class="SiteHeader__Icons">
-          {% if section.settings.show_search_icon and section.settings.search_icon_position == 'right' %}
-            {% render 'button',
-              icon: 'search',
-              variant: 'plain',
-              size: 'small',
-              action: 'open-modal:search',
-              aria_label_key: 'components.search_button.aria_label'
-            %}
-          {% endif %}
-
-          {% if section.settings.show_account_icon and section.settings.account_icon_position == 'right' %}
-            {% render 'button',
-              icon: 'user-round',
-              url: routes.account_url,
-              variant: 'plain',
-              size: 'small',
-              aria_label_key: 'components.user_button.aria_label'
-            %}
-          {% endif %}
-
-          {% if section.settings.show_wishlist_icon and section.settings.wishlist_icon_position == 'right' %}
-            {% render 'dynamic-wishlist-icon', url: section.settings.wishlist_page.url %}
-          {% endif %}
-
-          {% if section.settings.show_cart_icon and section.settings.cart_icon_position == 'right' %}
-            {% render 'dynamic-cart-icon' %}
-          {% endif %}
-        </div>
+        {% if right_icons != blank %}
+          <div class="SiteHeader__Icons">
+            {{ right_icons }}
+          </div>
+        {% endif %}
       </div>
     </header>
   </div>
@@ -168,7 +185,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: var(--size-m);
+    gap: var(--size-xs);
   }
 {% endstylesheet %}
 
