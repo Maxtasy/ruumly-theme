@@ -12,7 +12,11 @@
     "main": {
       "type": "main-article",
       "settings": {}
+    },
+    "comment": {
+      "type": "comment",
+      "settings": {}
     }
   },
-  "order": ["main"]
+  "order": ["main, comment"]
 }
