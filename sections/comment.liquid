@@ -1,6 +1,7 @@
 <section
   class="
     Section
+    Section--Narrow
     Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
     ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
   "
@@ -45,26 +46,25 @@
             {% render 'text', text: comments_moderated_text %}
           {% endif %}
 
-          {% render 'button', variant: 'primary', content: 'post comment' %}
+          {% assign submit_button_text = 'global.submit' | t %}
+          {% render 'button', variant: 'primary', content: submit_button_text %}
         {% endform %}
 
-        <ul class="Comments__Comments u-NoList">
-          {% if article.comments_count > 1 %}
-            {% assign comment_count_text = 'comments.comments_count' | t: count: article.comments_count %}
-          {% elsif article.comments_count == 1 %}
-            {% assign comment_count_text = 'comments.comments_count' | t: count: article.comments_count %}
-          {% elsif article.comments_count == 0 %}
-            {% assign comment_count_text = 'comments.comments_none' | t %}
-          {% endif %}
-
+        {% if article.comments_count == 0 %}
+          {% assign comment_count_text = 'comments.comments_none' | t %}
+          {% render 'text', text: comment_count_text %}
+        {% else %}
+          {% assign comment_count_text = 'comments.comments_count' | t: count: article.comments_count %}
           {% render 'text', text: comment_count_text %}
 
-          {% for comment in article.comments %}
-            <li>
-              {% render 'comment', author: comment.author, created_at: comment.created_at, content: comment.content %}
-            </li>
-          {% endfor %}
-        </ul>
+          <ul class="Comments__Comments u-NoList">
+            {% for comment in article.comments %}
+              <li>
+                {% render 'comment', author: comment.author, created_at: comment.created_at, content: comment.content %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
       {% else %}
         {% assign comments_disabled_text = 'comments.comments_disabled' | t %}
         {% render 'text', text: comments_disabled_text %}
@@ -78,8 +78,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-xl);
-    width: 100%;
-    max-width: 600px;
   }
 
   .Comments__Form {
@@ -123,17 +121,6 @@
         { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
         { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
       ]
-    },
-    {
-      "type": "header",
-      "content": "t:sections.all.headers.section_content.content"
-    },
-    {
-      "type": "text",
-      "id": "placeholder_text",
-      "label": "t:sections.comment.settings.placeholder_text.label",
-      "info": "t:sections.comment.settings.placeholder_text.info",
-      "default": "t:sections.comment.settings.placeholder_text.default"
     }
   ],
   "presets": [

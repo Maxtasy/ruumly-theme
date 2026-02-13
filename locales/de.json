@@ -1,8 +1,9 @@
 {
   "global": {
     "free": "Kostenlos",
-    "subtotal": "Zwischensumme",
-    "shipping": "Versand"
+    "shipping": "Versand",
+    "submit": "Absenden",
+    "subtotal": "Zwischensumme"
   },
   "date": {
     "passed_time": {

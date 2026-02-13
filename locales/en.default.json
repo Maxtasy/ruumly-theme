@@ -1,8 +1,9 @@
 {
   "global": {
     "free": "Free",
-    "subtotal": "Subtotal",
-    "shipping": "Shipping"
+    "shipping": "Shipping",
+    "submit": "Submit",
+    "subtotal": "Subtotal"
   },
   "date": {
     "passed_time": {
