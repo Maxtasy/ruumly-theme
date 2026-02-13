@@ -33,6 +33,29 @@
       "just_now": "gerade eben"
     }
   },
+  "comments": {
+    "comments_count": {
+      "one": "{{ count }} Kommentar",
+      "other": "{{ count }} Kommentare"
+    },
+    "comments_disabled": "Kommentare deaktiviert.",
+    "comments_moderated": "Bitte beachten Sie, dass Ihre Kommentare vor der Veröffentlichung genehmigt werden müssen.",
+    "comments_none": "Noch keine Kommentare. Fügen Sie über das obige Formular einen Kommentar hinzu."
+  },
+  "inputs": {
+    "name": {
+      "label": "Ihr Name",
+      "placeholder": "Max Mustermann"
+    },
+    "email": {
+      "label": "Ihre email",
+      "placeholder": "max.mustermann@mail.com"
+    },
+    "message": {
+      "label": "Ihre Nachricht",
+      "placeholder": "Ihre Nachricht..."
+    }
+  },
   "components": {
     "add_to_cart_button": {
       "aria_label": "In den Warenkorb"

@@ -11,37 +11,54 @@
         {% form 'new_comment', article, class: 'Comments__Form' %}
           {{ form.errors | default_errors }}
 
+          {% assign name_label = 'inputs.name.label' | t %}
+          {% assign name_placeholder = 'inputs.name.placeholder' | t %}
           {% render 'text-field',
-            label: 'Your name',
-            placeholder: 'John Doe',
+            label: name_label,
+            placeholder: name_placeholder,
             name: 'comment[author]',
             value: form.author
           %}
 
+          {% assign email_label = 'inputs.email.label' | t %}
+          {% assign email_placeholder = 'inputs.email.placeholder' | t %}
           {% render 'text-field',
-            label: 'Your email',
-            placeholder: 'john.doe@mail.com',
+            label: email_label,
+            placeholder: email_placeholder,
             type: 'email',
             name: 'comment[email]',
             value: form.email
           %}
 
+          {% assign message_label = 'inputs.message.label' | t %}
+          {% assign message_placeholder = 'inputs.message.placeholder' | t %}
           {% render 'text-field',
-            label: 'Your message',
-            placeholder: 'Enter message...',
+            label: message_label,
+            placeholder: message_placeholder,
             type: 'text-area',
             name: 'comment[body]',
             value: form.body
           %}
 
           {% if blog.moderated? %}
-            {% render 'text', text: 'Please note that your comments must be approved before they are published.' %}
+            {% assign comments_moderated_text = 'comments.comments_moderated' | t %}
+            {% render 'text', text: comments_moderated_text %}
           {% endif %}
 
           {% render 'button', variant: 'primary', content: 'post comment' %}
         {% endform %}
 
         <ul class="Comments__Comments u-NoList">
+          {% if article.comments_count > 1 %}
+            {% assign comment_count_text = 'comments.comments_count' | t: count: article.comments_count %}
+          {% elsif article.comments_count == 1 %}
+            {% assign comment_count_text = 'comments.comments_count' | t: count: article.comments_count %}
+          {% elsif article.comments_count == 0 %}
+            {% assign comment_count_text = 'comments.comments_none' | t %}
+          {% endif %}
+
+          {% render 'text', text: comment_count_text %}
+
           {% for comment in article.comments %}
             <li>
               {% render 'comment', author: comment.author, created_at: comment.created_at, content: comment.content %}
@@ -49,7 +66,8 @@
           {% endfor %}
         </ul>
       {% else %}
-        {% render 'text', text: 'Comments disabled.' %}
+        {% assign comments_disabled_text = 'comments.comments_disabled' | t %}
+        {% render 'text', text: comments_disabled_text %}
       {% endif %}
     </div>
   </div>
@@ -60,14 +78,14 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-xl);
+    width: 100%;
+    max-width: 600px;
   }
 
   .Comments__Form {
     display: flex;
     flex-direction: column;
     gap: var(--size-s);
-    width: 100%;
-    max-width: 600px;
   }
 
   .Comments__Comments {
