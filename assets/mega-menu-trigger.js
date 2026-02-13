@@ -21,7 +21,7 @@ export class MegaMenuTrigger extends CustomComponentMixin(HTMLLIElement) {
   }
 
   handleMouseEnter() {
-    this.publish(`mega-menu-trigger:mouse-enter:${this.handle}`);
+    this.publish(`mega-menu-trigger:mouse-enter`, { handle: this.handle });
   }
 
   handleMouseLeave() {
