@@ -1,0 +1,72 @@
+<section
+  class="
+    Section
+    Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
+  <div class="Section__Inner">
+    {% if section.settings.enable_heading %}
+      {% render 'text', text: blog.title, as: 'h2', variant: 'heading-medium' %}
+    {% endif %}
+
+    {% assign blog_articles = blog.articles %}
+    {% render 'blog-article-list',
+      blog_articles: blog_articles,
+      columns_mobile: section.settings.columns_mobile,
+      columns_desktop: section.settings.columns_desktop
+    %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "t:sections.main_blog.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "select",
+      "id": "padding_block",
+      "label": "t:sections.all.settings.padding_block.label",
+      "default": "medium",
+      "options": [
+        { "value": "none", "label": "t:sections.all.settings.padding_block.options.none.label" },
+        { "value": "small", "label": "t:sections.all.settings.padding_block.options.small.label" },
+        { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
+        { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
+      ]
+    },
+    {
+      "type": "number",
+      "id": "columns_mobile",
+      "label": "t:sections.all.settings.columns_mobile.label",
+      "default": 1
+    },
+    {
+      "type": "number",
+      "id": "columns_desktop",
+      "label": "t:sections.all.settings.columns_desktop.label",
+      "default": 3
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_heading",
+      "label": "t:sections.main_blog.settings.enable_heading.label",
+      "default": true
+    }
+  ]
+}
+{% endschema %}
