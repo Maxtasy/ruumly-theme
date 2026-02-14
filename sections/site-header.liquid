@@ -89,7 +89,11 @@
     <header class="SiteHeader">
       <div class="SiteHeader__Left">
         <div class="u-Hidden--Mobile">
-          {% render 'navigation-group', direction: 'horizontal', links: section.settings.link_list.links %}
+          {% render 'navigation-group',
+            direction: 'horizontal',
+            links: section.settings.link_list.links,
+            connected_to_mega_menu: true
+          %}
         </div>
 
         <div class="u-Hidden--Desktop">
@@ -136,6 +140,12 @@
       </div>
     </header>
   </div>
+
+  {% for link in section.settings.link_list.links %}
+    {% if link.links.size > 0 %}
+      {% render 'mega-menu', handle: link.handle, links: link.links %}
+    {% endif %}
+  {% endfor %}
 </section>
 
 {% stylesheet %}
