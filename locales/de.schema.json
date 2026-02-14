@@ -618,6 +618,14 @@
     "main_404": {
       "name": "404 Abschnitt"
     },
+    "main_blog": {
+      "name": "Main Blog",
+      "settings": {
+        "enable_heading": {
+          "label": "Überschrift aktivieren"
+        }
+      }
+    },
     "menu_drawer": {
       "name": "Menü Drawer",
       "presets": {

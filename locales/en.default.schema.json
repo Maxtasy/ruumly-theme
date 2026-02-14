@@ -618,6 +618,14 @@
     "main_404": {
       "name": "404 Section"
     },
+    "main_blog": {
+      "name": "Main Blog",
+      "settings": {
+        "enable_heading": {
+          "label": "Enable Heading"
+        }
+      }
+    },
     "menu_drawer": {
       "name": "Menu Drawer",
       "presets": {
