@@ -1,0 +1,84 @@
+{% doc %}
+  Renders a Rich Text component.
+
+  @param {string} content
+{% enddoc %}
+
+<div class="RichText">
+  {{ content }}
+</div>
+
+{% stylesheet %}
+  .RichText a {
+    color: var(--t-link);
+    transition: color var(--transition-duration-medium) var(--transition-timing);
+    font-family: var(--font-body-family);
+    line-height: var(--text-line-height);
+  }
+
+  .RichText a:hover {
+    color: var(--t-link-hover);
+  }
+
+  .RichText p {
+    font-size: var(--text-size-body-medium);
+    line-height: var(--text-line-height);
+    font-family: var(--text-font-family);
+    color: var(--text-color);
+  }
+
+  .RichText p:not(:last-child) {
+    margin-bottom: var(--size-s);
+  }
+
+  .RichText h1,
+  .RichText h2,
+  .RichText h3,
+  .RichText h4,
+  .RichText h5,
+  .RichText h6 {
+    margin-bottom: var(--size-s);
+  }
+
+  .RichText h1 {
+    font-family: var(--heading-font-family);
+    font-size: var(--text-size-heading-ultra-large);
+    line-height: var(--heading-line-height);
+  }
+
+  .RichText h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--text-size-heading-extra-large);
+    line-height: var(--heading-line-height);
+  }
+
+  .RichText h3 {
+    font-family: var(--heading-font-family);
+    font-size: var(--text-size-heading-large);
+    line-height: var(--heading-line-height);
+  }
+
+  .RichText h4 {
+    font-family: var(--heading-font-family);
+    font-size: var(--text-size-heading-medium);
+    line-height: var(--heading-line-height);
+  }
+
+  .RichText h5 {
+    font-family: var(--heading-font-family);
+    font-size: var(--text-size-heading-small);
+    line-height: var(--heading-line-height);
+  }
+
+  .RichText h6 {
+    font-family: var(--heading-font-family);
+    font-size: var(--text-size-heading-extra-small);
+    line-height: var(--heading-line-height);
+  }
+
+  .RichText blockquote {
+    margin-inline: var(--size-m);
+    border-left: var(--border-width) var(--border-style) var(--t-border);
+    padding-left: var(--size-s);
+  }
+{% endstylesheet %}

@@ -19,9 +19,7 @@
   </a>
 
   {% if description %}
-    <div class="RichText">
-      {{ description }}
-    </div>
+    {% render 'rich-text', content: description %}
   {% endif %}
 </article>
 
