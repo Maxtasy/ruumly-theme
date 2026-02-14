@@ -10,9 +10,8 @@
       {% render 'text', text: blog.title, as: 'h2', variant: 'heading-medium' %}
     {% endif %}
 
-    {% assign blog_articles = blog.articles %}
     {% render 'blog-article-list',
-      blog_articles: blog_articles,
+      blog_articles: blog.articles,
       columns_mobile: section.settings.columns_mobile,
       columns_desktop: section.settings.columns_desktop
     %}
