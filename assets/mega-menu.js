@@ -1,5 +1,7 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
+const CLOSE_DELAY = 750;
+
 export class MegaMenu extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
     super();
@@ -41,7 +43,7 @@ export class MegaMenu extends CustomComponentMixin(HTMLDivElement) {
   handleTriggerLeave() {
     this.timeout = setTimeout(() => {
       this.hide();
-    }, 750);
+    }, CLOSE_DELAY);
   }
 
   handleMouseEnter() {
