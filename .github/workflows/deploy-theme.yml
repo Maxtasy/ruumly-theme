@@ -27,6 +27,11 @@ on:
       - "templates/**"
   workflow_dispatch:
 
+permissions:
+  issues: write
+  pull-requests: write
+  statuses: write
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -77,7 +82,7 @@ jobs:
         run: |
           set -o pipefail
 
-          BRANCH_NAME="${GITHUB_REF_NAME}"
+          BRANCH_NAME="${GITHUB_HEAD_REF}"
 
           # 1. Build theme name depending on branch
           if [ "$BRANCH_NAME" = "main" ]; then
@@ -143,6 +148,8 @@ jobs:
           fi
 
           echo "PREVIEW_URL=$PREVIEW_URL" >> $GITHUB_ENV
+          echo "THEME_NAME=$THEME_NAME" >> $GITHUB_ENV
+          echo "DEPLOY_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
           # 5. Publish ONLY on main
           if [ "$SHOULD_PUBLISH" = true ]; then
