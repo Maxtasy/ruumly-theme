@@ -618,6 +618,9 @@
     "main_404": {
       "name": "404 Abschnitt"
     },
+    "main_article": {
+      "name": "Main Article"
+    },
     "main_blog": {
       "name": "Main Blog",
       "settings": {
