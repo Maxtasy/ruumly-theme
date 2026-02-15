@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+      - feature/**
+      - component/**
+      - section/**
+      - fix/**
+      - chore/**
+      - a11y/**
     paths:
       - "assets/**"
       - "blocks/**"
@@ -65,42 +71,70 @@ jobs:
         run: |
           set -o pipefail
 
-          # 1. Create a formatted timestamp (e.g., 2026-01-27_23-15)
-          DEPLOY_TIME=$(date +'%Y-%m-%d_%H-%M')
-          THEME_NAME="${DEPLOY_TIME} (${GITHUB_SHA::7})"
+          BRANCH_NAME="${GITHUB_REF_NAME}"
+
+          # 1. Build theme name depending on branch
+          if [ "$BRANCH_NAME" = "main" ]; then
+            DEPLOY_TIME=$(date +'%Y-%m-%d_%H-%M')
+            THEME_NAME="${DEPLOY_TIME} (${GITHUB_SHA::7})"
+            SHOULD_PUBLISH=true
+          else
+            THEME_NAME="${BRANCH_NAME}"
+            SHOULD_PUBLISH=false
+          fi
 
           echo "Deploying theme: $THEME_NAME"
+          echo "Branch: $BRANCH_NAME"
+          echo "Auto publish: $SHOULD_PUBLISH"
 
-          # 2. Push theme and capture output + exit code
+          # 2. Check if preview theme already exists (unpublished only)
+          EXISTING_THEME_ID=$(shopify theme list \
+            --store="${{ secrets.SHOPIFY_STORE }}" \
+            --role=unpublished \
+            --json | jq -r --arg NAME "$THEME_NAME" '
+              map(select(.name == $NAME)) | .[0].id
+            ')
+
+          if [ "$EXISTING_THEME_ID" != "null" ] && [ -n "$EXISTING_THEME_ID" ]; then
+            echo "Found existing theme: $EXISTING_THEME_ID"
+            PUSH_TARGET_ARGS="--theme=$EXISTING_THEME_ID"
+          else
+            echo "No existing theme found, creating new one"
+            PUSH_TARGET_ARGS="--unpublished --theme=$THEME_NAME"
+          fi
+
+          # 3. Push theme
           PUSH_OUTPUT=$(shopify theme push \
             --store="${{ secrets.SHOPIFY_STORE }}" \
-            --unpublished \
-            --theme="$THEME_NAME" \
+            $PUSH_TARGET_ARGS \
             --json 2>&1)
 
           PUSH_EXIT_CODE=$?
 
           echo "$PUSH_OUTPUT"
 
-          # 3. Stop immediately if push failed
           if [ $PUSH_EXIT_CODE -ne 0 ]; then
             echo "❌ Theme push failed. Not publishing."
             exit 1
           fi
 
-          # 4. Extract theme ID
+          # 4. Get theme ID
           NEW_THEME_ID=$(echo "$PUSH_OUTPUT" | jq -r '.theme.id')
 
           if [ "$NEW_THEME_ID" = "null" ] || [ -z "$NEW_THEME_ID" ]; then
-            echo "❌ Push succeeded but no Theme ID was returned."
+            echo "❌ Push succeeded but no Theme ID returned."
             exit 1
           fi
 
           echo "Successfully pushed to Theme ID: $NEW_THEME_ID"
 
-          # 5. Publish ONLY if everything above succeeded
-          echo "Publishing theme..."
-          shopify theme publish \
-            --store="${{ secrets.SHOPIFY_STORE }}" \
-            --theme="$NEW_THEME_ID" \
-            --force
+          # 5. Publish ONLY on main
+          if [ "$SHOULD_PUBLISH" = true ]; then
+            echo "Publishing theme..."
+            shopify theme publish \
+              --store="${{ secrets.SHOPIFY_STORE }}" \
+              --theme="$NEW_THEME_ID" \
+              --force
+          else
+            echo "Skipping publish (non-main branch)."
+          fi
