@@ -35,46 +35,72 @@ jobs:
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli@3.89.0
 
-      - name: Delete oldest unpublished theme
+      - name: Delete oldest unpublished theme (if there are more than 10 themes present)
         run: |
-          OLDEST_UNPUBLISHED_THEME_ID=$(shopify theme list \
+          THEMES_JSON=$(shopify theme list \
             --store="${{ secrets.SHOPIFY_STORE }}" \
             --role=unpublished \
-            --json | jq -r '.[0].id')
+            --json)
 
-          if [ "$OLDEST_UNPUBLISHED_THEME_ID" != "null" ] && [ -n "$OLDEST_UNPUBLISHED_THEME_ID" ]; then
-            echo "Deleting oldest unpublished theme with ID: $OLDEST_UNPUBLISHED_THEME_ID"
-            shopify theme delete \
-              --store="${{ secrets.SHOPIFY_STORE }}" \
-              --theme=$OLDEST_UNPUBLISHED_THEME_ID
+          THEME_COUNT=$(echo "$THEMES_JSON" | jq 'length')
+
+          echo "Found $THEME_COUNT unpublished themes."
+
+          if [ "$THEME_COUNT" -gt 10 ]; then
+            OLDEST_UNPUBLISHED_THEME_ID=$(echo "$THEMES_JSON" | jq -r 'sort_by(.created_at) | .[0].id')
+
+            if [ "$OLDEST_UNPUBLISHED_THEME_ID" != "null" ] && [ -n "$OLDEST_UNPUBLISHED_THEME_ID" ]; then
+              echo "Deleting oldest unpublished theme with ID: $OLDEST_UNPUBLISHED_THEME_ID"
+              shopify theme delete \
+                --store="${{ secrets.SHOPIFY_STORE }}" \
+                --theme="$OLDEST_UNPUBLISHED_THEME_ID"
+            else
+              echo "No valid theme ID found."
+            fi
           else
-            echo "No unpublished themes to delete."
+            echo "Skipping deletion — 10 or fewer unpublished themes."
           fi
 
       - name: Deploy and Publish Theme
         run: |
+          set -o pipefail
+
           # 1. Create a formatted timestamp (e.g., 2026-01-27_23-15)
           DEPLOY_TIME=$(date +'%Y-%m-%d_%H-%M')
           THEME_NAME="${DEPLOY_TIME} (${GITHUB_SHA::7})"
-            
-            echo "Deploying theme: $THEME_NAME"
 
-          # 2. Push to a new unpublished theme and capture the nested ID
-          NEW_THEME_ID=$(shopify theme push \
+          echo "Deploying theme: $THEME_NAME"
+
+          # 2. Push theme and capture output + exit code
+          PUSH_OUTPUT=$(shopify theme push \
             --store="${{ secrets.SHOPIFY_STORE }}" \
             --unpublished \
             --theme="$THEME_NAME" \
-            --json | jq -r '.theme.id')
+            --json 2>&1)
+
+          PUSH_EXIT_CODE=$?
+
+          echo "$PUSH_OUTPUT"
+
+          # 3. Stop immediately if push failed
+          if [ $PUSH_EXIT_CODE -ne 0 ]; then
+            echo "❌ Theme push failed. Not publishing."
+            exit 1
+          fi
+
+          # 4. Extract theme ID
+          NEW_THEME_ID=$(echo "$PUSH_OUTPUT" | jq -r '.theme.id')
 
           if [ "$NEW_THEME_ID" = "null" ] || [ -z "$NEW_THEME_ID" ]; then
-            echo "❌ Failed to capture Theme ID. Check if the push succeeded."
+            echo "❌ Push succeeded but no Theme ID was returned."
             exit 1
           fi
 
           echo "Successfully pushed to Theme ID: $NEW_THEME_ID"
 
-          # 3. Publish the theme
+          # 5. Publish ONLY if everything above succeeded
+          echo "Publishing theme..."
           shopify theme publish \
             --store="${{ secrets.SHOPIFY_STORE }}" \
-            --theme=$NEW_THEME_ID \
+            --theme="$NEW_THEME_ID" \
             --force

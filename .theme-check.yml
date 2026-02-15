@@ -4,182 +4,182 @@ ignore:
   - node_modules/**
 AssetPreload:
   enabled: true
-  severity: 1
+  severity: error
 BlockIdUsage:
   enabled: true
-  severity: 1
+  severity: error
 CdnPreconnect:
   enabled: true
-  severity: 0
+  severity: warning
 ContentForHeaderModification:
   enabled: true
-  severity: 0
+  severity: warning
 DeprecateBgsizes:
   enabled: true
-  severity: 1
+  severity: error
 DeprecateLazysizes:
   enabled: true
-  severity: 1
+  severity: error
 DeprecatedFilter:
   enabled: true
-  severity: 1
+  severity: error
 DeprecatedFontsOnSectionsAndBlocks:
   enabled: true
-  severity: 1
+  severity: error
 DeprecatedFontsOnSettingsSchema:
   enabled: true
-  severity: 1
+  severity: error
 DeprecatedTag:
   enabled: true
-  severity: 1
+  severity: error
 DuplicateContentForArguments:
   enabled: true
-  severity: 1
+  severity: error
 DuplicateRenderSnippetArguments:
   enabled: true
-  severity: 1
+  severity: error
 EmptyBlockContent:
   enabled: true
-  severity: 1
+  severity: error
 HardcodedRoutes:
   enabled: true
-  severity: 1
+  severity: error
 ImgWidthAndHeight:
   enabled: true
-  severity: 0
+  severity: warning
 JSONMissingBlock:
   enabled: true
-  severity: 0
+  severity: warning
 JSONSyntaxError:
   enabled: true
-  severity: 0
+  severity: warning
 LiquidFreeSettings:
   enabled: true
-  severity: 1
+  severity: error
 LiquidHTMLSyntaxError:
   enabled: true
-  severity: 0
+  severity: warning
 MatchingTranslations:
   enabled: true
-  severity: 0
+  severity: warning
 MissingAsset:
   enabled: true
-  severity: 0
+  severity: warning
 MissingContentForArguments:
   enabled: true
-  severity: 1
+  severity: error
 MissingRenderSnippetArguments:
   enabled: true
-  severity: 1
+  severity: error
 MissingTemplate:
   enabled: true
-  severity: 0
+  severity: warning
   ignoreMissing: []
 OrphanedSnippet:
   enabled: true
-  severity: 1
+  severity: error
 PaginationSize:
   enabled: true
-  severity: 1
+  severity: error
   minSize: 1
   maxSize: 250
 ParserBlockingScript:
   enabled: true
-  severity: 0
+  severity: warning
 RemoteAsset:
   enabled: true
-  severity: 1
+  severity: error
 RequiredLayoutThemeObject:
   enabled: true
-  severity: 0
+  severity: warning
 ReservedDocParamNames:
   enabled: true
-  severity: 0
+  severity: warning
 SchemaPresetsBlockOrder:
   enabled: true
-  severity: 1
+  severity: error
 SchemaPresetsStaticBlocks:
   enabled: true
-  severity: 0
+  severity: warning
 StaticStylesheetAndJavascriptTags:
   enabled: true
-  severity: 0
+  severity: warning
 TranslationKeyExists:
   enabled: true
-  severity: 0
+  severity: warning
 UnclosedHTMLElement:
   enabled: true
-  severity: 1
+  severity: error
 UndefinedObject:
   enabled: true
-  severity: 1
+  severity: error
 UniqueDocParamNames:
   enabled: true
-  severity: 0
+  severity: warning
 UniqueSettingId:
   enabled: true
-  severity: 0
+  severity: warning
 UniqueStaticBlockId:
   enabled: true
-  severity: 0
+  severity: warning
 UnknownFilter:
   enabled: true
-  severity: 0
+  severity: warning
 UnrecognizedContentForArguments:
   enabled: true
-  severity: 1
+  severity: error
 UnrecognizedRenderSnippetArguments:
   enabled: true
-  severity: 1
+  severity: error
 UnsupportedDocTag:
   enabled: true
-  severity: 0
+  severity: warning
 UnusedAssign:
   enabled: true
-  severity: 1
+  severity: error
 UnusedDocParam:
   enabled: true
-  severity: 1
+  severity: error
 ValidBlockTarget:
   enabled: true
-  severity: 0
+  severity: warning
 ValidContentForArgumentTypes:
   enabled: true
-  severity: 1
+  severity: error
 ValidContentForArguments:
   enabled: true
-  severity: 0
+  severity: warning
 ValidDocParamTypes:
   enabled: true
-  severity: 0
+  severity: warning
 ValidHTMLTranslation:
   enabled: true
-  severity: 1
+  severity: error
 ValidJSON:
   enabled: true
-  severity: 0
+  severity: warning
 ValidLocalBlocks:
   enabled: true
-  severity: 0
+  severity: warning
 ValidRenderSnippetArgumentTypes:
   enabled: true
-  severity: 1
+  severity: error
 ValidSchema:
   enabled: true
-  severity: 0
+  severity: warning
 ValidSchemaName:
   enabled: true
-  severity: 0
+  severity: warning
 ValidSettingsKey:
   enabled: true
-  severity: 0
+  severity: warning
 ValidStaticBlockType:
   enabled: true
-  severity: 0
+  severity: warning
 ValidVisibleIf:
   enabled: true
-  severity: 0
+  severity: warning
 VariableName:
   enabled: true
-  severity: 1
+  severity: error
   format: snake_case
