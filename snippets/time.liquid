@@ -5,7 +5,4 @@
   @param text - The content for the time component.
 {% enddoc %}
 
-{% assign date_time = date_time | date: '%Y-%m-%d' %}
-{% assign text = text | date: '%-d. %B %Y' %}
-
 <time datetime="{{ date_time }}">{{ text }}</time>

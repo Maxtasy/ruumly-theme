@@ -12,7 +12,9 @@
       </div>
 
       <div class="BlogArticle__Heading">
-        {% render 'time', date_time: article.created_at, text: article.created_at %}
+        {% assign date_time_formatted = article.created_at | date: '%Y-%m-%d' %}
+        {% assign text_formatted = article.created_at | date: '%-d. %B %Y' %}
+        {% render 'time', date_time: date_time_formatted, text: text_formatted %}
 
         {% render 'text', text: article.title, as: 'h2', variant: 'heading-small' %}
       </div>
