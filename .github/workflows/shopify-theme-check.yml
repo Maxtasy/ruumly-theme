@@ -5,20 +5,14 @@ on:
     types: [opened, synchronize, reopened]
     branches:
       - main
-    paths:
-      - "assets/**"
-      - "blocks/**"
-      - "config/**"
-      - "layout/**"
-      - "locales/**"
-      - "sections/**"
-      - "snippets/**"
-      - "templates/**"
   workflow_dispatch:
 
 jobs:
   theme-check:
     runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
 
     steps:
       - name: Checkout code
@@ -26,7 +20,8 @@ jobs:
         with:
           fetch-depth: 0
 
-      - uses: dorny/paths-filter@v2
+      - name: Filter for theme file changes
+        uses: dorny/paths-filter@v2
         id: filter
         with:
           filters: |

@@ -16,6 +16,7 @@ on:
   pull_request:
     branches:
       - main
+    types: [opened, synchronize, reopened]
     paths:
       - "assets/**"
       - "blocks/**"
@@ -39,6 +40,9 @@ jobs:
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
       SHOPIFY_FLAG_FORCE: 1
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+      cancel-in-progress: true
 
     steps:
       - name: Checkout repo
