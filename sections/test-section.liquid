@@ -12,12 +12,16 @@
       {% render 'text', text: 'Insert your test component here' %}
 
       {% render 'comment',
-        name: 'Martina Meyer-Esders',
+        author: 'Martina Meyer-Esders',
         created_at: '2026-01-20 19:27:00 +0100',
-        text: "It's an great articel!"
+        content: "It's an great articel!"
       %}
 
-      {% render 'comment', name: 'Martina', created_at: '2026-01-20 19:27:00 +0100', text: "It's an great articel!" %}
+      {% render 'comment',
+        author: 'Martina',
+        created_at: '2026-01-20 19:27:00 +0100',
+        content: "It's an great articel!"
+      %}
     </div>
   </div>
 </section>

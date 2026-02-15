@@ -35,20 +35,30 @@ jobs:
       - name: Install Shopify CLI
         run: npm install -g @shopify/cli@3.89.0
 
-      - name: Delete oldest unpublished theme
+      - name: Delete oldest unpublished theme (if there are more than 10 themes present)
         run: |
-          OLDEST_UNPUBLISHED_THEME_ID=$(shopify theme list \
+          THEMES_JSON=$(shopify theme list \
             --store="${{ secrets.SHOPIFY_STORE }}" \
             --role=unpublished \
-            --json | jq -r '.[0].id')
+            --json)
 
-          if [ "$OLDEST_UNPUBLISHED_THEME_ID" != "null" ] && [ -n "$OLDEST_UNPUBLISHED_THEME_ID" ]; then
-            echo "Deleting oldest unpublished theme with ID: $OLDEST_UNPUBLISHED_THEME_ID"
-            shopify theme delete \
-              --store="${{ secrets.SHOPIFY_STORE }}" \
-              --theme=$OLDEST_UNPUBLISHED_THEME_ID
+          THEME_COUNT=$(echo "$THEMES_JSON" | jq 'length')
+
+          echo "Found $THEME_COUNT unpublished themes."
+
+          if [ "$THEME_COUNT" -gt 10 ]; then
+            OLDEST_UNPUBLISHED_THEME_ID=$(echo "$THEMES_JSON" | jq -r 'sort_by(.created_at) | .[0].id')
+
+            if [ "$OLDEST_UNPUBLISHED_THEME_ID" != "null" ] && [ -n "$OLDEST_UNPUBLISHED_THEME_ID" ]; then
+              echo "Deleting oldest unpublished theme with ID: $OLDEST_UNPUBLISHED_THEME_ID"
+              shopify theme delete \
+                --store="${{ secrets.SHOPIFY_STORE }}" \
+                --theme="$OLDEST_UNPUBLISHED_THEME_ID"
+            else
+              echo "No valid theme ID found."
+            fi
           else
-            echo "No unpublished themes to delete."
+            echo "Skipping deletion — 10 or fewer unpublished themes."
           fi
 
       - name: Deploy and Publish Theme
