@@ -148,6 +148,8 @@ jobs:
           fi
 
           echo "PREVIEW_URL=$PREVIEW_URL" >> $GITHUB_ENV
+          echo "THEME_NAME=$THEME_NAME" >> $GITHUB_ENV
+          echo "DEPLOY_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
           # 5. Publish ONLY on main
           if [ "$SHOULD_PUBLISH" = true ]; then
