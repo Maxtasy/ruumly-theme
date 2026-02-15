@@ -18,7 +18,8 @@
             label: name_label,
             placeholder: name_placeholder,
             name: 'comment[author]',
-            value: form.author
+            value: form.author,
+            required: true
           %}
 
           {% assign email_label = 'inputs.email.label' | t %}
@@ -28,7 +29,8 @@
             placeholder: email_placeholder,
             type: 'email',
             name: 'comment[email]',
-            value: form.email
+            value: form.email,
+            required: true
           %}
 
           {% assign message_label = 'inputs.message.label' | t %}
@@ -38,7 +40,8 @@
             placeholder: message_placeholder,
             type: 'text-area',
             name: 'comment[body]',
-            value: form.body
+            value: form.body,
+            required: true
           %}
 
           {% if blog.moderated? %}
@@ -58,11 +61,21 @@
           {% render 'text', text: comment_count_text %}
 
           <ul class="Comments__Comments u-NoList">
-            {% for comment in article.comments %}
-              <li>
-                {% render 'comment', author: comment.author, created_at: comment.created_at, content: comment.content %}
-              </li>
-            {% endfor %}
+            {% paginate article.comments by 2 %}
+              {% for comment in article.comments %}
+                <li>
+                  {% render 'comment',
+                    author: comment.author,
+                    created_at: comment.created_at,
+                    content: comment.content
+                  %}
+                </li>
+              {% endfor %}
+
+              <div class="Comments__Pagination">
+                {% render 'pagination', paginate: paginate %}
+              </div>
+            {% endpaginate %}
           </ul>
         {% endif %}
       {% else %}
@@ -91,11 +104,17 @@
     flex-direction: column;
     gap: var(--size-s);
   }
+
+  .Comments__Pagination {
+    display: flex;
+    justify-content: center;
+  }
 {% endstylesheet %}
 
 {% schema %}
 {
   "name": "t:sections.comment.name",
+  "limit": 1,
   "enabled_on": {
     "templates": ["article"]
   },
