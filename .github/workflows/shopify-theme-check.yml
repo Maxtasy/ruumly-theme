@@ -3,6 +3,17 @@ name: Shopify Theme Check
 on:
   pull_request:
     types: [opened, synchronize, reopened]
+    branches:
+      - main
+    paths:
+      - "assets/**"
+      - "blocks/**"
+      - "config/**"
+      - "layout/**"
+      - "locales/**"
+      - "sections/**"
+      - "snippets/**"
+      - "templates/**"
   workflow_dispatch:
 
 jobs:

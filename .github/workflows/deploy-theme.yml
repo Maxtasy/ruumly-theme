@@ -15,12 +15,7 @@ on:
       - "templates/**"
   pull_request:
     branches:
-      - feature/**
-      - component/**
-      - section/**
-      - fix/**
-      - chore/**
-      - a11y/**
+      - main
     paths:
       - "assets/**"
       - "blocks/**"
