@@ -82,7 +82,7 @@ jobs:
         run: |
           set -o pipefail
 
-          BRANCH_NAME="${GITHUB_REF_NAME}"
+          BRANCH_NAME="${GITHUB_HEAD_REF}"
 
           # 1. Build theme name depending on branch
           if [ "$BRANCH_NAME" = "main" ]; then
