@@ -18,5 +18,5 @@
       "settings": {}
     }
   },
-  "order": ["main, comment"]
+  "order": ["main", "comment"]
 }
