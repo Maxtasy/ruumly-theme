@@ -17,3 +17,5 @@ jobs:
       - run: npx percy exec -- npm run test:visual
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+          SHOPIFY_STOREFRONT_URL: ${{ secrets.SHOPIFY_STOREFRONT_URL }}
+          SHOPIFY_STOREFRONT_PASSWORD: ${{ secrets.SHOPIFY_STOREFRONT_PASSWORD }}
