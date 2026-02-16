@@ -4,3 +4,12 @@ shopify.theme.toml
 
 # Node
 node_modules
+
+# Environment variables
+.env
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+playwright/.auth/
