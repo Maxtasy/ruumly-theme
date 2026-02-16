@@ -34,7 +34,14 @@
             {% assign limit = block.settings.limit %}
           {% endif %}
 
-          <div class="Tabs__Item">
+          <div
+            class="
+              Tabs__Item
+              {% if block.settings.enable_slider %}
+                Tabs__Item--Slider
+              {% endif %}
+            "
+          >
             {% assign products = block.settings.collection.products | default: block.settings.product_list %}
             {% render 'product-list', products: products, limit: limit %}
           </div>
@@ -82,6 +89,18 @@
 
   .Tabs:has(.Tabs__Title:nth-of-type(4) input:checked) .Tabs__Item:not(:nth-of-type(4)) {
     display: none;
+  }
+
+  .Tabs__Item--Slider {
+    overflow-x: auto;
+  }
+
+  .Tabs__Item--Slider .ProductList {
+    display: flex;
+  }
+
+  .Tabs__Item--Slider .ProductList li {
+    flex-shrink: 0;
   }
 {% endstylesheet %}
 
@@ -146,6 +165,11 @@
           "type": "product_list",
           "id": "product_list",
           "label": "t:sections.all.settings.product_list.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_slider",
+          "label": "t:sections.all.settings.enable_slider.label"
         },
         {
           "type": "checkbox",

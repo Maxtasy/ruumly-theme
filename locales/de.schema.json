@@ -348,6 +348,9 @@
         "columns_mobile": {
           "label": "Spalten Mobile"
         },
+        "enable_slider": {
+          "label": "Slider aktivieren"
+        },
         "enable_quick_add_button": {
           "label": "Button für schnelles hinzufügen"
         },

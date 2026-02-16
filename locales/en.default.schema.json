@@ -348,6 +348,9 @@
         "columns_mobile": {
           "label": "Columns Mobile"
         },
+        "enable_slider": {
+          "label": "Enable Slider"
+        },
         "enable_quick_add_button": {
           "label": "Quick Add Button"
         },
