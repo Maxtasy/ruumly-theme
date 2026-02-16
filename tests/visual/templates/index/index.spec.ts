@@ -1,3 +1,4 @@
+import percySnapshot from "@percy/playwright";
 import { expect, test } from "@playwright/test";
 import { maskSelectors } from "../../../masks";
 import { scrollToBottomAndBack } from "../../../util";
@@ -14,4 +15,6 @@ test(`index page visual regression`, async ({ page }) => {
     timeout: 10_000,
     mask: maskSelectors.map((selector) => page.locator(selector)),
   });
+
+  await percySnapshot(page, "index");
 });
