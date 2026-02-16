@@ -11,12 +11,11 @@
         {% render 'image', image: article.image %}
       </div>
 
-      <div class="BlogArticle__Heading">
-        {% assign date_time_formatted = article.created_at | date: '%Y-%m-%d' %}
-        {% assign text_formatted = article.created_at | date: '%-d. %B %Y' %}
-        {% render 'time', date_time: date_time_formatted, text: text_formatted %}
+      <div class="BlogArticle__Header">
+        {% assign text_formatted = article.created_at | date: format: 'year_month_day' %}
+        {% render 'time', date: article.created_at, text: text_formatted %}
 
-        {% render 'text', text: article.title, as: 'h2', variant: 'heading-small' %}
+        {% render 'text', text: article.title, as: 'h1', variant: 'heading-small' %}
       </div>
 
       <div class="BlogArticle__Content">
@@ -24,7 +23,8 @@
       </div>
 
       <div class="BlogArticle__Footer">
-        {% render 'text', text: article.author %}
+        {% assign written_by = 'blog_article.written_by' | t: author: article.author %}
+        {% render 'text', text: written_by %}
       </div>
     </div>
   </div>

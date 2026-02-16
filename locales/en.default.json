@@ -34,6 +34,9 @@
       "just_now": "just now"
     }
   },
+  "date_formats": {
+    "year_month_day": "%B %-d, %Y"
+  },
   "comments": {
     "comments_count": {
       "one": "{{ count }} comment",
@@ -142,5 +145,8 @@
     "index": {
       "aria_label": "Navigate to home page"
     }
+  },
+  "blog_article": {
+    "written_by": "Written by {{ author }}"
   }
 }
