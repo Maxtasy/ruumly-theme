@@ -1,0 +1,8 @@
+{% doc %}
+  Renders a Time component.
+
+  @param date - The datetime attribute value.
+  @param text - The rendered text for the time component.
+{% enddoc %}
+
+<time datetime="{{ date | date: '%Y-%m-%d' }}">{{ text }}</time>

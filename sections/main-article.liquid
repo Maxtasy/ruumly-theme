@@ -1,1 +1,69 @@
-{% render 'rich-text', content: article.content %}
+<section
+  class="
+    Section
+    Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+  "
+>
+  <div class="Section__Inner">
+    <div class="BlogArticle">
+      <div class="BlogArticle__Banner">
+        {% render 'image', image: article.image %}
+      </div>
+
+      <div class="BlogArticle__Header">
+        {% assign text_formatted = article.created_at | date: format: 'year_month_day' %}
+        {% render 'time', date: article.created_at, text: text_formatted %}
+
+        {% render 'text', text: article.title, as: 'h1', variant: 'heading-small' %}
+      </div>
+
+      <div class="BlogArticle__Content">
+        {% render 'rich-text', content: article.content %}
+      </div>
+
+      <div class="BlogArticle__Footer">
+        {% assign written_by = 'blog_article.written_by' | t: author: article.author %}
+        {% render 'text', text: written_by %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .BlogArticle {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.main_article.name",
+  "settings": [
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_appearance.content"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.settings.color_scheme.label",
+      "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "select",
+      "id": "padding_block",
+      "label": "t:sections.all.settings.padding_block.label",
+      "default": "medium",
+      "options": [
+        { "value": "none", "label": "t:sections.all.settings.padding_block.options.none.label" },
+        { "value": "small", "label": "t:sections.all.settings.padding_block.options.small.label" },
+        { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
+        { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
+      ]
+    }
+  ]
+}
+{% endschema %}

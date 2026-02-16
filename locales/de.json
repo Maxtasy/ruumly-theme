@@ -34,6 +34,9 @@
       "just_now": "gerade eben"
     }
   },
+  "date_formats": {
+    "year_month_day": "%-d. %B %Y"
+  },
   "comments": {
     "comments_count": {
       "one": "{{ count }} Kommentar",
@@ -142,5 +145,8 @@
     "index": {
       "aria_label": "Zur Startseite"
     }
+  },
+  "blog_article": {
+    "written_by": "Geschrieben von {{ author }}"
   }
 }
