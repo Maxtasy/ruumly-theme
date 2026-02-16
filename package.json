@@ -23,8 +23,6 @@
   },
   "homepage": "https://github.com/Maxtasy/ruumly-theme#readme",
   "devDependencies": {
-    "@percy/cli": "^1.31.8",
-    "@percy/playwright": "^1.0.10",
     "@playwright/test": "^1.58.2",
     "@shopify/cli": "^3.89.0",
     "@types/node": "^25.2.3",
