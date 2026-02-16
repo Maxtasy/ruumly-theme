@@ -4,7 +4,6 @@
   @param {object} image - Image to render in the blog article card.
   @param {string} title - The blog article title.
   @param {string} excerpt - The summary of the blog article.
-  @param {string} content - The content of the blog article.
   @param {string} url - The URL of the blog article.
 {% enddoc %}
 
@@ -15,10 +14,6 @@
 
   <div class="BlogArticleCard__Content">
     {% render 'text', text: title, variant: 'heading-small' %}
-
-    {% if excerpt == '' %}
-      {% assign excerpt = content | strip_html | truncatewords: 15 %}
-    {% endif %}
 
     {% render 'text', text: excerpt, as: 'div' %}
 

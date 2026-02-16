@@ -19,13 +19,8 @@
 >
   {% for article in blog_articles limit: limit %}
     <li>
-      {% render 'blog-article-card',
-        image: article.image,
-        title: article.title,
-        excerpt: article.excerpt,
-        content: article.content,
-        url: article.url
-      %}
+      {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
+      {% render 'blog-article-card', image: article.image, title: article.title, excerpt: excerpt, url: article.url %}
     </li>
   {% endfor %}
 </ul>
