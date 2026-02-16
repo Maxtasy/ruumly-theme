@@ -61,7 +61,7 @@
           {% render 'text', text: comment_count_text %}
 
           <ul class="Comments__Comments u-NoList">
-            {% paginate article.comments by 2 %}
+            {% paginate article.comments by 10 %}
               {% for comment in article.comments %}
                 <li>
                   {% render 'comment',
