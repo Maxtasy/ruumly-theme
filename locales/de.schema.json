@@ -638,6 +638,24 @@
         }
       }
     },
+    "newsletter": {
+      "name": "Newsletter",
+      "settings": {
+        "heading": {
+          "label": "Überschrift",
+          "default": "Newsletter"
+        },
+        "text": {
+          "label": "Text",
+          "default": "Melde dich jetzt zur Ruumly Community an und sichere dir 10% Rabatt. Freue dich auf exklusive Benefits und spannende Infos."
+        }
+      },
+      "presets": {
+        "newsletter": {
+          "name": "Newsletter"
+        }
+      }
+    },
     "product_configurator": {
       "name": "Produktkonfigurator",
       "settings": {
