@@ -1,0 +1,40 @@
+{% doc %}
+  Renders a Newsletter component.
+
+  @param {string} heading - The heading of the newsletter.
+  @param {string} text - The text of the newsletter.
+{% enddoc %}
+
+<div class="Newsletter">
+  <div class="Newsletter__Top">
+    {% render 'text', text: heading, as: 'h2' %}
+
+    {% render 'text', text: text %}
+  </div>
+
+  <div class="Newsletter__Bottom">
+    {% render 'text-field', type: 'email', required: true, placeholder: 'Deine E-Mail-Adresse' %}
+
+    {% render 'button', text: 'Jetzt anmelden' %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .Newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-l);
+  }
+
+  .Newsletter__Top {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .Newsletter__Bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
