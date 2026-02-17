@@ -72,9 +72,11 @@
                 </li>
               {% endfor %}
 
-              <div class="Comments__Pagination">
-                {% render 'pagination', paginate: paginate %}
-              </div>
+              {% if paginate.pages > 1 %}
+                <div class="Comments__Pagination">
+                  {% render 'pagination', paginate: paginate %}
+                </div>
+              {% endif %}
             {% endpaginate %}
           </ul>
         {% endif %}
