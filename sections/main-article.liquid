@@ -1,6 +1,7 @@
 <section
   class="
     Section
+    Section--Narrow
     Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
     ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
   "
@@ -8,7 +9,7 @@
   <div class="Section__Inner">
     <div class="BlogArticle">
       <div class="BlogArticle__Banner">
-        {% render 'image', image: article.image %}
+        {% render 'image', image: article.image, variant: 'landscape' %}
       </div>
 
       <div class="BlogArticle__Header">
