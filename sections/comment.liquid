@@ -60,8 +60,8 @@
           {% assign comment_count_text = 'comments.comments_count' | t: count: article.comments_count %}
           {% render 'text', text: comment_count_text %}
 
-          <ul class="Comments__Comments u-NoList">
-            {% paginate article.comments by 10 %}
+          {% paginate article.comments by 5 %}
+            <ul class="Comments__Comments u-NoList">
               {% for comment in article.comments %}
                 <li>
                   {% render 'comment',
@@ -71,12 +71,12 @@
                   %}
                 </li>
               {% endfor %}
+            </ul>
 
-              <div class="Comments__Pagination">
-                {% render 'pagination', paginate: paginate %}
-              </div>
-            {% endpaginate %}
-          </ul>
+            <div class="Comments__Pagination">
+              {% render 'pagination', paginate: paginate %}
+            </div>
+          {% endpaginate %}
         {% endif %}
       {% else %}
         {% assign comments_disabled_text = 'comments.comments_disabled' | t %}
