@@ -119,6 +119,7 @@
             <div class="SiteHeader__Logo" style="--width: {{ section.settings.logo_width }}px;">
               {% render 'image', image: settings.logo %}
             </div>
+
           {% else %}
             {% render 'text', text: 'Ruumly', as: 'h2', variant: section.settings.title_text_variant %}
           {% endif %}
@@ -243,6 +244,12 @@
       "label": "t:sections.site_header.settings.show_logo.label",
       "default": true,
       "info": "t:sections.site_header.settings.show_logo.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_mobile_logo",
+      "label": "t:sections.site_header.settings.show_mobile_logo",
+      "default": true
     },
     {
       "type": "select",

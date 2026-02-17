@@ -713,6 +713,9 @@
         "cart_icon_position": {
           "label": "Cart Icon Position"
         },
+        "show_mobile_logo": {
+          "label": "Show Mobile Logo"
+        },
         "search_icon_position": {
           "label": "Search Icon Position"
         },
