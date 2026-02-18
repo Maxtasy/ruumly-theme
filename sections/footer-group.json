@@ -2,6 +2,9 @@
   "type": "footer",
   "name": "Footer Group",
   "sections": {
+    "newsletter": {
+      "type": "newsletter"
+    },
     "footer": {
       "type": "footer",
       "settings": {
@@ -9,5 +12,5 @@
       }
     }
   },
-  "order": ["footer"]
+  "order": ["newsletter", "footer"]
 }
