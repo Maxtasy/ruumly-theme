@@ -115,22 +115,26 @@
 
       <div class="SiteHeader__Middle">
         <a href="{{ routes.root_url }}" aria-label="{{ 'navigation.index.aria_label' | t }}">
-          {% if section.settings.show_desktop_logo and settings.logo != blank %}
+          {% if section.settings.show_desktop_logo and settings.desktop_logo != blank %}
             <div class="SiteHeader__Logo u-Hidden--Mobile" style="--width: {{ section.settings.logo_width }}px;">
               {% render 'image', image: settings.desktop_logo %}
             </div>
 
           {% else %}
-            {% render 'text', text: 'Ruumly', as: 'h2', variant: section.settings.title_text_variant %}
+            <div class="u-Hidden--Mobile">
+              {% render 'text', text: 'Ruumly', as: 'h2', variant: section.settings.title_text_variant %}
+            </div>
           {% endif %}
 
-          {% if section.settings.show_mobile_logo and settings.logo != blank %}
+          {% if section.settings.show_mobile_logo and settings.mobile_logo != blank %}
             <div class="SiteHeader__Logo u-Hidden--Desktop" style="--width: {{ section.settings.logo_width }}px;">
               {% render 'image', image: settings.mobile_logo %}
             </div>
 
           {% else %}
-            {% render 'text', text: 'Ruumly', as: 'h2', variant: section.settings.title_text_variant %}
+            <div class="u-Hidden--Desktop">
+              {% render 'text', text: 'Ruumly', as: 'h2', variant: section.settings.title_text_variant %}
+            </div>
           {% endif %}
         </a>
       </div>
