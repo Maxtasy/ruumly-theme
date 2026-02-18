@@ -13,9 +13,11 @@
   </div>
 
   <div class="Newsletter__Bottom">
-    {% render 'text-field', type: 'email', required: true, placeholder: 'Deine E-Mail-Adresse' %}
+    {% assign placeholder = 'inputs.email.placeholder' | t %}
+    {% render 'text-field', type: 'email', required: true, placeholder: placeholder %}
 
-    {% render 'button', text: 'Jetzt anmelden' %}
+    {% assign button_text = 'global.submit' | t %}
+    {% render 'button', text: button_text %}
   </div>
 </div>
 
