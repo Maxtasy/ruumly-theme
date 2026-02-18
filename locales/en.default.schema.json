@@ -232,8 +232,11 @@
     "logo": {
       "name": "Logo",
       "settings": {
-        "logo_image": {
-          "label": "Logo"
+        "desktop_logo_image": {
+          "label": "Desktop Logo"
+        },
+        "mobile_logo_image": {
+          "label": "Mobile Logo"
         },
         "logo_width": {
           "label": "Width"
@@ -740,8 +743,12 @@
         "show_cart_icon": {
           "label": "Show Cart Icon"
         },
-        "show_logo": {
-          "label": "Show Logo",
+        "show_desktop_logo": {
+          "label": "Show Desktop Logo",
+          "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
+        },
+        "show_mobile_logo": {
+          "label": "Show Mobile Logo",
           "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
         },
         "show_search_icon": {

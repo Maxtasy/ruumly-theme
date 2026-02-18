@@ -731,6 +731,9 @@
         "cart_icon_position": {
           "label": "Warenkorb-Symbol Position"
         },
+        "show_mobile_logo": {
+          "label": "Mobile Logo anzeigen"
+        },
         "search_icon_position": {
           "label": "Such-Symbol Position"
         },
