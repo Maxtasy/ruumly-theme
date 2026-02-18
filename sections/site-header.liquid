@@ -116,10 +116,12 @@
       <div class="SiteHeader__Middle">
         <a href="{{ routes.root_url }}" aria-label="{{ 'navigation.index.aria_label' | t }}">
           {% if section.settings.show_desktop_logo and settings.desktop_logo != blank %}
-            <div class="SiteHeader__Logo u-Hidden--Mobile" style="--width: {{ section.settings.logo_width }}px;">
+            <div
+              class="SiteHeader__Logo u-Hidden--Mobile"
+              style="--width: {{ section.settings.desktop_logo_width }}px;"
+            >
               {% render 'image', image: settings.desktop_logo %}
             </div>
-
           {% else %}
             <div class="u-Hidden--Mobile">
               {% render 'text', text: 'Ruumly', as: 'h2', variant: section.settings.title_text_variant %}
@@ -127,10 +129,12 @@
           {% endif %}
 
           {% if section.settings.show_mobile_logo and settings.mobile_logo != blank %}
-            <div class="SiteHeader__Logo u-Hidden--Desktop" style="--width: {{ section.settings.logo_width }}px;">
+            <div
+              class="SiteHeader__Logo u-Hidden--Desktop"
+              style="--width: {{ section.settings.mobile_logo_width }}px;"
+            >
               {% render 'image', image: settings.mobile_logo %}
             </div>
-
           {% else %}
             <div class="u-Hidden--Desktop">
               {% render 'text', text: 'Ruumly', as: 'h2', variant: section.settings.title_text_variant %}
@@ -256,7 +260,18 @@
       "id": "show_desktop_logo",
       "label": "t:sections.site_header.settings.show_desktop_logo.label",
       "default": true,
-      "info": "t:sections.site_header.settings.show_mobile_logo.info"
+      "info": "t:sections.site_header.settings.show_desktop_logo.info"
+    },
+    {
+      "type": "range",
+      "id": "desktop_logo_width",
+      "min": 50,
+      "max": 300,
+      "step": 10,
+      "default": 100,
+      "unit": "px",
+      "label": "t:settings_schema.logo.settings.logo_width.label",
+      "visible_if": "{{ section.settings.show_desktop_logo == true }}"
     },
     {
       "type": "checkbox",
@@ -264,6 +279,17 @@
       "label": "t:sections.site_header.settings.show_mobile_logo.label",
       "default": true,
       "info": "t:sections.site_header.settings.show_mobile_logo.info"
+    },
+    {
+      "type": "range",
+      "id": "mobile_logo_width",
+      "min": 25,
+      "max": 300,
+      "step": 5,
+      "default": 50,
+      "unit": "px",
+      "label": "t:settings_schema.logo.settings.logo_width.label",
+      "visible_if": "{{ section.settings.show_mobile_logo == true }}"
     },
     {
       "type": "select",
@@ -285,18 +311,7 @@
       ],
       "default": "heading-medium",
       "info": "t:sections.site_header.settings.title_text_variant.info",
-      "visible_if": "{{ section.settings.show_logo == false }}"
-    },
-    {
-      "type": "range",
-      "id": "logo_width",
-      "min": 50,
-      "max": 300,
-      "step": 10,
-      "default": 100,
-      "unit": "px",
-      "label": "t:settings_schema.logo.settings.logo_width.label",
-      "visible_if": "{{ section.settings.show_logo == true }}"
+      "visible_if": "{{ section.settings.show_desktop_logo == false or section.settings.show_mobile_logo == false }}"
     },
     {
       "type": "paragraph",
