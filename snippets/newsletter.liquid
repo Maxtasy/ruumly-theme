@@ -1,0 +1,42 @@
+{% doc %}
+  Renders a Newsletter component.
+
+  @param {string} heading - The heading of the newsletter.
+  @param {string} text - The text of the newsletter.
+{% enddoc %}
+
+<div class="Newsletter">
+  <div class="Newsletter__Top">
+    {% render 'text', text: heading, as: 'h2', variant: 'heading-medium' %}
+
+    {% render 'text', text: text %}
+  </div>
+
+  <div class="Newsletter__Bottom">
+    {% assign placeholder = 'inputs.email.placeholder' | t %}
+    {% render 'text-field', type: 'email', required: true, placeholder: placeholder %}
+
+    {% assign button_text = 'global.submit' | t %}
+    {% render 'button', text: button_text %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .Newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-l);
+  }
+
+  .Newsletter__Top {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .Newsletter__Bottom {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}

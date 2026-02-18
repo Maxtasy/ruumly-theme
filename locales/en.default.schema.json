@@ -638,6 +638,24 @@
         }
       }
     },
+    "newsletter": {
+      "name": "Newsletter",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "Newsletter"
+        },
+        "text": {
+          "label": "Text",
+          "default": "Sign up now for the Ruumly Community and get a 10% discount. Look forward to exclusive benefits and exciting information."
+        }
+      },
+      "presets": {
+        "newsletter": {
+          "name": "Newsletter"
+        }
+      }
+    },
     "product_configurator": {
       "name": "Product Configurator",
       "settings": {
