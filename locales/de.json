@@ -110,7 +110,7 @@
       "aria_label": "Vorheriges"
     },
     "price_list": {
-      "info_html": "inkl. MwSt. zzgl. <a href='/policies/shipping-policy'>Versand</a>"
+      "info_html": "inkl. MwSt. zzgl. <a href='/de/policies/shipping-policy'>Versand</a>"
     },
     "product_link": {
       "aria_label": "Gehe zu {{ product_title }}"
