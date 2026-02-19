@@ -8,6 +8,7 @@
   @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
   @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card.
   @param {boolean} [use_placeholders] - If set to true, renders placeholder product cards.
+  @param {string} [rating_list_prefix] - Unique list prefix for ratings.
 {% enddoc %}
 
 {% assign columns_mobile = columns_mobile | default: 2 %}
@@ -37,7 +38,8 @@
           rating: product.metafields.custom.rating.value.rating,
           enable_quick_add_button: enable_quick_add_button,
           enable_wishlist_button: enable_wishlist_button,
-          product: product
+          product: product,
+          product_card_rating_prefix: rating_list_prefix
         %}
       </li>
     {% endfor %}

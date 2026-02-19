@@ -13,6 +13,7 @@
   @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
   @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card.
   @param {object} [product] - The product reference.
+  @param {string} [product_card_rating_prefix] - The product card rating prefix.
 {% enddoc %}
 
 {% assign hover_effect = hover_effect | default: settings.product_card_hover_effect %}
@@ -89,7 +90,7 @@
       </a>
 
       {% if rating %}
-        {% render 'rating', rating: rating, id_prefix: product.id %}
+        {% render 'rating', rating: rating, rating_prefix: product_card_rating_prefix %}
       {% endif %}
 
       <div class="ProductCard__PriceList">
