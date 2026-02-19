@@ -41,15 +41,10 @@
 
       {% assign remainder = remainder | minus: 1 %}
 
-      {% capture rating_icon_id %}{{ id_prefix }}-{{ forloop.index0 }}{% endcapture %}
+      {% capture icon_id %}{{ id_prefix }}-{{ forloop.index0 }}{% endcapture %}
 
       <div class="Rating__Item">
-        {% render 'rating-icon',
-          icon: icon,
-          fill_percentage: fill_percentage,
-          icon_size: icon_size,
-          rating_icon_id: rating_icon_id
-        %}
+        {% render 'rating-icon', icon: icon, fill_percentage: fill_percentage, icon_size: icon_size, icon_id: icon_id %}
       </div>
     {% endfor %}
   </div>
