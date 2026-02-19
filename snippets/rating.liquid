@@ -6,7 +6,7 @@
   @param {string} [icon_size] - The size of the icon.
   @param {number} [max_rating] - The maximum rating to display.
   @param {number} [rating_count] - The number of ratings.
-  @param {string} [id_prefix] - The prefix to use for generate unique SVG ID's.
+  @param {string} [id_prefix] - The prefix to use for generate unique rating icon ID's.
 {% enddoc %}
 
 {% liquid
@@ -42,6 +42,7 @@
       {% assign remainder = remainder | minus: 1 %}
 
       {% capture rating_icon_id %}{{ id_prefix }}-{{ forloop.index0 }}{% endcapture %}
+
       <div class="Rating__Item">
         {% render 'rating-icon',
           icon: icon,
