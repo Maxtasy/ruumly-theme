@@ -36,7 +36,7 @@
 
           <div class="Tabs__Item">
             {% assign products = block.settings.collection.products | default: block.settings.product_list %}
-            {% render 'product-list', products: products, limit: limit %}
+            {% render 'product-list', products: products, limit: limit, rating_list_prefix: block.id %}
           </div>
         {% endfor %}
       </div>
