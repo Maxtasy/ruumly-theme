@@ -89,7 +89,7 @@
       </a>
 
       {% if rating %}
-        {% render 'rating', rating: rating %}
+        {% render 'rating', rating: rating, id_prefix: product.id %}
       {% endif %}
 
       <div class="ProductCard__PriceList">

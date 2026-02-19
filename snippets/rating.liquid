@@ -6,6 +6,7 @@
   @param {string} [icon_size] - The size of the icon.
   @param {number} [max_rating] - The maximum rating to display.
   @param {number} [rating_count] - The number of ratings.
+  @param {string} [id_prefix] - The number of ratings.
 {% enddoc %}
 
 {% liquid
@@ -40,9 +41,18 @@
 
       {% assign remainder = remainder | minus: 1 %}
 
+      {% capture rating_icon_id %}{{ id_prefix }}-{{ forloop.index0 }}{% endcapture %}
       <div class="Rating__Item">
-        {% render 'rating-icon', icon: icon, fill_percentage: fill_percentage, icon_size: icon_size %}
+        {% render 'rating-icon',
+          icon: icon,
+          fill_percentage: fill_percentage,
+          icon_size: icon_size,
+          rating_icon_id: rating_icon_id
+        %}
       </div>
+      <script>
+        console.log({{ rating_icon_id | json }});
+      </script>
     {% endfor %}
   </div>
 
