@@ -1,0 +1,30 @@
+{% doc %}
+  Renders a Dropdown Trigger component.
+
+  @param {string} text - The text for the dropdown trigger.
+  @param {string} handle - Connects the dropdown trigger with a dropdown content.
+{% enddoc %}
+
+<button is="dropdown-trigger-component" class="DropdownTrigger" data-handle="{{ handle }}">
+  {% render 'text', text: text, as: 'strong' %}
+
+  <div class="DropdownTrigger__Icon">
+    {% render 'icon', icon: 'chevron-down' %}
+  </div>
+</button>
+
+{% stylesheet %}
+  .DropdownTrigger {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+  }
+
+  .DropdownTrigger__Icon {
+    transition: rotate var(--transition-duration-medium) var(--transition-timing);
+  }
+
+  .DropdownTrigger__Icon--Active {
+    rotate: 180deg;
+  }
+{% endstylesheet %}
