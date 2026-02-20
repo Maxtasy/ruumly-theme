@@ -1,4 +1,10 @@
-<div class="DropdownContent">
+{% doc %}
+  Renders a Dropdown Content component.
+
+  @param {string} handle - Connects the dropdown content with a dropdown trigger.
+{% enddoc %}
+
+<div is="dropdown-content-component" class="DropdownContent" data-handle="{{ handle }}">
   <ul class="DropdownContent__Inputs u-NoList">
     <li class="DropdownContent__InputItem">
       <input type="checkbox" name="" id="">
@@ -23,6 +29,10 @@
 
 {% stylesheet %}
   .DropdownContent {
+    display: none;
+  }
+
+  .DropdownContent--Active {
     display: flex;
     flex-direction: column;
     gap: var(--size-m);

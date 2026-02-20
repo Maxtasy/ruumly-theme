@@ -14,7 +14,7 @@ export class DropdownTrigger extends CustomComponentMixin(HTMLButtonElement) {
     this.subscribe("click", this.handleClick);
   }
 
-  disonnectedCallback() {
+  disconnectedCallback() {
     this.unsubscribe("click", this.handleClick);
   }
 

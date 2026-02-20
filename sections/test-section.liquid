@@ -13,7 +13,11 @@
 
       {% render 'dropdown-trigger', text: 'Farbe', handle: 'farbe' %}
 
-      {% render 'dropdown-content' %}
+      {% render 'dropdown-trigger', text: 'Farbe', handle: 'größe' %}
+
+      {% render 'dropdown-content', handle: 'farbe' %}
+
+      {% render 'dropdown-content', handle: 'größe' %}
     </div>
   </div>
 </section>
