@@ -2,29 +2,11 @@
   Renders a Dropdown Content component.
 
   @param {string} handle - Connects the dropdown content with a dropdown trigger.
+  @param {string} content - The content.
 {% enddoc %}
 
 <div is="dropdown-content-component" class="DropdownContent" data-handle="{{ handle }}">
-  <ul class="DropdownContent__Inputs u-NoList">
-    <li class="DropdownContent__InputItem">
-      <input type="checkbox" name="" id="">
-      {% render 'text', text: '10 cm (niedrig)' %}
-    </li>
-
-    <li class="DropdownContent__InputItem">
-      <input type="checkbox" name="" id="">
-      {% render 'text', text: '15 cm (standard)' %}
-    </li>
-
-    <li class="DropdownContent__InputItem">
-      <input type="checkbox" name="" id="">
-      {% render 'text', text: '20 cm (hoch)' %}
-    </li>
-  </ul>
-
-  <div class="DropdownContent__Button">
-    {% render 'button', content: 'Filter zurücksetzen' %}
-  </div>
+  {{ content }}
 </div>
 
 {% stylesheet %}
@@ -40,17 +22,5 @@
     border: var(--border-width) var(--border-style) var(--t-border);
     border-radius: var(--t-border-radius);
     background: var(--t-background);
-  }
-
-  .DropdownContent__Inputs {
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-s);
-  }
-
-  .DropdownContent__InputItem {
-    display: flex;
-    align-items: center;
-    gap: var(--size-s);
   }
 {% endstylesheet %}

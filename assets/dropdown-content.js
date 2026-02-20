@@ -4,22 +4,37 @@ export class DropdownContent extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
     super();
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handle = this.parsedData.handle;
+
+    this.handleWindowClick = this.handleWindowClick.bind(this);
   }
 
   connectedCallback() {
-    this.handle = this.parsedData.handle;
-    globalThis.subscribe("dropdown-trigger:click", this.handleClick);
+    globalThis.subscribe("click", this.handleWindowClick);
   }
 
   disconnectedCallback() {
-    globalThis.unsubscribe("dropdown-trigger:click", this.handleClick);
+    globalThis.unsubscribe("click", this.handleWindowClick);
   }
 
-  handleClick({ handle, active }) {
-    if (handle === this.handle) {
-      this.classList.toggle("DropdownContent--Active", active);
-    }
+  show() {
+    this.classList.add("DropdownContent--Active");
+  }
+
+  hide() {
+    this.classList.remove("DropdownContent--Active");
+  }
+
+  handleWindowClick(event) {
+    if (this.connectedTriggerElement?.contains(event.target)) return;
+    if (this.contains(event.target)) return;
+
+    this.connectedTriggerElement?.setInactive();
+    this.hide();
+  }
+
+  get connectedTriggerElement() {
+    return document.querySelector(`.DropdownTrigger[data-handle="${this.handle}"]`);
   }
 }
 
