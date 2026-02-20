@@ -33,6 +33,9 @@
 }
 
 .Section__Inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-m);
   margin: 0 auto;
   max-width: var(--page-width);
 }
