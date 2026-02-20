@@ -14,19 +14,34 @@ export class DropdownTrigger extends CustomComponentMixin(HTMLButtonElement) {
     this.subscribe("click", this.handleClick);
   }
 
-  disonnectedCallback() {
+  disconnectedCallback() {
     this.unsubscribe("click", this.handleClick);
   }
 
   handleClick() {
-    this.active = !this.active;
+    if (this.active) {
+      this.setInactive();
+      this.connectedContentElement?.hide();
+    } else {
+      this.setActive();
+      this.connectedContentElement?.show();
+    }
+  }
 
-    this.iconElement.classList.toggle("DropdownTrigger__Icon--Active", this.active);
+  setActive() {
+    this.active = true;
 
-    this.publish("dropdown-trigger:click", {
-      handle: this.handle,
-      active: this.active,
-    });
+    this.iconElement.classList.add("DropdownTrigger__Icon--Active");
+  }
+
+  setInactive() {
+    this.active = false;
+
+    this.iconElement.classList.remove("DropdownTrigger__Icon--Active");
+  }
+
+  get connectedContentElement() {
+    return document.querySelector(`.DropdownContent[data-handle="${this.handle}"]`);
   }
 
   get iconElement() {
