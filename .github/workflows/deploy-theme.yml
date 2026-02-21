@@ -94,11 +94,11 @@ jobs:
         run: |
           set -o pipefail
 
-          BRANCH_NAME="${GITHUB_REF}"
+          BRANCH_NAME="${GITHUB_REF_NAME}"
           echo ${BRANCH_NAME}
 
           # 1. Build theme name depending on branch
-          if [ "$BRANCH_NAME" = "main" ]; then
+          if [ "$BRANCH_NAME" = "main" ] || [ "$BRANCH_NAME" = "ci/deploy-script-adjustments" ]; then
             DEPLOY_TIME=$(date +'%Y-%m-%d_%H-%M')
             THEME_NAME="${DEPLOY_TIME} (${GITHUB_SHA::7})"
             SHOULD_PUBLISH=true
