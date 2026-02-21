@@ -3,30 +3,53 @@ export const CustomComponentMixin = (Base) =>
     constructor() {
       super();
 
-      // Ensure the component is initialized with an empty dataset
+      // Ensure the component has parsed dataset attributes
       this.parsedData = parseDataAttributes(this);
+
+      // Internal map to track wrapped event listeners for proper removal
+      this._eventWrappers = new WeakMap();
     }
 
+    /**
+     * Subscribe to an event on this component.
+     * Works with CustomEvent or normal Event.
+     * The same callback can be unsubscribed later.
+     */
     subscribe(eventName, callbackFunction) {
-      this.addEventListener(eventName, (event) => {
+      // Wrap the callback so we always pass event.detail for CustomEvents
+      const wrapper = (event) => {
         if (event instanceof CustomEvent) {
           callbackFunction(event.detail);
         } else {
           callbackFunction(event);
         }
-      });
+      };
+
+      // Store the wrapper in a WeakMap keyed by the original callback
+      this._eventWrappers.set(callbackFunction, wrapper);
+
+      // Attach the wrapper listener
+      this.addEventListener(eventName, wrapper);
     }
 
+    /**
+     * Unsubscribe a previously subscribed callback
+     */
     unsubscribe(eventName, callbackFunction) {
-      this.removeEventListener(eventName, callbackFunction);
+      const wrapper = this._eventWrappers.get(callbackFunction);
+      if (wrapper) {
+        this.removeEventListener(eventName, wrapper);
+        this._eventWrappers.delete(callbackFunction);
+      }
     }
 
+    /**
+     * Publish a custom event from this component.
+     * Optionally appends the action name from parsedData for namespacing.
+     */
     publish(eventName, data = {}) {
-      // For components that have an action attribute (e.g. Button), we want to append it to the event name.
-
       let eventNameWithAction = eventName;
-
-      if (this.parsedData.action) {
+      if (this.parsedData?.action) {
         eventNameWithAction += `:${this.parsedData.action}`;
       }
 

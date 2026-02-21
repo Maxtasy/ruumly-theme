@@ -3,6 +3,8 @@ import { CustomComponentMixin, defineComponent } from "./component.js";
 export class Alert extends CustomComponentMixin(HTMLDivElement) {
   constructor() {
     super();
+
+    console.log("Alert component initialized");
   }
 
   setText(text) {
