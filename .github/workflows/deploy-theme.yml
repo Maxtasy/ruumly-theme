@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - ci/deploy-script-adjustments
     paths:
       - "assets/**"
       - "blocks/**"
@@ -88,6 +89,8 @@ jobs:
 
           BRANCH_NAME="${GITHUB_HEAD_REF}"
 
+          echo ${BRANCH_NAME}
+
           # 1. Build theme name depending on branch
           if [ "$BRANCH_NAME" = "main" ]; then
             DEPLOY_TIME=$(date +'%Y-%m-%d_%H-%M')
@@ -97,6 +100,8 @@ jobs:
             THEME_NAME="${BRANCH_NAME}"
             SHOULD_PUBLISH=false
           fi
+
+          echo ${THEME_NAME}
 
           echo "Deploying theme: $THEME_NAME"
           echo "Branch: $BRANCH_NAME"
