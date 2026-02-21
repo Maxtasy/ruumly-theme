@@ -133,7 +133,7 @@ jobs:
             PUSH_TARGET_ARGS="--theme=$EXISTING_THEME_ID"
           else
             echo "No existing theme found, creating new one"
-            PUSH_TARGET_ARGS="--unpublished --theme=$THEME_NAME"
+            PUSH_TARGET_ARGS="--unpublished --theme=\"$THEME_NAME\""
           fi
 
           # Push theme
@@ -145,7 +145,8 @@ jobs:
           PUSH_EXIT_CODE=$?
 
           # Enable for debugging if needed.
-          # echo "$PUSH_OUTPUT"
+          echo "$PUSH_OUTPUT"
+          echo "$PUSH_EXIT_CODE"
 
           if [ $PUSH_EXIT_CODE -ne 0 ]; then
             echo "❌ Theme push failed. Not publishing."
