@@ -94,26 +94,28 @@ jobs:
         run: |
           set -o pipefail
 
-          BRANCH_NAME="${GITHUB_REF_NAME}"
-          echo ${BRANCH_NAME}
+          # Determine branch safely
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            BRANCH_NAME="$GITHUB_HEAD_REF"
+          else
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          fi
 
-          # 1. Build theme name depending on branch
-          if [ "$BRANCH_NAME" = "main" ] || [ "$BRANCH_NAME" = "ci/deploy-script-adjustments" ]; then
+          # Build theme name depending on branch
+          if [ "$BRANCH_NAME" = "main" ]; then
             DEPLOY_TIME=$(date +'%Y-%m-%d_%H-%M')
             THEME_NAME="${DEPLOY_TIME} (${GITHUB_SHA::7})"
             SHOULD_PUBLISH=true
           else
-            THEME_NAME="${BRANCH_NAME}"
+            THEME_NAME="$BRANCH_NAME"
             SHOULD_PUBLISH=false
           fi
-
-          echo ${THEME_NAME}
 
           echo "Deploying theme: $THEME_NAME"
           echo "Branch: $BRANCH_NAME"
           echo "Auto publish: $SHOULD_PUBLISH"
 
-          # 2. Check if preview theme already exists (unpublished only)
+          # Check if preview theme already exists (unpublished only)
           EXISTING_THEME_ID=$(shopify theme list \
             --store="${{ secrets.SHOPIFY_STORE }}" \
             --role=unpublished \
@@ -129,7 +131,7 @@ jobs:
             PUSH_TARGET_ARGS="--unpublished --theme=$THEME_NAME"
           fi
 
-          # 3. Push theme
+          # Push theme
           PUSH_OUTPUT=$(shopify theme push \
             --store="${{ secrets.SHOPIFY_STORE }}" \
             $PUSH_TARGET_ARGS \
@@ -137,7 +139,8 @@ jobs:
 
           PUSH_EXIT_CODE=$?
 
-          echo "$PUSH_OUTPUT"
+          # Enable for debugging if needed.
+          # echo "$PUSH_OUTPUT"
 
           if [ $PUSH_EXIT_CODE -ne 0 ]; then
             echo "❌ Theme push failed. Not publishing."
