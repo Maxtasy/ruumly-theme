@@ -51,7 +51,7 @@ jobs:
         if: steps.filter.outputs.theme == 'true'
         uses: actions/setup-node@v4
         with:
-          node-version: 20.10.0
+          node-version: 22.12.0
 
       - name: No relevant changes — auto pass
         if: steps.filter.outputs.theme != 'true'
@@ -87,6 +87,12 @@ jobs:
           else
             echo "Skipping deletion — 10 or fewer unpublished themes."
           fi
+
+      - name: Bundle js assets/main.js
+        if: steps.filter.outputs.theme == 'true'
+        run: |
+          npm ci
+          npm run build
 
       - name: Deploy and Publish Theme
         if: steps.filter.outputs.theme == 'true'
@@ -146,7 +152,7 @@ jobs:
             exit 1
           fi
 
-          # 4. Get theme ID
+          # Get theme ID
           NEW_THEME_ID=$(echo "$PUSH_OUTPUT" | jq -r '.theme.id')
 
           if [ "$NEW_THEME_ID" = "null" ] || [ -z "$NEW_THEME_ID" ]; then
