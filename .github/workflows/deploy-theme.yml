@@ -163,6 +163,7 @@ jobs:
           echo "Successfully pushed to Theme ID: $NEW_THEME_ID"
 
           PREVIEW_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.preview_url')
+          EDITOR_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.editor_url')
 
           if [ "$PREVIEW_URL" = "null" ] || [ -z "$PREVIEW_URL" ]; then
             echo "⚠️ No preview URL found."
@@ -170,7 +171,14 @@ jobs:
             echo "Preview URL: $PREVIEW_URL"
           fi
 
+          if [ "$EDITOR_URL" = "null" ] || [ -z "$EDITOR_URL" ]; then
+            echo "⚠️ No editor URL found."
+          else
+            echo "Editor URL: $EDITOR_URL"
+          fi
+
           echo "PREVIEW_URL=$PREVIEW_URL" >> $GITHUB_ENV
+          echo "EDITOR_URL=$EDITOR_URL" >> $GITHUB_ENV
           echo "THEME_NAME=$THEME_NAME" >> $GITHUB_ENV
           echo "DEPLOY_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
@@ -192,6 +200,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const previewUrl = process.env.PREVIEW_URL
+            const editorUrl = process.env.EDITOR_URL
             const themeName = process.env.THEME_NAME
             const shortSha = process.env.DEPLOY_SHA
 
@@ -216,6 +225,7 @@ jobs:
 
             ### 🔗 Preview
             ➡️ **[Open Shopify Preview](${previewUrl})**
+            ➡️ **[Open Shopify Theme Editor](${editorUrl})**
 
             ---
             _Last updated automatically by CI_`
