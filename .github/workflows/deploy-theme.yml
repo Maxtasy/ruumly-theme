@@ -88,6 +88,12 @@ jobs:
             echo "Skipping deletion — 10 or fewer unpublished themes."
           fi
 
+      - name: Bundle js assets/main.js
+        if: steps.filter.outputs.theme == 'true'
+        run: |
+          npm ci
+          npm run build
+
       - name: Deploy and Publish Theme
         if: steps.filter.outputs.theme == 'true'
         run: |
@@ -146,7 +152,7 @@ jobs:
             exit 1
           fi
 
-          # 4. Get theme ID
+          # Get theme ID
           NEW_THEME_ID=$(echo "$PUSH_OUTPUT" | jq -r '.theme.id')
 
           if [ "$NEW_THEME_ID" = "null" ] || [ -z "$NEW_THEME_ID" ]; then
