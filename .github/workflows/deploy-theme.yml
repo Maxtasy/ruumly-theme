@@ -4,28 +4,10 @@ on:
   push:
     branches:
       - main
-    paths:
-      - "assets/**"
-      - "blocks/**"
-      - "config/**"
-      - "layout/**"
-      - "locales/**"
-      - "sections/**"
-      - "snippets/**"
-      - "templates/**"
   pull_request:
     branches:
       - main
     types: [opened, synchronize, reopened]
-    paths:
-      - "assets/**"
-      - "blocks/**"
-      - "config/**"
-      - "layout/**"
-      - "locales/**"
-      - "sections/**"
-      - "snippets/**"
-      - "templates/**"
   workflow_dispatch:
 
 permissions:
@@ -47,16 +29,40 @@ jobs:
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Filter for theme file changes
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            theme:
+              - 'assets/**'
+              - 'blocks/**'
+              - 'config/**'
+              - 'layout/**'
+              - 'locales/**'
+              - 'sections/**'
+              - 'snippets/**'
+              - 'templates/**'
 
       - name: Setup Node
+        if: steps.filter.outputs.theme == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 20.10.0
 
+      - name: No relevant changes — auto pass
+        if: steps.filter.outputs.theme != 'true'
+        run: echo "No theme files changed, skipping deployment."
+
       - name: Install Shopify CLI
+        if: steps.filter.outputs.theme == 'true'
         run: npm install -g @shopify/cli@3.89.0
 
       - name: Delete oldest unpublished theme (if there are more than 10 themes present)
+        if: steps.filter.outputs.theme == 'true'
         run: |
           THEMES_JSON=$(shopify theme list \
             --store="${{ secrets.SHOPIFY_STORE }}" \
@@ -83,18 +89,24 @@ jobs:
           fi
 
       - name: Deploy and Publish Theme
+        if: steps.filter.outputs.theme == 'true'
         run: |
           set -o pipefail
 
-          BRANCH_NAME="${GITHUB_HEAD_REF}"
+          # Determine branch safely
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            BRANCH_NAME="$GITHUB_HEAD_REF"
+          else
+            BRANCH_NAME="${GITHUB_REF#refs/heads/}"
+          fi
 
-          # 1. Build theme name depending on branch
+          # Build theme name depending on branch
           if [ "$BRANCH_NAME" = "main" ]; then
             DEPLOY_TIME=$(date +'%Y-%m-%d_%H-%M')
             THEME_NAME="${DEPLOY_TIME} (${GITHUB_SHA::7})"
             SHOULD_PUBLISH=true
           else
-            THEME_NAME="${BRANCH_NAME}"
+            THEME_NAME="$BRANCH_NAME"
             SHOULD_PUBLISH=false
           fi
 
@@ -102,7 +114,7 @@ jobs:
           echo "Branch: $BRANCH_NAME"
           echo "Auto publish: $SHOULD_PUBLISH"
 
-          # 2. Check if preview theme already exists (unpublished only)
+          # Check if preview theme already exists (unpublished only)
           EXISTING_THEME_ID=$(shopify theme list \
             --store="${{ secrets.SHOPIFY_STORE }}" \
             --role=unpublished \
@@ -118,7 +130,7 @@ jobs:
             PUSH_TARGET_ARGS="--unpublished --theme=$THEME_NAME"
           fi
 
-          # 3. Push theme
+          # Push theme
           PUSH_OUTPUT=$(shopify theme push \
             --store="${{ secrets.SHOPIFY_STORE }}" \
             $PUSH_TARGET_ARGS \
@@ -126,7 +138,8 @@ jobs:
 
           PUSH_EXIT_CODE=$?
 
-          echo "$PUSH_OUTPUT"
+          # Enable for debugging if needed.
+          # echo "$PUSH_OUTPUT"
 
           if [ $PUSH_EXIT_CODE -ne 0 ]; then
             echo "❌ Theme push failed. Not publishing."
@@ -167,7 +180,7 @@ jobs:
           fi
 
       - name: Create/update PR preview comment
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && steps.filter.outputs.theme == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
@@ -233,7 +246,7 @@ jobs:
             }
 
       - name: Mark preview as ready
-        if: github.event_name == 'pull_request'
+        if: github.event_name == 'pull_request' && steps.filter.outputs.theme == 'true'
         uses: actions/github-script@v7
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
