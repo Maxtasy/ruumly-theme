@@ -89,6 +89,7 @@ jobs:
 
           BRANCH_NAME="${GITHUB_HEAD_REF}"
 
+          echo ${GITHUB_EVENT_NAME}
           echo ${BRANCH_NAME}
 
           # 1. Build theme name depending on branch
