@@ -44,6 +44,9 @@ jobs:
     needs: deploy-theme
     if: needs.deploy-theme.outputs.preview_url != ''
     uses: ./.github/workflows/shopify-theme-publish.yml
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
     with:
       theme_name: ${{ needs.deploy-theme.outputs.theme_name }}
 
@@ -51,3 +54,6 @@ jobs:
     name: "Shopify Theme Cleanup"
     needs: deploy-theme
     uses: ./.github/workflows/shopify-theme-cleanup.yml
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}

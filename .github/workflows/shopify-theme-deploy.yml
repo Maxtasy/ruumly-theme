@@ -69,7 +69,7 @@ jobs:
           # Check for existing unpublished theme with the same name
 
           EXISTING_THEME_ID=$(shopify theme list \
-            --store="$SHOPIFY_STORE" \
+            --store="${{ secrets.SHOPIFY_STORE }}" \
             --role=unpublished \
             --json | jq -r --arg NAME "${{ inputs.theme_name }}" 'map(select(.name == $NAME)) | .[0].id')
 
@@ -84,7 +84,7 @@ jobs:
           # Push theme
 
           PUSH_OUTPUT=$(shopify theme push \
-            --store="$SHOPIFY_STORE" \
+            --store="${{ secrets.SHOPIFY_STORE }}" \
             $PUSH_TARGET_ARGS \
             --json 2>&1)
 

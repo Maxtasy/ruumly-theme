@@ -2,6 +2,11 @@ name: Shopify Theme Publish
 
 on:
   workflow_call:
+    secrets:
+      SHOPIFY_STORE:
+        required: true
+      THEME_ACCESS_PASSWORD:
+        required: true
     inputs:
       theme_name:
         required: true
@@ -16,4 +21,5 @@ jobs:
       SHOPIFY_FLAG_FORCE: 1
     steps:
       - name: Publish theme
-        run: shopify theme publish "$theme_name"
+        run: |
+          shopify theme publish "$theme_name" --store="${{ secrets.SHOPIFY_STORE }}"
