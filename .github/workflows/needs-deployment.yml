@@ -1,0 +1,39 @@
+name: Determine if deployment is needed
+
+on:
+  workflow_call:
+    outputs:
+      needs_deployment:
+        description: "Whether or not the deployment workflow should be triggered based on theme file changes"
+        value: ${{ jobs.check-for-theme-file-changes.outputs.needs_deployment }}
+
+jobs:
+  check-for-theme-file-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      needs_deployment: ${{ steps.determine_deployment_required.outputs.needs_deployment }}
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Check which files have changed
+        uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            theme_files:
+              - 'assets/**'
+              - 'blocks/**'
+              - 'config/**'
+              - 'layout/**'
+              - 'locales/**'
+              - 'sections/**'
+              - 'snippets/**'
+              - 'templates/**'
+
+      - name: Set deployment flag
+        id: determine_deployment_required
+        run: |
+          echo "needs_deployment=$( [ '${{ steps.filter.outputs.theme_files }}' == 'true' ] && echo 'true' || echo 'false' )" >> "$GITHUB_OUTPUT"
