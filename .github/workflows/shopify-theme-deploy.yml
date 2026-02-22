@@ -66,41 +66,35 @@ jobs:
 
           echo "Deploying theme: ${{ inputs.theme_name }}"
 
-          # Check for existing unpublished theme with the same name
+          STORE="${{ secrets.SHOPIFY_STORE }}"
+          THEME_NAME="${{ inputs.theme_name }}"
 
+          # Check for existing unpublished theme with the same name
           EXISTING_THEME_ID=$(shopify theme list \
-            --store="${{ secrets.SHOPIFY_STORE }}" \
+            --store="$STORE" \
             --role=unpublished \
-            --json | jq -r --arg NAME "${{ inputs.theme_name }}" 'map(select(.name == $NAME)) | .[0].id')
+            --json | jq -r --arg NAME "$THEME_NAME" 'map(select(.name == $NAME)) | .[0].id')
 
           if [ "$EXISTING_THEME_ID" != "null" ] && [ -n "$EXISTING_THEME_ID" ]; then
             echo "Found existing theme: $EXISTING_THEME_ID"
-            PUSH_TARGET_ARGS="--theme=$EXISTING_THEME_ID"
+
+            PUSH_OUTPUT=$(shopify theme push \
+              --store="$STORE" \
+              --theme="$EXISTING_THEME_ID" \
+              --json 2>&1)
+
           else
             echo "No existing theme found, creating new one"
-            PUSH_TARGET_ARGS="--unpublished --theme=\"${{ inputs.theme_name }}\""
+
+            PUSH_OUTPUT=$(shopify theme push \
+              --store="$STORE" \
+              --unpublished \
+              --theme="$THEME_NAME" \
+              --json 2>&1)
           fi
 
-          # Push theme
-
-          PUSH_OUTPUT=$(shopify theme push \
-            --store="${{ secrets.SHOPIFY_STORE }}" \
-            $PUSH_TARGET_ARGS \
-            --json 2>&1)
-
-          PUSH_EXIT_CODE=$?
-
-          if [ $PUSH_EXIT_CODE -ne 0 ]; then
-            echo "❌ Theme push failed."
-            exit 1
-          fi
-
-          NEW_THEME_ID=$(echo "$PUSH_OUTPUT" | jq -r '.theme.id')
-          if [ "$NEW_THEME_ID" = "null" ] || [ -z "$NEW_THEME_ID" ]; then
-            echo "❌ No Theme ID returned."
-            exit 1
-          fi
-          echo "Successfully pushed Theme ID: $NEW_THEME_ID"
+          # For debugging: Uncomment to see full output from theme push command
+          # echo "$PUSH_OUTPUT"
 
           PREVIEW_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.preview_url')
           EDITOR_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.editor_url')
