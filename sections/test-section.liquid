@@ -24,7 +24,37 @@
         {% endfor %}
       {% endcapture %}
 
-      {% render 'slider', content: slider_content, slides_per_view_mobile: 1.5, slides_per_view_desktop: 4 %}
+      {% render 'slider', content: slider_content, slides_per_view_mobile: 2, slides_per_view_desktop: 4 %}
+
+      {% capture slider_content %}
+        {% for product in collections['plants'].products %}
+          {% render 'product-card',
+            product: product,
+            title: product.title,
+            image: product.featured_image,
+            price: product.price,
+            compare_at_price: product.compare_at_price,
+            url: product.url
+          %}
+        {% endfor %}
+      {% endcapture %}
+
+      {% render 'slider', content: slider_content, slides_per_view_mobile: 1.6, slides_per_view_desktop: 3 %}
+
+      {% capture slider_content %}
+        {% for product in collections['plants'].products %}
+          {% render 'product-card',
+            product: product,
+            title: product.title,
+            image: product.featured_image,
+            price: product.price,
+            compare_at_price: product.compare_at_price,
+            url: product.url
+          %}
+        {% endfor %}
+      {% endcapture %}
+
+      {% render 'slider', content: slider_content, slides_per_view_mobile: 1.3, slides_per_view_desktop: 2 %}
     </div>
   </div>
 </section>
