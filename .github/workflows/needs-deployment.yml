@@ -32,6 +32,7 @@ jobs:
               - 'sections/**'
               - 'snippets/**'
               - 'templates/**'
+              - 'src/**'
 
       - name: Set deployment flag
         id: determine_deployment_required
