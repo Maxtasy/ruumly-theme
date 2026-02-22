@@ -18,12 +18,17 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    outputs:
+      preview_url: ${{ steps.deploy_theme.outputs.preview_url }}
+      editor_url: ${{ steps.deploy_theme.outputs.editor_url }}
+      theme_name: ${{ steps.deploy_theme.outputs.theme_name }}
+      deploy_sha: ${{ steps.deploy_theme.outputs.deploy_sha }}
     env:
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
       SHOPIFY_FLAG_FORCE: 1
     concurrency:
-      group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+      group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
       cancel-in-progress: true
 
     steps:
@@ -95,6 +100,7 @@ jobs:
           npm run build
 
       - name: Deploy and Publish Theme
+        id: deploy_theme
         if: steps.filter.outputs.theme == 'true'
         run: |
           set -o pipefail
@@ -183,7 +189,7 @@ jobs:
           echo "THEME_NAME=$THEME_NAME" >> $GITHUB_ENV
           echo "DEPLOY_SHA=${GITHUB_SHA::7}" >> $GITHUB_ENV
 
-          # 5. Publish ONLY on main
+          # Publish ONLY on main
           if [ "$SHOULD_PUBLISH" = true ]; then
             echo "Publishing theme..."
             shopify theme publish \
@@ -194,86 +200,18 @@ jobs:
             echo "Skipping publish (non-main branch)."
           fi
 
-      - name: Create/update PR preview comment
-        if: github.event_name == 'pull_request' && steps.filter.outputs.theme == 'true'
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            const previewUrl = process.env.PREVIEW_URL
-            const editorUrl = process.env.EDITOR_URL
-            const themeName = process.env.THEME_NAME
-            const shortSha = process.env.DEPLOY_SHA
+          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          echo "editor_url=$EDITOR_URL" >> $GITHUB_OUTPUT
+          echo "theme_name=$THEME_NAME" >> $GITHUB_OUTPUT
+          echo "deploy_sha=${GITHUB_SHA::7}" >> $GITHUB_OUTPUT
 
-            if (!previewUrl || previewUrl === "null") {
-              core.info("No preview URL found — skipping comment.")
-              return
-            }
-
-            const prNumber = context.payload.pull_request.number
-
-            // Hidden marker allows reliable future updates
-            const MARKER = "<!-- shopify-preview-comment -->"
-
-            const body = `${MARKER}
-            ## 🧪 Shopify Preview Environment
-
-            ### ✅ Deployment Status
-            Preview theme successfully deployed.
-
-            **Theme:** ${themeName}  
-            **Commit:** \`${shortSha}\`
-
-            ### 🔗 Preview
-            ➡️ **[Open Shopify Preview](${previewUrl})**
-            ➡️ **[Open Shopify Theme Editor](${editorUrl})**
-
-            ---
-            _Last updated automatically by CI_`
-
-            // Fetch existing comments
-            const { data: comments } = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: prNumber,
-            })
-
-            // Find existing preview comment using marker
-            const existing = comments.find(c =>
-              c.user.type === "Bot" &&
-              c.body.includes(MARKER)
-            )
-
-            if (existing) {
-              core.info("Updating existing preview comment")
-              await github.rest.issues.updateComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                comment_id: existing.id,
-                body
-              })
-            } else {
-              core.info("Creating preview comment")
-              await github.rest.issues.createComment({
-                owner: context.repo.owner,
-                repo: context.repo.repo,
-                issue_number: prNumber,
-                body
-              })
-            }
-
-      - name: Mark preview as ready
-        if: github.event_name == 'pull_request' && steps.filter.outputs.theme == 'true'
-        uses: actions/github-script@v7
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            await github.rest.repos.createCommitStatus({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              sha: context.sha,
-              state: "success",
-              context: "Shopify Preview",
-              description: "Preview theme deployed",
-              target_url: process.env.PREVIEW_URL
-            })
+  pr-preview-comment:
+    needs: deploy
+    if: github.event_name == 'pull_request' && needs.deploy.outputs.preview_url != ''
+    uses: ./.github/workflows/pr-preview-comment.yml
+    secrets: inherit
+    with:
+      preview_url: ${{ needs.deploy.outputs.preview_url }}
+      editor_url: ${{ needs.deploy.outputs.editor_url }}
+      theme_name: ${{ needs.deploy.outputs.theme_name }}
+      deploy_sha: ${{ needs.deploy.outputs.deploy_sha }}
