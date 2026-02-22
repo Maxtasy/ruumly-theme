@@ -1,7 +1,8 @@
 {% doc %}
   Renders a Badge component.
 
-  @param {string} text - Badge text
+  @param {string} [text] - Badge text
+  @param {string} [content] - Badge content
   @param {string} [variant] - Badge variant ('sale')
 {% enddoc %}
 
@@ -10,8 +11,19 @@
   {% assign badge_text_color = 'sale' %}
 {% endif %}
 
-<div class="Badge{% if variant == 'sale' %} Badge--Sale{% endif %}">
-  {% render 'text', text: text, color: badge_text_color %}
+<div
+  class="
+    Badge
+    {% if variant == 'sale' %}
+      Badge--Sale
+    {% endif %}
+  "
+>
+  {% if text %}
+    {% render 'text', text: text, color: badge_text_color %}
+  {% endif %}
+
+  {{ content }}
 </div>
 
 {% stylesheet %}

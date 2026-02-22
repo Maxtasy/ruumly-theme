@@ -15,6 +15,22 @@
   "
 >
   <div class="Section__Inner">
+    <div class="Filters">
+      {% for filter in collection.filters %}
+        {% render 'filter', filter: filter %}
+      {% endfor %}
+    </div>
+
+    <ul class="ActiveFilterValues u-NoList">
+      {% for filter in collection.filters %}
+        {% for filter_value in filter.active_values %}
+          <li>
+            {% render 'active-filter-value', filter_value: filter_value %}
+          </li>
+        {% endfor %}
+      {% endfor %}
+    </ul>
+
     {% render 'product-grid',
       products: products,
       collection_reference: collection_reference,
@@ -28,6 +44,19 @@
     %}
   </div>
 </section>
+
+{% stylesheet %}
+  .Filters {
+    display: flex;
+    align-items: center;
+    gap: var(--size-m);
+  }
+
+  .ActiveFilterValues {
+    display: flex;
+    gap: var(--size-s);
+  }
+{% endstylesheet %}
 
 {% schema %}
 {

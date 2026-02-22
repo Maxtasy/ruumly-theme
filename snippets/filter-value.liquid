@@ -1,0 +1,19 @@
+{% doc %}
+  Renders a Filter Value component.
+
+  @param {object} filter_value - The liquid filter value object.
+{% enddoc %}
+
+{% if filter_value.active %}
+  {% assign url = filter_value.url_to_remove %}
+{% else %}
+  {% assign url = filter_value.url_to_add %}
+{% endif %}
+
+<a href="{{ url }}">
+  {% if filter_value.swatch %}
+    {% render 'swatch', swatch: filter_value.swatch, active: filter_value.active %}
+  {% else %}
+    {{ filter_value.label }} checkbox
+  {% endif %}
+</a>

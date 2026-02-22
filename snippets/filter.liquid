@@ -1,0 +1,66 @@
+{% doc %}
+  Renders a Filter Component.
+
+  @param {object} filter - The liquid filter object.
+{% enddoc %}
+
+<div class="Filter">
+  {% assign handle = filter.label | handleize %}
+  {% render 'dropdown-trigger', text: filter.label, handle: handle %}
+
+  <div class="Filter__Content">
+    {% capture content %}
+      <div class="Filter__DropdownContent">
+        <ul
+          class="
+            Filter__Values
+            {% if filter.presentation == 'text' or filter.presentation == nil %}
+              Filter__Values--Vertical
+            {% endif %}
+            u-NoList
+          "
+        >
+          {% for filter_value in filter.values %}
+            <li>
+              {% render 'filter-value', filter_value: filter_value %}
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% render 'button', text: 'Reset filter', url: filter.url_to_remove %}
+      </div>
+    {% endcapture %}
+
+    {% render 'dropdown-content', content: content, handle: handle %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .Filter {
+    position: relative;
+  }
+
+  .Filter__Content {
+    position: absolute;
+    top: calc(100% + var(--size-s));
+    z-index: 1;
+    max-width: 400px;
+    white-space: nowrap;
+  }
+
+  .Filter__DropdownContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .Filter__Values {
+    display: flex;
+    gap: var(--size-s);
+    flex-wrap: wrap;
+  }
+
+  .Filter__Values--Vertical {
+    flex-direction: column;
+  }
+{% endstylesheet %}
