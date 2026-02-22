@@ -34,6 +34,9 @@ jobs:
     needs: [needs-deployment, generate-theme-name]
     if: needs.needs-deployment.outputs.needs_deployment == 'true'
     uses: ./.github/workflows/shopify-theme-deploy.yml
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
     with:
       theme_name: ${{ needs.generate-theme-name.outputs.theme_name}}
       deploy_sha: ${{ github.sha }}

@@ -2,6 +2,11 @@ name: Shopify Theme Deploy
 
 on:
   workflow_call:
+    secrets:
+      SHOPIFY_STORE:
+        required: true
+      THEME_ACCESS_PASSWORD:
+        required: true
     inputs:
       theme_name:
         required: true
