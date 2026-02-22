@@ -1,0 +1,106 @@
+name: Shopify Theme Deploy
+
+on:
+  workflow_call:
+    inputs:
+      theme_name:
+        required: true
+        type: string
+      deploy_sha:
+        required: true
+        type: string
+    outputs:
+      preview_url:
+        description: "Preview URL of deployed theme"
+        value: ${{ jobs.deploy.outputs.preview_url }}
+      editor_url:
+        description: "Theme editor URL"
+        value: ${{ jobs.deploy.outputs.editor_url }}
+      theme_name:
+        description: "Name of deployed theme"
+        value: ${{ jobs.deploy.outputs.theme_name }}
+      deploy_sha:
+        description: "Git SHA of deployed code"
+        value: ${{ jobs.deploy.outputs.deploy_sha }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    outputs:
+      preview_url: ${{ steps.deploy_theme.outputs.preview_url }}
+      editor_url: ${{ steps.deploy_theme.outputs.editor_url }}
+      theme_name: ${{ inputs.theme_name }}
+      deploy_sha: ${{ inputs.deploy_sha }}
+    env:
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
+      SHOPIFY_FLAG_FORCE: 1
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.12.0
+
+      - name: Install Shopify CLI
+        run: npm install -g @shopify/cli@3.89.0
+
+      - name: Bundle js assets/main.js
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy Theme
+        id: deploy_theme
+        run: |
+          set -o pipefail
+
+          echo "Deploying theme: ${{ inputs.theme_name }}"
+
+          # Check for existing unpublished theme with the same name
+
+          EXISTING_THEME_ID=$(shopify theme list \
+            --store="$SHOPIFY_STORE" \
+            --role=unpublished \
+            --json | jq -r --arg NAME "${{ inputs.theme_name }}" 'map(select(.name == $NAME)) | .[0].id')
+
+          if [ "$EXISTING_THEME_ID" != "null" ] && [ -n "$EXISTING_THEME_ID" ]; then
+            echo "Found existing theme: $EXISTING_THEME_ID"
+            PUSH_TARGET_ARGS="--theme=$EXISTING_THEME_ID"
+          else
+            echo "No existing theme found, creating new one"
+            PUSH_TARGET_ARGS="--unpublished --theme=\"${{ inputs.theme_name }}\""
+          fi
+
+          # Push theme
+
+          PUSH_OUTPUT=$(shopify theme push \
+            --store="$SHOPIFY_STORE" \
+            $PUSH_TARGET_ARGS \
+            --json 2>&1)
+
+          PUSH_EXIT_CODE=$?
+
+          if [ $PUSH_EXIT_CODE -ne 0 ]; then
+            echo "❌ Theme push failed."
+            exit 1
+          fi
+
+          NEW_THEME_ID=$(echo "$PUSH_OUTPUT" | jq -r '.theme.id')
+          if [ "$NEW_THEME_ID" = "null" ] || [ -z "$NEW_THEME_ID" ]; then
+            echo "❌ No Theme ID returned."
+            exit 1
+          fi
+          echo "Successfully pushed Theme ID: $NEW_THEME_ID"
+
+          PREVIEW_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.preview_url')
+          EDITOR_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.editor_url')
+
+          # Set outputs
+
+          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
+          echo "editor_url=$EDITOR_URL" >> $GITHUB_OUTPUT

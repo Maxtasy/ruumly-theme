@@ -1,0 +1,110 @@
+name: PR Preview comment
+
+on:
+  workflow_call:
+    inputs:
+      preview_url:
+        required: true
+        type: string
+      editor_url:
+        required: true
+        type: string
+      theme_name:
+        required: true
+        type: string
+      deploy_sha:
+        required: true
+        type: string
+
+permissions:
+  issues: write
+  pull-requests: write
+  statuses: write
+
+jobs:
+  comment:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create/update PR preview comment
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const previewUrl = "${{ inputs.preview_url }}"
+            const editorUrl = "${{ inputs.editor_url }}"
+            const themeName = "${{ inputs.theme_name }}"
+            const shortSha = "${{ inputs.deploy_sha }}"
+
+            if (!previewUrl || previewUrl === "null") {
+              core.info("No preview URL found — skipping comment.")
+              return
+            }
+
+            const prNumber =
+              context.payload.pull_request?.number ??
+              context.issue.number
+
+            // Hidden marker allows reliable future updates
+            const MARKER = "<!-- shopify-preview-comment -->"
+
+            const body = `${MARKER}
+            ## 🧪 Shopify Preview Environment
+
+            ### ✅ Deployment Status
+            Preview theme successfully deployed.
+
+            **Theme:** ${themeName}  
+            **Commit:** \`${shortSha}\`
+
+            ### 🔗 Preview
+            ➡️ **[Open Shopify Preview](${previewUrl})**
+            ➡️ **[Open Shopify Theme Editor](${editorUrl})**
+
+            ---
+            _Last updated automatically by CI_`
+
+            // Fetch existing comments
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: prNumber,
+            })
+
+            // Find existing preview comment using marker
+            const existing = comments.find(c =>
+              c.user.type === "Bot" &&
+              c.body.includes(MARKER)
+            )
+
+            if (existing) {
+              core.info("Updating existing preview comment")
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body
+              })
+            } else {
+              core.info("Creating preview comment")
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: prNumber,
+                body
+              })
+            }
+
+      - name: Mark preview as ready
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            await github.rest.repos.createCommitStatus({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              sha: context.sha,
+              state: "success",
+              context: "Shopify Preview",
+              description: "Preview theme deployed",
+              target_url: "${{ inputs.preview_url }}"
+            })

@@ -1,0 +1,19 @@
+name: Shopify Theme Publish
+
+on:
+  workflow_call:
+    inputs:
+      theme_name:
+        required: true
+        type: string
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    env:
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
+      SHOPIFY_FLAG_FORCE: 1
+    steps:
+      - name: Publish theme
+        run: shopify theme publish "$theme_name"
