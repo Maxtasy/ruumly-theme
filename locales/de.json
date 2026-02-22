@@ -75,6 +75,9 @@
     "close_button": {
       "aria_label": "Schließen"
     },
+    "filter": {
+      "button_text": "Filter Zurücksetzen"
+    },
     "image": {
       "product": {
         "default_alt_text": "Produktbild"
