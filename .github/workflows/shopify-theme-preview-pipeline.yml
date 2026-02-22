@@ -13,9 +13,11 @@ permissions:
 
 jobs:
   needs-deployment:
+    name: "Check if Deployment is Needed"
     uses: ./.github/workflows/needs-deployment.yml
 
   generate-theme-name:
+    name: "Generate Theme Name"
     needs: needs-deployment
     if: needs.needs-deployment.outputs.needs_deployment == 'true'
     runs-on: ubuntu-latest
@@ -28,6 +30,7 @@ jobs:
           echo "theme_name=${$GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
 
   deploy-theme:
+    name: "Deploy Theme"
     needs: [needs-deployment, generate-theme-name]
     if: needs.needs-deployment.outputs.needs_deployment == 'true'
     uses: ./.github/workflows/shopify-theme-deploy.yml
@@ -36,6 +39,7 @@ jobs:
       deploy_sha: ${{ github.sha }}
 
   pr-preview-comment:
+    name: "PR Comment with Theme Preview"
     needs: deploy-theme
     if: needs.deploy-theme.outputs.preview_url != ''
     uses: ./.github/workflows/shopify-theme-preview-comment.yml

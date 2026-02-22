@@ -7,9 +7,11 @@ on:
 
 jobs:
   needs-deployment:
+    name: "Check if Deployment is Needed"
     uses: ./.github/workflows/needs-deployment.yml
 
   generate-theme-name:
+    name: "Generate Theme Name"
     needs: needs-deployment
     if: needs.needs-deployment.outputs.needs_deployment == 'true'
     runs-on: ubuntu-latest
@@ -26,6 +28,7 @@ jobs:
           echo "theme_name=${THEME_NAME}" >> "$GITHUB_OUTPUT"
 
   deploy-theme:
+    name: "Deploy Theme"
     needs: [needs-deployment, generate-theme-name]
     if: needs.needs-deployment.outputs.needs_deployment == 'true'
     uses: ./.github/workflows/shopify-theme-deploy.yml
@@ -34,6 +37,7 @@ jobs:
       deploy_sha: ${{ github.sha }}
 
   publish-theme:
+    name: "Publish Theme"
     needs: deploy-theme
     if: needs.deploy-theme.outputs.preview_url != ''
     uses: ./.github/workflows/shopify-theme-publish.yml
@@ -41,5 +45,6 @@ jobs:
       theme_name: ${{ needs.deploy-theme.outputs.theme_name }}
 
   shopify-theme-cleanup:
+    name: "Shopify Theme Cleanup"
     needs: deploy-theme
     uses: ./.github/workflows/shopify-theme-cleanup.yml
