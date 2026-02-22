@@ -11,20 +11,29 @@
     <div class="TestSection">
       {% render 'text', text: 'Insert your test component here' %}
 
-      {% render 'dropdown-trigger', text: 'Farbe', handle: 'farbe' %}
+      {% capture slider_content %}
+        {% for product in collections['plants'].products %}
+          {% render 'product-card',
+            product: product,
+            title: product.title,
+            image: product.featured_image,
+            price: product.price,
+            compare_at_price: product.compare_at_price,
+            url: product.url
+          %}
+        {% endfor %}
+      {% endcapture %}
 
-      {% render 'dropdown-content', handle: 'farbe', content: 'farbe' %}
-
-      {% render 'dropdown-trigger', text: 'Größe', handle: 'größe' %}
-
-      {% render 'dropdown-content', handle: 'größe', content: 'größe' %}
+      {% render 'slider', content: slider_content, slides_per_view_mobile: 1.5, slides_per_view_desktop: 4 %}
     </div>
   </div>
 </section>
 
 {% stylesheet %}
   .TestSection {
-    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
   }
 {% endstylesheet %}
 
