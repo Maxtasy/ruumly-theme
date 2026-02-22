@@ -2,6 +2,11 @@ name: Shopify Theme Cleanup
 
 on:
   workflow_call:
+    secrets:
+      SHOPIFY_STORE:
+        required: true
+      THEME_ACCESS_PASSWORD:
+        required: true
 
 jobs:
   cleanup:
@@ -20,6 +25,7 @@ jobs:
         env:
           SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
+          SHOPIFY_FLAG_FORCE: 1
         run: |
           THEMES_JSON=$(shopify theme list \
             --store="${{ secrets.SHOPIFY_STORE }}" \

@@ -6,11 +6,6 @@ on:
       - main
     types: [opened, synchronize, reopened]
 
-permissions:
-  issues: write
-  pull-requests: write
-  statuses: write
-
 jobs:
   needs-deployment:
     name: "Check if Deployment is Needed"
