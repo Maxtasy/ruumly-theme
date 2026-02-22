@@ -27,7 +27,7 @@ jobs:
       - name: Generate theme name
         id: generate_theme_name
         run: |
-          echo "theme_name=${$GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
+          echo "theme_name=${GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
 
   deploy-theme:
     name: "Deploy Theme"
