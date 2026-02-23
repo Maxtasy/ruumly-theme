@@ -94,7 +94,7 @@ jobs:
           fi
 
           # For debugging: Uncomment to see full output from theme push command
-          # echo "$PUSH_OUTPUT"
+          echo "$PUSH_OUTPUT"
 
           PREVIEW_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.preview_url')
           EDITOR_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.editor_url')
