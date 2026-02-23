@@ -731,9 +731,6 @@
         "cart_icon_position": {
           "label": "Warenkorb-Symbol Position"
         },
-        "show_mobile_logo": {
-          "label": "Mobile Logo anzeigen"
-        },
         "search_icon_position": {
           "label": "Such-Symbol Position"
         },
@@ -743,9 +740,13 @@
         "show_cart_icon": {
           "label": "Warenkorb-Symbol anzeigen"
         },
-        "show_logo": {
-          "label": "Logo",
-          "info": "Das Logo kann in den Themeneinstellungen ausgewählt werden. Wenn es nicht markiert ist, wird stattdessen der Name des Shops angezeigt."
+        "show_desktop_logo": {
+          "label": "Desktop Logo anzeigen",
+          "info": "Das Logo kann in den Theme-Einstellungen ausgewählt werden. Wenn diese Option nicht aktiviert ist, wird stattdessen der Name des Shops angezeigt."
+        },
+        "show_mobile_logo": {
+          "label": "Mobile Logo anzeigen",
+          "info": "Das Logo kann in den Theme-Einstellungen ausgewählt werden. Wenn diese Option nicht aktiviert ist, wird stattdessen der Name des Shops angezeigt."
         },
         "show_search_icon": {
           "label": "Such-Symbol anzeigen"
