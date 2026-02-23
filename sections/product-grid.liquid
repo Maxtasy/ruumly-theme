@@ -36,7 +36,9 @@
         {% if collection.products_count < collection.all_products_count %}
           {% capture reset_button_content %}
             {% render 'icon', icon: 'rotate-ccw', size: 'small' %}
-            {% render 'text', text: 'reset all' %}
+            
+            {% assign text = 'components.filter.reset_all_filters' | t %}
+            {% render 'text', text: text %}
           {% endcapture %}
           {% render 'button', variant: 'plain', size: 'small', content: reset_button_content, url: collection.url %}
         {% endif %}

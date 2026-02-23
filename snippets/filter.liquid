@@ -27,7 +27,7 @@
           {% endfor %}
         </ul>
 
-        {% assign button_text = 'components.filter.button_text' | t %}
+        {% assign button_text = 'components.filter.reset_filter' | t %}
         {% render 'button', text: button_text, url: filter.url_to_remove %}
       </div>
     {% endcapture %}

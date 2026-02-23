@@ -76,7 +76,8 @@
       "aria_label": "Close"
     },
     "filter": {
-      "button_text": "Reset Filter"
+      "reset_all_filters": "Reset All",
+      "reset_filter": "Reset Filter"
     },
     "image": {
       "product": {
