@@ -41,6 +41,10 @@ jobs:
     needs: deploy-theme
     if: needs.deploy-theme.outputs.preview_url != ''
     uses: ./.github/workflows/shopify-theme-preview-comment.yml
+    permissions:
+      issues: write
+      pull-requests: write
+      statuses: write
     with:
       preview_url: ${{ needs.deploy-theme.outputs.preview_url }}
       editor_url: ${{ needs.deploy-theme.outputs.editor_url }}
