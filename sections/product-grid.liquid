@@ -15,21 +15,33 @@
   "
 >
   <div class="Section__Inner">
-    <div class="Filters">
-      {% for filter in collection.filters %}
-        {% render 'filter', filter: filter %}
-      {% endfor %}
-    </div>
-
-    <ul class="ActiveFilterValues u-NoList">
-      {% for filter in collection.filters %}
-        {% for filter_value in filter.active_values %}
-          <li>
-            {% render 'active-filter-value', filter_value: filter_value %}
-          </li>
+    <div class="Filters u-Hidden--Mobile">
+      <div class="Filters__Row">
+        {% for filter in collection.filters %}
+          {% render 'filter', filter: filter %}
         {% endfor %}
-      {% endfor %}
-    </ul>
+      </div>
+
+      <div class="Filters__Row">
+        <ul class="Filters__ActiveValues u-NoList">
+          {% for filter in collection.filters %}
+            {% for filter_value in filter.active_values %}
+              <li>
+                {% render 'active-filter-value', filter_value: filter_value %}
+              </li>
+            {% endfor %}
+          {% endfor %}
+        </ul>
+
+        {% if collection.products_count < collection.all_products_count %}
+          {% capture reset_button_content %}
+            {% render 'icon', icon: 'rotate-ccw', size: 'small' %}
+            {% render 'text', text: 'reset all' %}
+          {% endcapture %}
+          {% render 'button', variant: 'plain', size: 'small', content: reset_button_content, url: collection.url %}
+        {% endif %}
+      </div>
+    </div>
 
     {% render 'product-grid',
       products: products,
@@ -46,13 +58,13 @@
 </section>
 
 {% stylesheet %}
-  .Filters {
+  .Filters__Row {
     display: flex;
     align-items: center;
     gap: var(--size-m);
   }
 
-  .ActiveFilterValues {
+  .Filters__ActiveValues {
     display: flex;
     gap: var(--size-s);
   }
