@@ -15,35 +15,13 @@
   "
 >
   <div class="Section__Inner">
-    <div class="Filters u-Hidden--Mobile">
-      <div class="Filters__Row">
-        {% for filter in collection.filters %}
-          {% render 'filter', filter: filter %}
-        {% endfor %}
-      </div>
-
-      <div class="Filters__Row">
-        <ul class="Filters__ActiveValues u-NoList">
-          {% for filter in collection.filters %}
-            {% for filter_value in filter.active_values %}
-              <li>
-                {% render 'active-filter-value', filter_value: filter_value %}
-              </li>
-            {% endfor %}
-          {% endfor %}
-        </ul>
-
-        {% if collection.products_count < collection.all_products_count %}
-          {% capture reset_button_content %}
-            {% render 'icon', icon: 'rotate-ccw', size: 'small' %}
-            
-            {% assign text = 'components.filter.reset_all_filters' | t %}
-            {% render 'text', text: text %}
-          {% endcapture %}
-          {% render 'button', variant: 'plain', size: 'small', content: reset_button_content, url: collection.url %}
-        {% endif %}
-      </div>
-    </div>
+    {% if section.settings.enable_filters and collection.filters.size > 0 %}
+      {% assign filters_active = false %}
+      {% if collection.products_count < collection.all_products_count %}
+        {% assign filters_active = true %}
+      {% endif %}
+      {% render 'filters', filters: collection.filters, filters_active: filters_active %}
+    {% endif %}
 
     {% render 'product-grid',
       products: products,
@@ -58,19 +36,6 @@
     %}
   </div>
 </section>
-
-{% stylesheet %}
-  .Filters__Row {
-    display: flex;
-    align-items: center;
-    gap: var(--size-m);
-  }
-
-  .Filters__ActiveValues {
-    display: flex;
-    gap: var(--size-s);
-  }
-{% endstylesheet %}
 
 {% schema %}
 {
@@ -100,6 +65,12 @@
         { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
         { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
       ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filters",
+      "label": "t:sections.product_grid.settings.enable_filters.label",
+      "default": true
     },
     {
       "type": "number",
@@ -144,6 +115,10 @@
       "step": 1,
       "default": 16,
       "visible_if": "{{ section.settings.enable_pagination == true }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
     },
     {
       "type": "product_list",
