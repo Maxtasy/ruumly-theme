@@ -13,7 +13,7 @@ jobs:
 
   generate-theme-name:
     name: "Generate Theme Name"
-    needs: needs-deployment
+    needs: [needs-deployment]
     if: needs.needs-deployment.outputs.needs_deployment == 'true'
     runs-on: ubuntu-latest
     outputs:
@@ -38,7 +38,7 @@ jobs:
 
   pr-preview-comment:
     name: "PR Comment with Theme Preview"
-    needs: deploy-theme
+    needs: [deploy-theme]
     if: needs.deploy-theme.outputs.preview_url != ''
     uses: ./.github/workflows/shopify-theme-preview-comment.yml
     permissions:
