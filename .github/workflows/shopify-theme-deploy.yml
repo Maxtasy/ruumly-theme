@@ -34,8 +34,8 @@ jobs:
     outputs:
       preview_url: ${{ steps.deploy_theme.outputs.preview_url }}
       editor_url: ${{ steps.deploy_theme.outputs.editor_url }}
-      theme_name: ${{ inputs.theme_name }}
-      deploy_sha: ${{ inputs.deploy_sha }}
+      theme_name: ${{ steps.deploy_theme.outputs.theme_name }}
+      deploy_sha: ${{ steps.deploy_theme.outputs.deploy_sha }}
     env:
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
@@ -62,7 +62,7 @@ jobs:
       - name: Deploy Theme
         id: deploy_theme
         run: |
-          set -o pipefail
+          set -euo pipefail
 
           echo "Deploying theme: ${{ inputs.theme_name }}"
 
@@ -103,7 +103,11 @@ jobs:
 
           # Set outputs
 
-          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
-          echo "editor_url=$EDITOR_URL" >> $GITHUB_OUTPUT
-          echo "theme_name=$THEME_NAME" >> $GITHUB_OUTPUT
-          echo "deploy_sha=$DEPLOY_SHA" >> $GITHUB_OUTPUT
+          echo "Extracted preview_url: '$PREVIEW_URL'"
+          echo "Extracted editor_url: '$EDITOR_URL'"
+          echo "Extracted theme_name: '$THEME_NAME'"
+
+          echo "preview_url=${PREVIEW_URL}" >> "$GITHUB_OUTPUT"
+          echo "editor_url=${EDITOR_URL}" >> "$GITHUB_OUTPUT"
+          echo "theme_name=${THEME_NAME}" >> "$GITHUB_OUTPUT"
+          echo "deploy_sha=${DEPLOY_SHA}" >> "$GITHUB_OUTPUT"
