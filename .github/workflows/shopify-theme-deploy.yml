@@ -98,8 +98,12 @@ jobs:
 
           PREVIEW_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.preview_url')
           EDITOR_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.editor_url')
+          THEME_NAME=$(echo "$PUSH_OUTPUT" | jq -r '.theme.name')
+          DEPLOY_SHA="${{ inputs.deploy_sha }}"
 
           # Set outputs
 
           echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
           echo "editor_url=$EDITOR_URL" >> $GITHUB_OUTPUT
+          echo "theme_name=$THEME_NAME" >> $GITHUB_OUTPUT
+          echo "deploy_sha=$DEPLOY_SHA" >> $GITHUB_OUTPUT
