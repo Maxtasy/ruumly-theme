@@ -15,7 +15,22 @@
   {% for block in blocks %}
     {% case block.type %}
       {% when 'title' %}
+        {% liquid
+          assign variant = product.selected_or_first_available_variant
+          assign variant_sku = variant.sku
+          assign show_sku = block.settings.show_sku
+          assign sku_position = block.settings.sku_position
+        %}
+
+        {% if show_sku and variant_sku != blank and sku_position == 'above' %}
+          {% render 'text', text: variant_sku %}
+        {% endif %}
+
         {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
+
+        {% if show_sku and variant_sku != blank and sku_position == 'below' %}
+          {% render 'text', text: variant_sku %}
+        {% endif %}
 
       {% when 'product-variant-selector' %}
         {% render 'product-variant-selector',

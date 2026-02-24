@@ -674,6 +674,22 @@
         "enable_navigatiobn_desktop": {
           "label": "Enable Navigation Desktop"
         }
+      },
+      "blocks": {
+        "title": {
+          "settings": {
+            "show_sku": {
+              "label": "Show SKU"
+            },
+            "sku_position": {
+              "label": "SKU Position",
+              "options": {
+                "above": "Above Title",
+                "below": "Below Title"
+              }
+            }
+          }
+        }
       }
     },
     "product_grid": {
