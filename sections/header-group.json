@@ -23,20 +23,26 @@
             "icon_block_gBRwTP": {
               "type": "icon-block",
               "settings": {
-                "icon": "info"
+                "icon": "truck"
               },
               "blocks": {}
             },
             "text_block_VnjNGP": {
               "type": "text-block",
               "settings": {
-                "text": "Some Info Text",
+                "text": "Free shipping on orders over 50€",
                 "alignment": "left"
               },
               "blocks": {}
             }
           },
           "block_order": ["icon_block_gBRwTP", "text_block_VnjNGP"]
+        },
+        "rating_block": {
+          "type": "rating-block",
+          "settings": {
+            "rating": "4.8"
+          }
         },
         "icon_with_text_block_9Bfrz4": {
           "type": "icon-with-text-block",
@@ -47,29 +53,23 @@
             "icon_block_hqMeNP": {
               "type": "icon-block",
               "settings": {
-                "icon": "percent"
+                "icon": "sprout"
               },
               "blocks": {}
             },
             "text_block_dgH7Pz": {
               "type": "text-block",
               "settings": {
-                "text": "Save big on our latest drop",
+                "text": "Climate-neutral shipping",
                 "alignment": "left"
               },
               "blocks": {}
             }
           },
           "block_order": ["icon_block_hqMeNP", "text_block_dgH7Pz"]
-        },
-        "rating_block": {
-          "type": "rating-block",
-          "settings": {
-            "rating": "4.8"
-          }
         }
       },
-      "block_order": ["icon_with_text_block_afwXKX", "icon_with_text_block_9Bfrz4", "rating_block"],
+      "block_order": ["icon_with_text_block_afwXKX", "rating_block", "icon_with_text_block_9Bfrz4"],
       "name": "Announcement Bar",
       "settings": {
         "color_scheme": "secondary"
