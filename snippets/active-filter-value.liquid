@@ -7,7 +7,11 @@
 {% capture content %}
   <a class="ActiveFilterValue" href="{{ filter_value.url_to_remove }}">
     {% if filter_value.swatch %}
-      {% render 'swatch', swatch: filter_value.swatch, active: true, size: 'small' %}
+      {% assign is_swatch_disabled = false %}
+      {% if filter_value.count < 1 %}
+        {% assign is_swatch_disabled = true %}
+      {% endif %}
+      {% render 'swatch', swatch: filter_value.swatch, active: true, size: 'small', disabled: is_swatch_disabled %}
     {% endif %}
 
     {{ filter_value.label }}
