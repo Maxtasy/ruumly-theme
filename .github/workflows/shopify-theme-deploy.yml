@@ -15,12 +15,9 @@ on:
         required: true
         type: string
     outputs:
-      preview_url:
-        description: "Preview URL of deployed theme"
-        value: ${{ jobs.deploy.outputs.preview_url }}
-      editor_url:
-        description: "Theme editor URL"
-        value: ${{ jobs.deploy.outputs.editor_url }}
+      theme_id:
+        description: "ID of deployed theme"
+        value: ${{ jobs.deploy.outputs.theme_id }}
       theme_name:
         description: "Name of deployed theme"
         value: ${{ jobs.deploy.outputs.theme_name }}
@@ -32,8 +29,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     outputs:
-      preview_url: ${{ steps.deploy_theme.outputs.preview_url }}
-      editor_url: ${{ steps.deploy_theme.outputs.editor_url }}
+      theme_id: ${{ steps.deploy_theme.outputs.theme_id }}
       theme_name: ${{ steps.deploy_theme.outputs.theme_name }}
       deploy_sha: ${{ steps.deploy_theme.outputs.deploy_sha }}
     env:
@@ -107,7 +103,6 @@ jobs:
           echo "Extracted editor_url: '$EDITOR_URL'"
           echo "Extracted theme_name: '$THEME_NAME'"
 
-          echo "preview_url=${PREVIEW_URL}" >> "$GITHUB_OUTPUT"
-          echo "editor_url=${EDITOR_URL}" >> "$GITHUB_OUTPUT"
+          echo "theme_id=${THEME_ID}" >> "$GITHUB_OUTPUT"
           echo "theme_name=${THEME_NAME}" >> "$GITHUB_OUTPUT"
           echo "deploy_sha=${DEPLOY_SHA}" >> "$GITHUB_OUTPUT"

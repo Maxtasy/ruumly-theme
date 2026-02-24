@@ -51,32 +51,31 @@ jobs:
       - name: Print deploy result and preview URL
         run: |
           echo "RESULT=${{ needs.deploy-theme.result }}"
-          echo "PREVIEW=${{ needs.deploy-theme.outputs.preview_url }}"
+          echo "THEME_ID=${{ needs.deploy-theme.outputs.theme_id }}"
 
       - name: Print deploy outputs
         run: |
-          echo "preview_url: '${{ needs.deploy-theme.outputs.preview_url }}'"
+          echo "theme_id: '${{ needs.deploy-theme.outputs.theme_id }}'"
           echo "theme_name: '${{ needs.deploy-theme.outputs.theme_name }}'"
       - name: Write job summary
         run: |
           {
             echo "## Deploy Outputs"
             echo ""
-            echo "- preview_url: \`${{ needs.deploy-theme.outputs.preview_url }}\`"
+            echo "- theme_id: \`${{ needs.deploy-theme.outputs.theme_id }}\`"
             echo "- theme_name: \`${{ needs.deploy-theme.outputs.theme_name }}\`"
           } >> $GITHUB_STEP_SUMMARY
 
   pr-preview-comment:
     name: "PR Comment with Theme Preview"
     needs: [deploy-theme]
-    if: ${{ needs.deploy-theme.result == 'success' && needs.deploy-theme.outputs.preview_url }}
+    if: ${{ needs.deploy-theme.result == 'success' && needs.deploy-theme.outputs.theme_id && needs.deploy-theme.outputs.theme_id != 'null' }}
     uses: ./.github/workflows/shopify-theme-preview-comment.yml
     permissions:
       issues: write
       pull-requests: write
       statuses: write
     with:
-      preview_url: ${{ needs.deploy-theme.outputs.preview_url }}
-      editor_url: ${{ needs.deploy-theme.outputs.editor_url }}
+      theme_id: ${{ needs.deploy-theme.outputs.theme_id }}
       theme_name: ${{ needs.deploy-theme.outputs.theme_name }}
       deploy_sha: ${{ needs.deploy-theme.outputs.deploy_sha }}

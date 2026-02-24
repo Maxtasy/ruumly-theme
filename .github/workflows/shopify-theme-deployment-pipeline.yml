@@ -47,31 +47,31 @@ jobs:
       - name: Print deploy result and preview URL
         run: |
           echo "RESULT=${{ needs.deploy-theme.result }}"
-          echo "PREVIEW=${{ needs.deploy-theme.outputs.preview_url }}"
+          echo "THEME_ID=${{ needs.deploy-theme.outputs.theme_id }}"
 
       - name: Print deploy outputs
         run: |
-          echo "preview_url: '${{ needs.deploy-theme.outputs.preview_url }}'"
+          echo "theme_id: '${{ needs.deploy-theme.outputs.theme_id }}'"
           echo "theme_name: '${{ needs.deploy-theme.outputs.theme_name }}'"
       - name: Write job summary
         run: |
           {
             echo "## Deploy Outputs"
             echo ""
-            echo "- preview_url: \`${{ needs.deploy-theme.outputs.preview_url }}\`"
+            echo "- theme_id: \`${{ needs.deploy-theme.outputs.theme_id }}\`"
             echo "- theme_name: \`${{ needs.deploy-theme.outputs.theme_name }}\`"
           } >> $GITHUB_STEP_SUMMARY
 
   publish-theme:
     name: "Publish Theme"
     needs: [deploy-theme]
-    if: ${{ needs.deploy-theme.result == 'success' && needs.deploy-theme.outputs.preview_url && needs.deploy-theme.outputs.preview_url != 'null' }}
+    if: ${{ needs.deploy-theme.result == 'success' && needs.deploy-theme.outputs.theme_id && needs.deploy-theme.outputs.theme_id != 'null' }}
     uses: ./.github/workflows/shopify-theme-publish.yml
     secrets:
       SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
       THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
     with:
-      theme_name: ${{ needs.deploy-theme.outputs.theme_name }}
+      theme_id: ${{ needs.deploy-theme.outputs.theme_id }}
 
   shopify-theme-cleanup:
     name: "Shopify Theme Cleanup"
