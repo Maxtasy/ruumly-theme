@@ -39,7 +39,7 @@ jobs:
   pr-preview-comment:
     name: "PR Comment with Theme Preview"
     needs: [deploy-theme]
-    if: needs.deploy-theme.outputs.preview_url != ''
+    if: ${{ needs.deploy-theme.result == 'success' && needs.deploy-theme.outputs.preview_url }}
     uses: ./.github/workflows/shopify-theme-preview-comment.yml
     permissions:
       issues: write
