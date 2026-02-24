@@ -7,16 +7,16 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
+  needs-deployment:
+    name: "Check if Deployment is Needed"
+    uses: ./.github/workflows/needs-deployment.yml
+
   debug-top:
     runs-on: ubuntu-latest
     steps:
       - run: |
           echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
           echo "needs_deployment=${{ needs.needs-deployment.outputs.needs_deployment || 'unset' }}"
-
-  needs-deployment:
-    name: "Check if Deployment is Needed"
-    uses: ./.github/workflows/needs-deployment.yml
 
   generate-theme-name:
     name: "Generate Theme Name"
