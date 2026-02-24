@@ -7,6 +7,13 @@ on:
     types: [opened, synchronize, reopened]
 
 jobs:
+  debug-top:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
+          echo "needs_deployment=${{ needs.needs-deployment.outputs.needs_deployment || 'unset' }}"
+
   needs-deployment:
     name: "Check if Deployment is Needed"
     uses: ./.github/workflows/needs-deployment.yml
@@ -14,7 +21,7 @@ jobs:
   generate-theme-name:
     name: "Generate Theme Name"
     needs: [needs-deployment]
-    if: needs.needs-deployment.outputs.needs_deployment == 'true'
+    if: ${{ needs.needs-deployment.outputs.needs_deployment }}
     runs-on: ubuntu-latest
     outputs:
       theme_name: ${{ steps.generate_theme_name.outputs.theme_name }}
@@ -27,7 +34,7 @@ jobs:
   deploy-theme:
     name: "Deploy Theme"
     needs: [needs-deployment, generate-theme-name]
-    if: needs.needs-deployment.outputs.needs_deployment == 'true'
+    if: ${{ needs.needs-deployment.outputs.needs_deployment }}
     uses: ./.github/workflows/shopify-theme-deploy.yml
     secrets:
       SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
