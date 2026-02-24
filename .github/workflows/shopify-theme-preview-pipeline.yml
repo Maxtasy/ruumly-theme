@@ -36,6 +36,29 @@ jobs:
       theme_name: ${{ needs.generate-theme-name.outputs.theme_name}}
       deploy_sha: ${{ github.sha }}
 
+  debug-deploy-outputs:
+    name: "Debug Deploy Outputs"
+    needs: [deploy-theme]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print deploy result and preview URL
+        run: |
+          echo "RESULT=${{ needs.deploy-theme.result }}"
+          echo "PREVIEW=${{ needs.deploy-theme.outputs.preview_url }}"
+
+      - name: Print deploy outputs
+        run: |
+          echo "preview_url: '${{ needs.deploy-theme.outputs.preview_url }}'"
+          echo "theme_name: '${{ needs.deploy-theme.outputs.theme_name }}'"
+      - name: Write job summary
+        run: |
+          {
+            echo "## Deploy Outputs"
+            echo ""
+            echo "- preview_url: \`${{ needs.deploy-theme.outputs.preview_url }}\`"
+            echo "- theme_name: \`${{ needs.deploy-theme.outputs.theme_name }}\`"
+          } >> $GITHUB_STEP_SUMMARY
+
   pr-preview-comment:
     name: "PR Comment with Theme Preview"
     needs: [deploy-theme]
