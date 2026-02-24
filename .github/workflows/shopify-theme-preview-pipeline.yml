@@ -11,13 +11,6 @@ jobs:
     name: "Check if Deployment is Needed"
     uses: ./.github/workflows/needs-deployment.yml
 
-  debug-top:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "GITHUB_HEAD_REF=${GITHUB_HEAD_REF}"
-          echo "needs_deployment=${{ needs.needs-deployment.outputs.needs_deployment || 'unset' }}"
-
   generate-theme-name:
     name: "Generate Theme Name"
     needs: [needs-deployment]
@@ -42,29 +35,6 @@ jobs:
     with:
       theme_name: ${{ needs.generate-theme-name.outputs.theme_name }}
       deploy_sha: ${{ github.sha }}
-
-  debug-deploy-outputs:
-    name: "Debug Deploy Outputs"
-    needs: [deploy-theme]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Print deploy result and preview URL
-        run: |
-          echo "RESULT=${{ needs.deploy-theme.result }}"
-          echo "THEME_ID=${{ needs.deploy-theme.outputs.theme_id }}"
-
-      - name: Print deploy outputs
-        run: |
-          echo "theme_id: '${{ needs.deploy-theme.outputs.theme_id }}'"
-          echo "theme_name: '${{ needs.deploy-theme.outputs.theme_name }}'"
-      - name: Write job summary
-        run: |
-          {
-            echo "## Deploy Outputs"
-            echo ""
-            echo "- theme_id: \`${{ needs.deploy-theme.outputs.theme_id }}\`"
-            echo "- theme_name: \`${{ needs.deploy-theme.outputs.theme_name }}\`"
-          } >> $GITHUB_STEP_SUMMARY
 
   pr-preview-comment:
     name: "PR Comment with Theme Preview"

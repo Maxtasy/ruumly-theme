@@ -98,9 +98,6 @@ jobs:
 
           # Set outputs
 
-          echo "Extracted theme_id: '$THEME_ID'"
-          echo "Extracted theme_name: '$THEME_NAME'"
-
           echo "theme_id=${THEME_ID}" >> "$GITHUB_OUTPUT"
           echo "theme_name=${THEME_NAME}" >> "$GITHUB_OUTPUT"
           echo "deploy_sha=${DEPLOY_SHA}" >> "$GITHUB_OUTPUT"
