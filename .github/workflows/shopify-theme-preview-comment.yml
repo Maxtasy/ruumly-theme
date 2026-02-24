@@ -15,7 +15,6 @@ on:
     secrets:
       SHOPIFY_STORE:
         required: true
-        type: string
 
 permissions:
   issues: write
