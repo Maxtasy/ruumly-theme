@@ -21,7 +21,7 @@
               "type": "text-block",
               "name": "Text",
               "settings": {
-                "text": "This is a text block.",
+                "text": "Level Up Your Space",
                 "variant": "heading-medium",
                 "as": "h2",
                 "alignment": "center"
@@ -32,7 +32,7 @@
               "type": "text-block",
               "name": "Text",
               "settings": {
-                "text": "This is a text block.",
+                "text": "Our newest collection just dropped. Discover premium gaming chairs, desks, and furniture designed for comfort, performance, and style.",
                 "variant": "body-medium",
                 "as": "div",
                 "alignment": "center"
@@ -54,8 +54,8 @@
               "type": "button-block",
               "name": "t:theme_blocks.button_block.presets.button_block.name",
               "settings": {
-                "button_text": "Click me",
-                "button_link": "",
+                "button_text": "Shop Gaming Desks",
+                "button_link": "/collections/gaming-desks",
                 "external": false,
                 "variant": "primary",
                 "alignment": "left"
@@ -66,8 +66,8 @@
               "type": "button-block",
               "name": "t:theme_blocks.button_block.presets.button_block.name",
               "settings": {
-                "button_text": "Click me",
-                "button_link": "",
+                "button_text": "Shop Gaming Chairs",
+                "button_link": "/collections/gaming-chairs",
                 "external": false,
                 "variant": "secondary",
                 "alignment": "left"
