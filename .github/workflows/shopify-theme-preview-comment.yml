@@ -53,7 +53,7 @@ jobs:
             **Commit:** \`${shortSha}\`
 
             ### 🔗 Preview
-            ➡️ **[Open Shopify Preview](https://ruumly.myshopify.com/admin/themes/${themeId}/preview)**
+            ➡️ **[Open Shopify Preview](https://ruumly.myshopify.com/?preview_theme_id=${themeId})**
             ➡️ **[Open Shopify Theme Editor](https://ruumly.myshopify.com/admin/themes/${themeId}/editor)**
 
             ---
@@ -102,5 +102,5 @@ jobs:
               state: "success",
               context: "Shopify Preview",
               description: "Preview theme deployed",
-              target_url: `https://ruumly.myshopify.com/admin/themes/${{ inputs.theme_id }}/preview`
+              target_url: `https://ruumly.myshopify.com/?preview_theme_id=${{ inputs.theme_id }}`
             })
