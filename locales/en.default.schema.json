@@ -909,6 +909,17 @@
       "settings": {
         "rating": {
           "label": "Rating"
+        },
+        "icon_size": {
+          "label": "Icon Size",
+          "options": {
+            "extra_small": {
+              "label": "Extra Small"
+            },
+            "small": {
+              "label": "Small"
+            }
+          }
         }
       },
       "presets": {

@@ -906,6 +906,17 @@
       "settings": {
         "rating": {
           "label": "Bewertung"
+        },
+        "icon_size": {
+          "label": "Icon Größe",
+          "options": {
+            "extra_small": {
+              "label": "Extra klein"
+            },
+            "small": {
+              "label": "Klein"
+            }
+          }
         }
       },
       "presets": {
