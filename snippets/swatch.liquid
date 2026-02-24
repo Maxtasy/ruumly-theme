@@ -3,6 +3,7 @@
 
   @param {object} swatch - The liquid swatch object.
   @param {boolean} active - Whether the swatch is active.
+  @param {boolean} disabled - Whether the swatch is disabled.
   @param {string} [size] - The size of the swatch. ('small')
 {% enddoc %}
 
@@ -11,6 +12,9 @@
     Swatch
     {% if active %}
       Swatch--Active
+    {% endif %}
+    {% if disabled %}
+      Swatch--Disabled
     {% endif %}
     {% if size %}
       Swatch--Size{{ size | camelcase }}
@@ -35,6 +39,21 @@
   .Swatch--Active {
     outline: var(--border-width) var(--border-style) var(--t-border);
     outline-offset: 2px;
+  }
+
+  .Swatch--Disabled {
+    position: relative;
+  }
+
+  .Swatch--Disabled::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160%;
+    height: 2px;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    background-color: red;
   }
 
   .Swatch--SizeSmall {

@@ -21,8 +21,12 @@
           "
         >
           {% for filter_value in filter.values %}
+            {% assign is_filter_value_disabled = false %}
+            {% if filter_value.count < 1 %}
+              {% assign is_filter_value_disabled = true %}
+            {% endif %}
             <li>
-              {% render 'filter-value', filter_value: filter_value %}
+              {% render 'filter-value', filter_value: filter_value, disabled: is_filter_value_disabled %}
             </li>
           {% endfor %}
         </ul>

@@ -2,6 +2,7 @@
   Renders a Filter Value component.
 
   @param {object} filter_value - The liquid filter value object.
+  @param {boolean} [disabled] - Whether the filter value is disabled.
 {% enddoc %}
 
 {% if filter_value.active %}
@@ -10,11 +11,24 @@
   {% assign url = filter_value.url_to_add %}
 {% endif %}
 
-<a class="FilterValue" href="{{ url }}">
+<a
+  class="
+    FilterValue
+    {% if disabled %}
+     FilterValue--Disabled
+    {% endif %}
+  "
+  href="{{ url }}"
+>
   {% if filter_value.swatch %}
-    {% render 'swatch', swatch: filter_value.swatch, active: filter_value.active %}
+    {% assign is_swatch_disabled = false %}
+    {% if filter_value.count < 1 %}
+      {% assign is_swatch_disabled = true %}
+    {% endif %}
+    {% render 'swatch', swatch: filter_value.swatch, active: filter_value.active, disabled: is_swatch_disabled %}
   {% else %}
     {% render 'checkbox', checked: filter_value.active, disable_pointer_events: true %}
+
     {% render 'text', text: filter_value.label %}
   {% endif %}
 </a>
@@ -24,5 +38,10 @@
     display: flex;
     align-items: center;
     gap: var(--size-xs);
+  }
+
+  .FilterValue--Disabled {
+    opacity: 0.3;
+    pointer-events: none;
   }
 {% endstylesheet %}
