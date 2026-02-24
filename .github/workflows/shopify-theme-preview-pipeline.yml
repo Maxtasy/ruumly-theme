@@ -43,17 +43,6 @@ jobs:
       theme_name: ${{ needs.generate-theme-name.outputs.theme_name }}
       deploy_sha: ${{ github.sha }}
 
-  check-outputs:
-    needs: [deploy-theme]
-    runs-on: ubuntu-latest
-    steps:
-      - name: List all outputs
-        run: |
-          echo "Deploy outputs:"
-          for key in preview_url editor_url theme_name deploy_sha; do
-            echo "$key=${{ needs.deploy-theme.outputs[$key] }}"
-          done
-
   debug-deploy-outputs:
     name: "Debug Deploy Outputs"
     needs: [deploy-theme]
