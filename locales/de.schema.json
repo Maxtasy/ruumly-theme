@@ -232,8 +232,11 @@
     "logo": {
       "name": "Logo",
       "settings": {
-        "logo_image": {
-          "label": "Logo"
+        "desktop_logo_image": {
+          "label": "Desktop Logo"
+        },
+        "mobile_logo_image": {
+          "label": "Mobile Logo"
         },
         "logo_width": {
           "label": "Breite"
