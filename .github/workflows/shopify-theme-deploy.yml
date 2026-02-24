@@ -92,15 +92,13 @@ jobs:
           # For debugging: Uncomment to see full output from theme push command
           echo "$PUSH_OUTPUT"
 
-          PREVIEW_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.preview_url')
-          EDITOR_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.editor_url')
+          THEME_ID=$(echo "$PUSH_OUTPUT" | jq -r '.theme.id')
           THEME_NAME=$(echo "$PUSH_OUTPUT" | jq -r '.theme.name')
           DEPLOY_SHA="${{ inputs.deploy_sha }}"
 
           # Set outputs
 
-          echo "Extracted preview_url: '$PREVIEW_URL'"
-          echo "Extracted editor_url: '$EDITOR_URL'"
+          echo "Extracted theme_id: '$THEME_ID'"
           echo "Extracted theme_name: '$THEME_NAME'"
 
           echo "theme_id=${THEME_ID}" >> "$GITHUB_OUTPUT"
