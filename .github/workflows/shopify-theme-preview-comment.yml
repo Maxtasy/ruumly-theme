@@ -12,6 +12,10 @@ on:
       deploy_sha:
         required: true
         type: string
+    secrets:
+      SHOPIFY_STORE:
+        required: true
+        type: string
 
 permissions:
   issues: write
@@ -30,6 +34,9 @@ jobs:
             const themeId = "${{ inputs.theme_id }}"
             const themeName = "${{ inputs.theme_name }}"
             const shortSha = "${{ inputs.deploy_sha }}"
+            const baseUrl = "${{ secrets.SHOPIFY_STORE }}"
+            const themePreviewUrl = `https://${baseUrl}/?preview_theme_id=${themeId}`
+            const themeEditorUrl = `https://${baseUrl}/admin/themes/${themeId}/editor`
 
             if (!themeId || themeId === "null") {
               core.info("No Theme ID found — skipping comment.")
@@ -53,8 +60,8 @@ jobs:
             **Commit:** \`${shortSha}\`
 
             ### 🔗 Preview
-            ➡️ **[Open Shopify Preview](https://ruumly.myshopify.com/?preview_theme_id=${themeId})**
-            ➡️ **[Open Shopify Theme Editor](https://ruumly.myshopify.com/admin/themes/${themeId}/editor)**
+            ➡️ **[Open Shopify Preview](${themePreviewUrl})**
+            ➡️ **[Open Shopify Theme Editor](${themeEditorUrl})**
 
             ---
             _Last updated automatically by CI_`
@@ -102,5 +109,5 @@ jobs:
               state: "success",
               context: "Shopify Preview",
               description: "Preview theme deployed",
-              target_url: `https://ruumly.myshopify.com/?preview_theme_id=${{ inputs.theme_id }}`
+              target_url: `https://${baseUrl}/?preview_theme_id=${{ inputs.theme_id }}`
             })

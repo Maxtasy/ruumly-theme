@@ -45,6 +45,8 @@ jobs:
       issues: write
       pull-requests: write
       statuses: write
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
     with:
       theme_id: ${{ needs.deploy-theme.outputs.theme_id }}
       theme_name: ${{ needs.deploy-theme.outputs.theme_name }}
