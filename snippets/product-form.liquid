@@ -38,9 +38,7 @@
 
       {% when 'buy-buttons' %}
         <div class="ProductForm__BuyButtons">
-          <div class="ProductForm__AddToCartButton">
-            {% render 'button', text: 'Add to cart', action: 'add-to-cart', full_width: true %}
-          </div>
+          {% render 'button', text: 'Add to cart', action: 'add-to-cart', full_width: true %}
 
           {% if block.settings.show_wishlist_button %}
             <div class="ProductForm__WishlistButton">
@@ -81,10 +79,6 @@
     border-top-color: var(--t-highlight);
     border-radius: var(--t-border-radius);
     box-shadow: var(--box-shadow);
-  }
-
-  .ProductForm__AddToCartButton {
-    flex-grow: 1;
   }
 
   .ProductForm__BuyButtons {
