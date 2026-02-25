@@ -1,0 +1,14 @@
+on:
+  delete:
+  pull_request:
+    types: [closed]
+
+jobs:
+  delete-theme:
+    name: "Delete Theme on PR Merge"
+    uses: ./.github/workflows/shopify-theme-delete.yml
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
+    with:
+      theme_name: ${{ github.event.pull_request.head.ref }}
