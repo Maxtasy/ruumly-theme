@@ -681,8 +681,12 @@
             "sku_position": {
               "label": "SKU Position",
               "options": {
-                "above": "Über Titel",
-                "below": "Unter Titel"
+                "above": {
+                  "label": "Über Title"
+                },
+                "below": {
+                  "label": "Unter Title"
+                }
               }
             }
           }

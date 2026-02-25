@@ -18,19 +18,20 @@
         {% liquid
           assign variant = product.selected_or_first_available_variant
           assign variant_sku = variant.sku
-          assign show_sku = block.settings.show_sku
-          assign sku_position = block.settings.sku_position
         %}
 
-        {% if show_sku and variant_sku != blank and sku_position == 'above' %}
-          {% render 'text', text: variant_sku %}
-        {% endif %}
+        <div
+          class="ProductForm__Title"
+          data-sku-position="{{ block.settings.sku_position }}"
+        >
+          {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
 
-        {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
-
-        {% if show_sku and variant_sku != blank and sku_position == 'below' %}
-          {% render 'text', text: variant_sku %}
-        {% endif %}
+          <div class="ProductForm__TitleSKU">
+            {% if block.settings.show_sku and variant_sku != blank %}
+              {% render 'text', text: variant_sku, variant: 'body-small', color: 'primary-muted' %}
+            {% endif %}
+          </div>
+        </div>
 
       {% when 'product-variant-selector' %}
         {% render 'product-variant-selector',
@@ -86,6 +87,16 @@
     border-top-color: var(--t-highlight);
     border-radius: var(--t-border-radius);
     box-shadow: var(--box-shadow);
+  }
+
+  .ProductForm__Title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .ProductForm__Title[data-sku-position='above'] .ProductForm__TitleSKU {
+    order: -1;
   }
 
   @media screen and (min-width: 769px) {
