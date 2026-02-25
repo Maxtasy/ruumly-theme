@@ -107,7 +107,8 @@
   --text-size-heading-ultra-large: 72px;
 
   --text-line-height: 1.2;
-  --heading-line-height: 1;
+  --heading-line-height-regular: 1.2;
+  --heading-line-height-large: 1.1;
 
   /* ------- */
   /* Details */
