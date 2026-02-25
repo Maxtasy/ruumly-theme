@@ -1,0 +1,35 @@
+{% doc %}
+  Renders an Active Filter Value component.
+
+  @param {object} filter_value - The liquid filter value object.
+{% enddoc %}
+
+{% capture content %}
+  <a class="ActiveFilterValue" href="{{ filter_value.url_to_remove }}">
+    {% if filter_value.swatch %}
+      {% liquid 
+        assign is_swatch_disabled = false
+        if filter_value.count < 1
+          assign is_swatch_disabled = true
+        endif
+      %}
+      
+      {% render 'swatch', swatch: filter_value.swatch, active: true, size: 'small', disabled: is_swatch_disabled %}
+    {% endif %}
+
+    {{ filter_value.label }}
+
+    {% render 'icon', icon: 'x', size: 'small' %}
+  </a>
+{% endcapture %}
+
+{% render 'badge', content: content %}
+
+{% stylesheet %}
+  .ActiveFilterValue {
+    display: flex;
+    align-items: center;
+    gap: var(--size-s);
+    color: var(--t-text);
+  }
+{% endstylesheet %}

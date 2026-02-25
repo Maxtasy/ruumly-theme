@@ -15,6 +15,17 @@
   "
 >
   <div class="Section__Inner">
+    {% if section.settings.enable_filters and collection.filters.size > 0 %}
+      {% liquid
+        assign filters_active = false
+        if collection.products_count < collection.all_products_count
+          assign filters_active = true
+        endif
+      %}
+
+      {% render 'filters', filters: collection.filters, filters_active: filters_active %}
+    {% endif %}
+
     {% render 'product-grid',
       products: products,
       collection_reference: collection_reference,
@@ -59,6 +70,12 @@
       ]
     },
     {
+      "type": "checkbox",
+      "id": "enable_filters",
+      "label": "t:sections.product_grid.settings.enable_filters.label",
+      "default": true
+    },
+    {
       "type": "number",
       "id": "columns_mobile",
       "label": "t:sections.all.settings.columns_mobile.label",
@@ -101,6 +118,10 @@
       "step": 1,
       "default": 16,
       "visible_if": "{{ section.settings.enable_pagination == true }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
     },
     {
       "type": "product_list",

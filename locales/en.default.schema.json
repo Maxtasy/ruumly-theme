@@ -683,6 +683,9 @@
           "label": "Collection",
           "info": "On PLPs defaults to the global collection object. Set if you want to use pagination."
         },
+        "enable_filters": {
+          "label": "Enable Filters"
+        },
         "enable_pagination": {
           "label": "Enable Pagination",
           "info": "Only works when product list and collection settings are unset."
