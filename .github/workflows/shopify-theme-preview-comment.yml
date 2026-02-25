@@ -9,9 +9,6 @@ on:
       theme_name:
         required: true
         type: string
-      deploy_sha:
-        required: true
-        type: string
     secrets:
       SHOPIFY_STORE:
         required: true
@@ -32,8 +29,7 @@ jobs:
           script: |
             const themeId = "${{ inputs.theme_id }}"
             const themeName = "${{ inputs.theme_name }}"
-            const deploySha = "${{ inputs.deploy_sha }}"
-            const shortSha = deploySha.substring(0, 7)
+            const shortSha = "${{ github.event.pull_request.head.sha }}".substring(0,7)
             const baseUrl = "${{ secrets.SHOPIFY_STORE }}"
             const themePreviewUrl = `https://${baseUrl}/?preview_theme_id=${themeId}`
             const themeEditorUrl = `https://${baseUrl}/admin/themes/${themeId}/editor`

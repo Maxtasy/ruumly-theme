@@ -50,4 +50,3 @@ jobs:
     with:
       theme_id: ${{ needs.deploy-theme.outputs.theme_id }}
       theme_name: ${{ needs.deploy-theme.outputs.theme_name }}
-      deploy_sha: ${{ needs.deploy-theme.outputs.deploy_sha }}
