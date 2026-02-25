@@ -2,8 +2,8 @@
   Renders a Swatch component.
 
   @param {object} swatch - The liquid swatch object.
-  @param {boolean} active - Whether the swatch is active.
-  @param {boolean} disabled - Whether the swatch is disabled.
+  @param {boolean} [active] - Whether the swatch is active.
+  @param {boolean} [disabled] - Whether the swatch is disabled.
   @param {string} [size] - The size of the swatch. ('small')
 {% enddoc %}
 
@@ -50,10 +50,10 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 160%;
-    height: 2px;
+    width: 100%;
+    height: var(--border-width);
     transform: translate(-50%, -50%) rotate(-45deg);
-    background-color: red;
+    background-color: var(--t-border);
   }
 
   .Swatch--SizeSmall {

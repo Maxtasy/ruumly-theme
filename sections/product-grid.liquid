@@ -16,10 +16,13 @@
 >
   <div class="Section__Inner">
     {% if section.settings.enable_filters and collection.filters.size > 0 %}
-      {% assign filters_active = false %}
-      {% if collection.products_count < collection.all_products_count %}
-        {% assign filters_active = true %}
-      {% endif %}
+      {% liquid
+        assign filters_active = false
+        if collection.products_count < collection.all_products_count
+          assign filters_active = true
+        endif
+      %}
+
       {% render 'filters', filters: collection.filters, filters_active: filters_active %}
     {% endif %}
 

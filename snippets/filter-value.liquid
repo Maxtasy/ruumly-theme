@@ -15,17 +15,13 @@
   class="
     FilterValue
     {% if disabled %}
-     FilterValue--Disabled
+      FilterValue--Disabled
     {% endif %}
   "
   href="{{ url }}"
 >
   {% if filter_value.swatch %}
-    {% assign is_swatch_disabled = false %}
-    {% if filter_value.count < 1 %}
-      {% assign is_swatch_disabled = true %}
-    {% endif %}
-    {% render 'swatch', swatch: filter_value.swatch, active: filter_value.active, disabled: is_swatch_disabled %}
+    {% render 'swatch', swatch: filter_value.swatch, active: filter_value.active, disabled: disabled %}
   {% else %}
     {% render 'checkbox', checked: filter_value.active, disable_pointer_events: true %}
 
