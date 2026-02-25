@@ -674,6 +674,15 @@
         "enable_navigatiobn_desktop": {
           "label": "Navigation auf Desktop aktivieren"
         }
+      },
+      "blocks": {
+        "buy_buttons": {
+          "settings": {
+            "show_wishlist_button": {
+              "label": "Wunschlist Button anzeigen"
+            }
+          }
+        }
       }
     },
     "product_grid": {

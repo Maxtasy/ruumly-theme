@@ -37,7 +37,15 @@
         {% endif %}
 
       {% when 'buy-buttons' %}
-        {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
+        <div class="ProductForm__BuyButtons">
+          {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
+
+          <div class="ProductForm__BuyButtonsWishlist">
+            {% if block.settings.show_wishlist_button %}
+              {% render 'wishlist-buttons', product_id: product.id %}
+            {% endif %}
+          </div>
+        </div>
 
       {% when 'shipping-estimation' %}
         {% liquid
@@ -71,6 +79,22 @@
     border-top-color: var(--t-highlight);
     border-radius: var(--t-border-radius);
     box-shadow: var(--box-shadow);
+  }
+
+  .ProductForm__BuyButtons {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+  }
+
+  .ProductForm__BuyButtons .WishlistButtons {
+    width: 52px;
+    height: 52px;
+  }
+
+  .ProductForm__BuyButtons .WishlistButtons .Button {
+    width: 100%;
+    height: 100%;
   }
 
   @media screen and (min-width: 769px) {
