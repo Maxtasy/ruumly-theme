@@ -8,7 +8,7 @@ on:
       THEME_ACCESS_PASSWORD:
         required: true
     inputs:
-      theme_name:
+      theme_id:
         required: true
         type: string
 
@@ -22,4 +22,4 @@ jobs:
     steps:
       - name: Publish theme
         run: |
-          shopify theme publish "$theme_name" --store="${{ secrets.SHOPIFY_STORE }}"
+          shopify theme publish "$theme_id" --store="${{ secrets.SHOPIFY_STORE }}"

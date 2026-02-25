@@ -15,12 +15,9 @@ on:
         required: true
         type: string
     outputs:
-      preview_url:
-        description: "Preview URL of deployed theme"
-        value: ${{ jobs.deploy.outputs.preview_url }}
-      editor_url:
-        description: "Theme editor URL"
-        value: ${{ jobs.deploy.outputs.editor_url }}
+      theme_id:
+        description: "ID of deployed theme"
+        value: ${{ jobs.deploy.outputs.theme_id }}
       theme_name:
         description: "Name of deployed theme"
         value: ${{ jobs.deploy.outputs.theme_name }}
@@ -32,10 +29,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     outputs:
-      preview_url: ${{ steps.deploy_theme.outputs.preview_url }}
-      editor_url: ${{ steps.deploy_theme.outputs.editor_url }}
-      theme_name: ${{ inputs.theme_name }}
-      deploy_sha: ${{ inputs.deploy_sha }}
+      theme_id: ${{ steps.deploy_theme.outputs.theme_id }}
+      theme_name: ${{ steps.deploy_theme.outputs.theme_name }}
+      deploy_sha: ${{ steps.deploy_theme.outputs.deploy_sha }}
     env:
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
@@ -62,7 +58,7 @@ jobs:
       - name: Deploy Theme
         id: deploy_theme
         run: |
-          set -o pipefail
+          set -euo pipefail
 
           echo "Deploying theme: ${{ inputs.theme_name }}"
 
@@ -96,14 +92,12 @@ jobs:
           # For debugging: Uncomment to see full output from theme push command
           echo "$PUSH_OUTPUT"
 
-          PREVIEW_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.preview_url')
-          EDITOR_URL=$(echo "$PUSH_OUTPUT" | jq -r '.theme.editor_url')
+          THEME_ID=$(echo "$PUSH_OUTPUT" | jq -r '.theme.id')
           THEME_NAME=$(echo "$PUSH_OUTPUT" | jq -r '.theme.name')
           DEPLOY_SHA="${{ inputs.deploy_sha }}"
 
           # Set outputs
 
-          echo "preview_url=$PREVIEW_URL" >> $GITHUB_OUTPUT
-          echo "editor_url=$EDITOR_URL" >> $GITHUB_OUTPUT
-          echo "theme_name=$THEME_NAME" >> $GITHUB_OUTPUT
-          echo "deploy_sha=$DEPLOY_SHA" >> $GITHUB_OUTPUT
+          echo "theme_id=${THEME_ID}" >> "$GITHUB_OUTPUT"
+          echo "theme_name=${THEME_NAME}" >> "$GITHUB_OUTPUT"
+          echo "deploy_sha=${DEPLOY_SHA}" >> "$GITHUB_OUTPUT"

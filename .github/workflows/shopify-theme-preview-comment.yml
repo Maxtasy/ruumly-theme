@@ -3,18 +3,18 @@ name: PR Preview comment
 on:
   workflow_call:
     inputs:
-      preview_url:
-        required: true
-        type: string
-      editor_url:
+      theme_id:
         required: true
         type: string
       theme_name:
         required: true
         type: string
-      deploy_sha:
+      latest_commit_sha:
         required: true
         type: string
+    secrets:
+      SHOPIFY_STORE:
+        required: true
 
 permissions:
   issues: write
@@ -30,13 +30,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const previewUrl = "${{ inputs.preview_url }}"
-            const editorUrl = "${{ inputs.editor_url }}"
+            const themeId = "${{ inputs.theme_id }}"
             const themeName = "${{ inputs.theme_name }}"
-            const shortSha = "${{ inputs.deploy_sha }}"
+            const shortSha = "${{ inputs.latest_commit_sha }}".substring(0,7)
+            const baseUrl = "${{ secrets.SHOPIFY_STORE }}"
+            const themePreviewUrl = `https://${baseUrl}/?preview_theme_id=${themeId}`
+            const themeEditorUrl = `https://${baseUrl}/admin/themes/${themeId}/editor`
 
-            if (!previewUrl || previewUrl === "null") {
-              core.info("No preview URL found — skipping comment.")
+            if (!themeId || themeId === "null") {
+              core.info("No Theme ID found — skipping comment.")
               return
             }
 
@@ -57,8 +59,8 @@ jobs:
             **Commit:** \`${shortSha}\`
 
             ### 🔗 Preview
-            ➡️ **[Open Shopify Preview](${previewUrl})**
-            ➡️ **[Open Shopify Theme Editor](${editorUrl})**
+            ➡️ **[Open Shopify Preview](${themePreviewUrl})**
+            ➡️ **[Open Shopify Theme Editor](${themeEditorUrl})**
 
             ---
             _Last updated automatically by CI_`
@@ -99,6 +101,7 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
+            const baseUrl = "${{ secrets.SHOPIFY_STORE }}"
             await github.rest.repos.createCommitStatus({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -106,5 +109,5 @@ jobs:
               state: "success",
               context: "Shopify Preview",
               description: "Preview theme deployed",
-              target_url: "${{ inputs.preview_url }}"
+              target_url: `https://${baseUrl}/?preview_theme_id=${{ inputs.theme_id }}`
             })

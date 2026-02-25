@@ -12,7 +12,7 @@ jobs:
 
   generate-theme-name:
     name: "Generate Theme Name"
-    needs: needs-deployment
+    needs: [needs-deployment]
     if: needs.needs-deployment.outputs.needs_deployment == 'true'
     runs-on: ubuntu-latest
     outputs:
@@ -36,23 +36,24 @@ jobs:
       SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
       THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
     with:
-      theme_name: ${{ needs.generate-theme-name.outputs.theme_name}}
+      theme_name: ${{ needs.generate-theme-name.outputs.theme_name }}
       deploy_sha: ${{ github.sha }}
 
   publish-theme:
     name: "Publish Theme"
-    needs: deploy-theme
-    if: needs.deploy-theme.outputs.preview_url != ''
+    needs: [deploy-theme]
+    if: ${{ needs.deploy-theme.result == 'success' && needs.deploy-theme.outputs.theme_id && needs.deploy-theme.outputs.theme_id != 'null' }}
     uses: ./.github/workflows/shopify-theme-publish.yml
     secrets:
       SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
       THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
     with:
-      theme_name: ${{ needs.deploy-theme.outputs.theme_name }}
+      theme_id: ${{ needs.deploy-theme.outputs.theme_id }}
 
   shopify-theme-cleanup:
     name: "Shopify Theme Cleanup"
-    needs: deploy-theme
+    needs: [deploy-theme]
+    if: ${{ needs.deploy-theme.result == 'success' && needs.needs-deployment.outputs.needs_deployment == 'true' }}
     uses: ./.github/workflows/shopify-theme-cleanup.yml
     secrets:
       SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
