@@ -1,0 +1,53 @@
+name: Shopify Theme Preview Pipeline
+
+on:
+  pull_request:
+    branches:
+      - main
+    types: [opened, synchronize, reopened]
+
+jobs:
+  needs-deployment:
+    name: "Check if Deployment is Needed"
+    uses: ./.github/workflows/needs-deployment.yml
+
+  generate-theme-name:
+    name: "Generate Theme Name"
+    needs: [needs-deployment]
+    if: ${{ needs.needs-deployment.outputs.needs_deployment == 'true' }}
+    runs-on: ubuntu-latest
+    outputs:
+      theme_name: ${{ steps.generate_theme_name.outputs.theme_name }}
+    steps:
+      - name: Generate theme name
+        id: generate_theme_name
+        run: |
+          echo "theme_name=${GITHUB_HEAD_REF}" >> "$GITHUB_OUTPUT"
+
+  deploy-theme:
+    name: "Deploy Theme"
+    needs: [needs-deployment, generate-theme-name]
+    if: ${{ needs.needs-deployment.outputs.needs_deployment == 'true' }}
+    uses: ./.github/workflows/shopify-theme-deploy.yml
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
+    with:
+      theme_name: ${{ needs.generate-theme-name.outputs.theme_name }}
+      deploy_sha: ${{ github.sha }}
+
+  pr-preview-comment:
+    name: "PR Comment with Theme Preview"
+    needs: [deploy-theme]
+    if: ${{ needs.deploy-theme.result == 'success' && needs.deploy-theme.outputs.theme_id && needs.deploy-theme.outputs.theme_id != 'null' }}
+    uses: ./.github/workflows/shopify-theme-preview-comment.yml
+    permissions:
+      issues: write
+      pull-requests: write
+      statuses: write
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+    with:
+      theme_id: ${{ needs.deploy-theme.outputs.theme_id }}
+      theme_name: ${{ needs.deploy-theme.outputs.theme_name }}
+      latest_commit_sha: ${{ github.event.pull_request.head.sha }}

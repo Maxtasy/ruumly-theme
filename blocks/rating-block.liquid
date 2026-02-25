@@ -1,5 +1,5 @@
 {% assign rating = block.settings.rating | plus: 0 %}
-{% render 'rating', rating: rating %}
+{% render 'rating', rating: rating, icon_size: block.settings.icon_size %}
 
 {% schema %}
 {
@@ -9,6 +9,22 @@
       "type": "text",
       "label": "t:theme_blocks.rating_block.settings.rating.label",
       "id": "rating"
+    },
+    {
+      "type": "select",
+      "label": "t:theme_blocks.rating_block.settings.icon_size.label",
+      "id": "icon_size",
+      "options": [
+        {
+          "value": "extra-small",
+          "label": "t:theme_blocks.rating_block.settings.icon_size.options.extra_small.label"
+        },
+        {
+          "value": "small",
+          "label": "t:theme_blocks.rating_block.settings.icon_size.options.small.label"
+        }
+      ],
+      "default": "small"
     }
   ],
   "presets": [

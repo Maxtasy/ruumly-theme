@@ -33,6 +33,9 @@
   }
 
   .IconWithText__Icon {
+    /* Prevent the icon from shrinking when the text is long. */
+    flex-shrink: 0;
+
     width: var(--icon-size-m);
   }
 {% endstylesheet %}

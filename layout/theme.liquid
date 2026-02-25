@@ -33,7 +33,8 @@
     {% render 'color-schemes' %}
 
     {% render 'global-styles' %}
-    {% render 'global-scripts' %}
+
+    <script src="{{ 'main.js' | asset_url }}" defer></script>
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}

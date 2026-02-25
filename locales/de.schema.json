@@ -232,8 +232,11 @@
     "logo": {
       "name": "Logo",
       "settings": {
-        "logo_image": {
-          "label": "Logo"
+        "desktop_logo_image": {
+          "label": "Desktop Logo"
+        },
+        "mobile_logo_image": {
+          "label": "Mobile Logo"
         },
         "logo_width": {
           "label": "Breite"
@@ -665,7 +668,7 @@
         "enable_pagination_desktop": {
           "label": "Pagination auf Desktop aktivieren"
         },
-        "enable_navigtation_mobile": {
+        "enable_navigation_mobile": {
           "label": "Navigation auf Mobile aktivieren"
         },
         "enable_navigatiobn_desktop": {
@@ -734,9 +737,6 @@
         "cart_icon_position": {
           "label": "Warenkorb-Symbol Position"
         },
-        "show_mobile_logo": {
-          "label": "Mobile Logo anzeigen"
-        },
         "search_icon_position": {
           "label": "Such-Symbol Position"
         },
@@ -746,9 +746,13 @@
         "show_cart_icon": {
           "label": "Warenkorb-Symbol anzeigen"
         },
-        "show_logo": {
-          "label": "Logo",
-          "info": "Das Logo kann in den Themeneinstellungen ausgewählt werden. Wenn es nicht markiert ist, wird stattdessen der Name des Shops angezeigt."
+        "show_desktop_logo": {
+          "label": "Desktop Logo anzeigen",
+          "info": "Das Logo kann in den Theme-Einstellungen ausgewählt werden. Wenn diese Option nicht aktiviert ist, wird stattdessen der Name des Shops angezeigt."
+        },
+        "show_mobile_logo": {
+          "label": "Mobile Logo anzeigen",
+          "info": "Das Logo kann in den Theme-Einstellungen ausgewählt werden. Wenn diese Option nicht aktiviert ist, wird stattdessen der Name des Shops angezeigt."
         },
         "show_search_icon": {
           "label": "Such-Symbol anzeigen"
@@ -908,6 +912,17 @@
       "settings": {
         "rating": {
           "label": "Bewertung"
+        },
+        "icon_size": {
+          "label": "Icon Größe",
+          "options": {
+            "extra_small": {
+              "label": "Extra klein"
+            },
+            "small": {
+              "label": "Klein"
+            }
+          }
         }
       },
       "presets": {

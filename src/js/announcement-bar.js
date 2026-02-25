@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class AnnouncementBar extends CustomComponentMixin(HTMLDivElement) {
+class AnnouncementBar extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -91,4 +91,4 @@ export class AnnouncementBar extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("announcement-bar-component", AnnouncementBar, "div");
+defineComponent("announcement-bar-component", AnnouncementBar);

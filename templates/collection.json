@@ -33,12 +33,12 @@
         "columns_mobile": 1,
         "columns_desktop": 4,
         "grid_gap": "m",
-        "enable_pagination": false,
-        "per_page": 16,
+        "enable_pagination": true,
+        "per_page": 32,
         "product_list": [],
         "collection_reference": "",
-        "enable_quick_add_button": false,
-        "enable_wishlist_button": false
+        "enable_quick_add_button": true,
+        "enable_wishlist_button": true
       }
     }
   },
