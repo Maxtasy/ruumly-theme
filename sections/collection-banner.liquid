@@ -1,49 +1,85 @@
-<section
-  class="
-    Section
-    Section--FullWidth
-    Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
-    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
-  "
->
-  <div class="Section__Inner">
-    <div
-      class="CollectionBanner"
-      style="
-        {% if section.settings.subtract_header_group_height %}
-          --height: calc({{ section.settings.height }} - var(--header-group-height));
-        {% else %}
-          --height: {{ section.settings.height }};
-        {% endif %}
-        --overlay-color: {{ section.settings.overlay_color }};
-        --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
-      "
-    >
-      <div class="CollectionBanner__MobileImage u-Hidden--Desktop">
-        {% assign mobile_image = section.settings.mobile_image | default: collection.featured_image %}
-        {% render 'image', image: mobile_image, loading: section.settings.image_loading %}
-      </div>
+{% if section.settings.mobile_image or section.settings.desktop_image %}
+  <section
+    class="
+      Section
+      Section--FullWidth
+      Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
+      ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+    "
+  >
+    <div class="Section__Inner">
+      {% if section.settings.mobile_image %}
+        <div
+          class="CollectionBanner u-Hidden--Desktop"
+          style="
+            {% if section.settings.subtract_header_group_height %}
+              --height: calc({{ section.settings.height }} - var(--header-group-height));
+            {% else %}
+              --height: {{ section.settings.height }};
+            {% endif %}
+            --overlay-color: {{ section.settings.overlay_color }};
+            --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+          "
+        >
+          <div class="CollectionBanner__MobileImage">
+            {% assign mobile_image = section.settings.mobile_image | default: collection.featured_image %}
+            {% render 'image', image: mobile_image, loading: section.settings.image_loading %}
+          </div>
 
-      <div class="CollectionBanner__DesktopImage u-Hidden--Mobile">
-        {% assign desktop_image = section.settings.desktop_image | default: collection.featured_image %}
-        {% render 'image', image: desktop_image, loading: section.settings.image_loading %}
-      </div>
+          <div class="CollectionBanner__Overlay"></div>
 
-      <div class="CollectionBanner__Overlay"></div>
+          <div class="CollectionBanner__Inner">
+            {% assign collection_heading = section.settings.collection_heading | default: collection.title %}
+            {% assign heading_as = section.settings.heading_as %}
+            {% render 'text', text: collection_heading, variant: 'heading-large', as: heading_as %}
 
-      <div class="CollectionBanner__Inner">
-        {% assign collection_heading = section.settings.collection_heading | default: collection.title %}
-        {% assign heading_as = section.settings.heading_as %}
-        {% render 'text', text: collection_heading, variant: 'heading-large', as: heading_as %}
+            {% assign collection_description = section.settings.collection_description
+              | default: collection.description
+            %}
+            {% if collection_description %}
+              {% render 'text', text: collection_description %}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
 
-        {% assign collection_description = section.settings.collection_description | default: collection.description %}
-        {% if collection_description %}
-          {% render 'text', text: collection_description %}
-        {% endif %}
-      </div>
+      {% if section.settings.desktop_image %}
+        <div
+          class="CollectionBanner u-Hidden--Mobile"
+          style="
+            {% if section.settings.subtract_header_group_height %}
+              --height: calc({{ section.settings.height }} - var(--header-group-height));
+            {% else %}
+              --height: {{ section.settings.height }};
+            {% endif %}
+            --overlay-color: {{ section.settings.overlay_color }};
+            --overlay-opacity: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+          "
+        >
+          <div class="CollectionBanner__DesktopImage">
+            {% assign desktop_image = section.settings.desktop_image | default: collection.featured_image %}
+            {% render 'image', image: desktop_image, loading: section.settings.image_loading %}
+          </div>
+
+          <div class="CollectionBanner__Overlay"></div>
+
+          <div class="CollectionBanner__Inner">
+            {% assign collection_heading = section.settings.collection_heading | default: collection.title %}
+            {% assign heading_as = section.settings.heading_as %}
+            {% render 'text', text: collection_heading, variant: 'heading-large', as: heading_as %}
+
+            {% assign collection_description = section.settings.collection_description
+              | default: collection.description
+            %}
+            {% if collection_description %}
+              {% render 'text', text: collection_description %}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
     </div>
-  </div>
-</section>
+  </section>
+{% endif %}
 
 {% stylesheet %}
   .CollectionBanner {
