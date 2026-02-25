@@ -38,13 +38,15 @@
 
       {% when 'buy-buttons' %}
         <div class="ProductForm__BuyButtons">
-          {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
-
-          <div class="ProductForm__BuyButtonsWishlist">
-            {% if block.settings.show_wishlist_button %}
-              {% render 'wishlist-buttons', product_id: product.id %}
-            {% endif %}
+          <div class="ProductForm__AddToCartButton">
+            {% render 'button', text: 'Add to cart', action: 'add-to-cart', full_width: true %}
           </div>
+
+          {% if block.settings.show_wishlist_button %}
+            <div class="ProductForm__WishlistButton">
+              {% render 'wishlist-buttons', product_id: product.id %}
+            </div>
+          {% endif %}
         </div>
 
       {% when 'shipping-estimation' %}
@@ -81,17 +83,23 @@
     box-shadow: var(--box-shadow);
   }
 
+  .ProductForm__AddToCartButton {
+    flex-grow: 1;
+  }
+
   .ProductForm__BuyButtons {
     display: flex;
     align-items: center;
     gap: var(--size-xs);
   }
 
+  /* TODO: This is hard coded for now. We have to find a better solution. */
   .ProductForm__BuyButtons .WishlistButtons {
     width: 52px;
     height: 52px;
   }
 
+  /* TODO: This is hard coded for now. We have to find a better solution. */
   .ProductForm__BuyButtons .WishlistButtons .Button {
     width: 100%;
     height: 100%;
