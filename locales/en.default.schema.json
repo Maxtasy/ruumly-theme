@@ -668,7 +668,7 @@
         "enable_pagination_desktop": {
           "label": "Enable Pagination Desktop"
         },
-        "enable_navigtation_mobile": {
+        "enable_navigation_mobile": {
           "label": "Enable Navigation Mobile"
         },
         "enable_navigatiobn_desktop": {
@@ -693,6 +693,13 @@
               }
             }
           }
+        },
+        "buy_buttons": {
+          "settings": {
+            "show_wishlist_button": {
+              "label": "Show wishlist button"
+            }
+          }
         }
       }
     },
@@ -702,6 +709,9 @@
         "collection_reference": {
           "label": "Collection",
           "info": "On PLPs defaults to the global collection object. Set if you want to use pagination."
+        },
+        "enable_filters": {
+          "label": "Enable Filters"
         },
         "enable_pagination": {
           "label": "Enable Pagination",
@@ -929,6 +939,17 @@
       "settings": {
         "rating": {
           "label": "Rating"
+        },
+        "icon_size": {
+          "label": "Icon Size",
+          "options": {
+            "extra_small": {
+              "label": "Extra Small"
+            },
+            "small": {
+              "label": "Small"
+            }
+          }
         }
       },
       "presets": {

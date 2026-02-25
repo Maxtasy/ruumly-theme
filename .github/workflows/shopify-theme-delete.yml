@@ -1,5 +1,3 @@
-name: Shopify Theme Publish
-
 on:
   workflow_call:
     secrets:
@@ -8,12 +6,12 @@ on:
       THEME_ACCESS_PASSWORD:
         required: true
     inputs:
-      theme_id:
+      theme_name:
         required: true
         type: string
 
 jobs:
-  publish:
+  delete:
     runs-on: ubuntu-latest
     env:
       SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
@@ -32,6 +30,6 @@ jobs:
         run: |
           npm install -g @shopify/cli@3.89.0
 
-      - name: Publish theme
+      - name: Delete theme
         run: |
-          shopify theme publish --theme "${{ inputs.theme_id }}" --store="${{ secrets.SHOPIFY_STORE }}"
+          shopify theme delete --theme "${{ inputs.theme_name }}" --store="${{ secrets.SHOPIFY_STORE }}"

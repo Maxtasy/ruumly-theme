@@ -1,0 +1,25 @@
+{% doc %}
+  Renders a Checkbox component.
+
+  @param {boolean} [checked] - Whether the checkbox is checked.
+  @param {boolean} [disable_pointer_events] - Whether the pointer events are disabled.
+{% enddoc %}
+
+<input
+  class="
+    Checkbox
+    {% if disable_pointer_events %}
+      Checkbox--DisabledPointerEvents
+    {% endif %}
+  "
+  type="checkbox"
+  {% if checked %}
+    checked
+  {% endif %}
+>
+
+{% stylesheet %}
+  .Checkbox--DisabledPointerEvents {
+    pointer-events: none;
+  }
+{% endstylesheet %}

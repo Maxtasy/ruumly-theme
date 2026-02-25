@@ -232,8 +232,11 @@
     "logo": {
       "name": "Logo",
       "settings": {
-        "logo_image": {
-          "label": "Logo"
+        "desktop_logo_image": {
+          "label": "Desktop Logo"
+        },
+        "mobile_logo_image": {
+          "label": "Mobile Logo"
         },
         "logo_width": {
           "label": "Breite"
@@ -665,7 +668,7 @@
         "enable_pagination_desktop": {
           "label": "Pagination auf Desktop aktivieren"
         },
-        "enable_navigtation_mobile": {
+        "enable_navigation_mobile": {
           "label": "Navigation auf Mobile aktivieren"
         },
         "enable_navigatiobn_desktop": {
@@ -690,6 +693,13 @@
               }
             }
           }
+        },
+        "buy_buttons": {
+          "settings": {
+            "show_wishlist_button": {
+              "label": "Wunschliste Button anzeigen"
+            }
+          }
         }
       }
     },
@@ -699,6 +709,9 @@
         "collection_reference": {
           "label": "Kollektion",
           "info": "Wenn nicht ausgefüllt wird bei PLPs das globale collection-object verwendet. Legen Sie dies fest, wenn Sie eine Paginierung verwenden möchten."
+        },
+        "enable_filters": {
+          "label": "Filter aktivieren"
         },
         "enable_pagination": {
           "label": "Paginierung aktivieren",
@@ -926,6 +939,17 @@
       "settings": {
         "rating": {
           "label": "Bewertung"
+        },
+        "icon_size": {
+          "label": "Icon Größe",
+          "options": {
+            "extra_small": {
+              "label": "Extra klein"
+            },
+            "small": {
+              "label": "Klein"
+            }
+          }
         }
       },
       "presets": {
