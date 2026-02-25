@@ -34,4 +34,4 @@ jobs:
 
       - name: Publish theme
         run: |
-          shopify theme publish "$theme_id" --store="${{ secrets.SHOPIFY_STORE }}"
+          shopify theme publish --theme "${{ inputs.theme_id }}" --store="${{ secrets.SHOPIFY_STORE }}"
