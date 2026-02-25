@@ -28,11 +28,17 @@ jobs:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
           SHOPIFY_FLAG_FORCE: 1
         run: |
-          if shopify theme list --store="${{ secrets.SHOPIFY_STORE }}" | grep -q "${{ github.event.pull_request.head.ref }}"; then
+          THEME_LIST_JSON=$(shopify theme list --store="${{ secrets.SHOPIFY_STORE }}" --unpublished --json)
+          if echo "$THEME_LIST_JSON" | jq -e ".themes[] | select(.name == \"${{ github.event.pull_request.head.ref }}\")" > /dev/null; then
             echo "theme_exists=true" >> "$GITHUB_OUTPUT"
           else
             echo "theme_exists=false" >> "$GITHUB_OUTPUT"
           fi
+
+          # Debugging output
+          echo "Theme list: $THEME_LIST_JSON"
+          echo "Checked for theme: ${{ github.event.pull_request.head.ref }}"
+          echo "Theme exists: ${{ needs.check-for-theme-existence.outputs.theme_exists }}"
 
   delete-theme:
     name: "Delete Theme on PR Merge"
