@@ -1,5 +1,4 @@
 on:
-  delete:
   pull_request:
     types: [closed]
 
