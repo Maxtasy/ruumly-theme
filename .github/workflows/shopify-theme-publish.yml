@@ -20,6 +20,19 @@ jobs:
       SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
       SHOPIFY_FLAG_FORCE: 1
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        if: steps.filter.outputs.theme == 'true'
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.12.0
+
+      - name: Install Shopify CLI
+        run: |
+          npm install -g @shopify/cli@3.89.0
+
       - name: Publish theme
         run: |
           shopify theme publish "$theme_id" --store="${{ secrets.SHOPIFY_STORE }}"
