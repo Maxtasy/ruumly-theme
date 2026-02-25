@@ -674,6 +674,15 @@
         "enable_navigatiobn_desktop": {
           "label": "Enable Navigation Desktop"
         }
+      },
+      "blocks": {
+        "buy_buttons": {
+          "settings": {
+            "show_wishlist_button": {
+              "label": "Show wishlist button"
+            }
+          }
+        }
       }
     },
     "product_grid": {
