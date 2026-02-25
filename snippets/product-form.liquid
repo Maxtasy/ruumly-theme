@@ -20,7 +20,7 @@
 
           {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
             <div
-              class="ProductForm__TitleSku"
+              class="ProductForm__Sku"
               {% if block.settings.sku_position == 'above' %}
                 style="--order: -1;"
               {% endif %}
@@ -96,7 +96,7 @@
     gap: var(--size-s);
   }
 
-  .ProductForm__TitleSku {
+  .ProductForm__Sku {
     order: var(--order, 1);
   }
 
