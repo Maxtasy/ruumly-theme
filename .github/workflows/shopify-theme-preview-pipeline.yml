@@ -50,3 +50,4 @@ jobs:
     with:
       theme_id: ${{ needs.deploy-theme.outputs.theme_id }}
       theme_name: ${{ needs.deploy-theme.outputs.theme_name }}
+      latest_commit_sha: ${{ github.event.pull_request.head.sha }}
