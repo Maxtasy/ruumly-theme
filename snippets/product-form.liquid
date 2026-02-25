@@ -15,7 +15,24 @@
   {% for block in blocks %}
     {% case block.type %}
       {% when 'title' %}
-        {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
+        <div class="ProductForm__Title">
+          {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
+
+          {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
+            <div
+              class="ProductForm__Sku"
+              {% if block.settings.sku_position == 'above' %}
+                style="--order: -1;"
+              {% endif %}
+            >
+              {% render 'text',
+                text: product.selected_or_first_available_variant.sku,
+                variant: 'body-small',
+                color: 'primary-muted'
+              %}
+            </div>
+          {% endif %}
+        </div>
 
       {% when 'product-variant-selector' %}
         {% render 'product-variant-selector',
@@ -79,6 +96,16 @@
     border-top-color: var(--t-highlight);
     border-radius: var(--t-border-radius);
     box-shadow: var(--box-shadow);
+  }
+
+  .ProductForm__Title {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .ProductForm__Sku {
+    order: var(--order, 1);
   }
 
   .ProductForm__BuyButtons {

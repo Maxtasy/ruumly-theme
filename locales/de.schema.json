@@ -676,6 +676,24 @@
         }
       },
       "blocks": {
+        "title": {
+          "settings": {
+            "show_sku": {
+              "label": "SKU Anzeigen"
+            },
+            "sku_position": {
+              "label": "SKU Position",
+              "options": {
+                "above": {
+                  "label": "Über Title"
+                },
+                "below": {
+                  "label": "Unter Title"
+                }
+              }
+            }
+          }
+        },
         "buy_buttons": {
           "settings": {
             "show_wishlist_button": {

@@ -176,7 +176,32 @@
   "blocks": [
     {
       "name": "t:blocks.titel.name",
-      "type": "title"
+      "type": "title",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_sku",
+          "label": "t:sections.product_configurator.blocks.title.settings.show_sku.label",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "sku_position",
+          "label": "t:sections.product_configurator.blocks.title.settings.sku_position.label",
+          "options": [
+            {
+              "value": "above",
+              "label": "t:sections.product_configurator.blocks.title.settings.sku_position.options.above.label"
+            },
+            {
+              "value": "below",
+              "label": "t:sections.product_configurator.blocks.title.settings.sku_position.options.below.label"
+            }
+          ],
+          "default": "below",
+          "visible_if": "{{ block.settings.show_sku }}"
+        }
+      ]
     },
     {
       "name": "t:blocks.product_variant_selector.name",
