@@ -13,7 +13,8 @@
     "test:visual": "npx playwright test tests/visual",
     "test:visual:update": "npx playwright test tests/visual --update-snapshots",
     "test:e2e:headed": "npx playwright test tests/e2e --headed",
-    "test:visual:headed": "npx playwright test tests/visual --headed"
+    "test:visual:headed": "npx playwright test tests/visual --headed",
+    "diff": "npx shopify theme pull --live -e development"
   },
   "repository": {
     "type": "git",

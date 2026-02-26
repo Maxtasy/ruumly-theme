@@ -81,19 +81,18 @@
         "color_scheme": "default",
         "border_bottom": true,
         "sticky": true,
-        "show_logo": true,
-        "title_text_variant": "heading-medium",
         "desktop_logo_width": 100,
         "mobile_logo_width": 40,
+        "title_text_variant": "heading-medium",
         "show_cart_icon": true,
         "cart_icon_position": "right",
         "show_account_icon": true,
         "account_icon_position": "right",
-        "show_search_icon": true,
-        "search_icon_position": "right",
-        "wishlist_page": "wishlist",
         "show_wishlist_icon": true,
-        "wishlist_icon_position": "right"
+        "wishlist_icon_position": "right",
+        "wishlist_page": "wishlist",
+        "show_search_icon": true,
+        "search_icon_position": "right"
       }
     }
   },

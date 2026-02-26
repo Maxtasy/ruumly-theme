@@ -1,16 +1,32 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "aside",
   "name": "Aside Group",
   "sections": {
     "menu-drawer": {
-      "type": "menu-drawer"
+      "type": "menu-drawer",
+      "settings": {}
     },
     "cart-drawer": {
-      "type": "cart-drawer"
+      "type": "cart-drawer",
+      "settings": {}
     },
     "search-modal": {
-      "type": "search-modal"
+      "type": "search-modal",
+      "settings": {}
     }
   },
-  "order": ["menu-drawer", "cart-drawer", "search-modal"]
+  "order": [
+    "menu-drawer",
+    "cart-drawer",
+    "search-modal"
+  ]
 }
