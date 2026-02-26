@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class Alert extends CustomComponentMixin(HTMLDivElement) {
+export class Alert extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
   }
@@ -14,4 +14,4 @@ export class Alert extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("alert-component", Alert, "div");
+defineComponent("alert-component", Alert);
