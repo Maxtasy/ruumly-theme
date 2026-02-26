@@ -24,9 +24,5 @@
       "settings": {}
     }
   },
-  "order": [
-    "menu-drawer",
-    "cart-drawer",
-    "search-modal"
-  ]
+  "order": ["menu-drawer", "cart-drawer", "search-modal"]
 }
