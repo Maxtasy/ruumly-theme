@@ -1,7 +1,7 @@
 .BadgeList {
   display: flex;
   flex-direction: column;
-  gap: var(--size-xs);
+  gap: var(--size-xxs);
 }
 
 .BadgeList--AlignRight {
