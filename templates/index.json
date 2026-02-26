@@ -101,7 +101,7 @@
         "columns_mobile": 2,
         "columns_desktop": 4,
         "heading": "Our top collections",
-        "collection_list": ["gaming-chairs", "gaming-desks", "furniture", "plants"]
+        "collection_list": ["gaming-chairs", "gaming-desks", "beds", "plants"]
       }
     },
     "tabs_YGYmEL": {
@@ -132,8 +132,8 @@
         "tab_block_dgDpmc": {
           "type": "tab-block",
           "settings": {
-            "title": "",
-            "collection": "furniture",
+            "title": "Beds",
+            "collection": "beds",
             "set_limit": true,
             "limit": 4,
             "enable_quick_add_button": true,
