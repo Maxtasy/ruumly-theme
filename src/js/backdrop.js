@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class Backdrop extends CustomComponentMixin(HTMLDivElement) {
+export class Backdrop extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -54,4 +54,4 @@ export class Backdrop extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("backdrop-component", Backdrop, "div");
+defineComponent("backdrop-component", Backdrop);
