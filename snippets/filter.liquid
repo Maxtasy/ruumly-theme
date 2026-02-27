@@ -10,16 +10,11 @@
       {% render 'text', text: filter.label, as: 'strong' %}
 
       {% assign active_count = filter.active_values.size %}
-      <div
-        class="
-          Filter__ActiveCount
-          {% if active_count > 0 %}
-            Filter__ActiveCount--Active
-          {% endif %}
-        "
-      >
-        {% render 'text', text: active_count, variant: 'body-small', color: 'inherit', as: 'b' %}
-      </div>
+      {% if active_count > 0 %}
+        <div class="Filter__ActiveCount">
+          {% render 'text', text: active_count, variant: 'body-small', color: 'inherit', as: 'b' %}
+        </div>
+      {% endif %}
     </div>
   {% endcapture %}
 
@@ -88,7 +83,7 @@
   }
 
   .Filter__ActiveCount {
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
     width: var(--size-m);
@@ -97,10 +92,6 @@
     border-radius: var(--t-border-radius-circle);
     color: var(--t-background-dark);
     pointer-events: none;
-  }
-
-  .Filter__ActiveCount--Active {
-    display: flex;
   }
 
   .Filter__TriggerContent {
