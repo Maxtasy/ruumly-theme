@@ -3,7 +3,7 @@ import { CustomComponentMixin, defineComponent } from "./component.js";
 import { sectionRenderingApi } from "./section-rendering-api.js";
 import { getClosestSectionId } from "./utils.js";
 
-export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
+export class CartDrawer extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -122,4 +122,4 @@ export class CartDrawer extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("cart-drawer-component", CartDrawer, "div");
+defineComponent("cart-drawer-component", CartDrawer);
