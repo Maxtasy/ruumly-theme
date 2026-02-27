@@ -5,13 +5,13 @@
   @param {string} handle - Connects the dropdown trigger with a dropdown content.
 {% enddoc %}
 
-<button is="dropdown-trigger-component" class="DropdownTrigger" data-handle="{{ handle }}">
+<dropdown-trigger-component class="DropdownTrigger" data-handle="{{ handle }}">
   {% render 'text', text: text, as: 'strong' %}
 
   <div class="DropdownTrigger__Icon">
     {% render 'icon', icon: 'chevron-down' %}
   </div>
-</button>
+</dropdown-trigger-component>
 
 {% stylesheet %}
   .DropdownTrigger {

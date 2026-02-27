@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class DropdownContent extends CustomComponentMixin(HTMLDivElement) {
+export class DropdownContent extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -38,4 +38,4 @@ export class DropdownContent extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("dropdown-content-component", DropdownContent, "div");
+defineComponent("dropdown-content-component", DropdownContent);
