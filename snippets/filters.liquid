@@ -10,6 +10,10 @@
     {% for filter in filters %}
       {% render 'filter', filter: filter %}
     {% endfor %}
+
+    <div class="Filters__SortBy">
+      {% render 'sort-by' %}
+    </div>
   </div>
 
   {% if filters_active %}
@@ -51,5 +55,9 @@
   .Filters__ActiveValues {
     display: flex;
     gap: var(--size-xs);
+  }
+
+  .Filters__SortBy {
+    margin-left: auto;
   }
 {% endstylesheet %}
