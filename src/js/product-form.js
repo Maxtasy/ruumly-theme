@@ -84,7 +84,7 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
     event.preventDefault();
 
     // Return early if the event was not triggered by the add to cart button.
-    if (event.submitter.getAttribute("data-action") !== "add-to-cart") return;
+    if (event.submitter.closest("button-component")?.getAttribute("data-action") !== "add-to-cart") return;
 
     if (!this.item) {
       throw new Error("No item to add to cart");
@@ -123,7 +123,7 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
   }
 
   get addToCartButtonElement() {
-    return this.querySelector("[data-action='add-to-cart']");
+    return this.querySelector("button-component[data-action='add-to-cart']");
   }
 }
 

@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class Button extends CustomComponentMixin(HTMLButtonElement) {
+export class Button extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -28,4 +28,4 @@ export class Button extends CustomComponentMixin(HTMLButtonElement) {
   }
 }
 
-defineComponent("button-component", Button, "button");
+defineComponent("button-component", Button);
