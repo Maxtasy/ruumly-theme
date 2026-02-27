@@ -22,32 +22,11 @@
     gap: var(--size-xs);
   }
 
-  .DropdownTrigger__Content {
-    display: flex;
-    gap: var(--size-xs);
-  }
-
   .DropdownTrigger__Icon {
     transition: rotate var(--transition-duration-medium) var(--transition-timing);
   }
 
   .DropdownTrigger__Icon--Active {
     rotate: 180deg;
-  }
-
-  .DropdownTrigger__Indicator {
-    display: none;
-    align-items: center;
-    justify-content: center;
-    width: var(--size-m);
-    height: var(--size-m);
-    background-color: var(--t-primary);
-    border-radius: var(--t-border-radius-circle);
-    color: var(--t-background-dark);
-    pointer-events: none;
-  }
-
-  .DropdownTrigger__Indicator--Active {
-    display: flex;
   }
 {% endstylesheet %}

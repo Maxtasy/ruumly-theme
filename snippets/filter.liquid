@@ -6,18 +6,20 @@
 
 <div class="Filter">
   {% capture dropdown_trigger_content %}
-    {% render 'text', text: filter.label, as: 'strong' %}
+    <div class="Filter__TriggerContent">
+      {% render 'text', text: filter.label, as: 'strong' %}
 
-    {% assign active_count = filter.active_values.size %}
-    <div
-      class="
-        DropdownTrigger__Indicator
-        {% if active_count > 0 %}
-          DropdownTrigger__Indicator--Active
-        {% endif %}
-      "
-    >
-      {% render 'text', text: active_count, variant: 'body-small', color: 'inherit', as: 'b' %}
+      {% assign active_count = filter.active_values.size %}
+      <div
+        class="
+          Filter__ActiveCount
+          {% if active_count > 0 %}
+            Filter__ActiveCount--Active
+          {% endif %}
+        "
+      >
+        {% render 'text', text: active_count, variant: 'body-small', color: 'inherit', as: 'b' %}
+      </div>
     </div>
   {% endcapture %}
 
@@ -83,5 +85,27 @@
 
   .Filter__Values--Vertical {
     flex-direction: column;
+  }
+
+  .Filter__ActiveCount {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-m);
+    height: var(--size-m);
+    background-color: var(--t-primary);
+    border-radius: var(--t-border-radius-circle);
+    color: var(--t-background-dark);
+    pointer-events: none;
+  }
+
+  .Filter__ActiveCount--Active {
+    display: flex;
+  }
+
+  .Filter__TriggerContent {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
   }
 {% endstylesheet %}
