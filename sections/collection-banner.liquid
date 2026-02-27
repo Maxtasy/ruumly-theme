@@ -1,9 +1,18 @@
+{% assign mobile_image = section.settings.mobile_image | default: collection.featured_image %}
+{% assign desktop_image = section.settings.desktop_image | default: collection.featured_image %}
+
 <section
   class="
     Section
     Section--FullWidth
     Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
     ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+    {% if mobile_image == blank %}
+      u-Hidden--Mobile
+    {% endif %}
+    {% if desktop_image == blank %}
+      u-Hidden--Desktop
+    {% endif %}
   "
 >
   <div class="Section__Inner">
@@ -20,12 +29,10 @@
       "
     >
       <div class="CollectionBanner__MobileImage u-Hidden--Desktop">
-        {% assign mobile_image = section.settings.mobile_image | default: collection.featured_image %}
         {% render 'image', image: mobile_image, loading: section.settings.image_loading %}
       </div>
 
       <div class="CollectionBanner__DesktopImage u-Hidden--Mobile">
-        {% assign desktop_image = section.settings.desktop_image | default: collection.featured_image %}
         {% render 'image', image: desktop_image, loading: section.settings.image_loading %}
       </div>
 
