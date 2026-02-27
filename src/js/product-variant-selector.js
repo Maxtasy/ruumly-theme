@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-class ProductVariantSelector extends CustomComponentMixin(HTMLDivElement) {
+class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -52,4 +52,4 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("product-variant-selector-component", ProductVariantSelector, "div");
+defineComponent("product-variant-selector-component", ProductVariantSelector);

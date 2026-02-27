@@ -6,8 +6,7 @@
   @param {boolean} [visually_hidden] - Hide the product variant selector if set to true.
 {% enddoc %}
 
-<div
-  is="product-variant-selector-component"
+<product-variant-selector-component
   class="ProductVariantSelector"
   data-product-variants="{{ product.variants | json | replace: '"', '&quot;' }}"
   data-selected-variant-id="{{ product.selected_or_first_available_variant.id | json }}"
@@ -22,7 +21,7 @@
   {% for product_option in product.options_with_values %}
     {% render 'product-option-selector', product_option: product_option, name_prefix: name_prefix %}
   {% endfor %}
-</div>
+</product-variant-selector-component>
 
 {% stylesheet %}
   .ProductVariantSelector {
