@@ -59,4 +59,4 @@ export class Drawer extends CustomComponentMixin(HTMLElement) {
   }
 }
 
-defineComponent("drawer-component", Drawer, "aside");
+defineComponent("drawer-component", Drawer);
