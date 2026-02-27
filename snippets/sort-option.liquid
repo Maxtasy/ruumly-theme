@@ -2,13 +2,13 @@
   Renders a Sort Option component.
 
   @param {object} sort_option - The liquid sort option object.
+  @param {boolean} [active] - Whether the sort option is active.
 {% enddoc %}
 
-<script>
-  console.log({{ request.path | json }});
-</script>
-
-{% assign url = 'value' | append: 'string' %}
-<a href="{{ url }}" class="SortOption">
-  {% render 'text', text: sort_option.name %}
-</a>
+<div class="SortOption">
+  {% if active %}
+    {% render 'text', text: sort_option.name, as: 'b' %}
+  {% else %}
+    {% render 'text', text: sort_option.name %}
+  {% endif %}
+</div>
