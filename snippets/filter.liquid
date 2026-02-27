@@ -5,8 +5,24 @@
 {% enddoc %}
 
 <div class="Filter">
+  {% capture dropdown_trigger_content %}
+    {% render 'text', text: filter.label, as: 'strong' %}
+
+    {% assign active_count = filter.active_values.size %}
+    <div
+      class="
+        DropdownTrigger__Indicator
+        {% if active_count > 0 %}
+          DropdownTrigger__Indicator--Active
+        {% endif %}
+      "
+    >
+      {% render 'text', text: active_count, variant: 'body-small', color: 'inherit', as: 'b' %}
+    </div>
+  {% endcapture %}
+
   {% assign handle = filter.label | handleize %}
-  {% render 'dropdown-trigger', text: filter.label, handle: handle %}
+  {% render 'dropdown-trigger', content: dropdown_trigger_content, handle: handle %}
 
   <div class="Filter__Content">
     {% capture content %}
