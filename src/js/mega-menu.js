@@ -2,7 +2,7 @@ import { CustomComponentMixin, defineComponent } from "./component.js";
 
 const CLOSE_DELAY = 750;
 
-export class MegaMenu extends CustomComponentMixin(HTMLDivElement) {
+export class MegaMenu extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -63,4 +63,4 @@ export class MegaMenu extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("mega-menu-component", MegaMenu, "div");
+defineComponent("mega-menu-component", MegaMenu);

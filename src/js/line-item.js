@@ -2,7 +2,7 @@ import { cart } from "./cart.js";
 import { CustomComponentMixin, defineComponent } from "./component.js";
 import { getClosestSectionId } from "./utils.js";
 
-class LineItem extends CustomComponentMixin(HTMLDivElement) {
+class LineItem extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -70,4 +70,4 @@ class LineItem extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("line-item-component", LineItem, "div");
+defineComponent("line-item-component", LineItem);

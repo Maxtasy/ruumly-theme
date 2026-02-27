@@ -2,7 +2,7 @@
   Renders a Dynamic Cart Icon component. It automatically updates the cart indicator text based on the cart item count.
 {% enddoc %}
 
-<div is="dynamic-cart-icon-component" class="DynamicCartIcon">
+<dynamic-cart-icon-component class="DynamicCartIcon">
   {% render 'button',
     variant: 'plain',
     icon: 'shopping-cart',
@@ -21,7 +21,7 @@
   >
     {% render 'text', text: cart.item_count, variant: 'body-small', color: 'inherit', as: 'b' %}
   </span>
-</div>
+</dynamic-cart-icon-component>
 
 {% stylesheet %}
   .DynamicCartIcon {

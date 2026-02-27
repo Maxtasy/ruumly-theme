@@ -18,9 +18,16 @@
   "
 >
   {% for link in links %}
-    <li
+    {%- comment -%}
+      TODO: This needs to be refactored so we only have `li`s inside the `ul`.
+    {%- endcomment -%}
+    {% assign tag = 'li' %}
+    {% if connected_to_mega_menu %}
+      {% assign tag = 'mega-menu-trigger-component' %}
+    {% endif %}
+
+    <{{ tag }}
       {% if connected_to_mega_menu %}
-        is="mega-menu-trigger-component"
         data-handle="{{ link.handle }}"
       {% endif %}
       class="NavigationGroup__Item"
@@ -28,7 +35,7 @@
       <a href="{{ link.url }}">
         {% render 'text', text: link.title, as: 'strong' %}
       </a>
-    </li>
+    </{{ tag }}>
 
     {% if link.links.size > 0 and direction == 'vertical' %}
       <li class="NavigationGroup__Item">

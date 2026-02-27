@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-class Gallery extends CustomComponentMixin(HTMLDivElement) {
+class Gallery extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -83,4 +83,4 @@ class Gallery extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("gallery-component", Gallery, "div");
+defineComponent("gallery-component", Gallery);

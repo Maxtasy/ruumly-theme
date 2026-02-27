@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class MegaMenuTrigger extends CustomComponentMixin(HTMLLIElement) {
+export class MegaMenuTrigger extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -29,4 +29,4 @@ export class MegaMenuTrigger extends CustomComponentMixin(HTMLLIElement) {
   }
 }
 
-defineComponent("mega-menu-trigger-component", MegaMenuTrigger, "li");
+defineComponent("mega-menu-trigger-component", MegaMenuTrigger);

@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-class DynamicWishlistIconComponent extends CustomComponentMixin(HTMLDivElement) {
+class DynamicWishlistIconComponent extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -63,4 +63,4 @@ class DynamicWishlistIconComponent extends CustomComponentMixin(HTMLDivElement) 
   }
 }
 
-defineComponent("dynamic-wishlist-icon-component", DynamicWishlistIconComponent, "div");
+defineComponent("dynamic-wishlist-icon-component", DynamicWishlistIconComponent);

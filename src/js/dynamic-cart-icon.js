@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-class DynamicCartIconComponent extends CustomComponentMixin(HTMLDivElement) {
+class DynamicCartIconComponent extends CustomComponentMixin(HTMLElement) {
   constructor(element) {
     super(element);
 
@@ -38,4 +38,4 @@ class DynamicCartIconComponent extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("dynamic-cart-icon-component", DynamicCartIconComponent, "div");
+defineComponent("dynamic-cart-icon-component", DynamicCartIconComponent);
