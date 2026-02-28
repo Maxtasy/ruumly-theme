@@ -28,7 +28,7 @@ jobs:
           SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
           SHOPIFY_FLAG_FORCE: 1
         run: |
-          THEME_LIST_JSON=$(shopify theme list --store="${{ secrets.SHOPIFY_STORE }}" --unpublished --json)
+          THEME_LIST_JSON=$(shopify theme list --store="${{ secrets.SHOPIFY_STORE }}" --json)
           if echo "$THEME_LIST_JSON" | jq -e ".themes[] | select(.name == \"${{ github.event.pull_request.head.ref }}\")" > /dev/null; then
             echo "theme_exists=true" >> "$GITHUB_OUTPUT"
           else
