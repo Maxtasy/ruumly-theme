@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class WishlistButtons extends CustomComponentMixin(HTMLDivElement) {
+export class WishlistButtons extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -86,4 +86,4 @@ export class WishlistButtons extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("wishlist-buttons-component", WishlistButtons, "div");
+defineComponent("wishlist-buttons-component", WishlistButtons);

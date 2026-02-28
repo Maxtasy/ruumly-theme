@@ -13,8 +13,7 @@
 
 {% assign event_details = event_details | escape %}
 
-<div
-  is="wishlist-buttons-component"
+<wishlist-buttons-component
   class="WishlistButtons"
   data-product-id="{{ product_id }}"
 >
@@ -37,7 +36,7 @@
     type: 'button',
     full_width: full_width
   %}
-</div>
+</wishlist-buttons-component>
 
 {% stylesheet %}
   .WishlistButtons [data-action] .Icon {
