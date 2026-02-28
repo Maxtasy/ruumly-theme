@@ -23,8 +23,7 @@
     {% assign icon_handle = 'info' %}
 {% endcase %}
 
-<div
-  is="alert-component"
+<alert-component
   class="
     Alert
     Alert--{{ variant | camelcase }}
@@ -43,7 +42,7 @@
       {% render 'text', text: text, color: 'inherit', variant: text_variant %}
     {% endif %}
   </div>
-</div>
+</alert-component>
 
 {% stylesheet %}
   .Alert {

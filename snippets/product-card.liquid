@@ -19,13 +19,12 @@
 {% assign hover_effect = hover_effect | default: settings.product_card_hover_effect %}
 {% assign selected_variant = product.selected_or_first_available_variant %}
 
-<article
+<product-card-component
   class="
     ProductCard
     ProductCard--Hover{{ hover_effect | camelcase }}
   "
   {% if enable_quick_add_button %}
-    is="product-card-component"
     data-has-only-default-variant="{{ product.has_only_default_variant }}"
     data-selected-variant-id="{{ selected_variant.id | json }}"
   {% endif %}
@@ -139,7 +138,7 @@
       </div>
     {% endif %}
   </div>
-</article>
+</product-card-component>
 
 {% stylesheet %}
   .ProductCard {

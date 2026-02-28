@@ -1,24 +1,25 @@
 {% doc %}
   Renders a mega menu component.
 
-  @param {string} handle - Describes the connection to the main menu item
-  @param {object[]} links - A list of links to render
+  @param {string} handle - Describes the connection to the main menu item.
+  @param {object[]} links - A list of links to render.
 {% enddoc %}
 
-<div is="mega-menu-component" class="MegaMenu" data-handle="{{ handle }}">
+<mega-menu-component class="MegaMenu" data-handle="{{ handle }}">
   {% render 'navigation-group', links: links, direction: 'horizontal' %}
-</div>
+</mega-menu-component>
 
 {% stylesheet %}
   .MegaMenu {
-    position: fixed;
-    top: var(--header-group-height);
+    position: absolute;
+    top: 100%;
     left: 0;
     display: none;
     padding-block: inherit;
     padding-inline: inherit;
     width: 100%;
-    background: inherit;
+    background: var(--t-gradient-background-dark);
+    box-shadow: var(--box-shadow);
   }
 
   .MegaMenu--Active {

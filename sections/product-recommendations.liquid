@@ -13,8 +13,7 @@
       {% assign limit = section.settings.limit %}
     {% endif %}
 
-    <div
-      is="product-recommendations-component"
+    <product-recommendations-component
       class="ProductRecommendations"
       data-product-id="{{ product.id }}"
       data-limit="{{ limit }}"
@@ -26,7 +25,7 @@
           {% render 'product-list', use_placeholders: true, limit: limit %}
         {% endif %}
       </div>
-    </div>
+    </product-recommendations-component>
   </div>
 </section>
 

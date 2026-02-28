@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-class LanguageSelector extends CustomComponentMixin(HTMLDivElement) {
+class LanguageSelector extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -34,4 +34,4 @@ class LanguageSelector extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("language-selector-component", LanguageSelector, "div");
+defineComponent("language-selector-component", LanguageSelector);

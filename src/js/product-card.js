@@ -36,4 +36,4 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
   }
 }
 
-defineComponent("product-card-component", ProductCard, "article");
+defineComponent("product-card-component", ProductCard);

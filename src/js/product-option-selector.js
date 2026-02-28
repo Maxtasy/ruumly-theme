@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-class ProductOptionSelector extends CustomComponentMixin(HTMLFieldSetElement) {
+class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -30,4 +30,4 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLFieldSetElement) {
   }
 }
 
-defineComponent("product-option-selector-component", ProductOptionSelector, "fieldset");
+defineComponent("product-option-selector-component", ProductOptionSelector);

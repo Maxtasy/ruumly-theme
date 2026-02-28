@@ -12,7 +12,7 @@
 
 {% assign enable_free_shipping_alert = enable_free_shipping_alert | default: true, allow_false: true %}
 
-<div is="cart-drawer-component" class="CartDrawer">
+<cart-drawer-component class="CartDrawer">
   {% if cart.empty? %}
     {% render 'empty-state',
       heading: empty_state_heading,
@@ -89,7 +89,7 @@
       {% render 'button', text: 'checkout', url: '/checkout' %}
     </div>
   {% endif %}
-</div>
+</cart-drawer-component>
 
 {% stylesheet %}
   .CartDrawer {

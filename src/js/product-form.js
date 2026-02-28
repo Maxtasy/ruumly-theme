@@ -1,7 +1,7 @@
 import { cart } from "./cart.js";
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
+export class ProductForm extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -22,14 +22,16 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
     this.subscribe("product-variant-selector:init", this.handleProductVariantSelectorInit);
     this.subscribe("product-variant-selector:change", this.handleProductVariantSelectorChange);
     this.subscribe("quantity-selector:change", this.handleQuantitySelectorChange);
-    this.subscribe("submit", this.handleSubmit);
+
+    this.formElement?.addEventListener("submit", this.handleSubmit);
   }
 
   disconnectedCallback() {
     this.unsubscribe("product-variant-selector:init", this.handleProductVariantSelectorInit);
     this.unsubscribe("product-variant-selector:change", this.handleProductVariantSelectorChange);
     this.unsubscribe("quantity-selector:change", this.handleQuantitySelectorChange);
-    this.unsubscribe("submit", this.handleSubmit);
+
+    this.formElement?.removeEventListener("submit", this.handleSubmit);
   }
 
   handleProductVariantSelectorInit(event) {
@@ -84,7 +86,7 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
     event.preventDefault();
 
     // Return early if the event was not triggered by the add to cart button.
-    if (event.submitter.getAttribute("data-action") !== "add-to-cart") return;
+    if (event.submitter.closest("button-component")?.getAttribute("data-action") !== "add-to-cart") return;
 
     if (!this.item) {
       throw new Error("No item to add to cart");
@@ -118,13 +120,17 @@ export class ProductForm extends CustomComponentMixin(HTMLFormElement) {
     throw new Error("Failed to add item to cart");
   }
 
+  get formElement() {
+    return this.querySelector("form");
+  }
+
   get shippingEstimationElement() {
     return this.querySelector(".ShippingEstimation");
   }
 
   get addToCartButtonElement() {
-    return this.querySelector("[data-action='add-to-cart']");
+    return this.querySelector("button-component[data-action='add-to-cart']");
   }
 }
 
-defineComponent("product-form-component", ProductForm, "form");
+defineComponent("product-form-component", ProductForm);

@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-class Modal extends CustomComponentMixin(HTMLDialogElement) {
+class Modal extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -11,7 +11,6 @@ class Modal extends CustomComponentMixin(HTMLDialogElement) {
     this.handleClickEvent = this.handleClickEvent.bind(this);
 
     this.isClickOutside = this.isClickOutside.bind(this);
-    this.close = this.close.bind(this);
   }
 
   connectedCallback() {
@@ -29,21 +28,21 @@ class Modal extends CustomComponentMixin(HTMLDialogElement) {
   }
 
   handleOpenEvent() {
-    this.showModal();
+    this.dialogElement?.showModal();
   }
 
   handleCloseEvent() {
-    this.close();
+    this.dialogElement?.close();
   }
 
   handleClickEvent(event) {
     if (this.isClickOutside(event)) {
-      this.close();
+      this.dialogElement?.close();
     }
   }
 
   isClickOutside(clickEvent) {
-    const rect = this.getBoundingClientRect();
+    const rect = this.dialogElement.getBoundingClientRect();
     const isInDialog =
       rect.top <= clickEvent.clientY &&
       clickEvent.clientY <= rect.top + rect.height &&
@@ -52,6 +51,10 @@ class Modal extends CustomComponentMixin(HTMLDialogElement) {
 
     return !isInDialog;
   }
+
+  get dialogElement() {
+    return this.querySelector("dialog");
+  }
 }
 
-defineComponent("modal-component", Modal, "dialog");
+defineComponent("modal-component", Modal);

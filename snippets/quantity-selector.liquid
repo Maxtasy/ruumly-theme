@@ -4,7 +4,7 @@
   @param {number} quantity - The currently selected quantity.
 {% enddoc %}
 
-<div is="quantity-selector-component" class="QuantitySelector">
+<quantity-selector-component class="QuantitySelector">
   {% render 'button',
     variant: 'plain',
     icon: 'minus',
@@ -30,7 +30,7 @@
     aria_label_key: 'components.plus_button.aria_label',
     type: 'button'
   %}
-</div>
+</quantity-selector-component>
 
 {% stylesheet %}
   .QuantitySelector {
@@ -38,6 +38,7 @@
     display: flex;
     align-items: center;
     gap: var(--size-xs);
+    border: var(--border-width) var(--border-style) var(--t-border);
   }
 
   .QuantitySelector__Quantity {

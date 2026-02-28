@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-class QuantitySelector extends CustomComponentMixin(HTMLDivElement) {
+class QuantitySelector extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -61,4 +61,4 @@ class QuantitySelector extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("quantity-selector-component", QuantitySelector, "div");
+defineComponent("quantity-selector-component", QuantitySelector);

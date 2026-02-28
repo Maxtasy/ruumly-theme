@@ -12,8 +12,7 @@
   @param {string} url - The URL of the line item.
 {% enddoc %}
 
-<div
-  is="line-item-component"
+<line-item-component
   class="LineItem"
   data-key="{{ key }}"
   data-variant-id="{{ variant_id }}"
@@ -55,7 +54,7 @@
       {% render 'alert', variant: 'warning', text: '', text_variant: 'body-small' %}
     </template>
   </div>
-</div>
+</line-item-component>
 
 {% stylesheet %}
   .LineItem {

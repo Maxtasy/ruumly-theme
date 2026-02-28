@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
+class ProductRecommendations extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -49,4 +49,4 @@ class ProductRecommendations extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("product-recommendations-component", ProductRecommendations, "div");
+defineComponent("product-recommendations-component", ProductRecommendations);

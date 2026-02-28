@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class DropdownTrigger extends CustomComponentMixin(HTMLButtonElement) {
+export class DropdownTrigger extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
@@ -49,4 +49,4 @@ export class DropdownTrigger extends CustomComponentMixin(HTMLButtonElement) {
   }
 }
 
-defineComponent("dropdown-trigger-component", DropdownTrigger, "button");
+defineComponent("dropdown-trigger-component", DropdownTrigger);

@@ -25,8 +25,7 @@
 {% assign pagination_style_mobile = pagination_style_mobile | default: 'bullet' %}
 {% assign pagination_style_desktop = pagination_style_desktop | default: 'bullet' %}
 
-<div
-  is="gallery-component"
+<gallery-component
   class="
     Gallery
     Gallery--Mobile{{ variant_mobile | camelcase }}
@@ -114,7 +113,7 @@
       {% endif %}
     </div>
   {% endif %}
-</div>
+</gallery-component>
 
 {% stylesheet %}
   .Gallery {
