@@ -4,7 +4,9 @@ export default defineConfig({
   use: {
     baseURL: process.env.SHOPIFY_STOREFRONT_URL,
     viewport: { width: 1980, height: 1080 },
+    screenshot: "only-on-failure",
   },
+  reporter: [["list"], ["html"]],
   // Run authentication once before all tests
   projects: [
     {
