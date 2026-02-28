@@ -63,12 +63,7 @@
   {% endif %}
 {% endif %}
 
-<section
-  {% if section.settings.sticky %}
-    is="section-component"
-    data-section-index="{{ section.index0 }}"
-  {% endif %}
-
+<section-component
   class="
     Section
     Section--PaddingBlockSmall
@@ -84,6 +79,10 @@
     Section--GradientBackground
     ColorScheme--{{ section.settings.color_scheme | camelcase }}
   "
+
+  {% if section.settings.sticky %}
+    data-section-index="{{ section.index0 }}"
+  {% endif %}
 >
   <div class="Section__Inner">
     <header class="SiteHeader">
@@ -164,7 +163,7 @@
       {% render 'mega-menu', handle: link.handle, links: link.links %}
     {% endif %}
   {% endfor %}
-</section>
+</section-component>
 
 {% stylesheet %}
   .SiteHeader {

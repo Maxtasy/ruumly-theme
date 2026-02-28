@@ -1,4 +1,5 @@
 .Section {
+  display: block;
   padding-inline: var(--section-padding-inline-mobile);
   background-color: var(--t-background-dark);
   color: var(--t-text);

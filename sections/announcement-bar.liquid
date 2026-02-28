@@ -1,9 +1,4 @@
-<section
-  {% if section.settings.sticky %}
-    is="section-component"
-    data-section-index="{{ section.index0 }}"
-  {% endif %}
-
+<section-component
   class="
     Section
     Section--PaddingBlockSmall
@@ -12,13 +7,17 @@
     {% endif %}
     ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
   "
+
+  {% if section.settings.sticky %}
+    data-section-index="{{ section.index0 }}"
+  {% endif %}
 >
   <div class="Section__Inner">
     <announcement-bar-component class="AnnouncementBar u-NoScrollbar">
       {% content_for 'blocks' %}
     </announcement-bar-component>
   </div>
-</section>
+</section-component>
 
 {% stylesheet %}
   .AnnouncementBar {

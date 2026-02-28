@@ -11,12 +11,20 @@ export class Section extends CustomComponentMixin(HTMLElement) {
   }
 
   connectedCallback() {
+    if (!this.isSticky()) return;
+
     stickyStack.addElement(this);
   }
 
   disconnectedCallback() {
+    if (!this.isSticky()) return;
+
     stickyStack.removeElement(this);
+  }
+
+  isSticky() {
+    return this.classList.contains("Section--Sticky");
   }
 }
 
-defineComponent("section-component", Section, "section");
+defineComponent("section-component", Section);
