@@ -6,16 +6,22 @@
   "
 >
   <div class="Section__Inner">
-    {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
+    <wishlist-section-component
+      class="WishlistSection"
+      data-quick-add-button-enabled="{{ section.settings.enable_quick_add_button }}"
+      data-wishlist-button-enabled="{{ section.settings.enable_wishlist_button }}"
+    >
+      {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
-    {% render 'product-list',
-      limit: 4,
-      columns_mobile: section.settings.columns_mobile,
-      columns_desktop: section.settings.columns_desktop,
-      enable_quick_add_button: section.settings.enable_quick_add_button,
-      enable_wishlist_button: section.settings.enable_wishlist_button,
-      use_placeholders: true
-    %}
+      {% render 'product-list',
+        limit: 4,
+        columns_mobile: section.settings.columns_mobile,
+        columns_desktop: section.settings.columns_desktop,
+        enable_quick_add_button: section.settings.enable_quick_add_button,
+        enable_wishlist_button: section.settings.enable_wishlist_button,
+        use_placeholders: true
+      %}
+    </wishlist-section-component>
   </div>
 </section>
 

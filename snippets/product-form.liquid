@@ -60,7 +60,7 @@
 
             {% if block.settings.show_wishlist_button %}
               <div class="ProductForm__WishlistButton">
-                {% render 'wishlist-buttons', product_id: product.id, full_width: true %}
+                {% render 'wishlist-buttons', product_id: product.id, full_width: true, handle: product.handle %}
               </div>
             {% endif %}
           </div>
