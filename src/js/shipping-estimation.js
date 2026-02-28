@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-export class ShippingEstimation extends CustomComponentMixin(HTMLDivElement) {
+export class ShippingEstimation extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
   }
@@ -22,4 +22,4 @@ export class ShippingEstimation extends CustomComponentMixin(HTMLDivElement) {
   }
 }
 
-defineComponent("shipping-estimation-component", ShippingEstimation, "div");
+defineComponent("shipping-estimation-component", ShippingEstimation);
