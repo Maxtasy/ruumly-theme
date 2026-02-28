@@ -1,12 +1,14 @@
 {% doc %}
   Renders a Dropdown Trigger component.
 
-  @param {string} text - The text for the dropdown trigger.
+  @param {string} content - The content for the dropdown trigger.
   @param {string} handle - Connects the dropdown trigger with a dropdown content.
 {% enddoc %}
 
 <dropdown-trigger-component class="DropdownTrigger" data-handle="{{ handle }}">
-  {% render 'text', text: text, as: 'strong' %}
+  <div class="DropdownTrigger__Content">
+    {{ content }}
+  </div>
 
   <div class="DropdownTrigger__Icon">
     {% render 'icon', icon: 'chevron-down' %}

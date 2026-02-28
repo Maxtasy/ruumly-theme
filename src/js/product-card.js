@@ -27,8 +27,8 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
         sections: getClosestSectionId(".CartDrawer"),
       });
 
-      if (response.items && response.sections) {
-        const { items, sections } = response;
+      if (response.status === "success" && response.data?.items && response.data?.sections) {
+        const { items, sections } = response.data;
 
         this.publish("product-card:item-added", { items, sections });
       }
