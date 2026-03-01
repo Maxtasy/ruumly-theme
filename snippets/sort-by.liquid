@@ -1,6 +1,7 @@
 <div class="SortBy">
   {% capture trigger_content %}
-    {% render 'text', text: 'Sort By', as: 'strong' %}
+    {% assign text = 'components.sort_by.sort_by' | t %}
+    {% render 'text', text: text, as: 'strong' %}
   {% endcapture %}
 
   {% render 'dropdown-trigger', content: trigger_content, handle: 'sort-by' %}

@@ -132,6 +132,9 @@
     "social_proof": {
       "default_text_html": "<strong>John Doe</strong> and <strong>Jane Doe</strong> recommend this product."
     },
+    "sort_by": {
+      "sort_by": "Sort By"
+    },
     "user_button": {
       "aria_label": "Open profile"
     },
