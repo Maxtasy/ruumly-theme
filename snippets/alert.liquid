@@ -5,6 +5,7 @@
   @param {string} [text] - The text of the alert.
   @param {string} [text_variant] - The text variant of the alert.
   @param {string} [variant] - The variant of the alert. Defaults to info.
+  @param {boolean} [no_icon] - Whether to hide the icon. Defaults to false.
 {% enddoc %}
 
 {% assign variant = variant | default: 'info' %}
@@ -29,9 +30,11 @@
     Alert--{{ variant | camelcase }}
   "
 >
-  <div class="Alert__Icon">
-    {% render 'icon', icon: icon_handle %}
-  </div>
+  {% unless no_icon %}
+    <div class="Alert__Icon">
+      {% render 'icon', icon: icon_handle %}
+    </div>
+  {% endunless %}
 
   <div>
     {% if heading %}

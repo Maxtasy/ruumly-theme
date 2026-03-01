@@ -119,6 +119,9 @@
     "product_link": {
       "aria_label": "Go to {{ product_title }}"
     },
+    "quantity_selector": {
+      "max_quantity_reached": "Max quantity reached"
+    },
     "search_button": {
       "aria_label": "Open search"
     },

@@ -10,6 +10,7 @@
   @param {string} key - The key of the line item.
   @param {string} variant_id - The variant ID of the line item.
   @param {string} url - The URL of the line item.
+  @param {number} inventory_quantity - The inventory quantity of the line item.
 {% enddoc %}
 
 <line-item-component
@@ -42,7 +43,7 @@
       </div>
 
       <div class="LineItem__Actions">
-        {% render 'quantity-selector', quantity: quantity %}
+        {% render 'quantity-selector', quantity: quantity, max: inventory_quantity %}
 
         {% render 'button', text: 'Remove', variant: 'link', action: 'remove', size: 'small' %}
       </div>

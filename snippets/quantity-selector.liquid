@@ -2,9 +2,16 @@
   Renders a Quantity Selector component.
 
   @param {number} quantity - The currently selected quantity.
+  @param {number} [max] - The maximum quantity allowed.
 {% enddoc %}
 
-<quantity-selector-component class="QuantitySelector">
+<quantity-selector-component
+  class="QuantitySelector"
+  data-quantity="{{ quantity }}"
+  {% if max %}
+    data-max="{{ max }}"
+  {% endif %}
+>
   {% render 'button',
     variant: 'plain',
     icon: 'minus',
@@ -30,6 +37,11 @@
     aria_label_key: 'components.plus_button.aria_label',
     type: 'button'
   %}
+
+  <div class="QuantitySelector__Error">
+    {% assign alert_text = 'components.quantity_selector.max_quantity_reached' | t %}
+    {% render 'alert', text: alert_text, variant: 'warning', text_variant: 'body-small', no_icon: true %}
+  </div>
 </quantity-selector-component>
 
 {% stylesheet %}
@@ -56,10 +68,22 @@
     justify-content: center;
     color: #fff;
     background-color: var(--t-backdrop-background-color);
-    border-radius: var(--t-border-radius);
   }
 
   .QuantitySelector__Loading--Active {
     display: flex;
+  }
+
+  .QuantitySelector__Error {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    margin-top: var(--size-xxs);
+    display: none;
+  }
+
+  .QuantitySelector__Error--Active {
+    display: block;
   }
 {% endstylesheet %}

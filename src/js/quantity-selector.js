@@ -4,7 +4,8 @@ class QuantitySelector extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
-    this.quantity = parseInt(this.quantityElement.innerText, 10);
+    this.quantity = this.parsedData.quantity || 1;
+    this.max = this.parsedData.max || null;
 
     this.connectedToLineItem = this.closest(".LineItem") ? true : false;
 
@@ -23,6 +24,11 @@ class QuantitySelector extends CustomComponentMixin(HTMLElement) {
   }
 
   handleIncrement() {
+    if (this.max !== null && this.quantity >= this.max) {
+      this.showMaxQuantityError();
+      return;
+    }
+
     if (this.connectedToLineItem) {
       this.loadingElement?.classList.add("QuantitySelector__Loading--Active");
 
@@ -52,12 +58,24 @@ class QuantitySelector extends CustomComponentMixin(HTMLElement) {
     }
   }
 
+  showMaxQuantityError() {
+    this.errorElement?.classList.add("QuantitySelector__Error--Active");
+
+    setTimeout(() => {
+      this.errorElement?.classList.remove("QuantitySelector__Error--Active");
+    }, 3000);
+  }
+
   get quantityElement() {
     return this.querySelector(".QuantitySelector__Quantity");
   }
 
   get loadingElement() {
     return this.querySelector(".QuantitySelector__Loading");
+  }
+
+  get errorElement() {
+    return this.querySelector(".QuantitySelector__Error");
   }
 }
 
