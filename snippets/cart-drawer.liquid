@@ -51,7 +51,8 @@
               quantity: line_item.quantity,
               url: line_item.url,
               key: line_item.key,
-              variant_id: line_item.variant.id
+              variant_id: line_item.variant.id,
+              inventory_quantity: line_item.variant.inventory_quantity
             %}
           </li>
         {% endfor %}
