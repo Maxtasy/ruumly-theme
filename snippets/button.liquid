@@ -118,7 +118,8 @@
     align-items: center;
     justify-content: center;
     gap: var(--size-xxs);
-    padding: var(--padding-block) var(--padding-inline);
+    padding-block: var(--padding-block);
+    padding-inline: var(--padding-inline);
     color: var(--button-text-color);
     background-color: var(--button-background-color);
     border: var(--border-width) var(--border-style) var(--button-border);
@@ -135,8 +136,6 @@
 
   .Button--Primary,
   .Button--Secondary {
-    --padding-block: var(--size-m);
-    --padding-inline: var(--size-xl);
     text-transform: uppercase;
     box-shadow: var(--box-shadow);
     font-weight: var(--button-font-weight);
@@ -201,13 +200,13 @@
   }
 
   .Button--SizeMedium {
-    --padding-block: var(--size-m);
-    --padding-inline: var(--size-xl);
+    --padding-block: var(--size-s);
+    --padding-inline: var(--size-l);
   }
 
   .Button--SizeLarge {
-    --padding-block: var(--size-l);
-    --padding-inline: var(--size-xxl);
+    --padding-block: var(--size-m);
+    --padding-inline: var(--size-xl);
   }
 
   .Button[disabled] {
