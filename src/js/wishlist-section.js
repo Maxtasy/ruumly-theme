@@ -7,12 +7,18 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
     this.wishlistButtonEnabled = this.parsedData.wishlistButtonEnabled;
     this.quickAddButtonEnabled = this.parsedData.quickAddButtonEnabled;
 
+    this.handleWishlistRemove = this.handleWishlistRemove.bind(this);
+
     this.rerender(globalThis.wishlist.items);
   }
 
-  connectedCallback() {}
+  connectedCallback() {
+    this.subscribe("button:click:wishlist:remove", this.handleWishlistRemove);
+  }
 
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    this.unsubscribe("button:click:wishlist:remove", this.handleWishlistRemove);
+  }
 
   rerender(items) {
     const skeletonListElements = this.querySelectorAll("li:has(.ProductCardSkeleton)");
@@ -24,7 +30,9 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
     });
 
     items.forEach(async (item, index) => {
-      const response = await fetch(`${window.routes.home}/products/${item.handle}?section_id=product-data`);
+      const response = await fetch(
+        `${window.routes.home === "/" ? "" : window.routes.home}/products/${item.handle}?section_id=product-data`,
+      );
 
       const data = await response.text();
 
@@ -35,16 +43,20 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
 
       if (!this.quickAddButtonEnabled) {
         const quickAddButtonElement = productCardElement.querySelector("[data-action='quick-add']");
-        quickAddButtonElement.remove();
+        quickAddButtonElement?.remove();
       }
 
       if (!this.wishlistButtonEnabled) {
         const wishlistButtonElement = productCardElement.querySelector("wishlist-buttons-component");
-        wishlistButtonElement.remove();
+        wishlistButtonElement?.remove();
       }
 
       skeletonListElements[index].innerHTML = productCardElement.outerHTML;
     });
+  }
+
+  handleWishlistRemove(_, event) {
+    event.target.closest("li:has(.ProductCard)")?.remove();
   }
 }
 
