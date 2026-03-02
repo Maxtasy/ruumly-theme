@@ -77,7 +77,8 @@
     },
     "filter": {
       "reset_all_filters": "Alle Filter zurücksetzen",
-      "reset_filter": "Filter zurücksetzen"
+      "reset_filter": "Filter zurücksetzen",
+      "sort_by": "Sortieren nach"
     },
     "image": {
       "product": {
