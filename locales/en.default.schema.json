@@ -822,6 +822,20 @@
     },
     "wishlist": {
       "name": "Wishlist",
+      "settings": {
+        "heading_empty_state": {
+          "label": "Heading",
+          "default": "Your wishlist is empty"
+        },
+        "text_empty_state": {
+          "label": "Text",
+          "default": "Save products you love to keep track of them here. Start exploring and add your favorites."
+        },
+        "link_empty_state": {
+          "label": "Link",
+          "default": "Explore Products"
+        }
+      },
       "presets": {
         "wishlist": {
           "name": "Wishlist"

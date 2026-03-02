@@ -13,6 +13,18 @@
     >
       {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
+      {%- comment -%}
+        Find better solution for render empty state.
+      {%- endcomment -%}
+      <div class="WishlistSection__EmptyState">
+        {% render 'empty-state',
+          heading: section.settings.heading_empty_state,
+          text: section.settings.text_empty_state,
+          link: '/collections.all',
+          link_text: section.settings.link_empty_state
+        %}
+      </div>
+
       {% render 'product-list',
         columns_mobile: section.settings.columns_mobile,
         columns_desktop: section.settings.columns_desktop
@@ -26,6 +38,16 @@
     </wishlist-section-component>
   </div>
 </section>
+
+{% stylesheet %}
+  .WishlistSection__EmptyState {
+    display: none;
+  }
+
+  .WishlistSection:not(:has(.ProductCard)) .WishlistSection__EmptyState {
+    display: flex;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -108,6 +130,28 @@
       "id": "enable_wishlist_button",
       "label": "t:sections.all.settings.enable_wishlist_button.label",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.empty_state.content"
+    },
+    {
+      "type": "text",
+      "id": "heading_empty_state",
+      "label": "t:sections.wishlist.settings.heading_empty_state.label",
+      "default": "t:sections.wishlist.settings.heading_empty_state.default"
+    },
+    {
+      "type": "text",
+      "id": "text_empty_state",
+      "label": "t:sections.wishlist.settings.text_empty_state.label",
+      "default": "t:sections.wishlist.settings.text_empty_state.default"
+    },
+    {
+      "type": "text",
+      "id": "link_empty_state",
+      "label": "t:sections.wishlist.settings.link_empty_state.label",
+      "default": "t:sections.wishlist.settings.link_empty_state.default"
     }
   ],
   "presets": [
