@@ -77,7 +77,8 @@
     },
     "filter": {
       "reset_all_filters": "Reset All",
-      "reset_filter": "Reset Filter"
+      "reset_filter": "Reset Filter",
+      "sort_by": "Sort By"
     },
     "image": {
       "product": {
@@ -131,9 +132,6 @@
     },
     "social_proof": {
       "default_text_html": "<strong>John Doe</strong> and <strong>Jane Doe</strong> recommend this product."
-    },
-    "sort_by": {
-      "sort_by": "Sort By"
     },
     "user_button": {
       "aria_label": "Open profile"

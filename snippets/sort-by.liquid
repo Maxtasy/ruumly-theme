@@ -1,7 +1,7 @@
 <div class="SortBy">
   {% capture trigger_content %}
-    {% assign text = 'components.sort_by.sort_by' | t %}
-    {% render 'text', text: text, as: 'strong' %}
+    {% assign text = 'components.filter.sort_by' | t %}
+    {% render 'text', text: text, as: 'b' %}
   {% endcapture %}
 
   {% render 'dropdown-trigger', content: trigger_content, handle: 'sort-by' %}
@@ -11,10 +11,13 @@
       <ul class="SortBy__Options u-NoList">
         {% for sort_option in collection.sort_options %}
           <li>
-            {% assign active = false %}
-            {% if sort_option.value == collection.sort_by %}
-              {% assign active = true %}
-            {% endif %}
+            {% liquid 
+              assign active = false
+              if sort_option.value == collection.sort_by
+              assign active = true
+              endif
+            %}
+            
             {% render 'sort-option', sort_option: sort_option, active: active %}
           </li>
         {% endfor %}
