@@ -7,7 +7,7 @@
 <div class="Filter">
   {% capture dropdown_trigger_content %}
     <div class="Filter__TriggerContent">
-      {% render 'text', text: filter.label, as: 'strong' %}
+      {% render 'text', text: filter.label, as: 'b' %}
 
       {% assign active_count = filter.active_values.size %}
       {% if active_count > 0 %}
