@@ -9,6 +9,8 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
 
     this.handleWishlistRemove = this.handleWishlistRemove.bind(this);
 
+    this.renderSkeletons(globalThis.wishlist.items.length);
+
     this.rerender(globalThis.wishlist.items);
   }
 
@@ -57,6 +59,20 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
 
   handleWishlistRemove(_, event) {
     event.target.closest("li:has(.ProductCard)")?.remove();
+  }
+
+  renderSkeletons(count) {
+    for (let index = 0; index < count; index++) {
+      const skeletonTemplateElement = this.querySelector("#product-card-skeleton");
+      const clone = document.importNode(skeletonTemplateElement.content, true);
+      const listItemElement = clone.querySelector("li:has(.ProductCardSkeleton)");
+
+      this.productListElement.appendChild(listItemElement);
+    }
+  }
+
+  get productListElement() {
+    return this.querySelector(".ProductList");
   }
 }
 
