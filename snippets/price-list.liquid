@@ -13,7 +13,7 @@
   {% endif %}
 
   {% assign price_text = price | money %}
-  {% render 'text', text: price_text, as: 'strong' %}
+  {% render 'text', text: price_text, as: 'b' %}
 
   {% if info %}
     {% render 'rich-text', content: info %}
