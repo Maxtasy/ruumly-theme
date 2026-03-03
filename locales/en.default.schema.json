@@ -825,7 +825,7 @@
       "settings": {
         "heading_empty_state": {
           "label": "Heading",
-          "default": "Your wishlist is empty"
+          "default": "Your wishlist is empty :("
         },
         "text_empty_state": {
           "label": "Text",

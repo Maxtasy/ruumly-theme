@@ -12,6 +12,8 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
     this.renderSkeletons(globalThis.wishlist.items.length);
 
     this.rerender(globalThis.wishlist.items);
+
+    this.handleEmptyState();
   }
 
   connectedCallback() {
@@ -61,6 +63,12 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
     event.target.closest("li:has(.ProductCard)")?.remove();
   }
 
+  handleEmptyState() {
+    if (globalThis.wishlist.items.length < 1) {
+      this.emptyStateElement.classList.add("WishlistSection__EmptyState--Active");
+    }
+  }
+
   renderSkeletons(count) {
     for (let index = 0; index < count; index++) {
       const skeletonTemplateElement = this.querySelector("#product-card-skeleton");
@@ -73,6 +81,10 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
 
   get productListElement() {
     return this.querySelector(".ProductList");
+  }
+
+  get emptyStateElement() {
+    return this.querySelector(".WishlistSection__EmptyState");
   }
 }
 

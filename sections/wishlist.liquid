@@ -13,9 +13,6 @@
     >
       {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
-      {%- comment -%}
-        Find better solution for render empty state.
-      {%- endcomment -%}
       <div class="WishlistSection__EmptyState">
         {% render 'empty-state',
           heading: section.settings.heading_empty_state,
@@ -42,9 +39,10 @@
 {% stylesheet %}
   .WishlistSection__EmptyState {
     display: none;
+    padding: var(--size-m) 0;
   }
 
-  .WishlistSection:not(:has(.ProductCard)) .WishlistSection__EmptyState {
+  .WishlistSection__EmptyState--Active {
     display: flex;
   }
 {% endstylesheet %}
