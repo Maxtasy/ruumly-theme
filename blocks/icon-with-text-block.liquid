@@ -1,3 +1,4 @@
+{% capture content %}
 <div
   class="
     IconWithTextBlock
@@ -8,6 +9,15 @@
 >
   {% content_for 'blocks' %}
 </div>
+{% endcapture %}
+
+{% if block.settings.enable_link and block.settings.link_url != blank %}
+  <a href="{{ block.settings.link_url }}" style="color: inherit">
+    {{ content }}
+  </a>
+{% else %}
+  {{ content }}
+{% endif %}
 
 {% stylesheet %}
   .IconWithTextBlock {
