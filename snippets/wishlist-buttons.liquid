@@ -1,13 +1,15 @@
 {% doc %}
   Renders a wishlist buttons component.
 
-  @param {number} product_id - The unique id of the product connected with.
+  @param {number} product_id - The unique id of the product.
+  @param {string} handle - The unique handle of the product.
   @param {boolean} [full_width] - Whether the buttons should take the full width of its container.
 {% enddoc %}
 
 {% capture event_details %}
   {
-    "productId": {{ product_id }}
+    "productId": {{ product_id }},
+    "handle": {{ handle | json }}
   }
 {% endcapture %}
 

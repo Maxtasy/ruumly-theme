@@ -822,6 +822,23 @@
     },
     "wishlist": {
       "name": "Wunschliste",
+      "settings": {
+        "empty_state_heading": {
+          "label": "Heading",
+          "default": "Deine Wunschliste ist leer :("
+        },
+        "empty_state_text": {
+          "label": "Text",
+          "default": "Speichern Sie Produkte, die Ihnen gefallen, um sie hier im Blick zu behalten. Stöbern Sie los und fügen Sie Ihre Favoriten hinzu."
+        },
+        "empty_state_button_text": {
+          "label": "Button Text",
+          "default": "Erkunde unsere Produkte"
+        },
+        "empty_state_button_link": {
+          "label": "Button Link"
+        }
+      },
       "presets": {
         "wishlist": {
           "name": "Wunschliste"

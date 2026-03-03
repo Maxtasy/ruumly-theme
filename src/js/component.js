@@ -19,7 +19,7 @@ export const CustomComponentMixin = (Base) =>
       // Wrap the callback so we always pass event.detail for CustomEvents
       const wrapper = (event) => {
         if (event instanceof CustomEvent) {
-          callbackFunction(event.detail);
+          callbackFunction(event.detail, event);
         } else {
           callbackFunction(event);
         }
