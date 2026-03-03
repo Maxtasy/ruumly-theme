@@ -83,6 +83,18 @@
         { "value": "xl", "label": "XL" },
         { "value": "xxl", "label": "XXL" }
       ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_link",
+      "label": "Enable Link",
+      "default": false
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:sections.all.settings.link_url.label",
+      "visible_if": "{{ block.settings.enable_link }}"
     }
   ],
   "blocks": [
