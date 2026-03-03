@@ -14,10 +14,11 @@
       {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
       <div class="WishlistSection__EmptyState">
+        {% assign link = 'wishlist.empty_state' | t %}
         {% render 'empty-state',
           heading: section.settings.heading_empty_state,
           text: section.settings.text_empty_state,
-          link: '/collections.all',
+          link: link,
           link_text: section.settings.link_empty_state
         %}
       </div>
