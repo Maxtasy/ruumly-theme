@@ -9,10 +9,15 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
 
     this.handleWishlistRemove = this.handleWishlistRemove.bind(this);
 
-    (globalThis.wishlist.items.length < 1
-      ? this.showEmptyState()
-      : this.renderSkeletons(globalThis.wishlist.items.length),
-      this.rerender(globalThis.wishlist.items));
+    if (globalThis.wishlist.items.length < 1) {
+      this.showEmptyState();
+
+      return;
+    }
+
+    this.renderSkeletons(globalThis.wishlist.items.length);
+
+    this.rerender(globalThis.wishlist.items);
   }
 
   connectedCallback() {
