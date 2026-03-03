@@ -110,12 +110,11 @@
         "tab_block_CYnWDU": {
           "type": "tab-block",
           "settings": {
-            "title": "Chairs",
-            "collection": "gaming-chairs",
-            "set_limit": true,
-            "limit": 4,
+            "title": "Plants",
+            "collection": "plants",
             "enable_quick_add_button": true,
-            "enable_wishlist_button": true
+            "enable_wishlist_button": true,
+            "enable_slider": true
           }
         },
         "tab_block_xfzQ8T": {
@@ -143,8 +142,8 @@
         "tab_block_LQ8Gw4": {
           "type": "tab-block",
           "settings": {
-            "title": "",
-            "collection": "plants",
+            "title": "Chairs",
+            "collection": "gaming-chairs",
             "set_limit": true,
             "limit": 4,
             "enable_quick_add_button": true,
