@@ -6,8 +6,7 @@
   @param {string} unavailable_text - The unavailable text to render.
 {% enddoc %}
 
-<div
-  is="shipping-estimation-component"
+<shipping-estimation-component
   class="ShippingEstimation"
   data-available-text="{{ available_text }}"
   data-unavailable-text="{{ unavailable_text }}"
@@ -20,5 +19,5 @@
     {% assign text = unavailable_text %}
   {% endif %}
 
-  {% render 'text', text: text, color: color, as: 'strong' %}
-</div>
+  {% render 'text', text: text, color: color, as: 'b' %}
+</shipping-estimation-component>

@@ -7,7 +7,7 @@
 
 <div class="LinkGroup">
   {% if heading %}
-    {% render 'text', text: heading, as: 'strong' %}
+    {% render 'text', text: heading, as: 'b' %}
   {% endif %}
 
   <ul class="LinkGroup__Items u-NoList">
@@ -29,6 +29,6 @@
   .LinkGroup__Items {
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 {% endstylesheet %}

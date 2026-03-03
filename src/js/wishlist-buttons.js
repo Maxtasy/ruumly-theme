@@ -1,0 +1,89 @@
+import { CustomComponentMixin, defineComponent } from "./component.js";
+
+export class WishlistButtons extends CustomComponentMixin(HTMLElement) {
+  constructor() {
+    super();
+
+    this.productId = this.parsedData.productId;
+
+    this.setState();
+
+    globalThis.requestAnimationFrame(() => {
+      this.classList.add("WishlistButtons--Initialized");
+    });
+
+    this.handleWishlistAddButtonClick = this.handleWishlistAddButtonClick.bind(this);
+    this.handleWishlistRemoveButtonClick = this.handleWishlistRemoveButtonClick.bind(this);
+  }
+
+  connectedCallback() {
+    this.subscribe("button:click:wishlist:add", this.handleWishlistAddButtonClick);
+    this.subscribe("button:click:wishlist:remove", this.handleWishlistRemoveButtonClick);
+  }
+
+  disconnectedCallback() {
+    this.unsubscribe("button:click:wishlist:add", this.handleWishlistAddButtonClick);
+    this.unsubscribe("button:click:wishlist:remove", this.handleWishlistRemoveButtonClick);
+  }
+
+  setState() {
+    if (!globalThis.wishlist) {
+      console.warn("Wishlist module not available");
+      return;
+    }
+
+    const found = globalThis.wishlist.items.find((item) => {
+      return item.productId === this.productId;
+    });
+
+    if (found) {
+      this.toggleAdded(true);
+    }
+  }
+
+  handleWishlistAddButtonClick() {
+    const iconElement = this.querySelector("[data-action='wishlist:add'] .Icon");
+    const destinationElement = document.querySelector("[data-wishlist-page-button] .Icon");
+
+    const prefersReducedMotion = globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (destinationElement && !prefersReducedMotion) {
+      const clonedIconElement = iconElement.cloneNode(true);
+
+      this.appendChild(clonedIconElement);
+
+      clonedIconElement.style.position = "fixed";
+      clonedIconElement.style.zIndex = "var(--layer-10)";
+      clonedIconElement.style.transition = "transform var(--transition-duration-long) var(--transition-timing)";
+
+      const initialPosition = iconElement.getBoundingClientRect();
+      const finalPosition = destinationElement.getBoundingClientRect();
+
+      clonedIconElement.style.top = `${initialPosition.y}px`;
+      clonedIconElement.style.left = `${initialPosition.x}px`;
+
+      globalThis.requestAnimationFrame(() => {
+        const xDelta = finalPosition.x - initialPosition.x;
+        const yDelta = finalPosition.y - initialPosition.y;
+
+        clonedIconElement.style.transform = `translate(${xDelta}px, ${yDelta}px)`;
+      });
+
+      clonedIconElement.addEventListener("transitionend", () => {
+        clonedIconElement.remove();
+      });
+    }
+
+    this.toggleAdded(true);
+  }
+
+  handleWishlistRemoveButtonClick() {
+    this.toggleAdded(false);
+  }
+
+  toggleAdded(force) {
+    this.classList.toggle("WishlistButtons--Added", force);
+  }
+}
+
+defineComponent("wishlist-buttons-component", WishlistButtons);

@@ -1,5 +1,5 @@
 .Select {
-  padding: var(--size-xs) var(--size-s);
+  padding: var(--size-xxs) var(--size-xs);
   border: var(--border-width) var(--border-style) var(--t-border);
   color: var(--t-text);
   background-color: var(--t-background);

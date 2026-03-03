@@ -21,7 +21,7 @@
               "type": "text-block",
               "name": "Text",
               "settings": {
-                "text": "This is a text block.",
+                "text": "Level Up Your Space",
                 "variant": "heading-medium",
                 "as": "h2",
                 "alignment": "center"
@@ -32,7 +32,7 @@
               "type": "text-block",
               "name": "Text",
               "settings": {
-                "text": "This is a text block.",
+                "text": "Our newest collection just dropped. Discover premium gaming chairs, desks, and furniture designed for comfort, performance, and style.",
                 "variant": "body-medium",
                 "as": "div",
                 "alignment": "center"
@@ -54,8 +54,8 @@
               "type": "button-block",
               "name": "t:theme_blocks.button_block.presets.button_block.name",
               "settings": {
-                "button_text": "Click me",
-                "button_link": "",
+                "button_text": "Shop Gaming Desks",
+                "button_link": "/collections/gaming-desks",
                 "external": false,
                 "variant": "primary",
                 "alignment": "left"
@@ -66,8 +66,8 @@
               "type": "button-block",
               "name": "t:theme_blocks.button_block.presets.button_block.name",
               "settings": {
-                "button_text": "Click me",
-                "button_link": "",
+                "button_text": "Shop Gaming Chairs",
+                "button_link": "/collections/gaming-chairs",
                 "external": false,
                 "variant": "secondary",
                 "alignment": "left"
@@ -101,7 +101,7 @@
         "columns_mobile": 2,
         "columns_desktop": 4,
         "heading": "Our top collections",
-        "collection_list": ["gaming-chairs", "gaming-desks", "furniture", "plants"]
+        "collection_list": ["gaming-chairs", "gaming-desks", "beds", "plants"]
       }
     },
     "tabs_YGYmEL": {
@@ -113,7 +113,9 @@
             "title": "Chairs",
             "collection": "gaming-chairs",
             "set_limit": true,
-            "limit": 4
+            "limit": 4,
+            "enable_quick_add_button": true,
+            "enable_wishlist_button": true
           }
         },
         "tab_block_xfzQ8T": {
@@ -122,16 +124,20 @@
             "title": "Desks",
             "collection": "gaming-desks",
             "set_limit": true,
-            "limit": 4
+            "limit": 4,
+            "enable_quick_add_button": true,
+            "enable_wishlist_button": true
           }
         },
         "tab_block_dgDpmc": {
           "type": "tab-block",
           "settings": {
-            "title": "",
-            "collection": "furniture",
+            "title": "Beds",
+            "collection": "beds",
             "set_limit": true,
-            "limit": 4
+            "limit": 4,
+            "enable_quick_add_button": true,
+            "enable_wishlist_button": true
           }
         },
         "tab_block_LQ8Gw4": {
@@ -140,7 +146,9 @@
             "title": "",
             "collection": "plants",
             "set_limit": true,
-            "limit": 4
+            "limit": 4,
+            "enable_quick_add_button": true,
+            "enable_wishlist_button": true
           }
         }
       },

@@ -13,10 +13,10 @@
   {% endif %}
 
   {% assign price_text = price | money %}
-  {% render 'text', text: price_text, as: 'strong' %}
+  {% render 'text', text: price_text, as: 'b' %}
 
   {% if info %}
-    {% render 'text', text: info %}
+    {% render 'rich-text', content: info %}
   {% endif %}
 </div>
 
@@ -24,7 +24,8 @@
   .PriceList {
     display: flex;
     align-items: center;
-    gap: var(--size-s);
+    gap: var(--size-xs);
+    flex-wrap: wrap;
   }
 
   .PriceList del {

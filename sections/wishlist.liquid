@@ -6,18 +6,46 @@
   "
 >
   <div class="Section__Inner">
-    {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
+    <wishlist-section-component
+      class="WishlistSection"
+      data-quick-add-button-enabled="{{ section.settings.enable_quick_add_button }}"
+      data-wishlist-button-enabled="{{ section.settings.enable_wishlist_button }}"
+    >
+      {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
-    {% render 'product-list',
-      limit: 4,
-      columns_mobile: section.settings.columns_mobile,
-      columns_desktop: section.settings.columns_desktop,
-      enable_quick_add_button: section.settings.enable_quick_add_button,
-      enable_wishlist_button: section.settings.enable_wishlist_button,
-      use_placeholders: true
-    %}
+      <div class="WishlistSection__EmptyState">
+        {% render 'empty-state',
+          heading: section.settings.empty_state_heading,
+          text: section.settings.empty_state_text,
+          link: section.settings.empty_state_button_link,
+          link_text: section.settings.empty_state_button_text
+        %}
+      </div>
+
+      {% render 'product-list',
+        columns_mobile: section.settings.columns_mobile,
+        columns_desktop: section.settings.columns_desktop
+      %}
+
+      <template id="product-card-skeleton">
+        <li>
+          {% render 'product-card-skeleton' %}
+        </li>
+      </template>
+    </wishlist-section-component>
   </div>
 </section>
+
+{% stylesheet %}
+  .WishlistSection__EmptyState {
+    display: none;
+    padding-block: var(--size-m);
+  }
+
+  .WishlistSection__EmptyState--Active {
+    display: block;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
@@ -100,6 +128,33 @@
       "id": "enable_wishlist_button",
       "label": "t:sections.all.settings.enable_wishlist_button.label",
       "default": false
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.empty_state.content"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_heading",
+      "label": "t:sections.wishlist.settings.empty_state_heading.label",
+      "default": "t:sections.wishlist.settings.empty_state_heading.default"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "t:sections.wishlist.settings.empty_state_text.label",
+      "default": "t:sections.wishlist.settings.empty_state_text.default"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_button_text",
+      "label": "t:sections.wishlist.settings.empty_state_button_text.label",
+      "default": "t:sections.wishlist.settings.empty_state_button_text.default"
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:sections.all.settings.link_url.label"
     }
   ],
   "presets": [

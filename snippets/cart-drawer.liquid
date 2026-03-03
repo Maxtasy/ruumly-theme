@@ -12,7 +12,7 @@
 
 {% assign enable_free_shipping_alert = enable_free_shipping_alert | default: true, allow_false: true %}
 
-<div is="cart-drawer-component" class="CartDrawer">
+<cart-drawer-component class="CartDrawer">
   {% if cart.empty? %}
     {% render 'empty-state',
       heading: empty_state_heading,
@@ -51,7 +51,8 @@
               quantity: line_item.quantity,
               url: line_item.url,
               key: line_item.key,
-              variant_id: line_item.variant.id
+              variant_id: line_item.variant.id,
+              inventory_quantity: line_item.variant.inventory_quantity
             %}
           </li>
         {% endfor %}
@@ -89,7 +90,7 @@
       {% render 'button', text: 'checkout', url: '/checkout' %}
     </div>
   {% endif %}
-</div>
+</cart-drawer-component>
 
 {% stylesheet %}
   .CartDrawer {
@@ -108,14 +109,14 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
     overflow-y: auto;
   }
 
   .CartDrawer__LineItems {
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 
   .CartDrawer__Summary {
@@ -135,6 +136,6 @@
   .CartDrawer__SummaryLines {
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 {% endstylesheet %}

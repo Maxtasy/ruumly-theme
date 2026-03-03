@@ -10,34 +10,54 @@
 {% assign columns_mobile = columns_mobile | default: 1 %}
 {% assign columns_desktop = columns_desktop | default: 3 %}
 
-<ul
-  class="BlogArticleList u-NoList"
-  style="
-    --columns-mobile: {{ columns_mobile }};
-    --columns-desktop: {{ columns_desktop }};
-  "
->
-  {% for article in blog_articles limit: limit %}
-    <li>
-      {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
-      {% render 'blog-article-card', image: article.image, title: article.title, excerpt: excerpt, url: article.url %}
-    </li>
-  {% endfor %}
-</ul>
+<div class="BlogArticleList">
+  {% paginate blog_articles by 3 %}
+    <ul
+      class="BlogArticleList__Items u-NoList"
+      style="
+        --columns-mobile: {{ columns_mobile }};
+        --columns-desktop: {{ columns_desktop }};
+      "
+    >
+      {% for article in blog_articles limit: limit %}
+        <li>
+          {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
+          {% render 'blog-article-card',
+            image: article.image,
+            title: article.title,
+            excerpt: excerpt,
+            url: article.url
+          %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    <div class="BlogArticleList__Pagination">
+      {% render 'pagination', paginate: paginate %}
+    </div>
+  {% endpaginate %}
+</div>
 
 {% stylesheet %}
   .BlogArticleList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--size-m);
+  }
+
+  .BlogArticleList__Items {
     display: grid;
     grid-template-columns: repeat(var(--columns-mobile), 1fr);
     gap: var(--size-m);
   }
 
-  .BlogArticleList > li {
+  .BlogArticleList__Items > li {
     height: 100%;
   }
 
   @media screen and (min-width: 768px) {
-    .BlogArticleList {
+    .BlogArticleList__Items {
       grid-template-columns: repeat(var(--columns-desktop), 1fr);
     }
   }

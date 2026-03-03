@@ -1,0 +1,101 @@
+{% doc %}
+  Renders a Filter Component.
+
+  @param {object} filter - The liquid filter object.
+{% enddoc %}
+
+<div class="Filter">
+  {% capture dropdown_trigger_content %}
+    <div class="Filter__TriggerContent">
+      {% render 'text', text: filter.label, as: 'b' %}
+
+      {% assign active_count = filter.active_values.size %}
+      {% if active_count > 0 %}
+        <div class="Filter__ActiveCount">
+          {% render 'text', text: active_count, variant: 'body-small', color: 'inherit', as: 'b' %}
+        </div>
+      {% endif %}
+    </div>
+  {% endcapture %}
+
+  {% assign handle = filter.label | handleize %}
+  {% render 'dropdown-trigger', content: dropdown_trigger_content, handle: handle %}
+
+  <div class="Filter__Content">
+    {% capture content %}
+      <div class="Filter__DropdownContent">
+        <ul
+          class="
+            Filter__Values
+            {% if filter.presentation == 'text' or filter.presentation == nil %}
+              Filter__Values--Vertical
+            {% endif %}
+            u-NoList
+          "
+        >
+          {% for filter_value in filter.values %}
+            {% assign is_filter_value_disabled = false %}
+            {% if filter_value.count < 1 %}
+              {% assign is_filter_value_disabled = true %}
+            {% endif %}
+            <li>
+              {% render 'filter-value', filter_value: filter_value, disabled: is_filter_value_disabled %}
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% assign button_text = 'components.filter.reset_filter' | t %}
+        {% render 'button', text: button_text, url: filter.url_to_remove %}
+      </div>
+    {% endcapture %}
+
+    {% render 'dropdown-content', content: content, handle: handle %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .Filter {
+    position: relative;
+  }
+
+  .Filter__Content {
+    position: absolute;
+    top: calc(100% + var(--size-xs));
+    z-index: var(--layer-1);
+    max-width: 400px;
+    white-space: nowrap;
+  }
+
+  .Filter__DropdownContent {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .Filter__Values {
+    display: flex;
+    gap: var(--size-xs);
+    flex-wrap: wrap;
+  }
+
+  .Filter__Values--Vertical {
+    flex-direction: column;
+  }
+
+  .Filter__ActiveCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-m);
+    height: var(--size-m);
+    background-color: var(--t-primary);
+    border-radius: var(--t-border-radius-circle);
+    color: var(--t-background-dark);
+  }
+
+  .Filter__TriggerContent {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+  }
+{% endstylesheet %}

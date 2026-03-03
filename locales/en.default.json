@@ -75,6 +75,11 @@
     "close_button": {
       "aria_label": "Close"
     },
+    "filter": {
+      "reset_all_filters": "Reset All",
+      "reset_filter": "Reset Filter",
+      "sort_by": "Sort By"
+    },
     "image": {
       "product": {
         "default_alt_text": "Product image"
@@ -114,6 +119,9 @@
     },
     "product_link": {
       "aria_label": "Go to {{ product_title }}"
+    },
+    "quantity_selector": {
+      "max_quantity_reached": "Max quantity reached"
     },
     "search_button": {
       "aria_label": "Open search"

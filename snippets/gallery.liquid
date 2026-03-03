@@ -25,8 +25,7 @@
 {% assign pagination_style_mobile = pagination_style_mobile | default: 'bullet' %}
 {% assign pagination_style_desktop = pagination_style_desktop | default: 'bullet' %}
 
-<div
-  is="gallery-component"
+<gallery-component
   class="
     Gallery
     Gallery--Mobile{{ variant_mobile | camelcase }}
@@ -114,7 +113,7 @@
       {% endif %}
     </div>
   {% endif %}
-</div>
+</gallery-component>
 
 {% stylesheet %}
   .Gallery {
@@ -135,14 +134,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 
   .Gallery__Pagination {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: var(--size-s);
+    gap: var(--size-xs);
     flex-wrap: wrap;
   }
 
@@ -156,13 +155,13 @@
     .Gallery--MobileStack .Gallery__Media {
       display: flex;
       flex-direction: column;
-      gap: var(--size-s);
+      gap: var(--size-xs);
     }
 
     .Gallery--MobileGrid .Gallery__Media {
       display: grid;
       grid-template-columns: repeat(var(--columns-mobile), 1fr);
-      gap: var(--size-s);
+      gap: var(--size-xs);
     }
 
     .Gallery--MobileSlider .Gallery__Media {
@@ -181,13 +180,13 @@
     .Gallery--DesktopStack .Gallery__Media {
       display: flex;
       flex-direction: column;
-      gap: var(--size-s);
+      gap: var(--size-xs);
     }
 
     .Gallery--DesktopGrid .Gallery__Media {
       display: grid;
       grid-template-columns: repeat(var(--columns-desktop), 1fr);
-      gap: var(--size-s);
+      gap: var(--size-xs);
     }
 
     .Gallery--DesktopSlider .Gallery__Media {

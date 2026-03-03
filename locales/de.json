@@ -75,6 +75,11 @@
     "close_button": {
       "aria_label": "Schließen"
     },
+    "filter": {
+      "reset_all_filters": "Alle Filter zurücksetzen",
+      "reset_filter": "Filter zurücksetzen",
+      "sort_by": "Sortieren nach"
+    },
     "image": {
       "product": {
         "default_alt_text": "Produktbild"
@@ -110,10 +115,13 @@
       "aria_label": "Vorheriges"
     },
     "price_list": {
-      "info_html": "inkl. MwSt. zzgl. <a href='/policies/shipping-policy'>Versand</a>"
+      "info_html": "inkl. MwSt. zzgl. <a href='/de/policies/shipping-policy'>Versand</a>"
     },
     "product_link": {
       "aria_label": "Gehe zu {{ product_title }}"
+    },
+    "quantity_selector": {
+      "max_quantity_reached": "Maximale Menge erreicht"
     },
     "search_button": {
       "aria_label": "Suche öffnen"

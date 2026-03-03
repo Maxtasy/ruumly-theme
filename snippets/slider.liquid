@@ -1,0 +1,95 @@
+{% doc %}
+  Renders a Slider component.
+
+  @param {string} content - The content to be displayed inside the slider.
+  @param {number} [slides_per_view_desktop] - The number of slides to be displayed per view on desktop devices.
+  @param {number} [slides_per_view_mobile] - The number of slides to be displayed per view on mobile devices.
+{% enddoc %}
+
+<div
+  class="Slider"
+  style="
+    --slider-slides-per-view-desktop: {{ slides_per_view_desktop }};
+    --slider-slides-per-view-mobile: {{ slides_per_view_mobile }};
+  "
+>
+  <div class="Slider__Inner u-NoScrollbar">
+    {{ content }}
+  </div>
+</div>
+
+{% stylesheet %}
+  .Slider {
+    --drop-shadow-size: var(--size-m);
+
+    position: relative;
+    margin-block: calc(var(--section-padding-inline-mobile) * -1);
+    margin-inline: calc(var(--section-padding-inline-mobile) * -1);
+  }
+
+  @media screen and (min-width: 769px) {
+    .Slider {
+      margin-block: calc(var(--drop-shadow-size) * -1);
+      margin-inline: calc(var(--drop-shadow-size) * -1);
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    /* Overlay box shadows */
+    .Slider::before,
+    .Slider::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      z-index: 1;
+      width: var(--size-xs);
+      background-color: var(--t-background-dark);
+      height: 100%;
+      pointer-events: none;
+    }
+
+    .Slider::before {
+      left: 0;
+    }
+
+    .Slider::after {
+      right: 0;
+    }
+  }
+
+  .Slider__Inner {
+    display: flex;
+    gap: var(--size-m);
+    padding-block: var(--section-padding-inline-mobile);
+    padding-inline: var(--section-padding-inline-mobile);
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: var(--section-padding-inline-mobile);
+  }
+
+  @media screen and (min-width: 769px) {
+    .Slider__Inner {
+      padding-block: var(--drop-shadow-size);
+      padding-inline: var(--drop-shadow-size);
+      scroll-padding-inline: var(--drop-shadow-size);
+    }
+  }
+
+  .Slider__Inner > * {
+    --fully-visible-slides-mobile: round(down, var(--slider-slides-per-view-mobile), 1);
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    width: calc(
+      (100% - (var(--fully-visible-slides-mobile) - 1) * var(--size-m)) / var(--slider-slides-per-view-mobile)
+    );
+  }
+
+  @media screen and (min-width: 769px) {
+    .Slider__Inner > * {
+      --fully-visible-slides-desktop: round(down, var(--slider-slides-per-view-desktop), 1);
+      width: calc(
+        (100% - (var(--fully-visible-slides-desktop) - 1) * var(--size-m)) / var(--slider-slides-per-view-desktop)
+      );
+    }
+  }
+{% endstylesheet %}

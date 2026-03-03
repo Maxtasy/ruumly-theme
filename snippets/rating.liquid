@@ -3,9 +3,10 @@
 
   @param {number} [rating] - The rating to display.
   @param {string} [icon] - The icon to display.
-  @param {string} [icon_size] - The size of the icon.
+  @param {string} [icon_size] - The size of the icon. Defaults to "extra-small".
   @param {number} [max_rating] - The maximum rating to display.
   @param {number} [rating_count] - The number of ratings.
+  @param {string} [rating_prefix] - The prefix of the rating.
 {% enddoc %}
 
 {% liquid
@@ -41,7 +42,12 @@
       {% assign remainder = remainder | minus: 1 %}
 
       <div class="Rating__Item">
-        {% render 'rating-icon', icon: icon, fill_percentage: fill_percentage, icon_size: icon_size %}
+        {% render 'rating-icon',
+          icon: icon,
+          fill_percentage: fill_percentage,
+          icon_size: icon_size,
+          gradient_prefix: rating_prefix
+        %}
       </div>
     {% endfor %}
   </div>
@@ -56,14 +62,14 @@
   .Rating {
     display: flex;
     align-items: center;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
     color: var(--t-text-muted);
   }
 
   .Rating__Icons {
     display: flex;
     align-items: center;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
   }
 
   .Rating__Icons--ExtraSmall {

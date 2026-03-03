@@ -232,8 +232,11 @@
     "logo": {
       "name": "Logo",
       "settings": {
-        "logo_image": {
-          "label": "Logo"
+        "desktop_logo_image": {
+          "label": "Desktop Logo"
+        },
+        "mobile_logo_image": {
+          "label": "Mobile Logo"
         },
         "logo_width": {
           "label": "Width"
@@ -641,6 +644,24 @@
         }
       }
     },
+    "newsletter": {
+      "name": "Newsletter",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "Newsletter"
+        },
+        "text": {
+          "label": "Text",
+          "default": "Sign up now for the Ruumly Community and get a 10% discount. Look forward to exclusive benefits and exciting information."
+        }
+      },
+      "presets": {
+        "newsletter": {
+          "name": "Newsletter"
+        }
+      }
+    },
     "product_configurator": {
       "name": "Product Configurator",
       "settings": {
@@ -650,11 +671,38 @@
         "enable_pagination_desktop": {
           "label": "Enable Pagination Desktop"
         },
-        "enable_navigtation_mobile": {
+        "enable_navigation_mobile": {
           "label": "Enable Navigation Mobile"
         },
         "enable_navigatiobn_desktop": {
           "label": "Enable Navigation Desktop"
+        }
+      },
+      "blocks": {
+        "title": {
+          "settings": {
+            "show_sku": {
+              "label": "Show SKU"
+            },
+            "sku_position": {
+              "label": "SKU Position",
+              "options": {
+                "above": {
+                  "label": "Above Title"
+                },
+                "below": {
+                  "label": "Below Title"
+                }
+              }
+            }
+          }
+        },
+        "buy_buttons": {
+          "settings": {
+            "show_wishlist_button": {
+              "label": "Show wishlist button"
+            }
+          }
         }
       }
     },
@@ -664,6 +712,9 @@
         "collection_reference": {
           "label": "Collection",
           "info": "On PLPs defaults to the global collection object. Set if you want to use pagination."
+        },
+        "enable_filters": {
+          "label": "Enable Filters"
         },
         "enable_pagination": {
           "label": "Enable Pagination",
@@ -725,8 +776,12 @@
         "show_cart_icon": {
           "label": "Show Cart Icon"
         },
-        "show_logo": {
-          "label": "Show Logo",
+        "show_desktop_logo": {
+          "label": "Show Desktop Logo",
+          "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
+        },
+        "show_mobile_logo": {
+          "label": "Show Mobile Logo",
           "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
         },
         "show_search_icon": {
@@ -770,6 +825,23 @@
     },
     "wishlist": {
       "name": "Wishlist",
+      "settings": {
+        "empty_state_heading": {
+          "label": "Heading",
+          "default": "Your wishlist is empty :("
+        },
+        "empty_state_text": {
+          "label": "Text",
+          "default": "Save products you love to keep track of them here. Start exploring and add your favorites."
+        },
+        "empty_state_button_text": {
+          "label": "Button Text",
+          "default": "Explore Products"
+        },
+        "empty_state_button_link": {
+          "label": "Button Link"
+        }
+      },
       "presets": {
         "wishlist": {
           "name": "Wishlist"
@@ -887,6 +959,17 @@
       "settings": {
         "rating": {
           "label": "Rating"
+        },
+        "icon_size": {
+          "label": "Icon Size",
+          "options": {
+            "extra_small": {
+              "label": "Extra Small"
+            },
+            "small": {
+              "label": "Small"
+            }
+          }
         }
       },
       "presets": {

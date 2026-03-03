@@ -1,0 +1,35 @@
+on:
+  workflow_call:
+    secrets:
+      SHOPIFY_STORE:
+        required: true
+      THEME_ACCESS_PASSWORD:
+        required: true
+    inputs:
+      theme_name:
+        required: true
+        type: string
+
+jobs:
+  delete:
+    runs-on: ubuntu-latest
+    env:
+      SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+      SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
+      SHOPIFY_FLAG_FORCE: 1
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.12.0
+
+      - name: Install Shopify CLI
+        run: |
+          npm install -g @shopify/cli@3.89.0
+
+      - name: Delete theme
+        run: |
+          shopify theme delete --theme "${{ inputs.theme_name }}" --store="${{ secrets.SHOPIFY_STORE }}"

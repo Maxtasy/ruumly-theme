@@ -4,7 +4,7 @@
   @param {string} url - The wishlist page URL.
 {% enddoc %}
 
-<div is="dynamic-wishlist-icon-component" class="DynamicWishlistIcon">
+<dynamic-wishlist-icon-component class="DynamicWishlistIcon">
   {% render 'button',
     icon: 'heart',
     url: url,
@@ -17,7 +17,7 @@
   <span class="DynamicWishlistIcon__Indicator">
     {% render 'text', text: '', variant: 'body-small', color: 'inherit', as: 'b' %}
   </span>
-</div>
+</dynamic-wishlist-icon-component>
 
 {% stylesheet %}
   .DynamicWishlistIcon {
@@ -31,10 +31,10 @@
     justify-content: center;
     top: 0;
     right: 0;
-    width: 1rem;
-    height: 1rem;
+    width: var(--size-m);
+    height: var(--size-m);
     background-color: var(--t-primary);
-    border-radius: 50%;
+    border-radius: var(--t-border-radius-circle);
     color: var(--t-background-dark);
     pointer-events: none;
   }

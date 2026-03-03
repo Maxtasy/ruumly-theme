@@ -10,10 +10,10 @@
   @param {string} key - The key of the line item.
   @param {string} variant_id - The variant ID of the line item.
   @param {string} url - The URL of the line item.
+  @param {number} inventory_quantity - The inventory quantity of the line item.
 {% enddoc %}
 
-<div
-  is="line-item-component"
+<line-item-component
   class="LineItem"
   data-key="{{ key }}"
   data-variant-id="{{ variant_id }}"
@@ -43,7 +43,7 @@
       </div>
 
       <div class="LineItem__Actions">
-        {% render 'quantity-selector', quantity: quantity %}
+        {% render 'quantity-selector', quantity: quantity, max: inventory_quantity %}
 
         {% render 'button', text: 'Remove', variant: 'link', action: 'remove', size: 'small' %}
       </div>
@@ -55,14 +55,14 @@
       {% render 'alert', variant: 'warning', text: '', text_variant: 'body-small' %}
     </template>
   </div>
-</div>
+</line-item-component>
 
 {% stylesheet %}
   .LineItem {
     display: flex;
     flex-direction: column;
-    gap: var(--size-xs);
-    padding: var(--size-xs);
+    gap: var(--size-xxs);
+    padding: var(--size-xxs);
     background: var(--t-gradient-background);
     border: var(--border-width) var(--border-style) var(--t-border-muted);
   }
@@ -83,20 +83,20 @@
 
     display: flex;
     flex-direction: column;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
   }
 
   .LineItem__Titles {
     display: flex;
     flex-direction: column;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
   }
 
   .LineItem__Actions {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: var(--size-s);
+    gap: var(--size-xs);
 
     /* Push down to very bottom of container */
     margin-top: auto;

@@ -1,0 +1,63 @@
+{% doc %}
+  Renders a Filters Component.
+
+  @param {object[]} filters - Array of liquid filter objects.
+  @param {boolean} filters_active - Whether any filter is active.
+{% enddoc %}
+
+<div class="Filters u-Hidden--Mobile">
+  <div class="Filters__Row">
+    {% for filter in filters %}
+      {% render 'filter', filter: filter %}
+    {% endfor %}
+
+    <div class="Filters__SortBy">
+      {% render 'sort-by' %}
+    </div>
+  </div>
+
+  {% if filters_active %}
+    <div class="Filters__Row">
+      <ul class="Filters__ActiveValues u-NoList">
+        {% for filter in filters %}
+          {% for filter_value in filter.active_values %}
+            <li>
+              {% render 'active-filter-value', filter_value: filter_value %}
+            </li>
+          {% endfor %}
+        {% endfor %}
+      </ul>
+
+      {% capture reset_button_content %}
+        {% render 'icon', icon: 'rotate-ccw', size: 'small' %}
+
+        {% assign text = 'components.filter.reset_all_filters' | t %}
+        {% render 'text', text: text %}
+      {% endcapture %}
+      {% render 'button', variant: 'plain', size: 'small', content: reset_button_content, url: collection.url %}
+    </div>
+  {% endif %}
+</div>
+
+{% stylesheet %}
+  .Filters {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+  }
+
+  .Filters__Row {
+    display: flex;
+    align-items: center;
+    gap: var(--size-m);
+  }
+
+  .Filters__ActiveValues {
+    display: flex;
+    gap: var(--size-xs);
+  }
+
+  .Filters__SortBy {
+    margin-left: auto;
+  }
+{% endstylesheet %}

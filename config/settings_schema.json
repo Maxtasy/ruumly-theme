@@ -12,8 +12,13 @@
     "settings": [
       {
         "type": "image_picker",
-        "id": "logo",
-        "label": "t:settings_schema.logo.settings.logo_image.label"
+        "id": "desktop_logo",
+        "label": "t:settings_schema.logo.settings.desktop_logo_image.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_logo",
+        "label": "t:settings_schema.logo.settings.mobile_logo_image.label"
       },
       {
         "type": "image_picker",
