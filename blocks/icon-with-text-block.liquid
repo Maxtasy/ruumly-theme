@@ -1,4 +1,13 @@
-<div
+{% if block.settings.link_url != blank %}
+  {% assign tag = 'a' %}
+{% else %}
+  {% assign tag = 'div' %}
+{% endif %}
+
+<{{ tag }}
+  {% if block.settings.link_url != blank %}
+    href="{{ block.settings.link_url }}"
+  {% endif %}
   class="
     IconWithTextBlock
     IconWithTextBlock--Align{{ block.settings.alignment | camelcase }}
@@ -7,13 +16,14 @@
   style="--icon-with-text-gap: var(--size-{{ block.settings.gap }});"
 >
   {% content_for 'blocks' %}
-</div>
+</{{ tag }}>
 
 {% stylesheet %}
   .IconWithTextBlock {
     display: flex;
     align-items: center;
     gap: var(--icon-with-text-gap);
+    color: inherit;
   }
 
   .IconWithTextBlock--AlignLeft {
@@ -83,6 +93,11 @@
         { "value": "xl", "label": "XL" },
         { "value": "xxl", "label": "XXL" }
       ]
+    },
+    {
+      "type": "url",
+      "id": "link_url",
+      "label": "t:sections.all.settings.link_url.label"
     }
   ],
   "blocks": [
