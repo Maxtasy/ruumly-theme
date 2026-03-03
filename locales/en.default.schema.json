@@ -823,17 +823,20 @@
     "wishlist": {
       "name": "Wishlist",
       "settings": {
-        "heading_empty_state": {
+        "empty_state_heading": {
           "label": "Heading",
           "default": "Your wishlist is empty :("
         },
-        "text_empty_state": {
+        "empty_state_text": {
           "label": "Text",
           "default": "Save products you love to keep track of them here. Start exploring and add your favorites."
         },
-        "link_empty_state": {
-          "label": "Link",
+        "empty_state_button_text": {
+          "label": "Button Text",
           "default": "Explore Products"
+        },
+        "empty_state_button_link": {
+          "label": "Button Link"
         }
       },
       "presets": {

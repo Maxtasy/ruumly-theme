@@ -14,12 +14,11 @@
       {% render 'text', text: section.settings.heading, as: 'h2', variant: 'heading-medium' %}
 
       <div class="WishlistSection__EmptyState">
-        {% assign link = 'wishlist.empty_state' | t %}
         {% render 'empty-state',
-          heading: section.settings.heading_empty_state,
-          text: section.settings.text_empty_state,
-          link: link,
-          link_text: section.settings.link_empty_state
+          heading: section.settings.empty_state_heading,
+          text: section.settings.empty_state_text,
+          link: section.settings.empty_state_button_link,
+          link_text: section.settings.empty_state_button_text
         %}
       </div>
 
@@ -40,11 +39,11 @@
 {% stylesheet %}
   .WishlistSection__EmptyState {
     display: none;
-    padding: var(--size-m) 0;
+    padding-block: var(--size-m);
   }
 
   .WishlistSection__EmptyState--Active {
-    display: flex;
+    display: block;
   }
 {% endstylesheet %}
 
@@ -136,21 +135,26 @@
     },
     {
       "type": "text",
-      "id": "heading_empty_state",
-      "label": "t:sections.wishlist.settings.heading_empty_state.label",
-      "default": "t:sections.wishlist.settings.heading_empty_state.default"
+      "id": "empty_state_heading",
+      "label": "t:sections.wishlist.settings.empty_state_heading.label",
+      "default": "t:sections.wishlist.settings.empty_state_heading.default"
     },
     {
       "type": "text",
-      "id": "text_empty_state",
-      "label": "t:sections.wishlist.settings.text_empty_state.label",
-      "default": "t:sections.wishlist.settings.text_empty_state.default"
+      "id": "empty_state_text",
+      "label": "t:sections.wishlist.settings.empty_state_text.label",
+      "default": "t:sections.wishlist.settings.empty_state_text.default"
     },
     {
       "type": "text",
-      "id": "link_empty_state",
-      "label": "t:sections.wishlist.settings.link_empty_state.label",
-      "default": "t:sections.wishlist.settings.link_empty_state.default"
+      "id": "empty_state_button_text",
+      "label": "t:sections.wishlist.settings.empty_state_button_text.label",
+      "default": "t:sections.wishlist.settings.empty_state_button_text.default"
+    },
+    {
+      "type": "url",
+      "id": "empty_state_button_link",
+      "label": "Button Link"
     }
   ],
   "presets": [

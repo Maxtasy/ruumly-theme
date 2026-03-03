@@ -9,11 +9,10 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
 
     this.handleWishlistRemove = this.handleWishlistRemove.bind(this);
 
-    this.renderSkeletons(globalThis.wishlist.items.length);
-
-    this.rerender(globalThis.wishlist.items);
-
-    this.handleEmptyState();
+    (globalThis.wishlist.items.length < 1
+      ? this.showEmptyState()
+      : this.renderSkeletons(globalThis.wishlist.items.length),
+      this.rerender(globalThis.wishlist.items));
   }
 
   connectedCallback() {
@@ -63,10 +62,8 @@ export class WishlistSection extends CustomComponentMixin(HTMLElement) {
     event.target.closest("li:has(.ProductCard)")?.remove();
   }
 
-  handleEmptyState() {
-    if (globalThis.wishlist.items.length < 1) {
-      this.emptyStateElement.classList.add("WishlistSection__EmptyState--Active");
-    }
+  showEmptyState() {
+    this.emptyStateElement.classList.add("WishlistSection__EmptyState--Active");
   }
 
   renderSkeletons(count) {

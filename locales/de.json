@@ -152,8 +152,5 @@
   },
   "blog_article": {
     "written_by": "Geschrieben von {{ author }}"
-  },
-  "wishlist": {
-    "empty_state": "/collections/all"
   }
 }
