@@ -87,7 +87,8 @@
         </div>
       </div>
 
-      {% render 'button', text: 'checkout', url: '/checkout' %}
+      {% assign button_text = 'components.checkout_button.button_text' | t %}
+      {% render 'button', text: button_text, url: '/checkout' %}
     </div>
   {% endif %}
 </cart-drawer-component>

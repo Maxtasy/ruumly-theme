@@ -1,5 +1,6 @@
 {
   "global": {
+    "checkout": "Checkout",
     "free": "Free",
     "shipping": "Shipping",
     "submit": "Submit",

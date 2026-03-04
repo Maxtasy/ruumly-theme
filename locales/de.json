@@ -1,5 +1,6 @@
 {
   "global": {
+    "checkout": "Kasse",
     "free": "Kostenlos",
     "shipping": "Versand",
     "submit": "Absenden",
