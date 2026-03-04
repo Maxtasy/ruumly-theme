@@ -1,5 +1,12 @@
 body {
   background-color: var(--t-background-dark);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1;
 }
 
 .MaybeStickySection:has(.Section--Sticky) {
