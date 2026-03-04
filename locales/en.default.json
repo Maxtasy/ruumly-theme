@@ -72,6 +72,9 @@
     "blog_article_card": {
       "button_text": "Read more"
     },
+    "checkout_button": {
+      "button_text": "Checkout"
+    },
     "close_button": {
       "aria_label": "Close"
     },
