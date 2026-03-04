@@ -825,11 +825,11 @@
       "settings": {
         "empty_state_heading": {
           "label": "Heading",
-          "default": "Deine Wunschliste ist leer :("
+          "default": "Deine Wunschliste ist leer"
         },
         "empty_state_text": {
           "label": "Text",
-          "default": "Speichern Sie Produkte, die Ihnen gefallen, um sie hier im Blick zu behalten. Stöbern Sie los und fügen Sie Ihre Favoriten hinzu."
+          "default": "Es sieht so aus, als hättest du noch keine Produkte zu deiner Wunschliste hinzugefügt. Stöbere in unserer Kollektion und füge deine Lieblingsartikel hinzu, um später einfachen Zugriff zu haben."
         },
         "empty_state_button_text": {
           "label": "Button Text",

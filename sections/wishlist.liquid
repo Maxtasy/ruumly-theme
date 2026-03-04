@@ -27,8 +27,10 @@
         columns_desktop: section.settings.columns_desktop
       %}
 
+      <div class="WishlistSection__Sentinel"></div>
+
       <template id="product-card-skeleton">
-        <li>
+        <li class="WishlistSection__Item">
           {% render 'product-card-skeleton' %}
         </li>
       </template>
@@ -44,6 +46,14 @@
 
   .WishlistSection__EmptyState--Active {
     display: block;
+  }
+
+  .WishlistSection__Item {
+    transition: opacity var(--transition-duration-medium) var(--transition-timing);
+  }
+
+  .WishlistSection__Item--Removing {
+    opacity: 0;
   }
 {% endstylesheet %}
 
@@ -153,8 +163,9 @@
     },
     {
       "type": "url",
-      "id": "link_url",
-      "label": "t:sections.all.settings.link_url.label"
+      "id": "empty_state_button_link",
+      "label": "t:sections.all.settings.link_url.label",
+      "default": "/collections/all"
     }
   ],
   "presets": [

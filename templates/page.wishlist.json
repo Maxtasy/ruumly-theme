@@ -12,7 +12,9 @@
     "wishlist": {
       "type": "wishlist",
       "settings": {
-        "heading": "Wishlist"
+        "heading": "Wishlist",
+        "enable_wishlist_button": true,
+        "enable_quick_add_button": true
       }
     }
   },

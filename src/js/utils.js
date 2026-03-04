@@ -6,6 +6,10 @@ export function debounce(func, delay) {
   };
 }
 
+export function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 export function getClosestSectionId(selector) {
   return document.querySelector(selector)?.closest(".shopify-section")?.id.split("shopify-section-")[1];
 }

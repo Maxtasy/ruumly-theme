@@ -825,11 +825,11 @@
       "settings": {
         "empty_state_heading": {
           "label": "Heading",
-          "default": "Your wishlist is empty :("
+          "default": "Your wishlist is empty"
         },
         "empty_state_text": {
           "label": "Text",
-          "default": "Save products you love to keep track of them here. Start exploring and add your favorites."
+          "default": "Looks like you haven't added any products to your wishlist yet. Start exploring our collection and add your favorite items to your wishlist for easy access later."
         },
         "empty_state_button_text": {
           "label": "Button Text",
