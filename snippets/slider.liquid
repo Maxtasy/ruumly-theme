@@ -16,6 +16,12 @@
   <div class="Slider__Inner u-NoScrollbar">
     {{ content }}
   </div>
+
+  <div class="Slider__Navigation">
+    {% render 'button', icon: 'arrow-left', variant: 'plain' %}
+
+    {% render 'button', icon: 'arrow-right', variant: 'plain' %}
+  </div>
 </div>
 
 {% stylesheet %}
@@ -25,6 +31,13 @@
     position: relative;
     margin-block: calc(var(--section-padding-inline-mobile) * -1);
     margin-inline: calc(var(--section-padding-inline-mobile) * -1);
+  }
+
+  .Slider__Navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-xxl);
   }
 
   @media screen and (min-width: 769px) {
