@@ -1,5 +1,6 @@
 {
   "global": {
+    "checkout": "Kasse",
     "free": "Kostenlos",
     "shipping": "Versand",
     "submit": "Absenden",
@@ -71,9 +72,6 @@
     },
     "blog_article_card": {
       "button_text": "Mehr erfahren"
-    },
-    "checkout_button": {
-      "button_text": "Kasse"
     },
     "close_button": {
       "aria_label": "Schließen"
