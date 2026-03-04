@@ -50,7 +50,7 @@ export class WishlistButtons extends CustomComponentMixin(HTMLElement) {
     if (destinationElement && !prefersReducedMotion) {
       const clonedIconElement = iconElement.cloneNode(true);
 
-      this.appendChild(clonedIconElement);
+      document.body.appendChild(clonedIconElement);
 
       clonedIconElement.style.position = "fixed";
       clonedIconElement.style.zIndex = "var(--layer-10)";
