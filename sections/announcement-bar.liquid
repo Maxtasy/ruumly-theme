@@ -2,10 +2,10 @@
   class="
     Section
     Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
-    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
     {% if section.settings.sticky %}
       Section--Sticky
     {% endif %}
+    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
   "
 
   {% if section.settings.sticky %}
