@@ -691,6 +691,20 @@
                   "label": "Unter Title"
                 }
               }
+            },
+            "show_vendor": {
+              "label": "Verköufer anzeigen"
+            },
+            "vendor_position": {
+              "label": "Verkäufer Position",
+              "options": {
+                "above": {
+                  "label": "Über Titel"
+                },
+                "below": {
+                  "label": "Unter Titel"
+                }
+              }
             }
           }
         },
