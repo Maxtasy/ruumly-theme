@@ -31,6 +31,17 @@
                 %}
               </div>
             {% endif %}
+
+            {% if block.settings.show_vendor and product.vendor != blank %}
+              <div
+                class="ProductForm__Vendor"
+                {% if block.settings.vendor_position == 'above' %}
+                  style="--order: -1;"
+                {% endif %}
+              >
+                {% render 'text', text: product.vendor, variant: 'body-small', color: 'primary' %}
+              </div>
+            {% endif %}
           </div>
 
         {% when 'product-variant-selector' %}
@@ -104,10 +115,14 @@
   .ProductForm__Title {
     display: flex;
     flex-direction: column;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
   }
 
   .ProductForm__Sku {
+    order: var(--order, 1);
+  }
+
+  .ProductForm__Vendor {
     order: var(--order, 1);
   }
 

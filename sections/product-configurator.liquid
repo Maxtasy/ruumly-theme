@@ -200,6 +200,29 @@
           ],
           "default": "below",
           "visible_if": "{{ block.settings.show_sku }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_vendor",
+          "label": "t:sections.product_configurator.blocks.title.settings.show_vendor.label",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "vendor_position",
+          "label": "t:sections.product_configurator.blocks.title.settings.vendor_position.label",
+          "options": [
+            {
+              "value": "above",
+              "label": "t:sections.product_configurator.blocks.title.settings.vendor_position.options.above.label"
+            },
+            {
+              "value": "below",
+              "label": "t:sections.product_configurator.blocks.title.settings.vendor_position.options.below.label"
+            }
+          ],
+          "default": "below",
+          "visible_if": "{{ block.settings.show_vendor }}"
         }
       ]
     },

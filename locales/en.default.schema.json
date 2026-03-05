@@ -691,6 +691,20 @@
                   "label": "Below Title"
                 }
               }
+            },
+            "show_vendor": {
+              "label": "Show Vendor"
+            },
+            "vendor_position": {
+              "label": "Vendor Position",
+              "options": {
+                "above": {
+                  "label": "Above Title"
+                },
+                "below": {
+                  "label": "Below Title"
+                }
+              }
             }
           }
         },
