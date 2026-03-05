@@ -6,7 +6,7 @@
   @param {number} [slides_per_view_mobile] - The number of slides to be displayed per view on mobile devices.
 {% enddoc %}
 
-<div
+<slider-component
   class="Slider"
   style="
     --slider-slides-per-view-desktop: {{ slides_per_view_desktop }};
@@ -18,11 +18,11 @@
   </div>
 
   <div class="Slider__Navigation">
-    {% render 'button', icon: 'arrow-left', variant: 'plain' %}
+    {% render 'button', icon: 'arrow-left', variant: 'plain', action: 'prev', disabled: true %}
 
-    {% render 'button', icon: 'arrow-right', variant: 'plain' %}
+    {% render 'button', icon: 'arrow-right', variant: 'plain', action: 'next' %}
   </div>
-</div>
+</slider-component>
 
 {% stylesheet %}
   .Slider {

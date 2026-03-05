@@ -20,11 +20,19 @@ export class Button extends CustomComponentMixin(HTMLElement) {
   }
 
   disable() {
-    this.disabled = true;
+    if (!this.nativeButtonElement) return;
+
+    this.nativeButtonElement.disabled = true;
   }
 
   enable() {
-    this.disabled = false;
+    if (!this.nativeButtonElement) return;
+
+    this.nativeButtonElement.disabled = false;
+  }
+
+  get nativeButtonElement() {
+    return this.querySelector("button");
   }
 }
 
