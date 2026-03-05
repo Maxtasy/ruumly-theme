@@ -21,13 +21,11 @@ export class Slider extends CustomComponentMixin(HTMLElement) {
   }
 
   handlePrevClick() {
-    if (this.currentIndex <= 0) return;
-
     this.currentIndex--;
 
     this.nextButtonElement.enable();
 
-    if (this.currentIndex === 0) {
+    if (this.reachedStart()) {
       this.prevButtonElement.disable();
     }
 
@@ -35,13 +33,11 @@ export class Slider extends CustomComponentMixin(HTMLElement) {
   }
 
   handleNextClick() {
-    if (this.currentIndex >= this.slideItemElements.length - 1) return;
-
     this.currentIndex++;
 
     this.prevButtonElement.enable();
 
-    if (this.currentIndex === this.slideItemElements.length - 1) {
+    if (this.reachedEnd()) {
       this.nextButtonElement.disable();
     }
 
@@ -52,7 +48,26 @@ export class Slider extends CustomComponentMixin(HTMLElement) {
     this.slideItemElements[this.currentIndex].scrollIntoView({
       behavior: "smooth",
       block: "nearest",
+      inline: "start",
     });
+  }
+
+  reachedStart() {
+    // Returns true if the second slide item is completely visible in the slider viewport.
+    const secondSlideItem = this.slideItemElements[1];
+    const sliderRect = this.getBoundingClientRect();
+    const secondSlideItemRect = secondSlideItem.getBoundingClientRect();
+
+    return secondSlideItemRect.left >= sliderRect.left;
+  }
+
+  reachedEnd() {
+    // Returns true if the second to last slide item is completely visible in the slider viewport.
+    const secondToLastSlideItem = this.slideItemElements[this.slideItemElements.length - 2];
+    const sliderRect = this.getBoundingClientRect();
+    const secondToLastSlideItemRect = secondToLastSlideItem.getBoundingClientRect();
+
+    return secondToLastSlideItemRect.right <= sliderRect.right;
   }
 
   get slideItemElements() {
