@@ -17,6 +17,17 @@
           <div class="ProductForm__Title">
             {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
 
+            {% if block.settings.show_vendor and product.vendor != blank %}
+              <div
+                class="ProductForm__Vendor"
+                {% if block.settings.vendor_position == 'above' %}
+                  style="--order: -1;"
+                {% endif %}
+              >
+                {% render 'text', text: product.vendor, variant: 'body-small', color: 'primary-muted' %}
+              </div>
+            {% endif %}
+
             {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
               <div
                 class="ProductForm__Sku"
@@ -29,17 +40,6 @@
                   variant: 'body-small',
                   color: 'primary-muted'
                 %}
-              </div>
-            {% endif %}
-
-            {% if block.settings.show_vendor and product.vendor != blank %}
-              <div
-                class="ProductForm__Vendor"
-                {% if block.settings.vendor_position == 'above' %}
-                  style="--order: -1;"
-                {% endif %}
-              >
-                {% render 'text', text: product.vendor, variant: 'body-small', color: 'primary' %}
               </div>
             {% endif %}
           </div>

@@ -693,10 +693,10 @@
               }
             },
             "show_vendor": {
-              "label": "Verköufer anzeigen"
+              "label": "Hersteller anzeigen"
             },
             "vendor_position": {
-              "label": "Verkäufer Position",
+              "label": "Hersteller Position",
               "options": {
                 "above": {
                   "label": "Über Titel"
