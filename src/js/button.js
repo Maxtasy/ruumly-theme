@@ -17,6 +17,8 @@ export class Button extends CustomComponentMixin(HTMLElement) {
 
   handleClick() {
     this.publish(`button:click`, this.parsedData.eventDetails);
+
+    this.loadingElement?.classList.add("Button__Loading--Active");
   }
 
   disable() {
@@ -29,6 +31,10 @@ export class Button extends CustomComponentMixin(HTMLElement) {
     if (!this.nativeButtonElement) return;
 
     this.nativeButtonElement.disabled = false;
+  }
+
+  get loadingElement() {
+    return this.querySelector(".Button__Loading");
   }
 
   get nativeButtonElement() {

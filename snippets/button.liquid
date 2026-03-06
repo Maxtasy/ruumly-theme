@@ -16,6 +16,7 @@
   @param {string} [attributes] - Optional additional attributes.
   @param {string} [type] - Optional button type.
   @param {boolean} [full_width] - Whether the button is full width.
+  @param {boolean} [has_loading_state] - Whether the button has a loading state.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
@@ -97,6 +98,16 @@
 
       {{ attributes }}
     >
+      {% capture loading %}
+        <div class="Button__Loading">
+          {% render 'loading-spinner' %}
+        </div>
+      {% endcapture %}
+
+      {% if has_loading_state %}
+        {{ loading }}
+      {% endif %}
+
       {% if text %}
         {{ text }}
       {% endif %}
@@ -114,6 +125,7 @@
 
 {% stylesheet %}
   .Button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -207,6 +219,20 @@
   .Button--SizeLarge {
     --padding-block: var(--size-m);
     --padding-inline: var(--size-xl);
+  }
+
+  .Button__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
+  }
+
+  .Button__Loading--Active {
+    display: flex;
   }
 
   .Button[disabled] {
