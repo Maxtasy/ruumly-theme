@@ -55,10 +55,15 @@
       {% render 'alert', variant: 'warning', text: '', text_variant: 'body-small' %}
     </template>
   </div>
+
+  <div class="LineItem__Loading">
+    {% render 'loading-spinner', size: 'medium' %}
+  </div>
 </line-item-component>
 
 {% stylesheet %}
   .LineItem {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--size-xxs);
@@ -70,6 +75,20 @@
   .LineItem__Main {
     display: flex;
     gap: var(--size-m);
+  }
+
+  .LineItem__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
+  }
+
+  .LineItem__Loading--Active {
+    display: flex;
   }
 
   .LineItem__Image {
