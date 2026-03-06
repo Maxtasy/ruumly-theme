@@ -36,13 +36,35 @@
 
           <div class="Tabs__Item">
             {% assign products = block.settings.collection.products | default: block.settings.product_list %}
-            {% render 'product-list',
-              products: products,
-              limit: limit,
-              rating_list_prefix: block.id,
-              enable_quick_add_button: block.settings.enable_quick_add_button,
-              enable_wishlist_button: block.settings.enable_wishlist_button
-            %}
+
+            {% if block.settings.enable_slider %}
+              {% capture content %}
+                {% for product in products %}
+                  {% render 'product-card',
+                    title: product.title,
+                    image: product.featured_image,
+                    swap_image: product.images[1],
+                    price: product.price,
+                    compare_at_price: product.compare_at_price,
+                    url: product.selected_or_first_available_variant.url,
+                    rating: product.metafields.custom.rating.value.rating,
+                    enable_quick_add_button: block.settings.enable_quick_add_button,
+                    enable_wishlist_button: block.settings.enable_wishlist_button,
+                    product: product,
+                  %}
+                {% endfor %}
+              {% endcapture %}
+
+              {% render 'slider', content: content, slides_per_view_desktop: 4, slides_per_view_mobile: 1 %}
+            {% else %}
+              {% render 'product-list',
+                products: products,
+                limit: limit,
+                rating_list_prefix: block.id,
+                enable_quick_add_button: block.settings.enable_quick_add_button,
+                enable_wishlist_button: block.settings.enable_wishlist_button
+              %}
+            {% endif %}
           </div>
         {% endfor %}
       </div>
@@ -152,6 +174,11 @@
           "type": "product_list",
           "id": "product_list",
           "label": "t:sections.all.settings.product_list.label"
+        },
+        {
+          "type": "checkbox",
+          "id": "enable_slider",
+          "label": "t:sections.all.settings.enable_slider.label"
         },
         {
           "type": "checkbox",

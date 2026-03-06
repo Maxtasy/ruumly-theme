@@ -6,7 +6,7 @@
   @param {number} [slides_per_view_mobile] - The number of slides to be displayed per view on mobile devices.
 {% enddoc %}
 
-<div
+<slider-component
   class="Slider"
   style="
     --slider-slides-per-view-desktop: {{ slides_per_view_desktop }};
@@ -16,7 +16,13 @@
   <div class="Slider__Inner u-NoScrollbar">
     {{ content }}
   </div>
-</div>
+
+  <div class="Slider__Navigation">
+    {% render 'button', icon: 'arrow-left', variant: 'plain', action: 'prev', disabled: true %}
+
+    {% render 'button', icon: 'arrow-right', variant: 'plain', action: 'next' %}
+  </div>
+</slider-component>
 
 {% stylesheet %}
   .Slider {
@@ -25,6 +31,13 @@
     position: relative;
     margin-block: calc(var(--section-padding-inline-mobile) * -1);
     margin-inline: calc(var(--section-padding-inline-mobile) * -1);
+  }
+
+  .Slider__Navigation {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-xxl);
   }
 
   @media screen and (min-width: 769px) {
