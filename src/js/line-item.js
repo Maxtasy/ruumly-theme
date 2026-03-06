@@ -36,7 +36,9 @@ class LineItem extends CustomComponentMixin(HTMLElement) {
     }
   }
 
-  async handleRemove() {
+  async handleRemove(_, event) {
+    event.target.setLoading(true);
+
     const response = await cart.remove({ key: this.key, sections: getClosestSectionId(".CartDrawer") });
 
     if (response) {

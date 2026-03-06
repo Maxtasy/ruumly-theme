@@ -17,8 +17,10 @@ export class Button extends CustomComponentMixin(HTMLElement) {
 
   handleClick() {
     this.publish(`button:click`, this.parsedData.eventDetails);
+  }
 
-    this.loadingElement?.classList.add("Button__Loading--Active");
+  setLoading(force) {
+    this.loadingElement?.classList.toggle("Button__Loading--Active", force);
   }
 
   disable() {
