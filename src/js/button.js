@@ -19,6 +19,10 @@ export class Button extends CustomComponentMixin(HTMLElement) {
     this.publish(`button:click`, this.parsedData.eventDetails);
   }
 
+  setLoading(force) {
+    this.loadingElement?.classList.toggle("Button__Loading--Active", force);
+  }
+
   disable() {
     if (!this.nativeButtonElement) return;
 
@@ -29,6 +33,10 @@ export class Button extends CustomComponentMixin(HTMLElement) {
     if (!this.nativeButtonElement) return;
 
     this.nativeButtonElement.disabled = false;
+  }
+
+  get loadingElement() {
+    return this.querySelector(".Button__Loading");
   }
 
   get nativeButtonElement() {

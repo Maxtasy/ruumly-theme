@@ -47,6 +47,10 @@
 
     {{ attributes }}
   >
+    <div class="Button__Loading">
+      {% render 'loading-spinner' %}
+    </div>
+
     {% if text %}
       {{ text }}
     {% endif %}
@@ -97,6 +101,10 @@
 
       {{ attributes }}
     >
+      <div class="Button__Loading">
+        {% render 'loading-spinner' %}
+      </div>
+
       {% if text %}
         {{ text }}
       {% endif %}
@@ -114,6 +122,7 @@
 
 {% stylesheet %}
   .Button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -207,6 +216,20 @@
   .Button--SizeLarge {
     --padding-block: var(--size-m);
     --padding-inline: var(--size-xl);
+  }
+
+  .Button__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
+  }
+
+  .Button__Loading--Active {
+    display: flex;
   }
 
   .Button[disabled] {
