@@ -23,6 +23,8 @@ class LineItem extends CustomComponentMixin(HTMLElement) {
   }
 
   async handleQuantityUpdate({ desiredQuantity }) {
+    this.setLoading(true);
+
     const response = await cart.update({
       updates: { [`${this.key}`]: desiredQuantity },
       sections: getClosestSectionId(".CartDrawer"),
@@ -36,8 +38,8 @@ class LineItem extends CustomComponentMixin(HTMLElement) {
     }
   }
 
-  async handleRemove(_, event) {
-    event.target.setLoading(true);
+  async handleRemove() {
+    this.setLoading(true);
 
     const response = await cart.remove({ key: this.key, sections: getClosestSectionId(".CartDrawer") });
 
@@ -47,6 +49,10 @@ class LineItem extends CustomComponentMixin(HTMLElement) {
         items: response.items,
       });
     }
+  }
+
+  setLoading(force) {
+    this.loadingElement?.classList.toggle("LineItem__Loading--Active", force);
   }
 
   updateAlerts(alerts) {
@@ -69,6 +75,10 @@ class LineItem extends CustomComponentMixin(HTMLElement) {
 
   get alertTemplateElement() {
     return this.querySelector("template.LineItem__AlertTemplate");
+  }
+
+  get loadingElement() {
+    return this.querySelector(".LineItem__Loading");
   }
 }
 
