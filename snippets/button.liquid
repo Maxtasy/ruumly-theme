@@ -98,14 +98,10 @@
 
       {{ attributes }}
     >
-      {% capture loading %}
+      {% if has_loading_state %}
         <div class="Button__Loading">
           {% render 'loading-spinner' %}
         </div>
-      {% endcapture %}
-
-      {% if has_loading_state %}
-        {{ loading }}
       {% endif %}
 
       {% if text %}
