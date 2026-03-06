@@ -20,9 +20,9 @@
     >
       <div class="ProductRecommendations__Content">
         {% if recommendations.performed? %}
-          {% render 'product-list', products: recommendations.products %}
+          {% render 'product-list', products: recommendations.products, columns_mobile: 1 %}
         {% else %}
-          {% render 'product-list', use_placeholders: true, limit: limit %}
+          {% render 'product-list', use_placeholders: true, limit: limit, columns_mobile: 1 %}
         {% endif %}
       </div>
     </product-recommendations-component>
