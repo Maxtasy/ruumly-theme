@@ -169,27 +169,6 @@
     overflow: hidden;
   }
 
-  .ProductCard--HoverZoom .ProductCard__Image .Image {
-    transform: scale(0.8);
-    transition: var(--transition-duration-medium) var(--transition-timing);
-  }
-
-  .ProductCard--HoverZoom .ProductCard__Image:hover .Image {
-    transform: scale(1);
-  }
-
-  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image {
-    transition: transform var(--transition-duration-short) var(--transition-timing);
-  }
-
-  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:first-of-type {
-    transform: translateX(0);
-  }
-
-  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:first-of-type {
-    transform: translateX(-100%);
-  }
-
   .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:nth-of-type(2) {
     position: absolute;
     inset: 0;
@@ -199,8 +178,31 @@
     transform: translateX(calc(100% + 1px));
   }
 
-  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
-    transform: translateX(0);
+  @media (hover: hover) {
+    .ProductCard--HoverZoom .ProductCard__Image .Image {
+      transform: scale(0.8);
+      transition: var(--transition-duration-medium) var(--transition-timing);
+    }
+
+    .ProductCard--HoverZoom .ProductCard__Image:hover .Image {
+      transform: scale(1);
+    }
+
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image {
+      transition: transform var(--transition-duration-short) var(--transition-timing);
+    }
+
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:first-of-type {
+      transform: translateX(0);
+    }
+
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:first-of-type {
+      transform: translateX(-100%);
+    }
+
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
+      transform: translateX(0);
+    }
   }
 
   .ProductCard__Actions {
