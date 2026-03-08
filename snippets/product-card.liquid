@@ -169,10 +169,13 @@
     overflow: hidden;
   }
 
-  @media (max-width: 769px) {
-    .ProductCard--HoverSwap .ProductCard__Image > :nth-child(2) {
-      display: none;
-    }
+  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:nth-of-type(2) {
+    position: absolute;
+    inset: 0;
+
+    /* Add 1px to the translate to account for fractional pixels that might get rounded by the browser and would lead
+    to the second image being barely visible. */
+    transform: translateX(calc(100% + 1px));
   }
 
   @media (hover: hover) {
@@ -195,15 +198,6 @@
 
     .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:first-of-type {
       transform: translateX(-100%);
-    }
-
-    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:nth-of-type(2) {
-      position: absolute;
-      inset: 0;
-
-      /* Add 1px to the translate to account for fractional pixels that might get rounded by the browser and would lead
-    to the second image being barely visible. */
-      transform: translateX(calc(100% + 1px));
     }
 
     .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
