@@ -39,23 +39,76 @@
   {% endif %}
 </div>
 
-<div class="Filters__Mobile u-Hidden--Desktop">
-  {% render 'button', text: 'Filters', action: 'open-drawer:filters-mobile' %}
+{% assign mobile_filter_drawers = '' %}
 
-  {% render 'button', text: 'Sort By' %}
+<div class="FiltersMobile u-Hidden--Desktop">
+  {% capture filters_button_content %}
+    {% render 'text', text: 'Filters', as: 'b' %}
+    {% render 'icon', icon: 'sliders-horizontal' %}
+  {% endcapture %}
 
-  <ul class="Filters__Drawer">
-    {% capture content %}
-        {% for filter in filters %}
-          <li>
-            {% render 'button', text: filter.label, variant: 'plain', icon: 'chevron-right' %}
-          </li>
-        {% endfor %}
-      {% endcapture %}
-  </ul>
+  {% render 'button',
+    content: filters_button_content,
+    action: 'open-drawer:filters-mobile',
+    variant: 'plain',
+    size: 'small'
+  %}
+
+  {% render 'sort-by' %}
+
+  {% capture content %}
+    <ul class="FiltersMobile__Drawer u-NoList">
+      {% for filter in filters %}
+        {% assign filter_handle = filter.label | handleize %}
+        {% assign filter_drawer_name = 'filter-drawer-' | append: filter_handle %}
+
+        <li>
+          {% capture filter_button_content %}
+            <div class="FiltersMobile__Item">
+              {% render 'text', text: filter.label, as: 'b' %}
+              {% render 'icon', icon: 'chevron-right' %}
+            </div>
+          {% endcapture %}
+
+          {% assign action = 'open-drawer:' | append: filter_drawer_name %}
+          {% render 'button', content: filter_button_content, variant: 'plain', size: 'small', full_width: true, action: action %}
+        </li>
+
+        {% capture filter_drawer_content %} 
+          <ul
+            class="
+              Filter__Values
+              {% if filter.presentation == 'text' or filter.presentation == nil %}
+                Filter__Values--Vertical
+              {% endif %}
+              u-NoList
+            "
+          >
+            {% for filter_value in filter.values %}
+              {% assign is_filter_value_disabled = false %}
+              {% if filter_value.count < 1 %}
+                {% assign is_filter_value_disabled = true %}
+              {% endif %}
+              <li>
+                {% render 'filter-value', filter_value: filter_value, disabled: is_filter_value_disabled %}
+              </li>
+            {% endfor %}
+          </ul>
+        {% endcapture %}
+
+        {% capture filter_drawer %}
+          {% render 'drawer', heading: filter.label, name: filter_drawer_name, content: filter_drawer_content, from: 'left' %}
+        {% endcapture %}
+
+        {% assign mobile_filter_drawers = mobile_filter_drawers | append: filter_drawer %}
+      {% endfor %}
+    </ul>
+  {% endcapture %}
+
+  {% render 'drawer', heading: 'Filters', name: 'filters-mobile', content: content, from: 'left', active: true %}
+
+  {{ mobile_filter_drawers }}
 </div>
-
-{% render 'drawer', name: 'filters-mobile', content: content, from: 'left', active: true %}
 
 {% stylesheet %}
   .Filters {
@@ -77,5 +130,26 @@
 
   .Filters__SortBy {
     margin-left: auto;
+  }
+
+  .FiltersMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--size-xs);
+  }
+
+  .FiltersMobile__Drawer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .FiltersMobile__Item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--size-xs);
+    width: 100%;
   }
 {% endstylesheet %}
