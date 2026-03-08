@@ -39,11 +39,34 @@
   {% endif %}
 </div>
 
+<div class="Filters__Mobile u-Hidden--Desktop">
+  {% render 'button', text: 'Filters', action: 'open-drawer:filters-mobile' %}
+
+  {% render 'button', text: 'Sort By' %}
+
+  <ul class="Filters__Drawer">
+    {% capture content %}
+        {% for filter in filters %}
+          <li>
+            {% render 'button', text: filter.label, variant: 'plain', icon: 'chevron-right' %}
+          </li>
+        {% endfor %}
+      {% endcapture %}
+  </ul>
+</div>
+
+{% render 'drawer', name: 'filters-mobile', content: content, from: 'left', active: true %}
+
 {% stylesheet %}
   .Filters {
     display: flex;
     flex-direction: column;
     gap: var(--size-xs);
+  }
+
+  .FiltersMobile {
+    display: flex;
+    gap: var(--size-m);
   }
 
   .Filters__Row {

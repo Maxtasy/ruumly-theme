@@ -30,6 +30,16 @@
     transition: rotate var(--transition-duration-medium) var(--transition-timing);
   }
 
+  @media screen and (max-width: 768px) {
+    .DropdownTrigger {
+      padding-block: var(--size-s);
+    }
+
+    .DropdownTrigger__Icon {
+      margin-left: auto;
+    }
+  }
+
   .DropdownTrigger__Icon--Active {
     rotate: 180deg;
   }
