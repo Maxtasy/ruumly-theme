@@ -5,6 +5,11 @@
   @param {boolean} filters_active - Whether any filter is active.
 {% enddoc %}
 
+{% assign active_count_summary = 0 %}
+{% for filter in filters %}
+  {% assign active_count_summary = active_count_summary | plus: filter.active_values.size %}
+{% endfor %}
+
 <div class="Filters u-Hidden--Mobile">
   <div class="Filters__Row">
     {% for filter in filters %}
@@ -46,6 +51,12 @@
     {% assign filters_button_text = 'components.filter.filters' | t %}
     {% render 'text', text: filters_button_text, as: 'b' %}
 
+    {% if active_count_summary > 0 %}
+      <div class="FiltersMobile__ActiveCount">
+        {% render 'text', text: active_count_summary, as: 'b' %}
+      </div>
+    {% endif %}
+
     {% render 'icon', icon: 'sliders-horizontal' %}
   {% endcapture %}
 
@@ -60,18 +71,30 @@
 
   {% capture content %}
     <ul class="FiltersMobile__Drawer u-NoList">
+      
       {% for filter in filters %}
         {% assign filter_handle = filter.label | handleize %}
         {% assign filter_drawer_name = 'filter-drawer-' | append: filter_handle %}
+        {% assign active_count = filter.active_values.size %}
 
         <li>
           {% capture filter_button_content %}
             <div class="FiltersMobile__Item">
+              <div class="FiltersMobile__ItemLeft">
               {% render 'text', text: filter.label, as: 'b' %}
+
+              {% if active_count > 0 %}
+                <div class="FiltersMobile__ActiveCount">
+                  {% render 'text', text: active_count, as: 'b' %} 
+                </div>     
+              {% endif %}
+
+              </div>
+              
               {% render 'icon', icon: 'chevron-right' %}
             </div>
           {% endcapture %}
-
+          
           {% assign action = 'open-drawer:' | append: filter_drawer_name %}
           {% render 'button', content: filter_button_content, variant: 'plain', size: 'small', full_width: true, action: action %}
         </li>
@@ -153,5 +176,22 @@
     justify-content: space-between;
     gap: var(--size-xs);
     width: 100%;
+  }
+
+  .FiltersMobile__ItemLeft {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xxs);
+  }
+
+  .FiltersMobile__ActiveCount {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-m);
+    height: var(--size-m);
+    background-color: var(--t-primary);
+    border-radius: var(--t-border-radius-circle);
+    color: var(--t-background-dark);
   }
 {% endstylesheet %}
