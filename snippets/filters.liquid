@@ -53,7 +53,7 @@
 
     {% if active_count_summary > 0 %}
       <div class="FiltersMobile__ActiveCount">
-        {% render 'text', text: active_count_summary, as: 'b' %}
+        {% render 'text', text: active_count_summary, as: 'b', variant: 'body-small' %}
       </div>
     {% endif %}
 
@@ -85,7 +85,7 @@
 
               {% if active_count > 0 %}
                 <div class="FiltersMobile__ActiveCount">
-                  {% render 'text', text: active_count, as: 'b' %} 
+                  {% render 'text', text: active_count, as: 'b', variant: 'body-small' %} 
                 </div>     
               {% endif %}
 
@@ -192,6 +192,9 @@
     height: var(--size-m);
     background-color: var(--t-primary);
     border-radius: var(--t-border-radius-circle);
+  }
+
+  .FiltersMobile__ActiveCount b {
     color: var(--t-background-dark);
   }
 {% endstylesheet %}
