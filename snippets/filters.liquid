@@ -5,10 +5,12 @@
   @param {boolean} filters_active - Whether any filter is active.
 {% enddoc %}
 
-{% assign active_count_summary = 0 %}
-{% for filter in filters %}
-  {% assign active_count_summary = active_count_summary | plus: filter.active_values.size %}
-{% endfor %}
+{% liquid
+  assign active_count_summary = 0
+  for filter in filters
+    assign active_count_summary = active_count_summary | plus: filter.active_values.size
+  endfor
+%}
 
 <div class="Filters u-Hidden--Mobile">
   <div class="Filters__Row">
