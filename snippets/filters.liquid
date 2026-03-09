@@ -6,9 +6,9 @@
 {% enddoc %}
 
 {% liquid
-  assign active_count_summary = 0
+  assign total_active_count = 0
   for filter in filters
-    assign active_count_summary = active_count_summary | plus: filter.active_values.size
+    assign total_active_count = total_active_count | plus: filter.active_values.size
   endfor
 %}
 
@@ -19,7 +19,7 @@
     {% endfor %}
 
     <div class="Filters__SortBy">
-      {% render 'sort-by', handle: 'sort-by' %}
+      {% render 'sort-by' %}
     </div>
   </div>
 
@@ -50,13 +50,11 @@
 
 <div class="FiltersMobile u-Hidden--Desktop">
   {% capture filters_button_content %}
-    {% assign filters_button_text = 'components.filter.filters' | t %}
-    {% render 'text', text: filters_button_text, as: 'b' %}
+    {% assign filters_text = 'components.filter.filters' | t %}
+    {% render 'text', text: filters_text, as: 'b' %}
 
-    {% if active_count_summary > 0 %}
-      <div class="FiltersMobile__ActiveCount">
-        {% render 'text', text: active_count_summary, as: 'b', variant: 'body-small' %}
-      </div>
+    {% if total_active_count > 0 %}
+      {% render 'count-indicator', count: total_active_count %}
     {% endif %}
 
     {% render 'icon', icon: 'sliders-horizontal' %}
@@ -73,26 +71,22 @@
 
   {% capture content %}
     <ul class="FiltersMobile__Drawer u-NoList">
-      
       {% for filter in filters %}
         {% assign filter_handle = filter.label | handleize %}
         {% assign filter_drawer_name = 'filter-drawer-' | append: filter_handle %}
-        {% assign active_count = filter.active_values.size %}
+        {% assign filter_active_count = filter.active_values.size %}
 
         <li>
           {% capture filter_button_content %}
             <div class="FiltersMobile__Item">
               <div class="FiltersMobile__ItemLeft">
-              {% render 'text', text: filter.label, as: 'b' %}
+                {% render 'text', text: filter.label, as: 'b' %}
 
-              {% if active_count > 0 %}
-                <div class="FiltersMobile__ActiveCount">
-                  {% render 'text', text: active_count, as: 'b', variant: 'body-small' %} 
-                </div>     
-              {% endif %}
-
+                {% if filter_active_count > 0 %}
+                  {% render 'count-indicator', count: filter_active_count %}    
+                {% endif %}
               </div>
-              
+
               {% render 'icon', icon: 'chevron-right' %}
             </div>
           {% endcapture %}
@@ -102,25 +96,27 @@
         </li>
 
         {% capture filter_drawer_content %} 
-          <ul
-            class="
-              Filter__Values
-              {% if filter.presentation == 'text' or filter.presentation == nil %}
-                Filter__Values--Vertical
-              {% endif %}
-              u-NoList
-            "
-          >
-            {% for filter_value in filter.values %}
-              {% assign is_filter_value_disabled = false %}
-              {% if filter_value.count < 1 %}
-                {% assign is_filter_value_disabled = true %}
-              {% endif %}
-              <li>
-                {% render 'filter-value', filter_value: filter_value, disabled: is_filter_value_disabled %}
-              </li>
-            {% endfor %}
-          </ul>
+          <div class="FiltersMobile__FilterValues">
+            <ul
+              class="
+                Filter__Values
+                {% if filter.presentation == 'text' or filter.presentation == nil %}
+                  Filter__Values--Vertical
+                {% endif %}
+                u-NoList
+              "
+            >
+              {% for filter_value in filter.values %}
+                {% assign is_filter_value_disabled = false %}
+                {% if filter_value.count < 1 %}
+                  {% assign is_filter_value_disabled = true %}
+                {% endif %}
+                <li>
+                  {% render 'filter-value', filter_value: filter_value, disabled: is_filter_value_disabled %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
         {% endcapture %}
 
         {% capture filter_drawer %}
@@ -132,7 +128,7 @@
     </ul>
   {% endcapture %}
 
-  {% render 'drawer', heading: 'Filters', name: 'filters-mobile', content: content, from: 'left' %}
+  {% render 'drawer', heading: filters_text, name: 'filters-mobile', content: content, from: 'left' %}
 
   {{ mobile_filter_drawers }}
 </div>
@@ -172,6 +168,10 @@
     gap: var(--size-m);
   }
 
+  .FiltersMobile__FilterValues {
+    padding-block: var(--size-xxs);
+  }
+
   .FiltersMobile__Item {
     display: flex;
     align-items: center;
@@ -184,19 +184,5 @@
     display: flex;
     align-items: center;
     gap: var(--size-xxs);
-  }
-
-  .FiltersMobile__ActiveCount {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: var(--size-m);
-    height: var(--size-m);
-    background-color: var(--t-primary);
-    border-radius: var(--t-border-radius-circle);
-  }
-
-  .FiltersMobile__ActiveCount b {
-    color: var(--t-background-dark);
   }
 {% endstylesheet %}
