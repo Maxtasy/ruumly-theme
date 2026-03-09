@@ -11,9 +11,7 @@
 
       {% assign active_count = filter.active_values.size %}
       {% if active_count > 0 %}
-        <div class="Filter__ActiveCount">
-          {% render 'text', text: active_count, variant: 'body-small', color: 'inherit', as: 'b' %}
-        </div>
+        {% render 'count-indicator', count: active_count %}
       {% endif %}
     </div>
   {% endcapture %}

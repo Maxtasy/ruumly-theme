@@ -14,9 +14,9 @@
     attributes: 'data-wishlist-page-button'
   %}
 
-  <span class="DynamicWishlistIcon__Indicator">
-    {% render 'text', text: '', variant: 'body-small', color: 'inherit', as: 'b' %}
-  </span>
+  <div class="DynamicWishlistIcon__Indicator">
+    {% render 'count-indicator', count: 0 %}
+  </div>
 </dynamic-wishlist-icon-component>
 
 {% stylesheet %}
@@ -27,15 +27,8 @@
   .DynamicWishlistIcon__Indicator {
     position: absolute;
     display: none;
-    align-items: center;
-    justify-content: center;
     top: 0;
     right: 0;
-    width: var(--size-m);
-    height: var(--size-m);
-    background-color: var(--t-primary);
-    border-radius: var(--t-border-radius-circle);
-    color: var(--t-background-dark);
     pointer-events: none;
   }
 

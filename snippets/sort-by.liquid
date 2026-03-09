@@ -1,10 +1,16 @@
+{% doc %}
+  Renders a Sort By component.
+
+  @param {string} [handle] - Connects the sort by with a dropdown content.
+{% enddoc %}
+
 <div class="SortBy">
   {% capture trigger_content %}
     {% assign text = 'components.filter.sort_by' | t %}
     {% render 'text', text: text, as: 'b' %}
   {% endcapture %}
 
-  {% render 'dropdown-trigger', content: trigger_content, handle: 'sort-by' %}
+  {% render 'dropdown-trigger', content: trigger_content, handle: handle %}
 
   <div class="SortBy__Content">
     {% capture content %}
@@ -24,7 +30,7 @@
       </ul>
     {% endcapture %}
 
-    {% render 'dropdown-content', content: content, handle: 'sort-by' %}
+    {% render 'dropdown-content', content: content, handle: handle %}
   </div>
 </div>
 

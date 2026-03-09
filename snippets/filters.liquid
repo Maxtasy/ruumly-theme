@@ -5,6 +5,13 @@
   @param {boolean} filters_active - Whether any filter is active.
 {% enddoc %}
 
+{% liquid
+  assign total_active_count = 0
+  for filter in filters
+    assign total_active_count = total_active_count | plus: filter.active_values.size
+  endfor
+%}
+
 <div class="Filters u-Hidden--Mobile">
   <div class="Filters__Row">
     {% for filter in filters %}
@@ -39,6 +46,93 @@
   {% endif %}
 </div>
 
+{% assign mobile_filter_drawers = '' %}
+
+<div class="FiltersMobile u-Hidden--Desktop">
+  {% capture filters_button_content %}
+    {% assign filters_text = 'components.filter.filters' | t %}
+    {% render 'text', text: filters_text, as: 'b' %}
+
+    {% if total_active_count > 0 %}
+      {% render 'count-indicator', count: total_active_count %}
+    {% endif %}
+
+    {% render 'icon', icon: 'sliders-horizontal' %}
+  {% endcapture %}
+
+  {% render 'button',
+    content: filters_button_content,
+    action: 'open-drawer:filters-mobile',
+    variant: 'plain',
+    size: 'small'
+  %}
+
+  {% render 'sort-by', handle: 'sort-by-mobile' %}
+
+  {% capture content %}
+    <ul class="FiltersMobile__Drawer u-NoList">
+      {% for filter in filters %}
+        {% assign filter_handle = filter.label | handleize %}
+        {% assign filter_drawer_name = 'filter-drawer-' | append: filter_handle %}
+        {% assign filter_active_count = filter.active_values.size %}
+
+        <li>
+          {% capture filter_button_content %}
+            <div class="FiltersMobile__Item">
+              <div class="FiltersMobile__ItemLeft">
+                {% render 'text', text: filter.label, as: 'b' %}
+
+                {% if filter_active_count > 0 %}
+                  {% render 'count-indicator', count: filter_active_count %}    
+                {% endif %}
+              </div>
+
+              {% render 'icon', icon: 'chevron-right' %}
+            </div>
+          {% endcapture %}
+          
+          {% assign action = 'open-drawer:' | append: filter_drawer_name %}
+          {% render 'button', content: filter_button_content, variant: 'plain', size: 'small', full_width: true, action: action %}
+        </li>
+
+        {% capture filter_drawer_content %} 
+          <div class="FiltersMobile__FilterValues">
+            <ul
+              class="
+                Filter__Values
+                {% if filter.presentation == 'text' or filter.presentation == nil %}
+                  Filter__Values--Vertical
+                {% endif %}
+                u-NoList
+              "
+            >
+              {% for filter_value in filter.values %}
+                {% assign is_filter_value_disabled = false %}
+                {% if filter_value.count < 1 %}
+                  {% assign is_filter_value_disabled = true %}
+                {% endif %}
+                <li>
+                  {% render 'filter-value', filter_value: filter_value, disabled: is_filter_value_disabled %}
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endcapture %}
+
+        {% capture filter_drawer %}
+          {% render 'drawer', heading: filter.label, name: filter_drawer_name, content: filter_drawer_content, from: 'left' %}
+        {% endcapture %}
+
+        {% assign mobile_filter_drawers = mobile_filter_drawers | append: filter_drawer %}
+      {% endfor %}
+    </ul>
+  {% endcapture %}
+
+  {% render 'drawer', heading: filters_text, name: 'filters-mobile', content: content, from: 'left' %}
+
+  {{ mobile_filter_drawers }}
+</div>
+
 {% stylesheet %}
   .Filters {
     display: flex;
@@ -59,5 +153,36 @@
 
   .Filters__SortBy {
     margin-left: auto;
+  }
+
+  .FiltersMobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--size-xs);
+  }
+
+  .FiltersMobile__Drawer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-m);
+  }
+
+  .FiltersMobile__FilterValues {
+    padding-block: var(--size-xxs);
+  }
+
+  .FiltersMobile__Item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--size-xs);
+    width: 100%;
+  }
+
+  .FiltersMobile__ItemLeft {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xxs);
   }
 {% endstylesheet %}

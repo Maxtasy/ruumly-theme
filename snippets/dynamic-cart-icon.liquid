@@ -11,7 +11,7 @@
     aria_label_key: 'components.shopping_cart_button.aria_label'
   %}
 
-  <span
+  <div
     class="
       DynamicCartIcon__Indicator
       {% if cart.item_count > 0 %}
@@ -19,8 +19,8 @@
       {% endif %}
     "
   >
-    {% render 'text', text: cart.item_count, variant: 'body-small', color: 'inherit', as: 'b' %}
-  </span>
+    {% render 'count-indicator', count: cart.item_count %}
+  </div>
 </dynamic-cart-icon-component>
 
 {% stylesheet %}
@@ -31,15 +31,8 @@
   .DynamicCartIcon__Indicator {
     position: absolute;
     display: none;
-    align-items: center;
-    justify-content: center;
     top: 0;
     right: 0;
-    width: var(--size-m);
-    height: var(--size-m);
-    background-color: var(--t-primary);
-    border-radius: var(--t-border-radius-circle);
-    color: var(--t-background-dark);
     pointer-events: none;
   }
 

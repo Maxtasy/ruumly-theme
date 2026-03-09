@@ -1,0 +1,22 @@
+{% doc %}
+  Renders a Count Indicator component.
+
+  @param {number} count - The count to show.
+{% enddoc %}
+
+<div class="CountIndicator">
+  {% render 'text', text: count, as: 'b', variant: 'body-small', color: 'inherit' %}
+</div>
+
+{% stylesheet %}
+  .CountIndicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size-m);
+    height: var(--size-m);
+    background-color: var(--t-primary);
+    border-radius: var(--t-border-radius-circle);
+    color: var(--t-background-dark);
+  }
+{% endstylesheet %}
