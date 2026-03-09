@@ -43,7 +43,9 @@
 
 <div class="FiltersMobile u-Hidden--Desktop">
   {% capture filters_button_content %}
-    {% render 'text', text: 'Filters', as: 'b' %}
+    {% assign filters_button_text = 'components.filter.filters' | t %}
+    {% render 'text', text: filters_button_text, as: 'b' %}
+    
     {% render 'icon', icon: 'sliders-horizontal' %}
   {% endcapture %}
 
@@ -105,7 +107,7 @@
     </ul>
   {% endcapture %}
 
-  {% render 'drawer', heading: 'Filters', name: 'filters-mobile', content: content, from: 'left', active: true %}
+  {% render 'drawer', heading: 'Filters', name: 'filters-mobile', content: content, from: 'left' %}
 
   {{ mobile_filter_drawers }}
 </div>
