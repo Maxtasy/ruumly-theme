@@ -12,7 +12,7 @@
     {% endfor %}
 
     <div class="Filters__SortBy">
-      {% render 'sort-by' %}
+      {% render 'sort-by', handle: 'sort-by' %}
     </div>
   </div>
 
@@ -45,7 +45,7 @@
   {% capture filters_button_content %}
     {% assign filters_button_text = 'components.filter.filters' | t %}
     {% render 'text', text: filters_button_text, as: 'b' %}
-    
+
     {% render 'icon', icon: 'sliders-horizontal' %}
   {% endcapture %}
 
@@ -56,7 +56,7 @@
     size: 'small'
   %}
 
-  {% render 'sort-by' %}
+  {% render 'sort-by', handle: 'sort-by-mobile' %}
 
   {% capture content %}
     <ul class="FiltersMobile__Drawer u-NoList">
