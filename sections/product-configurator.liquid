@@ -8,6 +8,10 @@
   <div class="Section__Inner">
     <div class="ProductConfigurator">
       <div class="ProductConfigurator__Gallery">
+        <div class="ProductConfigurator__SocialProof">
+          {% render 'social-proof', image_1: images['developer-user1.png'], image_2: images['developer-user2.jpg'] %}
+        </div>
+
         {% render 'gallery',
           images: product.images,
           variant_desktop: section.settings.gallery_desktop,
@@ -45,6 +49,10 @@
   .ProductConfigurator__Gallery {
     width: 100%;
     aspect-ratio: 1;
+  }
+
+  .ProductConfigurator__SocialProof {
+    padding-bottom: var(--size-xs);
   }
 
   @media screen and (min-width: 769px) {
@@ -264,6 +272,10 @@
     {
       "name": "t:blocks.selling_points.name",
       "type": "selling-points"
+    },
+    {
+      "name": "t:blocks.social_proof.name",
+      "type": "social-proof"
     }
   ]
 }

@@ -92,6 +92,9 @@
           {% render 'selling-points',
             selling_points: shop.metaobjects.selling_points['selling-points-1hylegwq'].selling_points.value
           %}
+
+        {% when 'social-proof' %}
+          {% render 'social-proof', image_1: images['developer-user1.png'], image_2: images['developer-user2.jpg'] %}
       {% endcase %}
     {% endfor %}
   </form>
