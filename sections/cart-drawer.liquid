@@ -70,7 +70,8 @@
       "id": "enable_free_shipping_progress",
       "label": "t:sections.cart_drawer.settings.enable_free_shipping_progress.label",
       "default": true,
-      "info": "t:sections.cart_drawer.settings.enable_free_shipping_progress.info"
+      "info": "t:sections.cart_drawer.settings.enable_free_shipping_progress.info",
+      "visible_if": "{{ section.settings.enable_free_shipping_alert }}"
     },
     {
       "type": "text",
