@@ -538,6 +538,10 @@
           "label": "Free Shipping Alert",
           "info": "Make sure to also define a free shipping threshold in the Theme Settings."
         },
+        "enable_free_shipping_progress": {
+          "label": "Free Shipping Progress",
+          "info": "Shows a progress bar as indicator."
+        },
         "empty_state_heading": {
           "label": "Empty state heading",
           "default": "Your cart is empty"

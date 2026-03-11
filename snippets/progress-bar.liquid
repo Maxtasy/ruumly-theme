@@ -1,0 +1,27 @@
+{% doc %}
+  Renders a Progress Bar component.
+
+  @param {number} progress - The progress in percent.
+{% enddoc %}
+
+<div class="ProgressBar" style="--progress:{{ progress }}"></div>
+
+{% stylesheet %}
+  .ProgressBar {
+    position: relative;
+    width: 100%;
+    height: var(--size-xs);
+    border: var(--border-width) var(--border-style) var(--t-border);
+    background: var(--t-info);
+  }
+
+  .ProgressBar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: calc(var(--progress, 0) * 1%);
+    height: 100%;
+    background: var(--t-success);
+  }
+{% endstylesheet %}
