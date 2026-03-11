@@ -5,7 +5,7 @@
 {% enddoc %}
 
 <div class="ProgressBar">
-  {% assign progress = progress %}
+  {% assign progress = progress | default: 0 %}
   <div class="ProgressBar__Fill" style="--progress:{{ progress }}%"></div>
 </div>
 
@@ -23,7 +23,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    width: var(--progress, 0%);
+    width: var(--progress);
     height: 100%;
     border-radius: inherit;
     background: var(--t-success);
