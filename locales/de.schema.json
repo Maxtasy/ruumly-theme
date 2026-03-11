@@ -538,6 +538,10 @@
           "label": "Informationen zum kostenlosen Versand",
           "info": "Stellen Sie sicher, dass Sie auch einen Schwellenwert für den kostenlosen Versand in den Theme-Einstellungen festlegen."
         },
+        "enable_free_shipping_progress": {
+          "label": "Fortschritt für kostenlosen Versand",
+          "info": "Zeigt einen Fortschrittsbalken als Indikator an."
+        },
         "empty_state_heading": {
           "label": "Leerzustand Kopfzeile",
           "default": "Ihr Warenkorb ist leer"

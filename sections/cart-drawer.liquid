@@ -1,6 +1,7 @@
 {% capture cart_drawer_content %}
   {% render 'cart-drawer',
     enable_free_shipping_alert: section.settings.enable_free_shipping_alert,
+    enable_free_shipping_progress: section.settings.enable_free_shipping_progress,
     free_shipping_remaining_text: section.settings.free_shipping_remaining_text,
     free_shipping_reached_text: section.settings.free_shipping_reached_text,
     empty_state_heading: section.settings.empty_state_heading,
@@ -63,6 +64,13 @@
       "label": "t:sections.cart_drawer.settings.enable_free_shipping_alert.label",
       "default": true,
       "info": "t:sections.cart_drawer.settings.enable_free_shipping_alert.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_free_shipping_progress",
+      "label": "t:sections.cart_drawer.settings.enable_free_shipping_progress.label",
+      "default": true,
+      "info": "t:sections.cart_drawer.settings.enable_free_shipping_progress.info"
     },
     {
       "type": "text",
