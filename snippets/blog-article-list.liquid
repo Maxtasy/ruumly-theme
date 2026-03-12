@@ -11,31 +11,59 @@
 {% assign columns_desktop = columns_desktop | default: 3 %}
 
 <div class="BlogArticleList">
-  {% paginate blog_articles by 3 %}
-    <ul
-      class="BlogArticleList__Items u-NoList"
-      style="
-        --columns-mobile: {{ columns_mobile }};
-        --columns-desktop: {{ columns_desktop }};
-      "
-    >
-      {% for article in blog_articles limit: limit %}
-        <li>
-          {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
-          {% render 'blog-article-card',
-            image: article.image,
-            title: article.title,
-            excerpt: excerpt,
-            url: article.url
-          %}
-        </li>
-      {% endfor %}
-    </ul>
+  {% if blog_articles %}
+    {% paginate blog_articles by 3 %}
+      <ul
+        class="BlogArticleList__Items u-NoList"
+        style="
+          --columns-mobile: {{ columns_mobile }};
+          --columns-desktop: {{ columns_desktop }};
+        "
+      >
+        {% for article in blog_articles limit: limit %}
+          <li>
+            {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
+            {% render 'blog-article-card',
+              image: article.image,
+              title: article.title,
+              excerpt: excerpt,
+              url: article.url
+            %}
+          </li>
+        {% endfor %}
+      </ul>
 
-    <div class="BlogArticleList__Pagination">
-      {% render 'pagination', paginate: paginate %}
-    </div>
-  {% endpaginate %}
+      <div class="BlogArticleList__Pagination">
+        {% render 'pagination', paginate: paginate %}
+      </div>
+    {% endpaginate %}
+  {% else %}
+    {% paginate blog.articles by 3 %}
+      <ul
+        class="BlogArticleList__Items u-NoList"
+        style="
+          --columns-mobile: {{ columns_mobile }};
+          --columns-desktop: {{ columns_desktop }};
+        "
+      >
+        {% for article in blog.articles limit: limit %}
+          <li>
+            {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
+            {% render 'blog-article-card',
+              image: article.image,
+              title: article.title,
+              excerpt: excerpt,
+              url: article.url
+            %}
+          </li>
+        {% endfor %}
+      </ul>
+
+      <div class="BlogArticleList__Pagination">
+        {% render 'pagination', paginate: paginate %}
+      </div>
+    {% endpaginate %}
+  {% endif %}
 </div>
 
 {% stylesheet %}
