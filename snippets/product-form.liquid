@@ -13,6 +13,13 @@
   <form class="ProductForm">
     {% for block in blocks %}
       {% case block.type %}
+        {% when 'social-proof' %}
+          {% render 'social-proof',
+            image_1: block.settings.left_avatar,
+            image_2: block.settings.right_avatar,
+            text: block.settings.social_proof_text
+          %}
+
         {% when 'title' %}
           <div class="ProductForm__Title">
             {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
@@ -92,9 +99,6 @@
           {% render 'selling-points',
             selling_points: shop.metaobjects.selling_points['selling-points-1hylegwq'].selling_points.value
           %}
-
-        {% when 'social-proof' %}
-          {% render 'social-proof', image_1: images['developer-user1.png'], image_2: images['developer-user2.jpg'] %}
       {% endcase %}
     {% endfor %}
   </form>
