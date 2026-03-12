@@ -8,10 +8,6 @@
   <div class="Section__Inner">
     <div class="ProductConfigurator">
       <div class="ProductConfigurator__Gallery">
-        <div class="ProductConfigurator__SocialProof">
-          {% render 'social-proof', image_1: images['developer-user1.png'], image_2: images['developer-user2.jpg'] %}
-        </div>
-
         {% render 'gallery',
           images: product.images,
           variant_desktop: section.settings.gallery_desktop,
@@ -274,8 +270,25 @@
       "type": "selling-points"
     },
     {
-      "name": "t:blocks.social_proof.name",
-      "type": "social-proof"
+      "name": "t:sections.product_configurator.blocks.social_proof.name",
+      "type": "social-proof",
+      "settings": [
+        {
+          "type": "text",
+          "id": "social_proof_text",
+          "label": "t:sections.product_configurator.blocks.social_proof.settings.social_proof_text.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "left_avatar",
+          "label": "t:sections.product_configurator.blocks.social_proof.settings.left_avatar.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "right_avatar",
+          "label": "t:sections.product_configurator.blocks.social_proof.settings.right_avatar.label"
+        }
+      ]
     }
   ]
 }
