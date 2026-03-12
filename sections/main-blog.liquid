@@ -10,10 +10,6 @@
       {% render 'text', text: blog.title, as: 'h2', variant: 'heading-medium' %}
     {% endif %}
 
-    <script>
-      console.log({{ blog.articles | json }});
-    </script>
-
     {% render 'blog-article-list',
       columns_mobile: section.settings.columns_mobile,
       columns_desktop: section.settings.columns_desktop
