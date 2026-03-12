@@ -203,12 +203,6 @@
             "label": "t:settings_schema.product_card.settings.hover_effect.options.zoom.label"
           }
         ]
-      },
-      {
-        "type": "checkbox",
-        "id": "enable_back_in_stock_button",
-        "label": "t:settings_schema.product_card.settings.enable_back_in_stock_button.label",
-        "default": true
       }
     ]
   },
@@ -224,6 +218,16 @@
         "id": "free_shipping_threshold",
         "label": "t:settings_schema.store_settings.settings.free_shipping_threshold.label",
         "info": "t:settings_schema.store_settings.settings.free_shipping_threshold.info"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.store_settings.headers.back_in_stock.content"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_back_in_stock_button",
+        "label": "t:settings_schema.store_settings.settings.enable_back_in_stock_button.label",
+        "default": true
       }
     ]
   }
