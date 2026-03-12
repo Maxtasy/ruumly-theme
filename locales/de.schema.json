@@ -263,6 +263,9 @@
               "label": "Vergrößern"
             }
           }
+        },
+        "enable_back_in_stock_button": {
+          "label": "Back in stock button aktivieren."
         }
       }
     },

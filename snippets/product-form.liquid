@@ -66,7 +66,16 @@
         {% when 'buy-buttons' %}
           <div class="ProductForm__BuyButtons">
             <div class="ProductForm__AddToCartButton">
-              {% render 'button', text: 'Add to cart', action: 'add-to-cart', full_width: true %}
+              {% if settings.enable_back_in_stock_button and product.available == false %}
+                {% render 'button',
+                  text: 'Info when back in stock',
+                  action: 'click-bis-subscribe',
+                  full_width: true,
+                  event_details: product.selected_or_first_available_variant.id
+                %}
+              {% else %}
+                {% render 'button', text: 'Add to cart', action: 'add-to-cart', full_width: true %}
+              {% endif %}
             </div>
 
             {% if block.settings.show_wishlist_button %}

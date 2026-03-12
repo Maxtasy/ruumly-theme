@@ -203,6 +203,12 @@
             "label": "t:settings_schema.product_card.settings.hover_effect.options.zoom.label"
           }
         ]
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_back_in_stock_button",
+        "label": "t:settings_schema.product_card.settings.enable_back_in_stock_button.label",
+        "default": true
       }
     ]
   },
