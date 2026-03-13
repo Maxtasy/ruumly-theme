@@ -1,5 +1,6 @@
 {
   "global": {
+    "add_to_cart": "In den Warenkorb",
     "checkout": "Kasse",
     "free": "Kostenlos",
     "shipping": "Versand",
@@ -64,6 +65,9 @@
   "components": {
     "add_to_cart_button": {
       "aria_label": "In den Warenkorb"
+    },
+    "back_in_stock": {
+      "notify_me": "Benachrichtigen, wenn verfügbar"
     },
     "badge": {
       "sale": "Sale",
