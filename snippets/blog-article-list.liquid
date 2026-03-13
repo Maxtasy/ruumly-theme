@@ -36,9 +36,11 @@
         {% endfor %}
       </ul>
 
-      <div class="BlogArticleList__Pagination">
-        {% render 'pagination', paginate: paginate %}
-      </div>
+      {% if paginate.pages > 1 %}
+        <div class="BlogArticleList__Pagination">
+          {% render 'pagination', paginate: paginate %}
+        </div>
+      {% endif %}
     {% endpaginate %}
   {% else %}
     {% paginate blog.articles by paginate_by %}
@@ -62,9 +64,11 @@
         {% endfor %}
       </ul>
 
-      <div class="BlogArticleList__Pagination">
-        {% render 'pagination', paginate: paginate %}
-      </div>
+      {% if paginate.pages > 1 %}
+        <div class="BlogArticleList__Pagination">
+          {% render 'pagination', paginate: paginate %}
+        </div>
+      {% endif %}
     {% endpaginate %}
   {% endif %}
 </div>
