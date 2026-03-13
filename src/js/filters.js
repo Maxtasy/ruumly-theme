@@ -1,14 +1,33 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { getClosestSectionId } from "./utils.js";
 
 export class Filters extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
-    console.log("initialized");
+
+    this.handleFilterValueChange = this.handleFilterValueChange.bind(this);
   }
 
-  connectedCallback() {}
+  connectedCallback() {
+    this.subscribe("filter-value:change", this.handleFilterValueChange);
+  }
 
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    this.unsubscribe("filter-value:change", this.handleFilterValueChange);
+  }
+
+  handleFilterValueChange(data) {
+    this.fetchSection(data.url);
+  }
+
+  async fetchSection(url) {
+    console.log(url);
+    const sectionId = getClosestSectionId("filters-component");
+    console.log(sectionId);
+
+    const response = await fetch(url);
+    console.log(response);
+  }
 }
 
 defineComponent("filters-component", Filters);
