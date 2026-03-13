@@ -12,9 +12,17 @@
 
     <ul class="TagFilters u-NoList">
       {% for tag in blog.all_tags %}
-        <li>
-          {% assign tag_handleized = tag | handleize %}
-          {% assign url = blog.url | append: '/tagged/' | append: tag_handleized %}
+        {% assign tag_handleized = tag | handleize %}
+        {% assign url = blog.url | append: '/tagged/' | append: tag_handleized %}
+
+        <li
+          class="
+            TagFilters__Tag
+            {% if url == request.path %}
+              TagFilters__Tag--Active
+            {% endif %}
+          "
+        >
           {% render 'link', text: tag, url: url %}
         </li>
       {% endfor %}
@@ -28,10 +36,14 @@
 </section>
 
 {% stylesheet %}
-  .TagsFilters {
+  .TagFilters {
     display: flex;
     flex-wrap: wrap;
     gap: var(--size-m);
+  }
+
+  .TagFilters__Tag--Active {
+    text-decoration: underline;
   }
 {% endstylesheet %}
 
