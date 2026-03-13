@@ -15,9 +15,9 @@
       {% case block.type %}
         {% when 'social-proof' %}
           {% render 'social-proof',
-            image_1: block.settings.left_avatar,
-            image_2: block.settings.right_avatar,
-            text: block.settings.social_proof_text
+            image_1: block.settings.image_1,
+            image_2: block.settings.image_2,
+            text: block.settings.text
           %}
 
         {% when 'title' %}
