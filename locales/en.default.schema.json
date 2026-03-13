@@ -478,6 +478,9 @@
             }
           }
         },
+        "per_page": {
+          "label": "Per Page"
+        },
         "position_left": {
           "label": "Position Left"
         },
@@ -611,6 +614,9 @@
           "name": "Collection Banner"
         }
       }
+    },
+    "collection_grid": {
+      "name": "Collection Grid"
     },
     "collection_list": {
       "name": "Collection List",
@@ -757,9 +763,6 @@
         "enable_pagination": {
           "label": "Enable Pagination",
           "info": "Only works when product list and collection settings are unset."
-        },
-        "per_page": {
-          "label": "Per Page"
         }
       },
       "presets": {
