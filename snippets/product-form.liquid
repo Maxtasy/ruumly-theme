@@ -3,10 +3,13 @@
 
   @param {object} product - The product object containing options and values.
   @param {string} [name_prefix] - The prefix for the name attribute of the input elements.
+  @param {boolean} [update_variant_url_parameter] - Whether to update the `variant` URL parameter in the URL when the selected variant changes.
   @param {object} [blocks] - The blocks object of a section (for example product configurator).
 {% enddoc %}
 
-<product-form-component>
+<product-form-component
+  data-update-variant-url-parameter="{{ update_variant_url_parameter | default: false }}"
+>
   <form class="ProductForm">
     {% for block in blocks %}
       {% case block.type %}
@@ -63,19 +66,15 @@
         {% when 'buy-buttons' %}
           <div class="ProductForm__BuyButtons">
             <div class="ProductForm__AddToCartButton">
-              {% if settings.enable_back_in_stock_button
-                and product.selected_or_first_available_variant.available == false
-              %}
-                {% assign bis_button_text = 'components.back_in_stock.notify_me' | t %}
+              {% if settings.enable_back_in_stock_button and product.available == false %}
                 {% render 'button',
-                  text: bis_button_text,
+                  text: 'Info when back in stock',
                   action: 'click-bis-subscribe',
                   full_width: true,
                   event_details: product.selected_or_first_available_variant.id
                 %}
               {% else %}
-                {% assign atc_button_text = 'global.add_to_cart' | t %}
-                {% render 'button', text: atc_button_text, action: 'add-to-cart', full_width: true %}
+                {% render 'button', text: 'Add to cart', action: 'add-to-cart', full_width: true %}
               {% endif %}
             </div>
 

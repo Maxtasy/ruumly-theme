@@ -6,14 +6,7 @@
   "
 >
   <div class="Section__Inner">
-    <product-configurator-component
-      class="ProductConfigurator"
-      {% assign update_url_parameter = false %}
-      {% if template.name == 'product' %}
-        {% assign update_url_parameter = true %}
-      {% endif %}
-      data-update-variant-url-parameter="{{ update_url_parameter }}"
-    >
+    <div class="ProductConfigurator">
       <div class="ProductConfigurator__Gallery">
         {% render 'gallery',
           images: product.images,
@@ -31,9 +24,14 @@
       </div>
 
       <div class="ProductConfigurator__Form">
-        {% render 'product-form', product: product, name_prefix: section.id, blocks: section.blocks %}
+        {% render 'product-form',
+          product: product,
+          name_prefix: section.id,
+          update_variant_url_parameter: true,
+          blocks: section.blocks
+        %}
       </div>
-    </product-configurator-component>
+    </div>
   </div>
 </section>
 
