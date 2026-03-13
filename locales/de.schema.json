@@ -271,6 +271,9 @@
       "headers": {
         "shipping": {
           "content": "Versand"
+        },
+        "back_in_stock": {
+          "content": "Back in Stock"
         }
       },
       "settings": {
@@ -283,6 +286,9 @@
         },
         "until_free_shipping_text": {
           "label": "Bis zum kostenlosen Versand Text"
+        },
+        "enable_back_in_stock_button": {
+          "label": "Back in stock button aktivieren"
         }
       }
     },
