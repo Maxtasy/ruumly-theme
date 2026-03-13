@@ -7,12 +7,15 @@
   @param {number} [columns_desktop] - Number of columns on desktop.
 {% enddoc %}
 
-{% assign columns_mobile = columns_mobile | default: 1 %}
-{% assign columns_desktop = columns_desktop | default: 3 %}
+{% liquid
+  assign columns_mobile = columns_mobile | default: 1
+  assign columns_desktop = columns_desktop | default: 3
+  assign paginate_by = 16
+%}
 
 <div class="BlogArticleList">
   {% if blog_articles %}
-    {% paginate blog_articles by 3 %}
+    {% paginate blog_articles by paginate_by %}
       <ul
         class="BlogArticleList__Items u-NoList"
         style="
@@ -38,7 +41,7 @@
       </div>
     {% endpaginate %}
   {% else %}
-    {% paginate blog.articles by 3 %}
+    {% paginate blog.articles by paginate_by %}
       <ul
         class="BlogArticleList__Items u-NoList"
         style="
