@@ -47,10 +47,6 @@
     aspect-ratio: 1;
   }
 
-  .ProductConfigurator__SocialProof {
-    padding-bottom: var(--size-xs);
-  }
-
   @media screen and (min-width: 769px) {
     .ProductConfigurator {
       flex-direction: row;
@@ -274,19 +270,19 @@
       "type": "social-proof",
       "settings": [
         {
-          "type": "text",
-          "id": "social_proof_text",
-          "label": "t:sections.product_configurator.blocks.social_proof.settings.social_proof_text.label"
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:sections.product_configurator.blocks.social_proof.settings.text.label"
         },
         {
           "type": "image_picker",
-          "id": "left_avatar",
-          "label": "t:sections.product_configurator.blocks.social_proof.settings.left_avatar.label"
+          "id": "image_1",
+          "label": "t:sections.product_configurator.blocks.social_proof.settings.image_1.label"
         },
         {
           "type": "image_picker",
-          "id": "right_avatar",
-          "label": "t:sections.product_configurator.blocks.social_proof.settings.right_avatar.label"
+          "id": "image_2",
+          "label": "t:sections.product_configurator.blocks.social_proof.settings.image_2.label"
         }
       ]
     }

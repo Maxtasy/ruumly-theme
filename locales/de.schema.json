@@ -721,14 +721,14 @@
         "social_proof": {
           "name": "Social Proof",
           "settings": {
-            "social_proof_text": {
-              "label": "Social Proof Text"
+            "text": {
+              "label": "Text"
             },
-            "left_avatar": {
-              "label": "Linker Avatar"
+            "image_1": {
+              "label": "Bild 1"
             },
-            "right_avatar": {
-              "label": "Rechter Avatar"
+            "image_2": {
+              "label": "Bild 2"
             }
           }
         }

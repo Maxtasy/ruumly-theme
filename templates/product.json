@@ -12,6 +12,9 @@
     "product-configurator": {
       "type": "product-configurator",
       "blocks": {
+        "social_proof": {
+          "type": "social-proof"
+        },
         "title_RJwRG7": {
           "type": "title",
           "settings": {}
@@ -46,6 +49,7 @@
         }
       },
       "block_order": [
+        "social_proof",
         "title_RJwRG7",
         "product_rating_QNbfjC",
         "price_list_PbRtyp",
