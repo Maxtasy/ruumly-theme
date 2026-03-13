@@ -727,6 +727,20 @@
               "label": "Show wishlist button"
             }
           }
+        },
+        "social_proof": {
+          "name": "Social Proof",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "image_1": {
+              "label": "Image 1"
+            },
+            "image_2": {
+              "label": "Image 2"
+            }
+          }
         }
       }
     },

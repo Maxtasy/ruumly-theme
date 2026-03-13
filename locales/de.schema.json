@@ -727,6 +727,20 @@
               "label": "Wunschliste Button anzeigen"
             }
           }
+        },
+        "social_proof": {
+          "name": "Social Proof",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "image_1": {
+              "label": "Bild 1"
+            },
+            "image_2": {
+              "label": "Bild 2"
+            }
+          }
         }
       }
     },

@@ -13,6 +13,13 @@
   <form class="ProductForm">
     {% for block in blocks %}
       {% case block.type %}
+        {% when 'social-proof' %}
+          {% render 'social-proof',
+            image_1: block.settings.image_1,
+            image_2: block.settings.image_2,
+            text: block.settings.text
+          %}
+
         {% when 'title' %}
           <div class="ProductForm__Title">
             {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
