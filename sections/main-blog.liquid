@@ -10,12 +10,30 @@
       {% render 'text', text: blog.title, as: 'h2', variant: 'heading-medium' %}
     {% endif %}
 
+    <ul class="TagFilters u-NoList">
+      {% for tag in blog.all_tags %}
+        <li>
+          {% assign tag_handleized = tag | handleize %}
+          {% assign url = blog.url | append: '/tagged/' | append: tag_handleized %}
+          {% render 'link', text: tag, url: url %}
+        </li>
+      {% endfor %}
+    </ul>
+
     {% render 'blog-article-list',
       columns_mobile: section.settings.columns_mobile,
       columns_desktop: section.settings.columns_desktop
     %}
   </div>
 </section>
+
+{% stylesheet %}
+  .TagsFilters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--size-m);
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
