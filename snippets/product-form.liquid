@@ -3,13 +3,10 @@
 
   @param {object} product - The product object containing options and values.
   @param {string} [name_prefix] - The prefix for the name attribute of the input elements.
-  @param {boolean} [update_variant_url_parameter] - Whether to update the `variant` URL parameter in the URL when the selected variant changes.
   @param {object} [blocks] - The blocks object of a section (for example product configurator).
 {% enddoc %}
 
-<product-form-component
-  data-update-variant-url-parameter="{{ update_variant_url_parameter | default: false }}"
->
+<product-form-component>
   <form class="ProductForm">
     {% for block in blocks %}
       {% case block.type %}
