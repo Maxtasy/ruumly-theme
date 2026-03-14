@@ -478,6 +478,9 @@
             }
           }
         },
+        "per_page": {
+          "label": "Pro Seite"
+        },
         "position_left": {
           "label": "Position Links"
         },
@@ -611,6 +614,9 @@
           "name": "Kollektionsbanner"
         }
       }
+    },
+    "collection_grid": {
+      "name": "Kollektionsraster"
     },
     "collection_list": {
       "name": "Kollektionsliste",
@@ -757,9 +763,6 @@
         "enable_pagination": {
           "label": "Paginierung aktivieren",
           "info": "Funktioniert nur wenn Produktliste und Kollektion Einstellungen nicht gesetzt sind."
-        },
-        "per_page": {
-          "label": "Pro Seite"
         }
       },
       "presets": {
