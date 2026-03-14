@@ -4,6 +4,8 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
+    this.cachedDocuments = {};
+
     this.handleFilterValueChange = this.handleFilterValueChange.bind(this);
   }
 
@@ -15,15 +17,27 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.unsubscribe("filter-value:change", this.handleFilterValueChange);
   }
 
-  handleFilterValueChange(data) {
-    this.fetchSection(data.url);
+  async handleFilterValueChange(data) {
+    const doc = await this.getDocument(data.url);
+
+    this.rerender(doc);
   }
 
-  async fetchSection(url) {
-    const response = await fetch(url);
-    const markup = await response.text();
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(markup, "text/html");
+  async getDocument(url) {
+    let doc = this.cachedDocuments[url];
+
+    if (!doc) {
+      const response = await fetch(url);
+      const markup = await response.text();
+      const parser = new DOMParser();
+      doc = parser.parseFromString(markup, "text/html");
+      this.cachedDocuments[url] = doc;
+    }
+
+    return doc;
+  }
+
+  rerender(doc) {
     const elementsToReplaceSelectors = [
       "[id$='product-grid'] .ProductGrid",
       ".Filter__DropdownContent",
