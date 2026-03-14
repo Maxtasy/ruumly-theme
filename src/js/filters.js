@@ -21,6 +21,7 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     const doc = await this.getDocument(data.url);
 
     this.rerender(doc);
+    this.updateUrl(data.url);
   }
 
   async getDocument(url) {
@@ -57,6 +58,10 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
         currentElement.outerHTML = newElements[index].outerHTML;
       });
     });
+  }
+
+  updateUrl(url) {
+    window.history.replaceState({}, "", url);
   }
 }
 
