@@ -38,10 +38,17 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
     }
   }
 
-  async handleAddToCart() {
+  async handleAddToCart(_, event) {
+    // TODO: Set loading state for the button.
+    const addToCartButton = event.target;
+    addToCartButton.setLoading(true);
+
     const items = Array.from(this.productFormElements).map((formElement) => formElement.item);
 
     const cartResponse = await cart.addItems({ items, sections: ["cart-drawer"] });
+
+    // TODO: Disable loading state for the button.
+    addToCartButton.setLoading(false);
 
     if (cartResponse.status === "success") {
       // Notify other components that the item has been added to the cart.

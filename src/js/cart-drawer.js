@@ -45,7 +45,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
     }
   }
 
-  async handleItemPartiallyAdded({ errorMessage, items }) {
+  async handleItemPartiallyAdded({ errorMessage, addedItems }) {
     const sections = await sectionRenderingApi.fetchSections(["cart-drawer"]);
 
     const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`] || sections["cart-drawer"];
@@ -56,7 +56,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
       // Select associated line item and update its alerts.
 
       const lineItemElement = [...this.lineItemElements].find(
-        (lineItemElement) => lineItemElement.parsedData.variantId === items[0].id,
+        (lineItemElement) => lineItemElement.parsedData.variantId === addedItems[0].id,
       );
 
       if (lineItemElement) {
