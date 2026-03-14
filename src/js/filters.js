@@ -1,5 +1,4 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
-import { getClosestSectionId } from "./utils.js";
 
 export class Filters extends CustomComponentMixin(HTMLElement) {
   constructor() {
@@ -21,12 +20,29 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
   }
 
   async fetchSection(url) {
-    console.log(url);
-    const sectionId = getClosestSectionId("filters-component");
-    console.log(sectionId);
-
     const response = await fetch(url);
-    console.log(response);
+    const markup = await response.text();
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(markup, "text/html");
+    const elementsToReplaceSelectors = [
+      "[id$='product-grid'] .ProductGrid",
+      ".Filter__DropdownContent",
+      ".Filter__TriggerContent",
+      ".Filters__Row:has(.Filters__ActiveValues)",
+      ".FiltersMobile__DrawerContent",
+      '[data-action="open-drawer:filters-mobile"]',
+    ];
+
+    elementsToReplaceSelectors.forEach((elementsToReplaceSelector) => {
+      const newElements = doc.querySelectorAll(elementsToReplaceSelector);
+      const currentElements = document.querySelectorAll(elementsToReplaceSelector);
+
+      currentElements.forEach((currentElement, index) => {
+        if (!newElements[index]) return;
+
+        currentElement.outerHTML = newElements[index].outerHTML;
+      });
+    });
   }
 }
 

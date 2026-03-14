@@ -24,27 +24,32 @@
       </div>
     </div>
 
-    {% if filters_active %}
-      <div class="Filters__Row">
-        <ul class="Filters__ActiveValues u-NoList">
-          {% for filter in filters %}
-            {% for filter_value in filter.active_values %}
-              <li>
-                {% render 'active-filter-value', filter_value: filter_value %}
-              </li>
-            {% endfor %}
+    <div
+      class="
+        Filters__Row
+        {% if filters_active != true %}
+          u-Hidden
+        {% endif %}
+      "
+    >
+      <ul class="Filters__ActiveValues u-NoList">
+        {% for filter in filters %}
+          {% for filter_value in filter.active_values %}
+            <li>
+              {% render 'active-filter-value', filter_value: filter_value %}
+            </li>
           {% endfor %}
-        </ul>
+        {% endfor %}
+      </ul>
 
-        {% capture reset_button_content %}
-          {% render 'icon', icon: 'rotate-ccw', size: 'small' %}
+      {% capture reset_button_content %}
+        {% render 'icon', icon: 'rotate-ccw', size: 'small' %}
 
-          {% assign text = 'components.filter.reset_all_filters' | t %}
-          {% render 'text', text: text %}
-        {% endcapture %}
-        {% render 'button', variant: 'plain', size: 'small', content: reset_button_content, url: collection.url %}
-      </div>
-    {% endif %}
+        {% assign text = 'components.filter.reset_all_filters' | t %}
+        {% render 'text', text: text %}
+      {% endcapture %}
+      {% render 'button', variant: 'plain', size: 'small', content: reset_button_content, url: collection.url %}
+    </div>
   </div>
 
   {% assign mobile_filter_drawers = '' %}
@@ -189,6 +194,7 @@
 
   .FiltersMobile__FilterValues {
     padding-block: var(--size-xxs);
+    padding-inline: var(--size-xxs);
   }
 
   .FiltersMobile__Item {
