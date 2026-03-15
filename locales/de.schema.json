@@ -292,6 +292,23 @@
         }
       }
     },
+    "social_links": {
+      "name": "Social Links",
+      "settings": {
+        "facebook": {
+          "label": "Facebook"
+        },
+        "x": {
+          "label": "X"
+        },
+        "tiktok": {
+          "label": "TikTok"
+        },
+        "instagram": {
+          "label": "Instagram"
+        }
+      }
+    },
     "typography": {
       "name": "Typografie",
       "settings": {

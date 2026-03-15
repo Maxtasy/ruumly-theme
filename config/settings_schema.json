@@ -230,5 +230,30 @@
         "default": true
       }
     ]
+  },
+  {
+    "name": "t:settings_schema.social_links.name",
+    "settings": [
+      {
+        "type": "url",
+        "id": "facebook",
+        "label": "t:settings_schema.social_links.settings.facebook.label"
+      },
+      {
+        "type": "url",
+        "id": "x",
+        "label": "t:settings_schema.social_links.settings.x.label"
+      },
+      {
+        "type": "url",
+        "id": "tiktok",
+        "label": "t:settings_schema.social_links.settings.tiktok.label"
+      },
+      {
+        "type": "url",
+        "id": "instagram",
+        "label": "t:settings_schema.social_links.settings.instagram.label"
+      }
+    ]
   }
 ]
