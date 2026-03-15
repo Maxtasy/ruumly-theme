@@ -1,0 +1,33 @@
+<ul class="SocialLinks u-NoList">
+  <li>
+    <a href="{{ settings.facebook | default: "https://facebook.com" }}">
+      {% render 'icon', icon: 'facebook' %}
+    </a>
+  </li>
+
+  <li>
+    <a href="{{ settings.x | default: "https://x.com" }}">
+      {% render 'icon', icon: 'x-logo' %}
+    </a>
+  </li>
+
+  <li>
+    <a href="{{ settings.tiktok | default: "https://tiktok.com" }}">
+      {% render 'icon', icon: 'tiktok' %}
+    </a>
+  </li>
+
+  <li>
+    <a href="{{ settings.instagram | default: "https://instagram.com" }}">
+      {% render 'icon', icon: 'instagram' %}
+    </a>
+  </li>
+</ul>
+
+{% stylesheet %}
+  .SocialLinks {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+  }
+{% endstylesheet %}
