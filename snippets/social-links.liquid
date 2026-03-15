@@ -1,27 +1,21 @@
 <ul class="SocialLinks u-NoList">
-  <li>
-    <a href="{{ settings.facebook | default: "https://facebook.com" }}">
-      {% render 'icon', icon: 'facebook' %}
-    </a>
-  </li>
+  {%- comment -%}
+    These handles need to match the setting ids.
+  {%- endcomment -%}
+  {% assign social_handles = 'facebook, x, tiktok, instagram' | split: ', ' %}
 
-  <li>
-    <a href="{{ settings.x | default: "https://x.com" }}">
-      {% render 'icon', icon: 'x-logo' %}
-    </a>
-  </li>
+  {% for social_handle in social_handles %}
+    {% assign url = settings[social_handle] %}
 
-  <li>
-    <a href="{{ settings.tiktok | default: "https://tiktok.com" }}">
-      {% render 'icon', icon: 'tiktok' %}
-    </a>
-  </li>
-
-  <li>
-    <a href="{{ settings.instagram | default: "https://instagram.com" }}">
-      {% render 'icon', icon: 'instagram' %}
-    </a>
-  </li>
+    {% if url != blank %}
+      <li>
+        <a class="SocialLinks__Link" href="{{ url }}" target="_blank">
+          {% assign icon = 'social-' | append: social_handle %}
+          {% render 'icon', icon: icon, size: 'small' %}
+        </a>
+      </li>
+    {% endif %}
+  {% endfor %}
 </ul>
 
 {% stylesheet %}
@@ -29,5 +23,14 @@
     display: flex;
     align-items: center;
     gap: var(--size-xs);
+  }
+
+  .SocialLinks__Link {
+    color: var(--t-text);
+    transition: opacity var(--transition-duration-medium) var(--transition-timing);
+  }
+
+  .SocialLinks__Link:hover {
+    opacity: 0.6;
   }
 {% endstylesheet %}
