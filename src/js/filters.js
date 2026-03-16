@@ -7,21 +7,32 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.cachedDocuments = {};
 
     this.handleFilterValueChange = this.handleFilterValueChange.bind(this);
+    this.handleActiveFilterValueRemove = this.handleActiveFilterValueRemove.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("filter-value:change", this.handleFilterValueChange);
+    this.subscribe("active-filter-value:remove", this.handleActiveFilterValueRemove);
   }
 
   disconnectedCallback() {
     this.unsubscribe("filter-value:change", this.handleFilterValueChange);
+    this.unsubscribe("active-filter-value:remove", this.handleActiveFilterValueRemove);
   }
 
-  async handleFilterValueChange(data) {
-    const doc = await this.getDocument(data.url);
+  handleFilterValueChange(data) {
+    this.updateProductGrid(data.url);
+  }
+
+  handleActiveFilterValueRemove(data) {
+    this.updateProductGrid(data.url);
+  }
+
+  async updateProductGrid(url) {
+    const doc = await this.getDocument(url);
 
     this.rerender(doc);
-    this.updateUrl(data.url);
+    this.updateUrl(url);
   }
 
   async getDocument(url) {

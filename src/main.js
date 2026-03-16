@@ -39,3 +39,4 @@ import "./js/slider.js";
 import "./js/filter.js";
 import "./js/filters.js";
 import "./js/filter-value.js";
+import "./js/active-filter-value.js";
