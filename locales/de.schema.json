@@ -292,6 +292,23 @@
         }
       }
     },
+    "social_links": {
+      "name": "Social Links",
+      "settings": {
+        "facebook": {
+          "label": "Facebook"
+        },
+        "x": {
+          "label": "X"
+        },
+        "tiktok": {
+          "label": "TikTok"
+        },
+        "instagram": {
+          "label": "Instagram"
+        }
+      }
+    },
     "typography": {
       "name": "Typografie",
       "settings": {
@@ -478,6 +495,9 @@
             }
           }
         },
+        "per_page": {
+          "label": "Pro Seite"
+        },
         "position_left": {
           "label": "Position Links"
         },
@@ -612,6 +632,9 @@
         }
       }
     },
+    "collection_grid": {
+      "name": "Kollektionsraster"
+    },
     "collection_list": {
       "name": "Kollektionsliste",
       "presets": {
@@ -727,6 +750,20 @@
               "label": "Wunschliste Button anzeigen"
             }
           }
+        },
+        "social_proof": {
+          "name": "Social Proof",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "image_1": {
+              "label": "Bild 1"
+            },
+            "image_2": {
+              "label": "Bild 2"
+            }
+          }
         }
       }
     },
@@ -743,9 +780,6 @@
         "enable_pagination": {
           "label": "Paginierung aktivieren",
           "info": "Funktioniert nur wenn Produktliste und Kollektion Einstellungen nicht gesetzt sind."
-        },
-        "per_page": {
-          "label": "Pro Seite"
         }
       },
       "presets": {

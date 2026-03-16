@@ -292,6 +292,23 @@
         }
       }
     },
+    "social_links": {
+      "name": "Social Links",
+      "settings": {
+        "facebook": {
+          "label": "Facebook"
+        },
+        "x": {
+          "label": "X"
+        },
+        "tiktok": {
+          "label": "TikTok"
+        },
+        "instagram": {
+          "label": "Instagram"
+        }
+      }
+    },
     "typography": {
       "name": "Typography",
       "settings": {
@@ -478,6 +495,9 @@
             }
           }
         },
+        "per_page": {
+          "label": "Per Page"
+        },
         "position_left": {
           "label": "Position Left"
         },
@@ -612,6 +632,9 @@
         }
       }
     },
+    "collection_grid": {
+      "name": "Collection Grid"
+    },
     "collection_list": {
       "name": "Collection List",
       "presets": {
@@ -727,6 +750,20 @@
               "label": "Show wishlist button"
             }
           }
+        },
+        "social_proof": {
+          "name": "Social Proof",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "image_1": {
+              "label": "Image 1"
+            },
+            "image_2": {
+              "label": "Image 2"
+            }
+          }
         }
       }
     },
@@ -743,9 +780,6 @@
         "enable_pagination": {
           "label": "Enable Pagination",
           "info": "Only works when product list and collection settings are unset."
-        },
-        "per_page": {
-          "label": "Per Page"
         }
       },
       "presets": {
