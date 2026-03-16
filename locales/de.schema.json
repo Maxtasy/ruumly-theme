@@ -668,6 +668,9 @@
         }
       }
     },
+    "main_cart": {
+      "name": "Main Cart"
+    },
     "menu_drawer": {
       "name": "Menü Drawer",
       "presets": {
