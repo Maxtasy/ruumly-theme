@@ -65,9 +65,25 @@
   }
 
   .Filter__DropdownContent {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--size-m);
+  }
+
+  .Filter__DropdownContent::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
+  }
+
+  .Filter__DropdownContent[data-loading]::after {
+    display: block;
   }
 
   .Filter__Values {
