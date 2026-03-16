@@ -7,29 +7,24 @@
 >
   <div class="Section__Inner">
     <div class="Cart">
-      <div class="Cart__LineItems">
+      <ul class="Cart__LineItems u-NoList">
         {% for item in cart.items %}
-          {% render 'line-item',
-            product_title: item.title,
-            variant_title: item.variant.title,
-            image: item.image,
-            price: item.variant.price,
-            compare_at_price: item.variant.compare_at_price,
-            quantity: item.quantity,
-            url: item.url,
-            key: item.key,
-            variant_id: item.variant.id,
-            inventory_quantity: item.variant.inventory_quantity
-          %}
+          <li>
+            {% render 'line-item',
+              product_title: item.title,
+              variant_title: item.variant.title,
+              image: item.image,
+              price: item.variant.price,
+              compare_at_price: item.variant.compare_at_price,
+              quantity: item.quantity,
+              url: item.url,
+              key: item.key,
+              variant_id: item.variant.id,
+              inventory_quantity: item.variant.inventory_quantity
+            %}
+          </li>
         {% endfor %}
-      </div>
-
-      <div class="Cart__GiftCode">
-        {% render 'text-field', label: 'Gift Code' %}
-
-        {% assign submit_button_text = 'global.submit' | t %}
-        {% render 'button', text: submit_button_text %}
-      </div>
+      </ul>
 
       <div class="Cart__Subtotal">
         {% render 'text', text: 'Subtotal:', as: 'b' %}
@@ -38,12 +33,6 @@
       </div>
 
       <div class="Cart__Shipping"></div>
-
-      <div class="Cart__Total">
-        {% render 'text', text: 'Total:', as: 'b' %}
-
-        {% render 'price-list', price: cart.total_price %}
-      </div>
 
       <div class="Cart__Checkout">
         {% assign checkout_button_text = 'global.checkout' | t %}
