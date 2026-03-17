@@ -7,37 +7,93 @@
 >
   <div class="Section__Inner">
     <div class="Cart">
-      <ul class="Cart__LineItems u-NoList">
-        {% for item in cart.items %}
-          <li>
-            {% render 'line-item',
-              product_title: item.title,
-              variant_title: item.variant.title,
-              image: item.image,
-              price: item.variant.price,
-              compare_at_price: item.variant.compare_at_price,
-              quantity: item.quantity,
-              url: item.url,
-              key: item.key,
-              variant_id: item.variant.id,
-              inventory_quantity: item.variant.inventory_quantity
-            %}
-          </li>
-        {% endfor %}
-      </ul>
+      {% if cart.empty? %}
+        {% render 'empty-state',
+          heading: section.settings.empty_state_heading,
+          text: section.settings.empty_state_text,
+          link: section.settings.empty_state_link,
+          link_text: section.settings.empty_state_link_text
+        %}
+      {% else %}
+        <div class="Cart__Content u-NoScrollbar">
+          {% if settings.free_shipping_threshold != blank
+            and settings.free_shipping_threshold != 0
+            and section.settings.enable_free_shipping_alert
+          %}
+            {% assign remaining_amount = settings.free_shipping_threshold | minus: cart.total_price %}
 
-      <div class="Cart__Subtotal">
-        {% render 'text', text: 'Subtotal:', as: 'b' %}
+            {% if remaining_amount <= 0 %}
+              {% assign text = section.settings.free_shipping_reached_text %}
+              {% assign variant = 'success' %}
+            {% else %}
+              {% assign remaining_amount_money = remaining_amount | money %}
+              {% assign text = section.settings.free_shipping_remaining_text
+                | replace: '%REMAINING%', remaining_amount_money
+              %}
+            {% endif %}
 
-        {% render 'price-list', price: cart.original_total_price %}
-      </div>
+            <div class="Cart__FreeShippingInfo">
+              {% render 'alert', text: text, variant: variant %}
 
-      <div class="Cart__Shipping"></div>
+              {% if section.settings.enable_free_shipping_progress %}
+                {% assign progress = cart.total_price | times: 100 | divided_by: settings.free_shipping_threshold %}
+                {% render 'progress-bar', progress: progress %}
+              {% endif %}
+            </div>
+          {% endif %}
 
-      <div class="Cart__Checkout">
-        {% assign checkout_button_text = 'global.checkout' | t %}
-        {% render 'button', text: checkout_button_text %}
-      </div>
+          <ul class="Cart__LineItems u-NoList">
+            {% for line_item in cart.items %}
+              <li class="Cart__LineItem">
+                {% render 'line-item',
+                  product_title: line_item.product.title,
+                  variant_title: line_item.variant.title,
+                  image: line_item.image,
+                  price: line_item.variant.price,
+                  compare_at_price: line_item.variant.compare_at_price,
+                  quantity: line_item.quantity,
+                  url: line_item.url,
+                  key: line_item.key,
+                  variant_id: line_item.variant.id,
+                  inventory_quantity: line_item.variant.inventory_quantity
+                %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="Cart__Summary">
+          <div class="Cart__SummaryLines">
+            <div class="Cart__SummaryLine">
+              {% assign subtotal_text = 'global.subtotal' | t | append: ':' %}
+              {% render 'text', text: subtotal_text %}
+
+              {% assign formatted_total_price = cart.total_price | money %}
+              {% render 'text', text: formatted_total_price %}
+            </div>
+
+            <div class="Cart__SummaryLine">
+              {% assign shipping_text = 'global.shipping' | t | append: ':' %}
+              {% render 'text', text: shipping_text %}
+
+              {% if settings.free_shipping_threshold != blank
+                and settings.free_shipping_threshold != 0
+                and cart.total_price >= settings.free_shipping_threshold
+              %}
+                {% assign text = 'global.free' | t %}
+                {% assign color = 'success' %}
+              {% else %}
+                {% assign text = 495 | money %}
+              {% endif %}
+
+              {% render 'text', text: text, color: color %}
+            </div>
+          </div>
+
+          {% assign button_text = 'global.checkout' | t %}
+          {% render 'button', text: button_text, url: '/checkout' %}
+        </div>
+      {% endif %}
     </div>
   </div>
 </section>
@@ -47,31 +103,51 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-m);
+    height: 100%;
   }
 
-  .Cart__LineItems {
+  .Cart:has(.EmptyState) {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .Cart__Content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+    overflow-y: auto;
+  }
+
+  .Cart__FreeShippingInfo {
     display: flex;
     flex-direction: column;
     gap: var(--size-xxs);
   }
 
-  .Cart__GiftCode {
+  .Cart__LineItems {
     display: flex;
     flex-direction: column;
     gap: var(--size-xs);
   }
 
-  .Cart__Subtotal {
+  .Cart__Summary {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--size-xs);
+    flex-direction: column;
+    gap: var(--size-m);
+    margin-top: auto;
+    padding: var(--size-m) 0 0;
+    border-top: var(--border-width) var(--border-style) var(--t-border);
   }
 
-  .Cart__Total {
+  .Cart__SummaryLine {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+  }
+
+  .Cart__SummaryLines {
+    display: flex;
+    flex-direction: column;
     gap: var(--size-xs);
   }
 {% endstylesheet %}
@@ -79,6 +155,10 @@
 {% schema %}
 {
   "name": "t:sections.main_cart.name",
+  "disabled_on": {
+    "groups": ["header", "footer"],
+    "templates": ["index", "product", "collection", "page", "blog", "article"]
+  },
   "settings": [
     {
       "type": "header",
@@ -101,6 +181,74 @@
         { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
         { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
       ]
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.section_content.content"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_free_shipping_alert",
+      "label": "t:sections.cart_drawer.settings.enable_free_shipping_alert.label",
+      "default": true,
+      "info": "t:sections.cart_drawer.settings.enable_free_shipping_alert.info"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_free_shipping_progress",
+      "label": "t:sections.cart_drawer.settings.enable_free_shipping_progress.label",
+      "default": true,
+      "info": "t:sections.cart_drawer.settings.enable_free_shipping_progress.info",
+      "visible_if": "{{ section.settings.enable_free_shipping_alert }}"
+    },
+    {
+      "type": "text",
+      "id": "free_shipping_remaining_text",
+      "label": "t:sections.cart_drawer.settings.free_shipping_remaining_text.label",
+      "default": "t:sections.cart_drawer.settings.free_shipping_remaining_text.default",
+      "info": "t:sections.cart_drawer.settings.free_shipping_remaining_text.info",
+      "visible_if": "{{ section.settings.enable_free_shipping_alert }}"
+    },
+    {
+      "type": "text",
+      "id": "free_shipping_reached_text",
+      "label": "t:sections.cart_drawer.settings.free_shipping_reached_text.label",
+      "default": "t:sections.cart_drawer.settings.free_shipping_reached_text.default",
+      "visible_if": "{{ section.settings.enable_free_shipping_alert }}"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.headers.empty_state.content"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_heading",
+      "label": "t:sections.cart_drawer.settings.empty_state_heading.label",
+      "default": "t:sections.cart_drawer.settings.empty_state_heading.default"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_text",
+      "label": "t:sections.cart_drawer.settings.empty_state_text.label",
+      "default": "t:sections.cart_drawer.settings.empty_state_text.default"
+    },
+    {
+      "type": "url",
+      "id": "empty_state_link",
+      "label": "t:sections.cart_drawer.settings.empty_state_link.label",
+      "default": "/collections"
+    },
+    {
+      "type": "text",
+      "id": "empty_state_link_text",
+      "label": "t:sections.cart_drawer.settings.empty_state_link_text.label",
+      "default": "t:sections.cart_drawer.settings.empty_state_link_text.default"
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.cart_drawer.presets.cart_drawer.name",
+      "category": "t:sections.cart_drawer.presets.cart_drawer.category"
     }
   ]
 }
