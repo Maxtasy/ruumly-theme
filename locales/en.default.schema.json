@@ -374,18 +374,18 @@
         "columns_mobile": {
           "label": "Columns Mobile"
         },
-        "empty_state_heading": {
+        "cart_empty_state_heading": {
           "label": "Empty state heading",
           "default": "Your cart is empty"
         },
-        "empty_state_link": {
+        "cart_empty_state_link": {
           "label": "Empty state link"
         },
-        "empty_state_link_text": {
+        "cart_empty_state_link_text": {
           "label": "Empty state link text",
           "default": "Continue shopping"
         },
-        "empty_state_text": {
+        "cart_empty_state_text": {
           "label": "Empty state text",
           "default": "Explore our products"
         },

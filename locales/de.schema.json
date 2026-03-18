@@ -374,18 +374,18 @@
         "columns_mobile": {
           "label": "Spalten Mobile"
         },
-        "empty_state_heading": {
+        "cart_empty_state_heading": {
           "label": "Leerzustand Kopfzeile",
           "default": "Ihr Warenkorb ist leer"
         },
-        "empty_state_link": {
+        "cart_empty_state_link": {
           "label": "Leerzustand Link"
         },
-        "empty_state_link_text": {
+        "cart_empty_state_link_text": {
           "label": "Leerzustand Link Text",
           "default": "Weiter einkaufen"
         },
-        "empty_state_text": {
+        "cart_empty_state_text": {
           "label": "Leerzustand Text",
           "default": "Entdecken Sie unsere Produkte"
         },
