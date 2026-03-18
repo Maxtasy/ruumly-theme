@@ -1,0 +1,20 @@
+{% doc %}
+  Renders a Toaster Component.
+
+  @param {string} text - The text inside the toaster.
+{% enddoc %}
+
+<div class="Toaster">
+  {% render 'text', text: text %}
+</div>
+
+{% stylesheet %}
+  .Toaster {
+    display: flex;
+    justify-content: center;
+    background: var(--t-gradient-background);
+    border-radius: var(--t-border-radius);
+    padding-block: var(--size-xl);
+    width: 50%;
+  }
+{% endstylesheet %}
