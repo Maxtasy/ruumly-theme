@@ -9,10 +9,10 @@
     <main-cart-component class="Cart">
       {% if cart.empty? %}
         {% render 'empty-state',
-          heading: section.settings.empty_state_heading,
-          text: section.settings.empty_state_text,
-          link: section.settings.empty_state_link,
-          link_text: section.settings.empty_state_link_text
+          heading: section.settings.cart_empty_state_heading,
+          text: section.settings.cart_empty_state_text,
+          link: section.settings.cart_empty_state_link,
+          link_text: section.settings.cart_empty_state_link_text
         %}
       {% else %}
         <div class="Cart__Content u-NoScrollbar">
@@ -114,7 +114,7 @@
   .Cart__Content {
     display: flex;
     flex-direction: column;
-    overflow-y: auto;
+    gap: var(--size-xs);
   }
 
   .Cart__FreeShippingInfo {
@@ -216,25 +216,25 @@
     },
     {
       "type": "text",
-      "id": "empty_state_heading",
+      "id": "cart_empty_state_heading",
       "label": "t:sections.all.settings.cart_empty_state_heading.label",
       "default": "t:sections.all.settings.cart_empty_state_heading.default"
     },
     {
       "type": "text",
-      "id": "empty_state_text",
+      "id": "cart_empty_state_text",
       "label": "t:sections.all.settings.cart_empty_state_text.label",
       "default": "t:sections.all.settings.cart_empty_state_text.default"
     },
     {
       "type": "url",
-      "id": "empty_state_link",
+      "id": "cart_empty_state_link",
       "label": "t:sections.all.settings.cart_empty_state_link.label",
       "default": "/collections"
     },
     {
       "type": "text",
-      "id": "empty_state_link_text",
+      "id": "cart_empty_state_link_text",
       "label": "t:sections.all.settings.cart_empty_state_link_text.label",
       "default": "t:sections.all.settings.cart_empty_state_link_text.default"
     }
