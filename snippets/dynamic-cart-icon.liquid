@@ -3,10 +3,18 @@
 {% enddoc %}
 
 <dynamic-cart-icon-component class="DynamicCartIcon">
+  {%- comment -%}
+    Disable cart drawer on cart template since the cart content is already visible there.
+  {%- endcomment -%}
+  {% assign action = '' %}
+  {% if template.name != 'cart' %}
+    {% assign action = 'open-drawer:cart' %}
+  {% endif %}
+
   {% render 'button',
     variant: 'plain',
     icon: 'shopping-cart',
-    action: 'open-drawer:cart',
+    action: action,
     size: 'small',
     aria_label_key: 'components.shopping_cart_button.aria_label'
   %}

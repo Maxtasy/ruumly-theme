@@ -6,7 +6,7 @@
   "
 >
   <div class="Section__Inner">
-    <main-cart-component class="Cart">
+    <cart-section-component class="Cart">
       {% if cart.empty? %}
         {% render 'empty-state',
           heading: section.settings.cart_empty_state_heading,
@@ -94,7 +94,7 @@
           {% render 'button', text: button_text, url: '/checkout' %}
         </div>
       {% endif %}
-    </main-cart-component>
+    </cart-section-component>
   </div>
 </section>
 
