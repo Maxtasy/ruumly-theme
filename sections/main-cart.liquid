@@ -15,7 +15,7 @@
           link_text: section.settings.cart_empty_state_link_text
         %}
       {% else %}
-        <div class="Cart__Content u-NoScrollbar">
+        <div class="Cart__Content">
           {% if settings.free_shipping_threshold != blank
             and settings.free_shipping_threshold != 0
             and section.settings.enable_free_shipping_alert
@@ -103,7 +103,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-m);
-    height: 100%;
   }
 
   .Cart:has(.EmptyState) {
@@ -133,7 +132,6 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-m);
-    margin-top: auto;
     padding: var(--size-m) 0 0;
     border-top: var(--border-width) var(--border-style) var(--t-border);
   }
