@@ -37,3 +37,4 @@ import "./js/shipping-estimation.js";
 import "./js/slider.js";
 import "./js/wishlist-buttons.js";
 import "./js/wishlist-section.js";
+import "./js/cart-section.js";

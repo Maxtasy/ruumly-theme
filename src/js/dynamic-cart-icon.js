@@ -4,18 +4,20 @@ class DynamicCartIconComponent extends CustomComponentMixin(HTMLElement) {
   constructor(element) {
     super(element);
 
-    this.handleCartDrawerUpdated = this.handleCartDrawerUpdated.bind(this);
+    this.handleCartUpdated = this.handleCartUpdated.bind(this);
   }
 
   connectedCallback() {
-    globalThis.subscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
+    globalThis.subscribe("cart-drawer:updated", this.handleCartUpdated);
+    globalThis.subscribe("cart-section:updated", this.handleCartUpdated);
   }
 
   disconnectedCallback() {
-    globalThis.unsubscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
+    globalThis.unsubscribe("cart-drawer:updated", this.handleCartUpdated);
+    globalThis.unsubscribe("cart-section:updated", this.handleCartUpdated);
   }
 
-  handleCartDrawerUpdated({ totalQuantity }) {
+  handleCartUpdated({ totalQuantity }) {
     this.querySelector(".DynamicCartIcon__Indicator .Text").textContent = totalQuantity;
 
     if (totalQuantity > 0) {

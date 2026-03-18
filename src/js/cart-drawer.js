@@ -71,7 +71,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
     }
   }
 
-  async handleCartUpdate({ sections, items }) {
+  handleCartUpdate({ sections, items }) {
     const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`];
 
     if (updatedCartDrawer) {
@@ -85,7 +85,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
     }
   }
 
-  async rerenderCartDrawer(updatedCartDrawer) {
+  rerenderCartDrawer(updatedCartDrawer) {
     const parser = new DOMParser();
     const doc = parser.parseFromString(updatedCartDrawer, "text/html");
     this.innerHTML = doc.querySelector(".CartDrawer").innerHTML;

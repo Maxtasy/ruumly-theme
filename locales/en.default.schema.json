@@ -374,14 +374,46 @@
         "columns_mobile": {
           "label": "Columns Mobile"
         },
-        "enable_slider": {
-          "label": "Enable Slider"
+        "cart_empty_state_heading": {
+          "label": "Empty state heading",
+          "default": "Your cart is empty"
+        },
+        "cart_empty_state_link": {
+          "label": "Empty state link"
+        },
+        "cart_empty_state_link_text": {
+          "label": "Empty state link text",
+          "default": "Continue shopping"
+        },
+        "cart_empty_state_text": {
+          "label": "Empty state text",
+          "default": "Explore our products"
+        },
+        "enable_free_shipping_alert": {
+          "label": "Free Shipping Alert",
+          "info": "Make sure to also define a free shipping threshold in the Theme Settings."
+        },
+        "enable_free_shipping_progress": {
+          "label": "Free Shipping Progress",
+          "info": "Shows a progress bar as indicator."
         },
         "enable_quick_add_button": {
           "label": "Quick Add Button"
         },
+        "enable_slider": {
+          "label": "Enable Slider"
+        },
         "enable_wishlist_button": {
           "label": "Wishlist Button"
+        },
+        "free_shipping_remaining_text": {
+          "label": "Free Shipping Remaining Text",
+          "default": "%REMAINING% remaining until free shipping",
+          "info": "Use %REMAINING% as a placeholder for the remaining amount."
+        },
+        "free_shipping_reached_text": {
+          "label": "Free Shipping Reached Text",
+          "default": "Your order is free of shipping costs"
         },
         "gallery_desktop": {
           "label": "Gallery Desktop",
@@ -560,38 +592,6 @@
     "cart_drawer": {
       "name": "Cart Drawer",
       "settings": {
-        "enable_free_shipping_alert": {
-          "label": "Free Shipping Alert",
-          "info": "Make sure to also define a free shipping threshold in the Theme Settings."
-        },
-        "enable_free_shipping_progress": {
-          "label": "Free Shipping Progress",
-          "info": "Shows a progress bar as indicator."
-        },
-        "empty_state_heading": {
-          "label": "Empty state heading",
-          "default": "Your cart is empty"
-        },
-        "empty_state_link": {
-          "label": "Empty state link"
-        },
-        "empty_state_link_text": {
-          "label": "Empty state link text",
-          "default": "Continue shopping"
-        },
-        "empty_state_text": {
-          "label": "Empty state text",
-          "default": "Explore our products"
-        },
-        "free_shipping_remaining_text": {
-          "label": "Free Shipping Remaining Text",
-          "default": "%REMAINING% remaining until free shipping",
-          "info": "Use %REMAINING% as a placeholder for the remaining amount."
-        },
-        "free_shipping_reached_text": {
-          "label": "Free Shipping Reached Text",
-          "default": "Your order is free of shipping costs"
-        },
         "from": {
           "label": "From",
           "options": {
@@ -667,6 +667,9 @@
           "label": "Enable Heading"
         }
       }
+    },
+    "main_cart": {
+      "name": "Main Cart"
     },
     "menu_drawer": {
       "name": "Menu Drawer",
