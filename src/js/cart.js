@@ -5,7 +5,7 @@ export class Cart {
     this.clear = this.clear.bind(this);
   }
 
-  async addItems(items) {
+  async addItems({ items, sections }) {
     if (!Array.isArray(items)) {
       throw new Error("Items must be an array");
     }
@@ -16,21 +16,27 @@ export class Cart {
       }
     });
 
-    const response = await fetch(window.routes.cart_add_url, {
+    const response = await fetch(`${window.routes.cartAddUrl}.js`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ items }),
+      body: JSON.stringify({ items, sections }),
     });
 
     if (!response.ok) {
-      throw new Error("Failed to add items to cart");
+      if (response.status !== 422) {
+        throw new Error("Failed to add items to cart");
+      }
+
+      const error = await response.json();
+
+      return { status: "partial-success", data: error };
     }
 
     const data = await response.json();
 
-    return data;
+    return { status: "success", data };
   }
 
   async addItem({ item, sections }) {

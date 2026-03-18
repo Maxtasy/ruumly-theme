@@ -3,122 +3,117 @@
 
   @param {object} product - The product object containing options and values.
   @param {string} [name_prefix] - The prefix for the name attribute of the input elements.
-  @param {boolean} [update_variant_url_parameter] - Whether to update the `variant` URL parameter in the URL when the selected variant changes.
   @param {object} [blocks] - The blocks object of a section (for example product configurator).
 {% enddoc %}
 
-<product-form-component
-  data-update-variant-url-parameter="{{ update_variant_url_parameter | default: false }}"
->
-  <form class="ProductForm">
-    {% for block in blocks %}
-      {% case block.type %}
-        {% when 'social-proof' %}
-          {% render 'social-proof',
-            image_1: block.settings.image_1,
-            image_2: block.settings.image_2,
-            text: block.settings.text
-          %}
+<product-form-component class="ProductForm">
+  {% for block in blocks %}
+    {% case block.type %}
+      {% when 'social-proof' %}
+        {% render 'social-proof',
+          image_1: block.settings.image_1,
+          image_2: block.settings.image_2,
+          text: block.settings.text
+        %}
 
-        {% when 'title' %}
-          <div class="ProductForm__Title">
-            {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
+      {% when 'title' %}
+        <div class="ProductForm__Title">
+          {% render 'text', text: product.title, variant: 'heading-small', as: 'h1' %}
 
-            {% if block.settings.show_vendor and product.vendor != blank %}
-              <div
-                class="ProductForm__Vendor"
-                {% if block.settings.vendor_position == 'above' %}
-                  style="--order: -1;"
-                {% endif %}
-              >
-                {% render 'text', text: product.vendor, variant: 'body-small', color: 'primary-muted' %}
-              </div>
-            {% endif %}
-
-            {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
-              <div
-                class="ProductForm__Sku"
-                {% if block.settings.sku_position == 'above' %}
-                  style="--order: -1;"
-                {% endif %}
-              >
-                {% render 'text',
-                  text: product.selected_or_first_available_variant.sku,
-                  variant: 'body-small',
-                  color: 'primary-muted'
-                %}
-              </div>
-            {% endif %}
-          </div>
-
-        {% when 'product-variant-selector' %}
-          {% render 'product-variant-selector',
-            product: product,
-            name_prefix: name_prefix,
-            visually_hidden: product.has_only_default_variant
-          %}
-
-        {% when 'price-list' %}
-          {% assign info = 'components.price_list.info_html' | t %}
-          {% render 'price-list', price: product.price, compare_at_price: product.compare_at_price, info: info %}
-
-        {% when 'quantity-selector' %}
-          {% render 'quantity-selector', quantity: 1 %}
-
-        {% when 'product-rating' %}
-          {% if product.metafields.custom.rating.value.rating %}
-            {% render 'rating', rating: product.metafields.custom.rating.value.rating, icon_size: 'small' %}
+          {% if block.settings.show_vendor and product.vendor != blank %}
+            <div
+              class="ProductForm__Vendor"
+              {% if block.settings.vendor_position == 'above' %}
+                style="--order: -1;"
+              {% endif %}
+            >
+              {% render 'text', text: product.vendor, variant: 'body-small', color: 'primary-muted' %}
+            </div>
           {% endif %}
 
-        {% when 'buy-buttons' %}
-          <div class="ProductForm__BuyButtons">
-            <div class="ProductForm__AddToCartButton">
-              {% if settings.enable_back_in_stock_button
-                and product.selected_or_first_available_variant.available == false
-              %}
-                {% assign button_text = 'components.back_in_stock.notify_me' | t %}
-                {% assign button_action = 'click-bis-subscribe' %}
-                {% assign event_details = product.selected_or_first_available_variant.id %}
-              {% else %}
-                {% assign button_text = 'global.add_to_cart' | t %}
-                {% assign button_action = 'add-to-cart' %}
-                {% assign event_details = '' %}
+          {% if block.settings.show_sku and product.selected_or_first_available_variant.sku != blank %}
+            <div
+              class="ProductForm__Sku"
+              {% if block.settings.sku_position == 'above' %}
+                style="--order: -1;"
               {% endif %}
-
-              {% render 'button',
-                text: button_text,
-                action: button_action,
-                full_width: true,
-                event_details: event_details
+            >
+              {% render 'text',
+                text: product.selected_or_first_available_variant.sku,
+                variant: 'body-small',
+                color: 'primary-muted'
               %}
             </div>
+          {% endif %}
+        </div>
 
-            {% if block.settings.show_wishlist_button %}
-              <div class="ProductForm__WishlistButton">
-                {% render 'wishlist-buttons', product_id: product.id, full_width: true, handle: product.handle %}
-              </div>
+      {% when 'product-variant-selector' %}
+        {% render 'product-variant-selector',
+          product: product,
+          name_prefix: name_prefix,
+          visually_hidden: product.has_only_default_variant
+        %}
+
+      {% when 'price-list' %}
+        {% assign info = 'components.price_list.info_html' | t %}
+        {% render 'price-list', price: product.price, compare_at_price: product.compare_at_price, info: info %}
+
+      {% when 'quantity-selector' %}
+        {% render 'quantity-selector', quantity: 1 %}
+
+      {% when 'product-rating' %}
+        {% if product.metafields.custom.rating.value.rating %}
+          {% render 'rating', rating: product.metafields.custom.rating.value.rating, icon_size: 'small' %}
+        {% endif %}
+
+      {% when 'buy-buttons' %}
+        <div class="ProductForm__BuyButtons">
+          <div class="ProductForm__AddToCartButton">
+            {% if settings.enable_back_in_stock_button
+              and product.selected_or_first_available_variant.available == false
+            %}
+              {% assign button_text = 'components.back_in_stock.notify_me' | t %}
+              {% assign button_action = 'click-bis-subscribe' %}
+              {% assign event_details = product.selected_or_first_available_variant.id %}
+            {% else %}
+              {% assign button_text = 'global.add_to_cart' | t %}
+              {% assign button_action = 'add-to-cart' %}
+              {% assign event_details = '' %}
             {% endif %}
+
+            {% render 'button',
+              text: button_text,
+              action: button_action,
+              full_width: true,
+              event_details: event_details
+            %}
           </div>
 
-        {% when 'shipping-estimation' %}
-          {% liquid
-            assign available_text = 'components.shipping_estimation.available' | t
-            assign unavailable_text = 'components.shipping_estimation.unavailable' | t
-          %}
+          {% if block.settings.show_wishlist_button %}
+            <div class="ProductForm__WishlistButton">
+              {% render 'wishlist-buttons', product_id: product.id, full_width: true, handle: product.handle %}
+            </div>
+          {% endif %}
+        </div>
 
-          {% render 'shipping-estimation',
-            available: product.selected_or_first_available_variant.available,
-            available_text: available_text,
-            unavailable_text: unavailable_text
-          %}
+      {% when 'shipping-estimation' %}
+        {% liquid
+          assign available_text = 'components.shipping_estimation.available' | t
+          assign unavailable_text = 'components.shipping_estimation.unavailable' | t
+        %}
 
-        {% when 'selling-points' %}
-          {% render 'selling-points',
-            selling_points: shop.metaobjects.selling_points['selling-points-1hylegwq'].selling_points.value
-          %}
-      {% endcase %}
-    {% endfor %}
-  </form>
+        {% render 'shipping-estimation',
+          available: product.selected_or_first_available_variant.available,
+          available_text: available_text,
+          unavailable_text: unavailable_text
+        %}
+
+      {% when 'selling-points' %}
+        {% render 'selling-points',
+          selling_points: shop.metaobjects.selling_points['selling-points-1hylegwq'].selling_points.value
+        %}
+    {% endcase %}
+  {% endfor %}
 </product-form-component>
 
 {% stylesheet %}
