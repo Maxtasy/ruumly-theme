@@ -18,8 +18,8 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
     this.subscribe("line-item:update", this.handleCartUpdate);
     this.subscribe("line-item:remove", this.handleCartUpdate);
 
-    globalThis.subscribe("product-form:item-added", this.handleItemAdded);
-    globalThis.subscribe("product-form:item-partially-added", this.handleItemPartiallyAdded);
+    globalThis.subscribe("product-configurator:item-added", this.handleItemAdded);
+    globalThis.subscribe("product-configurator:item-partially-added", this.handleItemPartiallyAdded);
     globalThis.subscribe("product-card:item-added", this.handleItemAdded);
   }
 
@@ -28,8 +28,8 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
     this.unsubscribe("line-item:update", this.handleCartUpdate);
     this.unsubscribe("line-item:remove", this.handleCartUpdate);
 
-    globalThis.unsubscribe("product-form:item-added", this.handleItemAdded);
-    globalThis.unsubscribe("product-form:item-partially-added", this.handleItemPartiallyAdded);
+    globalThis.unsubscribe("product-configurator:item-added", this.handleItemAdded);
+    globalThis.unsubscribe("product-configurator:item-partially-added", this.handleItemPartiallyAdded);
     globalThis.unsubscribe("product-card:item-added", this.handleItemAdded);
   }
 
@@ -45,7 +45,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
     }
   }
 
-  async handleItemPartiallyAdded({ errorMessage, item }) {
+  async handleItemPartiallyAdded({ errorMessage, addedItems }) {
     const sections = await sectionRenderingApi.fetchSections(["cart-drawer"]);
 
     const updatedCartDrawer = sections[`${getClosestSectionId(".CartDrawer")}`] || sections["cart-drawer"];
@@ -56,7 +56,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
       // Select associated line item and update its alerts.
 
       const lineItemElement = [...this.lineItemElements].find(
-        (lineItemElement) => lineItemElement.parsedData.variantId === item.id,
+        (lineItemElement) => lineItemElement.parsedData.variantId === addedItems[0].id,
       );
 
       if (lineItemElement) {
