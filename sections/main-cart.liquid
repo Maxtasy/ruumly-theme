@@ -153,10 +153,6 @@
 {% schema %}
 {
   "name": "t:sections.main_cart.name",
-  "disabled_on": {
-    "groups": ["header", "footer"],
-    "templates": ["index", "product", "collection", "page", "blog", "article"]
-  },
   "settings": [
     {
       "type": "header",
@@ -241,12 +237,6 @@
       "id": "empty_state_link_text",
       "label": "t:sections.all.settings.cart_empty_state_link_text.label",
       "default": "t:sections.all.settings.cart_empty_state_link_text.default"
-    }
-  ],
-  "presets": [
-    {
-      "name": "t:sections.cart_drawer.presets.cart_drawer.name",
-      "category": "t:sections.cart_drawer.presets.cart_drawer.category"
     }
   ]
 }
