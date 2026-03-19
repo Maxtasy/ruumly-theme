@@ -118,6 +118,7 @@
               {% endcapture %}
               
               {% assign action = 'open-drawer:' | append: filter_drawer_name %}
+
               {% render 'button', content: filter_button_content, variant: 'plain', size: 'small', full_width: true, action: action %}
             </li>
 
@@ -138,6 +139,7 @@
                       {% if filter_value.count < 1 %}
                         {% assign is_filter_value_disabled = true %}
                       {% endif %}
+                      
                       <li>
                         {% render 'filter-value', filter_value: filter_value, disabled: is_filter_value_disabled %}
                       </li>
@@ -145,22 +147,27 @@
                   </ul>
                 </div>
 
-                {% assign button_text = 'components.filter.reset_filter' | t %}
-        
-                {% capture event_details %}
-                  {
-                    "url": {{ filter.url_to_remove | json }}
-                  }
-                {% endcapture %}
+                <div class="FiltersMobile__DrawerButtons">
+                  {% render 'button', text: 'Save Filter', action: 'close', full_width: true %}
 
-                {% assign event_details = event_details | escape %}
+                  {% assign button_text = 'components.filter.reset_filter' | t %}
+          
+                  {% capture event_details %}
+                    {
+                      "url": {{ filter.url_to_remove | json }}
+                    }
+                  {% endcapture %}
 
-                {% render 'button',
-                  text: button_text,
-                  action: 'filter-reset',
-                  event_details: event_details,
-                  full_width: true 
-                %}
+                  {% assign event_details = event_details | escape %}
+
+                  {% render 'button',
+                    text: button_text,
+                    variant: 'secondary',
+                    action: 'filter-reset',
+                    event_details: event_details,
+                    full_width: true 
+                  %}
+                </div>
 
                 <div class="FiltersMobile__Loading">
                   {% render 'loading-spinner' %}
@@ -175,23 +182,28 @@
             {% assign mobile_filter_drawers = mobile_filter_drawers | append: filter_drawer %}
           {% endfor %}
         </ul>
-        
-        {% assign button_text = 'components.filter.reset_all_filters' | t %}
-        
-        {% capture event_details %}
-          {
-            "url": {{ collection.url | json }}
-          }
-        {% endcapture %}
 
-        {% assign event_details = event_details | escape %}
+        <div class="FiltersMobile__DrawerButtons">
+          {% render 'button', text: 'Save and Close', action: 'close', full_width: true %}
+          
+          {% assign button_text = 'components.filter.reset_all_filters' | t %}
+          
+          {% capture event_details %}
+            {
+              "url": {{ collection.url | json }}
+            }
+          {% endcapture %}
 
-        {% render 'button',
-          text: button_text,
-          action: 'filter-reset',
-          event_details: event_details, 
-          full_width: true 
-        %}
+          {% assign event_details = event_details | escape %}
+
+          {% render 'button',
+            text: button_text,
+            variant: 'secondary',
+            action: 'filter-reset',
+            event_details: event_details, 
+            full_width: true
+          %}
+        </div>
       </div>
     {% endcapture %}
 
@@ -259,6 +271,12 @@
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
+  }
+
+  .FiltersMobile__DrawerButtons {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xxs);
   }
 
   .FiltersMobile__FilterValues {
