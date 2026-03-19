@@ -28,17 +28,23 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.updateProductGrid(data.url);
   }
 
-  setLoadingStates() {
-    const loadingElements = this.querySelectorAll(".Filter__DropdownContent");
+  setLoadingState(force) {
+    if (force) {
+      this.setAttribute("data-loading", "");
+    } else {
+      this.removeAttribute("data-loading");
+    }
   }
 
   async updateProductGrid(url) {
-    this.setLoadingStates();
+    this.setLoadingState(true);
 
     const doc = await this.getDocument(url);
 
     this.rerender(doc);
     this.updateUrl(url);
+
+    this.setLoadingState(false);
   }
 
   async getDocument(url) {

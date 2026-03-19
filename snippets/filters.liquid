@@ -49,6 +49,10 @@
         {% render 'text', text: text %}
       {% endcapture %}
       {% render 'button', variant: 'plain', size: 'small', content: reset_button_content, url: collection.url %}
+
+      <div class="Filters__Loading">
+        {% render 'loading-spinner' %}
+      </div>
     </div>
   </div>
 
@@ -128,6 +132,10 @@
 
                 {% assign button_text = 'components.filter.reset_filter' | t %}
                 {% render 'button', text: button_text, url: filter.url_to_remove %}
+
+                <div class="FiltersMobile__Loading">
+                  {% render 'loading-spinner' %}
+                </div>
               </div>
             {% endcapture %}
 
@@ -151,6 +159,12 @@
 </filters-component>
 
 {% stylesheet %}
+  filters-component[data-loading] .Filter__Loading,
+  filters-component[data-loading] .Filters__Loading,
+  filters-component[data-loading] .FiltersMobile__Loading {
+    display: flex;
+  }
+
   .Filters {
     display: flex;
     flex-direction: column;
@@ -158,6 +172,7 @@
   }
 
   .Filters__Row {
+    position: relative;
     display: flex;
     align-items: center;
     gap: var(--size-m);
@@ -170,6 +185,16 @@
 
   .Filters__SortBy {
     margin-left: auto;
+  }
+
+  .Filters__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
   }
 
   .FiltersMobile {
@@ -186,6 +211,7 @@
   }
 
   .FiltersMobile__DrawerContent {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -209,5 +235,15 @@
     display: flex;
     align-items: center;
     gap: var(--size-xxs);
+  }
+
+  .FiltersMobile__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
   }
 {% endstylesheet %}
