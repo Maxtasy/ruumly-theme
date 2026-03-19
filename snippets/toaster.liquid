@@ -4,17 +4,23 @@
   @param {string} text - The text inside the toaster.
 {% enddoc %}
 
-<div class="Toaster">
-  {% render 'text', text: text %}
-</div>
+<toaster-component>
+  <div class="Toaster">
+    {% render 'text', text: text %}
+  </div>
+</toaster-component>
 
 {% stylesheet %}
   .Toaster {
-    display: flex;
+    display: none;
     justify-content: center;
     background: var(--t-gradient-background);
     border-radius: var(--t-border-radius);
     padding-block: var(--size-xl);
     width: 50%;
+  }
+
+  .Toaster--Toasted {
+    display: flex;
   }
 {% endstylesheet %}
