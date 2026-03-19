@@ -48,7 +48,22 @@
         {% assign text = 'components.filter.reset_all_filters' | t %}
         {% render 'text', text: text %}
       {% endcapture %}
-      {% render 'button', variant: 'plain', size: 'small', content: reset_button_content, url: collection.url %}
+
+      {% capture event_details %}
+        {
+          "url": {{ collection.url | json }}
+        }
+      {% endcapture %}
+
+      {% assign event_details = event_details | escape %}
+
+      {% render 'button',
+        variant: 'plain',
+        size: 'small',
+        content: reset_button_content,
+        action: 'filter-reset',
+        event_details: event_details
+      %}
 
       <div class="Filters__Loading">
         {% render 'loading-spinner' %}
@@ -131,7 +146,21 @@
                 </div>
 
                 {% assign button_text = 'components.filter.reset_filter' | t %}
-                {% render 'button', text: button_text, url: filter.url_to_remove %}
+        
+                {% capture event_details %}
+                  {
+                    "url": {{ filter.url_to_remove | json }}
+                  }
+                {% endcapture %}
+
+                {% assign event_details = event_details | escape %}
+
+                {% render 'button',
+                  text: button_text,
+                  action: 'filter-reset',
+                  event_details: event_details,
+                  full_width: true 
+                %}
 
                 <div class="FiltersMobile__Loading">
                   {% render 'loading-spinner' %}
@@ -148,7 +177,21 @@
         </ul>
         
         {% assign button_text = 'components.filter.reset_all_filters' | t %}
-        {% render 'button', text: button_text, url: collection.url %}
+        
+        {% capture event_details %}
+          {
+            "url": {{ collection.url | json }}
+          }
+        {% endcapture %}
+
+        {% assign event_details = event_details | escape %}
+
+        {% render 'button',
+          text: button_text,
+          action: 'filter-reset',
+          event_details: event_details, 
+          full_width: true 
+        %}
       </div>
     {% endcapture %}
 
