@@ -27,7 +27,7 @@ class LineItem extends CustomComponentMixin(HTMLElement) {
 
     const response = await cart.update({
       updates: { [`${this.key}`]: desiredQuantity },
-      sections: getClosestSectionId(".CartDrawer"),
+      sections: [getClosestSectionId(".CartDrawer"), getClosestSectionId(".Cart")],
     });
 
     if (response) {
@@ -41,7 +41,10 @@ class LineItem extends CustomComponentMixin(HTMLElement) {
   async handleRemove() {
     this.setLoading(true);
 
-    const response = await cart.remove({ key: this.key, sections: getClosestSectionId(".CartDrawer") });
+    const response = await cart.remove({
+      key: this.key,
+      sections: [getClosestSectionId(".CartDrawer"), getClosestSectionId(".Cart")],
+    });
 
     if (response) {
       this.publish("line-item:remove", {

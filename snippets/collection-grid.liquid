@@ -1,0 +1,66 @@
+{% doc %}
+  Renders a Collection Grid component.
+
+  @param {object} [collections] - List of collection objects. The collections to render inside the grid.
+  @param {string} [columns_mobile]
+  @param {string} [columns_desktop]
+  @param {string} [grid_gap] - Defaults to `m`.
+  @param {number} [per_page] - Collections to render per page. Default is set to 16.
+{% enddoc %}
+
+{% assign per_page = per_page | default: 16 %}
+
+<div class="CollectionGrid">
+  {% paginate collections by per_page %}
+    <ul
+      class="
+        CollectionGrid__Items
+        {% if columns_mobile %}
+          CollectionGrid__Items--FixedColumnsMobile
+        {% endif %}
+        {% if columns_desktop %}
+          CollectionGrid__Items--FixedColumnsDesktop
+        {% endif %}
+        u-NoList
+      "
+      style="
+        --columns-mobile: {{ columns_mobile }};
+        --columns-desktop: {{ columns_desktop }};
+        --gap: var(--size-{{ grid_gap | default: 'm' }});
+      "
+    >
+      {% for collection in collections %}
+        <li>
+          {% render 'collection-card', image: collection.featured_image, title: collection.title, url: collection.url %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if paginate.pages > 1 %}
+      <div class="CollectionGrid__Pagination">
+        {% render 'pagination', paginate: paginate %}
+      </div>
+    {% endif %}
+  {% endpaginate %}
+</div>
+
+{% stylesheet %}
+  .CollectionGrid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--size-m);
+  }
+
+  .CollectionGrid__Items {
+    display: grid;
+    grid-template-columns: repeat(var(--columns-mobile), 1fr);
+    gap: var(--gap);
+  }
+
+  @media screen and (min-width: 769px) {
+    .CollectionGrid__Items {
+      grid-template-columns: repeat(var(--columns-desktop), 1fr);
+    }
+  }
+{% endstylesheet %}

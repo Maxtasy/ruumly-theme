@@ -271,6 +271,9 @@
       "headers": {
         "shipping": {
           "content": "Versand"
+        },
+        "back_in_stock": {
+          "content": "Back in Stock"
         }
       },
       "settings": {
@@ -283,6 +286,26 @@
         },
         "until_free_shipping_text": {
           "label": "Bis zum kostenlosen Versand Text"
+        },
+        "enable_back_in_stock_button": {
+          "label": "Back in stock button aktivieren"
+        }
+      }
+    },
+    "social_links": {
+      "name": "Social Links",
+      "settings": {
+        "facebook": {
+          "label": "Facebook"
+        },
+        "x": {
+          "label": "X"
+        },
+        "tiktok": {
+          "label": "TikTok"
+        },
+        "instagram": {
+          "label": "Instagram"
         }
       }
     },
@@ -351,14 +374,46 @@
         "columns_mobile": {
           "label": "Spalten Mobile"
         },
-        "enable_slider": {
-          "label": "Slider aktivieren"
+        "cart_empty_state_heading": {
+          "label": "Leerzustand Kopfzeile",
+          "default": "Ihr Warenkorb ist leer"
+        },
+        "cart_empty_state_link": {
+          "label": "Leerzustand Link"
+        },
+        "cart_empty_state_link_text": {
+          "label": "Leerzustand Link Text",
+          "default": "Weiter einkaufen"
+        },
+        "cart_empty_state_text": {
+          "label": "Leerzustand Text",
+          "default": "Entdecken Sie unsere Produkte"
+        },
+        "enable_free_shipping_alert": {
+          "label": "Informationen zum kostenlosen Versand",
+          "info": "Stellen Sie sicher, dass Sie auch einen Schwellenwert für den kostenlosen Versand in den Theme-Einstellungen festlegen."
+        },
+        "enable_free_shipping_progress": {
+          "label": "Fortschritt für kostenlosen Versand",
+          "info": "Zeigt einen Fortschrittsbalken als Indikator an."
         },
         "enable_quick_add_button": {
           "label": "Button für schnelles hinzufügen"
         },
+        "enable_slider": {
+          "label": "Slider aktivieren"
+        },
         "enable_wishlist_button": {
           "label": "Button für Wunschliste"
+        },
+        "free_shipping_remaining_text": {
+          "label": "Kostenloser Versand Verbleibender Text",
+          "default": "Noch %REMAINING% für kostenlosen Versand",
+          "info": "Verwenden Sie %REMAINING% als Platzhalter für den Restbetrag."
+        },
+        "free_shipping_reached_text": {
+          "label": "Kostenloser Versand erreicht Text",
+          "default": "Die Bestellung ist versandkostenfrei."
         },
         "gallery_desktop": {
           "label": "Galerie Desktop",
@@ -472,6 +527,9 @@
             }
           }
         },
+        "per_page": {
+          "label": "Pro Seite"
+        },
         "position_left": {
           "label": "Position Links"
         },
@@ -534,29 +592,6 @@
     "cart_drawer": {
       "name": "Warenkorb Drawer",
       "settings": {
-        "enable_free_shipping_alert": {
-          "label": "Informationen zum kostenlosen Versand",
-          "info": "Stellen Sie sicher, dass Sie auch einen Schwellenwert für den kostenlosen Versand in den Theme-Einstellungen festlegen."
-        },
-        "enable_free_shipping_progress": {
-          "label": "Fortschritt für kostenlosen Versand",
-          "info": "Zeigt einen Fortschrittsbalken als Indikator an."
-        },
-        "empty_state_heading": {
-          "label": "Leerzustand Kopfzeile",
-          "default": "Ihr Warenkorb ist leer"
-        },
-        "empty_state_link": {
-          "label": "Leerzustand Link"
-        },
-        "empty_state_link_text": {
-          "label": "Leerzustand Link Text",
-          "default": "Weiter einkaufen"
-        },
-        "empty_state_text": {
-          "label": "Leerzustand Text",
-          "default": "Entdecken Sie unsere Produkte"
-        },
         "from": {
           "label": "Von",
           "options": {
@@ -567,15 +602,6 @@
               "label": "Rechts"
             }
           }
-        },
-        "free_shipping_remaining_text": {
-          "label": "Kostenloser Versand Verbleibender Text",
-          "default": "Noch %REMAINING% für kostenlosen Versand",
-          "info": "Verwenden Sie %REMAINING% als Platzhalter für den Restbetrag."
-        },
-        "free_shipping_reached_text": {
-          "label": "Kostenloser Versand erreicht Text",
-          "default": "Die Bestellung ist versandkostenfrei."
         }
       },
       "presets": {
@@ -605,6 +631,9 @@
           "name": "Kollektionsbanner"
         }
       }
+    },
+    "collection_grid": {
+      "name": "Kollektionsraster"
     },
     "collection_list": {
       "name": "Kollektionsliste",
@@ -638,6 +667,9 @@
           "label": "Überschrift aktivieren"
         }
       }
+    },
+    "main_cart": {
+      "name": "Main Cart"
     },
     "menu_drawer": {
       "name": "Menü Drawer",
@@ -721,6 +753,20 @@
               "label": "Wunschliste Button anzeigen"
             }
           }
+        },
+        "social_proof": {
+          "name": "Social Proof",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "image_1": {
+              "label": "Bild 1"
+            },
+            "image_2": {
+              "label": "Bild 2"
+            }
+          }
         }
       }
     },
@@ -737,9 +783,6 @@
         "enable_pagination": {
           "label": "Paginierung aktivieren",
           "info": "Funktioniert nur wenn Produktliste und Kollektion Einstellungen nicht gesetzt sind."
-        },
-        "per_page": {
-          "label": "Pro Seite"
         }
       },
       "presets": {

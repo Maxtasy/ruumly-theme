@@ -7,35 +7,70 @@
   @param {number} [columns_desktop] - Number of columns on desktop.
 {% enddoc %}
 
-{% assign columns_mobile = columns_mobile | default: 1 %}
-{% assign columns_desktop = columns_desktop | default: 3 %}
+{% liquid
+  assign columns_mobile = columns_mobile | default: 1
+  assign columns_desktop = columns_desktop | default: 3
+  assign paginate_by = 16
+%}
 
 <div class="BlogArticleList">
-  {% paginate blog_articles by 3 %}
-    <ul
-      class="BlogArticleList__Items u-NoList"
-      style="
-        --columns-mobile: {{ columns_mobile }};
-        --columns-desktop: {{ columns_desktop }};
-      "
-    >
-      {% for article in blog_articles limit: limit %}
-        <li>
-          {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
-          {% render 'blog-article-card',
-            image: article.image,
-            title: article.title,
-            excerpt: excerpt,
-            url: article.url
-          %}
-        </li>
-      {% endfor %}
-    </ul>
+  {% if blog_articles %}
+    {% paginate blog_articles by paginate_by %}
+      <ul
+        class="BlogArticleList__Items u-NoList"
+        style="
+          --columns-mobile: {{ columns_mobile }};
+          --columns-desktop: {{ columns_desktop }};
+        "
+      >
+        {% for article in blog_articles limit: limit %}
+          <li>
+            {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
+            {% render 'blog-article-card',
+              image: article.image,
+              title: article.title,
+              excerpt: excerpt,
+              url: article.url
+            %}
+          </li>
+        {% endfor %}
+      </ul>
 
-    <div class="BlogArticleList__Pagination">
-      {% render 'pagination', paginate: paginate %}
-    </div>
-  {% endpaginate %}
+      {% if paginate.pages > 1 %}
+        <div class="BlogArticleList__Pagination">
+          {% render 'pagination', paginate: paginate %}
+        </div>
+      {% endif %}
+    {% endpaginate %}
+  {% else %}
+    {% paginate blog.articles by paginate_by %}
+      <ul
+        class="BlogArticleList__Items u-NoList"
+        style="
+          --columns-mobile: {{ columns_mobile }};
+          --columns-desktop: {{ columns_desktop }};
+        "
+      >
+        {% for article in blog.articles limit: limit %}
+          <li>
+            {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
+            {% render 'blog-article-card',
+              image: article.image,
+              title: article.title,
+              excerpt: excerpt,
+              url: article.url
+            %}
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if paginate.pages > 1 %}
+        <div class="BlogArticleList__Pagination">
+          {% render 'pagination', paginate: paginate %}
+        </div>
+      {% endif %}
+    {% endpaginate %}
+  {% endif %}
 </div>
 
 {% stylesheet %}
