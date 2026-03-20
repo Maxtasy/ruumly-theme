@@ -10,7 +10,9 @@ export class Toast extends CustomComponentMixin(HTMLElement) {
   }
 
   connectedCallback() {
-    this.classList.add("Toast--Toasted");
+    window.requestAnimationFrame(() => {
+      this.classList.add("Toast--Toasted");
+    });
 
     setTimeout(this.destroy, this.lifetime);
 
