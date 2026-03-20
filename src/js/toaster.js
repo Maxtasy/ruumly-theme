@@ -24,6 +24,10 @@ export class Toaster extends CustomComponentMixin(HTMLElement) {
   get toasterElement() {
     return this.querySelector(".Toaster");
   }
+
+  get toastElement() {
+    return this.querySelector("#toast");
+  }
 }
 
 defineComponent("toaster-component", Toaster);
