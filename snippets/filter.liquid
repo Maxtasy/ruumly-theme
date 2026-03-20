@@ -43,7 +43,19 @@
         </ul>
 
         {% assign button_text = 'components.filter.reset_filter' | t %}
-        {% render 'button', text: button_text, url: filter.url_to_remove %}
+        
+        {% capture event_details %}
+          {
+            "url": {{ filter.url_to_remove | json }}
+          }
+        {% endcapture %}
+
+        {% assign event_details = event_details | escape %}
+        {% render 'button', text: button_text, action: 'filter-reset', event_details: event_details %}
+      </div>
+
+      <div class="Filter__Loading">
+        {% render 'loading-spinner' %}
       </div>
     {% endcapture %}
 
@@ -65,6 +77,7 @@
   }
 
   .Filter__DropdownContent {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: var(--size-m);
@@ -95,5 +108,15 @@
     display: flex;
     align-items: center;
     gap: var(--size-xs);
+  }
+
+  .Filter__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
   }
 {% endstylesheet %}

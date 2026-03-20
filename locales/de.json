@@ -84,7 +84,9 @@
       "reset_all_filters": "Alle Filter zurücksetzen",
       "reset_filter": "Filter zurücksetzen",
       "sort_by": "Sortieren nach",
-      "filters": "Filter"
+      "filters": "Filter",
+      "save_filter": "Filter speichern",
+      "save_and_close": "Speichern und schließen"
     },
     "image": {
       "product": {
