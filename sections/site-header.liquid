@@ -205,6 +205,10 @@
     justify-content: flex-end;
     gap: var(--size-xxs);
   }
+
+  .MaybeStickySection:has(.Section--Sticky) {
+    z-index: 2;
+  }
 {% endstylesheet %}
 
 {% schema %}
