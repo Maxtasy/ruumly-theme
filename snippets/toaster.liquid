@@ -3,7 +3,9 @@
 {% enddoc %}
 
 <toaster-component class="Toaster">
-  <template id="toast">render toast component here</template>
+  <template id="toast">
+    {% render 'toast' %}
+  </template>
 </toaster-component>
 
 {% stylesheet %}
