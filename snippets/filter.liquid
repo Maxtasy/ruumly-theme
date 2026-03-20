@@ -4,7 +4,7 @@
   @param {object} filter - The liquid filter object.
 {% enddoc %}
 
-<filter-component class="Filter">
+<div class="Filter">
   {% capture dropdown_trigger_content %}
     <div class="Filter__TriggerContent">
       {% render 'text', text: filter.label, as: 'b' %}
@@ -61,7 +61,7 @@
 
     {% render 'dropdown-content', content: content, handle: handle %}
   </div>
-</filter-component>
+</div>
 
 {% stylesheet %}
   .Filter {
