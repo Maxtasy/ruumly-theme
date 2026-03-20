@@ -16,7 +16,7 @@ export class Toaster extends CustomComponentMixin(HTMLElement) {
   }
 
   handleShareClick() {
-    this.toasterElement.classList.toggle("Toaster--Toasted");
+    this.toast(variant, text);
   }
 
   toast(variant, text) {}
