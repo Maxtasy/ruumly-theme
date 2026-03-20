@@ -37,3 +37,4 @@ import "./js/wishlist-buttons.js";
 import "./js/wishlist-section.js";
 import "./js/slider.js";
 import "./js/toaster.js";
+import "./js/toast.js";

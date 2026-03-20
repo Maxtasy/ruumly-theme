@@ -13,7 +13,15 @@
 
       {% render 'toaster' %}
 
-      {% render 'button', text: 'share', action: 'share' %}
+      {% capture event_details %}
+        {
+          "text": "Link saved to clipboard",
+          "url": {{ request.origin | append: request.path | json }}
+        }
+      {% endcapture %}
+
+      {% assign event_details = event_details | escape %}
+      {% render 'button', text: 'share', action: 'toast', event_details: event_details %}
 
       {% render 'social-links' %}
     </div>

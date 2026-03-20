@@ -3,6 +3,7 @@
 {% enddoc %}
 
 <toaster-component class="Toaster">
+  {% render 'toast', text: 'Link saved to clipboard' %}
   <template id="toast">
     {% render 'toast' %}
   </template>
@@ -11,7 +12,11 @@
 {% stylesheet %}
   .Toaster {
     position: fixed;
-    bottom: 0;
+    bottom: var(--size-l);
     left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
   }
 {% endstylesheet %}

@@ -4,25 +4,32 @@ export class Toaster extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
-    this.handleShareClick = this.handleShareClick.bind(this);
+    this.handleToastClick = this.handleToastClick.bind(this);
   }
 
   connectedCallback() {
-    globalThis.subscribe("button:click:share", this.handleShareClick);
+    globalThis.subscribe("button:click:toast", this.handleToastClick);
   }
 
   disconnectedCallback() {
-    globalThis.unsubscribe("button:click:share", this.handleShareClick);
+    globalThis.unsubscribe("button:click:toast", this.handleToastClick);
   }
 
-  handleShareClick() {
-    this.toast(variant, text);
+  handleToastClick(data) {
+    this.toast(data.text);
+
+    if (data.url) {
+      navigator.clipboard.writeText(data.url);
+    }
   }
 
-  toast(variant, text) {}
+  toast(text) {
+    const newToastElement = document.importNode(this.toastElement.content, true);
 
-  get toasterElement() {
-    return this.querySelector(".Toaster");
+    const textElement = newToastElement.querySelector(".Text");
+    textElement.textContent = text;
+
+    this.appendChild(newToastElement);
   }
 
   get toastElement() {
