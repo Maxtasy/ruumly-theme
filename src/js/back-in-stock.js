@@ -10,6 +10,9 @@ class BackInStock {
   }
 
   async subscribe(productId, variantId, email) {
+    // ! INFO: This is a placeholder for the actual subscription logic, which would typically involve making an API
+    // ! call to your backend to save the subscription details.
+    // ! The sleep function is used here to simulate an asynchronous operation.
     await sleep();
 
     return {
