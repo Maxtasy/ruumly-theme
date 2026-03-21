@@ -67,6 +67,10 @@
       "aria_label": "In den Warenkorb"
     },
     "back_in_stock": {
+      "modal_heading": "E-Mail-Benachrichtigung",
+      "modal_text": "Geben Sie Ihre E-Mail-Adresse ein und wir benachrichtigen Sie, sobald dieses Produkt wieder auf Lager ist.",
+      "form_success_message": "Vielen Dank! Wir benachrichtigen Sie, sobald das Produkt wieder auf Lager ist.",
+      "form_error_message": "Beim Absenden Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
       "notify_me": "Benachrichtigen, wenn verfügbar"
     },
     "badge": {
@@ -84,7 +88,9 @@
       "reset_all_filters": "Alle Filter zurücksetzen",
       "reset_filter": "Filter zurücksetzen",
       "sort_by": "Sortieren nach",
-      "filters": "Filter"
+      "filters": "Filter",
+      "save_filter": "Filter speichern",
+      "save_and_close": "Speichern und schließen"
     },
     "image": {
       "product": {

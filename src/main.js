@@ -1,5 +1,6 @@
 // Modules
 
+import "./js/back-in-stock.js";
 import "./js/global.js";
 import "./js/header-group.js";
 import "./js/sticky-stack.js";
@@ -8,17 +9,22 @@ import "./js/wishlist.js";
 
 // Components
 
+import "./js/active-filter-value.js";
 import "./js/alert.js";
 import "./js/announcement-bar.js";
+import "./js/back-in-stock-form.js";
 import "./js/backdrop.js";
 import "./js/button.js";
 import "./js/cart-drawer.js";
+import "./js/cart-section.js";
 import "./js/component.js";
 import "./js/drawer.js";
 import "./js/dropdown-content.js";
 import "./js/dropdown-trigger.js";
 import "./js/dynamic-cart-icon.js";
 import "./js/dynamic-wishlist-icon.js";
+import "./js/filter-value.js";
+import "./js/filters.js";
 import "./js/gallery.js";
 import "./js/language-selector.js";
 import "./js/line-item.js";
@@ -26,6 +32,7 @@ import "./js/mega-menu-trigger.js";
 import "./js/mega-menu.js";
 import "./js/modal.js";
 import "./js/product-card.js";
+import "./js/product-configurator.js";
 import "./js/product-form.js";
 import "./js/product-option-selector.js";
 import "./js/product-recommendations.js";
@@ -33,8 +40,8 @@ import "./js/product-variant-selector.js";
 import "./js/quantity-selector.js";
 import "./js/section.js";
 import "./js/shipping-estimation.js";
+import "./js/slider.js";
+import "./js/toast.js";
+import "./js/toaster.js";
 import "./js/wishlist-buttons.js";
 import "./js/wishlist-section.js";
-import "./js/slider.js";
-import "./js/toaster.js";
-import "./js/toast.js";

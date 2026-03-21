@@ -5,7 +5,10 @@
 {% enddoc %}
 
 {% capture content %}
-  <a class="ActiveFilterValue" href="{{ filter_value.url_to_remove }}">
+  <active-filter-value-component
+    class="ActiveFilterValue"
+    data-url="{{ filter_value.url_to_remove }}"
+  >
     {% if filter_value.swatch %}
       {% liquid 
         assign is_swatch_disabled = false
@@ -20,7 +23,7 @@
     {{ filter_value.label }}
 
     {% render 'icon', icon: 'x', size: 'small' %}
-  </a>
+  </active-filter-value-component>
 {% endcapture %}
 
 {% render 'badge', content: content %}
@@ -31,5 +34,6 @@
     align-items: center;
     gap: var(--size-xs);
     color: var(--t-text);
+    cursor: pointer;
   }
 {% endstylesheet %}

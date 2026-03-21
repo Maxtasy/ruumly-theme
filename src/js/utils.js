@@ -6,7 +6,7 @@ export function debounce(func, delay) {
   };
 }
 
-export function sleep(ms) {
+export function sleep(ms = 500) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 

@@ -14,7 +14,7 @@
 
   <div class="Newsletter__Bottom">
     {% assign placeholder = 'inputs.email.placeholder' | t %}
-    {% render 'text-field', type: 'email', required: true, placeholder: placeholder %}
+    {% render 'text-field', name: 'email', type: 'email', required: true, placeholder: placeholder %}
 
     {% assign button_text = 'global.submit' | t %}
     {% render 'button', text: button_text %}

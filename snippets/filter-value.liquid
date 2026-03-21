@@ -11,14 +11,14 @@
   {% assign url = filter_value.url_to_add %}
 {% endif %}
 
-<a
+<filter-value-component
   class="
     FilterValue
     {% if disabled %}
       FilterValue--Disabled
     {% endif %}
   "
-  href="{{ url }}"
+  data-url="{{ url }}"
 >
   {% if filter_value.swatch %}
     {% render 'swatch', swatch: filter_value.swatch, active: filter_value.active, disabled: disabled %}
@@ -27,13 +27,14 @@
 
     {% render 'text', text: filter_value.label %}
   {% endif %}
-</a>
+</filter-value-component>
 
 {% stylesheet %}
   .FilterValue {
     display: flex;
     align-items: center;
     gap: var(--size-xxs);
+    cursor: pointer;
   }
 
   .FilterValue--Disabled {
