@@ -4,5 +4,9 @@
     "editor.codeActionsOnSave": {},
     "editor.formatOnSave": true
   },
-  "editor.rulers": [120]
+  "editor.rulers": [120],
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit",
+    "source.fixAll.eslint": "explicit"
+  }
 }
