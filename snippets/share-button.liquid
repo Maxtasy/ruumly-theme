@@ -4,7 +4,7 @@
   @param {string} [toast_text] - The toast text.
 {% enddoc %}
 
-{% assign default_toast_text = 'Link saved to clipboard' %}
+{% assign default_toast_text = 'components.share_button.link_saved' | t %}
 {% assign toast_text = toast_text | default: default_toast_text %}
 
 {% capture event_details %}
@@ -16,7 +16,8 @@
 
 {% assign event_details = event_details | escape %}
 {% capture button_content %}
-  {% render 'text', text: 'Share', text_decoration: 'underline' %}
+  {% assign button_text = 'components.share_button.share' | t %}
+  {% render 'text', text: button_text, text_decoration: 'underline' %}
 
   {% render 'icon', icon: 'share-2', size: 'small' %}
 {% endcapture %}
