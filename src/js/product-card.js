@@ -24,7 +24,7 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
     if (this.hasOnlyDefaultVariant) {
       const buttonElement = event.target;
 
-      buttonElement.setLoading(true);
+      buttonElement.setLoading && buttonElement.setLoading(true);
 
       const response = await cart.addItem({
         item: { id: this.selectedVariantId, quantity: 1 },
@@ -37,7 +37,7 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
         this.publish("product-card:item-added", { items, sections });
       }
 
-      buttonElement.setLoading(false);
+      buttonElement.setLoading && buttonElement.setLoading(false);
     }
   }
 }
