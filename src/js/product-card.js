@@ -30,7 +30,6 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
         item: { id: this.selectedVariantId, quantity: 1 },
         sections: getClosestSectionId(".CartDrawer"),
       });
-      console.log(response);
 
       if (response.status === "success" && response.data?.items && response.data?.sections) {
         const { items, sections } = response.data;
