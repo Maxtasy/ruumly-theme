@@ -8,16 +8,23 @@ export class Slider extends CustomComponentMixin(HTMLElement) {
 
     this.handleNextClick = this.handleNextClick.bind(this);
     this.handlePrevClick = this.handlePrevClick.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("button:click:prev", this.handlePrevClick);
     this.subscribe("button:click:next", this.handleNextClick);
+    this.scrollContainerElement.addEventListener("scroll", this.handleScroll);
   }
 
   disconnectedCallback() {
     this.unsubscribe("button:click:prev", this.handlePrevClick);
     this.unsubscribe("button:click:next", this.handleNextClick);
+    this.scrollContainerElement.removeEventListener("scroll", this.handleScroll);
+  }
+
+  handleScroll() {
+    this.updateNavigationState();
   }
 
   handlePrevClick() {
@@ -44,6 +51,23 @@ export class Slider extends CustomComponentMixin(HTMLElement) {
     this.updateSlider();
   }
 
+  updateNavigationState() {
+    const start = this.scrollContainerElement.scrollLeft;
+    const end = this.scrollContainerElement.scrollWidth - this.scrollContainerElement.clientWidth;
+
+    if (start <= 0) {
+      this.prevButtonElement.disable();
+    } else {
+      this.prevButtonElement.enable();
+    }
+
+    if (start >= end) {
+      this.nextButtonElement.disable();
+    } else {
+      this.nextButtonElement.enable();
+    }
+  }
+
   updateSlider() {
     this.slideItemElements[this.currentIndex].scrollIntoView({
       behavior: "smooth",
@@ -68,6 +92,10 @@ export class Slider extends CustomComponentMixin(HTMLElement) {
     const secondToLastSlideItemRect = secondToLastSlideItem.getBoundingClientRect();
 
     return secondToLastSlideItemRect.right <= sliderRect.right;
+  }
+
+  get scrollContainerElement() {
+    return this.querySelector(".Slider__Inner");
   }
 
   get slideItemElements() {
