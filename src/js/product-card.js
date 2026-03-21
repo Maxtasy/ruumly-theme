@@ -20,8 +20,12 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
     this.unsubscribe("button:click:quick-add", this.handleQuickAddClick);
   }
 
-  async handleQuickAddClick() {
+  async handleQuickAddClick(_, event) {
     if (this.hasOnlyDefaultVariant) {
+      const buttonElement = event.target;
+
+      buttonElement.setLoading && buttonElement.setLoading(true);
+
       const response = await cart.addItem({
         item: { id: this.selectedVariantId, quantity: 1 },
         sections: getClosestSectionId(".CartDrawer"),
@@ -32,6 +36,8 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
 
         this.publish("product-card:item-added", { items, sections });
       }
+
+      buttonElement.setLoading && buttonElement.setLoading(false);
     }
   }
 }
