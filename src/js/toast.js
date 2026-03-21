@@ -1,10 +1,11 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { toastLifetime } from "./constants.js";
 
 export class Toast extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
-    this.lifetime = 5000;
+    this.lifetime = toastLifetime;
 
     this.destroy = this.destroy.bind(this);
   }

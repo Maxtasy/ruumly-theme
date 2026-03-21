@@ -1,8 +1,11 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { toastLifetime } from "./constants.js";
 
 export class Toaster extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
+
+    this.activeToasts = [];
 
     this.handleToastClick = this.handleToastClick.bind(this);
   }
@@ -16,6 +19,8 @@ export class Toaster extends CustomComponentMixin(HTMLElement) {
   }
 
   handleToastClick(data) {
+    if (this.activeToasts.includes(data.text)) return;
+
     this.toast(data.text);
 
     if (data.url) {
@@ -30,6 +35,12 @@ export class Toaster extends CustomComponentMixin(HTMLElement) {
     textElement.textContent = text;
 
     this.appendChild(newToastElement);
+
+    this.activeToasts.push(text);
+
+    setTimeout(() => {
+      this.activeToasts = this.activeToasts.filter((toastText) => toastText !== text);
+    }, toastLifetime);
   }
 
   get toastElement() {
