@@ -138,6 +138,10 @@
     "search_button": {
       "aria_label": "Suche öffnen"
     },
+    "share_button": {
+      "link_saved": "Link in die Zwischenablage kopiert",
+      "share": "Teilen"
+    },
     "shipping_estimation": {
       "available": "Auf Lager: In 1-3 Tagen bei dir",
       "unavailable": "Ausverkauft"

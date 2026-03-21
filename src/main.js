@@ -41,5 +41,7 @@ import "./js/quantity-selector.js";
 import "./js/section.js";
 import "./js/shipping-estimation.js";
 import "./js/slider.js";
+import "./js/toast.js";
+import "./js/toaster.js";
 import "./js/wishlist-buttons.js";
 import "./js/wishlist-section.js";

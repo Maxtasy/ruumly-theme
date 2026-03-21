@@ -26,6 +26,8 @@
       <div class="BlogArticle__Footer">
         {% assign written_by = 'blog_article.written_by' | t: author: article.author %}
         {% render 'text', text: written_by %}
+
+        {% render 'share-button' %}
       </div>
     </div>
   </div>
@@ -36,6 +38,13 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-m);
+  }
+
+  .BlogArticle__Footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--size-s);
   }
 {% endstylesheet %}
 

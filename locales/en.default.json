@@ -138,6 +138,10 @@
     "search_button": {
       "aria_label": "Open search"
     },
+    "share_button": {
+      "link_saved": "Link saved to clipboard",
+      "share": "Share"
+    },
     "shipping_estimation": {
       "available": "In stock: With you in 1-3 days",
       "unavailable": "Out of stock"
