@@ -5,7 +5,7 @@
 {% enddoc %}
 
 <toast-component class="Toast">
-  {% render 'text', text: text %}
+  {% render 'text', text: text, color: 'inherit' %}
 
   {% capture content %}
     {% render 'icon', icon: 'x', size: 'small' %}
@@ -35,8 +35,37 @@
     transition: all var(--transition-duration-medium) var(--transition-timing-bounce);
   }
 
+  .Toast .Button {
+    /* Overwrite default button color to make icons same color as text */
+    color: inherit;
+  }
+
   .Toast--Toasted {
     bottom: 0;
     scale: 1;
+  }
+
+  .Toast--Critical {
+    color: var(--t-background-dark);
+    background: var(--t-danger);
+    background-color: var(--t-danger);
+  }
+
+  .Toast--Success {
+    color: var(--t-background-dark);
+    background: var(--t-success);
+    background-color: var(--t-success);
+  }
+
+  .Toast--Info {
+    color: var(--t-background-dark);
+    background: var(--t-info);
+    background-color: var(--t-info);
+  }
+
+  .Toast--Warning {
+    color: var(--t-background-dark);
+    background: var(--t-warning);
+    background-color: var(--t-warning);
   }
 {% endstylesheet %}

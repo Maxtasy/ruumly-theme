@@ -35,6 +35,10 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
         const { items, sections } = response.data;
 
         this.publish("product-card:item-added", { items, sections });
+      } else if (response.data.status === 422) {
+        const { message } = response.data;
+
+        this.publish("quick-add:max-quantity-error", { message });
       }
 
       buttonElement.setLoading && buttonElement.setLoading(false);
