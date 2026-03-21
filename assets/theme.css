@@ -14,3 +14,9 @@ main {
   top: var(--sticky-top-offset, 0);
   z-index: var(--layer-2);
 }
+
+.Form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--size-s);
+}

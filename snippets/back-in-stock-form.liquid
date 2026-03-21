@@ -1,0 +1,62 @@
+{% doc %}
+  Renders a Back In Stock form component.
+
+  @param {object} product_id - The product ID for which the back in stock notification is being requested.
+  @param {object} variant_id - The variant ID for which the back in stock notification is being requested.
+  @param {string} [product_title] - Title of the product.
+  @param {string} [variant_title] - Title of the variant.
+{% enddoc %}
+
+<back-in-stock-form-component
+  class="BackInStockForm"
+  data-product-id="{{ product_id }}"
+  data-variant-id="{{ variant_id }}"
+>
+  {% assign product_variant_text = product_title | append: ' - ' | append: variant_title %}
+  {% render 'text', text: product_variant_text, color: 'primary-muted' %}
+
+  {% assign description_text = 'components.back_in_stock.modal_text' | t %}
+  {% render 'text', text: description_text %}
+
+  <form class="Form">
+    {% assign placeholder = 'inputs.email.placeholder' | t %}
+    {% render 'text-field',
+      name: 'email',
+      placeholder: placeholder,
+      type: 'email',
+      required: true,
+      autocomplete: true
+    %}
+
+    {% assign button_text = 'components.back_in_stock.notify_me' | t %}
+    {% render 'button', text: button_text, type: 'submit', icon: 'mail' %}
+  </form>
+
+  <div class="BackInStockForm__SuccessMessage">
+    {% assign form_success_message = 'components.back_in_stock.form_success_message' | t %}
+    {% render 'alert', variant: 'success', text: form_success_message %}
+  </div>
+
+  <div class="BackInStockForm__ErrorMessage">
+    {% assign form_error_message = 'components.back_in_stock.form_error_message' | t %}
+    {% render 'alert', variant: 'critical', text: form_error_message %}
+  </div>
+</back-in-stock-form-component>
+
+{% stylesheet %}
+  .BackInStockForm {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+  }
+
+  .BackInStockForm__SuccessMessage,
+  .BackInStockForm__ErrorMessage {
+    display: none;
+  }
+
+  .BackInStockForm__SuccessMessage--Active,
+  .BackInStockForm__ErrorMessage--Active {
+    display: block;
+  }
+{% endstylesheet %}

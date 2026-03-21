@@ -32,7 +32,7 @@
   .Modal__Dialog {
     padding: var(--modal-padding-top) var(--modal-padding-inline) var(--modal-padding-bottom);
     width: var(--modal-width);
-    max-width: var(--modal-max-width);
+    max-width: min(var(--modal-max-width), calc(100% - var(--modal-padding-inline) * 2));
     min-height: var(--modal-min-height);
     max-height: var(--modal-max-height);
     background-color: var(--t-background);
