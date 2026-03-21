@@ -15,12 +15,14 @@
 {% endcapture %}
 
 {% assign event_details = event_details | escape %}
+
 {% capture button_content %}
   {% assign button_text = 'components.share_button.share' | t %}
   {% render 'text', text: button_text, text_decoration: 'underline' %}
 
   {% render 'icon', icon: 'share-2', size: 'small' %}
 {% endcapture %}
+
 {% render 'button',
   action: 'toast',
   event_details: event_details,
