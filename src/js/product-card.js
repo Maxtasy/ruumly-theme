@@ -30,11 +30,16 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
         item: { id: this.selectedVariantId, quantity: 1 },
         sections: getClosestSectionId(".CartDrawer"),
       });
+      console.log(response);
 
       if (response.status === "success" && response.data?.items && response.data?.sections) {
         const { items, sections } = response.data;
 
         this.publish("product-card:item-added", { items, sections });
+      } else if (response.data.status === 422) {
+        const { message } = response.data;
+
+        this.publish("quick-add:max-quantity-error", { message });
       }
 
       buttonElement.setLoading && buttonElement.setLoading(false);
