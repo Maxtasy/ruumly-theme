@@ -69,19 +69,44 @@
       {% when 'buy-buttons' %}
         <div class="ProductForm__BuyButtons">
           <div class="ProductForm__AddToCartButton">
+            {% capture event_details %}
+              {
+                "productId": {{ product.id }},
+                "variantId": {{ product.selected_or_first_available_variant.id }}
+              }
+            {% endcapture %}
+
+            {% liquid
+              if settings.enable_back_in_stock_button and product.selected_or_first_available_variant.available == false
+                assign button_variant = 'secondary'
+                assign button_text = 'components.back_in_stock.notify_me' | t
+                assign button_action = 'open-modal:bis'
+                assign event_details = event_details | escape
+              else
+                assign button_variant = 'primary'
+                assign button_text = 'global.add_to_cart' | t
+                assign button_action = 'add-to-cart'
+              endif
+            %}
+
             {% if settings.enable_back_in_stock_button
               and product.selected_or_first_available_variant.available == false
             %}
-              {% assign button_text = 'components.back_in_stock.notify_me' | t %}
-              {% assign button_action = 'click-bis-subscribe' %}
-              {% assign event_details = product.selected_or_first_available_variant.id %}
-            {% else %}
-              {% assign button_text = 'global.add_to_cart' | t %}
-              {% assign button_action = 'add-to-cart' %}
-              {% assign event_details = '' %}
+              {% capture bis_modal_content %}
+                {% render 'back-in-stock-form',
+                  product_id: product.id,
+                  variant_id: product.selected_or_first_available_variant.id,
+                  product_title: product.title,
+                  variant_title: product.selected_or_first_available_variant.title
+                %}
+              {% endcapture %}
+
+              {% assign modal_heading = 'components.back_in_stock.modal_heading' | t %}
+              {% render 'modal', name: 'bis', title: modal_heading, content: bis_modal_content %}
             {% endif %}
 
             {% render 'button',
+              variant: button_variant,
               text: button_text,
               action: button_action,
               full_width: true,

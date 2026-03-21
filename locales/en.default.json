@@ -67,6 +67,10 @@
       "aria_label": "Add to cart"
     },
     "back_in_stock": {
+      "modal_heading": "Email Notification",
+      "modal_text": "Enter your email address and we will notify you as soon as this product is back in stock.",
+      "form_success_message": "Thank you! We will notify you when the product is back in stock.",
+      "form_error_message": "There was an error submitting your request. Please try again later.",
       "notify_me": "Notify me"
     },
     "badge": {
