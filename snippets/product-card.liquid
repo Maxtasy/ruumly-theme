@@ -13,18 +13,18 @@
   @param {boolean} [enable_quick_add_button] - Renders a quick add button on the product card.
   @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card.
   @param {object} [product] - The product reference.
+  @param {string} [product_card_rating_prefix] - The product card rating prefix.
 {% enddoc %}
 
 {% assign hover_effect = hover_effect | default: settings.product_card_hover_effect %}
 {% assign selected_variant = product.selected_or_first_available_variant %}
 
-<article
+<product-card-component
   class="
     ProductCard
     ProductCard--Hover{{ hover_effect | camelcase }}
   "
   {% if enable_quick_add_button %}
-    is="product-card-component"
     data-has-only-default-variant="{{ product.has_only_default_variant }}"
     data-selected-variant-id="{{ selected_variant.id | json }}"
   {% endif %}
@@ -89,7 +89,7 @@
       </a>
 
       {% if rating %}
-        {% render 'rating', rating: rating %}
+        {% render 'rating', rating: rating, rating_prefix: product_card_rating_prefix %}
       {% endif %}
 
       <div class="ProductCard__PriceList">
@@ -133,19 +133,19 @@
         {% endif %}
 
         {% if enable_wishlist_button %}
-          {% render 'wishlist-buttons', product_id: product.id %}
+          {% render 'wishlist-buttons', product_id: product.id, handle: product.handle %}
         {% endif %}
       </div>
     {% endif %}
   </div>
-</article>
+</product-card-component>
 
 {% stylesheet %}
   .ProductCard {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
     height: 100%;
     background-color: var(--t-background);
     background: var(--t-gradient-background);
@@ -169,27 +169,6 @@
     overflow: hidden;
   }
 
-  .ProductCard--HoverZoom .ProductCard__Image .Image {
-    transform: scale(0.8);
-    transition: var(--transition-duration-medium) var(--transition-timing);
-  }
-
-  .ProductCard--HoverZoom .ProductCard__Image:hover .Image {
-    transform: scale(1);
-  }
-
-  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image {
-    transition: transform var(--transition-duration-short) var(--transition-timing);
-  }
-
-  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:first-of-type {
-    transform: translateX(0);
-  }
-
-  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:first-of-type {
-    transform: translateX(-100%);
-  }
-
   .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:nth-of-type(2) {
     position: absolute;
     inset: 0;
@@ -199,21 +178,44 @@
     transform: translateX(calc(100% + 1px));
   }
 
-  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
-    transform: translateX(0);
+  @media (hover: hover) {
+    .ProductCard--HoverZoom .ProductCard__Image .Image {
+      transform: scale(0.8);
+      transition: var(--transition-duration-medium) var(--transition-timing);
+    }
+
+    .ProductCard--HoverZoom .ProductCard__Image:hover .Image {
+      transform: scale(1);
+    }
+
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image {
+      transition: transform var(--transition-duration-short) var(--transition-timing);
+    }
+
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:first-of-type {
+      transform: translateX(0);
+    }
+
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:first-of-type {
+      transform: translateX(-100%);
+    }
+
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
+      transform: translateX(0);
+    }
   }
 
   .ProductCard__Actions {
     display: flex;
     flex-direction: column;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
   }
 
   .ProductCard__Badges {
     position: absolute;
     top: 0;
     right: 0;
-    padding: var(--size-xs);
+    padding: var(--size-xxs);
   }
 
   .ProductCard__Bottom {
@@ -222,10 +224,10 @@
 
     display: flex;
     align-items: center;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
     width: 100%;
-    padding: var(--size-s);
-    gap: var(--size-s);
+    padding: var(--size-xs);
+    gap: var(--size-xs);
   }
 
   .ProductCard__Details {
@@ -237,7 +239,7 @@
 
     display: flex;
     flex-direction: column;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
   }
 
   .ProductCard__PriceList {

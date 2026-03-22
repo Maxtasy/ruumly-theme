@@ -1,0 +1,71 @@
+{% doc %}
+  Renders a Toast component.
+
+  @param {string} [text] - The text inside the toast.
+{% enddoc %}
+
+<toast-component class="Toast">
+  {% render 'text', text: text, color: 'inherit' %}
+
+  {% capture content %}
+    {% render 'icon', icon: 'x', size: 'small' %}
+  {% endcapture %}
+
+  {% render 'button', action: 'close', content: content, size: 'small', variant: 'plain' %}
+</toast-component>
+
+{% stylesheet %}
+  .Toast {
+    position: absolute;
+    bottom: calc(var(--size-l) * -1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-xs);
+    white-space: nowrap;
+    padding-inline: var(--size-m);
+    padding-block: var(--size-s);
+    background-color: var(--t-background);
+    background: var(--t-gradient-background);
+    border: var(--border-width) solid var(--t-border-card);
+    border-top-color: var(--t-highlight);
+    border-radius: var(--t-border-radius);
+    box-shadow: var(--box-shadow);
+    scale: 0.5;
+    transition: all var(--transition-duration-medium) var(--transition-timing-bounce);
+  }
+
+  .Toast .Button {
+    /* Overwrite default button color to make icons same color as text */
+    color: inherit;
+  }
+
+  .Toast--Toasted {
+    bottom: 0;
+    scale: 1;
+  }
+
+  .Toast--Critical {
+    color: var(--t-background-dark);
+    background: var(--t-danger);
+    background-color: var(--t-danger);
+  }
+
+  .Toast--Success {
+    color: var(--t-background-dark);
+    background: var(--t-success);
+    background-color: var(--t-success);
+  }
+
+  .Toast--Info {
+    color: var(--t-background-dark);
+    background: var(--t-info);
+    background-color: var(--t-info);
+  }
+
+  .Toast--Warning {
+    color: var(--t-background-dark);
+    background: var(--t-warning);
+    background-color: var(--t-warning);
+  }
+{% endstylesheet %}

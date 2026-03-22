@@ -1,0 +1,44 @@
+{% doc %}
+  Renders a Filter Value component.
+
+  @param {object} filter_value - The liquid filter value object.
+  @param {boolean} [disabled] - Whether the filter value is disabled.
+{% enddoc %}
+
+{% if filter_value.active %}
+  {% assign url = filter_value.url_to_remove %}
+{% else %}
+  {% assign url = filter_value.url_to_add %}
+{% endif %}
+
+<filter-value-component
+  class="
+    FilterValue
+    {% if disabled %}
+      FilterValue--Disabled
+    {% endif %}
+  "
+  data-url="{{ url }}"
+>
+  {% if filter_value.swatch %}
+    {% render 'swatch', swatch: filter_value.swatch, active: filter_value.active, disabled: disabled %}
+  {% else %}
+    {% render 'checkbox', checked: filter_value.active, disable_pointer_events: true %}
+
+    {% render 'text', text: filter_value.label %}
+  {% endif %}
+</filter-value-component>
+
+{% stylesheet %}
+  .FilterValue {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xxs);
+    cursor: pointer;
+  }
+
+  .FilterValue--Disabled {
+    opacity: 0.3;
+    pointer-events: none;
+  }
+{% endstylesheet %}

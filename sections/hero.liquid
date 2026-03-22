@@ -77,9 +77,15 @@
     position: absolute;
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
     padding: var(--size-m);
     background-color: var(--t-background-light-opaque);
+  }
+
+  @media screen and (min-width: 769px) {
+    .Hero__Content {
+      max-width: 800px;
+    }
   }
 
   .Hero__Content--HorizontalLeft {
@@ -125,15 +131,15 @@
     {
       "type": "text",
       "id": "height",
-      "label": "t:sections.hero.settings.height.label",
+      "label": "t:sections.all.settings.height.label",
       "default": "66vh",
-      "info": "t:sections.hero.settings.height.info"
+      "info": "t:sections.all.settings.height.info"
     },
     {
       "type": "checkbox",
       "id": "subtract_header_group_height",
-      "label": "t:sections.hero.settings.subtract_header_group_height.label",
-      "info": "t:sections.hero.settings.subtract_header_group_height.info",
+      "label": "t:sections.all.settings.subtract_header_group_height.label",
+      "info": "t:sections.all.settings.subtract_header_group_height.info",
       "default": false
     },
     {
@@ -186,13 +192,13 @@
     {
       "type": "color",
       "id": "overlay_color",
-      "label": "t:sections.hero.settings.overlay_color.label",
+      "label": "t:sections.all.settings.overlay_color.label",
       "default": "#000000"
     },
     {
       "type": "range",
       "id": "overlay_opacity",
-      "label": "t:sections.hero.settings.overlay_opacity.label",
+      "label": "t:sections.all.settings.overlay_opacity.label",
       "min": 0,
       "max": 100,
       "step": 1,

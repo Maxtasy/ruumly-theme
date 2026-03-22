@@ -6,31 +6,33 @@
   @param {string} content - The content of the modal.
 {% enddoc %}
 
-<dialog is="modal-component" data-name="{{ name }}" class="Modal">
-  <div class="Modal__Content">
-    {% if title != blank %}
-      {% render 'text', text: title, variant: 'heading-small', as: 'h3' %}
-    {% endif %}
+<modal-component class="Modal" data-name="{{ name }}">
+  <dialog class="Modal__Dialog">
+    <div class="Modal__Content">
+      {% if title != blank %}
+        {% render 'text', text: title, variant: 'heading-small', as: 'h3' %}
+      {% endif %}
 
-    {{ content }}
-  </div>
+      {{ content }}
+    </div>
 
-  <div class="Modal__Close">
-    {% render 'button',
-      variant: 'plain',
-      icon: 'x',
-      action: 'close',
-      size: 'small',
-      aria_label_key: 'components.close_button.aria_label'
-    %}
-  </div>
-</dialog>
+    <div class="Modal__Close">
+      {% render 'button',
+        variant: 'plain',
+        icon: 'x',
+        action: 'close',
+        size: 'small',
+        aria_label_key: 'components.close_button.aria_label'
+      %}
+    </div>
+  </dialog>
+</modal-component>
 
 {% stylesheet %}
-  .Modal {
+  .Modal__Dialog {
     padding: var(--modal-padding-top) var(--modal-padding-inline) var(--modal-padding-bottom);
     width: var(--modal-width);
-    max-width: var(--modal-max-width);
+    max-width: min(var(--modal-max-width), calc(100% - var(--modal-padding-inline) * 2));
     min-height: var(--modal-min-height);
     max-height: var(--modal-max-height);
     background-color: var(--t-background);
@@ -39,7 +41,7 @@
     border-radius: var(--t-border-radius);
   }
 
-  .Modal::backdrop {
+  .Modal__Dialog::backdrop {
     background-color: var(--t-backdrop-background-color);
   }
 

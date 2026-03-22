@@ -2,6 +2,7 @@
   Renders a Cart Drawer Component.
 
   @param {boolean} enable_free_shipping_alert - Whether to render free shipping alert.
+  @param {boolean} enable_free_shipping_progress - Whether to render free shipping progress.
   @param {string} free_shipping_remaining_text - The text to show in the alert when free shipping is not yet reached.
   @param {string} free_shipping_reached_text - The text to show in the alert when free shipping is reached.
   @param {string} empty_state_heading - The heading of the empty state.
@@ -10,9 +11,7 @@
   @param {string} empty_state_link_text - The link text of the empty state.
 {% enddoc %}
 
-{% assign enable_free_shipping_alert = enable_free_shipping_alert | default: true, allow_false: true %}
-
-<div is="cart-drawer-component" class="CartDrawer">
+<cart-drawer-component class="CartDrawer">
   {% if cart.empty? %}
     {% render 'empty-state',
       heading: empty_state_heading,
@@ -36,7 +35,14 @@
           {% assign text = free_shipping_remaining_text | replace: '%REMAINING%', remaining_amount_money %}
         {% endif %}
 
-        {% render 'alert', text: text, variant: variant %}
+        <div class="CartDrawer__FreeShippingInfo">
+          {% render 'alert', text: text, variant: variant %}
+
+          {% if enable_free_shipping_progress %}
+            {% assign progress = cart.total_price | times: 100 | divided_by: settings.free_shipping_threshold %}
+            {% render 'progress-bar', progress: progress %}
+          {% endif %}
+        </div>
       {% endif %}
 
       <ul class="CartDrawer__LineItems u-NoList">
@@ -51,7 +57,8 @@
               quantity: line_item.quantity,
               url: line_item.url,
               key: line_item.key,
-              variant_id: line_item.variant.id
+              variant_id: line_item.variant.id,
+              inventory_quantity: line_item.variant.inventory_quantity
             %}
           </li>
         {% endfor %}
@@ -86,10 +93,11 @@
         </div>
       </div>
 
-      {% render 'button', text: 'checkout', url: '/checkout' %}
+      {% assign button_text = 'global.checkout' | t %}
+      {% render 'button', text: button_text, url: '/checkout' %}
     </div>
   {% endif %}
-</div>
+</cart-drawer-component>
 
 {% stylesheet %}
   .CartDrawer {
@@ -108,14 +116,20 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
     overflow-y: auto;
+  }
+
+  .CartDrawer__FreeShippingInfo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xxs);
   }
 
   .CartDrawer__LineItems {
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 
   .CartDrawer__Summary {
@@ -135,6 +149,6 @@
   .CartDrawer__SummaryLines {
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 {% endstylesheet %}

@@ -1,0 +1,21 @@
+{% doc %}
+  Renders a Toaster Component.
+{% enddoc %}
+
+<toaster-component class="Toaster">
+  <template id="toast">
+    {% render 'toast' %}
+  </template>
+</toaster-component>
+
+{% stylesheet %}
+  .Toaster {
+    position: fixed;
+    bottom: var(--size-l);
+    left: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(-50%);
+  }
+{% endstylesheet %}

@@ -14,48 +14,48 @@
   assign size_option_names = metaobjects.size_option_names.values | first | default: default_size_option_names
 %}
 
-<fieldset
-  is="product-option-selector-component"
-  class="ProductOptionSelector"
+<product-option-selector-component
   data-option-position="{{ product_option.position }}"
   data-option-selected-value="{{ product_option.selected_value }}"
 >
-  <legend class="u-Hidden">{{ product_option.name }}</legend>
+  <fieldset class="ProductOptionSelector">
+    <legend class="u-Hidden">{{ product_option.name }}</legend>
 
-  <div class="ProductOptionSelector__Label">
-    {% render 'text', as: 'strong', text: product_option.name %}
-  </div>
+    <div class="ProductOptionSelector__Label">
+      {% render 'text', as: 'b', text: product_option.name %}
+    </div>
 
-  <ul class="ProductOptionSelector__Values u-NoList">
-    {% for product_option_value in product_option.values %}
-      {% liquid
-        assign product_option_value_variant = ''
-        assign product_option_name_stripped = product_option.name | strip
+    <ul class="ProductOptionSelector__Values u-NoList">
+      {% for product_option_value in product_option.values %}
+        {% liquid
+          assign product_option_value_variant = ''
+          assign product_option_name_stripped = product_option.name | strip
 
-        if product_option_value.swatch or color_option_names contains product_option_name_stripped
-          assign product_option_value_variant = 'color'
-        elsif size_option_names contains product_option_name_stripped
-          assign product_option_value_variant = 'size'
-        endif
-      %}
-
-      <li class="ProductOptionSelector__Value">
-        {% render 'product-option-value',
-          product_option_value: product_option_value,
-          position: product_option.position,
-          name_prefix: name_prefix,
-          variant: product_option_value_variant
+          if product_option_value.swatch or color_option_names contains product_option_name_stripped
+            assign product_option_value_variant = 'color'
+          elsif size_option_names contains product_option_name_stripped
+            assign product_option_value_variant = 'size'
+          endif
         %}
-      </li>
-    {% endfor %}
-  </ul>
-</fieldset>
+
+        <li class="ProductOptionSelector__Value">
+          {% render 'product-option-value',
+            product_option_value: product_option_value,
+            position: product_option.position,
+            name_prefix: name_prefix,
+            variant: product_option_value_variant
+          %}
+        </li>
+      {% endfor %}
+    </ul>
+  </fieldset>
+</product-option-selector-component>
 
 {% stylesheet %}
   .ProductOptionSelector {
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
     margin: 0;
     padding: 0;
     border-style: none;
@@ -69,6 +69,6 @@
   .ProductOptionSelector__Values {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 {% endstylesheet %}

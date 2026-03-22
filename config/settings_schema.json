@@ -12,8 +12,13 @@
     "settings": [
       {
         "type": "image_picker",
-        "id": "logo",
-        "label": "t:settings_schema.logo.settings.logo_image.label"
+        "id": "desktop_logo",
+        "label": "t:settings_schema.logo.settings.desktop_logo_image.label"
+      },
+      {
+        "type": "image_picker",
+        "id": "mobile_logo",
+        "label": "t:settings_schema.logo.settings.mobile_logo_image.label"
       },
       {
         "type": "image_picker",
@@ -213,6 +218,41 @@
         "id": "free_shipping_threshold",
         "label": "t:settings_schema.store_settings.settings.free_shipping_threshold.label",
         "info": "t:settings_schema.store_settings.settings.free_shipping_threshold.info"
+      },
+      {
+        "type": "header",
+        "content": "t:settings_schema.store_settings.headers.back_in_stock.content"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_back_in_stock_button",
+        "label": "t:settings_schema.store_settings.settings.enable_back_in_stock_button.label",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "t:settings_schema.social_links.name",
+    "settings": [
+      {
+        "type": "url",
+        "id": "facebook",
+        "label": "t:settings_schema.social_links.settings.facebook.label"
+      },
+      {
+        "type": "url",
+        "id": "x",
+        "label": "t:settings_schema.social_links.settings.x.label"
+      },
+      {
+        "type": "url",
+        "id": "tiktok",
+        "label": "t:settings_schema.social_links.settings.tiktok.label"
+      },
+      {
+        "type": "url",
+        "id": "instagram",
+        "label": "t:settings_schema.social_links.settings.instagram.label"
       }
     ]
   }

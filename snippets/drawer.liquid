@@ -10,8 +10,7 @@
   @param {string} [color_scheme] - The color scheme to be used for the drawer. Defaults to 'default'.
 {% enddoc %}
 
-<aside
-  is="drawer-component"
+<drawer-component
   class="
     Drawer
     Drawer--From{{ from | default: 'right' | camelcase }}
@@ -46,7 +45,7 @@
       aria_label_key: 'components.close_button.aria_label'
     %}
   </div>
-</aside>
+</drawer-component>
 
 {% stylesheet %}
   .Drawer {

@@ -2,16 +2,24 @@
   Renders a Dynamic Cart Icon component. It automatically updates the cart indicator text based on the cart item count.
 {% enddoc %}
 
-<div is="dynamic-cart-icon-component" class="DynamicCartIcon">
+<dynamic-cart-icon-component class="DynamicCartIcon">
+  {%- comment -%}
+    Disable cart drawer on cart template since the cart content is already visible there.
+  {%- endcomment -%}
+  {% assign action = '' %}
+  {% if template.name != 'cart' %}
+    {% assign action = 'open-drawer:cart' %}
+  {% endif %}
+
   {% render 'button',
     variant: 'plain',
     icon: 'shopping-cart',
-    action: 'open-drawer:cart',
+    action: action,
     size: 'small',
     aria_label_key: 'components.shopping_cart_button.aria_label'
   %}
 
-  <span
+  <div
     class="
       DynamicCartIcon__Indicator
       {% if cart.item_count > 0 %}
@@ -19,9 +27,9 @@
       {% endif %}
     "
   >
-    {% render 'text', text: cart.item_count, variant: 'body-small', color: 'inherit', as: 'b' %}
-  </span>
-</div>
+    {% render 'count-indicator', count: cart.item_count %}
+  </div>
+</dynamic-cart-icon-component>
 
 {% stylesheet %}
   .DynamicCartIcon {
@@ -31,15 +39,8 @@
   .DynamicCartIcon__Indicator {
     position: absolute;
     display: none;
-    align-items: center;
-    justify-content: center;
     top: 0;
     right: 0;
-    width: 1rem;
-    height: 1rem;
-    background-color: var(--t-primary);
-    border-radius: 50%;
-    color: var(--t-background-dark);
     pointer-events: none;
   }
 

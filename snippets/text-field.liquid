@@ -9,6 +9,7 @@
   @param {boolean} [disabled] - Whether the text field is disabled.
   @param {string} [value] - The value for the text field.
   @param {string} [name] - The name for the text field.
+  @param {boolean} [autocomplete] - Whether the text field should have autocomplete enabled.
 {% enddoc %}
 
 {% assign type = type | default: 'text' %}
@@ -56,6 +57,9 @@
       {% if value %}
         value="{{ value }}"
       {% endif %}
+      {% if autocomplete %}
+        autocomplete="on"
+      {% endif %}
     >
   {% endif %}
 </label>
@@ -64,14 +68,14 @@
   .TextField {
     display: flex;
     flex-direction: column;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
   }
 
   .TextField__TextArea,
   .TextField__Input {
     border-radius: var(--t-border-radius);
-    padding-block: var(--size-s);
-    padding-inline: var(--size-s);
+    padding-block: var(--size-xs);
+    padding-inline: var(--size-xs);
     border: var(--border-width) var(--border-style) var(--t-border-muted);
     font-family: var(--font-family-body);
     font-size: var(--text-size-body-medium);
@@ -82,5 +86,9 @@
   .TextField__Input:focus-visible {
     outline: none;
     border-color: var(--t-text);
+  }
+
+  .TextField:has([type='hidden']) {
+    display: none;
   }
 {% endstylesheet %}

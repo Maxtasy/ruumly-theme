@@ -1,0 +1,60 @@
+name: Shopify Theme Deployment Pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  needs-deployment:
+    name: "Check if Deployment is Needed"
+    uses: ./.github/workflows/needs-deployment.yml
+
+  generate-theme-name:
+    name: "Generate Theme Name"
+    needs: [needs-deployment]
+    if: needs.needs-deployment.outputs.needs_deployment == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      theme_name: ${{ steps.generate_theme_name.outputs.theme_name }}
+    steps:
+      - name: Generate theme name
+        id: generate_theme_name
+        run: |
+          DEPLOY_TIME=$(date +'%Y-%m-%d_%H-%M')
+          SHORT_SHA="${{ github.sha }}"
+          SHORT_SHA="${SHORT_SHA:0:7}"
+          THEME_NAME="${DEPLOY_TIME} (${SHORT_SHA})"
+          echo "theme_name=${THEME_NAME}" >> "$GITHUB_OUTPUT"
+
+  deploy-theme:
+    name: "Deploy Theme"
+    needs: [needs-deployment, generate-theme-name]
+    if: needs.needs-deployment.outputs.needs_deployment == 'true'
+    uses: ./.github/workflows/shopify-theme-deploy.yml
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
+    with:
+      theme_name: ${{ needs.generate-theme-name.outputs.theme_name }}
+      deploy_sha: ${{ github.sha }}
+
+  publish-theme:
+    name: "Publish Theme"
+    needs: [deploy-theme]
+    if: ${{ needs.deploy-theme.result == 'success' && needs.deploy-theme.outputs.theme_id && needs.deploy-theme.outputs.theme_id != 'null' }}
+    uses: ./.github/workflows/shopify-theme-publish.yml
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
+    with:
+      theme_id: ${{ needs.deploy-theme.outputs.theme_id }}
+
+  shopify-theme-cleanup:
+    name: "Shopify Theme Cleanup"
+    needs: [deploy-theme]
+    if: ${{ needs.deploy-theme.result == 'success' && needs.needs-deployment.outputs.needs_deployment == 'true' }}
+    uses: ./.github/workflows/shopify-theme-cleanup.yml
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}

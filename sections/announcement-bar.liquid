@@ -1,24 +1,23 @@
-<section
-  {% if section.settings.sticky %}
-    is="section-component"
-    data-section-index="{{ section.index0 }}"
-  {% endif %}
-
+<section-component
   class="
     Section
-    Section--PaddingBlockSmall
+    Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
     {% if section.settings.sticky %}
       Section--Sticky
     {% endif %}
     ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
   "
+
+  {% if section.settings.sticky %}
+    data-section-index="{{ section.index0 }}"
+  {% endif %}
 >
   <div class="Section__Inner">
-    <div is="announcement-bar-component" class="AnnouncementBar u-NoScrollbar">
+    <announcement-bar-component class="AnnouncementBar u-NoScrollbar">
       {% content_for 'blocks' %}
-    </div>
+    </announcement-bar-component>
   </div>
-</section>
+</section-component>
 
 {% stylesheet %}
   .AnnouncementBar {
@@ -76,6 +75,18 @@
       "id": "color_scheme",
       "label": "t:sections.all.settings.color_scheme.label",
       "info": "t:sections.all.settings.color_scheme.info"
+    },
+    {
+      "type": "select",
+      "id": "padding_block",
+      "label": "t:sections.all.settings.padding_block.label",
+      "default": "small",
+      "options": [
+        { "value": "none", "label": "t:sections.all.settings.padding_block.options.none.label" },
+        { "value": "small", "label": "t:sections.all.settings.padding_block.options.small.label" },
+        { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
+        { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
+      ]
     },
     {
       "type": "checkbox",

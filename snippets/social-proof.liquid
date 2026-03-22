@@ -17,7 +17,7 @@
     {% render 'avatar', size: 'small', image: image_2 %}
   </div>
 
-  {% render 'text', text: text %}
+  {% render 'text', text: text, variant: 'body-small' %}
 </div>
 
 {% stylesheet %}
@@ -25,8 +25,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: var(--size-s);
-    padding: var(--size-xs) var(--size-s);
+    width: 100%;
+    gap: var(--size-xs);
+    padding: var(--size-xxs) var(--size-xs);
     background: var(--t-gradient-background);
     border-radius: var(--t-border-radius-max);
   }
@@ -40,6 +41,6 @@
     z-index: 1;
 
     /* Overlap first image */
-    margin-left: calc(var(--size-s) * -1);
+    margin-left: calc(var(--size-xs) * -1);
   }
 {% endstylesheet %}

@@ -1,0 +1,57 @@
+{% doc %}
+  Renders a Sort By component.
+
+  @param {string} [handle] - Connects the sort by with a dropdown content.
+{% enddoc %}
+
+<div class="SortBy">
+  {% capture trigger_content %}
+    {% assign text = 'components.filter.sort_by' | t %}
+    {% render 'text', text: text, as: 'b' %}
+  {% endcapture %}
+
+  {% render 'dropdown-trigger', content: trigger_content, handle: handle %}
+
+  <div class="SortBy__Content">
+    {% capture content %}
+      <ul class="SortBy__Options u-NoList">
+        {% for sort_option in collection.sort_options %}
+          <li>
+            {% liquid 
+              assign active = false
+              if sort_option.value == collection.sort_by
+                assign active = true
+              endif
+            %}
+            
+            {% render 'sort-option', sort_option: sort_option, active: active %}
+          </li>
+        {% endfor %}
+      </ul>
+    {% endcapture %}
+
+    {% render 'dropdown-content', content: content, handle: handle %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .SortBy {
+    position: relative;
+  }
+
+  .SortBy__Content {
+    position: absolute;
+    top: calc(100% + var(--size-xs));
+    right: 0;
+    z-index: var(--layer-1);
+  }
+
+  .SortBy__Options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+    flex-wrap: wrap;
+    max-width: 400px;
+    white-space: nowrap;
+  }
+{% endstylesheet %}

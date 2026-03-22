@@ -1,5 +1,10 @@
 <div class="ButtonBlock ButtonBlock--Align{{ block.settings.alignment | camelcase }}">
-  {% render 'button', text: block.settings.button_text, variant: block.settings.variant %}
+  {% render 'button',
+    text: block.settings.button_text,
+    url: block.settings.button_link,
+    external: block.settings.external,
+    variant: block.settings.variant
+  %}
 </div>
 
 {% stylesheet %}

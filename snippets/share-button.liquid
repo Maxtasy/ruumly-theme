@@ -1,0 +1,32 @@
+{% doc %}
+  Renders a Share Button component.
+
+  @param {string} [toast_text] - The toast text.
+{% enddoc %}
+
+{% assign default_toast_text = 'components.share_button.link_saved' | t %}
+{% assign toast_text = toast_text | default: default_toast_text %}
+
+{% capture event_details %}
+  {
+    "text": {{ toast_text | json }},
+    "url": {{ request.origin | append: request.path | json }}
+  }
+{% endcapture %}
+
+{% assign event_details = event_details | escape %}
+
+{% capture button_content %}
+  {% assign button_text = 'components.share_button.share' | t %}
+  {% render 'text', text: button_text, text_decoration: 'underline' %}
+
+  {% render 'icon', icon: 'share-2', size: 'small' %}
+{% endcapture %}
+
+{% render 'button',
+  action: 'toast',
+  event_details: event_details,
+  variant: 'plain',
+  content: button_content,
+  size: 'small'
+%}

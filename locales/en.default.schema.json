@@ -232,8 +232,11 @@
     "logo": {
       "name": "Logo",
       "settings": {
-        "logo_image": {
-          "label": "Logo"
+        "desktop_logo_image": {
+          "label": "Desktop Logo"
+        },
+        "mobile_logo_image": {
+          "label": "Mobile Logo"
         },
         "logo_width": {
           "label": "Width"
@@ -268,6 +271,9 @@
       "headers": {
         "shipping": {
           "content": "Shipping"
+        },
+        "back_in_stock": {
+          "content": "Back in Stock"
         }
       },
       "settings": {
@@ -280,6 +286,26 @@
         },
         "until_free_shipping_text": {
           "label": "Until Free Shipping Text"
+        },
+        "enable_back_in_stock_button": {
+          "label": "Enable back in stock button"
+        }
+      }
+    },
+    "social_links": {
+      "name": "Social Links",
+      "settings": {
+        "facebook": {
+          "label": "Facebook"
+        },
+        "x": {
+          "label": "X"
+        },
+        "tiktok": {
+          "label": "TikTok"
+        },
+        "instagram": {
+          "label": "Instagram"
         }
       }
     },
@@ -348,11 +374,46 @@
         "columns_mobile": {
           "label": "Columns Mobile"
         },
+        "cart_empty_state_heading": {
+          "label": "Empty state heading",
+          "default": "Your cart is empty"
+        },
+        "cart_empty_state_link": {
+          "label": "Empty state link"
+        },
+        "cart_empty_state_link_text": {
+          "label": "Empty state link text",
+          "default": "Continue shopping"
+        },
+        "cart_empty_state_text": {
+          "label": "Empty state text",
+          "default": "Explore our products"
+        },
+        "enable_free_shipping_alert": {
+          "label": "Free Shipping Alert",
+          "info": "Make sure to also define a free shipping threshold in the Theme Settings."
+        },
+        "enable_free_shipping_progress": {
+          "label": "Free Shipping Progress",
+          "info": "Shows a progress bar as indicator."
+        },
         "enable_quick_add_button": {
           "label": "Quick Add Button"
         },
+        "enable_slider": {
+          "label": "Enable Slider"
+        },
         "enable_wishlist_button": {
           "label": "Wishlist Button"
+        },
+        "free_shipping_remaining_text": {
+          "label": "Free Shipping Remaining Text",
+          "default": "%REMAINING% remaining until free shipping",
+          "info": "Use %REMAINING% as a placeholder for the remaining amount."
+        },
+        "free_shipping_reached_text": {
+          "label": "Free Shipping Reached Text",
+          "default": "Your order is free of shipping costs"
         },
         "gallery_desktop": {
           "label": "Gallery Desktop",
@@ -466,6 +527,9 @@
             }
           }
         },
+        "per_page": {
+          "label": "Per Page"
+        },
         "position_left": {
           "label": "Position Left"
         },
@@ -528,34 +592,6 @@
     "cart_drawer": {
       "name": "Cart Drawer",
       "settings": {
-        "enable_free_shipping_alert": {
-          "label": "Free Shipping Alert",
-          "info": "Make sure to also define a free shipping threshold in the Theme Settings."
-        },
-        "empty_state_heading": {
-          "label": "Empty state heading",
-          "default": "Your cart is empty"
-        },
-        "empty_state_link": {
-          "label": "Empty state link"
-        },
-        "empty_state_link_text": {
-          "label": "Empty state link text",
-          "default": "Continue shopping"
-        },
-        "empty_state_text": {
-          "label": "Empty state text",
-          "default": "Explore our products"
-        },
-        "free_shipping_remaining_text": {
-          "label": "Free Shipping Remaining Text",
-          "default": "%REMAINING% remaining until free shipping",
-          "info": "Use %REMAINING% as a placeholder for the remaining amount."
-        },
-        "free_shipping_reached_text": {
-          "label": "Free Shipping Reached Text",
-          "default": "Your order is free of shipping costs"
-        },
         "from": {
           "label": "From",
           "options": {
@@ -596,6 +632,9 @@
         }
       }
     },
+    "collection_grid": {
+      "name": "Collection Grid"
+    },
     "collection_list": {
       "name": "Collection List",
       "presets": {
@@ -618,6 +657,9 @@
     "main_404": {
       "name": "404 Section"
     },
+    "main_article": {
+      "name": "Main Article"
+    },
     "main_blog": {
       "name": "Main Blog",
       "settings": {
@@ -626,12 +668,33 @@
         }
       }
     },
+    "main_cart": {
+      "name": "Main Cart"
+    },
     "menu_drawer": {
       "name": "Menu Drawer",
       "presets": {
         "menu_drawer": {
           "name": "Menu Drawer",
           "category": "Drawer"
+        }
+      }
+    },
+    "newsletter": {
+      "name": "Newsletter",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "Newsletter"
+        },
+        "text": {
+          "label": "Text",
+          "default": "Join the Ruumly Community today and get 10% off — plus access to exclusive perks and exciting updates."
+        }
+      },
+      "presets": {
+        "newsletter": {
+          "name": "Newsletter"
         }
       }
     },
@@ -644,11 +707,66 @@
         "enable_pagination_desktop": {
           "label": "Enable Pagination Desktop"
         },
-        "enable_navigtation_mobile": {
+        "enable_navigation_mobile": {
           "label": "Enable Navigation Mobile"
         },
         "enable_navigatiobn_desktop": {
           "label": "Enable Navigation Desktop"
+        }
+      },
+      "blocks": {
+        "title": {
+          "settings": {
+            "show_sku": {
+              "label": "Show SKU"
+            },
+            "sku_position": {
+              "label": "SKU Position",
+              "options": {
+                "above": {
+                  "label": "Above Title"
+                },
+                "below": {
+                  "label": "Below Title"
+                }
+              }
+            },
+            "show_vendor": {
+              "label": "Show Vendor"
+            },
+            "vendor_position": {
+              "label": "Vendor Position",
+              "options": {
+                "above": {
+                  "label": "Above Title"
+                },
+                "below": {
+                  "label": "Below Title"
+                }
+              }
+            }
+          }
+        },
+        "buy_buttons": {
+          "settings": {
+            "show_wishlist_button": {
+              "label": "Show wishlist button"
+            }
+          }
+        },
+        "social_proof": {
+          "name": "Social Proof",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "image_1": {
+              "label": "Image 1"
+            },
+            "image_2": {
+              "label": "Image 2"
+            }
+          }
         }
       }
     },
@@ -659,12 +777,12 @@
           "label": "Collection",
           "info": "On PLPs defaults to the global collection object. Set if you want to use pagination."
         },
+        "enable_filters": {
+          "label": "Enable Filters"
+        },
         "enable_pagination": {
           "label": "Enable Pagination",
           "info": "Only works when product list and collection settings are unset."
-        },
-        "per_page": {
-          "label": "Per Page"
         }
       },
       "presets": {
@@ -719,8 +837,12 @@
         "show_cart_icon": {
           "label": "Show Cart Icon"
         },
-        "show_logo": {
-          "label": "Show Logo",
+        "show_desktop_logo": {
+          "label": "Show Desktop Logo",
+          "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
+        },
+        "show_mobile_logo": {
+          "label": "Show Mobile Logo",
           "info": "The logo can be selected in the Theme Settings. If unchecked, the shop name will be displayed instead."
         },
         "show_search_icon": {
@@ -764,6 +886,23 @@
     },
     "wishlist": {
       "name": "Wishlist",
+      "settings": {
+        "empty_state_heading": {
+          "label": "Heading",
+          "default": "Your wishlist is empty"
+        },
+        "empty_state_text": {
+          "label": "Text",
+          "default": "Looks like you haven't added any products to your wishlist yet. Start exploring our collection and add your favorite items to your wishlist for easy access later."
+        },
+        "empty_state_button_text": {
+          "label": "Button Text",
+          "default": "Explore Products"
+        },
+        "empty_state_button_link": {
+          "label": "Button Link"
+        }
+      },
       "presets": {
         "wishlist": {
           "name": "Wishlist"
@@ -881,6 +1020,17 @@
       "settings": {
         "rating": {
           "label": "Rating"
+        },
+        "icon_size": {
+          "label": "Icon Size",
+          "options": {
+            "extra_small": {
+              "label": "Extra Small"
+            },
+            "small": {
+              "label": "Small"
+            }
+          }
         }
       },
       "presets": {

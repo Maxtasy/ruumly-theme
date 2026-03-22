@@ -1,0 +1,54 @@
+on:
+  pull_request:
+    types: [closed]
+
+jobs:
+  check-for-theme-existence:
+    name: "Check for Theme Existence"
+    runs-on: ubuntu-latest
+    outputs:
+      theme_exists: ${{ steps.check_theme.outputs.theme_exists }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22.12.0
+
+      - name: Install Shopify CLI
+        run: |
+          npm install -g @shopify/cli@3.89.0
+
+      - name: Check if theme exists
+        id: check_theme
+        env:
+          SHOPIFY_FLAG_STORE: ${{ secrets.SHOPIFY_STORE }}
+          SHOPIFY_CLI_THEME_TOKEN: ${{ secrets.THEME_ACCESS_PASSWORD }}
+          SHOPIFY_FLAG_FORCE: 1
+        run: |
+          THEME_LIST_JSON=$(shopify theme list --store="${{ secrets.SHOPIFY_STORE }}" --role=unpublished --json)
+          if echo "$THEME_LIST_JSON" | jq -e --arg NAME "${{ github.event.pull_request.head.ref }}" '.[] | select(.name == $NAME)' > /dev/null; then
+            RESULT=true
+          else
+            RESULT=false
+          fi
+
+          echo "theme_exists=$RESULT" >> "$GITHUB_OUTPUT"
+
+          # Debugging output
+          echo "Theme list: $THEME_LIST_JSON"
+          echo "Checked for theme: ${{ github.event.pull_request.head.ref }}"
+          echo "Theme exists step output: $RESULT"
+
+  delete-theme:
+    name: "Delete Theme on PR Merge"
+    needs: [check-for-theme-existence]
+    if: needs.check-for-theme-existence.outputs.theme_exists == 'true'
+    uses: ./.github/workflows/shopify-theme-delete.yml
+    secrets:
+      SHOPIFY_STORE: ${{ secrets.SHOPIFY_STORE }}
+      THEME_ACCESS_PASSWORD: ${{ secrets.THEME_ACCESS_PASSWORD }}
+    with:
+      theme_name: ${{ github.event.pull_request.head.ref }}

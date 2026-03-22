@@ -1,0 +1,49 @@
+import { cart } from "./cart.js";
+import { CustomComponentMixin, defineComponent } from "./component.js";
+import { getClosestSectionId } from "./utils.js";
+
+export class ProductCard extends CustomComponentMixin(HTMLElement) {
+  constructor() {
+    super();
+
+    this.hasOnlyDefaultVariant = this.parsedData.hasOnlyDefaultVariant;
+    this.selectedVariantId = this.parsedData.selectedVariantId;
+
+    this.handleQuickAddClick = this.handleQuickAddClick.bind(this);
+  }
+
+  connectedCallback() {
+    this.subscribe("button:click:quick-add", this.handleQuickAddClick);
+  }
+
+  disconnectedCallback() {
+    this.unsubscribe("button:click:quick-add", this.handleQuickAddClick);
+  }
+
+  async handleQuickAddClick(_, event) {
+    if (this.hasOnlyDefaultVariant) {
+      const buttonElement = event.target;
+
+      buttonElement.setLoading && buttonElement.setLoading(true);
+
+      const response = await cart.addItem({
+        item: { id: this.selectedVariantId, quantity: 1 },
+        sections: getClosestSectionId(".CartDrawer"),
+      });
+
+      if (response.status === "success" && response.data?.items && response.data?.sections) {
+        const { items, sections } = response.data;
+
+        this.publish("product-card:item-added", { items, sections });
+      } else if (response.data.status === 422) {
+        const { message } = response.data;
+
+        this.publish("quick-add:max-quantity-error", { message });
+      }
+
+      buttonElement.setLoading && buttonElement.setLoading(false);
+    }
+  }
+}
+
+defineComponent("product-card-component", ProductCard);

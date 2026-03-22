@@ -6,7 +6,17 @@
   "
 >
   <div class="Section__Inner">
-    <div class="ProductConfigurator">
+    <product-configurator-component
+      class="ProductConfigurator"
+      data-product-handle="{{ product.handle }}"
+      {%- comment -%}
+        Only enable history state updates on the main product page to avoid unexpected behavior in other contexts where
+        the product configurator is being used.
+      {%- endcomment -%}
+      {% if template.name == 'product' and template.suffix == blank %}
+        data-enable-history-state="true"
+      {% endif %}
+    >
       <div class="ProductConfigurator__Gallery">
         {% render 'gallery',
           images: product.images,
@@ -24,14 +34,9 @@
       </div>
 
       <div class="ProductConfigurator__Form">
-        {% render 'product-form',
-          product: product,
-          name_prefix: section.id,
-          update_variant_url_parameter: true,
-          blocks: section.blocks
-        %}
+        {% render 'product-form', product: product, name_prefix: section.id, blocks: section.blocks %}
       </div>
-    </div>
+    </product-configurator-component>
   </div>
 </section>
 
@@ -176,7 +181,55 @@
   "blocks": [
     {
       "name": "t:blocks.titel.name",
-      "type": "title"
+      "type": "title",
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_sku",
+          "label": "t:sections.product_configurator.blocks.title.settings.show_sku.label",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "sku_position",
+          "label": "t:sections.product_configurator.blocks.title.settings.sku_position.label",
+          "options": [
+            {
+              "value": "above",
+              "label": "t:sections.product_configurator.blocks.title.settings.sku_position.options.above.label"
+            },
+            {
+              "value": "below",
+              "label": "t:sections.product_configurator.blocks.title.settings.sku_position.options.below.label"
+            }
+          ],
+          "default": "below",
+          "visible_if": "{{ block.settings.show_sku }}"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_vendor",
+          "label": "t:sections.product_configurator.blocks.title.settings.show_vendor.label",
+          "default": true
+        },
+        {
+          "type": "select",
+          "id": "vendor_position",
+          "label": "t:sections.product_configurator.blocks.title.settings.vendor_position.label",
+          "options": [
+            {
+              "value": "above",
+              "label": "t:sections.product_configurator.blocks.title.settings.vendor_position.options.above.label"
+            },
+            {
+              "value": "below",
+              "label": "t:sections.product_configurator.blocks.title.settings.vendor_position.options.below.label"
+            }
+          ],
+          "default": "above",
+          "visible_if": "{{ block.settings.show_vendor }}"
+        }
+      ]
     },
     {
       "name": "t:blocks.product_variant_selector.name",
@@ -199,7 +252,15 @@
     {
       "name": "t:blocks.buy_buttons.name",
       "type": "buy-buttons",
-      "limit": 1
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_wishlist_button",
+          "label": "t:sections.product_configurator.blocks.buy_buttons.settings.show_wishlist_button.label",
+          "default": true
+        }
+      ]
     },
     {
       "name": "t:blocks.shipping_estimation.name",
@@ -208,6 +269,27 @@
     {
       "name": "t:blocks.selling_points.name",
       "type": "selling-points"
+    },
+    {
+      "name": "t:sections.product_configurator.blocks.social_proof.name",
+      "type": "social-proof",
+      "settings": [
+        {
+          "type": "inline_richtext",
+          "id": "text",
+          "label": "t:sections.product_configurator.blocks.social_proof.settings.text.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_1",
+          "label": "t:sections.product_configurator.blocks.social_proof.settings.image_1.label"
+        },
+        {
+          "type": "image_picker",
+          "id": "image_2",
+          "label": "t:sections.product_configurator.blocks.social_proof.settings.image_2.label"
+        }
+      ]
     }
   ]
 }

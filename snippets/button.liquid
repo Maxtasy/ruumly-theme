@@ -15,6 +15,7 @@
   @param {string} [aria_label_key] - The key to get the aria-label from the locale files automatically.
   @param {string} [attributes] - Optional additional attributes.
   @param {string} [type] - Optional button type.
+  @param {boolean} [full_width] - Whether the button is full width.
 {% enddoc %}
 
 {% assign variant = variant | default: 'primary' %}
@@ -24,6 +25,9 @@
   <a
     class="
       Button
+      {% if full_width %}
+        Button--FullWidth
+      {% endif %}
       Button--{{ variant | camelcase }}
       Button--Size{{ size | camelcase }}
     "
@@ -43,6 +47,10 @@
 
     {{ attributes }}
   >
+    <div class="Button__Loading">
+      {% render 'loading-spinner' %}
+    </div>
+
     {% if text %}
       {{ text }}
     {% endif %}
@@ -56,17 +64,7 @@
     {% endif %}
   </a>
 {% else %}
-  <button
-    is="button-component"
-    class="
-      Button
-      Button--{{ variant | camelcase }}
-      Button--Size{{ size | camelcase }}
-    "
-    {% if disabled %}
-      disabled
-    {% endif %}
-
+  <button-component
     {% if action %}
       data-action="{{ action }}"
     {% endif %}
@@ -74,48 +72,70 @@
     {% if event_details %}
       data-event-details="{{ event_details }}"
     {% endif %}
-
-    {% if aria_label or aria_label_key %}
-      {% assign aria_label = aria_label %}
-      {% if aria_label == blank %}
-        {% assign aria_label = aria_label_key | t %}
+  >
+    <button
+      class="
+        Button
+        {% if full_width %}
+          Button--FullWidth
+        {% endif %}
+        Button--{{ variant | camelcase }}
+        Button--Size{{ size | camelcase }}
+      "
+      {% if disabled %}
+        disabled
       {% endif %}
 
-      aria-label="{{ aria_label }}"
-    {% endif %}
+      {% if aria_label or aria_label_key %}
+        {% assign aria_label = aria_label %}
+        {% if aria_label == blank %}
+          {% assign aria_label = aria_label_key | t %}
+        {% endif %}
 
-    {% if type %}
-      type="{{ type }}"
-    {% endif %}
+        aria-label="{{ aria_label }}"
+      {% endif %}
 
-    {{ attributes }}
-  >
-    {% if text %}
-      {{ text }}
-    {% endif %}
+      {% if type %}
+        type="{{ type }}"
+      {% endif %}
 
-    {% if icon %}
-      {% render 'icon', icon: icon %}
-    {% endif %}
+      {{ attributes }}
+    >
+      <div class="Button__Loading">
+        {% render 'loading-spinner' %}
+      </div>
 
-    {% if content %}
-      {{ content }}
-    {% endif %}
-  </button>
+      {% if text %}
+        {{ text }}
+      {% endif %}
+
+      {% if icon %}
+        {% render 'icon', icon: icon %}
+      {% endif %}
+
+      {% if content %}
+        {{ content }}
+      {% endif %}
+    </button>
+  </button-component>
 {% endif %}
 
 {% stylesheet %}
   .Button {
+    position: relative;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: var(--padding-block) var(--padding-inline);
+    gap: var(--size-xs);
+    padding-block: var(--padding-block);
+    padding-inline: var(--padding-inline);
     color: var(--button-text-color);
     background-color: var(--button-background-color);
     border: var(--border-width) var(--border-style) var(--button-border);
     border-radius: var(--button-border-radius);
     user-select: none;
     transition: var(--transition-duration-medium) var(--transition-timing);
+    line-height: 1;
   }
 
   .Button:hover {
@@ -126,8 +146,6 @@
 
   .Button--Primary,
   .Button--Secondary {
-    --padding-block: var(--size-m);
-    --padding-inline: var(--size-xl);
     text-transform: uppercase;
     box-shadow: var(--box-shadow);
     font-weight: var(--button-font-weight);
@@ -154,20 +172,24 @@
   }
 
   .Button--Icon {
-    --padding-block: var(--size-s);
-    --padding-inline: var(--size-s);
+    --padding-block: var(--size-xs);
+    --padding-inline: var(--size-xs);
     box-shadow: var(--box-shadow);
   }
 
   .Button--Plain {
-    --padding-block: var(--size-xs);
-    --padding-inline: var(--size-xs);
+    --padding-block: var(--size-xxs);
+    --padding-inline: var(--size-xxs);
     --button-text-color: var(--t-text);
     --button-text-hover-color: var(--t-text);
     --button-border: transparent;
     --button-border-hover: transparent;
     --button-background-color: transparent;
     --button-background-hover-color: transparent;
+  }
+
+  .Button--FullWidth {
+    width: 100%;
   }
 
   .Button--Link {
@@ -183,18 +205,32 @@
   }
 
   .Button--SizeSmall {
-    --padding-block: var(--size-xs);
-    --padding-inline: var(--size-xs);
+    --padding-block: var(--size-xxs);
+    --padding-inline: var(--size-xxs);
   }
 
   .Button--SizeMedium {
+    --padding-block: var(--size-s);
+    --padding-inline: var(--size-l);
+  }
+
+  .Button--SizeLarge {
     --padding-block: var(--size-m);
     --padding-inline: var(--size-xl);
   }
 
-  .Button--SizeLarge {
-    --padding-block: var(--size-l);
-    --padding-inline: var(--size-xxl);
+  .Button__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
+  }
+
+  .Button__Loading--Active {
+    display: flex;
   }
 
   .Button[disabled] {

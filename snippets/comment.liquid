@@ -18,7 +18,7 @@
     {% render 'avatar', initials: initials, size: 'medium' %}
 
     <div class="Comment__Details">
-      {% render 'text', text: author, as: 'strong' %}
+      {% render 'text', text: author, as: 'b' %}
 
       {% capture passed_time_formatted %}
         {% render 'passed-time', created_at: created_at %}
@@ -37,13 +37,13 @@
   .Comment {
     display: flex;
     flex-direction: column;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 
   .Comment__Header {
     display: flex;
     align-items: center;
-    gap: var(--size-s);
+    gap: var(--size-xs);
   }
 
   .Comment__Details {

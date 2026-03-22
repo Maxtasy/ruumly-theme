@@ -1,5 +1,7 @@
 {
   "global": {
+    "add_to_cart": "In den Warenkorb",
+    "checkout": "Kasse",
     "free": "Kostenlos",
     "shipping": "Versand",
     "submit": "Absenden",
@@ -34,6 +36,9 @@
       "just_now": "gerade eben"
     }
   },
+  "date_formats": {
+    "year_month_day": "%-d. %B %Y"
+  },
   "comments": {
     "comments_count": {
       "one": "{{ count }} Kommentar",
@@ -61,6 +66,13 @@
     "add_to_cart_button": {
       "aria_label": "In den Warenkorb"
     },
+    "back_in_stock": {
+      "modal_heading": "E-Mail-Benachrichtigung",
+      "modal_text": "Geben Sie Ihre E-Mail-Adresse ein und wir benachrichtigen Sie, sobald dieses Produkt wieder auf Lager ist.",
+      "form_success_message": "Vielen Dank! Wir benachrichtigen Sie, sobald das Produkt wieder auf Lager ist.",
+      "form_error_message": "Beim Absenden Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+      "notify_me": "Benachrichtigen, wenn verfügbar"
+    },
     "badge": {
       "sale": "Sale",
       "new": "Neu",
@@ -71,6 +83,14 @@
     },
     "close_button": {
       "aria_label": "Schließen"
+    },
+    "filter": {
+      "reset_all_filters": "Alle Filter zurücksetzen",
+      "reset_filter": "Filter zurücksetzen",
+      "sort_by": "Sortieren nach",
+      "filters": "Filter",
+      "save_filter": "Filter speichern",
+      "save_and_close": "Speichern und schließen"
     },
     "image": {
       "product": {
@@ -107,13 +127,20 @@
       "aria_label": "Vorheriges"
     },
     "price_list": {
-      "info_html": "inkl. MwSt. zzgl. <a href='/policies/shipping-policy'>Versand</a>"
+      "info_html": "inkl. MwSt. zzgl. <a href='/de/policies/shipping-policy'>Versand</a>"
     },
     "product_link": {
       "aria_label": "Gehe zu {{ product_title }}"
     },
+    "quantity_selector": {
+      "max_quantity_reached": "Maximale Menge erreicht"
+    },
     "search_button": {
       "aria_label": "Suche öffnen"
+    },
+    "share_button": {
+      "link_saved": "Link in die Zwischenablage kopiert",
+      "share": "Teilen"
     },
     "shipping_estimation": {
       "available": "Auf Lager: In 1-3 Tagen bei dir",
@@ -142,5 +169,8 @@
     "index": {
       "aria_label": "Zur Startseite"
     }
+  },
+  "blog_article": {
+    "written_by": "Geschrieben von {{ author }}"
   }
 }
