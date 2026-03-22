@@ -39,7 +39,10 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
   }
 
   handleSortByChange(data) {
-    this.updateProductGrid(data.url);
+    const url = new URL(window.location.href);
+    url.searchParams.set("sort_by", data.sortOptionValue);
+
+    this.updateProductGrid(url);
   }
 
   setLoadingState(force) {

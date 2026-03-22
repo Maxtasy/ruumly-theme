@@ -8,12 +8,16 @@
   {% capture trigger_content %}
     <div class="SortBy__TriggerContent">
       {% assign text = 'components.filter.sort_by' | t %}
+      
+      {% if collection.sort_by != blank %}
+        {% assign text = text | append: ': ' %}
+      {% endif %}
+
       {% render 'text', text: text, as: 'b' %}
       
       {% for sort_option in collection.sort_options %}
         {% if sort_option.value == collection.sort_by %}
-          {% assign text = ': ' | append: sort_option.name %}
-          {% render 'text', text: text %}
+          {% render 'text', text: sort_option.name %}
         {% endif %}
       {% endfor %}
     </div>
