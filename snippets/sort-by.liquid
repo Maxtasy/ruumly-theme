@@ -28,6 +28,10 @@
           </li>
         {% endfor %}
       </ul>
+
+    <div class="SortBy__Loading">
+      {% render 'loading-spinner' %}
+    </div>
     {% endcapture %}
 
     {% render 'dropdown-content', content: content, handle: handle %}
@@ -53,5 +57,15 @@
     flex-wrap: wrap;
     max-width: 400px;
     white-space: nowrap;
+  }
+
+  .SortBy__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
   }
 {% endstylesheet %}

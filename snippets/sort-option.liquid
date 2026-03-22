@@ -12,7 +12,7 @@
   data-url="{{ url }}"
 >
   {% if active %}
-    {% render 'button', text: sort_option.name, variant: 'plain', size: 'small' %}
+    {% render 'button', text: sort_option.name, variant: 'plain', size: 'small', icon: 'check' %}
   {% else %}
     {% render 'button', text: sort_option.name, variant: 'plain', size: 'small' %}
   {% endif %}

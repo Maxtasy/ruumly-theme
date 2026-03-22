@@ -83,6 +83,7 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
       ".Filters__Row:has(.Filters__ActiveValues)",
       ".FiltersMobile__DrawerContent",
       '[data-action="open-drawer:filters-mobile"]',
+      ".SortOption",
     ];
 
     elementsToReplaceSelectors.forEach((elementsToReplaceSelector) => {
