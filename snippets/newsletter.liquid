@@ -5,21 +5,21 @@
   @param {string} text - The text of the newsletter.
 {% enddoc %}
 
-<div class="Newsletter">
+<newsletter-form-component class="Newsletter">
   <div class="Newsletter__Top">
     {% render 'text', text: heading, as: 'h2', variant: 'heading-medium' %}
 
     {% render 'text', text: text %}
   </div>
 
-  <div class="Newsletter__Bottom">
+  <form class="Newsletter__Form">
     {% assign placeholder = 'inputs.email.placeholder' | t %}
     {% render 'text-field', name: 'email', type: 'email', required: true, placeholder: placeholder %}
 
     {% assign button_text = 'global.submit' | t %}
     {% render 'button', text: button_text %}
-  </div>
-</div>
+  </form>
+<newsletter-form-component>
 
 {% stylesheet %}
   .Newsletter {
@@ -34,7 +34,7 @@
     gap: var(--size-xs);
   }
 
-  .Newsletter__Bottom {
+  .Newsletter__Form {
     display: flex;
     flex-direction: column;
     gap: var(--size-xs);
