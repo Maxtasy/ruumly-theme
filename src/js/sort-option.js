@@ -4,6 +4,8 @@ export class SortOption extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
+    this.url = this.parsedData.url;
+
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -16,7 +18,7 @@ export class SortOption extends CustomComponentMixin(HTMLElement) {
   }
 
   handleClick() {
-    this.publish("sort-by:change");
+    this.publish("sort-by:change", { url: this.url });
   }
 }
 

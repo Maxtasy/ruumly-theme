@@ -38,8 +38,8 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.updateProductGrid(data.url);
   }
 
-  handlesortByChange() {
-    console.log("Event successfully recieved");
+  handlesortByChange(data) {
+    this.updateProductGrid(data.url);
   }
 
   setLoadingState(force) {

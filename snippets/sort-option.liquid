@@ -5,7 +5,12 @@
   @param {boolean} [active] - Whether the sort option is active.
 {% enddoc %}
 
-<sort-option-component class="SortOption">
+{% assign url = request.path | append: '?sort_by=' | append: sort_option.value %}
+
+<sort-option-component
+  class="SortOption"
+  data-url="{{ url }}"
+>
   {% if active %}
     {% render 'button', text: sort_option.name, variant: 'plain', size: 'small' %}
   {% else %}
