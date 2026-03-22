@@ -6,8 +6,17 @@
 
 <div class="SortBy">
   {% capture trigger_content %}
-    {% assign text = 'components.filter.sort_by' | t %}
-    {% render 'text', text: text, as: 'b' %}
+    <div class="SortBy__TriggerContent">
+      {% assign text = 'components.filter.sort_by' | t %}
+      {% render 'text', text: text, as: 'b' %}
+      
+      {% for sort_option in collection.sort_options %}
+        {% if sort_option.value == collection.sort_by %}
+          {% assign text = ': ' | append: sort_option.name %}
+          {% render 'text', text: text %}
+        {% endif %}
+      {% endfor %}
+    </div>
   {% endcapture %}
 
   {% render 'dropdown-trigger', content: trigger_content, handle: handle %}
@@ -67,5 +76,12 @@
     justify-content: center;
     color: #fff;
     background-color: var(--t-backdrop-background-color);
+  }
+
+  .SortBy__TriggerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-xxs);
   }
 {% endstylesheet %}
