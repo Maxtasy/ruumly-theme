@@ -9,21 +9,21 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.handleFilterValueChange = this.handleFilterValueChange.bind(this);
     this.handleActiveFilterValueRemove = this.handleActiveFilterValueRemove.bind(this);
     this.handleFilterReset = this.handleFilterReset.bind(this);
-    this.handlesortByChange = this.handlesortByChange.bind(this);
+    this.handleSortByChange = this.handleSortByChange.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("filter-value:change", this.handleFilterValueChange);
     this.subscribe("active-filter-value:remove", this.handleActiveFilterValueRemove);
     this.subscribe("button:click:filter-reset", this.handleFilterReset);
-    this.subscribe("sort-by:change", this.handlesortByChange);
+    this.subscribe("sort-by:change", this.handleSortByChange);
   }
 
   disconnectedCallback() {
     this.unsubscribe("filter-value:change", this.handleFilterValueChange);
     this.unsubscribe("active-filter-value:remove", this.handleActiveFilterValueRemove);
     this.unsubscribe("button:click:filter-reset", this.handleFilterReset);
-    this.unsubscribe("sort-by:change", this.handlesortByChange);
+    this.unsubscribe("sort-by:change", this.handleSortByChange);
   }
 
   handleFilterValueChange(data) {
@@ -38,7 +38,7 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.updateProductGrid(data.url);
   }
 
-  handlesortByChange(data) {
+  handleSortByChange(data) {
     this.updateProductGrid(data.url);
   }
 

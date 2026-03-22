@@ -5,6 +5,7 @@
   @param {string} [content] - Content to render inside the button.
   @param {string} [variant] - Button variant ('primary', 'secondary', 'icon', 'plain', 'link').
   @param {string} [icon] - Icon handle of the icon to render.
+  @param {string} [icon_size] - The size of the icon to render.
   @param {string} [action] - The action attribute.
   @param {string} [event_details] - The event details to send with the action.
   @param {string} [url] - The URL of the button.
@@ -56,7 +57,10 @@
     {% endif %}
 
     {% if icon %}
-      {% render 'icon', icon: icon %}
+      {% if icon_size %}
+        {% assign size = icon_size %}
+      {% endif %}
+      {% render 'icon', icon: icon, size: size %}
     {% endif -%}
 
     {% if content %}
@@ -110,7 +114,10 @@
       {% endif %}
 
       {% if icon %}
-        {% render 'icon', icon: icon %}
+        {% if icon_size %}
+          {% assign size = icon_size %}
+        {% endif %}
+        {% render 'icon', icon: icon, size: size %}
       {% endif %}
 
       {% if content %}
