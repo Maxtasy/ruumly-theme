@@ -6,8 +6,21 @@
 
 <div class="SortBy">
   {% capture trigger_content %}
-    {% assign text = 'components.filter.sort_by' | t %}
-    {% render 'text', text: text, as: 'b' %}
+    <div class="SortBy__TriggerContent">
+      {% assign text = 'components.filter.sort_by' | t %}
+      
+      {% if collection.sort_by != blank %}
+        {% assign text = text | append: ': ' %}
+      {% endif %}
+
+      {% render 'text', text: text, as: 'b' %}
+      
+      {% for sort_option in collection.sort_options %}
+        {% if sort_option.value == collection.sort_by %}
+          {% render 'text', text: sort_option.name %}
+        {% endif %}
+      {% endfor %}
+    </div>
   {% endcapture %}
 
   {% render 'dropdown-trigger', content: trigger_content, handle: handle %}
@@ -28,6 +41,10 @@
           </li>
         {% endfor %}
       </ul>
+
+      <div class="SortBy__Loading">
+        {% render 'loading-spinner' %}
+      </div>
     {% endcapture %}
 
     {% render 'dropdown-content', content: content, handle: handle %}
@@ -53,5 +70,22 @@
     flex-wrap: wrap;
     max-width: 400px;
     white-space: nowrap;
+  }
+
+  .SortBy__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
+  }
+
+  .SortBy__TriggerContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--size-xxs);
   }
 {% endstylesheet %}
