@@ -5,10 +5,10 @@
   @param {boolean} [active] - Whether the sort option is active.
 {% enddoc %}
 
-<div class="SortOption">
+<sort-option-component class="SortOption">
   {% if active %}
-    {% render 'text', text: sort_option.name, as: 'b' %}
+    {% render 'button', text: sort_option.name, variant: 'plain', size: 'small' %}
   {% else %}
-    {% render 'text', text: sort_option.name %}
+    {% render 'button', text: sort_option.name, variant: 'plain', size: 'small' %}
   {% endif %}
-</div>
+</sort-option-component>
