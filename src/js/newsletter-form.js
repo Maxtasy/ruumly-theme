@@ -19,6 +19,8 @@ export class NewsletterForm extends CustomComponentMixin(HTMLElement) {
   async handleFormSubmit(event) {
     event.preventDefault();
 
+    this.setLoading(true);
+
     const response = await newsletter.register(this.email);
 
     if (response.success) {
@@ -27,21 +29,26 @@ export class NewsletterForm extends CustomComponentMixin(HTMLElement) {
       this.showErrorMessage();
     }
 
+    this.setLoading(false);
     this.hideButton();
   }
 
   showSuccessMessage() {
-    this.successMessageElement?.classList.add("NewsletterForm__SuccessMessage--Active");
-    this.errorMessageElement?.classList.remove("NewsletterForm__ErrorMessage--Active");
+    this.successMessageElement?.classList.add("Newsletter__SuccessMessage--Active");
+    this.errorMessageElement?.classList.remove("Newsletter__ErrorMessage--Active");
   }
 
   showErrorMessage() {
-    this.errorMessageElement?.classList.add("NewsletterForm__ErrorMessage--Active");
-    this.successMessageElement?.classList.remove("NewsletterForm__SuccessMessage--Active");
+    this.errorMessageElement?.classList.add("Newsletter__ErrorMessage--Active");
+    this.successMessageElement?.classList.remove("Newsletter__SuccessMessage--Active");
   }
 
   hideButton() {
     this.buttonElement?.classList.add("u-Hidden");
+  }
+
+  setLoading(force) {
+    this.buttonElement?.setLoading(force);
   }
 
   get formElement() {
@@ -53,11 +60,11 @@ export class NewsletterForm extends CustomComponentMixin(HTMLElement) {
   }
 
   get successMessageElement() {
-    return this.querySelector(".NewsletterForm__SuccessMessage");
+    return this.querySelector(".Newsletter__SuccessMessage");
   }
 
   get errorMessageElement() {
-    return this.querySelector(".NewsletterForm__ErrorMessage");
+    return this.querySelector(".Newsletter__ErrorMessage");
   }
 
   get email() {
