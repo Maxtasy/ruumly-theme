@@ -17,7 +17,9 @@ export class NewsletterForm extends CustomComponentMixin(HTMLElement) {
   }
 
   async handleFormSubmit(event) {
-    const response = await newsletter.register(event.email);
+    event.preventDefault();
+
+    const response = await newsletter.register(this.email);
 
     if (response.success) {
       this.showSuccessMessage();
@@ -56,6 +58,10 @@ export class NewsletterForm extends CustomComponentMixin(HTMLElement) {
 
   get errorMessageElement() {
     return this.querySelector(".NewsletterForm__ErrorMessage");
+  }
+
+  get email() {
+    return this.formElement.querySelector('input[type="email"]').value;
   }
 }
 
