@@ -20,12 +20,12 @@
     {% render 'button', text: button_text %}
 
     <div class="NewsletterForm__SuccessMessage">
-      {% assign form_success_message = 'components.back_in_stock.form_success_message' | t %}
+      {% assign form_success_message = 'components.newsletter.form_success_message' | t %}
       {% render 'alert', variant: 'success', text: form_success_message %}
     </div>
 
     <div class="NewsletterForm__ErrorMessage">
-      {% assign form_error_message = 'components.back_in_stock.form_error_message' | t %}
+      {% assign form_error_message = 'components.newsletter.form_error_message' | t %}
       {% render 'alert', variant: 'critical', text: form_error_message %}
     </div>
   </form>

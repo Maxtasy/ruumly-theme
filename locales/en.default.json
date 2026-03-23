@@ -109,6 +109,10 @@
     "minus_button": {
       "aria_label": "Minus"
     },
+    "newsletter": {
+      "form_success_message": "Thanks for subscribing!",
+      "form_error_message": "There was an error submitting your request. Please try again later."
+    },
     "next_button": {
       "aria_label": "Next"
     },

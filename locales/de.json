@@ -109,6 +109,10 @@
     "minus_button": {
       "aria_label": "Minus"
     },
+    "newsletter": {
+      "form_success_message": "Danke fürs abonnieren!",
+      "form_error_message": "Beim Absenden Ihrer Anfrage ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut."
+    },
     "next_button": {
       "aria_label": "Nächstes"
     },
