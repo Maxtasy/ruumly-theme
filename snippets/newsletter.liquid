@@ -12,14 +12,24 @@
     {% render 'text', text: text %}
   </div>
 
-  <form class="Newsletter__Form">
+  <form class="NewsletterForm">
     {% assign placeholder = 'inputs.email.placeholder' | t %}
     {% render 'text-field', name: 'email', type: 'email', required: true, placeholder: placeholder %}
 
     {% assign button_text = 'global.submit' | t %}
     {% render 'button', text: button_text %}
+
+    <div class="NewsletterForm__SuccessMessage">
+      {% assign form_success_message = 'components.back_in_stock.form_success_message' | t %}
+      {% render 'alert', variant: 'success', text: form_success_message %}
+    </div>
+
+    <div class="NewsletterForm__ErrorMessage">
+      {% assign form_error_message = 'components.back_in_stock.form_error_message' | t %}
+      {% render 'alert', variant: 'critical', text: form_error_message %}
+    </div>
   </form>
-<newsletter-form-component>
+</newsletter-form-component>
 
 {% stylesheet %}
   .Newsletter {
@@ -34,9 +44,19 @@
     gap: var(--size-xs);
   }
 
-  .Newsletter__Form {
+  .NewsletterForm {
     display: flex;
     flex-direction: column;
     gap: var(--size-xs);
+  }
+
+  .NewsletterForm__SuccessMessage,
+  .NewsletterForm__ErrorMessage {
+    display: none;
+  }
+
+  .NewsletterForm__SuccessMessage--Active,
+  .NewsletterForm__ErrorMessage--Active {
+    display: block;
   }
 {% endstylesheet %}
