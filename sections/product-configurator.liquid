@@ -18,8 +18,18 @@
       {% endif %}
     >
       <div class="ProductConfigurator__Gallery">
+        {% assign images_to_render = null | uniq %}
+
+        {% for image in product.images %}
+          {% for option_value in product.selected_or_first_available_variant.options %}
+            {% if image.alt contains option_value or image.alt contains 'ALL' %}
+              {% assign images_to_render = image | concat: images_to_render %}
+            {% endif %}
+          {% endfor %}
+        {% endfor %}
+
         {% render 'gallery',
-          images: product.images,
+          images: images_to_render,
           variant_desktop: section.settings.gallery_desktop,
           variant_mobile: section.settings.gallery_mobile,
           columns_desktop: section.settings.columns_desktop,

@@ -710,7 +710,7 @@
         "enable_navigation_mobile": {
           "label": "Enable Navigation Mobile"
         },
-        "enable_navigatiobn_desktop": {
+        "enable_navigation_desktop": {
           "label": "Enable Navigation Desktop"
         }
       },
