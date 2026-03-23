@@ -31,6 +31,7 @@ import "./js/line-item.js";
 import "./js/mega-menu-trigger.js";
 import "./js/mega-menu.js";
 import "./js/modal.js";
+import "./js/newsletter-form.js";
 import "./js/product-card.js";
 import "./js/product-configurator.js";
 import "./js/product-form.js";

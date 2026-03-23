@@ -5,27 +5,37 @@
   @param {string} text - The text of the newsletter.
 {% enddoc %}
 
-<div class="Newsletter">
+<newsletter-form-component class="Newsletter">
   <div class="Newsletter__Top">
     {% render 'text', text: heading, as: 'h2', variant: 'heading-medium' %}
 
     {% render 'text', text: text %}
   </div>
 
-  <div class="Newsletter__Bottom">
+  <form class="Form">
     {% assign placeholder = 'inputs.email.placeholder' | t %}
     {% render 'text-field', name: 'email', type: 'email', required: true, placeholder: placeholder %}
 
     {% assign button_text = 'global.submit' | t %}
     {% render 'button', text: button_text %}
+  </form>
+
+  <div class="Newsletter__SuccessMessage">
+    {% assign form_success_message = 'components.newsletter.form_success_message' | t %}
+    {% render 'alert', variant: 'success', text: form_success_message %}
   </div>
-</div>
+
+  <div class="Newsletter__ErrorMessage">
+    {% assign form_error_message = 'components.newsletter.form_error_message' | t %}
+    {% render 'alert', variant: 'critical', text: form_error_message %}
+  </div>
+</newsletter-form-component>
 
 {% stylesheet %}
   .Newsletter {
     display: flex;
     flex-direction: column;
-    gap: var(--size-l);
+    gap: var(--size-xs);
   }
 
   .Newsletter__Top {
@@ -34,9 +44,13 @@
     gap: var(--size-xs);
   }
 
-  .Newsletter__Bottom {
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-xs);
+  .Newsletter__SuccessMessage,
+  .Newsletter__ErrorMessage {
+    display: none;
+  }
+
+  .Newsletter__SuccessMessage--Active,
+  .Newsletter__ErrorMessage--Active {
+    display: block;
   }
 {% endstylesheet %}
