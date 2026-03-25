@@ -159,7 +159,7 @@
   </div>
 
   {% for link in section.settings.link_list.links %}
-    {% if link.links.size > 0 %}
+    {% if link.links.size > 0 and section.settings.enable_mega_menu %}
       {% render 'mega-menu', handle: link.handle, links: link.links %}
     {% endif %}
   {% endfor %}
@@ -250,6 +250,13 @@
       "id": "link_list",
       "label": "t:sections.all.settings.link_list.label",
       "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mega_menu",
+      "label": "t:sections.site_header.settings.enable_mega_menu.label",
+      "default": false,
+      "info": "t:sections.site_header.settings.enable_mega_menu.info"
     },
     {
       "type": "paragraph",

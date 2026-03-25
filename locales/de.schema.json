@@ -828,6 +828,10 @@
         "cart_icon_position": {
           "label": "Warenkorb-Symbol Position"
         },
+        "enable_mega_menu": {
+          "label": "Mega-Menü aktivieren",
+          "info": "Funktioniert nur bei Menüpunkten, die verschachtelte Links enthalten."
+        },
         "search_icon_position": {
           "label": "Such-Symbol Position"
         },

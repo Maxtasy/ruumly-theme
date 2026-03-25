@@ -828,6 +828,10 @@
         "cart_icon_position": {
           "label": "Cart Icon Position"
         },
+        "enable_mega_menu": {
+          "label": "Enable Mega Menu",
+          "info": "Works only for menu items that contain nested links."
+        },
         "search_icon_position": {
           "label": "Search Icon Position"
         },
