@@ -830,7 +830,7 @@
         },
         "enable_mega_menu": {
           "label": "Mega-Menü aktivieren",
-          "info": "Funktioniert nur bei Menüpunkten, die verschachtelte Links enthalten."
+          "info": "Mega-Menüs werden nur für Navigationselemente angezeigt, die Unterlinks enthalten."
         },
         "search_icon_position": {
           "label": "Such-Symbol Position"

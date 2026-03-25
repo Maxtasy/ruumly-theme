@@ -830,7 +830,7 @@
         },
         "enable_mega_menu": {
           "label": "Enable Mega Menu",
-          "info": "Works only for menu items that contain nested links."
+          "info": "Mega menus are only rendered for navigation items that contain sub-links."
         },
         "search_icon_position": {
           "label": "Search Icon Position"
