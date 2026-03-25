@@ -16,8 +16,11 @@
   @param {string} [product_card_rating_prefix] - The product card rating prefix.
 {% enddoc %}
 
-{% assign hover_effect = hover_effect | default: settings.product_card_hover_effect %}
-{% assign selected_variant = product.selected_or_first_available_variant %}
+{% liquid
+  assign hover_effect = hover_effect | default: settings.product_card_hover_effect
+  assign selected_variant = product.selected_or_first_available_variant
+  assign inventory_quantity = selected_variant.inventory_quantity
+%}
 
 <product-card-component
   class="
@@ -27,6 +30,7 @@
   {% if enable_quick_add_button %}
     data-has-only-default-variant="{{ product.has_only_default_variant }}"
     data-selected-variant-id="{{ selected_variant.id | json }}"
+    data-inventory-quantity="{{ inventory_quantity }}"
   {% endif %}
 >
   <a href="{{ url }}">
@@ -100,9 +104,15 @@
     {% if enable_quick_add_button or enable_wishlist_button %}
       <div class="ProductCard__Actions">
         {% if enable_quick_add_button %}
-          {% if selected_variant.available != true %}
-            {% assign disabled = true %}
-          {% endif %}
+          {% liquid
+            assign variant_in_cart_quantity = cart | item_count_for_variant: selected_variant.id
+            assign remaining_quantity = inventory_quantity | minus: variant_in_cart_quantity
+
+            assign disabled = false
+            if selected_variant.available != true or remaining_quantity <= 0
+              assign disabled = true
+            endif
+          %}
 
           {% if product.has_only_default_variant %}
             {% render 'button',
