@@ -100,20 +100,16 @@
     {% if enable_quick_add_button or enable_wishlist_button %}
       <div class="ProductCard__Actions">
         {% if enable_quick_add_button %}
-          {% assign inventory_quantity = selected_variant.inventory_quantity %}
-          {% assign variant_in_cart_quantity = 0 %}
+          {% liquid
+            assign inventory_quantity = selected_variant.inventory_quantity
+            assign variant_in_cart_quantity = cart | item_count_for_variant: selected_variant.id
+            assign remaining_quantity = inventory_quantity | minus: variant_in_cart_quantity
 
-          {% for item in cart.items %}
-            {% if item.variant_id == selected_variant.id %}
-              {% assign variant_in_cart_quantity = item.quantity %}
-            {% endif %}
-          {% endfor %}
-
-          {% assign remaining_quantity = inventory_quantity | minus: variant_in_cart_quantity %}
-
-          {% if selected_variant.available != true or remaining_quantity <= 0 %}
-            {% assign disabled = true %}
-          {% endif %}
+            assign disabled = false
+            if selected_variant.available != true or remaining_quantity <= 0
+              assign disabled = true
+            endif
+          %}
 
           {% if product.has_only_default_variant %}
             {% render 'button',
