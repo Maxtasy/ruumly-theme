@@ -8,16 +8,20 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
 
     this.hasOnlyDefaultVariant = this.parsedData.hasOnlyDefaultVariant;
     this.selectedVariantId = this.parsedData.selectedVariantId;
+    this.inventoryQuantity = this.parsedData.inventoryQuantity;
 
     this.handleQuickAddClick = this.handleQuickAddClick.bind(this);
+    this.handleCartDrawerUpdated = this.handleCartDrawerUpdated.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("button:click:quick-add", this.handleQuickAddClick);
+    globalThis.subscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
   }
 
   disconnectedCallback() {
     this.unsubscribe("button:click:quick-add", this.handleQuickAddClick);
+    globalThis.unsubscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
   }
 
   async handleQuickAddClick(_, event) {
@@ -43,6 +47,23 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
 
       buttonElement.setLoading && buttonElement.setLoading(false);
     }
+  }
+
+  handleCartDrawerUpdated(data) {
+    if (!this.quickAddButtonElement) return;
+
+    const { items } = data;
+    const quantityInCart = items.find((item) => item.variant_id === this.selectedVariantId)?.quantity || 0;
+
+    if (quantityInCart >= this.inventoryQuantity) {
+      this.quickAddButtonElement.disable();
+    } else {
+      this.quickAddButtonElement.enable();
+    }
+  }
+
+  get quickAddButtonElement() {
+    return this.querySelector('[data-action="quick-add"]');
   }
 }
 

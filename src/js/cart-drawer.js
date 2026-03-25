@@ -41,7 +41,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
 
       this.closest(".Drawer").open();
 
-      this.publish("cart-drawer:updated", { totalQuantity: this.totalQuantity });
+      this.publish("cart-drawer:updated", { totalQuantity: this.totalQuantity, items });
     }
   }
 
@@ -81,7 +81,7 @@ export class CartDrawer extends CustomComponentMixin(HTMLElement) {
         return total + item.quantity;
       }, 0);
 
-      this.publish("cart-drawer:updated", { totalQuantity });
+      this.publish("cart-drawer:updated", { totalQuantity, items });
     }
   }
 
