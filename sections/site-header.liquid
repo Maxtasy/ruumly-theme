@@ -160,16 +160,16 @@
 
   {% for link in section.settings.link_list.links %}
     {% if link.links.size > 0 and section.settings.enable_mega_menu %}
-      {% assign promotion_block = blank %}
+      {% assign promotion_card = blank %}
 
       {% for block in section.blocks %}
-        {% if block.type == 'promotion-card' and block.settings.menu_item_handle == link.handle %}
-          {% assign promotion_block = block %}
+        {% if block.type == 'promotion-card' and block.settings.connected_menu_item == link.handle %}
+          {% assign promotion_card = block %}
           {% break %}
         {% endif %}
       {% endfor %}
 
-      {% render 'mega-menu', handle: link.handle, links: link.links, promotion_block: promotion_block %}
+      {% render 'mega-menu', handle: link.handle, links: link.links, promotion_card: promotion_card %}
     {% endif %}
   {% endfor %}
 </section-component>
@@ -264,7 +264,7 @@
       "type": "checkbox",
       "id": "enable_mega_menu",
       "label": "t:sections.site_header.settings.enable_mega_menu.label",
-      "default": false,
+      "default": true,
       "info": "t:sections.site_header.settings.enable_mega_menu.info"
     },
     {
@@ -441,13 +441,14 @@
   ],
   "blocks": [
     {
-      "name": "Promotion Block",
+      "name": "Promotion Card",
       "type": "promotion-card",
       "settings": [
         {
           "type": "text",
-          "id": "menu_item_handle",
-          "label": "Main Menu item handle"
+          "id": "connected_menu_item",
+          "label": "Connected Menu Item",
+          "info": "Menu Item text where promotion card should be displayed."
         },
         {
           "type": "image_picker",
