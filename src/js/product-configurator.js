@@ -12,7 +12,7 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
     this.enableHistoryState = this.parsedData.enableHistoryState;
 
     // These are the selectors of the elements that get updated when the variant changes.
-    this.elementsToReplaceSelectors = [".ProductForm", ".ProductGallery"];
+    this.elementsToReplaceSelectors = [".ProductForm", ".ProductConfigurator__Gallery"];
     this.sectionDocumentCache = {};
 
     this.handleProductFormChange = this.handleProductFormChange.bind(this);

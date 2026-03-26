@@ -22,7 +22,7 @@
 
         {% for image in product.images %}
           {% for option_value in product.selected_or_first_available_variant.options %}
-            {% if image.alt contains option_value or image.alt contains 'ALL' %}
+            {% if image.alt contains option_value or image.alt == product.title %}
               {% assign images_to_render = image | concat: images_to_render %}
             {% endif %}
           {% endfor %}
