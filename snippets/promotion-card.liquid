@@ -1,0 +1,50 @@
+{% doc %}
+  Renders a Promotion Card Component
+
+  @param {object} image - The image to render inside the promotion card.
+  @param {string} link - The navigation link of the promotion card.
+  @param {string} title - The title for the promotion card content.
+  @param {string} text - The text for the promotion card content.
+{% enddoc %}
+
+<div class="PromotionCard">
+  <a class="PromotionCard__Link" href="{{ link }}">
+    <div class="PromotionCard__Image">
+      {% render 'image', image: image %}
+    </div>
+
+    <div class="PromotionCard__Details">
+      {% render 'text', text: title, variant: 'body-small' %}
+
+      {% render 'text', text: text, variant: 'body-small', as: 'b' %}
+    </div>
+  </a>
+</div>
+
+{% stylesheet %}
+  .PromotionCard {
+    position: relative;
+    width: 100%;
+    max-width: 180px;
+  }
+
+  .PromotionCard__Image {
+    overflow: hidden;
+    border-radius: var(--t-border-radius);
+  }
+
+  .PromotionCard__Details {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    gap: var(--size-xxs);
+    padding-inline: var(--size-xs);
+    padding-block: var(--size-xs);
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: var(--size-xs);
+    border-radius: var(--t-border-radius);
+    background: rgba(133, 133, 133, 0.55);
+  }
+{% endstylesheet %}
