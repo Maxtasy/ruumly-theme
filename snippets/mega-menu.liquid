@@ -3,12 +3,24 @@
 
   @param {string} handle - Describes the connection to the main menu item.
   @param {object[]} links - A list of links to render.
+  @param {object} [promotion_block] - Optional promotion block connected to the current main menu item.
 {% enddoc %}
 
 <mega-menu-component class="MegaMenu" data-handle="{{ handle }}">
   <div class="MegaMenu__Inner">
     {% render 'navigation-group', links: links, direction: 'horizontal' %}
   </div>
+
+  {% if promotion_block != blank %}
+    <div class="MegaMenu__Promotion">
+      {% render 'promotion-card',
+        image: promotion_block.settings.image,
+        link: promotion_block.settings.link,
+        title: promotion_block.settings.title,
+        text: promotion_block.settings.text
+      %}
+    </div>
+  {% endif %}
 </mega-menu-component>
 
 {% stylesheet %}
