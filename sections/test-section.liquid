@@ -11,7 +11,14 @@
     <div class="TestSection">
       {% render 'text', text: 'Insert your test component here' %}
 
-      {% render 'social-links' %}
+      {% assign product = collections.all.products.first %}
+
+      {% render 'promotion-card',
+        image: product.featured_image,
+        title: 'Sale',
+        text: 'Save on our summer sale',
+        link: '/collections/all'
+      %}
     </div>
   </div>
 </section>

@@ -3,10 +3,32 @@
 
   @param {string} handle - Describes the connection to the main menu item.
   @param {object[]} links - A list of links to render.
+  @param {object} [promotion_card] - Optional promotion block connected to the current main menu item.
 {% enddoc %}
 
 <mega-menu-component class="MegaMenu" data-handle="{{ handle }}">
-  {% render 'navigation-group', links: links, direction: 'horizontal' %}
+  <div class="MegaMenu__Inner">
+    {% for link in links %}
+      <div class="MegaMenu__NavigationGroup">
+        <a href="{{ link.url }}">
+          {% render 'text', text: link.title, as: 'b' %}
+        </a>
+
+        {% render 'navigation-group', links: link.links, direction: 'vertical', separators: false %}
+      </div>
+    {% endfor %}
+
+    {% if promotion_card != blank %}
+      <div class="MegaMenu__Promotion">
+        {% render 'promotion-card',
+          image: promotion_card.settings.image,
+          link: promotion_card.settings.link_url,
+          title: promotion_card.settings.title,
+          text: promotion_card.settings.text
+        %}
+      </div>
+    {% endif %}
+  </div>
 </mega-menu-component>
 
 {% stylesheet %}
@@ -20,6 +42,24 @@
     width: 100%;
     background: var(--t-gradient-background-dark);
     box-shadow: var(--box-shadow);
+  }
+
+  .MegaMenu__Inner {
+    display: flex;
+    gap: var(--size-m);
+    max-width: var(--page-width);
+    margin-inline: auto;
+  }
+
+  .MegaMenu__NavigationGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+  }
+
+  .MegaMenu__Promotion {
+    margin-left: auto;
+    max-width: 20%;
   }
 
   .MegaMenu--Active {

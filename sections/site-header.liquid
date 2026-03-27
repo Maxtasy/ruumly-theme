@@ -159,8 +159,21 @@
   </div>
 
   {% for link in section.settings.link_list.links %}
-    {% if link.links.size > 0 %}
-      {% render 'mega-menu', handle: link.handle, links: link.links %}
+    {% if link.links.size > 0 and section.settings.enable_mega_menu %}
+      {% liquid
+        assign promotion_card = blank
+
+        for block in section.blocks
+          assign connected_menu_item_handleized = block.settings.connected_menu_item | handleize
+
+          if block.type == 'promotion-card' and connected_menu_item_handleized == link.handle
+            assign promotion_card = block
+            break
+          endif
+        endfor
+      %}
+
+      {% render 'mega-menu', handle: link.handle, links: link.links, promotion_card: promotion_card %}
     {% endif %}
   {% endfor %}
 </section-component>
@@ -250,6 +263,13 @@
       "id": "link_list",
       "label": "t:sections.all.settings.link_list.label",
       "default": "main-menu"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_mega_menu",
+      "label": "t:sections.site_header.settings.enable_mega_menu.label",
+      "default": true,
+      "info": "t:sections.site_header.settings.enable_mega_menu.info"
     },
     {
       "type": "paragraph",
@@ -421,6 +441,40 @@
         }
       ],
       "default": "right"
+    }
+  ],
+  "blocks": [
+    {
+      "name": "t:blocks.promotion_card.name",
+      "type": "promotion-card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "connected_menu_item",
+          "label": "t:sections.site_header.blocks.promotion_card.settings.connected_menu_item.label",
+          "info": "t:sections.site_header.blocks.promotion_card.settings.connected_menu_item.info"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "t:global.settings.image.label"
+        },
+        {
+          "type": "url",
+          "id": "link_url",
+          "label": "t:global.settings.link_url.label"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "t:global.settings.title.label"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "t:global.settings.text.label"
+        }
+      ]
     }
   ]
 }
