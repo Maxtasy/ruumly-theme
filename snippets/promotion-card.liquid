@@ -7,18 +7,37 @@
   @param {string} [text] - The text for the promotion card content.
 {% enddoc %}
 
+{% liquid
+  assign tag = 'div'
+
+  if link != blank
+    assign tag = 'a'
+  endif
+%}
+
 <div class="PromotionCard">
-  <a class="PromotionCard__Link" href="{{ link }}">
+  <{{ tag }}
+    class="PromotionCard__Link"
+    {% if tag == 'a' %}
+      href="{{ link }}"
+    {% endif %}
+  >
     <div class="PromotionCard__Image">
       {% render 'image', image: image %}
     </div>
 
-    <div class="PromotionCard__Details">
-      {% render 'text', text: title, variant: 'body-small', as: 'b' %}
+    {% if title != blank or text != blank %}
+      <div class="PromotionCard__Details">
+        {% if title %}
+          {% render 'text', text: title, variant: 'body-small', as: 'b' %}
+        {% endif %}
 
-      {% render 'text', text: text, variant: 'body-small' %}
-    </div>
-  </a>
+        {% if text %}
+          {% render 'text', text: text, variant: 'body-small' %}
+        {% endif %}
+      </div>
+    {% endif %}
+  </{{ tag }}>
 </div>
 
 {% stylesheet %}
