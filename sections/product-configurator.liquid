@@ -19,9 +19,12 @@
     >
       <div class="ProductConfigurator__Gallery">
         {% liquid
+          # Create empty array
           assign images_to_render = null | uniq
 
           for image in product.images
+            # If the alt text is left empty shopify defaults it to the product title.
+            # In that case the image should be rendered for all variants.
             if image.alt == product.title
               assign images_to_render = image | concat: images_to_render
               continue
@@ -30,6 +33,9 @@
             assign image_alt_parts = image.alt | split: ','
             assign image_is_for_variant = true
 
+            # Loop over all selected option values and check if they appear in the alt text.
+            # If all option values exist in the alt text, it means the image is connected to the currently selected
+            # variant.
             for option_value in product.selected_or_first_available_variant.options
               assign option_value_exists_in_alt = false
 
@@ -53,6 +59,9 @@
               assign images_to_render = image | concat: images_to_render
             endif
           endfor
+
+          # After collecting all the images revert the array to restore the original order.
+          assign images_to_render = images_to_render | reverse
         %}
 
         {% render 'gallery',
