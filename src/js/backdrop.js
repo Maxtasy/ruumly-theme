@@ -37,6 +37,7 @@ export class Backdrop extends CustomComponentMixin(HTMLElement) {
     this.show();
 
     const drawerName = data.name;
+
     if (drawerName && !this.openDrawers.includes(drawerName)) {
       this.openDrawers.push(drawerName);
     }
