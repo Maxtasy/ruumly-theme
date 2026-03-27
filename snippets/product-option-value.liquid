@@ -4,14 +4,16 @@
   @param {object} product_option_value - The product option object containing position and values.
   @param {string} [name_prefix] - The prefix for the name attribute of the input element.
   @param {number} position - The position of the product option in the list.
-  @param {string} [variant] - The variant to render.
+  @param {string} [variant] - The variant to render ('basic', 'color', 'size'). Defaults to 'basic'.
 {% enddoc %}
+
+{% assign variant = variant | default: 'basic' %}
 
 <label
   class="
     ProductOptionValue
     {% if variant %}
-      ProductOptionValue--{{ variant | camelcase }}
+      ProductOptionValue--Variant{{ variant | camelcase }}
     {% endif %}
   "
   style="--background-color: {{ product_option_value.swatch.color }};"
@@ -50,15 +52,20 @@
     outline-offset: 2px;
   }
 
-  .ProductOptionValue--Color,
-  .ProductOptionValue--Size {
+  .ProductOptionValue--VariantBasic {
+    padding-block: var(--size-xs);
+    padding-inline: var(--size-m);
+  }
+
+  .ProductOptionValue--VariantColor,
+  .ProductOptionValue--VariantSize {
     width: var(--product-option-value-swatch-size);
     aspect-ratio: 1;
     border-radius: var(--product-option-value-swatch-radius);
     overflow: hidden;
   }
 
-  .ProductOptionValue--Color {
+  .ProductOptionValue--VariantColor {
     background-color: var(--background-color);
   }
 {% endstylesheet %}
