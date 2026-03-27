@@ -22,14 +22,36 @@
           assign images_to_render = null | uniq
 
           for image in product.images
-            for option_value in product.selected_or_first_available_variant.options
-              assign image_alt_handelized = image.alt | handleize
-              assign option_value_handelized = option_value | handleize
+            if image.alt == product.title
+              assign images_to_render = image | concat: images_to_render
+              continue
+            endif
 
-              if image_alt_handelized contains option_value_handelized or image.alt == product.title
-                assign images_to_render = image | concat: images_to_render
+            assign image_alt_parts = image.alt | split: ','
+            assign image_is_for_variant = true
+
+            for option_value in product.selected_or_first_available_variant.options
+              assign option_value_exists_in_alt = false
+
+              for image_alt_part in image_alt_parts
+                assign image_alt_part_handelized = image_alt_part | handleize
+                assign option_value_handelized = option_value | handleize
+
+                if image_alt_part_handelized == option_value_handelized
+                  assign option_value_exists_in_alt = true
+                  break
+                endif
+              endfor
+
+              if option_value_exists_in_alt != true
+                assign image_is_for_variant = false
+                break
               endif
             endfor
+
+            if image_is_for_variant
+              assign images_to_render = image | concat: images_to_render
+            endif
           endfor
         %}
 
