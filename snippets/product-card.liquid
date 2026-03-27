@@ -120,7 +120,8 @@
               size: 'small',
               action: 'quick-add',
               disabled: disabled,
-              aria_label_key: 'components.add_to_cart_button.aria_label'
+              aria_label_key: 'components.add_to_cart_button.aria_label',
+              variant: 'secondary'
             %}
           {% else %}
             {% assign modal_name = 'quick-add-form-' | append: product.handle %}
@@ -131,7 +132,8 @@
               size: 'small',
               action: action,
               disabled: disabled,
-              aria_label_key: 'components.add_to_cart_button.aria_label'
+              aria_label_key: 'components.add_to_cart_button.aria_label',
+              variant: 'secondary'
             %}
 
             {% capture modal_content %}
