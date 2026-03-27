@@ -163,7 +163,8 @@
       {% assign promotion_card = blank %}
 
       {% for block in section.blocks %}
-        {% if block.type == 'promotion-card' and block.settings.connected_menu_item == link.handle %}
+        {% assign connected_menu_item_handleized = block.settings.connected_menu_item | handleize %}
+        {% if block.type == 'promotion-card' and connected_menu_item_handleized == link.handle %}
           {% assign promotion_card = block %}
           {% break %}
         {% endif %}
