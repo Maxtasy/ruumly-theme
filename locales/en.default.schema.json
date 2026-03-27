@@ -92,6 +92,9 @@
           "product_card": "Maximum Product Cards"
         }
       },
+      "link_url": {
+        "label": "Link URL"
+      },
       "position": {
         "options": {
           "bottom": {
@@ -149,6 +152,9 @@
             "label": "Heading Large"
           }
         }
+      },
+      "title": {
+        "label": "Title"
       }
     }
   },
@@ -473,9 +479,6 @@
         "link_text": {
           "label": "Link Text"
         },
-        "link_url": {
-          "label": "Link URL"
-        },
         "overlay_color": {
           "label": "Overlay Color"
         },
@@ -710,7 +713,7 @@
         "enable_navigation_mobile": {
           "label": "Enable Navigation Mobile"
         },
-        "enable_navigatiobn_desktop": {
+        "enable_navigation_desktop": {
           "label": "Enable Navigation Desktop"
         }
       },
@@ -866,6 +869,16 @@
           "label": "Wishlist Page",
           "info": "Select the page where the wishlist section is being used."
         }
+      },
+      "blocks": {
+        "promotion_card": {
+          "settings": {
+            "connected_menu_item": {
+              "label": "Connected Menu Item",
+              "info": "Menu Item text where promotion card should be displayed."
+            }
+          }
+        }
       }
     },
     "tabs": {
@@ -927,6 +940,9 @@
     "product_variant_selector": {
       "name": "Product Variant Selector"
     },
+    "promotion_card": {
+      "name": "Promotion Card"
+    },
     "quantity_selector": {
       "name": "Quantity Selector"
     },
@@ -936,7 +952,7 @@
     "shipping_estimation": {
       "name": "Shipping Estimation"
     },
-    "titel": {
+    "title": {
       "name": "Title"
     }
   },

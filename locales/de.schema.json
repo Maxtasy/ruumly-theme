@@ -92,6 +92,9 @@
           "product_card": "Maximale Produktkarten"
         }
       },
+      "link_url": {
+        "label": "Link Url"
+      },
       "position": {
         "options": {
           "bottom": {
@@ -149,6 +152,9 @@
             "label": "Überschrift groß"
           }
         }
+      },
+      "title": {
+        "label": "Title"
       }
     }
   },
@@ -473,9 +479,6 @@
         "link_text": {
           "label": "Link Text"
         },
-        "link_url": {
-          "label": "Link URL"
-        },
         "overlay_color": {
           "label": "Overlay Farbe"
         },
@@ -710,7 +713,7 @@
         "enable_navigation_mobile": {
           "label": "Navigation auf Mobile aktivieren"
         },
-        "enable_navigatiobn_desktop": {
+        "enable_navigation_desktop": {
           "label": "Navigation auf Desktop aktivieren"
         }
       },
@@ -866,6 +869,16 @@
           "label": "Wunschlisten-Seite",
           "info": "Wählen sie die Seite aus, auf der die Wunschlisten-Section genutzt wird."
         }
+      },
+      "blocks": {
+        "promotion_card": {
+          "settings": {
+            "connected_menu_item": {
+              "label": "Verknüpfter Menüpunkt",
+              "info": "Menüpunkttext an der die Aktionskarte angezeigt werden soll."
+            }
+          }
+        }
       }
     },
     "tabs": {
@@ -927,6 +940,9 @@
     "product_variant_selector": {
       "name": "Produktvarianten Auswahl"
     },
+    "promotion_card": {
+      "name": "Aktionskarte"
+    },
     "quantity_selector": {
       "name": "Mengenauswahl"
     },
@@ -936,7 +952,7 @@
     "shipping_estimation": {
       "name": "Schätzung des Versands"
     },
-    "titel": {
+    "title": {
       "name": "Titel"
     }
   },
