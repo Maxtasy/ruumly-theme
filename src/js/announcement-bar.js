@@ -59,6 +59,7 @@ class AnnouncementBar extends CustomComponentMixin(HTMLElement) {
 
     const activeItem = this.announcementItemElements[this.index];
 
+    // In this case we use `scrollTo` instead of `scrollIntoView` because the `container` option is not supported on iOS.
     this.scrollTo({
       left: activeItem.offsetLeft,
       behavior: "smooth",
