@@ -21,7 +21,7 @@ export class Drawer extends CustomComponentMixin(HTMLElement) {
     this.subscribe("button:click:close", this.handleClose);
 
     if (this.active) {
-      this.publish("drawer:open");
+      this.publish("drawer:open", { name: this.name });
     }
   }
 
@@ -49,13 +49,13 @@ export class Drawer extends CustomComponentMixin(HTMLElement) {
   open() {
     this.classList.add("Drawer--Active");
 
-    this.publish("drawer:open");
+    this.publish("drawer:open", { name: this.name });
   }
 
   close() {
     this.classList.remove("Drawer--Active");
 
-    this.publish("drawer:close");
+    this.publish("drawer:close", { name: this.name });
   }
 }
 
