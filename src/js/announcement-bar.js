@@ -51,16 +51,17 @@ class AnnouncementBar extends CustomComponentMixin(HTMLElement) {
   }
 
   next() {
-    this.index = this.index + 1;
+    this.index += 1;
 
     if (this.index >= this.announcementItemElements.length) {
       this.index = 0;
     }
 
-    this.announcementItemElements[this.index].scrollIntoView({
-      block: "nearest",
+    const activeItem = this.announcementItemElements[this.index];
+
+    this.scrollTo({
+      left: activeItem.offsetLeft,
       behavior: "smooth",
-      container: "nearest",
     });
   }
 
