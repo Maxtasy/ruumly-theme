@@ -5,10 +5,12 @@
   @param {string} [direction] - Set the direction of the navigation group. Defaults to vertical.
   @param {boolean} [nested] - Whether the navigation group is nested in another navigation group.
   @param {boolean} [connected_to_mega_menu] - Whether the navigation group is connected to a mega menu.
+  @param {boolean} [separators] - Whether the navigations first level links are visually separated. Default: true
 {% enddoc %}
 
 {% assign direction = direction | default: 'vertical' %}
 {% assign nested = nested | default: false %}
+{% assign separators = separators | default: true, allow_false: true %}
 
 <ul
   class="
@@ -43,7 +45,7 @@
       </li>
     {% endif %}
 
-    {% if forloop.last == false and nested == false and direction == 'vertical' %}
+    {% if forloop.last == false and nested == false and direction == 'vertical' and separators %}
       <li role="presentation">
         {% render 'divider' %}
       </li>
@@ -54,7 +56,7 @@
 {% stylesheet %}
   .NavigationGroup {
     display: flex;
-    gap: var(--size-m);
+    gap: var(--size-xs);
   }
 
   .NavigationGroup--DirectionVertical {

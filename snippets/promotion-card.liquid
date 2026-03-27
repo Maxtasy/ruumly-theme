@@ -15,30 +15,28 @@
   endif
 %}
 
-<div class="PromotionCard">
-  <{{ tag }}
-    class="PromotionCard__Link"
-    {% if tag == 'a' %}
-      href="{{ link }}"
-    {% endif %}
-  >
-    <div class="PromotionCard__Image">
-      {% render 'image', image: image %}
+<{{ tag }}
+  class="PromotionCard"
+  {% if tag == 'a' %}
+    href="{{ link }}"
+  {% endif %}
+>
+  <div class="PromotionCard__Image">
+    {% render 'image', image: image %}
+  </div>
+
+  {% if title != blank or text != blank %}
+    <div class="PromotionCard__Details">
+      {% if title != blank %}
+        {% render 'text', text: title, variant: 'body-small', as: 'b' %}
+      {% endif %}
+
+      {% if text != blank %}
+        {% render 'text', text: text, variant: 'body-small' %}
+      {% endif %}
     </div>
-
-    {% if title != blank or text != blank %}
-      <div class="PromotionCard__Details">
-        {% if title %}
-          {% render 'text', text: title, variant: 'body-small', as: 'b' %}
-        {% endif %}
-
-        {% if text %}
-          {% render 'text', text: text, variant: 'body-small' %}
-        {% endif %}
-      </div>
-    {% endif %}
-  </{{ tag }}>
-</div>
+  {% endif %}
+</{{ tag }}>
 
 {% stylesheet %}
   .PromotionCard {

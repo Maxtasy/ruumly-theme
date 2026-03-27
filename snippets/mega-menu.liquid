@@ -8,7 +8,15 @@
 
 <mega-menu-component class="MegaMenu" data-handle="{{ handle }}">
   <div class="MegaMenu__Inner">
-    {% render 'navigation-group', links: links, direction: 'horizontal' %}
+    {% for link in links %}
+      <div class="MegaMenu__NavigationGroup">
+        <a href="{{ link.url }}">
+          {% render 'text', text: link.title, as: 'b' %}
+        </a>
+
+        {% render 'navigation-group', links: link.links, direction: 'vertical', separators: false %}
+      </div>
+    {% endfor %}
 
     {% if promotion_card != blank %}
       <div class="MegaMenu__Promotion">
@@ -41,6 +49,12 @@
     gap: var(--size-m);
     max-width: var(--page-width);
     margin-inline: auto;
+  }
+
+  .MegaMenu__NavigationGroup {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
   }
 
   .MegaMenu__Promotion {
