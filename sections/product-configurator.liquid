@@ -18,15 +18,20 @@
       {% endif %}
     >
       <div class="ProductConfigurator__Gallery">
-        {% assign images_to_render = null | uniq %}
+        {% liquid
+          assign images_to_render = null | uniq
 
-        {% for image in product.images %}
-          {% for option_value in product.selected_or_first_available_variant.options %}
-            {% if image.alt contains option_value or image.alt == product.title %}
-              {% assign images_to_render = image | concat: images_to_render %}
-            {% endif %}
-          {% endfor %}
-        {% endfor %}
+          for image in product.images
+            for option_value in product.selected_or_first_available_variant.options
+              assign image_alt_handelized = image.alt | handleize
+              assign option_value_handelized = option_value | handleize
+
+              if image_alt_handelized contains option_value_handelized or image.alt == product.title
+                assign images_to_render = image | concat: images_to_render
+              endif
+            endfor
+          endfor
+        %}
 
         {% render 'gallery',
           images: images_to_render,
