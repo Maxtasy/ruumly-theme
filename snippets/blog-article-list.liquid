@@ -5,17 +5,47 @@
   @param {number} [limit] - The maximum number of blog article cards to render.
   @param {number} [columns_mobile] - Number of columns on mobile.
   @param {number} [columns_desktop] - Number of columns on desktop.
+  @param {boolean} [enable_pagination] - Whether the blog article list is paginated. Default: true
 {% enddoc %}
 
 {% liquid
   assign columns_mobile = columns_mobile | default: 1
   assign columns_desktop = columns_desktop | default: 3
+  assign enable_pagination = enable_pagination | default: true, allow_false: true
   assign paginate_by = 16
 %}
 
 <div class="BlogArticleList">
   {% if blog_articles %}
-    {% paginate blog_articles by paginate_by %}
+    {% if enable_pagination %}
+      {% paginate blog_articles by paginate_by %}
+        <ul
+          class="BlogArticleList__Items u-NoList"
+          style="
+            --columns-mobile: {{ columns_mobile }};
+            --columns-desktop: {{ columns_desktop }};
+          "
+        >
+          {% for article in blog_articles limit: limit %}
+            <li>
+              {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
+              {% render 'blog-article-card',
+                image: article.image,
+                title: article.title,
+                excerpt: excerpt,
+                url: article.url
+              %}
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% if paginate.pages > 1 %}
+          <div class="BlogArticleList__Pagination">
+            {% render 'pagination', paginate: paginate %}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    {% else %}
       <ul
         class="BlogArticleList__Items u-NoList"
         style="
@@ -35,15 +65,37 @@
           </li>
         {% endfor %}
       </ul>
-
-      {% if paginate.pages > 1 %}
-        <div class="BlogArticleList__Pagination">
-          {% render 'pagination', paginate: paginate %}
-        </div>
-      {% endif %}
-    {% endpaginate %}
+    {% endif %}
   {% else %}
-    {% paginate blog.articles by paginate_by %}
+    {% if enable_pagination %}
+      {% paginate blog.articles by paginate_by %}
+        <ul
+          class="BlogArticleList__Items u-NoList"
+          style="
+            --columns-mobile: {{ columns_mobile }};
+            --columns-desktop: {{ columns_desktop }};
+          "
+        >
+          {% for article in blog.articles limit: limit %}
+            <li>
+              {% assign excerpt = article.excerpt | default: article.content | strip_html | truncatewords: 15 %}
+              {% render 'blog-article-card',
+                image: article.image,
+                title: article.title,
+                excerpt: excerpt,
+                url: article.url
+              %}
+            </li>
+          {% endfor %}
+        </ul>
+
+        {% if paginate.pages > 1 %}
+          <div class="BlogArticleList__Pagination">
+            {% render 'pagination', paginate: paginate %}
+          </div>
+        {% endif %}
+      {% endpaginate %}
+    {% else %}
       <ul
         class="BlogArticleList__Items u-NoList"
         style="
@@ -63,13 +115,7 @@
           </li>
         {% endfor %}
       </ul>
-
-      {% if paginate.pages > 1 %}
-        <div class="BlogArticleList__Pagination">
-          {% render 'pagination', paginate: paginate %}
-        </div>
-      {% endif %}
-    {% endpaginate %}
+    {% endif %}
   {% endif %}
 </div>
 
