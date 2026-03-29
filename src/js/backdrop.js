@@ -4,6 +4,10 @@ export class Backdrop extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
+    // Track open drawers to determine when to show/hide the backdrop. This allows multiple drawers to be open at once
+    // without prematurely hiding the backdrop when one of them closes.
+    this.openDrawers = [];
+
     this.handleClick = this.handleClick.bind(this);
     this.handleDrawerOpenEvent = this.handleDrawerOpenEvent.bind(this);
     this.handleDrawerCloseEvent = this.handleDrawerCloseEvent.bind(this);
@@ -29,12 +33,26 @@ export class Backdrop extends CustomComponentMixin(HTMLElement) {
     this.publish("backdrop:click");
   }
 
-  handleDrawerOpenEvent() {
+  handleDrawerOpenEvent(data) {
     this.show();
+
+    const drawerName = data.name;
+
+    if (drawerName && !this.openDrawers.includes(drawerName)) {
+      this.openDrawers.push(drawerName);
+    }
   }
 
-  handleDrawerCloseEvent() {
-    this.hide();
+  handleDrawerCloseEvent(data) {
+    const drawerName = data.name;
+
+    if (drawerName) {
+      this.openDrawers = this.openDrawers.filter((name) => name !== drawerName);
+    }
+
+    if (this.openDrawers.length === 0) {
+      this.hide();
+    }
   }
 
   show() {
