@@ -60,6 +60,10 @@
     "message": {
       "label": "Your message",
       "placeholder": "Your message..."
+    },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search..."
     }
   },
   "components": {

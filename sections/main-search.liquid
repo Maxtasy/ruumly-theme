@@ -12,15 +12,17 @@
 
     <div class="Search">
       <form class="Form">
-        {% render 'text-field', placeholder: 'search...' %}
+        {% assign search_text_field_placeholder = 'inputs.search.placeholder' | t %}
+        {% render 'text-field', placeholder: search_text_field_placeholder %}
 
-        {% render 'button', text: 'submit' %}
+        {% assign submit_button_text = 'global.submit' | t %}
+        {% render 'button', text: submit_button_text %}
       </form>
 
       {% if search.performed %}
         {% if search.results_count > 0 %}
           <div class="Search__Results">
-            {% render 'text', text: 'results', as: 'h2', variant: 'heading-small' %}
+            {% render 'text', text: section.settings.results_heading, as: 'h2', variant: 'heading-small' %}
 
             {% assign product_results = search.results | where: 'object_type', 'product' %}
             {% assign article_results = search.results | where: 'object_type', 'article' %}
@@ -114,6 +116,12 @@
       "id": "heading",
       "label": "t:sections.main_search.settings.heading.label",
       "default": "t:sections.main_search.settings.heading.default"
+    },
+    {
+      "type": "text",
+      "id": "results_heading",
+      "label": "t:sections.main_search.settings.results_heading.label",
+      "default": "t:sections.main_search.settings.results_heading.default"
     }
   ]
 }
