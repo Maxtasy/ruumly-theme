@@ -13,6 +13,8 @@
 {% enddoc %}
 
 {% assign per_page = per_page | default: 16 %}
+{% assign columns_mobile = columns_mobile | default: 1 %}
+{% assign columns_desktop = columns_desktop | default: 4 %}
 
 <div class="ProductGrid">
   {% if collection_reference and enable_pagination %}

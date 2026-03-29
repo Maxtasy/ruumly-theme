@@ -10,54 +10,68 @@
       {% render 'text', text: section.settings.heading, as: 'h1', variant: 'heading-medium' %}
     {% endif %}
 
-    <div class="Search">
+    <search-component class="Search">
       <form class="Form">
         {% assign search_text_field_placeholder = 'inputs.search.placeholder' | t %}
-        {% render 'text-field', placeholder: search_text_field_placeholder %}
+        {% render 'text-field', placeholder: search_text_field_placeholder, type: 'search' %}
 
         {% assign submit_button_text = 'global.submit' | t %}
         {% render 'button', text: submit_button_text %}
       </form>
 
-      {% if search.performed %}
-        {% if search.results_count > 0 %}
-          <div class="Search__Results">
-            {% render 'text', text: section.settings.results_heading, as: 'h2', variant: 'heading-small' %}
+      <div class="Search__Content">
+        {% if search.performed %}
+          {% if search.results_count > 0 %}
+            <div class="Search__Results">
+              {% assign results_heading = section.settings.results_heading
+                | append: ' ('
+                | append: search.results_count
+                | append: ')'
+              %}
+              {% render 'text', text: results_heading, as: 'h2', variant: 'heading-small' %}
 
-            {% assign product_results = search.results | where: 'object_type', 'product' %}
-            {% assign article_results = search.results | where: 'object_type', 'article' %}
-            {% assign page_results = search.results | where: 'object_type', 'page' %}
+              {% assign product_results = search.results | where: 'object_type', 'product' %}
+              {% assign article_results = search.results | where: 'object_type', 'article' %}
+              {% assign page_results = search.results | where: 'object_type', 'page' %}
 
-            <div class="Search__ResultCategory">
-              {% render 'text', text: 'Products', as: 'b' %}
+              <div class="Search__ResultCategory">
+                {% render 'text', text: 'Products', as: 'b' %}
 
-              {% if product_results.size > 0 %}
-                {% render 'product-grid', products: product_results %}
-              {% else %}
-                {% render 'text', text: 'No matching products found.', color: 'primary-muted' %}
-              {% endif %}
+                {% if product_results.size > 0 %}
+                  {% render 'product-grid', products: product_results %}
+                {% else %}
+                  {% render 'text', text: 'No matching products found.', variant: 'body-small' %}
+                {% endif %}
+              </div>
+
+              <div class="Search__ResultCategory">
+                {% render 'text', text: 'Articles', as: 'b' %}
+
+                {% if article_results.size > 0 %}
+                  {% render 'blog-article-list', blog_articles: article_results, enable_pagination: false %}
+                {% else %}
+                  {% render 'text', text: 'No matching articles found.', variant: 'body-small' %}
+                {% endif %}
+              </div>
+
+              <div class="Search__ResultCategory">
+                {% render 'text', text: 'Pages', as: 'b' %}
+
+                {% if page_results.size > 0 %}
+                  {% for page_result in page_results %}
+                    {% render 'link', text: page_result.title, url: page_result.url %}
+                  {% endfor %}
+                {% else %}
+                  {% render 'text', text: 'No matching pages found.', variant: 'body-small' %}
+                {% endif %}
+              </div>
             </div>
-
-            <div class="Search__ResultCategory">
-              {% render 'text', text: 'Articles', as: 'b' %}
-
-              {% if article_results.size > 0 %}
-                <script>
-                  console.log({{ article_results | json }});
-                </script>
-
-                {% render 'blog-article-list', blog_articles: article_results, enable_pagination: false %}
-              {% else %}
-                {% render 'text', text: 'No matching articles found.', color: 'primary-muted' %}
-              {% endif %}
-            </div>
-          </div>
-
-        {% else %}
-          {% render 'empty-state', heading: 'No results found', text: 'Try again using another search term.' %}
+          {% else %}
+            {% render 'empty-state', heading: 'No results found', text: 'Try again using another search term.' %}
+          {% endif %}
         {% endif %}
-      {% endif %}
-    </div>
+      </div>
+    </search-component>
   </div>
 </section>
 
@@ -66,6 +80,18 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-s);
+  }
+
+  .Search__Results {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+  }
+
+  .Search__ResultCategory {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xxs);
   }
 {% endstylesheet %}
 

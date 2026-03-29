@@ -39,6 +39,7 @@ import "./js/product-option-selector.js";
 import "./js/product-recommendations.js";
 import "./js/product-variant-selector.js";
 import "./js/quantity-selector.js";
+import "./js/search.js";
 import "./js/section.js";
 import "./js/shipping-estimation.js";
 import "./js/slider.js";
