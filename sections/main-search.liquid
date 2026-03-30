@@ -35,7 +35,8 @@
               {% assign page_results = search.results | where: 'object_type', 'page' %}
 
               <div class="Search__ResultCategory">
-                {% render 'text', text: 'Products', as: 'b' %}
+                {% assign products_heading = 'global.products' | t %}
+                {% render 'text', text: products_heading, as: 'b' %}
 
                 {% if product_results.size > 0 %}
                   {% render 'product-grid', products: product_results %}
