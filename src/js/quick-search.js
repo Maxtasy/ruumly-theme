@@ -4,12 +4,78 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
-    console.log("quick-search initialized");
+    this.cachedDocuments = {};
+
+    this.handleFormSubmit = this.handleFormSubmit.bind(this);
   }
 
-  connectedCallback() {}
+  connectedCallback() {
+    this.formElement?.addEventListener("submit", this.handleFormSubmit);
+  }
 
-  disconnectedCallback() {}
+  disconnectedCallback() {
+    this.formElement?.removeEventListener("submit", this.handleFormSubmit);
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+    const searchTerms = this.searchTerms;
+
+    if (!searchTerms || searchTerms === "") return;
+
+    const url = new URL(`${window.location.origin}/search`);
+    url.searchParams.set("q", searchTerms);
+
+    this.updateSearchResults(url);
+  }
+
+  async updateSearchResults(url) {
+    const doc = await this.getDocument(url);
+
+    this.rerender(doc);
+    this.updateUrl(url);
+  }
+
+  async getDocument(url) {
+    let doc = this.cachedDocuments[url];
+
+    if (!doc) {
+      const response = await fetch(url);
+      const markup = await response.text();
+      const parser = new DOMParser();
+      doc = parser.parseFromString(markup, "text/html");
+      this.cachedDocuments[url] = doc;
+    }
+
+    return doc;
+  }
+
+  rerender(doc) {
+    const elementsToReplaceSelectors = [".QuickSearch__Content"];
+
+    elementsToReplaceSelectors.forEach((elementsToReplaceSelector) => {
+      const newElements = doc.querySelectorAll(elementsToReplaceSelector);
+      const currentElements = this.querySelectorAll(elementsToReplaceSelector);
+
+      currentElements.forEach((currentElement, index) => {
+        if (!newElements[index]) return;
+
+        currentElement.outerHTML = newElements[index].outerHTML;
+      });
+    });
+  }
+
+  updateUrl(url) {
+    window.history.replaceState({}, "", url);
+  }
+
+  get formElement() {
+    return this.querySelector("form");
+  }
+
+  get searchTerms() {
+    return this.querySelector("input[type='search']")?.value;
+  }
 }
 
 defineComponent("quick-search-component", QuickSearch);

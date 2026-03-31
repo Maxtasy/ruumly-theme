@@ -8,5 +8,21 @@
     {% render 'text-field', placeholder: search_text_field_placeholder, type: 'search' %}
   </form>
 
-  <div class="QuickSearch__Content"></div>
+  <div class="QuickSearch__Content">
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <div class="QuickSearch__Results">
+          {% render 'text', text: 'Results', as: 'h2', variant: 'heading-small' %}
+
+          {% assign product_results = search.results | where: 'object_type', 'product' %}
+
+          {% if product_results.size > 0 %}
+            {% render 'product-grid', products: product_results %}
+          {% endif %}
+        </div>
+      {% else %}
+        {% render 'text', text: 'No Products found.' %}
+      {% endif %}
+    {% endif %}
+  </div>
 </quick-search-component>
