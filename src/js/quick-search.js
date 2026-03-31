@@ -33,7 +33,6 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
     const doc = await this.getDocument(url);
 
     this.rerender(doc);
-    this.updateUrl(url);
   }
 
   async getDocument(url) {
@@ -63,10 +62,6 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
         currentElement.outerHTML = newElements[index].outerHTML;
       });
     });
-  }
-
-  updateUrl(url) {
-    window.history.replaceState({}, "", url);
   }
 
   get formElement() {
