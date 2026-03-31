@@ -16,10 +16,6 @@
   @param {string} [product_card_rating_prefix] - The product card rating prefix.
 {% enddoc %}
 
-<script>
-  console.log({{ search.terms | json }});
-</script>
-
 {% liquid
   assign hover_effect = hover_effect | default: settings.product_card_hover_effect
   assign selected_variant = product.selected_or_first_available_variant

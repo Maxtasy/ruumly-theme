@@ -35,40 +35,51 @@
               {% assign page_results = search.results | where: 'object_type', 'page' %}
 
               <div class="Search__ResultCategory">
-                {% assign products_heading = 'global.products' | t %}
-                {% render 'text', text: products_heading, as: 'b' %}
+                {% assign resource_type = 'global.products' | t %}
+                {% render 'text', text: resource_type, as: 'b' %}
 
                 {% if product_results.size > 0 %}
                   {% render 'product-grid', products: product_results %}
                 {% else %}
-                  {% render 'text', text: 'No matching products found.', variant: 'body-small' %}
+                  {% assign no_products_text = 'components.search.no_resource_found'
+                    | t: resource_type: resource_type
+                  %}
+                  {% render 'text', text: no_products_text, variant: 'body-small' %}
                 {% endif %}
               </div>
 
               <div class="Search__ResultCategory">
-                {% render 'text', text: 'Articles', as: 'b' %}
+                {% assign resource_type = 'global.articles' | t %}
+                {% render 'text', text: resource_type, as: 'b' %}
 
                 {% if article_results.size > 0 %}
                   {% render 'blog-article-list', blog_articles: article_results, enable_pagination: false %}
                 {% else %}
-                  {% render 'text', text: 'No matching articles found.', variant: 'body-small' %}
+                  {% assign no_articles_text = 'components.search.no_resource_found'
+                    | t: resource_type: resource_type
+                  %}
+                  {% render 'text', text: no_articles_text, variant: 'body-small' %}
                 {% endif %}
               </div>
 
               <div class="Search__ResultCategory">
-                {% render 'text', text: 'Pages', as: 'b' %}
+                {% assign resource_type = 'global.pages' | t %}
+                {% render 'text', text: resource_type, as: 'b' %}
 
                 {% if page_results.size > 0 %}
                   {% for page_result in page_results %}
                     {% render 'link', text: page_result.title, url: page_result.url %}
                   {% endfor %}
                 {% else %}
-                  {% render 'text', text: 'No matching pages found.', variant: 'body-small' %}
+                  {% assign no_pages_text = 'components.search.no_resource_found' | t: resource_type: resource_type %}
+                  {% render 'text', text: no_pages_text, variant: 'body-small' %}
                 {% endif %}
               </div>
             </div>
           {% else %}
-            {% render 'empty-state', heading: 'No results found', text: 'Try again using another search term.' %}
+            {% assign empty_state_heading = 'components.search.no_results_heading' | t %}
+            {% assign empty_state_text = 'components.search.no_results_text' | t %}
+            {% render 'empty-state', heading: empty_state_heading, text: empty_state_text %}
           {% endif %}
         {% endif %}
       </div>

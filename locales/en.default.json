@@ -1,8 +1,10 @@
 {
   "global": {
     "add_to_cart": "Add to cart",
+    "articles": "Articles",
     "checkout": "Checkout",
     "free": "Free",
+    "pages": "Pages",
     "products": "Products",
     "shipping": "Shipping",
     "submit": "Submit",
@@ -143,6 +145,11 @@
     },
     "quantity_selector": {
       "max_quantity_reached": "Max quantity reached"
+    },
+    "search": {
+      "no_results_heading": "No results found",
+      "no_results_text": "Try again using another search term.",
+      "no_resource_found": "No matching {{ resource_type }} found."
     },
     "search_button": {
       "aria_label": "Open search"
