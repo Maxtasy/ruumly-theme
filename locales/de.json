@@ -149,7 +149,10 @@
     "search": {
       "no_results_heading": "Keine Ergebnisse gefunden.",
       "no_results_text": "Versuche es mit einem anderen Suchbegriff.",
-      "no_resource_found": "Keine passenden {{ resource_type }} gefunden."
+      "no_resource_found": "Keine passenden {{ resource_type }} gefunden.",
+      "modal": {
+        "heading": "Suche"
+      }
     },
     "search_button": {
       "aria_label": "Suche öffnen"
