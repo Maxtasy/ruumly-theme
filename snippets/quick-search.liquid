@@ -17,7 +17,10 @@
           {% assign product_results = search.results | where: 'object_type', 'product' %}
 
           {% if product_results.size > 0 %}
-            {% render 'product-grid', products: product_results %}
+            {% render 'product-list', products: product_results, limit: 4, columns_desktop: 4, columns_mobile: 1 %}
+            {% if product_results.size > 4 %}
+              {% render 'button', text: 'See all results' %}
+            {% endif %}
           {% endif %}
         </div>
       {% else %}
@@ -26,3 +29,22 @@
     {% endif %}
   </div>
 </quick-search-component>
+
+{% stylesheet %}
+  .QuickSearch {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .QuickSearch__Content {
+    overflow: visible;
+  }
+
+  .QuickSearch__Results {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+    overflow-x: auto;
+  }
+{% endstylesheet %}
