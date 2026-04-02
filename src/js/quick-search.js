@@ -1,5 +1,5 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
-
+import { debounce } from "./utils.js";
 export class QuickSearch extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
@@ -7,14 +7,23 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
     this.cachedDocuments = {};
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleFormInput = this.handleFormInput.bind(this);
+
+    this.debouncedHandleFormInput = debounce(this.handleFormInput, 150);
   }
 
   connectedCallback() {
     this.formElement?.addEventListener("submit", this.handleFormSubmit);
+    this.formElement?.addEventListener("input", this.debouncedHandleFormInput);
   }
 
   disconnectedCallback() {
     this.formElement?.removeEventListener("submit", this.handleFormSubmit);
+    this.formElement?.removeEventListener("input", this.debouncedHandleFormInput);
+  }
+
+  handleFormInput() {
+    this.handleFormSubmit();
   }
 
   async handleFormSubmit(event) {
