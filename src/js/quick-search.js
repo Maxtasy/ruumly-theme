@@ -17,7 +17,7 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
     this.formElement?.removeEventListener("submit", this.handleFormSubmit);
   }
 
-  handleFormSubmit(event) {
+  async handleFormSubmit(event) {
     event.preventDefault();
     const searchTerms = this.searchTerms;
 
@@ -26,7 +26,15 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
     const url = new URL(`${window.location.origin}/search`);
     url.searchParams.set("q", searchTerms);
 
-    this.updateSearchResults(url);
+    await this.updateSearchResults(url);
+
+    if (this.buttonElement) {
+      this.updateButtonLink(url);
+    }
+  }
+
+  updateButtonLink(url) {
+    this.buttonElement.href = url;
   }
 
   async updateSearchResults(url) {
@@ -70,6 +78,10 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
 
   get searchTerms() {
     return this.querySelector("input[type='search']")?.value;
+  }
+
+  get buttonElement() {
+    return this.querySelector("a[href*='/search']");
   }
 }
 

@@ -4,10 +4,18 @@
   @param {string} name - The name of the modal. Needs to match the handle used in the action.
   @param {string} [title] - The title of the modal.
   @param {string} content - The content of the modal.
+  @param {string} [size] - The size of the modal ('small').
 {% enddoc %}
 
 <modal-component class="Modal" data-name="{{ name }}">
-  <dialog class="Modal__Dialog">
+  <dialog
+    class="
+      Modal__Dialog
+      {% if size %}
+        Modal__Dialog--Size{{ size | camelcase }}
+      {% endif %}
+    "
+  >
     <div class="Modal__Content">
       {% if title != blank %}
         {% render 'text', text: title, variant: 'heading-small', as: 'h3' %}
@@ -32,13 +40,23 @@
   .Modal__Dialog {
     padding: var(--modal-padding-top) var(--modal-padding-inline) var(--modal-padding-bottom);
     width: var(--modal-width);
-    max-width: min(var(--modal-max-width), calc(100% - var(--modal-padding-inline) * 2));
+    max-width: calc(66% - var(--modal-padding-inline) * 2);
     min-height: var(--modal-min-height);
     max-height: var(--modal-max-height);
     background-color: var(--t-background);
     background: var(--t-gradient-background);
     border: var(--border-width) var(--border-style) var(--t-border);
     border-radius: var(--t-border-radius);
+  }
+
+  @media screen and (max-width: 768px) {
+    .Modal__Dialog {
+      max-width: calc(100% - var(--modal-padding-inline) * 2);
+    }
+  }
+
+  .Modal__Dialog--SizeSmall {
+    max-width: min(var(--modal-max-width), calc(100% - var(--modal-padding-inline) * 2));
   }
 
   .Modal__Dialog::backdrop {

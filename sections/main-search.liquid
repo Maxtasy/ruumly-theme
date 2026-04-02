@@ -13,7 +13,7 @@
     <search-component class="Search">
       <form class="Form">
         {% assign search_text_field_placeholder = 'inputs.search.placeholder' | t %}
-        {% render 'text-field', placeholder: search_text_field_placeholder, type: 'search' %}
+        {% render 'text-field', placeholder: search_text_field_placeholder, type: 'search', value: search.terms %}
 
         {% assign submit_button_text = 'global.submit' | t %}
         {% render 'button', text: submit_button_text %}

@@ -151,7 +151,12 @@
       "no_results_text": "Try again using another search term.",
       "no_resource_found": "No matching {{ resource_type }} found.",
       "modal": {
-        "heading": "Search"
+        "heading": "Search",
+        "no_results_found_for_terms": "No results for '{{ terms }}' found.",
+        "view_all_results": {
+          "one": "View {{ count }} result",
+          "other": "View all {{ count }} results"
+        }
       }
     },
     "search_button": {

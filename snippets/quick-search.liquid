@@ -12,19 +12,23 @@
     {% if search.performed %}
       {% if search.results_count > 0 %}
         <div class="QuickSearch__Results">
-          {% render 'text', text: 'Results', as: 'h2', variant: 'heading-small' %}
-
           {% assign product_results = search.results | where: 'object_type', 'product' %}
 
           {% if product_results.size > 0 %}
+            {% assign resource_type = 'global.products' | t %}
+
+            {% render 'text', text: resource_type, as: 'b' %}
             {% render 'product-list', products: product_results, limit: 4, columns_desktop: 4, columns_mobile: 1 %}
-            {% if product_results.size > 4 %}
-              {% render 'button', text: 'See all results' %}
-            {% endif %}
+          {% endif %}
+
+          {% if search.results_count > 0 %}
+            {% assign button_text = 'components.search.modal.view_all_results' | t: count: search.results_count %}
+            {% render 'button', text: button_text, url: routes.search_url %}
           {% endif %}
         </div>
       {% else %}
-        {% render 'text', text: 'No Products found.' %}
+        {% assign no_results_text = 'components.search.modal.no_results_found_for_terms' | t: terms: search.terms %}
+        {% render 'text', text: no_results_text %}
       {% endif %}
     {% endif %}
   </div>
@@ -37,14 +41,9 @@
     gap: var(--size-s);
   }
 
-  .QuickSearch__Content {
-    overflow: visible;
-  }
-
   .QuickSearch__Results {
     display: flex;
     flex-direction: column;
     gap: var(--size-xs);
-    overflow-x: auto;
   }
 {% endstylesheet %}

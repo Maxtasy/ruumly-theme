@@ -102,7 +102,7 @@
               {% endcapture %}
 
               {% assign modal_heading = 'components.back_in_stock.modal_heading' | t %}
-              {% render 'modal', name: 'bis', title: modal_heading, content: bis_modal_content %}
+              {% render 'modal', name: 'bis', title: modal_heading, content: bis_modal_content, size: 'small' %}
             {% endif %}
 
             {% render 'button',
