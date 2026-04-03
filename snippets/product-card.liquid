@@ -85,6 +85,25 @@
         </div>
       {% endif %}
     </div>
+
+    {% if product.has_only_default_variant == false and enable_variant_quick_view %}
+      <div class="ProductCard__QuickView">
+        {% for option_with_values in product.options_with_values %}
+          {% for value in option_with_values.values %}
+            {% if value.swatch %}
+              {% assign option_values = option_with_values.values %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+          {% if option_values %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% render 'variant-quick-view', option_values: option_values %}
+      </div>
+    {% endif %}
   </a>
 
   <div class="ProductCard__Bottom">
@@ -100,12 +119,6 @@
       <div class="ProductCard__PriceList">
         {% render 'price-list', price: price, compare_at_price: compare_at_price %}
       </div>
-
-      {% if product.has_only_default_variant == false and enable_variant_quick_view %}
-        {% for option in product.options_with_values %}
-          {% render 'product-option-selector', product_option: option %}
-        {% endfor %}
-      {% endif %}
     </div>
 
     {% if enable_quick_add_button or enable_wishlist_button %}
@@ -176,6 +189,7 @@
   }
 
   .ProductCard > a {
+    position: relative;
     /* Reserve space for the image to prevent layout shift */
     width: 100%;
     aspect-ratio: 1;
@@ -222,6 +236,14 @@
     .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
       transform: translateX(0);
     }
+  }
+
+  .ProductCard__QuickView {
+    position: absolute;
+    bottom: 0;
+    padding-block: var(--size-xs);
+    width: 100%;
+    background-color: var(--t-background-dark-opaque);
   }
 
   .ProductCard__Actions {

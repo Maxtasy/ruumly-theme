@@ -18,6 +18,7 @@
 
     .ColorScheme--{{ scheme.id | camelcase }} {
       --t-background-dark: {{ scheme.settings.background_dark | color_to_oklch }};
+      --t-background-dark-opaque: {{ scheme.settings.background_dark | color_modify: 'alpha', 0.66 | color_to_oklch }};
       --t-background: {{ scheme.settings.background | color_to_oklch }};
       --t-background-light: {{ scheme.settings.background_light | color_to_oklch }};
 
