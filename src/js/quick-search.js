@@ -46,14 +46,26 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
     this.executeSearch();
   }
 
+  setLoadingState(force) {
+    this.buttonElement.setLoading(force);
+  }
+
   updateButtonLink(url) {
-    this.buttonElement.href = url;
+    this.buttonElement.querySelector("a").href = url;
   }
 
   async updateSearchResults(url) {
+    if (this.buttonElement) {
+      this.setLoadingState(true);
+    }
+
     const doc = await this.getDocument(url);
 
     this.rerender(doc);
+
+    if (this.buttonElement) {
+      this.setLoadingState(false);
+    }
   }
 
   async getDocument(url) {
@@ -94,7 +106,7 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
   }
 
   get buttonElement() {
-    return this.querySelector("a[href*='/search']");
+    return this.querySelector("button-component:has(a[href*='/search'])");
   }
 }
 

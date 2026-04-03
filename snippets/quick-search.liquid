@@ -23,7 +23,7 @@
 
           {% if search.results_count > 0 %}
             {% assign button_text = 'components.search.modal.view_all_results' | t: count: search.results_count %}
-            {% render 'button', text: button_text, url: routes.search_url %}
+            {% render 'button', text: button_text, url: routes.search_url, full_width: true %}
           {% endif %}
         </div>
       {% else %}

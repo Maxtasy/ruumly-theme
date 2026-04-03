@@ -1,4 +1,5 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { debounce } from "./utils.js";
 
 export class Search extends CustomComponentMixin(HTMLElement) {
   constructor() {
@@ -7,18 +8,26 @@ export class Search extends CustomComponentMixin(HTMLElement) {
     this.cachedDocuments = {};
 
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
+    this.handleFormInput = this.handleFormInput.bind(this);
+
+    this.debouncedHandleFormInput = debounce(this.handleFormInput, 500);
   }
 
   connectedCallback() {
     this.formElement?.addEventListener("submit", this.handleFormSubmit);
+    this.formElement?.addEventListener("input", this.debouncedHandleFormInput);
   }
 
   disconnectedCallback() {
     this.formElement?.removeEventListener("submit", this.handleFormSubmit);
+    this.formElement?.removeEventListener("input", this.debouncedHandleFormInput);
   }
 
-  handleFormSubmit(event) {
-    event.preventDefault();
+  handleFormInput() {
+    this.executeSearch();
+  }
+
+  async executeSearch() {
     const searchTerms = this.searchTerms;
 
     if (!searchTerms || searchTerms === "") return;
@@ -27,6 +36,11 @@ export class Search extends CustomComponentMixin(HTMLElement) {
     url.searchParams.set("q", searchTerms);
 
     this.updateSearchResults(url);
+  }
+
+  handleFormSubmit(event) {
+    event.preventDefault();
+    this.executeSearch();
   }
 
   setLoadingState(force) {
