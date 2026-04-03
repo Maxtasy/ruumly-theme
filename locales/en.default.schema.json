@@ -674,6 +674,19 @@
     "main_cart": {
       "name": "Main Cart"
     },
+    "main_search": {
+      "name": "Main Search",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "default": "Search"
+        },
+        "results_heading": {
+          "label": "Results Heading",
+          "default": "Results"
+        }
+      }
+    },
     "menu_drawer": {
       "name": "Menu Drawer",
       "presets": {

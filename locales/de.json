@@ -1,8 +1,11 @@
 {
   "global": {
     "add_to_cart": "In den Warenkorb",
+    "articles": "Artikel",
     "checkout": "Kasse",
     "free": "Kostenlos",
+    "pages": "Seiten",
+    "products": "Produkte",
     "shipping": "Versand",
     "submit": "Absenden",
     "subtotal": "Zwischensumme"
@@ -60,6 +63,10 @@
     "message": {
       "label": "Ihre Nachricht",
       "placeholder": "Ihre Nachricht..."
+    },
+    "search": {
+      "label": "Suche",
+      "placeholder": "Suche..."
     }
   },
   "components": {
@@ -138,6 +145,19 @@
     },
     "quantity_selector": {
       "max_quantity_reached": "Maximale Menge erreicht"
+    },
+    "search": {
+      "no_results_heading": "Keine Ergebnisse gefunden.",
+      "no_results_text": "Versuche es mit einem anderen Suchbegriff.",
+      "no_resource_found": "Keine passenden {{ resource_type }} gefunden.",
+      "modal": {
+        "heading": "Suche",
+        "no_results_found_for_terms": "Keine Ergebnisse für '{{ terms }}' gefunden.",
+        "view_all_results": {
+          "one": "{{ count }} Ergebnis anzeigen",
+          "other": "Alle {{ count }} Ergebnisse anzeigen"
+        }
+      }
     },
     "search_button": {
       "aria_label": "Suche öffnen"

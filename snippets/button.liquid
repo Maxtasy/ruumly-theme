@@ -24,47 +24,49 @@
 {% assign icon_size = icon_size | default: 'medium' %}
 
 {% if url %}
-  <a
-    class="
-      Button
-      {% if full_width %}
-        Button--FullWidth
-      {% endif %}
-      Button--{{ variant | camelcase }}
-      Button--Size{{ size | camelcase }}
-    "
-    href="{{ url }}"
-    {% if external %}
-      target="_blank"
-    {% endif %}
-
-    {% if aria_label or aria_label_key %}
-      {% assign aria_label = aria_label %}
-      {% if aria_label == blank %}
-        {% assign aria_label = aria_label_key | t %}
+  <button-component>
+    <a
+      class="
+        Button
+        {% if full_width %}
+          Button--FullWidth
+        {% endif %}
+        Button--{{ variant | camelcase }}
+        Button--Size{{ size | camelcase }}
+      "
+      href="{{ url }}"
+      {% if external %}
+        target="_blank"
       {% endif %}
 
-      aria-label="{{ aria_label }}"
-    {% endif %}
+      {% if aria_label or aria_label_key %}
+        {% assign aria_label = aria_label %}
+        {% if aria_label == blank %}
+          {% assign aria_label = aria_label_key | t %}
+        {% endif %}
 
-    {{ attributes }}
-  >
-    <div class="Button__Loading">
-      {% render 'loading-spinner' %}
-    </div>
+        aria-label="{{ aria_label }}"
+      {% endif %}
 
-    {% if text %}
-      {{ text }}
-    {% endif %}
+      {{ attributes }}
+    >
+      <div class="Button__Loading">
+        {% render 'loading-spinner' %}
+      </div>
 
-    {% if icon %}
-      {% render 'icon', icon: icon, size: icon_size %}
-    {% endif -%}
+      {% if text %}
+        {{ text }}
+      {% endif %}
 
-    {% if content %}
-      {{ content }}
-    {% endif %}
-  </a>
+      {% if icon %}
+        {% render 'icon', icon: icon, size: icon_size %}
+      {% endif -%}
+
+      {% if content %}
+        {{ content }}
+      {% endif %}
+    </a>
+  </button-component>
 {% else %}
   <button-component
     {% if action %}
