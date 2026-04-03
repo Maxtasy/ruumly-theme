@@ -5,10 +5,12 @@ class Modal extends CustomComponentMixin(HTMLElement) {
     super();
 
     this.name = this.parsedData.name;
+    this.mousedownInsideDialog = false;
 
     this.handleOpenEvent = this.handleOpenEvent.bind(this);
     this.handleCloseEvent = this.handleCloseEvent.bind(this);
     this.handleClickEvent = this.handleClickEvent.bind(this);
+    this.handleMousedownEvent = this.handleMousedownEvent.bind(this);
 
     this.isClickOutside = this.isClickOutside.bind(this);
   }
@@ -18,6 +20,7 @@ class Modal extends CustomComponentMixin(HTMLElement) {
 
     this.subscribe("button:click:close", this.handleCloseEvent);
     this.subscribe("click", this.handleClickEvent);
+    this.subscribe("mousedown", this.handleMousedownEvent);
   }
 
   disconnectedCallback() {
@@ -25,6 +28,15 @@ class Modal extends CustomComponentMixin(HTMLElement) {
 
     this.unsubscribe("button:click:close", this.handleCloseEvent);
     this.unsubscribe("click", this.handleClickEvent);
+    this.unsubscribe("mousedown", this.handleMousedownEvent);
+  }
+
+  handleMousedownEvent(event) {
+    if (!this.isClickOutside(event)) {
+      this.mousedownInsideDialog = true;
+    } else {
+      this.mousedownInsideDialog = false;
+    }
   }
 
   handleOpenEvent() {
@@ -36,7 +48,7 @@ class Modal extends CustomComponentMixin(HTMLElement) {
   }
 
   handleClickEvent(event) {
-    if (this.isClickOutside(event)) {
+    if (this.isClickOutside(event) && !this.mousedownInsideDialog) {
       this.dialogElement?.close();
     }
   }

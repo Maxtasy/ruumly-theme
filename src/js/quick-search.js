@@ -9,7 +9,7 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleFormInput = this.handleFormInput.bind(this);
 
-    this.debouncedHandleFormInput = debounce(this.handleFormInput, 150);
+    this.debouncedHandleFormInput = debounce(this.handleFormInput, 500);
   }
 
   connectedCallback() {
@@ -23,11 +23,10 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
   }
 
   handleFormInput() {
-    this.handleFormSubmit();
+    this.executeSearch();
   }
 
-  async handleFormSubmit(event) {
-    event.preventDefault();
+  async executeSearch() {
     const searchTerms = this.searchTerms;
 
     if (!searchTerms || searchTerms === "") return;
@@ -40,6 +39,11 @@ export class QuickSearch extends CustomComponentMixin(HTMLElement) {
     if (this.buttonElement) {
       this.updateButtonLink(url);
     }
+  }
+
+  async handleFormSubmit(event) {
+    event.preventDefault();
+    this.executeSearch();
   }
 
   updateButtonLink(url) {
