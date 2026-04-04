@@ -45,5 +45,6 @@ import "./js/slider.js";
 import "./js/sort-option.js";
 import "./js/toast.js";
 import "./js/toaster.js";
+import "./js/variant-quick-view.js";
 import "./js/wishlist-buttons.js";
 import "./js/wishlist-section.js";
