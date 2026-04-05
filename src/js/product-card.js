@@ -6,6 +6,8 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
+    this.activeVariantImageElement = this.variantImageElements[0];
+
     this.hasOnlyDefaultVariant = this.parsedData.hasOnlyDefaultVariant;
     this.selectedVariantId = this.parsedData.selectedVariantId;
     this.inventoryQuantity = this.parsedData.inventoryQuantity;
@@ -13,18 +15,26 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
     this.handleQuickAddClick = this.handleQuickAddClick.bind(this);
     this.handleCartDrawerUpdated = this.handleCartDrawerUpdated.bind(this);
     this.handleVarientQuickViewMouseenter = this.handleVarientQuickViewMouseenter.bind(this);
+    this.handleVarientQuickViewMouseleave = this.handleVarientQuickViewMouseleave.bind(this);
+    this.handleVarientQuickViewClick = this.handleVarientQuickViewClick.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("button:click:quick-add", this.handleQuickAddClick);
-    globalThis.subscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
     this.subscribe("variant-quick-view:mouseenter", this.handleVarientQuickViewMouseenter);
+    this.subscribe("variant-quick-view:mouseleave", this.handleVarientQuickViewMouseleave);
+    this.subscribe("variant-quick-view:click", this.handleVarientQuickViewClick);
+
+    globalThis.subscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
   }
 
   disconnectedCallback() {
     this.unsubscribe("button:click:quick-add", this.handleQuickAddClick);
-    globalThis.unsubscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
     this.unsubscribe("variant-quick-view:mouseenter", this.handleVarientQuickViewMouseenter);
+    this.unsubscribe("variant-quick-view:mouseleave", this.handleVarientQuickViewMouseleave);
+    this.unsubscribe("variant-quick-view:click", this.handleVarientQuickViewClick);
+
+    globalThis.unsubscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
   }
 
   async handleQuickAddClick(_, event) {
@@ -65,14 +75,47 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
     }
   }
 
-  handleVarientQuickViewMouseenter() {}
+  handleVarientQuickViewMouseenter(data) {
+    const connectedImageElement = this.getConnectedImageElement(data.optionValueName);
+    const connectedImageElementCopy = connectedImageElement.cloneNode(true);
+
+    this.featuredImageElement.parentElement.append(connectedImageElementCopy);
+    this.featuredImageElement.remove();
+  }
+
+  handleVarientQuickViewMouseleave() {
+    const activeVariantImageElementCopy = this.activeVariantImageElement.cloneNode(true);
+
+    this.featuredImageElement.parentElement.append(activeVariantImageElementCopy);
+    this.featuredImageElement.remove();
+  }
+
+  handleVarientQuickViewClick(data) {
+    const connectedImageElement = this.getConnectedImageElement(data.optionValueName);
+    const connectedImageElementCopy = connectedImageElement.cloneNode(true);
+
+    this.activeVariantImageElement = connectedImageElement;
+
+    this.featuredImageElement.parentElement.append(connectedImageElementCopy);
+    this.featuredImageElement.remove();
+  }
+
+  getConnectedImageElement(optionValueName) {
+    return [...this.variantImageElements].find((variantImageElement) => {
+      return variantImageElement.alt.toLowerCase().includes(optionValueName.toLowerCase());
+    });
+  }
 
   get quickAddButtonElement() {
     return this.querySelector('[data-action="quick-add"]');
   }
 
-  get connectedImageElement() {
-    return this.querySelectorAll(".ProductCard__VariantImage .Image").find();
+  get variantImageElements() {
+    return this.querySelectorAll(".ProductCard__VariantImage .Image img");
+  }
+
+  get featuredImageElement() {
+    return this.querySelector(".ProductCard__Image .Image img");
   }
 }
 

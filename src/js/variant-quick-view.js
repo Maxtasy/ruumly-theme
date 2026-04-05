@@ -4,30 +4,30 @@ export class VariantQuickView extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
-    this.handleSwatchClick = this.handleSwatchClick.bind(this);
+    this.handleVariantQuickViewClick = this.handleVariantQuickViewClick.bind(this);
     this.handleVariantQuickViewMouseenter = this.handleVariantQuickViewMouseenter.bind(this);
-    this.handleSwatchMouseleave = this.handleSwatchMouseleave.bind(this);
+    this.handleVariantQuickViewMouseleave = this.handleVariantQuickViewMouseleave.bind(this);
   }
 
   connectedCallback() {
-    this.variantQuickViewItemElements.forEach((swatchElement) => {
-      swatchElement.addEventListener("click", this.handleSwatchClick);
-      swatchElement.addEventListener("mouseenter", this.handleVariantQuickViewMouseenter);
-      swatchElement.addEventListener("mouseleave", this.handleSwatchMouseleave);
+    this.variantQuickViewItemElements.forEach((variantQuickViewElement) => {
+      variantQuickViewElement.addEventListener("click", this.handleVariantQuickViewClick);
+      variantQuickViewElement.addEventListener("mouseenter", this.handleVariantQuickViewMouseenter);
+      variantQuickViewElement.addEventListener("mouseleave", this.handleVariantQuickViewMouseleave);
     });
   }
 
   disconnectedCallback() {
-    this.variantQuickViewItemElements.forEach((swatchElement) => {
-      swatchElement.removeEventListener("click", this.handleSwatchClick);
-      swatchElement.removeEventListener("mouseenter", this.handleVariantQuickViewMouseenter);
-      swatchElement.removeEventListener("mouseleave", this.handleSwatchMouseleave);
+    this.variantQuickViewItemElements.forEach((variantQuickViewElement) => {
+      variantQuickViewElement.removeEventListener("click", this.handleVariantQuickViewClick);
+      variantQuickViewElement.removeEventListener("mouseenter", this.handleVariantQuickViewMouseenter);
+      variantQuickViewElement.removeEventListener("mouseleave", this.handleVariantQuickViewMouseleave);
     });
   }
 
-  handleSwatchClick() {
-    console.log(this.parsedData);
-    this.publish("variant-quick-view:click", { optionValueName: this.parsedData });
+  handleVariantQuickViewClick(event) {
+    const optionValueName = event.target.getAttribute("data-option-value-name");
+    this.publish("variant-quick-view:click", { optionValueName });
   }
 
   handleVariantQuickViewMouseenter(event) {
@@ -35,8 +35,9 @@ export class VariantQuickView extends CustomComponentMixin(HTMLElement) {
     this.publish("variant-quick-view:mouseenter", { optionValueName });
   }
 
-  handleSwatchMouseleave() {
-    console.log("handle mouseleave");
+  handleVariantQuickViewMouseleave(event) {
+    const optionValueName = event.target.getAttribute("data-option-value-name");
+    this.publish("variant-quick-view:mouseleave", { optionValueName });
   }
 
   get variantQuickViewItemElements() {
