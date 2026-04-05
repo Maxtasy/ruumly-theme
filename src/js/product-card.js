@@ -91,6 +91,7 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
   }
 
   handleVarientQuickViewClick(data) {
+    console.log(data);
     const connectedImageElement = this.getConnectedImageElement(data.optionValueName);
     const connectedImageElementCopy = connectedImageElement.cloneNode(true);
 

@@ -34,7 +34,7 @@
     data-inventory-quantity="{{ inventory_quantity }}"
   {% endif %}
 >
-  <a href="{{ url }}">
+  <div class="ProductCard__Top">
     <div class="ProductCard__Image">
       {% render 'image', image: image, variant: 'square', sizes: '480px', widths: '480' %}
 
@@ -111,7 +111,9 @@
         {% render 'variant-quick-view', option_values: option_values %}
       </div>
     {% endif %}
-  </a>
+
+    <a href="{{ url }}"></a>
+  </div>
 
   <div class="ProductCard__Bottom">
     <div class="ProductCard__Details">
@@ -195,11 +197,17 @@
     overflow: hidden;
   }
 
-  .ProductCard > a {
+  .ProductCard__Top {
     position: relative;
+
     /* Reserve space for the image to prevent layout shift */
     width: 100%;
     aspect-ratio: 1;
+  }
+
+  .ProductCard > a {
+    position: absolute;
+    inset: 0;
   }
 
   .ProductCard__Image {

@@ -26,7 +26,7 @@ export class VariantQuickView extends CustomComponentMixin(HTMLElement) {
   }
 
   handleVariantQuickViewClick(event) {
-    const optionValueName = event.target.getAttribute("data-option-value-name");
+    const optionValueName = event.target.closest(".VariantQuickView__Item").getAttribute("data-option-value-name");
     this.publish("variant-quick-view:click", { optionValueName });
   }
 
