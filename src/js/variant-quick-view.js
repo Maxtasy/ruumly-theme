@@ -26,8 +26,17 @@ export class VariantQuickView extends CustomComponentMixin(HTMLElement) {
   }
 
   handleVariantQuickViewClick(event) {
-    const optionValueName = event.target.closest(".VariantQuickView__Item").getAttribute("data-option-value-name");
+    const clickedSwatchElement = event.currentTarget.querySelector(".Swatch");
+
+    const optionValueName = event.currentTarget.getAttribute("data-option-value-name");
+
     this.publish("variant-quick-view:click", { optionValueName });
+
+    this.variantQuickViewItemElements.forEach((variantQuickViewItemElement) => {
+      const swatchElement = variantQuickViewItemElement.querySelector(".Swatch");
+
+      swatchElement.classList.toggle("Swatch--Active", clickedSwatchElement === swatchElement);
+    });
   }
 
   handleVariantQuickViewMouseenter(event) {

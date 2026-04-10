@@ -79,25 +79,38 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
     const connectedImageElement = this.getConnectedImageElement(data.optionValueName);
     const connectedImageElementCopy = connectedImageElement.cloneNode(true);
 
+    connectedImageElementCopy.classList.add("FadeIn");
+
     this.featuredImageElement.parentElement.append(connectedImageElementCopy);
+
     this.featuredImageElement.remove();
+
+    setTimeout(() => {
+      connectedImageElementCopy.classList.add("FadeIn--Finished");
+    }, 300);
   }
 
   handleVarientQuickViewMouseleave() {
     const activeVariantImageElementCopy = this.activeVariantImageElement.cloneNode(true);
 
+    activeVariantImageElementCopy.classList.add("FadeIn");
+
     this.featuredImageElement.parentElement.append(activeVariantImageElementCopy);
     this.featuredImageElement.remove();
+
+    setTimeout(() => {
+      activeVariantImageElementCopy.classList.add("FadeIn--Finished");
+    }, 300);
   }
 
   handleVarientQuickViewClick(data) {
-    console.log(data);
     const connectedImageElement = this.getConnectedImageElement(data.optionValueName);
     const connectedImageElementCopy = connectedImageElement.cloneNode(true);
 
     this.activeVariantImageElement = connectedImageElement;
 
     this.featuredImageElement.parentElement.append(connectedImageElementCopy);
+
     this.featuredImageElement.remove();
   }
 
