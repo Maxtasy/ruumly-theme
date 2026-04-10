@@ -160,20 +160,7 @@
 
   {% for link in section.settings.link_list.links %}
     {% if link.links.size > 0 and section.settings.enable_mega_menu %}
-      {% liquid
-        assign promotion_card = blank
-
-        for block in section.blocks
-          assign connected_menu_item_handleized = block.settings.connected_menu_item | handleize
-
-          if block.type == 'promotion-card' and connected_menu_item_handleized == link.handle
-            assign promotion_card = block
-            break
-          endif
-        endfor
-      %}
-
-      {% render 'mega-menu', handle: link.handle, links: link.links, promotion_card: promotion_card %}
+      {% render 'mega-menu', handle: link.handle, links: link.links, promotion_blocks: section.blocks %}
     {% endif %}
   {% endfor %}
 </section-component>
