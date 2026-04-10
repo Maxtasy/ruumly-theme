@@ -158,9 +158,21 @@
     </header>
   </div>
 
+  {% assign promotion_blocks = section.blocks | where: 'type', 'promotion-card' %}
+
   {% for link in section.settings.link_list.links %}
     {% if link.links.size > 0 and section.settings.enable_mega_menu %}
-      {% render 'mega-menu', handle: link.handle, links: link.links, promotion_blocks: section.blocks %}
+      {% assign promotion_blocks_for_mega_menu = null | uniq %}
+
+      {% for promotion_block in promotion_blocks %}
+        {% assign connected_menu_item_handleized = promotion_block.settings.connected_menu_item | handleize %}
+        {% if link.handle == connected_menu_item_handleized %}
+          {% assign promotion_blocks_for_mega_menu = promotion_block | concat: promotion_blocks_for_mega_menu %}
+        {% endif %}
+      {% endfor %}
+
+      {% assign promotion_blocks_for_mega_menu = promotion_blocks_for_mega_menu | reverse %}
+      {% render 'mega-menu', handle: link.handle, links: link.links, promotion_blocks: promotion_blocks_for_mega_menu %}
     {% endif %}
   {% endfor %}
 </section-component>
