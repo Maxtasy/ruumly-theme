@@ -158,22 +158,25 @@
     </header>
   </div>
 
+  {% assign promotion_blocks = section.blocks | where: 'type', 'promotion-card' %}
+
   {% for link in section.settings.link_list.links %}
     {% if link.links.size > 0 and section.settings.enable_mega_menu %}
       {% liquid
-        assign promotion_card = blank
+        assign promotion_blocks_for_mega_menu = null | uniq
 
-        for block in section.blocks
-          assign connected_menu_item_handleized = block.settings.connected_menu_item | handleize
+        for promotion_block in promotion_blocks
+          assign connected_menu_item_handleized = promotion_block.settings.connected_menu_item | handleize
 
-          if block.type == 'promotion-card' and connected_menu_item_handleized == link.handle
-            assign promotion_card = block
-            break
+          if link.handle == connected_menu_item_handleized
+            assign promotion_blocks_for_mega_menu = promotion_block | concat: promotion_blocks_for_mega_menu
           endif
         endfor
+
+        assign promotion_blocks_for_mega_menu = promotion_blocks_for_mega_menu | reverse
       %}
 
-      {% render 'mega-menu', handle: link.handle, links: link.links, promotion_card: promotion_card %}
+      {% render 'mega-menu', handle: link.handle, links: link.links, promotion_blocks: promotion_blocks_for_mega_menu %}
     {% endif %}
   {% endfor %}
 </section-component>
