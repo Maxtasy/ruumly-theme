@@ -6,11 +6,15 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
 
     this.productVariants = this.parsedData.productVariants;
     this.selectedVariantId = this.parsedData.selectedVariantId;
+
+    // `parsedData` converts string numbers to actual numbers, but we want the option values to be always strings
+    // (or null) since that's what the option selectors will emit, so we convert them back to strings here.
     this.selectedOptionValues = [
-      this.parsedData.selectedOption1Value || null,
-      this.parsedData.selectedOption2Value || null,
-      this.parsedData.selectedOption3Value || null,
+      this.parsedData.selectedOption1Value?.toString() || null,
+      this.parsedData.selectedOption2Value?.toString() || null,
+      this.parsedData.selectedOption3Value?.toString() || null,
     ];
+
     this.available = this.parsedData.available;
 
     this.handleProductOptionSelectorChange = this.handleProductOptionSelectorChange.bind(this);

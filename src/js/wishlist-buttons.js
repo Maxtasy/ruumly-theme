@@ -42,8 +42,8 @@ export class WishlistButtons extends CustomComponentMixin(HTMLElement) {
   }
 
   handleWishlistAddButtonClick() {
-    const iconElement = this.querySelector("[data-action='wishlist:add'] .Icon");
-    const destinationElement = document.querySelector("[data-wishlist-page-button] .Icon");
+    const iconElement = this.querySelector("[data-action='wishlist:add'] .Button > .Icon");
+    const destinationElement = document.querySelector("[data-wishlist-page-button] > .Icon");
 
     const prefersReducedMotion = globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches;
 

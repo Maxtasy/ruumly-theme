@@ -1,0 +1,49 @@
+{% doc %}
+  Renders a Quick Search component.
+{% enddoc %}
+
+<quick-search-component class="QuickSearch">
+  <form class="Form">
+    {% assign search_text_field_placeholder = 'inputs.search.placeholder' | t %}
+    {% render 'text-field', placeholder: search_text_field_placeholder, type: 'search' %}
+  </form>
+
+  <div class="QuickSearch__Content">
+    {% if search.performed %}
+      {% if search.results_count > 0 %}
+        <div class="QuickSearch__Results">
+          {% assign product_results = search.results | where: 'object_type', 'product' %}
+
+          {% if product_results.size > 0 %}
+            {% assign resource_type = 'global.products' | t %}
+
+            {% render 'text', text: resource_type, as: 'b' %}
+            {% render 'product-list', products: product_results, limit: 4, columns_desktop: 4, columns_mobile: 1 %}
+          {% endif %}
+
+          {% if search.results_count > 0 %}
+            {% assign button_text = 'components.search.modal.view_all_results' | t: count: search.results_count %}
+            {% render 'button', text: button_text, url: routes.search_url, full_width: true %}
+          {% endif %}
+        </div>
+      {% else %}
+        {% assign no_results_text = 'components.search.modal.no_results_found_for_terms' | t: terms: search.terms %}
+        {% render 'text', text: no_results_text %}
+      {% endif %}
+    {% endif %}
+  </div>
+</quick-search-component>
+
+{% stylesheet %}
+  .QuickSearch {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .QuickSearch__Results {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xs);
+  }
+{% endstylesheet %}

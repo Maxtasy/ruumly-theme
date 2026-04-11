@@ -1,9 +1,9 @@
 {% doc %}
-  Renders a mega menu component.
+  Renders a Mega Menu component.
 
   @param {string} handle - Describes the connection to the main menu item.
   @param {object[]} links - A list of links to render.
-  @param {object} [promotion_card] - Optional promotion block connected to the current main menu item.
+  @param {object[]} [promotion_blocks] - Promotion blocks connected to the current main menu item.
 {% enddoc %}
 
 <mega-menu-component class="MegaMenu" data-handle="{{ handle }}">
@@ -18,14 +18,18 @@
       </div>
     {% endfor %}
 
-    {% if promotion_card != blank %}
-      <div class="MegaMenu__Promotion">
-        {% render 'promotion-card',
-          image: promotion_card.settings.image,
-          link: promotion_card.settings.link_url,
-          title: promotion_card.settings.title,
-          text: promotion_card.settings.text
-        %}
+    {% if promotion_blocks.size > 0 %}
+      <div class="MegaMenu__Promotions">
+        {% for promotion_block in promotion_blocks %}
+          <div class="MegaMenu__PromotionCard">
+            {% render 'promotion-card',
+              image: promotion_block.settings.image,
+              link: promotion_block.settings.link_url,
+              title: promotion_block.settings.title,
+              text: promotion_block.settings.text
+            %}
+          </div>
+        {% endfor %}
       </div>
     {% endif %}
   </div>
@@ -57,9 +61,14 @@
     gap: var(--size-xs);
   }
 
-  .MegaMenu__Promotion {
+  .MegaMenu__Promotions {
+    display: flex;
+    gap: var(--size-s);
     margin-left: auto;
-    max-width: 20%;
+  }
+
+  .MegaMenu__PromotionCard {
+    width: 8rem;
   }
 
   .MegaMenu--Active {

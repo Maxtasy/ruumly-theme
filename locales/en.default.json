@@ -1,8 +1,11 @@
 {
   "global": {
     "add_to_cart": "Add to cart",
+    "articles": "Articles",
     "checkout": "Checkout",
     "free": "Free",
+    "pages": "Pages",
+    "products": "Products",
     "shipping": "Shipping",
     "submit": "Submit",
     "subtotal": "Subtotal"
@@ -60,6 +63,10 @@
     "message": {
       "label": "Your message",
       "placeholder": "Your message..."
+    },
+    "search": {
+      "label": "Search",
+      "placeholder": "Search..."
     }
   },
   "components": {
@@ -138,6 +145,19 @@
     },
     "quantity_selector": {
       "max_quantity_reached": "Max quantity reached"
+    },
+    "search": {
+      "no_results_heading": "No results found",
+      "no_results_text": "Try again using another search term.",
+      "no_resource_found": "No matching {{ resource_type }} found.",
+      "modal": {
+        "heading": "Search",
+        "no_results_found_for_terms": "No results for '{{ terms }}' found.",
+        "view_all_results": {
+          "one": "View {{ count }} result",
+          "other": "View all {{ count }} results"
+        }
+      }
     },
     "search_button": {
       "aria_label": "Open search"

@@ -1,4 +1,8 @@
-{% render 'modal', name: 'search', content: 'search...', title: 'Search' %}
+{% capture content %}
+  {% render 'quick-search' %}
+{% endcapture %}
+{% assign heading = 'components.search.modal.heading' | t %}
+{% render 'modal', name: 'search', content: content, title: heading %}
 
 {% schema %}
 {

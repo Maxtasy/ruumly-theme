@@ -13,8 +13,14 @@
   </div>
 
   <div class="BlogArticleCard__Content">
-    {% render 'text', text: title, variant: 'heading-small' %}
+    {%- comment -%}
+      Highlight search terms on search page.
+    {%- endcomment -%}
 
+    {% assign title = title | highlight: search.terms %}
+    {% render 'text', text: title, variant: 'heading-small', as: 'b' %}
+
+    {% assign excerpt = excerpt | highlight: search.terms %}
     {% render 'text', text: excerpt, as: 'div' %}
 
     <div class="BlogArticleCard__CallToAction">
@@ -52,6 +58,11 @@
     flex-direction: column;
     gap: var(--size-xs);
     padding: var(--size-xs);
+  }
+
+  .BlogArticleCard__Content .highlight {
+    text-decoration: underline dotted var(--t-success);
+    text-underline-offset: 4px;
   }
 
   .BlogArticleCard__CallToAction {

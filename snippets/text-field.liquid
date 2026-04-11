@@ -2,7 +2,7 @@
   Renders a Text Field component.
 
   @param {string} [label] - The label for the text field.
-  @param {string} [type] - The type of the text field. ("text", "password", "email", "text-area") Default: "text"
+  @param {string} [type] - The type of the text field. ("text", "password", "email", "text-area", "search") Default: "text"
   @param {number} [rows] - The amount of rows for the text field. Only used if type set to "text-area". Default: 5
   @param {boolean} [required] - Whether the text field is required.
   @param {string} [placeholder] - The placeholder for the text field.
@@ -89,6 +89,12 @@
   }
 
   .TextField:has([type='hidden']) {
+    display: none;
+  }
+
+  /* Hide default close 'x' */
+  input::-webkit-search-cancel-button,
+  input::-webkit-clear-button {
     display: none;
   }
 {% endstylesheet %}
