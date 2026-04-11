@@ -4,6 +4,8 @@ export class VariantQuickView extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
+    this.preventMouseLeaveEvent = false;
+
     this.handleVariantQuickViewClick = this.handleVariantQuickViewClick.bind(this);
     this.handleVariantQuickViewMouseenter = this.handleVariantQuickViewMouseenter.bind(this);
     this.handleVariantQuickViewMouseleave = this.handleVariantQuickViewMouseleave.bind(this);
@@ -37,6 +39,8 @@ export class VariantQuickView extends CustomComponentMixin(HTMLElement) {
 
       swatchElement.classList.toggle("Swatch--Active", clickedSwatchElement === swatchElement);
     });
+
+    this.preventMouseLeaveEvent = true;
   }
 
   handleVariantQuickViewMouseenter(event) {
@@ -45,6 +49,11 @@ export class VariantQuickView extends CustomComponentMixin(HTMLElement) {
   }
 
   handleVariantQuickViewMouseleave(event) {
+    if (this.preventMouseLeaveEvent) {
+      this.preventMouseLeaveEvent = false;
+      return;
+    }
+
     const optionValueName = event.target.getAttribute("data-option-value-name");
     this.publish("variant-quick-view:mouseleave", { optionValueName });
   }

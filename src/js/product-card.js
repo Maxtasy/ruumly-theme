@@ -1,5 +1,6 @@
 import { cart } from "./cart.js";
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { transitionDurationShort } from "./constants.js";
 import { getClosestSectionId } from "./utils.js";
 
 export class ProductCard extends CustomComponentMixin(HTMLElement) {
@@ -14,25 +15,25 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
 
     this.handleQuickAddClick = this.handleQuickAddClick.bind(this);
     this.handleCartDrawerUpdated = this.handleCartDrawerUpdated.bind(this);
-    this.handleVarientQuickViewMouseenter = this.handleVarientQuickViewMouseenter.bind(this);
-    this.handleVarientQuickViewMouseleave = this.handleVarientQuickViewMouseleave.bind(this);
-    this.handleVarientQuickViewClick = this.handleVarientQuickViewClick.bind(this);
+    this.handleVariantQuickViewMouseenter = this.handleVariantQuickViewMouseenter.bind(this);
+    this.handleVariantQuickViewMouseleave = this.handleVariantQuickViewMouseleave.bind(this);
+    this.handleVariantQuickViewClick = this.handleVariantQuickViewClick.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("button:click:quick-add", this.handleQuickAddClick);
-    this.subscribe("variant-quick-view:mouseenter", this.handleVarientQuickViewMouseenter);
-    this.subscribe("variant-quick-view:mouseleave", this.handleVarientQuickViewMouseleave);
-    this.subscribe("variant-quick-view:click", this.handleVarientQuickViewClick);
+    this.subscribe("variant-quick-view:mouseenter", this.handleVariantQuickViewMouseenter);
+    this.subscribe("variant-quick-view:mouseleave", this.handleVariantQuickViewMouseleave);
+    this.subscribe("variant-quick-view:click", this.handleVariantQuickViewClick);
 
     globalThis.subscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
   }
 
   disconnectedCallback() {
     this.unsubscribe("button:click:quick-add", this.handleQuickAddClick);
-    this.unsubscribe("variant-quick-view:mouseenter", this.handleVarientQuickViewMouseenter);
-    this.unsubscribe("variant-quick-view:mouseleave", this.handleVarientQuickViewMouseleave);
-    this.unsubscribe("variant-quick-view:click", this.handleVarientQuickViewClick);
+    this.unsubscribe("variant-quick-view:mouseenter", this.handleVariantQuickViewMouseenter);
+    this.unsubscribe("variant-quick-view:mouseleave", this.handleVariantQuickViewMouseleave);
+    this.unsubscribe("variant-quick-view:click", this.handleVariantQuickViewClick);
 
     globalThis.unsubscribe("cart-drawer:updated", this.handleCartDrawerUpdated);
   }
@@ -75,38 +76,35 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
     }
   }
 
-  handleVarientQuickViewMouseenter(data) {
+  handleVariantQuickViewMouseenter(data) {
     const connectedImageElement = this.getConnectedImageElement(data.optionValueName);
     const connectedImageElementCopy = connectedImageElement.cloneNode(true);
 
-    connectedImageElementCopy.classList.add("FadeIn");
-
-    this.featuredImageElement.parentElement.append(connectedImageElementCopy);
-
-    this.featuredImageElement.remove();
-
-    setTimeout(() => {
-      connectedImageElementCopy.classList.add("FadeIn--Finished");
-    }, 300);
+    this.replaceFeaturedImage(connectedImageElementCopy);
   }
 
-  handleVarientQuickViewMouseleave() {
+  handleVariantQuickViewMouseleave() {
     const activeVariantImageElementCopy = this.activeVariantImageElement.cloneNode(true);
 
-    activeVariantImageElementCopy.classList.add("FadeIn");
-
-    this.featuredImageElement.parentElement.append(activeVariantImageElementCopy);
-    this.featuredImageElement.remove();
-
-    setTimeout(() => {
-      activeVariantImageElementCopy.classList.add("FadeIn--Finished");
-    }, 300);
+    this.replaceFeaturedImage(activeVariantImageElementCopy);
   }
 
-  handleVarientQuickViewClick(data) {
+  handleVariantQuickViewClick(data) {
     const connectedImageElement = this.getConnectedImageElement(data.optionValueName);
 
     this.activeVariantImageElement = connectedImageElement;
+  }
+
+  replaceFeaturedImage(imageElement) {
+    imageElement.classList.add("FadeIn");
+
+    this.featuredImageElement.parentElement.append(imageElement);
+
+    this.featuredImageElement.remove();
+
+    setTimeout(() => {
+      imageElement.classList.add("FadeIn--Finished");
+    }, transitionDurationShort);
   }
 
   getConnectedImageElement(optionValueName) {

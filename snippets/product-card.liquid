@@ -14,7 +14,6 @@
   @param {boolean} [enable_wishlist_button] - Renders a wishlist button on the product card.
   @param {object} [product] - The product reference.
   @param {string} [product_card_rating_prefix] - The product card rating prefix.
-  @param {boolean} [enable_variant_quick_view] - Whether the product card has variant quick view.
 {% enddoc %}
 
 {% liquid
@@ -93,7 +92,7 @@
       {% endif %}
     </div>
 
-    {% if product.has_only_default_variant == false and enable_variant_quick_view %}
+    {% if product.has_only_default_variant == false and settings.enable_variant_quick_view %}
       <div class="ProductCard__QuickView">
         {% for product_option in product.options_with_values %}
           {% for product_option_value in product_option.values %}
@@ -301,14 +300,5 @@
 
   .ProductCard__PriceList {
     margin-top: auto;
-  }
-
-  .FadeIn {
-    opacity: 0;
-    transition: opacity var(--transition-duration-short) var(--transition-timing);
-  }
-
-  .FadeIn--Finished {
-    opacity: 1;
   }
 {% endstylesheet %}
