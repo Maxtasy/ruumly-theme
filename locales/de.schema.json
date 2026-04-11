@@ -269,6 +269,9 @@
               "label": "Vergrößern"
             }
           }
+        },
+        "enable_variant_quick_view": {
+          "label": "Schnellansicht für Varianten aktivieren"
         }
       }
     },

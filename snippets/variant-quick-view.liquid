@@ -1,0 +1,25 @@
+{% doc %}
+  Renders a Variant Quick View component.
+
+  @param {object[]} option_values - The option values to render.
+{% enddoc %}
+
+<variant-quick-view-component class="VariantQuickView">
+  {% for option_value in option_values %}
+    <div class="VariantQuickView__Item" data-option-value-name="{{ option_value.name }}">
+      {% render 'swatch', size: 'small', swatch: option_value.swatch, active: option_value.selected %}
+    </div>
+  {% endfor %}
+</variant-quick-view-component>
+
+{% stylesheet %}
+  .VariantQuickView {
+    display: flex;
+    justify-content: center;
+    gap: var(--size-xs);
+  }
+
+  .VariantQuickView__Item {
+    cursor: pointer;
+  }
+{% endstylesheet %}

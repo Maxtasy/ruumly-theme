@@ -203,6 +203,12 @@
             "label": "t:settings_schema.product_card.settings.hover_effect.options.zoom.label"
           }
         ]
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_variant_quick_view",
+        "label": "t:settings_schema.product_card.settings.enable_variant_quick_view.label",
+        "default": true
       }
     ]
   },

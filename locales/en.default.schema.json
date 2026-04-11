@@ -269,6 +269,9 @@
               "label": "Zoom"
             }
           }
+        },
+        "enable_variant_quick_view": {
+          "label": "Enable variant quick view"
         }
       }
     },

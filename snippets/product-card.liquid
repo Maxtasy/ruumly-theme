@@ -33,10 +33,17 @@
     data-inventory-quantity="{{ inventory_quantity }}"
   {% endif %}
 >
-  <a href="{{ url }}">
+  <div class="ProductCard__Top">
     <div class="ProductCard__Image">
       {% render 'image', image: image, variant: 'square', sizes: '480px', widths: '480' %}
 
+      <div class="ProductCard__VariantImages u-Hidden">
+        {% for variant in product.variants %}
+          <div class="ProductCard__VariantImage">
+            {% render 'image', image: variant.featured_image, variant: 'square', sizes: '480px', widths: '480' %}
+          </div>
+        {% endfor %}
+      </div>
       {% if hover_effect == 'swap' and swap_image %}
         {% render 'image', image: swap_image, variant: 'square', sizes: '480px', widths: '480' %}
       {% endif %}
@@ -84,7 +91,28 @@
         </div>
       {% endif %}
     </div>
-  </a>
+
+    {% if product.has_only_default_variant == false and settings.enable_variant_quick_view %}
+      <div class="ProductCard__QuickView">
+        {% for product_option in product.options_with_values %}
+          {% for product_option_value in product_option.values %}
+            {% if product_option_value.swatch %}
+              {% assign option_values = product_option.values %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+
+          {% if option_values %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+
+        {% render 'variant-quick-view', option_values: option_values %}
+      </div>
+    {% endif %}
+
+    <a class="ProductCard__ImageLink" href="{{ url }}"></a>
+  </div>
 
   <div class="ProductCard__Bottom">
     <div class="ProductCard__Details">
@@ -172,10 +200,17 @@
     overflow: hidden;
   }
 
-  .ProductCard > a {
+  .ProductCard__Top {
+    position: relative;
+
     /* Reserve space for the image to prevent layout shift */
     width: 100%;
     aspect-ratio: 1;
+  }
+
+  .ProductCard__ImageLink {
+    position: absolute;
+    inset: 0;
   }
 
   .ProductCard__Image {
@@ -219,6 +254,15 @@
     .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
       transform: translateX(0);
     }
+  }
+
+  .ProductCard__QuickView {
+    position: absolute;
+    bottom: 0;
+    z-index: 1;
+    padding-block: var(--size-xs);
+    width: 100%;
+    background-color: var(--t-background-dark-opaque);
   }
 
   .ProductCard__Actions {
