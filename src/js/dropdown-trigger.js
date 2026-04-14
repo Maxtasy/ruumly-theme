@@ -31,21 +31,17 @@ export class DropdownTrigger extends CustomComponentMixin(HTMLElement) {
   setActive() {
     this.active = true;
 
-    this.iconElement.classList.add("DropdownTrigger__Icon--Active");
+    this.classList.add("DropdownTrigger--Active");
   }
 
   setInactive() {
     this.active = false;
 
-    this.iconElement.classList.remove("DropdownTrigger__Icon--Active");
+    this.classList.remove("DropdownTrigger--Active");
   }
 
   get connectedContentElement() {
     return document.querySelector(`.DropdownContent[data-handle="${this.handle}"]`);
-  }
-
-  get iconElement() {
-    return this.querySelector(".DropdownTrigger__Icon");
   }
 }
 

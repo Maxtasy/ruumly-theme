@@ -110,6 +110,10 @@
     "language_selector": {
       "aria_label": "Sprachauswahl"
     },
+    "line_item": {
+      "show_line_item_components": "{{ count }} Artikel zeigen",
+      "hide_line_item_components": "{{ count }} Artikel verstecken"
+    },
     "menu_button": {
       "aria_label": "Menü öffnen"
     },

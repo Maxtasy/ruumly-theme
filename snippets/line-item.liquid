@@ -11,6 +11,7 @@
   @param {string} variant_id - The variant ID of the line item.
   @param {string} url - The URL of the line item.
   @param {number} inventory_quantity - The inventory quantity of the line item.
+  @param {object[]} item_components - The components of the line item.
 {% enddoc %}
 
 <line-item-component
@@ -37,6 +38,40 @@
           {% render 'text', text: variant_title, variant: 'body-small', color: 'primary-muted' %}
         {% endif %}
       </a>
+
+      {% if item_components.size > 0 %}
+        {% capture trigger_content %}
+          <div class="LineItem__TriggerContent">
+            {% assign trigger_content_text = 'components.line_item.show_line_item_components' | t: count: item_components.size %}
+            {% render 'text', text: trigger_content_text, as: 'b', variant: 'body-small' %}
+          </div>
+        {% endcapture %}
+
+        {% capture active_trigger_content %}
+          <div class="LineItem__TriggerContent">
+            {% assign trigger_content_text = 'components.line_item.hide_line_item_components' | t: count: item_components.size %}
+            {% render 'text', text: trigger_content_text, as: 'b', variant: 'body-small' %}
+          </div>
+        {% endcapture %}
+
+        {% render 'dropdown-trigger',
+          content: trigger_content,
+          active_state_content: active_trigger_content,
+          handle: key
+        %}
+
+        {% capture dropdown_content %}
+          <div class="LineItem__Components">
+            {% for item_component in item_components %}
+              <a href="{{ item_component.url }}">
+              {% render 'line-item-component', line_item: item_component %}
+              </a>
+            {% endfor %}
+          </div>
+        {% endcapture %}
+
+        {% render 'dropdown-content', content: dropdown_content, handle: key %}
+      {% endif %}
 
       <div class="LineItem__Price">
         {% render 'price-list', price: price, compare_at_price: compare_at_price %}
@@ -127,5 +162,17 @@
 
   .LineItem__Alerts--Active {
     display: block;
+  }
+
+  .LineItem__Components {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xxs);
+  }
+
+  .LineItem__TriggerContent {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
   }
 {% endstylesheet %}

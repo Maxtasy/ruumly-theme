@@ -1,0 +1,31 @@
+{% doc %}
+  Renders a Line Item Component
+
+  @param {object} line_item - The liquid line item object.
+{% enddoc %}
+
+<div class="LineItemComponent">
+  <div class="LineItemComponent__Image">
+    {% render 'image', image: line_item.image %}
+  </div>
+
+  <div class="LineItemComponent__Details">
+    {% render 'text', text: line_item.title, variant: 'body-small' %}
+
+    {% if line_item.variant.title and line_item.variant.title != 'Default Title' %}
+      {% render 'text', text: line_item.variant.title, variant: 'body-small', color: 'primary-muted' %}
+    {% endif %}
+  </div>
+</div>
+
+{% stylesheet %}
+  .LineItemComponent {
+    display: flex;
+    gap: var(--size-xxs);
+  }
+
+  .LineItemComponent__Image {
+    width: 30%;
+    flex-shrink: 0;
+  }
+{% endstylesheet %}
