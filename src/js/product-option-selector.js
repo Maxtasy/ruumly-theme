@@ -28,6 +28,14 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
       optionSelectedValue: this.optionSelectedValue,
     });
   }
+
+  setLoading(force) {
+    this.loadingElement.classList.toggle("ProductOptionSelector__Loading--Active", force);
+  }
+
+  get loadingElement() {
+    return this.querySelector(".ProductOptionSelector__Loading");
+  }
 }
 
 defineComponent("product-option-selector-component", ProductOptionSelector);

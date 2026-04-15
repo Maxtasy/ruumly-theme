@@ -30,6 +30,11 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
   }
 
   async handleProductFormChange({ item }) {
+    // Set loading states for components that should not be interacted with while section is beeing fetched.
+    this.productOptionSelectorElements.forEach((productOptionSelectorElement) => {
+      productOptionSelectorElement.setLoading(true);
+    });
+
     const newSectionDocument = await this.getDocumentForVariant(item.id);
     this.rerenderParts(newSectionDocument);
 
@@ -114,6 +119,10 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
 
   get productFormElements() {
     return this.querySelectorAll("product-form-component");
+  }
+
+  get productOptionSelectorElements() {
+    return this.querySelectorAll("product-option-selector-component");
   }
 }
 
