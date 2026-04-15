@@ -48,6 +48,10 @@
         </li>
       {% endfor %}
     </ul>
+
+    <div class="ProductOptionSelector__Loading">
+      {% render 'loading-spinner' %}
+    </div>
   </fieldset>
 </product-option-selector-component>
 
@@ -70,5 +74,19 @@
     display: flex;
     flex-wrap: wrap;
     gap: var(--size-xs);
+  }
+
+  .ProductOptionSelector__Loading {
+    position: absolute;
+    inset: 0;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background-color: var(--t-backdrop-background-color);
+  }
+
+  .ProductOptionSelector__Loading--Active {
+    display: flex;
   }
 {% endstylesheet %}
