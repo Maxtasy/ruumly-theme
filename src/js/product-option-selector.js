@@ -19,8 +19,6 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
   }
 
   handleChange(event) {
-    this.setLoading();
-
     const updatedValue = event.target.value;
 
     this.optionSelectedValue = updatedValue;
@@ -31,8 +29,8 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
     });
   }
 
-  setLoading() {
-    this.loadingElement.classList.add("ProductOptionSelector__Loading--Active");
+  setLoading(force) {
+    this.loadingElement.classList.toggle("ProductOptionSelector__Loading--Active", force);
   }
 
   get loadingElement() {
