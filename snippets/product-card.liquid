@@ -169,7 +169,7 @@
             %}
 
             {% capture modal_content %}
-              {% render 'quick-add-product-form', product: product %}
+              {% render 'product-quick-add-form', product: product %}
             {% endcapture %}
 
             {% render 'modal', name: modal_name, content: modal_content, size: 'small' %}
