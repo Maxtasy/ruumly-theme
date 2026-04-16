@@ -235,7 +235,7 @@
       transition: var(--transition-duration-medium) var(--transition-timing);
     }
 
-    .ProductCard--HoverZoom .ProductCard__Image:hover .Image {
+    .ProductCard--HoverZoom .ProductCard__Top:hover .Image {
       transform: scale(1);
     }
 
@@ -247,11 +247,11 @@
       transform: translateX(0);
     }
 
-    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:first-of-type {
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Top:hover .Image:first-of-type {
       transform: translateX(-100%);
     }
 
-    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image:hover .Image:nth-of-type(2) {
+    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Top:hover .Image:nth-of-type(2) {
       transform: translateX(0);
     }
   }
