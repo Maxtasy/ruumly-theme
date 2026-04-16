@@ -36,6 +36,7 @@ import "./js/product-card.js";
 import "./js/product-configurator.js";
 import "./js/product-form.js";
 import "./js/product-option-selector.js";
+import "./js/product-quick-add-form.js";
 import "./js/product-recommendations.js";
 import "./js/product-variant-selector.js";
 import "./js/quantity-selector.js";

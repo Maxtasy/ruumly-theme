@@ -1,5 +1,4 @@
-<form
-  is="product-form-component"
+<product-quick-add-form-component
   class="ProductQuickAddForm"
 >
   {% render 'text', text: product.title, variant: 'heading-small', as: 'h3' %}
@@ -8,7 +7,7 @@
 
   {% render 'product-variant-selector',
     product: product,
-    name_prefix: name_prefix,
+    name_prefix: product.handle,
     visually_hidden: product.has_only_default_variant
   %}
 
@@ -22,7 +21,7 @@
   %}
 
   {% render 'button', text: 'Add to cart', action: 'add-to-cart' %}
-</form>
+</product-quick-add-form-component>
 
 {% stylesheet %}
   .ProductQuickAddForm {
