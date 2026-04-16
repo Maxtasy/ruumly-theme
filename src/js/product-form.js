@@ -48,7 +48,6 @@ export class ProductForm extends CustomComponentMixin(HTMLElement) {
     const { selectedVariantId } = event;
 
     this.item.id = selectedVariantId;
-    console.log(this.item);
 
     // Notify other components that the variant has changed. The Gallery component can use this to update the displayed
     // images.

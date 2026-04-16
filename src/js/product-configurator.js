@@ -44,15 +44,15 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
   }
 
   async handleAddToCart(_, event) {
-    const addToCartButton = event.target;
+    const addToCartButtonElement = event.target;
 
-    addToCartButton.setLoading(true);
+    addToCartButtonElement.setLoading(true);
 
     const items = Array.from(this.productFormElements).map((formElement) => formElement.item);
 
     const cartResponse = await cart.addItems({ items, sections: ["cart-drawer"] });
 
-    addToCartButton.setLoading(false);
+    addToCartButtonElement.setLoading(false);
 
     if (cartResponse.status === "success") {
       // Notify other components that the item has been added to the cart.
