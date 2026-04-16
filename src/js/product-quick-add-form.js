@@ -24,6 +24,7 @@ export class ProductQuickAddForm extends CustomComponentMixin(HTMLElement) {
   disconnectedCallback() {
     this.unsubscribe("product-variant-selector:init", this.handleProductVariantSelectorInit);
     this.unsubscribe("product-variant-selector:change", this.handleProductVariantSelectorChange);
+    this.unsubscribe("button:click:add-to-cart", this.handleAddToCart);
   }
 
   handleProductVariantSelectorInit(event) {

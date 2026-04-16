@@ -5,6 +5,7 @@
   @param {string} [name_prefix] - The prefix for the name attribute of the input element.
   @param {number} position - The position of the product option in the list.
   @param {string} [variant] - The variant to render ('basic', 'color', 'size'). Defaults to 'basic'.
+  @param {boolean} [selected] - Whether the product option value is selected.
 {% enddoc %}
 
 {% assign variant = variant | default: 'basic' %}
@@ -31,7 +32,7 @@
     type="radio"
     name="{{ name_prefix }}-options-{{ position }}"
     value="{{ product_option_value }}"
-    {% if product_option_value.selected %}
+    {% if product_option_value.selected or selected %}
       checked
     {% endif %}
   >

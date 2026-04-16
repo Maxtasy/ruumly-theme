@@ -7,7 +7,7 @@
 
   {% render 'product-variant-selector',
     product: product,
-    name_prefix: name_prefix,
+    name_prefix: product.handle,
     visually_hidden: product.has_only_default_variant
   %}
 
