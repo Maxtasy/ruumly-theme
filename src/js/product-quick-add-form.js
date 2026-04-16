@@ -48,6 +48,31 @@ export class ProductQuickAddForm extends CustomComponentMixin(HTMLElement) {
     const cartResponse = await cart.addItems({ items, sections: ["cart-drawer"] });
 
     addToCartButtonElement.setLoading(false);
+
+    if (cartResponse.status === "success") {
+      // Notify other components that the item has been added to the cart.
+      this.publish("product-configurator:item-added", {
+        addedItems: items,
+        sections: cartResponse.data.sections,
+        items: cartResponse.data.items,
+      });
+
+      return;
+    }
+
+    if (cartResponse.status === "partial-success") {
+      const errorMessage = cartResponse.data.description;
+
+      // Notify other components that the item has been added (partially) to the cart.
+      this.publish("product-configurator:item-partially-added", {
+        addedItems: items,
+        errorMessage,
+      });
+
+      return;
+    }
+
+    throw new Error("Failed to add items to cart");
   }
 }
 
