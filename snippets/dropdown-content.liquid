@@ -3,19 +3,35 @@
 
   @param {string} handle - Connects the dropdown content with a dropdown trigger.
   @param {string} content - The content.
+  @param {string} [padding] - The size of the padding for the dropdown content ('small'). Default: 'medium'
 {% enddoc %}
 
-<dropdown-content-component class="DropdownContent" data-handle="{{ handle }}">
+{% assign padding = padding | default: 'medium' %}
+
+<dropdown-content-component
+  class="
+    DropdownContent
+    DropdownContent--Padding{{ padding | camelcase }}
+  "
+  data-handle="{{ handle }}"
+>
   {{ content }}
 </dropdown-content-component>
 
 {% stylesheet %}
   .DropdownContent {
     display: none;
-    padding: var(--size-m);
     border: var(--border-width) var(--border-style) var(--t-border);
     border-radius: var(--t-border-radius);
     background: var(--t-background);
+  }
+
+  .DropdownContent--PaddingSmall {
+    padding: var(--size-s);
+  }
+
+  .DropdownContent--PaddingMedium {
+    padding: var(--size-m);
   }
 
   .DropdownContent--Active {

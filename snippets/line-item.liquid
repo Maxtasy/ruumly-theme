@@ -63,14 +63,12 @@
         {% capture dropdown_content %}
           <div class="LineItem__Components">
             {% for item_component in item_components %}
-              <a href="{{ item_component.url }}">
               {% render 'line-item-component', line_item: item_component %}
-              </a>
             {% endfor %}
           </div>
         {% endcapture %}
 
-        {% render 'dropdown-content', content: dropdown_content, handle: key %}
+        {% render 'dropdown-content', content: dropdown_content, handle: key, padding: 'small' %}
       {% endif %}
 
       <div class="LineItem__Price">

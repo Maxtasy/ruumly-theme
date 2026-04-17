@@ -5,22 +5,23 @@
 {% enddoc %}
 
 <div class="LineItemComponent">
-  <div class="LineItemComponent__Image">
+  <a href="{{ line_item.url }}" class="LineItemComponent__Image">
     {% render 'image', image: line_item.image %}
-  </div>
+  </a>
 
-  <div class="LineItemComponent__Details">
+  <a href="{{ line_item.url }}" class="LineItemComponent__Details">
     {% render 'text', text: line_item.title, variant: 'body-small' %}
 
     {% if line_item.variant.title and line_item.variant.title != 'Default Title' %}
       {% render 'text', text: line_item.variant.title, variant: 'body-small', color: 'primary-muted' %}
     {% endif %}
-  </div>
+  </a>
 </div>
 
 {% stylesheet %}
   .LineItemComponent {
     display: flex;
+    align-items: flex-start;
     gap: var(--size-xxs);
   }
 
