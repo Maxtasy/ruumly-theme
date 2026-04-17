@@ -1,4 +1,5 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
+import { debounce } from "./utils.js";
 
 class Gallery extends CustomComponentMixin(HTMLElement) {
   constructor() {
@@ -8,61 +9,74 @@ class Gallery extends CustomComponentMixin(HTMLElement) {
 
     this.handlePrevClick = this.handlePrevClick.bind(this);
     this.handleNextClick = this.handleNextClick.bind(this);
+    this.handleScroll = this.handleScroll.bind(this);
+
+    this.debouncedScrollHandler = debounce(this.handleScroll, 150);
   }
 
   connectedCallback() {
     this.subscribe("button:click:prev", this.handlePrevClick);
     this.subscribe("button:click:next", this.handleNextClick);
+    this.scrollContainerElement.addEventListener("scroll", this.debouncedScrollHandler);
   }
 
   disconnectedCallback() {
     this.unsubscribe("button:click:prev", this.handlePrevClick);
     this.unsubscribe("button:click:next", this.handleNextClick);
+    this.scrollContainerElement.removeEventListener("scroll", this.debouncedScrollHandler);
   }
 
   handlePrevClick() {
-    if (this.currentIndex <= 0) return;
-
-    this.currentIndex -= 1;
-
-    this.nextButtonElement.enable();
-
-    if (this.currentIndex === 0) {
-      this.prevButtonElement.disable();
-    }
-
-    this.updateImage();
-
-    this.updatePagination();
+    this.scrollItemIntoView(this.leftMostElement.previousElementSibling);
   }
 
   handleNextClick() {
-    if (this.currentIndex >= this.mediaItemElements.length - 1) return;
+    this.scrollItemIntoView(this.leftMostElement.nextElementSibling);
+  }
 
-    this.currentIndex += 1;
-
-    this.prevButtonElement.enable();
-
-    if (this.currentIndex === this.mediaItemElements.length - 1) {
-      this.nextButtonElement.disable();
-    }
-
-    this.updateImage();
+  handleScroll() {
+    this.updateNavigationState();
 
     this.updatePagination();
   }
 
-  updateImage() {
-    this.mediaItemElements[this.currentIndex].scrollIntoView({
+  updateNavigationState() {
+    const start = this.scrollContainerElement.scrollLeft;
+    const end = this.scrollContainerElement.scrollWidth - this.scrollContainerElement.clientWidth;
+
+    if (start <= 0) {
+      this.prevButtonElement.disable();
+    } else {
+      this.prevButtonElement.enable();
+    }
+
+    if (start >= end) {
+      this.nextButtonElement.disable();
+    } else {
+      this.nextButtonElement.enable();
+    }
+  }
+
+  scrollItemIntoView(element) {
+    element.scrollIntoView({
       behavior: "smooth",
-      // Scrolls the view port up to the gallery
-      block: "center",
+      block: "nearest",
+      inline: "start",
     });
   }
 
   updatePagination() {
+    const leftMostElement = this.leftMostElement;
+    let activeIndex;
+
+    this.mediaItemElements.forEach((mediaItemElement, index) => {
+      if (mediaItemElement === leftMostElement) {
+        activeIndex = index;
+      }
+    });
+
     this.paginationItemElements.forEach((paginationItemElement, index) => {
-      paginationItemElement.classList.toggle("PaginationItem--Active", this.currentIndex === index);
+      paginationItemElement.classList.toggle("PaginationItem--Active", activeIndex === index);
     });
   }
 
@@ -80,6 +94,18 @@ class Gallery extends CustomComponentMixin(HTMLElement) {
 
   get nextButtonElement() {
     return this.querySelector('[data-action="next"]');
+  }
+
+  get scrollContainerElement() {
+    return this.querySelector(".Gallery__Media");
+  }
+
+  get leftMostElement() {
+    return [...this.mediaItemElements].find((mediaItemElement) => {
+      const { left } = mediaItemElement.getBoundingClientRect();
+
+      return left >= 0;
+    });
   }
 }
 
