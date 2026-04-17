@@ -39,18 +39,11 @@
         %}
 
         <li class="ProductOptionSelector__Value">
-          {% if product_option_value == product_option.selected_value %}
-            {% assign selected = true %}
-          {% else %}
-            {% assign selected = false %}
-          {% endif %}
-
           {% render 'product-option-value',
             product_option_value: product_option_value,
             position: product_option.position,
             name_prefix: name_prefix,
-            variant: product_option_value_variant,
-            selected: selected
+            variant: product_option_value_variant
           %}
         </li>
       {% endfor %}
