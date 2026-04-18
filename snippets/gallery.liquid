@@ -39,10 +39,6 @@
   "
 >
   <div class="Gallery__Media u-NoScrollbar">
-    <script>
-      console.log({{ images | json }});
-    </script>
-
     {% for image in images %}
       <div class="Gallery__Item">
         {% assign image_alt_fallback = 'components.image.product.default_alt_text' | t %}
