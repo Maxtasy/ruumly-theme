@@ -2,6 +2,7 @@
   Renders a Dropdown Trigger component.
 
   @param {string} content - The content for the dropdown trigger.
+  @param {string} [active_state_content] - The active state content of the dropdown trigger.
   @param {string} handle - Connects the dropdown trigger with a dropdown content.
 {% enddoc %}
 
@@ -9,6 +10,12 @@
   <div class="DropdownTrigger__Content">
     {{ content }}
   </div>
+
+  {% if active_state_content %}
+    <div class="DropdownTrigger__ActiveStateContent">
+      {{ active_state_content }}
+    </div>
+  {% endif %}
 
   <div class="DropdownTrigger__Icon">
     {% render 'icon', icon: 'chevron-down' %}
@@ -30,7 +37,19 @@
     transition: rotate var(--transition-duration-medium) var(--transition-timing);
   }
 
-  .DropdownTrigger__Icon--Active {
+  .DropdownTrigger__ActiveStateContent {
+    display: none;
+  }
+
+  .DropdownTrigger--Active .DropdownTrigger__ActiveStateContent {
+    display: block;
+  }
+
+  .DropdownTrigger--Active:has(.DropdownTrigger__ActiveStateContent) .DropdownTrigger__Content {
+    display: none;
+  }
+
+  .DropdownTrigger--Active .DropdownTrigger__Icon {
     rotate: 180deg;
   }
 {% endstylesheet %}
