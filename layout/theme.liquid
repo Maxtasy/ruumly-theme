@@ -34,7 +34,14 @@
 
     {% render 'global-styles' %}
 
-    <script src="{{ 'main.js' | asset_url }}" defer></script>
+    <script src="{{ 'main.js' | asset_url }}" type="module"></script>
+
+    {%- comment -%}
+      Template specific scripts.
+    {%- endcomment -%}
+    {% if template.name == 'product' %}
+      <script src="{{ 'product.js' | asset_url }}" type="module"></script>
+    {% endif %}
 
     {%- unless settings.type_body_font.system? -%}
       {% comment %}theme-check-disable AssetPreload{% endcomment %}

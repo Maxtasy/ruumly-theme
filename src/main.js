@@ -25,7 +25,6 @@ import "./js/dynamic-cart-icon.js";
 import "./js/dynamic-wishlist-icon.js";
 import "./js/filter-value.js";
 import "./js/filters.js";
-import "./js/gallery.js";
 import "./js/language-selector.js";
 import "./js/line-item.js";
 import "./js/mega-menu-trigger.js";

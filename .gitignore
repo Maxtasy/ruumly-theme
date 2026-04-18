@@ -16,3 +16,4 @@ playwright/.auth/
 
 # Build files
 assets/main.js
+assets/product.js
