@@ -54,10 +54,15 @@
           </div>
         {% endcapture %}
 
+        {%- comment -%}
+          theme-check-disable-next-line UndefinedObject
+        {%- endcomment -%}
+        {% assign dropdown_handle = section.id | append: key %}
+
         {% render 'dropdown-trigger',
           content: trigger_content,
           active_state_content: active_trigger_content,
-          handle: key
+          handle: dropdown_handle
         %}
 
         {% capture dropdown_content %}
@@ -68,7 +73,7 @@
           </div>
         {% endcapture %}
 
-        {% render 'dropdown-content', content: dropdown_content, handle: key, padding: 'small' %}
+        {% render 'dropdown-content', content: dropdown_content, handle: dropdown_handle, padding: 'small' %}
       {% endif %}
 
       <div class="LineItem__Price">
