@@ -1,6 +1,6 @@
 import { CustomComponentMixin, defineComponent } from "./component.js";
 
-const CLOSE_DELAY = 750;
+const CLOSE_DELAY = 1000;
 
 export class MegaMenu extends CustomComponentMixin(HTMLElement) {
   constructor() {
