@@ -4,7 +4,7 @@
 {% enddoc %}
 
 <div class="MenuDrawer">
-  {% render 'navigation-group', links: link_list.links %}
+  {% render 'navigation-group', links: link_list.links, highlight_active_links: true %}
 
   {% if language_selector %}
     {% render 'language-selector' %}
