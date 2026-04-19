@@ -6,11 +6,22 @@
   @param {boolean} [nested] - Whether the navigation group is nested in another navigation group.
   @param {boolean} [connected_to_mega_menu] - Whether the navigation group is connected to a mega menu.
   @param {boolean} [separators] - Whether the navigations first level links are visually separated. Default: true
+  @param {boolean} [highlight_active_links] - Whether the active links are highlighted. Default: false
+  @param {number} [current_level] - The current level of the link.
 {% enddoc %}
 
-{% assign direction = direction | default: 'vertical' %}
-{% assign nested = nested | default: false %}
-{% assign separators = separators | default: true, allow_false: true %}
+{% liquid
+  if current_level
+    assign current_level = current_level | plus: 1
+  else
+    assign current_level = 1
+  endif
+
+  assign direction = direction | default: 'vertical'
+  assign nested = nested | default: false
+  assign separators = separators | default: true, allow_false: true
+  assign highlight_active_links = highlight_active_links | default: false
+%}
 
 <ul
   class="
@@ -32,7 +43,12 @@
       {% if connected_to_mega_menu %}
         data-handle="{{ link.handle }}"
       {% endif %}
-      class="NavigationGroup__Item"
+      class="
+        NavigationGroup__Item
+        {% if highlight_active_links and current_level != 2 and link.active or link.child_active  %}
+          NavigationGroup__Item--Active
+        {% endif %}
+      "
     >
       <a href="{{ link.url }}">
         {% render 'text', text: link.title, as: 'b' %}
@@ -41,7 +57,12 @@
 
     {% if link.links.size > 0 and direction == 'vertical' %}
       <li class="NavigationGroup__Item">
-        {% render 'navigation-group', links: link.links, nested: true %}
+        {% render 'navigation-group',
+          current_level: current_level,
+          links: link.links,
+          nested: true,
+          highlight_active_links: highlight_active_links
+        %}
       </li>
     {% endif %}
 
@@ -71,5 +92,10 @@
   .NavigationGroup--DirectionVertical .NavigationGroup {
     margin-left: var(--size-m);
     gap: var(--size-xs);
+  }
+
+  .NavigationGroup__Item--Active {
+    text-decoration: underline 2px;
+    text-underline-offset: 2px;
   }
 {% endstylesheet %}
