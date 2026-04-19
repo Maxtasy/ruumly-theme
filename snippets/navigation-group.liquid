@@ -6,11 +6,13 @@
   @param {boolean} [nested] - Whether the navigation group is nested in another navigation group.
   @param {boolean} [connected_to_mega_menu] - Whether the navigation group is connected to a mega menu.
   @param {boolean} [separators] - Whether the navigations first level links are visually separated. Default: true
+  @param {boolean} [highlight_active_links] - Whether the active links are highlighted. Default: false
 {% enddoc %}
 
 {% assign direction = direction | default: 'vertical' %}
 {% assign nested = nested | default: false %}
 {% assign separators = separators | default: true, allow_false: true %}
+{% assign highlight_active_links = highlight_active_links | default: false %}
 
 <ul
   class="
@@ -32,7 +34,12 @@
       {% if connected_to_mega_menu %}
         data-handle="{{ link.handle }}"
       {% endif %}
-      class="NavigationGroup__Item"
+      class="
+        NavigationGroup__Item
+        {% if link.active or link.child_active and highlight_active_links %}
+          NavigationGroup__Item--Active
+        {% endif %}
+      "
     >
       <a href="{{ link.url }}">
         {% render 'text', text: link.title, as: 'b' %}
@@ -71,5 +78,10 @@
   .NavigationGroup--DirectionVertical .NavigationGroup {
     margin-left: var(--size-m);
     gap: var(--size-xs);
+  }
+
+  .NavigationGroup__Item--Active {
+    text-decoration: underline 2px;
+    text-underline-offset: 2px;
   }
 {% endstylesheet %}

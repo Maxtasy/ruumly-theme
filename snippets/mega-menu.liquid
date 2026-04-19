@@ -14,7 +14,12 @@
           {% render 'text', text: link.title, as: 'b' %}
         </a>
 
-        {% render 'navigation-group', links: link.links, direction: 'vertical', separators: false %}
+        {% render 'navigation-group',
+          links: link.links,
+          direction: 'vertical',
+          separators: false,
+          highlight_active_links: true
+        %}
       </div>
     {% endfor %}
 
