@@ -13,7 +13,7 @@
     {% endif %}
   "
 >
-  {{ video | video_tag: class: 'Video__Inner', autoplay: true, loop: true, controls: true }}
+  {{ video | video_tag: class: 'Video__Inner', autoplay: false, loop: false, controls: true, muted: true }}
 </div>
 
 {% stylesheet %}
