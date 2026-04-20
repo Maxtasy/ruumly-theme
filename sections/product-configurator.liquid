@@ -21,56 +21,56 @@
         {% liquid
           if product.type == 'Bundle'
             # For bundles we just want to render all images.
-            assign images_to_render = product.images
+            assign media_to_render = product.media
           else
             # Create empty array
-            assign images_to_render = null | uniq
+            assign media_to_render = null | uniq
 
-            for image in product.images
+            for media in product.media
               # If the alt text is left empty shopify defaults it to the product title.
-              # In that case the image should be rendered for all variants.
-              if image.alt == product.title
-                assign images_to_render = image | concat: images_to_render
+              # In that case the media should be rendered for all variants.
+              if media.alt == product.title
+                assign media_to_render = media | concat: media_to_render
                 continue
               endif
 
-              assign image_alt_parts = image.alt | split: ','
-              assign image_is_for_variant = true
+              assign media_alt_parts = media.alt | split: ','
+              assign media_is_for_variant = true
 
               # Loop over all selected option values and check if they appear in the alt text.
-              # If all option values exist in the alt text, it means the image is connected to the currently selected
+              # If all option values exist in the alt text, it means the media is connected to the currently selected
               # variant.
               for option_value in product.selected_or_first_available_variant.options
                 assign option_value_exists_in_alt = false
 
-                for image_alt_part in image_alt_parts
-                  assign image_alt_part_handelized = image_alt_part | handleize
+                for media_alt_part in media_alt_parts
+                  assign media_alt_part_handelized = media_alt_part | handleize
                   assign option_value_handelized = option_value | handleize
 
-                  if image_alt_part_handelized == option_value_handelized
+                  if media_alt_part_handelized == option_value_handelized
                     assign option_value_exists_in_alt = true
                     break
                   endif
                 endfor
 
                 if option_value_exists_in_alt != true
-                  assign image_is_for_variant = false
+                  assign media_is_for_variant = false
                   break
                 endif
               endfor
 
-              if image_is_for_variant
-                assign images_to_render = image | concat: images_to_render
+              if media_is_for_variant
+                assign media_to_render = media | concat: media_to_render
               endif
             endfor
 
-            # After collecting all the images revert the array to restore the original order.
-            assign images_to_render = images_to_render | reverse
+            # After collecting all the media items revert the array to restore the original order.
+            assign media_to_render = media_to_render | reverse
           endif
         %}
 
         {% render 'gallery',
-          images: images_to_render,
+          media_items: media_to_render,
           variant_desktop: section.settings.gallery_desktop,
           variant_mobile: section.settings.gallery_mobile,
           columns_desktop: section.settings.columns_desktop,

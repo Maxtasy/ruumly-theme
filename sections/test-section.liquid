@@ -16,7 +16,9 @@
       {% assign test_model = test_product.media | where: 'media_type', 'model' | first %}
 
       {% if test_video %}
-        {% render 'video', video: test_video %}
+        {% render 'video', video: test_video, variant: 'square' %}
+        {% render 'video', video: test_video, variant: 'landscape' %}
+        {% render 'video', video: test_video, variant: 'portrait' %}
       {% endif %}
 
       {% if test_model %}

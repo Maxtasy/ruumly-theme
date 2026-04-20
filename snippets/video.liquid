@@ -2,8 +2,44 @@
   Renders a Video Component.
 
   @param {object} video - The shopify media object of type 'video'.
+  @param {string} [variant] - Video variant (portrait, landscape, square).
 {% enddoc %}
 
-<div class="Video">
-  {{ video | video_tag: autoplay: true, loop: true }}
+<div
+  class="
+    Video
+    {% if variant %}
+      Video--{{ variant | camelcase }}
+    {% endif %}
+  "
+>
+  {{ video | video_tag: class: 'Video__Inner', autoplay: true, loop: true, controls: true }}
 </div>
+
+{% stylesheet %}
+  .Video {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .Video__Inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: var(--aspect-ratio);
+  }
+
+  .Video--Portrait {
+    --aspect-ratio: 3/4;
+  }
+
+  .Video--Landscape {
+    --aspect-ratio: 4/3;
+  }
+
+  .Video--Square {
+    --aspect-ratio: 1;
+  }
+{% endstylesheet %}

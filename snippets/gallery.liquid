@@ -1,7 +1,7 @@
 {% doc %}
   Renders a Gallery component.
 
-  @param {object} images - A list of images to render in the Gallery.
+  @param {object} media_items - A list of shopify media objects to render in the Gallery.
   @param {string} [variant_mobile] - Variant of the gallery for mobile. ('slider', 'stack', 'grid')
   @param {string} [variant_desktop] - Variant of the gallery for desktop. ('slider', 'stack', 'grid')
   @param {boolean} [enable_navigation_mobile] - Whether to render navigation arrows on mobile.
@@ -39,16 +39,25 @@
   "
 >
   <div class="Gallery__Media u-NoScrollbar">
-    {% for image in images %}
+    {% for media_item in media_items %}
       <div class="Gallery__Item">
-        {% assign image_alt_fallback = 'components.image.product.default_alt_text' | t %}
+        {% case media_item.media_type %}
+          {% when 'image' %}
+            {% assign image_alt_fallback = 'components.image.product.default_alt_text' | t %}
 
-        {% render 'image', image: image, image_alt_fallback: image_alt_fallback %}
+            {% render 'image', image: media_item, image_alt_fallback: image_alt_fallback %}
+
+          {% when 'video' %}
+            {% render 'video', video: media_item %}
+
+          {% when 'model' %}
+            {% render 'model', model: media_item %}
+        {% endcase %}
       </div>
     {% endfor %}
   </div>
 
-  {% if images.size > 1 %}
+  {% if media_items.size > 1 %}
     <div
       class="
         Gallery__Navigation
@@ -76,12 +85,12 @@
 
       {% if enable_pagination_mobile %}
         <div class="Gallery__Pagination u-Hidden--Desktop">
-          {% for image in images %}
+          {% for media_item in media_items %}
             {% render 'pagination-item',
               index: forloop.index0,
               active: forloop.first,
               variant: pagination_style_mobile,
-              image: image
+              image: media_item
             %}
           {% endfor %}
         </div>
@@ -89,12 +98,12 @@
 
       {% if enable_pagination_desktop %}
         <div class="Gallery__Pagination u-Hidden--Mobile">
-          {% for image in images %}
+          {% for media_item in media_items %}
             {% render 'pagination-item',
               index: forloop.index0,
               active: forloop.first,
               variant: pagination_style_desktop,
-              image: image
+              image: media_item
             %}
           {% endfor %}
         </div>
