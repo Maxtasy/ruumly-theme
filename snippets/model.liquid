@@ -1,0 +1,9 @@
+{% doc %}
+  Renders a Model Component.
+
+  @param {object} model - The shopify media object of type 'model'.
+{% enddoc %}
+
+<div class="Model">
+  {{ model | model_viewer_tag: reveal: 'interaction', toggleable: true }}
+</div>

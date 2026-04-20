@@ -11,14 +11,17 @@
     <div class="TestSection">
       {% render 'text', text: 'Insert your test component here' %}
 
-      {% assign product = collections.all.products.first %}
+      {% assign test_product = all_products['t-shirt'] %}
+      {% assign test_video = test_product.media | where: 'media_type', 'video' | first %}
+      {% assign test_model = test_product.media | where: 'media_type', 'model' | first %}
 
-      {% render 'promotion-card',
-        image: product.featured_image,
-        title: 'Sale',
-        text: 'Save on our summer sale',
-        link: '/collections/all'
-      %}
+      {% if test_video %}
+        {% render 'video', video: test_video %}
+      {% endif %}
+
+      {% if test_model %}
+        {% render 'model', model: test_model %}
+      {% endif %}
     </div>
   </div>
 </section>

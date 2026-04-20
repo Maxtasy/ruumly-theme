@@ -1,0 +1,9 @@
+{% doc %}
+  Renders a Video Component.
+
+  @param {object} video - The shopify media object of type 'video'.
+{% enddoc %}
+
+<div class="Video">
+  {{ video | video_tag: autoplay: true, loop: true }}
+</div>
