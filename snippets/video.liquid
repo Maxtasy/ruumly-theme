@@ -3,7 +3,16 @@
 
   @param {object} video - The shopify media object of type 'video'.
   @param {string} [variant] - Video variant (portrait, landscape, square).
+  @param {boolean} [autoplay] - Whether the video should autoplay. Default: false
+  @param {boolean} [loop] - Whether the video should loop continuously. Default false
+  @param {boolean} [controls] - Whether the video controls should be displayed. Default: true
+  @param {boolean} [muted] - Whether the video should be muted. Default: true
 {% enddoc %}
+
+{% assign autoplay = autoplay | default: false %}
+{% assign loop = loop | default: false %}
+{% assign controls = controls | default: true %}
+{% assign muted = muted | default: true %}
 
 <div
   class="
@@ -13,7 +22,7 @@
     {% endif %}
   "
 >
-  {{ video | video_tag: class: 'Video__Inner', autoplay: false, loop: false, controls: true, muted: true }}
+  {{ video | video_tag: class: 'Video__Inner', autoplay: autoplay, loop: loop, controls: controls, muted: muted }}
 </div>
 
 {% stylesheet %}
