@@ -11,8 +11,8 @@
 
 {% assign autoplay = autoplay | default: false %}
 {% assign loop = loop | default: false %}
-{% assign controls = controls | default: true %}
-{% assign muted = muted | default: true %}
+{% assign controls = controls | default: true, allow_false: true %}
+{% assign muted = muted | default: true, allow_false: true %}
 
 <div
   class="
