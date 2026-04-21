@@ -8,14 +8,17 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
     this.optionSelectedValue = this.parsedData.optionSelectedValue;
 
     this.handleChange = this.handleChange.bind(this);
+    this.handleProductOptionValueHover = this.handleProductOptionValueHover.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("change", this.handleChange);
+    this.subscribe("product-option-value:hover", this.handleProductOptionValueHover);
   }
 
   disconnectedCallback() {
     this.unsubscribe("change", this.handleChange);
+    this.unsubscribe("product-option-value:hover", this.handleProductOptionValueHover);
   }
 
   handleChange(event) {
@@ -27,6 +30,10 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
       optionPosition: this.optionPosition,
       optionSelectedValue: this.optionSelectedValue,
     });
+  }
+
+  handleProductOptionValueHover(data) {
+    this.publish("product-option-selector:change-intent", data);
   }
 
   setLoading(force) {

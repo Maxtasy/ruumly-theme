@@ -17,16 +17,19 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
 
     this.handleProductFormChange = this.handleProductFormChange.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
+    this.handleProductFormChangeIntent = this.handleProductFormChangeIntent.bind(this);
   }
 
   connectedCallback() {
     this.subscribe("product-form:change", this.handleProductFormChange);
     this.subscribe("button:click:add-to-cart", this.handleAddToCart);
+    this.subscribe("product-form:change-intent", this.handleProductFormChangeIntent);
   }
 
   disconnectedCallback() {
     this.unsubscribe("product-form:change", this.handleProductFormChange);
     this.unsubscribe("button:click:add-to-cart", this.handleAddToCart);
+    this.unsubscribe("product-form:change-intent", this.handleProductFormChangeIntent);
   }
 
   async handleProductFormChange({ item }) {
@@ -78,6 +81,10 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
     }
 
     throw new Error("Failed to add items to cart");
+  }
+
+  handleProductFormChangeIntent(data) {
+    console.log(data);
   }
 
   async getDocumentForVariant(variantId) {

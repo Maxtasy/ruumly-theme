@@ -18,6 +18,7 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
     this.available = this.parsedData.available;
 
     this.handleProductOptionSelectorChange = this.handleProductOptionSelectorChange.bind(this);
+    this.handleProductOptionSelectorChangeIntent = this.handleProductOptionSelectorChangeIntent.bind(this);
   }
 
   connectedCallback() {
@@ -27,10 +28,12 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
     });
 
     this.subscribe("product-option-selector:change", this.handleProductOptionSelectorChange);
+    this.subscribe("product-option-selector:change-intent", this.handleProductOptionSelectorChangeIntent);
   }
 
   disconnectedCallback() {
     this.unsubscribe("product-option-selector:change", this.handleProductOptionSelectorChange);
+    this.unsubscribe("product-option-selector:change-intent", this.handleProductOptionSelectorChangeIntent);
   }
 
   handleProductOptionSelectorChange(event) {
@@ -53,6 +56,10 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
       selectedVariantId: this.selectedVariantId,
       available: this.available,
     });
+  }
+
+  handleProductOptionSelectorChangeIntent(data) {
+    this.publish("product-variant-selector:change-intent", data);
   }
 }
 
