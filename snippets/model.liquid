@@ -1,0 +1,45 @@
+{% doc %}
+  Renders a Model Component.
+
+  @param {object} model - The shopify media object of type 'model'.
+  @param {string} [variant] - Model variant (portrait, landscape, square).
+{% enddoc %}
+
+<div
+  class="
+    Model
+    {% if variant %}
+      Model--{{ variant | camelcase }}
+    {% endif %}
+  "
+>
+  {{ model | model_viewer_tag: class: 'Model__Inner' }}
+</div>
+
+{% stylesheet %}
+  .Model {
+    display: block;
+    height: 100%;
+    width: 100%;
+  }
+
+  .Model__Inner {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    aspect-ratio: var(--aspect-ratio);
+  }
+
+  .Model--Portrait {
+    --aspect-ratio: 3/4;
+  }
+
+  .Model--Landscape {
+    --aspect-ratio: 4/3;
+  }
+
+  .Model--Square {
+    --aspect-ratio: 1;
+  }
+{% endstylesheet %}
