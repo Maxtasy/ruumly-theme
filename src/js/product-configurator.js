@@ -18,6 +18,8 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
     this.handleProductFormChange = this.handleProductFormChange.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleProductFormChangeIntent = this.handleProductFormChangeIntent.bind(this);
+
+    this.cacheInitialDocument();
   }
 
   connectedCallback() {
@@ -48,7 +50,7 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
 
   async handleProductFormChangeIntent({ item }) {
     // Prefetch the section document and store it in cache, but do not rerender yet.
-    const newSectionDocument = await this.getDocumentForVariant(item.id);
+    await this.getDocumentForVariant(item.id);
   }
 
   async handleAddToCart(_, event) {
@@ -119,6 +121,14 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
     });
   }
 
+  cacheInitialDocument() {
+    const initialVariantId = this.parsedData.initialVariantId;
+
+    if (!initialVariantId || this.sectionDocumentCache[initialVariantId]) return;
+
+    this.sectionDocumentCache[initialVariantId] = this.cloneNode(true);
+  }
+
   updateUrl(variantId) {
     const url = new URL(window.location.href);
     url.searchParams.set("variant", variantId);
@@ -131,6 +141,10 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
 
   get productOptionSelectorElements() {
     return this.querySelectorAll("product-option-selector-component");
+  }
+
+  get selectedVariantId() {
+    return this.querySelector("product-variant-selector")?.dataset.selectedVariantId;
   }
 }
 
