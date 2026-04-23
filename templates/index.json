@@ -170,10 +170,29 @@
     },
     "shop_the_look_W79npU": {
       "type": "shop-the-look",
+      "blocks": {
+        "product_indicator_6HTEPc": {
+          "type": "product_indicator",
+          "settings": {
+            "position_top": 60,
+            "position_left": 60,
+            "product": "styrspel-gaming-chair"
+          }
+        },
+        "product_indicator_LDTG6z": {
+          "type": "product_indicator",
+          "settings": {
+            "position_top": 50,
+            "position_left": 40,
+            "product": "utmaning-gaming-desk"
+          }
+        }
+      },
+      "block_order": ["product_indicator_6HTEPc", "product_indicator_LDTG6z"],
       "name": "t:sections.shop_the_look.presets.name",
       "settings": {
         "color_scheme": "",
-        "image": "shopify://shop_images/80489138_2.jpg"
+        "image": "shopify://shop_images/Styrspel_Gaming_Chair-2.avif"
       }
     },
     "a_plus_pWYUnb": {
