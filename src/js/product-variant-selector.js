@@ -18,6 +18,7 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
     this.available = this.parsedData.available;
 
     this.handleProductOptionSelectorChange = this.handleProductOptionSelectorChange.bind(this);
+    this.handleProductOptionSelectorChangeIntent = this.handleProductOptionSelectorChangeIntent.bind(this);
   }
 
   connectedCallback() {
@@ -27,24 +28,20 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
     });
 
     this.subscribe("product-option-selector:change", this.handleProductOptionSelectorChange);
+    this.subscribe("product-option-selector:change-intent", this.handleProductOptionSelectorChangeIntent);
   }
 
   disconnectedCallback() {
     this.unsubscribe("product-option-selector:change", this.handleProductOptionSelectorChange);
+    this.unsubscribe("product-option-selector:change-intent", this.handleProductOptionSelectorChangeIntent);
   }
 
-  handleProductOptionSelectorChange(event) {
-    const { optionPosition, optionSelectedValue } = event;
+  handleProductOptionSelectorChange(data) {
+    const { optionPosition, optionSelectedValue } = data;
 
     this.selectedOptionValues[optionPosition - 1] = optionSelectedValue;
 
-    const selectedVariant = this.productVariants.find((variant) => {
-      return (
-        variant.option1 === this.selectedOptionValues[0] &&
-        variant.option2 === this.selectedOptionValues[1] &&
-        variant.option3 === this.selectedOptionValues[2]
-      );
-    });
+    const selectedVariant = this.getSelectedVariant(this.selectedOptionValues);
 
     this.selectedVariantId = selectedVariant ? selectedVariant.id : null;
     this.available = selectedVariant ? selectedVariant.available : false;
@@ -52,6 +49,33 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
     this.publish("product-variant-selector:change", {
       selectedVariantId: this.selectedVariantId,
       available: this.available,
+    });
+  }
+
+  handleProductOptionSelectorChangeIntent(data) {
+    const { optionPosition, optionSelectedValue } = data;
+
+    const temporarySelectedOptionValues = [...this.selectedOptionValues];
+
+    temporarySelectedOptionValues[optionPosition - 1] = optionSelectedValue;
+
+    const selectedVariant = this.getSelectedVariant(temporarySelectedOptionValues);
+
+    this.available = selectedVariant ? selectedVariant.available : false;
+
+    this.publish("product-variant-selector:change-intent", {
+      selectedVariantId: selectedVariant.id,
+      available: this.available,
+    });
+  }
+
+  getSelectedVariant(selectedOptionValues) {
+    return this.productVariants.find((variant) => {
+      return (
+        variant.option1 === selectedOptionValues[0] &&
+        variant.option2 === selectedOptionValues[1] &&
+        variant.option3 === selectedOptionValues[2]
+      );
     });
   }
 }

@@ -9,33 +9,35 @@
 
 {% assign variant = variant | default: 'basic' %}
 
-<label
-  class="
-    ProductOptionValue
-    {% if variant %}
-      ProductOptionValue--Variant{{ variant | camelcase }}
-    {% endif %}
-  "
-  style="--background-color: {{ product_option_value.swatch.color }};"
->
-  {% if variant != 'color' %}
-    {% render 'text', text: product_option_value %}
-  {% endif %}
-
-  {% if product_option_value.swatch.image %}
-    {% render 'image', image: product_option_value.swatch.image, variant: 'square' %}
-  {% endif %}
-
-  <input
-    class="u-Hidden"
-    type="radio"
-    name="{{ name_prefix }}-options-{{ position }}"
-    value="{{ product_option_value }}"
-    {% if product_option_value.selected %}
-      checked
-    {% endif %}
+<product-option-value-component>
+  <label
+    class="
+      ProductOptionValue
+      {% if variant %}
+        ProductOptionValue--Variant{{ variant | camelcase }}
+      {% endif %}
+    "
+    style="--background-color: {{ product_option_value.swatch.color }};"
   >
-</label>
+    {% if variant != 'color' %}
+      {% render 'text', text: product_option_value %}
+    {% endif %}
+
+    {% if product_option_value.swatch.image %}
+      {% render 'image', image: product_option_value.swatch.image, variant: 'square' %}
+    {% endif %}
+
+    <input
+      class="u-Hidden"
+      type="radio"
+      name="{{ name_prefix }}-options-{{ position }}"
+      value="{{ product_option_value }}"
+      {% if product_option_value.selected %}
+        checked
+      {% endif %}
+    >
+  </label>
+</product-option-value-component>
 
 {% stylesheet %}
   .ProductOptionValue {
