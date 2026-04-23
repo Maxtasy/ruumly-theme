@@ -41,13 +41,7 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
 
     this.selectedOptionValues[optionPosition - 1] = optionSelectedValue;
 
-    const selectedVariant = this.productVariants.find((variant) => {
-      return (
-        variant.option1 === this.selectedOptionValues[0] &&
-        variant.option2 === this.selectedOptionValues[1] &&
-        variant.option3 === this.selectedOptionValues[2]
-      );
-    });
+    const selectedVariant = this.getSelectedVariant(this.selectedOptionValues);
 
     this.selectedVariantId = selectedVariant ? selectedVariant.id : null;
     this.available = selectedVariant ? selectedVariant.available : false;
@@ -61,22 +55,27 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
   handleProductOptionSelectorChangeIntent(data) {
     const { optionPosition, optionSelectedValue } = data;
 
-    this.selectedOptionValues[optionPosition - 1] = optionSelectedValue;
+    const temporarySelectedOptionValues = [...this.selectedOptionValues];
 
-    const selectedVariant = this.productVariants.find((variant) => {
-      return (
-        variant.option1 === this.selectedOptionValues[0] &&
-        variant.option2 === this.selectedOptionValues[1] &&
-        variant.option3 === this.selectedOptionValues[2]
-      );
-    });
+    temporarySelectedOptionValues[optionPosition - 1] = optionSelectedValue;
 
-    this.selectedVariantId = selectedVariant ? selectedVariant.id : null;
+    const selectedVariant = this.getSelectedVariant(temporarySelectedOptionValues);
+
     this.available = selectedVariant ? selectedVariant.available : false;
 
     this.publish("product-variant-selector:change-intent", {
-      selectedVariantId: this.selectedVariantId,
+      selectedVariantId: selectedVariant.id,
       available: this.available,
+    });
+  }
+
+  getSelectedVariant(selectedOptionValues) {
+    return this.productVariants.find((variant) => {
+      return (
+        variant.option1 === selectedOptionValues[0] &&
+        variant.option2 === selectedOptionValues[1] &&
+        variant.option3 === selectedOptionValues[2]
+      );
     });
   }
 }

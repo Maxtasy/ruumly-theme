@@ -9,7 +9,7 @@
     <product-configurator-component
       class="ProductConfigurator"
       data-product-handle="{{ product.handle }}"
-      data-initial-variant-id="{{ product.selected_or_first_available_variant.id }}"
+      data-selected-variant-id="{{ product.selected_or_first_available_variant.id }}"
       {%- comment -%}
         Only enable history state updates on the main product page to avoid unexpected behavior in other contexts where
         the product configurator is being used.

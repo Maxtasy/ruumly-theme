@@ -33,13 +33,13 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
   }
 
   handleProductOptionValueHover(data) {
-    const updatedValueIntent = data.value;
+    const { value } = data;
 
-    this.optionSelectedValue = updatedValueIntent;
+    if (value === undefined) return;
 
     this.publish("product-option-selector:change-intent", {
       optionPosition: this.optionPosition,
-      optionSelectedValue: this.optionSelectedValue,
+      optionSelectedValue: value,
     });
   }
 

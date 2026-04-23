@@ -29,20 +29,20 @@ export class ProductForm extends CustomComponentMixin(HTMLElement) {
     this.unsubscribe("product-variant-selector:change-intent", this.handleProductVariantSelectorChangeIntent);
   }
 
-  handleProductVariantSelectorInit(event) {
-    const { selectedVariantId } = event;
+  handleProductVariantSelectorInit(data) {
+    const { selectedVariantId } = data;
 
     this.item.id = selectedVariantId;
   }
 
-  handleQuantitySelectorInit(event) {
-    const { quantity } = event;
+  handleQuantitySelectorInit(data) {
+    const { quantity } = data;
 
     this.item.quantity = quantity;
   }
 
-  handleQuantitySelectorChange(event) {
-    const { quantity } = event;
+  handleQuantitySelectorChange(data) {
+    const { quantity } = data;
 
     this.item.quantity = quantity;
   }
@@ -60,9 +60,7 @@ export class ProductForm extends CustomComponentMixin(HTMLElement) {
   handleProductVariantSelectorChangeIntent(data) {
     const { selectedVariantId } = data;
 
-    this.item.id = selectedVariantId;
-
-    this.publish("product-form:change-intent", { item: this.item });
+    this.publish("product-form:change-intent", { item: { id: selectedVariantId, quantity: 1 } });
   }
 }
 

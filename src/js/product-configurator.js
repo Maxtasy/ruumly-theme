@@ -45,10 +45,12 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
       this.updateUrl(item.id);
     }
 
-    await this.getDocumentForVariant(this.parsedData.initialVariantId);
+    await this.getDocumentForVariant(this.parsedData.selectedVariantId);
   }
 
   async handleProductFormChangeIntent({ item }) {
+    if (item.id === this.parsedData.selectedVariantId) return;
+
     await this.getDocumentForVariant(item.id);
   }
 
@@ -132,10 +134,6 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
 
   get productOptionSelectorElements() {
     return this.querySelectorAll("product-option-selector-component");
-  }
-
-  get selectedVariantId() {
-    return this.querySelector("product-variant-selector")?.dataset.selectedVariantId;
   }
 }
 
