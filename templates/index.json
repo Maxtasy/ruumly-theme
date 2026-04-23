@@ -112,9 +112,12 @@
           "settings": {
             "title": "Plants",
             "collection": "plants",
+            "product_list": [],
+            "enable_slider": true,
+            "set_limit": false,
+            "limit": 4,
             "enable_quick_add_button": true,
-            "enable_wishlist_button": true,
-            "enable_slider": true
+            "enable_wishlist_button": true
           }
         },
         "tab_block_xfzQ8T": {
@@ -122,6 +125,8 @@
           "settings": {
             "title": "Desks",
             "collection": "gaming-desks",
+            "product_list": [],
+            "enable_slider": false,
             "set_limit": true,
             "limit": 4,
             "enable_quick_add_button": true,
@@ -133,6 +138,8 @@
           "settings": {
             "title": "Beds",
             "collection": "beds",
+            "product_list": [],
+            "enable_slider": false,
             "set_limit": true,
             "limit": 4,
             "enable_quick_add_button": true,
@@ -144,6 +151,8 @@
           "settings": {
             "title": "Chairs",
             "collection": "gaming-chairs",
+            "product_list": [],
+            "enable_slider": false,
             "set_limit": true,
             "limit": 4,
             "enable_quick_add_button": true,
@@ -157,6 +166,33 @@
         "color_scheme": "",
         "padding_block": "medium",
         "heading": "Explore by category"
+      }
+    },
+    "shop_the_look_W79npU": {
+      "type": "shop-the-look",
+      "blocks": {
+        "product_indicator_6HTEPc": {
+          "type": "product_indicator",
+          "settings": {
+            "position_top": 60,
+            "position_left": 60,
+            "product": "styrspel-gaming-chair"
+          }
+        },
+        "product_indicator_LDTG6z": {
+          "type": "product_indicator",
+          "settings": {
+            "position_top": 50,
+            "position_left": 40,
+            "product": "utmaning-gaming-desk"
+          }
+        }
+      },
+      "block_order": ["product_indicator_6HTEPc", "product_indicator_LDTG6z"],
+      "name": "t:sections.shop_the_look.presets.name",
+      "settings": {
+        "color_scheme": "",
+        "image": "shopify://shop_images/Styrspel_Gaming_Chair-2.avif"
       }
     },
     "a_plus_pWYUnb": {
@@ -250,5 +286,12 @@
       }
     }
   },
-  "order": ["hero", "collection_list", "tabs_YGYmEL", "a_plus_pWYUnb", "blog_article_list_yeMPL7"]
+  "order": [
+    "hero",
+    "collection_list",
+    "tabs_YGYmEL",
+    "shop_the_look_W79npU",
+    "a_plus_pWYUnb",
+    "blog_article_list_yeMPL7"
+  ]
 }
