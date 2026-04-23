@@ -36,8 +36,8 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
     this.unsubscribe("product-option-selector:change-intent", this.handleProductOptionSelectorChangeIntent);
   }
 
-  handleProductOptionSelectorChange(event) {
-    const { optionPosition, optionSelectedValue } = event;
+  handleProductOptionSelectorChange(data) {
+    const { optionPosition, optionSelectedValue } = data;
 
     this.selectedOptionValues[optionPosition - 1] = optionSelectedValue;
 
@@ -59,7 +59,25 @@ class ProductVariantSelector extends CustomComponentMixin(HTMLElement) {
   }
 
   handleProductOptionSelectorChangeIntent(data) {
-    this.publish("product-variant-selector:change-intent", data);
+    const { optionPosition, optionSelectedValue } = data;
+
+    this.selectedOptionValues[optionPosition - 1] = optionSelectedValue;
+
+    const selectedVariant = this.productVariants.find((variant) => {
+      return (
+        variant.option1 === this.selectedOptionValues[0] &&
+        variant.option2 === this.selectedOptionValues[1] &&
+        variant.option3 === this.selectedOptionValues[2]
+      );
+    });
+
+    this.selectedVariantId = selectedVariant ? selectedVariant.id : null;
+    this.available = selectedVariant ? selectedVariant.available : false;
+
+    this.publish("product-variant-selector:change-intent", {
+      selectedVariantId: this.selectedVariantId,
+      available: this.available,
+    });
   }
 }
 

@@ -21,8 +21,8 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
     this.unsubscribe("product-option-value:hover", this.handleProductOptionValueHover);
   }
 
-  handleChange(event) {
-    const updatedValue = event.target.value;
+  handleChange(data) {
+    const updatedValue = data.target.value;
 
     this.optionSelectedValue = updatedValue;
 
@@ -33,7 +33,14 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
   }
 
   handleProductOptionValueHover(data) {
-    this.publish("product-option-selector:change-intent", data);
+    const updatedValueIntent = data.value;
+
+    this.optionSelectedValue = updatedValueIntent;
+
+    this.publish("product-option-selector:change-intent", {
+      optionPosition: this.optionPosition,
+      optionSelectedValue: this.optionSelectedValue,
+    });
   }
 
   setLoading(force) {

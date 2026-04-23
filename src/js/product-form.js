@@ -58,7 +58,11 @@ export class ProductForm extends CustomComponentMixin(HTMLElement) {
   }
 
   handleProductVariantSelectorChangeIntent(data) {
-    this.publish("product-form:change-intent", data);
+    const { selectedVariantId } = data;
+
+    this.item.id = selectedVariantId;
+
+    this.publish("product-form:change-intent", { item: this.item });
   }
 }
 

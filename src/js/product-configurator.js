@@ -46,6 +46,11 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
     }
   }
 
+  async handleProductFormChangeIntent({ item }) {
+    // Prefetch the section document and store it in cache, but do not rerender yet.
+    const newSectionDocument = await this.getDocumentForVariant(item.id);
+  }
+
   async handleAddToCart(_, event) {
     const addToCartButtonElement = event.target;
 
@@ -81,10 +86,6 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
     }
 
     throw new Error("Failed to add items to cart");
-  }
-
-  handleProductFormChangeIntent(data) {
-    console.log(data);
   }
 
   async getDocumentForVariant(variantId) {
