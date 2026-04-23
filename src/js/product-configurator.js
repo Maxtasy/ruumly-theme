@@ -18,8 +18,6 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
     this.handleProductFormChange = this.handleProductFormChange.bind(this);
     this.handleAddToCart = this.handleAddToCart.bind(this);
     this.handleProductFormChangeIntent = this.handleProductFormChangeIntent.bind(this);
-
-    this.cacheInitialDocument();
   }
 
   connectedCallback() {
@@ -46,10 +44,11 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
     if (this.enableHistoryState) {
       this.updateUrl(item.id);
     }
+
+    await this.getDocumentForVariant(this.parsedData.initialVariantId);
   }
 
   async handleProductFormChangeIntent({ item }) {
-    // Prefetch the section document and store it in cache, but do not rerender yet.
     await this.getDocumentForVariant(item.id);
   }
 
@@ -119,14 +118,6 @@ export class ProductConfigurator extends CustomComponentMixin(HTMLElement) {
         currentElement.outerHTML = newElement.outerHTML;
       }
     });
-  }
-
-  cacheInitialDocument() {
-    const initialVariantId = this.parsedData.initialVariantId;
-
-    if (!initialVariantId || this.sectionDocumentCache[initialVariantId]) return;
-
-    this.sectionDocumentCache[initialVariantId] = this.cloneNode(true);
   }
 
   updateUrl(variantId) {
