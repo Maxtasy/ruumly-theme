@@ -275,8 +275,8 @@
         }
       }
     },
-    "product_option_selector": {
-      "name": "Product Option Selector",
+    "product_form": {
+      "name": "Product Formular",
       "settings": {
         "show_product_option": {
           "label": "Produktoption anzeigen"

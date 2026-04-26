@@ -213,12 +213,12 @@
     ]
   },
   {
-    "name": "t:settings_schema.product_option_selector.name",
+    "name": "t:settings_schema.product_form.name",
     "settings": [
       {
         "type": "checkbox",
         "id": "show_product_option",
-        "label": "t:settings_schema.product_option_selector.settings.show_product_option.label",
+        "label": "t:settings_schema.product_form.settings.show_product_option.label",
         "default": true
       }
     ]
