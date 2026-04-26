@@ -31,18 +31,7 @@
   "
 >
   {% for link in links %}
-    {%- comment -%}
-      TODO: This needs to be refactored so we only have `li`s inside the `ul`.
-    {%- endcomment -%}
-    {% assign tag = 'li' %}
-    {% if connected_to_mega_menu %}
-      {% assign tag = 'mega-menu-trigger-component' %}
-    {% endif %}
-
-    <{{ tag }}
-      {% if connected_to_mega_menu %}
-        data-handle="{{ link.handle }}"
-      {% endif %}
+    <li
       class="
         NavigationGroup__Item
         {% if highlight_active_links and current_level != 2 and link.active or link.child_active  %}
@@ -50,10 +39,18 @@
         {% endif %}
       "
     >
+      {% if connected_to_mega_menu %}
+        <mega-menu-trigger-component data-handle="{{ link.handle }}">
+      {% endif %}
+
       <a href="{{ link.url }}">
         {% render 'text', text: link.title, as: 'b' %}
       </a>
-    </{{ tag }}>
+
+      {% if connected_to_mega_menu %}
+        </mega-menu-trigger-component>
+      {% endif %}
+    </li>
 
     {% if link.links.size > 0 and direction == 'vertical' %}
       <li class="NavigationGroup__Item">
