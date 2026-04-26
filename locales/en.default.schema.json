@@ -275,6 +275,14 @@
         }
       }
     },
+    "product_option_selector": {
+      "name": "Product Option Selector",
+      "settings": {
+        "show_product_option": {
+          "label": "Show product option value"
+        }
+      }
+    },
     "store_settings": {
       "name": "Store Settings",
       "headers": {

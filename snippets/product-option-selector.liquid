@@ -22,10 +22,17 @@
     <legend class="u-Hidden">{{ product_option.name }}</legend>
 
     <div class="ProductOptionSelector__Label">
-      {% assign product_option_name = product_option.name | append: ':' %}
+      {% assign product_option_name = product_option.name %}
+
+      {% if settings.show_product_option %}
+        {% assign product_option_name = product_option.name | append: ':' %}
+      {% endif %}
+
       {% render 'text', as: 'b', text: product_option_name %}
 
-      {% render 'text', text: product_option.selected_value %}
+      {% if settings.show_product_option %}
+        {% render 'text', text: product_option.selected_value %}
+      {% endif %}
     </div>
 
     <ul class="ProductOptionSelector__Values u-NoList">
