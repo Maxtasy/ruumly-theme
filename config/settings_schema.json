@@ -213,6 +213,21 @@
     ]
   },
   {
+    "name": "t:settings_schema.product_form.name",
+    "settings": [
+      {
+        "type": "header",
+        "content": "t:settings_schema.product_form.headers.product_option_selector.content"
+      },
+      {
+        "type": "checkbox",
+        "id": "show_product_option",
+        "label": "t:settings_schema.product_form.settings.show_product_option.label",
+        "default": true
+      }
+    ]
+  },
+  {
     "name": "t:settings_schema.store_settings.name",
     "settings": [
       {
