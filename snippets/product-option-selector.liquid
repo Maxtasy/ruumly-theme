@@ -25,7 +25,7 @@
       {% assign product_option_name = product_option.name %}
 
       {% if settings.show_product_option %}
-        {% assign product_option_name = product_option.name | append: ':' %}
+        {% assign product_option_name = product_option_name | append: ':' %}
       {% endif %}
 
       {% render 'text', as: 'b', text: product_option_name %}
@@ -78,7 +78,7 @@
 
   .ProductOptionSelector__Label {
     display: flex;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
     margin: 0;
     padding: 0;
   }

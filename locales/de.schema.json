@@ -277,9 +277,14 @@
     },
     "product_form": {
       "name": "Product Formular",
+      "headers": {
+        "product_option_selector": {
+          "content": "Produktoption Selektor"
+        }
+      },
       "settings": {
         "show_product_option": {
-          "label": "Produktoption anzeigen"
+          "label": "Ausgewählten Wert anzeigen"
         }
       }
     },
