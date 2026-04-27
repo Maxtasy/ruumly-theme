@@ -7,6 +7,7 @@
   @param {string} [color] - Text color. Defaults to 'primary' ('inherit', 'primary', 'primary-muted', 'sale', 'destructive', 'success', 'warning')
   @param {string} [transform] - Text transform. ('uppercase')
   @param {string} [text_decoration] - The text decoration. ('underline')
+  @param {string} [text_align] - The alignment of the text. ('center', 'right')
 {% enddoc %}
 
 {% assign as = as | default: 'p' %}
@@ -24,6 +25,10 @@
 
     {% if text_decoration %}
       Text--TextDecoration{{ text_decoration | camelcase }}
+    {% endif %}
+
+    {% if text_align %}
+      Text--TextAlign{{ text_align | camelcase }}
     {% endif %}
   "
 >
@@ -121,5 +126,13 @@
 
   .Text--TextDecorationUnderline {
     text-decoration: underline;
+  }
+
+  .Text--TextAlignCenter {
+    text-align: center;
+  }
+
+  .Text--TextAlignRight {
+    text-align: right;
   }
 {% endstylesheet %}
