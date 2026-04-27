@@ -1,0 +1,32 @@
+{% doc %}
+  Renders a Collection Navigation Item component.
+
+  @param {string} title - The title of the collection navigation item.
+  @param {object} image - The image of the collection navigation item.
+  @param {string} url - The url of the collecition navigation item.
+{% enddoc %}
+
+<a href="{{ url }}" class="CollectionNavigationItem">
+  <div class="CollectionNavigationItem__Image">
+    {% render 'image', image: image, variant: 'square' %}
+  </div>
+
+  <div class="CollectionNavigationItem__Title">
+    {% render 'text', text: title %}
+  </div>
+</a>
+
+{% stylesheet %}
+  .CollectionNavigationItem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--size-xs);
+    width: 100%;
+  }
+
+  .CollectionNavigationItem__Image {
+    height: 80px;
+    width: 80px;
+  }
+{% endstylesheet %}

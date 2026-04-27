@@ -662,6 +662,14 @@
         }
       }
     },
+    "collection_navigation": {
+      "name": "Collection Navigation",
+      "presets": {
+        "collection_navigation": {
+          "name": "Collection Navigation"
+        }
+      }
+    },
     "footer": {
       "name": "Footer"
     },
