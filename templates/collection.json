@@ -25,11 +25,20 @@
         "overlay_opacity": 33
       }
     },
+    "collcection_navigation_a3UzBm": {
+      "type": "collcection-navigation",
+      "name": "t:sections.collection_navigation.presets.collection_navigation.name",
+      "settings": {
+        "color_scheme": "",
+        "padding_block": "small"
+      }
+    },
     "product-grid": {
       "type": "product-grid",
       "settings": {
         "color_scheme": "default",
         "padding_block": "medium",
+        "enable_filters": true,
         "columns_mobile": 1,
         "columns_desktop": 4,
         "grid_gap": "m",
@@ -42,5 +51,5 @@
       }
     }
   },
-  "order": ["collection_banner_qtKQ8y", "product-grid"]
+  "order": ["collection_banner_qtKQ8y", "collcection_navigation_a3UzBm", "product-grid"]
 }
