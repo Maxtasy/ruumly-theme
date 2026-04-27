@@ -1,26 +1,32 @@
-<section
-  class="
-    Section
-    Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
-    ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
-  "
->
-  <div class="Section__Inner">
-    <ul class="CollectionNavigation u-NoList">
-      {% assign sub_collections = collection.metafields.custom.sub_collections.value %}
+{% assign sub_collections = collection.metafields.custom.sub_collections.value %}
 
-      {% for sub_collection in sub_collections %}
-        <li class="CollectionNavigation__Item">
-          {% render 'collection-navigation-item',
-            title: sub_collection.title,
-            url: sub_collection.url,
-            image: sub_collection.image
+{% if sub_collections != blank %}
+  <section
+    class="
+      Section
+      Section--PaddingBlock{{ section.settings.padding_block | camelcase }}
+      ColorScheme--{{ section.settings.color_scheme.id | camelcase }}
+    "
+  >
+    <div class="Section__Inner">
+      <ul class="CollectionNavigation u-NoList">
+        {% for sub_collection in sub_collections %}
+          {% assign sub_collection_image = sub_collection.metafields.custom.collection_navigation_image.value
+            | default: sub_collection.image
           %}
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-</section>
+
+          <li class="CollectionNavigation__Item">
+            {% render 'collection-navigation-item',
+              title: sub_collection.title,
+              url: sub_collection.url,
+              image: sub_collection_image
+            %}
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+{% endif %}
 
 {% schema %}
 {
@@ -62,8 +68,8 @@
 
 {% stylesheet %}
   .CollectionNavigation {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--size-m);
+    display: flex;
+    justify-content: center;
+    gap: var(--size-s);
   }
 {% endstylesheet %}
