@@ -22,3 +22,18 @@ if [[ ! "$BRANCH" =~ ^(feature|component|section|fix|chore|ci|a11y)/[a-z0-9-]+(-
 fi
 
 echo "${GREEN}${BOLD}✅ Branch name validation passed${RESET}"
+
+MAX_LENGTH=50
+
+if [ "${#BRANCH}" -gt "$MAX_LENGTH" ]; then
+  EXCEEDED_BY=$((${#BRANCH} - MAX_LENGTH))
+
+  echo "${RED}${BOLD}❌ Branch name too long:${RESET} ${RED}${BRANCH}${RESET}"
+  echo "${YELLOW}Max length:${RESET} ${MAX_LENGTH} characters"
+  echo "${YELLOW}Current length:${RESET} ${#BRANCH}"
+  echo "${YELLOW}Exceeded by:${RESET} ${EXCEEDED_BY} characters"
+  echo ""
+  echo "${BLUE}💡 Hint: You can rename your branch with:${RESET}"
+  echo "  ${BOLD}git branch -m <NEW_BRANCH_NAME>${RESET}"
+  exit 1
+fi
