@@ -1,11 +1,6 @@
-{% assign sub_collections = collection.metafields.custom.sub_collections.value %}
-{% assign parent_collection = collection.metafields.custom.parent_collection.value %}
-
-{% if sub_collections != blank %}
-  {% assign navigation_collections = sub_collections %}
-{% elsif parent_collection != blank %}
-  {% assign navigation_collections = parent_collection.metafields.custom.sub_collections.value %}
-{% endif %}
+{% assign navigation_collections = collection.metafields.custom.sub_collections.value
+  | default: collection.metafields.custom.parent_collection.value.metafields.custom.sub_collections.value
+%}
 
 {% if navigation_collections != blank %}
   <section
@@ -22,10 +17,10 @@
             | default: navigation_collection.image
           %}
 
-          {% assign is_active = false %}
+          {% assign active = false %}
 
           {% if navigation_collection.handle == collection.handle %}
-            {% assign is_active = true %}
+            {% assign active = true %}
           {% endif %}
 
           <li class="CollectionNavigation__Item">
@@ -33,7 +28,7 @@
               title: navigation_collection.title,
               url: navigation_collection.url,
               image: navigation_image,
-              is_active: is_active
+              active: active
             %}
           </li>
         {% endfor %}
