@@ -22,11 +22,18 @@
             | default: navigation_collection.image
           %}
 
+          {% assign is_active = false %}
+
+          {% if navigation_collection.handle == collection.handle %}
+            {% assign is_active = true %}
+          {% endif %}
+
           <li class="CollectionNavigation__Item">
             {% render 'collection-navigation-item',
               title: navigation_collection.title,
               url: navigation_collection.url,
-              image: navigation_image
+              image: navigation_image,
+              is_active: is_active
             %}
           </li>
         {% endfor %}
