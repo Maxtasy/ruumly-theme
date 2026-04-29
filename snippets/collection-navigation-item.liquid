@@ -4,15 +4,32 @@
   @param {string} title - The title of the collection navigation item.
   @param {object} image - The image of the collection navigation item.
   @param {string} url - The url of the collecition navigation item.
+  @param {boolean} active - Whether the collection navigation item is active.
 {% enddoc %}
 
-<a href="{{ url }}" class="CollectionNavigationItem">
+<a
+  href="{{ url }}"
+  class="
+    CollectionNavigationItem
+    {% if active %}
+      CollectionNavigationItem--Active
+    {% endif %}
+  "
+>
   <div class="CollectionNavigationItem__Image">
     {% render 'image', image: image, variant: 'square' %}
   </div>
 
   <div class="CollectionNavigationItem__Title">
-    {% render 'text', text: title, text_align: 'center' %}
+    {% capture text %}
+      {% if active %}
+          <b>{{ title }}</b>
+      {% else %}
+        {{ title }}
+      {% endif %}
+    {% endcapture %}
+
+    {% render 'text', text: text, text_align: 'center' %}
   </div>
 </a>
 
@@ -27,7 +44,11 @@
 
   .CollectionNavigationItem__Image {
     border-radius: var(--t-border-radius-circle);
-    border: var(--border-width) var(--border-style) var(--t-border);
+    border: var(--border-width) var(--border-style) var(--t-border-muted);
     overflow: hidden;
+  }
+
+  .CollectionNavigationItem--Active .CollectionNavigationItem__Image {
+    border-color: var(--t-border);
   }
 {% endstylesheet %}
