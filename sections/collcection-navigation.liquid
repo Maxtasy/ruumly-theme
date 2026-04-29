@@ -1,6 +1,13 @@
 {% assign sub_collections = collection.metafields.custom.sub_collections.value %}
+{% assign parent_collection = collection.metafields.custom.parent_collection.value %}
 
 {% if sub_collections != blank %}
+  {% assign navigation_collections = sub_collections %}
+{% elsif parent_collection != blank %}
+  {% assign navigation_collections = parent_collection.metafields.custom.sub_collections.value %}
+{% endif %}
+
+{% if navigation_collections != blank %}
   <section
     class="
       Section
@@ -10,16 +17,16 @@
   >
     <div class="Section__Inner">
       <ul class="CollectionNavigation u-NoList">
-        {% for sub_collection in sub_collections %}
-          {% assign sub_collection_image = sub_collection.metafields.custom.collection_navigation_image.value
-            | default: sub_collection.image
+        {% for navigation_collection in navigation_collections %}
+          {% assign navigation_image = navigation_collection.metafields.custom.collection_navigation_image.value
+            | default: navigation_collection.image
           %}
 
           <li class="CollectionNavigation__Item">
             {% render 'collection-navigation-item',
-              title: sub_collection.title,
-              url: sub_collection.url,
-              image: sub_collection_image
+              title: navigation_collection.title,
+              url: navigation_collection.url,
+              image: navigation_image
             %}
           </li>
         {% endfor %}
