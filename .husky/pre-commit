@@ -21,8 +21,6 @@ if [[ ! "$BRANCH" =~ ^(feature|component|section|fix|chore|ci|a11y)/[a-z0-9-]+(-
   exit 1
 fi
 
-echo "${GREEN}${BOLD}✅ Branch name validation passed${RESET}"
-
 MAX_LENGTH=50
 
 if [ "${#BRANCH}" -gt "$MAX_LENGTH" ]; then
@@ -37,3 +35,5 @@ if [ "${#BRANCH}" -gt "$MAX_LENGTH" ]; then
   echo "  ${BOLD}git branch -m <NEW_BRANCH_NAME>${RESET}"
   exit 1
 fi
+
+echo "${GREEN}${BOLD}✅ Branch name validation passed${RESET}"
