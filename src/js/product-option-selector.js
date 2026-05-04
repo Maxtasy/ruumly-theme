@@ -9,6 +9,7 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleProductOptionValueHover = this.handleProductOptionValueHover.bind(this);
+    this.updateSelectedOptionValue = this.updateSelectedOptionValue.bind(this);
   }
 
   connectedCallback() {
@@ -46,11 +47,9 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
   }
 
   updateSelectedOptionValue(value) {
-    const selectedOptionValueElement = this.querySelector(".ProductOptionSelector__LabelValue");
+    if (!this.selectedValueElement) return;
 
-    if (!selectedOptionValueElement) return;
-
-    selectedOptionValueElement.textContent = value;
+    this.selectedValueElement.textContent = value;
   }
 
   setLoading(force) {
@@ -59,6 +58,10 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
 
   get loadingElement() {
     return this.querySelector(".ProductOptionSelector__Loading");
+  }
+
+  get selectedValueElement() {
+    return this.querySelector(".ProductOptionSelector__SelectedValue");
   }
 }
 
