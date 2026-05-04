@@ -26,6 +26,8 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
 
     this.optionSelectedValue = updatedValue;
 
+    this.updateSelectedOptionValue(updatedValue);
+
     this.publish("product-option-selector:change", {
       optionPosition: this.optionPosition,
       optionSelectedValue: this.optionSelectedValue,
@@ -41,6 +43,14 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
       optionPosition: this.optionPosition,
       optionSelectedValue: value,
     });
+  }
+
+  updateSelectedOptionValue(value) {
+    const selectedOptionValueElement = this.querySelector(".ProductOptionSelector__LabelValue");
+
+    if (!selectedOptionValueElement) return;
+
+    selectedOptionValueElement.textContent = value;
   }
 
   setLoading(force) {

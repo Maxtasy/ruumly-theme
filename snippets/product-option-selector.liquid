@@ -31,7 +31,9 @@
       {% render 'text', as: 'b', text: product_option_name %}
 
       {% if settings.show_product_option %}
-        {% render 'text', text: product_option.selected_value %}
+        <div class="ProductOptionSelector__LabelValue">
+          {% render 'text', text: product_option.selected_value %}
+        </div>
       {% endif %}
     </div>
 
