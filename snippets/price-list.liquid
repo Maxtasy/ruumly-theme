@@ -24,10 +24,8 @@
   </div>
 
   {% if unit_price and unit_price_measurement %}
-    {% assign unit_price = unit_price | money %}
-
     {%- capture unit_price_text -%}
-      {{ unit_price | append: ' /' }}
+      {{ unit_price | money | append: ' /' }}
       {% if unit_price_measurement.reference_value > 1 %}
         {{ unit_price_measurement.reference_value | append: ' ' }}
       {% endif %}
@@ -36,9 +34,7 @@
   {% endif %}
 
   {% if unit_price_text != blank %}
-    <div class="PriceList__UnitPrice">
-      {% render 'text', text: unit_price_text, color: 'primary-muted', variant: 'body-small' %}
-    </div>
+    {% render 'text', text: unit_price_text, color: 'primary-muted', variant: 'body-small' %}
   {% endif %}
 </div>
 
