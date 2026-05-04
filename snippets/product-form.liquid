@@ -56,7 +56,13 @@
 
       {% when 'price-list' %}
         {% assign info = 'components.price_list.info_html' | t %}
-        {% render 'price-list', price: product.price, compare_at_price: product.compare_at_price, info: info %}
+        {% render 'price-list',
+          price: product.selected_or_first_available_variant.price,
+          compare_at_price: product.compare_at_price,
+          info: info,
+          unit_price: product.selected_or_first_available_variant.unit_price,
+          unit_price_measurement: product.selected_or_first_available_variant.unit_price_measurement
+        %}
 
       {% when 'quantity-selector' %}
         {% render 'quantity-selector', quantity: 1 %}

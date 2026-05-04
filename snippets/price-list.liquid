@@ -4,28 +4,45 @@
   @param {number} price - Price in cents
   @param {number} [compare_at_price] - Compare at price in cents
   @param {string} [info] - Additional info text
+  @param {object} [unit_price] - The liquid unit price object
+  @param {object} [unit_price_measurement] - The liquid unit price measurement object
 {% enddoc %}
 
 <div class="PriceList">
-  {% if compare_at_price %}
-    {% assign compare_at_price_text = compare_at_price | money %}
-    {% render 'text', text: compare_at_price_text, variant: 'body-small', as: 'del' %}
+  <div class="PriceList__Price">
+    {% if compare_at_price %}
+      {% assign compare_at_price_text = compare_at_price | money %}
+      {% render 'text', text: compare_at_price_text, variant: 'body-small', as: 'del' %}
+    {% endif %}
+
+    {% assign price_text = price | money %}
+    {% render 'text', text: price_text, as: 'b' %}
+
+    {% if info %}
+      {% render 'rich-text', content: info %}
+    {% endif %}
+  </div>
+
+  {% if unit_price and unit_price_measurement %}
+    {%- capture unit_price_text -%}
+      {{ unit_price | money | append: ' /' }}
+      {% if unit_price_measurement.reference_value > 1 %}
+        {{ unit_price_measurement.reference_value | append: ' ' }}
+      {% endif %}
+      {{ unit_price_measurement.reference_unit }}
+    {%- endcapture -%}
   {% endif %}
 
-  {% assign price_text = price | money %}
-  {% render 'text', text: price_text, as: 'b' %}
-
-  {% if info %}
-    {% render 'rich-text', content: info %}
+  {% if unit_price_text != blank %}
+    {% render 'text', text: unit_price_text, color: 'primary-muted', variant: 'body-small' %}
   {% endif %}
 </div>
 
 {% stylesheet %}
   .PriceList {
     display: flex;
-    align-items: center;
-    gap: var(--size-xs);
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: var(--size-xxs);
   }
 
   .PriceList del {
@@ -34,5 +51,12 @@
 
   .PriceList:has(del) strong {
     color: var(--t-text);
+  }
+
+  .PriceList__Price {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+    flex-wrap: wrap;
   }
 {% endstylesheet %}
