@@ -4,28 +4,42 @@
   @param {number} price - Price in cents
   @param {number} [compare_at_price] - Compare at price in cents
   @param {string} [info] - Additional info text
+  @param {object} [variant] - The liquid variant object
 {% enddoc %}
 
 <div class="PriceList">
-  {% if compare_at_price %}
-    {% assign compare_at_price_text = compare_at_price | money %}
-    {% render 'text', text: compare_at_price_text, variant: 'body-small', as: 'del' %}
+  <div class="PriceList__Price">
+    {% if compare_at_price %}
+      {% assign compare_at_price_text = compare_at_price | money %}
+      {% render 'text', text: compare_at_price_text, variant: 'body-small', as: 'del' %}
+    {% endif %}
+
+    {% assign price_text = price | money %}
+    {% render 'text', text: price_text, as: 'b' %}
+
+    {% if info %}
+      {% render 'rich-text', content: info %}
+    {% endif %}
+  </div>
+
+  {% if variant.unit_price and variant.unit_price_measurement %}
+    {% assign unit_price = variant.unit_price | money %}
+
+    {% assign unit_price_text = unit_price | append: ' / ' | append: variant.unit_price_measurement.quantity_unit %}
   {% endif %}
 
-  {% assign price_text = price | money %}
-  {% render 'text', text: price_text, as: 'b' %}
-
-  {% if info %}
-    {% render 'rich-text', content: info %}
+  {% if unit_price_text %}
+    <div class="PriceList__UnitPrice">
+      {% render 'text', text: unit_price_text, color: 'primary-muted' %}
+    </div>
   {% endif %}
 </div>
 
 {% stylesheet %}
   .PriceList {
     display: flex;
-    align-items: center;
+    flex-direction: column;
     gap: var(--size-xs);
-    flex-wrap: wrap;
   }
 
   .PriceList del {
@@ -34,5 +48,12 @@
 
   .PriceList:has(del) strong {
     color: var(--t-text);
+  }
+
+  .PriceList__Price {
+    display: flex;
+    align-items: center;
+    gap: var(--size-xs);
+    flex-wrap: wrap;
   }
 {% endstylesheet %}
