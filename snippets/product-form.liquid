@@ -60,7 +60,8 @@
           price: product.selected_or_first_available_variant.price,
           compare_at_price: product.compare_at_price,
           info: info,
-          variant: product.selected_or_first_available_variant
+          unit_price: product.selected_or_first_available_variant.unit_price,
+          unit_price_measurement: product.selected_or_first_available_variant.unit_price_measurement
         %}
 
       {% when 'quantity-selector' %}

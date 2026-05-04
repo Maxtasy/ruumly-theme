@@ -4,7 +4,8 @@
   @param {number} price - Price in cents
   @param {number} [compare_at_price] - Compare at price in cents
   @param {string} [info] - Additional info text
-  @param {object} [variant] - The liquid variant object
+  @param {object} [unit_price] - The liquid unit price object
+  @param {object} [unit_price_measurement] - The liquid unit price measurement object
 {% enddoc %}
 
 <div class="PriceList">
@@ -22,15 +23,21 @@
     {% endif %}
   </div>
 
-  {% if variant.unit_price and variant.unit_price_measurement %}
-    {% assign unit_price = variant.unit_price | money %}
+  {% if unit_price and unit_price_measurement %}
+    {% assign unit_price = unit_price | money %}
 
-    {% assign unit_price_text = unit_price | append: ' / ' | append: variant.unit_price_measurement.quantity_unit %}
+    {%- capture unit_price_text -%}
+      {{ unit_price | append: ' /' }}
+      {% if unit_price_measurement.reference_value > 1 %}
+        {{ unit_price_measurement.reference_value | append: ' ' }}
+      {% endif %}
+      {{ unit_price_measurement.reference_unit }}
+    {%- endcapture -%}
   {% endif %}
 
-  {% if unit_price_text %}
+  {% if unit_price_text != blank %}
     <div class="PriceList__UnitPrice">
-      {% render 'text', text: unit_price_text, color: 'primary-muted' %}
+      {% render 'text', text: unit_price_text, color: 'primary-muted', variant: 'body-small' %}
     </div>
   {% endif %}
 </div>
@@ -39,7 +46,7 @@
   .PriceList {
     display: flex;
     flex-direction: column;
-    gap: var(--size-xs);
+    gap: var(--size-xxs);
   }
 
   .PriceList del {
