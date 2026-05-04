@@ -9,6 +9,7 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleProductOptionValueHover = this.handleProductOptionValueHover.bind(this);
+    this.updateSelectedOptionValue = this.updateSelectedOptionValue.bind(this);
   }
 
   connectedCallback() {
@@ -25,6 +26,8 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
     const updatedValue = data.target.value;
 
     this.optionSelectedValue = updatedValue;
+
+    this.updateSelectedOptionValue(updatedValue);
 
     this.publish("product-option-selector:change", {
       optionPosition: this.optionPosition,
@@ -43,12 +46,22 @@ class ProductOptionSelector extends CustomComponentMixin(HTMLElement) {
     });
   }
 
+  updateSelectedOptionValue(value) {
+    if (!this.selectedValueElement) return;
+
+    this.selectedValueElement.textContent = value;
+  }
+
   setLoading(force) {
     this.loadingElement.classList.toggle("ProductOptionSelector__Loading--Active", force);
   }
 
   get loadingElement() {
     return this.querySelector(".ProductOptionSelector__Loading");
+  }
+
+  get selectedValueElement() {
+    return this.querySelector(".ProductOptionSelector__SelectedValue");
   }
 }
 
