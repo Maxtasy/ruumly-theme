@@ -39,9 +39,11 @@
 
       <div class="ProductCard__VariantImages u-Hidden">
         {% for variant in product.variants %}
-          <div class="ProductCard__VariantImage">
-            {% render 'image', image: variant.featured_image, variant: 'square', sizes: '480px', widths: '480' %}
-          </div>
+          {% if variant.featured_image %}
+            <div class="ProductCard__VariantImage">
+              {% render 'image', image: variant.featured_image, variant: 'square', sizes: '480px', widths: '480' %}
+            </div>
+          {% endif %}
         {% endfor %}
       </div>
       {% if hover_effect == 'swap' and swap_image %}

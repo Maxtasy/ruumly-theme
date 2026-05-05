@@ -78,12 +78,17 @@ export class ProductCard extends CustomComponentMixin(HTMLElement) {
 
   handleVariantQuickViewMouseenter(data) {
     const connectedImageElement = this.getConnectedImageElement(data.optionValueName);
+
+    if (!connectedImageElement) return;
+
     const connectedImageElementCopy = connectedImageElement.cloneNode(true);
 
     this.replaceFeaturedImage(connectedImageElementCopy);
   }
 
   handleVariantQuickViewMouseleave() {
+    if (!this.activeVariantImageElement) return;
+
     const activeVariantImageElementCopy = this.activeVariantImageElement.cloneNode(true);
 
     this.replaceFeaturedImage(activeVariantImageElementCopy);
