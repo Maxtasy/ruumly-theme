@@ -81,6 +81,8 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
   rerender(doc) {
     const elementsToReplaceSelectors = [
       "[id$='product-grid'] .ProductGrid",
+      ".SearchFilters",
+      ".Search",
       ".Filter__DropdownContent",
       ".Filter__TriggerContent",
       ".Filters__Row:has(.Filters__ActiveValues)",

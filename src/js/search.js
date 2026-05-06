@@ -73,7 +73,7 @@ export class Search extends CustomComponentMixin(HTMLElement) {
   }
 
   rerender(doc) {
-    const elementsToReplaceSelectors = [".Search__Content"];
+    const elementsToReplaceSelectors = [".Search__Content", ".SearchFilters"];
 
     elementsToReplaceSelectors.forEach((elementsToReplaceSelector) => {
       const newElements = doc.querySelectorAll(elementsToReplaceSelector);

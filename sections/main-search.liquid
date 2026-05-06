@@ -10,21 +10,22 @@
       {% render 'text', text: section.settings.heading, as: 'h1', variant: 'heading-medium' %}
     {% endif %}
 
-    {% if section.settings.enable_filters and search.performed and search.filters.size > 0 %}
-      {% liquid
-        assign filters_active = false
+    <div class="SearchFilters">
+      {% if section.settings.enable_filters and search.performed and search.filters.size > 0 %}
+        {% liquid
+          assign filters_active = false
 
-        for filter in search.filters
-          if filter.active_values.size > 0
-            assign filters_active = true
+          for filter in search.filters
+            if filter.active_values.size > 0
+              assign filters_active = true
+              break
+            endif
+          endfor
+        %}
 
-            break
-          endif
-        endfor
-      %}
-
-      {% render 'filters', filters: search.filters, filters_active: filters_active %}
-    {% endif %}
+        {% render 'filters', filters: search.filters, filters_active: filters_active %}
+      {% endif %}
+    </div>
 
     <search-component class="Search">
       <form class="Form">
