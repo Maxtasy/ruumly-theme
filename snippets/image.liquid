@@ -9,6 +9,7 @@
   @param {string} [sizes] - The sizes attribute for the image.
   @param {string} [widths] - The widths attribute for the image.
   @param {object} [placeholder] - The placeholder image to use. Default: 'image'. Refer to the [`placeholder_svg_tag`](https://shopify.dev/docs/api/liquid/filters/placeholder_svg_tag) filter for more information.
+  @param {string} [attributes] - Additional attributes for the element.
 {% enddoc %}
 
 {% liquid
@@ -26,6 +27,7 @@
       Image--{{ variant | camelcase }}
     {% endif %}
   "
+  {{ attributes }}
 >
   {% if image %}
     {{

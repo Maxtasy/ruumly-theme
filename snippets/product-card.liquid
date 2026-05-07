@@ -34,63 +34,80 @@
   {% endif %}
 >
   <div class="ProductCard__Top">
-    <div class="ProductCard__Image">
-      {% render 'image', image: image, variant: 'square', sizes: '480px', widths: '480' %}
+    <a href="{{ url }}">
+      <div class="ProductCard__Image">
+        {% render 'image',
+          image: image,
+          variant: 'square',
+          sizes: '480px',
+          widths: '480',
+          attributes: 'data-primary-image'
+        %}
 
-      <div class="ProductCard__VariantImages u-Hidden">
-        {% for variant in product.variants %}
-          <div class="ProductCard__VariantImage">
-            {% render 'image', image: variant.featured_image, variant: 'square', sizes: '480px', widths: '480' %}
-          </div>
-        {% endfor %}
-      </div>
-      {% if hover_effect == 'swap' and swap_image %}
-        {% render 'image', image: swap_image, variant: 'square', sizes: '480px', widths: '480' %}
-      {% endif %}
+        {% if hover_effect == 'swap' and swap_image %}
+          {% render 'image',
+            image: swap_image,
+            variant: 'square',
+            sizes: '480px',
+            widths: '480',
+            attributes: 'data-secondary-image'
+          %}
+        {% endif %}
 
-      {% liquid
-        assign six_months_ago_unix = 'now' | date: '%s' | minus: 15552000
-        assign product_created_at_unix = product.created_at | date: '%s' | plus: 0
-        assign is_new = false
-
-        if product_created_at_unix > six_months_ago_unix
-          assign is_new = true
-        endif
-      %}
-
-      {% if badge or compare_at_price > price or is_new or product.available == false %}
-        <div class="ProductCard__Badges">
-          <ul class="u-NoList BadgeList BadgeList--AlignRight">
-            {% if badge %}
-              <li>
-                {% render 'badge', text: badge %}
-              </li>
+        <div class="ProductCard__VariantImages u-Hidden">
+          {% for variant in product.variants %}
+            {% if variant.featured_image %}
+              <div class="ProductCard__VariantImage">
+                {% render 'image', image: variant.featured_image, variant: 'square', sizes: '480px', widths: '480' %}
+              </div>
             {% endif %}
-
-            {% if compare_at_price > price %}
-              <li>
-                {% assign sale_text = 'components.badge.sale' | t %}
-                {% render 'badge', text: sale_text, variant: 'sale' %}
-              </li>
-            {% endif %}
-
-            {% if is_new %}
-              <li>
-                {% assign new_text = 'components.badge.new' | t %}
-                {% render 'badge', text: new_text %}
-              </li>
-            {% endif %}
-
-            {% if product.available == false %}
-              <li>
-                {% assign sold_out_text = 'components.badge.sold_out' | t %}
-                {% render 'badge', text: sold_out_text %}
-              </li>
-            {% endif %}
-          </ul>
+          {% endfor %}
         </div>
-      {% endif %}
-    </div>
+
+        {% liquid
+          assign six_months_ago_unix = 'now' | date: '%s' | minus: 15552000
+          assign product_created_at_unix = product.created_at | date: '%s' | plus: 0
+          assign is_new = false
+
+          if product_created_at_unix > six_months_ago_unix
+            assign is_new = true
+          endif
+        %}
+
+        {% if badge or compare_at_price > price or is_new or product.available == false %}
+          <div class="ProductCard__Badges">
+            <ul class="u-NoList BadgeList BadgeList--AlignRight">
+              {% if badge %}
+                <li>
+                  {% render 'badge', text: badge %}
+                </li>
+              {% endif %}
+
+              {% if compare_at_price > price %}
+                <li>
+                  {% assign sale_text = 'components.badge.sale' | t %}
+                  {% render 'badge', text: sale_text, variant: 'sale' %}
+                </li>
+              {% endif %}
+
+              {% if is_new %}
+                <li>
+                  {% assign new_text = 'components.badge.new' | t %}
+                  {% render 'badge', text: new_text %}
+                </li>
+              {% endif %}
+
+              {% if product.available == false %}
+                <li>
+                  {% assign sold_out_text = 'components.badge.sold_out' | t %}
+                  {% render 'badge', text: sold_out_text %}
+                </li>
+              {% endif %}
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+    </a>
 
     {% if product.has_only_default_variant == false and settings.enable_variant_quick_view %}
       <div class="ProductCard__QuickView">
@@ -110,8 +127,6 @@
         {% render 'variant-quick-view', option_values: option_values %}
       </div>
     {% endif %}
-
-    <a class="ProductCard__ImageLink" href="{{ url }}"></a>
   </div>
 
   <div class="ProductCard__Bottom">
@@ -208,11 +223,6 @@
     aspect-ratio: 1;
   }
 
-  .ProductCard__ImageLink {
-    position: absolute;
-    inset: 0;
-  }
-
   .ProductCard__Image {
     position: relative;
 
@@ -220,7 +230,7 @@
     overflow: hidden;
   }
 
-  .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:nth-of-type(2) {
+  .ProductCard--HoverSwap:has([data-secondary-image]) .ProductCard__Image [data-secondary-image] {
     position: absolute;
     inset: 0;
 
@@ -235,23 +245,23 @@
       transition: var(--transition-duration-medium) var(--transition-timing);
     }
 
-    .ProductCard--HoverZoom .ProductCard__Top:hover .Image {
+    .ProductCard--HoverZoom .ProductCard__Image:hover .Image {
       transform: scale(1);
     }
 
-    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image {
+    .ProductCard--HoverSwap:has([data-secondary-image]) .ProductCard__Image .Image {
       transition: transform var(--transition-duration-short) var(--transition-timing);
     }
 
-    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Image .Image:first-of-type {
+    .ProductCard--HoverSwap:has([data-secondary-image]) .ProductCard__Image [data-primary-image] {
       transform: translateX(0);
     }
 
-    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Top:hover .Image:first-of-type {
+    .ProductCard--HoverSwap:has([data-secondary-image]) .ProductCard__Image:hover [data-primary-image] {
       transform: translateX(-100%);
     }
 
-    .ProductCard--HoverSwap:has(.Image:nth-of-type(2)) .ProductCard__Top:hover .Image:nth-of-type(2) {
+    .ProductCard--HoverSwap:has([data-secondary-image]) .ProductCard__Image:hover [data-secondary-image] {
       transform: translateX(0);
     }
   }
