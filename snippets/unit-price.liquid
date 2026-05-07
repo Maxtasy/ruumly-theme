@@ -1,0 +1,16 @@
+{% doc %}
+  Renders a Unit Price component.
+
+  @param {number} unit_price - Price in cents
+  @param {object} unit_price_measurement - The liquid unit price measurement object
+{% enddoc %}
+
+{%- capture unit_price_text -%}
+  {{ unit_price | money | append: ' /' }}
+  {% if unit_price_measurement.reference_value > 1 %}
+    {{ unit_price_measurement.reference_value | append: ' ' }}
+  {% endif %}
+  {{ unit_price_measurement.reference_unit }}
+{%- endcapture -%}
+
+{% render 'text', text: unit_price_text, color: 'primary-muted', variant: 'body-small' %}
