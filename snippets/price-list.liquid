@@ -23,7 +23,9 @@
     {% endif %}
   </div>
 
-  {% render 'unit-price', unit_price: unit_price, unit_price_measurement: unit_price_measurement %}
+  {% if unit_price and unit_price_measurement %}
+    {% render 'unit-price', unit_price: unit_price, unit_price_measurement: unit_price_measurement %}
+  {% endif %}
 </div>
 
 {% stylesheet %}
