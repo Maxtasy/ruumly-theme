@@ -4,7 +4,7 @@
   @param {string} product_title - The title of the product.
   @param {string} [variant_title] - The title of the variant.
   @param {object} image - The image of the line item.
-  @param {number} price - The price of the line item.
+  @param {number} final_price - The price of the line item including all discounts.
   @param {string} compare_at_price - The compare at price of the line item.
   @param {number} quantity - The quantity of the line item.
   @param {string} key - The key of the line item.
@@ -77,7 +77,7 @@
       {% endif %}
 
       <div class="LineItem__Price">
-        {% render 'price-list', price: price, compare_at_price: compare_at_price %}
+        {% render 'price-list', price: final_price, compare_at_price: compare_at_price %}
       </div>
 
       <div class="LineItem__Actions">
