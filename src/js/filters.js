@@ -96,13 +96,14 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
   rerender(doc) {
     const elementsToReplaceSelectors = [
       "[id$='product-grid'] .ProductGrid",
-      ".Search__Content",
+      "[id$='main-search'] .ProductGrid",
       ".Filter__DropdownContent",
       ".Filter__TriggerContent",
       ".Filters__Row:has(.Filters__ActiveValues)",
       ".FiltersMobile__DrawerContent",
       '[data-action="open-drawer:filters-mobile"]',
       ".SortBy",
+      ".Search__Results > h2",
     ];
 
     elementsToReplaceSelectors.forEach((elementsToReplaceSelector) => {
