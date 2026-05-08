@@ -9,6 +9,7 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.handleFilterValueChange = this.handleFilterValueChange.bind(this);
     this.handleActiveFilterValueRemove = this.handleActiveFilterValueRemove.bind(this);
     this.handleFilterReset = this.handleFilterReset.bind(this);
+    this.handleFilterResetAll = this.handleFilterResetAll.bind(this);
     this.handleSortByChange = this.handleSortByChange.bind(this);
   }
 
@@ -16,6 +17,7 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.subscribe("filter-value:change", this.handleFilterValueChange);
     this.subscribe("active-filter-value:remove", this.handleActiveFilterValueRemove);
     this.subscribe("button:click:filter-reset", this.handleFilterReset);
+    this.subscribe("button:click:filter-reset-all", this.handleFilterResetAll);
     this.subscribe("sort-by:change", this.handleSortByChange);
   }
 
@@ -23,6 +25,7 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.unsubscribe("filter-value:change", this.handleFilterValueChange);
     this.unsubscribe("active-filter-value:remove", this.handleActiveFilterValueRemove);
     this.unsubscribe("button:click:filter-reset", this.handleFilterReset);
+    this.unsubscribe("button:click:filter-reset-all", this.handleFilterResetAll);
     this.unsubscribe("sort-by:change", this.handleSortByChange);
   }
 
@@ -34,7 +37,11 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.updateProductGrid(data.url);
   }
 
-  handleFilterReset() {
+  handleFilterReset(data) {
+    this.updateProductGrid(data.url);
+  }
+
+  handleFilterResetAll() {
     const url = new URL(window.location.href);
 
     [...url.searchParams.keys()].forEach((key) => {
@@ -89,8 +96,7 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
   rerender(doc) {
     const elementsToReplaceSelectors = [
       "[id$='product-grid'] .ProductGrid",
-      ".SearchFilters",
-      ".Search",
+      ".Search__Content",
       ".Filter__DropdownContent",
       ".Filter__TriggerContent",
       ".Filters__Row:has(.Filters__ActiveValues)",

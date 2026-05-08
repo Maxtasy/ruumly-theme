@@ -10,23 +10,6 @@
       {% render 'text', text: section.settings.heading, as: 'h1', variant: 'heading-medium' %}
     {% endif %}
 
-    <div class="SearchFilters">
-      {% if section.settings.enable_filters and search.performed and search.filters.size > 0 %}
-        {% liquid
-          assign filters_active = false
-
-          for filter in search.filters
-            if filter.active_values.size > 0
-              assign filters_active = true
-              break
-            endif
-          endfor
-        %}
-
-        {% render 'filters', filters: search.filters, filters_active: filters_active %}
-      {% endif %}
-    </div>
-
     <search-component class="Search">
       <form class="Form">
         {% assign search_text_field_placeholder = 'inputs.search.placeholder' | t %}
@@ -37,6 +20,23 @@
       </form>
 
       <div class="Search__Content">
+        {% if section.settings.enable_filters and search.performed and search.filters.size > 0 %}
+          <div class="Search__Filters">
+            {% liquid
+              assign filters_active = false
+
+              for filter in search.filters
+                if filter.active_values.size > 0
+                  assign filters_active = true
+                  break
+                endif
+              endfor
+            %}
+
+            {% render 'filters', filters: search.filters, filters_active: filters_active %}
+          </div>
+        {% endif %}
+
         {% if search.performed %}
           {% if search.results_count > 0 %}
             <div class="Search__Results">
@@ -106,6 +106,12 @@
 
 {% stylesheet %}
   .Search {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .Search__Content {
     display: flex;
     flex-direction: column;
     gap: var(--size-s);
