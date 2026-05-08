@@ -34,8 +34,16 @@ export class Filters extends CustomComponentMixin(HTMLElement) {
     this.updateProductGrid(data.url);
   }
 
-  handleFilterReset(data) {
-    this.updateProductGrid(data.url);
+  handleFilterReset() {
+    const url = new URL(window.location.href);
+
+    [...url.searchParams.keys()].forEach((key) => {
+      if (key.startsWith("filter.")) {
+        url.searchParams.delete(key);
+      }
+    });
+
+    this.updateProductGrid(url);
   }
 
   handleSortByChange(data) {
