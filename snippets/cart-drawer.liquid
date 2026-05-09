@@ -60,7 +60,8 @@
               key: line_item.key,
               variant_id: line_item.variant.id,
               inventory_quantity: line_item.variant.inventory_quantity,
-              item_components: line_item.item_components
+              item_components: line_item.item_components,
+              discount_allocations: line_item.discount_allocations
             %}
           </li>
         {% endfor %}

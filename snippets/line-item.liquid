@@ -13,6 +13,7 @@
   @param {string} url - The URL of the line item.
   @param {number} inventory_quantity - The inventory quantity of the line item.
   @param {object[]} item_components - The components of the line item.
+  @param {object} discount_allocations - The liquid discount allocation object.
 {% enddoc %}
 
 <line-item-component
@@ -32,6 +33,14 @@
     </a>
 
     <div class="LineItem__Details">
+      {% if discount_allocations.size > 0 %}
+        {% for discount_allocation in discount_allocations %}
+          <div class="LineItem__Badge">
+            {% render 'badge', text: discount_allocation.discount_application.title %}
+          </div>
+        {% endfor %}
+      {% endif %}
+
       <a class="LineItem__Titles" href="{{ url }}">
         {% render 'text', text: product_title %}
 
