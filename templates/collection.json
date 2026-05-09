@@ -25,8 +25,8 @@
         "overlay_opacity": 33
       }
     },
-    "collcection_navigation_a3UzBm": {
-      "type": "collcection-navigation",
+    "collection_navigation_a3UzBm": {
+      "type": "collection-navigation",
       "name": "t:sections.collection_navigation.presets.collection_navigation.name",
       "settings": {
         "color_scheme": "",
@@ -51,5 +51,5 @@
       }
     }
   },
-  "order": ["collection_banner_qtKQ8y", "collcection_navigation_a3UzBm", "product-grid"]
+  "order": ["collection_banner_qtKQ8y", "collection_navigation_a3UzBm", "product-grid"]
 }
