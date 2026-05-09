@@ -13,6 +13,7 @@
   @param {string} url - The URL of the line item.
   @param {number} inventory_quantity - The inventory quantity of the line item.
   @param {object[]} item_components - The components of the line item.
+  @param {object[]} discount_allocations - Array of discount allocation objects.
 {% enddoc %}
 
 <line-item-component
@@ -29,6 +30,22 @@
       {% assign image_alt_fallback = 'components.image.product.default_alt_text' | t %}
 
       {% render 'image', image: image, variant: 'square', image_alt_fallback: image_alt_fallback %}
+
+      {% if discount_allocations.size > 0 %}
+        <div class="LineItem__Badges">
+          <ul class="u-NoList BadgeList">
+            {% for discount_allocation in discount_allocations %}
+              <li>
+                {% render 'badge',
+                  text: discount_allocation.discount_application.title,
+                  size: 'small',
+                  variant: 'discount'
+                %}
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
     </a>
 
     <div class="LineItem__Details">
@@ -148,6 +165,11 @@
     display: flex;
     flex-direction: column;
     gap: var(--size-xxs);
+  }
+
+  .LineItem__Badges {
+    position: absolute;
+    top: var(--size-xxs);
   }
 
   .LineItem__Titles {

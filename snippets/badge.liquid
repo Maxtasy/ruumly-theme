@@ -3,24 +3,34 @@
 
   @param {string} [text] - Badge text
   @param {string} [content] - Badge content
-  @param {string} [variant] - Badge variant ('sale')
+  @param {string} [variant] - Badge variant ('sale', 'discount')
+  @param {string} [size] - The size of the badge ('small').
 {% enddoc %}
 
 {% assign badge_text_color = 'primary' %}
 {% if variant == 'sale' %}
   {% assign badge_text_color = 'sale' %}
+{% elsif variant == 'discount' %}
+  {% assign badge_text_color = 'inherit' %}
 {% endif %}
 
 <div
   class="
     Badge
-    {% if variant == 'sale' %}
-      Badge--Sale
+    {% if variant %}
+      Badge--Variant{{ variant | camelcase }}
+    {% endif %}
+    {% if size %}
+      Badge--Size{{ size | camelcase }}
     {% endif %}
   "
 >
   {% if text %}
-    {% render 'text', text: text, color: badge_text_color %}
+    {% if size == 'small' %}
+      {% assign text_variant = 'body-small' %}
+    {% endif %}
+
+    {% render 'text', text: text, color: badge_text_color, variant: text_variant %}
   {% endif %}
 
   {{ content }}
@@ -34,7 +44,16 @@
     background-color: var(--t-background-light);
   }
 
-  .Badge--Sale {
+  .Badge--VariantSale {
     background-color: var(--t-primary);
+  }
+
+  .Badge--VariantDiscount {
+    background-color: var(--t-info);
+    color: var(--t-highlight);
+  }
+
+  .Badge--SizeSmall {
+    padding: 0 var(--size-xxs);
   }
 {% endstylesheet %}
