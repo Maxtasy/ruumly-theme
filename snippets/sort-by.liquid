@@ -4,19 +4,24 @@
   @param {string} [handle] - Connects the sort by with a dropdown content.
 {% enddoc %}
 
+{% liquid
+  assign sort_by = collection.sort_by | default: search.sort_by
+  assign sort_options = collection.sort_options | default: search.sort_options
+%}
+
 <div class="SortBy">
   {% capture trigger_content %}
     <div class="SortBy__TriggerContent">
       {% assign text = 'components.filter.sort_by' | t %}
       
-      {% if collection.sort_by != blank %}
+      {% if sort_by != blank %}
         {% assign text = text | append: ': ' %}
       {% endif %}
 
       {% render 'text', text: text, as: 'b' %}
       
-      {% for sort_option in collection.sort_options %}
-        {% if sort_option.value == collection.sort_by %}
+      {% for sort_option in sort_options %}
+        {% if sort_option.value == sort_by %}
           {% render 'text', text: sort_option.name %}
         {% endif %}
       {% endfor %}
@@ -28,11 +33,11 @@
   <div class="SortBy__Content">
     {% capture content %}
       <ul class="SortBy__Options u-NoList">
-        {% for sort_option in collection.sort_options %}
+        {% for sort_option in sort_options %}
           <li>
             {% liquid 
               assign active = false
-              if sort_option.value == collection.sort_by
+              if sort_option.value == sort_by
                 assign active = true
               endif
             %}

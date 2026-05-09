@@ -49,21 +49,7 @@
         {% render 'text', text: text %}
       {% endcapture %}
 
-      {% capture event_details %}
-        {
-          "url": {{ collection.url | json }}
-        }
-      {% endcapture %}
-
-      {% assign event_details = event_details | escape %}
-
-      {% render 'button',
-        variant: 'plain',
-        size: 'small',
-        content: reset_button_content,
-        action: 'filter-reset',
-        event_details: event_details
-      %}
+      {% render 'button', variant: 'plain', size: 'small', content: reset_button_content, action: 'filter-reset-all' %}
 
       <div class="Filters__Loading">
         {% render 'loading-spinner' %}
@@ -189,20 +175,11 @@
           {% render 'button', text: save_and_close_button_text, action: 'close', full_width: true %}
           
           {% assign reset_all_button_text = 'components.filter.reset_all_filters' | t %}
-          
-          {% capture event_details %}
-            {
-              "url": {{ collection.url | json }}
-            }
-          {% endcapture %}
-
-          {% assign event_details = event_details | escape %}
 
           {% render 'button',
             text: reset_all_button_text,
             variant: 'secondary',
-            action: 'filter-reset',
-            event_details: event_details, 
+            action: 'filter-reset-all',
             full_width: true
           %}
         </div>

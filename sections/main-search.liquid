@@ -19,6 +19,23 @@
         {% render 'button', text: submit_button_text %}
       </form>
 
+      <div class="Search__Filters">
+        {% if section.settings.enable_filters and search.performed and search.filters.size > 0 %}
+          {% liquid
+            assign filters_active = false
+
+            for filter in search.filters
+              if filter.active_values.size > 0
+                assign filters_active = true
+                break
+              endif
+            endfor
+          %}
+
+          {% render 'filters', filters: search.filters, filters_active: filters_active %}
+        {% endif %}
+      </div>
+
       <div class="Search__Content">
         {% if search.performed %}
           {% if search.results_count > 0 %}
@@ -94,6 +111,12 @@
     gap: var(--size-s);
   }
 
+  .Search__Content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
   .Search__Results {
     display: flex;
     flex-direction: column;
@@ -132,6 +155,12 @@
         { "value": "medium", "label": "t:sections.all.settings.padding_block.options.medium.label" },
         { "value": "large", "label": "t:sections.all.settings.padding_block.options.large.label" }
       ]
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_filters",
+      "label": "t:sections.all.settings.enable_filters.label",
+      "default": true
     },
     {
       "type": "header",
