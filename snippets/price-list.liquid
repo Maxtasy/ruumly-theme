@@ -15,8 +15,13 @@
       {% render 'text', text: compare_at_price_text, variant: 'body-small', as: 'del' %}
     {% endif %}
 
-    {% assign price_text = price | money %}
-    {% render 'text', text: price_text, as: 'b' %}
+    {% if price == 0 %}
+      {% assign price_text = 'global.free' | t %}
+      {% render 'text', text: price_text, as: 'b', color: 'success' %}
+    {% else %}
+      {% assign price_text = price | money %}
+      {% render 'text', text: price_text, as: 'b' %}
+    {% endif %}
 
     {% if info %}
       {% render 'rich-text', content: info %}
