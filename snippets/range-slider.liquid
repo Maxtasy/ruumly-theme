@@ -13,13 +13,13 @@
 <range-slider-component class="RangeSlider" data-gap="{{ gap }}">
   <div class="RangeSlider__NumberInputs">
     <div class="RangeSlider__NumberInput" data-min-input>
-      {% render 'number-field', label: 'Min', min: min, max: max, value: selected_min %}
+      {% render 'number-field', min: min, max: max, value: selected_min %}
     </div>
 
-    <div class="RangeSlider__Separator">-</div>
+    {% render 'icon', icon: 'minus' %}
 
     <div class="RangeSlider__NumberInput" data-max-input>
-      {% render 'number-field', label: 'Max', min: min, max: max, value: selected_max %}
+      {% render 'number-field', min: min, max: max, value: selected_max %}
     </div>
   </div>
 
@@ -34,7 +34,7 @@
 
     <div
       class="RangeSlider__Range"
-      style="--left-percentage: {{ left_percentage }}; --right-percentage: {{100 | minus: right_percentage }}"
+      style="--left-percentage: {{ left_percentage }}; --right-percentage: {{ 100 | minus: right_percentage }}"
     ></div>
 
     <input
@@ -69,10 +69,6 @@
     justify-content: space-between;
     align-items: center;
     gap: var(--size-s);
-  }
-
-  .RangeSlider__Separator {
-    font-size: var(--text-size-body-large);
   }
 
   .RangeSlider__Track {
