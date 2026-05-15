@@ -3,29 +3,45 @@
 
   @param {number} min - The minimum value for the range.
   @param {number} max - The maximum value for the range.
+  @param {number} [gap] - The gap between the minimum and maximum value. Default: 25
+  @param {number} [selected_min] - The selected minimum value for the range.
+  @param {number} [selected_max] - The selected maximum value for the range.
 {% enddoc %}
 
-<range-slider-component class="RangeSlider">
+{% assign gap = gap | default: 25 %}
+
+<range-slider-component class="RangeSlider" data-gap="{{ gap }}">
   <div class="RangeSlider__NumberInputs">
     <div class="RangeSlider__NumberInput" data-min-input>
-      {% render 'number-field', label: 'Min', min: min, max: max, value: 100 %}
+      {% render 'number-field', label: 'Min', min: min, max: max, value: selected_min %}
     </div>
 
     <div class="RangeSlider__Separator">-</div>
 
     <div class="RangeSlider__NumberInput" data-max-input>
-      {% render 'number-field', label: 'Max', min: min, max: max, value: 1000 %}
+      {% render 'number-field', label: 'Max', min: min, max: max, value: selected_max %}
     </div>
   </div>
 
   <div class="RangeSlider__Track">
-    <div class="RangeSlider__Range"></div>
+    {% assign left_first_part = selected_min | minus: min %}
+    {% assign left_second_part = max | minus: min %}
+    {% assign left_percentage = left_first_part | times: 100 | divided_by: left_second_part %}
+
+    {% assign right_first_part = selected_max | minus: min %}
+    {% assign right_second_part = max | minus: min %}
+    {% assign right_percentage = right_first_part | times: 100 | divided_by: right_second_part %}
+
+    <div
+      class="RangeSlider__Range"
+      style="--left-percentage: {{ left_percentage }}; --right-percentage: {{100 | minus: right_percentage }}"
+    ></div>
 
     <input
       type="range"
       min="{{ min }}"
       max="{{ max }}"
-      value="{{ min }}"
+      value="{{ selected_min }}"
       step="5"
       data-min-range
     >
@@ -34,7 +50,7 @@
       type="range"
       min="{{ min }}"
       max="{{ max }}"
-      value="{{ max }}"
+      value="{{ selected_max }}"
       step="5"
       data-max-range
     >
@@ -69,9 +85,9 @@
   .RangeSlider__Range {
     position: absolute;
     top: 0;
-    right: calc(var(--RightPercentage, 0) * 1%);
+    right: calc(var(--right-percentage, 0) * 1%);
     bottom: 0;
-    left: calc(var(--LeftPercentage, 0) * 1%);
+    left: calc(var(--left-percentage, 0) * 1%);
     background-color: var(--t-text);
   }
 

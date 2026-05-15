@@ -4,11 +4,9 @@ export class Range extends CustomComponentMixin(HTMLElement) {
   constructor() {
     super();
 
-    this.gap = 100;
+    this.gap = this.parsedData.gap;
     this.min = parseInt(this.minRangeElement.value);
     this.max = parseInt(this.maxRangeElement.value);
-
-    this.updateRange();
 
     this.handleMinNumberInput = this.handleMinNumberInput.bind(this);
     this.handleMaxNumberInput = this.handleMaxNumberInput.bind(this);
@@ -67,7 +65,7 @@ export class Range extends CustomComponentMixin(HTMLElement) {
 
     const leftPositionPercentage = this.getPercentage(this.min);
 
-    this.rangeElement.style.setProperty("--LeftPercentage", leftPositionPercentage);
+    this.rangeElement.style.setProperty("--left-percentage", leftPositionPercentage);
   }
 
   handleMaxRangeInput() {
@@ -83,7 +81,7 @@ export class Range extends CustomComponentMixin(HTMLElement) {
 
     const rightPositionPercentage = 100 - this.getPercentage(this.max);
 
-    this.rangeElement.style.setProperty("--RightPercentage", rightPositionPercentage);
+    this.rangeElement.style.setProperty("--right-percentage", rightPositionPercentage);
   }
 
   getPercentage(value) {
@@ -97,8 +95,8 @@ export class Range extends CustomComponentMixin(HTMLElement) {
     const leftPositionPercentage = this.getPercentage(this.min);
     const rightPositionPercentage = 100 - this.getPercentage(this.max);
 
-    this.rangeElement.style.setProperty("--LeftPercentage", leftPositionPercentage);
-    this.rangeElement.style.setProperty("--RightPercentage", rightPositionPercentage);
+    this.rangeElement.style.setProperty("--left-percentage", leftPositionPercentage);
+    this.rangeElement.style.setProperty("--right-percentage", rightPositionPercentage);
   }
 
   get minNumberInputElement() {
