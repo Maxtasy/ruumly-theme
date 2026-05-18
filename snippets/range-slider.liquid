@@ -1,0 +1,120 @@
+{% doc %}
+  Renders a Range Slider component.
+
+  @param {number} min - The minimum value for the range.
+  @param {number} max - The maximum value for the range.
+  @param {number} [gap] - The gap between the minimum and maximum value. Default: 25
+  @param {number} [selected_min] - The selected minimum value for the range.
+  @param {number} [selected_max] - The selected maximum value for the range.
+{% enddoc %}
+
+{% assign gap = gap | default: 25 %}
+
+<range-slider-component class="RangeSlider" data-gap="{{ gap }}">
+  <div class="RangeSlider__NumberInputs">
+    <div class="RangeSlider__NumberInput" data-min-input>
+      {% render 'number-field', min: min, max: max, value: selected_min %}
+    </div>
+
+    {% render 'icon', icon: 'minus' %}
+
+    <div class="RangeSlider__NumberInput" data-max-input>
+      {% render 'number-field', min: min, max: max, value: selected_max %}
+    </div>
+  </div>
+
+  <div class="RangeSlider__Track">
+    {% assign left_first_part = selected_min | minus: min %}
+    {% assign left_second_part = max | minus: min %}
+    {% assign left_percentage = left_first_part | times: 100 | divided_by: left_second_part %}
+
+    {% assign right_first_part = selected_max | minus: min %}
+    {% assign right_second_part = max | minus: min %}
+    {% assign right_percentage = right_first_part | times: 100 | divided_by: right_second_part %}
+
+    <div
+      class="RangeSlider__Range"
+      style="--left-percentage: {{ left_percentage }}; --right-percentage: {{ 100 | minus: right_percentage }}"
+    ></div>
+
+    <input
+      type="range"
+      min="{{ min }}"
+      max="{{ max }}"
+      value="{{ selected_min }}"
+      step="5"
+      data-min-range
+    >
+
+    <input
+      type="range"
+      min="{{ min }}"
+      max="{{ max }}"
+      value="{{ selected_max }}"
+      step="5"
+      data-max-range
+    >
+  </div>
+</range-slider-component>
+
+{% stylesheet %}
+  .RangeSlider {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-s);
+  }
+
+  .RangeSlider__NumberInputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--size-s);
+  }
+
+  .RangeSlider__Track {
+    position: relative;
+    height: var(--size-xxs);
+    background: var(--t-border-muted);
+    border-radius: var(--t-border-radius-max);
+  }
+
+  .RangeSlider__Range {
+    position: absolute;
+    top: 0;
+    right: calc(var(--right-percentage, 0) * 1%);
+    bottom: 0;
+    left: calc(var(--left-percentage, 0) * 1%);
+    background-color: var(--t-text);
+  }
+
+  .RangeSlider input[type='range']::-webkit-slider-thumb {
+    height: var(--size-m);
+    width: var(--size-m);
+    border-radius: var(--t-border-radius-circle);
+    background-color: var(--t-text);
+    pointer-events: auto;
+    cursor: grab;
+    -webkit-appearance: none;
+  }
+
+  .RangeSlider input[type='range']::-moz-range-thumb {
+    height: var(--size-m);
+    width: var(--size-m);
+    border-radius: var(--t-border-radius-circle);
+    background-color: var(--t-text);
+    pointer-events: auto;
+    cursor: grab;
+  }
+
+  .RangeSlider input[type='range'] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: none;
+    pointer-events: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    margin: 0;
+  }
+{% endstylesheet %}

@@ -1,0 +1,47 @@
+{% doc %}
+  Renders a Number Field component.
+
+  @param {string} [label] - The label for the number field.
+  @param {number} [value] - The initial value for the number field.
+  @param {number} [min] - The minimum value for the number field.
+  @param {number} [max] - The maximum value for the number field.
+{% enddoc %}
+
+<label class="NumberField">
+  {% if label %}
+    <div class="NumberField__Label">
+      {% render 'text', text: label %}
+    </div>
+  {% endif %}
+
+  <input class="NumberField__Input" type="number" min="{{ min }}" max="{{ max }}" value="{{ value }}">
+</label>
+
+{% stylesheet %}
+  .NumberField {
+    display: flex;
+    flex-direction: column;
+    gap: var(--size-xxs);
+  }
+
+  .NumberField__Input {
+    border-radius: var(--t-border-radius);
+    padding-block: var(--size-xs);
+    padding-inline: var(--size-xs);
+    border: var(--border-width) var(--border-style) var(--t-border-muted);
+    font-family: var(--font-family-body);
+    font-size: var(--text-size-body-medium);
+    text-align: center;
+    transition: border-color var(--transition-duration-medium) var(--transition-timing);
+  }
+
+  .NumberField__Input:focus-visible {
+    outline: none;
+    border-color: var(--t-text);
+  }
+
+  .NumberField__Input::-webkit-outer-spin-button,
+  .NumberField__Input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+{% endstylesheet %}
