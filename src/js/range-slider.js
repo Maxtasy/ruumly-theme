@@ -49,6 +49,8 @@ export class Range extends CustomComponentMixin(HTMLElement) {
     this.minRangeElement.value = this.selectedMin;
 
     this.updateRange();
+
+    this.publishChangeEvent();
   }
 
   handleMaxNumberInput() {
@@ -61,6 +63,8 @@ export class Range extends CustomComponentMixin(HTMLElement) {
     this.maxRangeElement.value = this.selectedMax;
 
     this.updateRange();
+
+    this.publishChangeEvent();
   }
 
   handleMinRangeInput() {
@@ -74,9 +78,7 @@ export class Range extends CustomComponentMixin(HTMLElement) {
 
     this.minNumberInputElement.value = this.selectedMin;
 
-    const leftPositionPercentage = this.getPercentage(this.selectedMin);
-
-    this.rangeElement.style.setProperty("--left-percentage", leftPositionPercentage);
+    this.updateRange();
   }
 
   handleMaxRangeInput() {
@@ -90,12 +92,14 @@ export class Range extends CustomComponentMixin(HTMLElement) {
 
     this.maxNumberInputElement.value = this.selectedMax;
 
-    const rightPositionPercentage = 100 - this.getPercentage(this.selectedMax);
-
-    this.rangeElement.style.setProperty("--right-percentage", rightPositionPercentage);
+    this.updateRange();
   }
 
   handleRangeChange() {
+    this.publishChangeEvent();
+  }
+
+  publishChangeEvent() {
     this.publish("range-slider:change", { selectedMin: this.selectedMin, selectedMax: this.selectedMax });
   }
 
@@ -112,8 +116,6 @@ export class Range extends CustomComponentMixin(HTMLElement) {
 
     this.rangeElement.style.setProperty("--left-percentage", leftPositionPercentage);
     this.rangeElement.style.setProperty("--right-percentage", rightPositionPercentage);
-
-    this.publish("range-slider:change", { selectedMin: this.selectedMin, selectedMax: this.selectedMax });
   }
 
   get minNumberInputElement() {

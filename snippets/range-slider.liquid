@@ -87,12 +87,7 @@
     background-color: var(--t-text);
   }
 
-  input[type='number']::-webkit-outer-spin-button,
-  input[type='number']::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-  }
-
-  input[type='range']::-webkit-slider-thumb {
+  .RangeSlider input[type='range']::-webkit-slider-thumb {
     height: var(--size-m);
     width: var(--size-m);
     border-radius: var(--t-border-radius-circle);
@@ -102,7 +97,7 @@
     -webkit-appearance: none;
   }
 
-  input[type='range']::-moz-range-thumb {
+  .RangeSlider input[type='range']::-moz-range-thumb {
     height: var(--size-m);
     width: var(--size-m);
     border-radius: var(--t-border-radius-circle);
@@ -111,7 +106,7 @@
     cursor: grab;
   }
 
-  input[type='range'] {
+  .RangeSlider input[type='range'] {
     position: absolute;
     width: 100%;
     height: 100%;
